@@ -45,7 +45,6 @@ format:
 lang: ru
 author:
 - Афоненко Анатолий
-- Лайша Богдан
 bibliography: references.bib
 engine: knitr
 reference-catalog:

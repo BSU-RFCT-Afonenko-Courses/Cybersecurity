@@ -40,7 +40,7 @@ course:
 website:
   title: Основы кибербезопасности
   search: true
-  page-footer: Афоненко Анатолий · Лайша Богдан
+  page-footer: Афоненко Анатолий
   favicon: assets/cover.png
 filters:
 - course-core
