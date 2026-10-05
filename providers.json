@@ -4,7 +4,7 @@
     "core": {
       "repository": "Afonenko-Course-Tools/quarto-course",
       "checkout": "quarto-course-capture",
-      "commit": "27d7c437d386f5489c8a0a4c09ed1afeb07c7967",
+      "commit": "6e44e39630a4487f6182f808b3e2baded2a0e627",
       "packages": {
         "course-core": [
           ".",

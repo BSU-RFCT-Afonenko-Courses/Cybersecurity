@@ -33,8 +33,6 @@
     const entries = visible.map((element, index) => {
       const heading = element.querySelector('h1,h2,h3,h4');
       const title = clean(heading && heading.textContent) || `${labels.slide} ${index + 1}`;
-      const explicit = element.getAttribute('data-course-section') ||
-        (heading && heading.getAttribute('data-course-section'));
       const isTitle = element.id === 'title-slide';
       const sectionStart = !isTitle && !!heading && (heading.tagName === 'H1' || element.classList.contains('level1'));
       const clone = element.cloneNode(true);
@@ -42,7 +40,7 @@
       const indices = deck.getIndices(element);
       return {
         element, title, h: indices.h, v: indices.v || 0,
-        section: isTitle ? labels.start : (clean(explicit) || (sectionStart ? title : null)),
+        section: isTitle ? labels.start : (sectionStart ? title : null),
         sectionStart, isTitle,
         search: clean(clone.textContent).toLocaleLowerCase()
       };

@@ -4,8 +4,8 @@
     "course-core": {
       "provider": "core",
       "repository": "Afonenko-Course-Tools/quarto-course",
-      "commit": "27d7c437d386f5489c8a0a4c09ed1afeb07c7967",
-      "extensionTree": "31bfb530d0f8f472b35da620af43834a5831266b",
+      "commit": "6e44e39630a4487f6182f808b3e2baded2a0e627",
+      "extensionTree": "5356563f5df19e811fc267d4628f380d10063fca",
       "scopes": [
         ".",
         "theory",
@@ -210,8 +210,8 @@
     "course-presentation": {
       "provider": "core",
       "repository": "Afonenko-Course-Tools/quarto-course",
-      "commit": "27d7c437d386f5489c8a0a4c09ed1afeb07c7967",
-      "extensionTree": "31bfb530d0f8f472b35da620af43834a5831266b",
+      "commit": "6e44e39630a4487f6182f808b3e2baded2a0e627",
+      "extensionTree": "5356563f5df19e811fc267d4628f380d10063fca",
       "scopes": [
         "theory",
         "tasks",
@@ -280,26 +280,26 @@
     "course-navigation": {
       "provider": "core",
       "repository": "Afonenko-Course-Tools/quarto-course",
-      "commit": "27d7c437d386f5489c8a0a4c09ed1afeb07c7967",
-      "extensionTree": "31bfb530d0f8f472b35da620af43834a5831266b",
+      "commit": "6e44e39630a4487f6182f808b3e2baded2a0e627",
+      "extensionTree": "5356563f5df19e811fc267d4628f380d10063fca",
       "scopes": [
         "lectures",
         "practice"
       ],
       "files": {
         "README.md": {
-          "sha256": "6884408cb893b4e85d69ef0f14c98fb3f6a7ead612792a7056d747c98d6b6a95",
-          "size": 4808,
+          "sha256": "3753760aa99e05361ebb2e7d53e3b076c1058754ab1df237097d1dc82fbb60d0",
+          "size": 6741,
           "mode": 420
         },
         "_extension.yml": {
-          "sha256": "160e977deab8686eda1870c1c9d7a63a0ff17c73655f96c231ff0962e931127d",
+          "sha256": "10118486aa41ff22842400df18f76fd6e0bc4d7b1b32e28af2bc52a7711b2570",
           "size": 189,
           "mode": 420
         },
         "navigation/model.js": {
-          "sha256": "e0551b15779ec196e8ed5683f18d1c55f2fad503342ef5a67ccbf4cef8acf677",
-          "size": 3538,
+          "sha256": "a0e1cd0a99a3c91414bd925cc39f5afb91b905ae427c914ecb71fae6df01f96c",
+          "size": 3381,
           "mode": 420
         },
         "navigation/navigation.css": {
