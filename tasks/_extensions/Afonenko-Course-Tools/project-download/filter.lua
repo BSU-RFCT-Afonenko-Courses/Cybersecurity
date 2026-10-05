@@ -18,6 +18,8 @@ return {{Pandoc = function(doc)
   local directory = root .. "/_generated/project-download/requests"
   pandoc.system.make_directory(directory, true)
   local file = assert(io.open(directory .. "/" .. pandoc.utils.sha1(source) .. ".json", "w"))
-  file:write(pandoc.json.encode({source=source, resources=requests})); file:close()
+  local request = {source=source, resources=requests}
+  if doc.meta["course-core-processed"] == true then request.courseProcessed = true end
+  file:write(pandoc.json.encode(request)); file:close()
   return doc
 end}}

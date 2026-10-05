@@ -35,6 +35,17 @@ export interface Fragment {
     defaults?: PedagogicalMetadata;
   };
 }
+export interface DocumentResult extends Fragment {
+  scope: "document";
+  body?: { publicExercises: Fragment["exercises"]; publicAssessment?: Fragment["assessment"]; publicAnswers?: Record<string, {answerType: string; publicAnswerJson: string}> };
+  resources?: import("../infrastructure/resources.ts").ResourceFacts;
+  document: { source: string; format: string; output: string; profiles: string[] };
+}
+export interface ReleaseResult {
+  scope: "release";
+  documents: DocumentResult[];
+  model: Course;
+}
 export interface AdapterFragment { source: string; exercises: { id: string; payload: Json }[]; assessment?: Json }
 export interface Contract { name: string; rules: string }
 export interface Adapter { directory: string; contract: Contract; fragments: Map<string, AdapterFragment> }

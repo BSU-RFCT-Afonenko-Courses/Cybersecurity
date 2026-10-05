@@ -1,17 +1,24 @@
-import { resolve } from "stdlib/path";
-import { check } from "../application/check.ts";
-import { runtime } from "../infrastructure/runtime.ts";
-export async function main(args: string[] = Deno.args): Promise<void> {
-  let project = ".", seenProject = false;
-  const adapters: string[] = [];
-  for (let i = 0; i < args.length; i++) {
-    if (args[i] === "--adapter" && args[i + 1]) adapters.push(args[++i]);
-    else if (args[i] === "--help") { console.log("quarto run check.ts [КАТАЛОГ_ПРОЕКТА] [--adapter КАТАЛОГ_АДАПТЕРА ...]"); return; }
-    else if (args[i].startsWith("-") || seenProject) throw new Error(`Неизвестный аргумент: ${args[i]}`);
-    else { project = args[i]; seenProject = true; }
+import { loadNativeRun } from "../infrastructure/native-run.ts";
+import { assembleRelease } from "../domain/release.ts";
+import { validateRelease } from "../infrastructure/validate.ts";
+export async function main(args = Deno.args) {
+  const [root = ".", view] = args;
+  if (view !== "student" && view !== "full") {
+    throw Error("Usage: quarto run check.ts PROJECT student|full");
   }
-  const root = await Deno.realPath(resolve(project));
-  const result = await check(runtime(root, adapters));
-  console.log(`Курс: заданий — ${result.model.exercises.length}, занятий — ${result.model.assessments.length}\n${result.path}`);
+  const run = await loadNativeRun(root, { view });
+  if (!run.renderAll) throw Error("RELEASE.FULL_NATIVE_RUN_REQUIRED");
+  const result = assembleRelease(
+    run.documents.map((d) => d.source),
+    run.documents,
+    run.adapters,
+    { view, profiles: run.profiles },
+  );
+  await validateRelease(result, run.projectRoot, run.adapters);
+  await Deno.writeTextFile(
+    run.projectRoot + "/_generated/course-spec/course.json",
+    JSON.stringify(result.model, null, 2),
+  );
+  console.log(`Course: ${result.model.exercises.length} exercises`);
 }
 if (import.meta.main) await main();

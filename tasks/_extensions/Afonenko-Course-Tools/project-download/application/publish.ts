@@ -1,6 +1,6 @@
 import { RESOURCE_ID, type Configuration, type Resource } from "../domain/config.ts";
 import { zip } from "../domain/zip.ts";
-export interface Request { source:string; resources:string[] }
+export interface Request { source:string; resources:string[]; courseProcessed?:boolean }
 export interface PublishPorts {
   requests():Promise<Request[]>;
   courseResource(id:string,source:string):Promise<Resource>;

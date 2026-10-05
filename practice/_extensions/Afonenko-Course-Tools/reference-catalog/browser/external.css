@@ -1,0 +1,10 @@
+/* Цвет и подчёркивание ссылки наследуются от темы публикации. */
+.qrc-external .qrc-source {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+.qrc-external .qrc-external-marker {
+  display: inline-block;
+  font-size: 0.8em;
+  white-space: nowrap;
+}

@@ -26,7 +26,9 @@ function M.decorate(div, cfg)
   end
   badge(label(difficulty[values.difficulty], cfg), "difficulty")
   badge(values.time and (values.time .. (cfg.ru and " мин" or " min")), "time")
-  badge(label(modes[values["work-mode"]], cfg), "work-mode")
+  if values["work-mode"] ~= "individual" then
+    badge(label(modes[values["work-mode"]], cfg), "work-mode")
+  end
   badge(label(requirement[values.requirement], cfg), "requirement")
   if #parts > 0 then
     local line = pandoc.Div({pandoc.Plain(parts)}, pandoc.Attr("", {"course-metadata"}))

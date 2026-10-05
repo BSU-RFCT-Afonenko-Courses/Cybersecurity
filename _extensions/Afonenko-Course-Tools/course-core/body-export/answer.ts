@@ -2,12 +2,9 @@
 // Native CodeBlock answer data only; no QMD reader/resource producer.
 import { isAlias, parseDocument } from "./vendor/libraries.js";
 import type { Node } from "./model.ts";
-import { OwnerFailure } from "../owner-preflight/owner/failure.ts";
-import { invoke } from "../owner-preflight/owner/runtime.ts";
+import { command } from "../infrastructure/process.ts";
 async function run(cmd: string, args: string[]): Promise<string> {
-  const r = await invoke(cmd, args, Deno.cwd());
-  if (r.exitCode) throw new OwnerFailure("BODY.ANSWER_INVALID", r);
-  return r.stdout;
+  return await command(Deno.env.get("CUE") || cmd, args, Deno.cwd());
 }
 const para = (s: string): Node => ({ t: "Para", c: [{ t: "Str", c: s }] });
 async function vet(answer: any) {

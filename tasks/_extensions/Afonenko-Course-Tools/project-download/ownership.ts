@@ -12,7 +12,7 @@ export interface OwnedRequestState {
 }
 
 async function hash(algorithm:"SHA-1"|"SHA-256",bytes:Uint8Array):Promise<string> {
-  return Array.from(new Uint8Array(await crypto.subtle.digest(algorithm,bytes)))
+  return Array.from(new Uint8Array(await crypto.subtle.digest(algorithm,new Uint8Array(bytes))))
     .map(value=>value.toString(16).padStart(2,"0")).join("");
 }
 
@@ -53,7 +53,7 @@ export async function inspectOwnedRequests(root:string,sources:string[]):Promise
     const value:unknown=JSON.parse(new TextDecoder("utf-8",{fatal:true}).decode(bytes));
     if(!value || typeof value!=="object" || Array.isArray(value)) throw new Error(`Повреждённая заявка: ${path}`);
     const fields=value as Record<string,unknown>;
-    if(Object.keys(fields).length!==2 || !Object.hasOwn(fields,"source") || !Object.hasOwn(fields,"resources") || typeof fields.source!=="string" || !allowed.has(fields.source) || !Array.isArray(fields.resources) || fields.resources.some(id=>typeof id!=="string" || !RESOURCE_ID.test(id))) throw new Error(`Недопустимые поля заявки: ${path}`);
+    if(Object.keys(fields).some(key=>!["source","resources","courseProcessed"].includes(key)) || (Object.hasOwn(fields,"courseProcessed") && typeof fields.courseProcessed!=="boolean") || !Object.hasOwn(fields,"source") || !Object.hasOwn(fields,"resources") || typeof fields.source!=="string" || !allowed.has(fields.source) || !Array.isArray(fields.resources) || fields.resources.some(id=>typeof id!=="string" || !RESOURCE_ID.test(id))) throw new Error(`Недопустимые поля заявки: ${path}`);
     const request=value as Request;
     if(entry.name!==await hash("SHA-1",new TextEncoder().encode(request.source))+".json") throw new Error(`Имя заявки не соответствует источнику: ${path}`);
     state.files.push({path,source:request.source,resources:request.resources,sha256:await hash("SHA-256",bytes)});

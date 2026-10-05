@@ -61,12 +61,14 @@ local function strip(node)
   end)
 end
 
-function M.prepare(doc)
+function M.prepare(doc, override)
   local raw = doc.meta.course and doc.meta.course.view
-  local view = raw and pandoc.utils.stringify(raw) or nil
+  local view = override or (raw and pandoc.utils.stringify(raw) or nil)
   assert(not view or views[view], "course.view должен принимать значение student или full")
   local active = {}
   for name in (os.getenv("QUARTO_PROFILE") or ""):gmatch("[^, ]+") do active[name] = true end
+  -- Public projection changes only the audience; native feature profiles survive.
+  if override then active.student,active.full=nil,nil;active[override]=true end
   assert(not (active.student and active.full), "Профили student и full нельзя включать одновременно")
   assert(not view or not ((active.student and view ~= "student") or (active.full and view ~= "full")),
     "course.view не соответствует выбранному профилю Quarto")
