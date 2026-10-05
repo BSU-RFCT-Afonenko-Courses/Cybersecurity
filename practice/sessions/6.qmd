@@ -1,0 +1,11 @@
+# Семинарское занятие 6 {#sec-seminar-6}
+
+## Материалы занятия
+
+План занятия пока не заполнен.
+
+- @tasks:sec-plan
+- @tasks:sec-tasks
+- @theory:sec-theory
+
+[Все семинары](../index.html#sec-practice) · [Навигация курса](../../index.html#sec-portal)

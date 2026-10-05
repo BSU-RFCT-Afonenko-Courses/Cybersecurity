@@ -1,36 +1,4 @@
+course:
+  view: student
 project:
-  type: book
-  output-dir: _student-book
-book:
-  chapters:
-    - index.qmd
-    - part: Домашняя работа
-      chapters:
-        - lab/crypto/random/main.qmd
-        - lab/crypto/hash/main.qmd
-        - lab/crypto/key-gen/main.qmd
-        - lab/crypto/cypher/symmetric/main.qmd
-        - lab/crypto/cypher/asymmetric/main.qmd
-        - lab/crypto/sign/main.qmd
-        - lab/crypto/key-exchange/main.qmd
-        - lab/crypto/cert/main.qmd
-
-        - lab/access-control/ident/main.qmd
-        - lab/access-control/authn/main.qmd
-        - lab/access-control/authn/password-protection.qmd
-        - lab/access-control/authz/model/main.qmd
-        - lab/access-control/authz/windows/acl.qmd
-        - lab/access-control/authz/windows/mic.qmd
-
-        - lab/data-integrity/checksum/detection.qmd
-        - lab/data-integrity/checksum/correction.qmd
-        - lab/data-integrity/backup/main.qmd
-
-        - lab/audit/code/main.qmd
-        - lab/audit/event/main.qmd
-
-        - lab/ddos/main.qmd
-        - lab/social-engineering/main.qmd
-
-  appendices:
-    - lab/crypto/cypher/asymmetric/factorization.qmd
+  output-dir: _site-student

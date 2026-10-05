@@ -1,0 +1,22 @@
+---
+assessment:
+  kind: lab
+---
+
+# Хеширование {#sec-work-crypto-hash}
+
+## Практические действия {#sec-lab-crypto-hash}
+
+::: {#exr-lab-crypto-hash course-role="independent-study" difficulty="introductory"}
+### Условие работы
+
+@theory:sec-theory-crypto-hash
+
+Захешировать сообщение с помощью нескольких методов. Использовать утилиты по типу sha1sum или gtkhash. Незначительно (на один бит) изменить исходное сообщение, посмотреть насколько изменился хеш.
+
+Задание работы таблица (набор) хеш функций от известного сообщения
+:::
+
+::: {.assessment-items}
+1. @exr-lab-crypto-hash
+:::

@@ -3,8 +3,6 @@
 
 _site/
 _*book/
-_test/
-_practice/
 _freeze/
 *_cache/
 *_files/
@@ -19,3 +17,17 @@ _freeze/
 
 *.html
 /_*.local
+
+# Результаты нативных проектов общего шаблона.
+**/.quarto/
+**/.qrc/
+**/_generated/
+**/_output/
+**/_site-student/
+**/_site-full/
+**/.project-publish/
+**/site_libs/
+**/.runtime-cache/
+**/.render-cache/
+**/_freeze/
+**/_downloads/

@@ -1,0 +1,36 @@
+/* Переменные представления наследуют тему проекта, включая Cosmo. Тема может
+   переопределить четыре переменные без изменения учебной разметки. */
+
+.course-block { margin-block: 1em; padding-inline-start: .85em; border-inline-start: .16em solid var(--course-accent, var(--bs-primary, currentColor)); }
+.course-metadata { display: flex; flex-wrap: wrap; gap: .35em .65em; color: var(--course-muted, var(--bs-secondary-color, #525960)); margin-block: .4em .7em; font-size: .78em; line-height: 1.5; }
+.course-meta { display: inline-block; padding: .05em .45em; border: 1px solid var(--course-border, var(--bs-border-color, #d8dce0)); border-radius: .25em; }
+.course-meta-role { color: var(--course-accent, var(--bs-primary, currentColor)); font-weight: 600; border-color: transparent; padding-inline-start: 0; }
+.course-answer { margin-block: .7em; }
+.course-answer > details { border: 1px solid var(--course-border, var(--bs-border-color, #d8dce0)); border-radius: .25em; padding: .6em .8em; background: var(--course-surface, var(--bs-tertiary-bg, #f5f6f7)); }
+.course-answer > details > summary { cursor: pointer; color: var(--course-accent, var(--bs-primary, currentColor)); font-weight: 600; min-height: 1.6em; }
+.course-answer > details > summary:focus-visible { outline: 2px solid var(--course-accent, var(--bs-primary, currentColor)); outline-offset: .2em; }
+.course-answer > details[open] > summary { margin-bottom: .65em; }
+.course-print-tab-title { display: none; }
+/* Режим печати относится к представлению и не зависит от навигации или темы. */
+@media print {
+  .course-answer, .course-block { break-inside: auto; }
+  .callout .collapse, .course-answer .collapse { display: block !important; height: auto !important; overflow: visible !important; }
+  .fragment { opacity: 1 !important; visibility: visible !important; transform: none !important; }
+  .panel-tabset > .tab-content > div { display: block !important; opacity: 1 !important; }
+  .panel-tabset > .nav-tabs, .panel-tabset > .panel-tabset-tabby { display: none !important; }
+  .course-print-tab-title { display: block; }
+  .course-answer > details > summary { display: none; }
+  .course-meta { background: transparent; }
+}
+/* Reveal измеряет макет печати до события печати браузера. */
+html.print-pdf .callout .collapse, html.print-pdf .course-answer .collapse { display: block !important; height: auto !important; overflow: visible !important; }
+html.print-pdf .fragment { opacity: 1 !important; visibility: visible !important; transform: none !important; }
+html.print-pdf .panel-tabset > .tab-content > div { display: block !important; opacity: 1 !important; }
+html.print-pdf .panel-tabset > .nav-tabs, html.print-pdf .panel-tabset > .panel-tabset-tabby { display: none !important; }
+html.print-pdf .course-print-tab-title { display: block; }
+html.print-pdf .course-answer > details > summary { display: none; }
+
+/* Reveal измеряет scrollHeight до разбиения слайдов на страницы PDF. Ширина
+   измерения должна совпадать с конечной шириной слайда: иначе длинный ответ
+   после переноса строк будет обрезан на последней странице. */
+html.print-pdf .reveal .slides section:not(.stack) { width: var(--slide-width); }

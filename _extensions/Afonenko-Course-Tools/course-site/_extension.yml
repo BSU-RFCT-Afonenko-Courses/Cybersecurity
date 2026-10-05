@@ -1,0 +1,5 @@
+title: Native course site composition
+version: 3.0.0
+contributes:
+  metadata:
+    course-site-runtime: true

@@ -1,0 +1,49 @@
+project:
+  type: default
+  render:
+  - index.qmd
+  - sessions/1.qmd
+  - sessions/2.qmd
+  - sessions/3.qmd
+  - sessions/4.qmd
+  - sessions/5.qmd
+  - sessions/6.qmd
+  - sessions/7.qmd
+  - sessions/8.qmd
+  output-dir: _output
+  resources:
+  - ./assets/**
+  - '!materials/**'
+  - '!**/*.qmd'
+  - '!_generated/**'
+  - '!_freeze/**'
+  - '!.quarto/**'
+  pre-render:
+  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts
+  post-render:
+  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/post.ts
+  - _extensions/Afonenko-Course-Tools/reference-catalog/entrypoints/post.ts
+  - ../_extensions/Afonenko-Course-Tools/course-site/entrypoints/collect.ts
+profile:
+  default: student
+  group:
+  - - student
+    - full
+course:
+  id: cybersecurity-practice
+filters:
+- course-core
+- course-presentation
+- reference-catalog
+course-presentation:
+  mode: study
+format:
+  revealjs:
+    theme: default
+    show-notes: false
+    slide-number: true
+    revealjs-plugins:
+    - course-navigation
+lang: ru
+reference-catalog:
+  namespace: practice

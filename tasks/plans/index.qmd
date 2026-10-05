@@ -1,0 +1,28 @@
+# План самостоятельной работы {#sec-plan}
+
+План связывает существующие лабораторные материалы и сохраняет их исходный
+порядок. Условия выполняемых действий приведены на страницах работ.
+
+1. Криптография: @sec-lab-crypto-rng, @sec-lab-crypto-hash,
+   @sec-lab-crypto-key-gen, @sec-lab-crypto-cypher-symmetric,
+   @sec-lab-crypto-cypher-asymmetric, @sec-lab-crypto-sign,
+   @sec-lab-crypto-key-exchange и @sec-lab-crypto-cert.
+2. Управление доступом: @sec-lab-access-control-ident,
+   @sec-lab-access-control-authn, @sec-lab-access-control-password-protection,
+   @sec-lab-access-control-authz-model, @sec-lab-access-control-windows-acl
+   и @sec-lab-access-control-windows-mic.
+3. Целостность данных: @sec-lab-data-integrity-detection,
+   @sec-lab-data-integrity-correction и @sec-lab-data-integrity-backup.
+4. Аудит: @sec-lab-audit-code и @sec-lab-audit-event.
+5. Сетевые атаки и социальная инженерия: @sec-lab-ddos
+   и @sec-lab-social-engineering.
+
+Для работ по генерации случайных чисел и хешированию исходные ссылки на теорию
+ведут к @theory:sec-theory-crypto-random и @theory:sec-theory-crypto-hash.
+Перед симметричным шифрованием используйте работу по генерации ключей; перед
+цифровой подписью — работу по асимметричному шифрованию.
+
+Материалы об аутентификации (@sec-lab-access-control-authn) и разложении
+RSA-модуля (@sec-lab-crypto-rsa-factorization) сохранены в виде исходных заметок.
+Сроки, варианты и порядок сдачи определяются в рамках занятия; этот план их
+не задаёт.

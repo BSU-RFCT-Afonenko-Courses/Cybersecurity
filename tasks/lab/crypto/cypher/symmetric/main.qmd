@@ -1,0 +1,22 @@
+---
+assessment:
+  kind: lab
+---
+
+# Симметричное шифрование {#sec-work-crypto-cypher-symmetric}
+
+## Практические действия {#sec-lab-crypto-cypher-symmetric}
+
+::: {#exr-lab-crypto-cypher-symmetric course-role="independent-study" difficulty="intermediate"}
+### Условие работы
+
+С помощью библиотеки `openssl` применяя шифры DES, AES зашифровать и расшифровать собственное сообщение (тренировка). Для этого сгенерировать ключ как показано в @sec-lab-crypto-key-gen
+
+Задание расшифровать предоставленный файл
+
+Задание зашифровать собственное сообщение предоставленным ключом и загрузить результат. Определить скорость шифрования гигабайтного файла.
+:::
+
+::: {.assessment-items}
+1. @exr-lab-crypto-cypher-symmetric
+:::

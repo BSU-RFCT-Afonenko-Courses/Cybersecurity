@@ -1,0 +1,11 @@
+title: Каталог перекрёстных ссылок
+author: Анатолий Афоненко
+version: 2.0.0
+contributes:
+  filters:
+    - at: pre-ast
+      path: lua/requests.lua
+    - at: post-ast
+      path: lua/probes.lua
+  shortcodes:
+    - lua/shortcodes.lua

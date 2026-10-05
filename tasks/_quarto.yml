@@ -1,0 +1,86 @@
+project:
+  type: book
+  output-dir: _output
+  pre-render:
+  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts
+  - _extensions/Afonenko-Course-Tools/project-download/entrypoints/pre.ts
+  post-render:
+  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/post.ts
+  - _extensions/Afonenko-Course-Tools/project-download/entrypoints/post.ts
+  - _extensions/Afonenko-Course-Tools/reference-catalog/entrypoints/post.ts
+  - ../_extensions/Afonenko-Course-Tools/course-site/entrypoints/collect.ts
+  resources:
+  - '!**/*.qmd'
+  - ./assets/**
+  - '!materials/**'
+  - '!_generated/**'
+  - '!_freeze/**'
+  - '!.quarto/**'
+profile:
+  default: student
+  group:
+  - - student
+    - full
+course:
+  id: course-tasks
+filters:
+- course-core
+- course-presentation
+- project-download
+- reference-catalog
+course-presentation:
+  mode: study
+book:
+  title: Задания и работы — Основы кибербезопасности
+  sidebar:
+    tools:
+    - icon: house
+      href: ../index.html#sec-portal
+      text: Навигация курса
+  chapters:
+  - index.qmd
+  - part: Криптография
+    chapters:
+    - lab/crypto/random/main.qmd
+    - lab/crypto/hash/main.qmd
+    - lab/crypto/key-gen/main.qmd
+    - lab/crypto/cypher/symmetric/main.qmd
+    - lab/crypto/cypher/asymmetric/main.qmd
+    - lab/crypto/sign/main.qmd
+    - lab/crypto/key-exchange/main.qmd
+    - lab/crypto/cert/main.qmd
+  - part: Управление доступом
+    chapters:
+    - lab/access-control/ident/main.qmd
+    - lab/access-control/authn/main.qmd
+    - lab/access-control/authn/password-protection.qmd
+    - lab/access-control/authz/model/main.qmd
+    - lab/access-control/authz/windows/acl.qmd
+    - lab/access-control/authz/windows/mic.qmd
+  - part: Целостность данных
+    chapters:
+    - lab/data-integrity/checksum/detection.qmd
+    - lab/data-integrity/checksum/correction.qmd
+    - lab/data-integrity/backup/main.qmd
+  - part: Аудит
+    chapters:
+    - lab/audit/code/main.qmd
+    - lab/audit/event/main.qmd
+  - part: Сетевые атаки и социальная инженерия
+    chapters:
+    - lab/ddos/main.qmd
+    - lab/social-engineering/main.qmd
+  - plans/index.qmd
+  appendices:
+  - lab/crypto/cypher/asymmetric/factorization.qmd
+author:
+- Афоненко Анатолий
+- Лайша Богдан
+date: today
+lang: ru
+bibliography: references.bib
+format:
+  html:
+    theme: cosmo
+reference-catalog:
+  namespace: tasks

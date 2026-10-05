@@ -1,16 +1,51 @@
-## Методичка
+# Основы кибербезопасности
 
-Цель: закрепить основные понятия практической демонстрацией.
+Материалы перенесены в структуру
+[quarto-template-course](https://github.com/Afonenko-Course-Tools/quarto-template-course):
+общий портал и пять частей курса.
 
-### pdf
+| Каталог | Содержание |
+| --- | --- |
+| `theory/` | Исходные главы по криптографии |
+| `tasks/` | Лабораторные, порядок работ и черновики контрольных заданий |
+| `lectures/` | Презентации лекций |
+| `practice/` | Восемь семинаров и преподавательские заметки |
+| `handbook/` | Навигация по материалам и библиография |
 
-``` bash
-quarto render --to pdf --profile student,dev,pdf-artcl
+Лабораторные редактируются в `tasks/lab/`. Условия хранятся один раз,
+остальные части курса ссылаются на них. Пустые семинары и контрольные работы
+сохранены как заготовки; новые условия не добавлены. Преподавательские черновики
+и заметки доступны только в профиле `full`.
+
+## Сборка
+
+Нужны Quarto **1.10.18** или **1.11.5** и CUE **0.17.1**.
+Части theory и handbook используют R с пакетами `knitr` и `rmarkdown`.
+Это обычный сайт Quarto. Расширения включены в репозиторий; их происхождение
+и зафиксированные версии указаны в [UPSTREAM.md](UPSTREAM.md),
+[providers.json](providers.json) и [installed-packages.json](installed-packages.json).
+
+Выполните команды из корня репозитория:
+
+```bash
+quarto render . --profile student
+quarto render . --profile full
+quarto preview --profile student --no-watch-inputs
 ```
 
-### html
+Результаты находятся в `_site-full/index.html` и `_site-student/index.html`.
+По умолчанию выбран профиль `student`. Course Site собирает пять частей
+нативными командами Quarto, объединяет текущие результаты, ссылки QRC и поиск.
+Каждая часть запускает штатные проверки Core и QRC и может быть собрана
+отдельно из своего каталога, например `cd tasks && quarto render . --profile student`.
+Выходные каталоги частей — `_output/student` и `_output/full`.
 
-``` bash
-quarto render --to html --profile student,dev,html
-```
+Сохраняйте `.quarto` и `_freeze` между сборками. После ошибки исправьте исходник
+и повторите ту же команду. Полный профиль содержит материалы преподавателя;
+для размещения студенческого сайта используйте `_site-student`.
 
+GitHub Actions проверяет обе версии Quarto последовательностью
+`student → full → student` для PR и ветки `master`.
+Публикация студенческого сайта через GitHub Pages включается переменной
+репозитория `COURSE_PUBLISH_PAGES=true` при выбранном источнике GitHub Actions.
+PR запускает только проверки; профиль `full` не публикуется этим workflow.

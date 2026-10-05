@@ -1,0 +1,20 @@
+---
+assessment:
+  kind: lab
+---
+
+# Процедура обмена ключам {#sec-work-crypto-key-exchange}
+
+## Практические действия {#sec-lab-crypto-key-exchange}
+
+::: {#exr-lab-crypto-key-exchange course-role="independent-study" difficulty="intermediate"}
+### Условие работы
+
+Повторить локально процедуру с генерацией симметричного ключа для сеанса.
+
+Довести до конца и зашифровать/расшифровать сообщение, если половина процедуры уже предварительно проведена в методичке.
+:::
+
+::: {.assessment-items}
+1. @exr-lab-crypto-key-exchange
+:::

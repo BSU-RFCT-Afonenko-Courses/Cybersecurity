@@ -1,7 +1,0 @@
-# Авторизация
-
-Аутентификация https://habr.com/ru/articles/953386/
-
-Двухфакторка, `authtool`, `keepassxc` и `webauthio` <https://webauthn.io> TOTP и jwt token через CLI инструмент
-
-<https://habr.com/ru/companies/domclick/articles/515064/>

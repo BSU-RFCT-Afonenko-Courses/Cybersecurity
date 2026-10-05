@@ -1,0 +1,123 @@
+{
+  "roles": {
+    "demonstration": {
+      "label": "Демонстрация",
+      "activity": true,
+      "purpose": true
+    },
+    "prediction": {
+      "label": "Прогноз",
+      "activity": true
+    },
+    "discussion": {
+      "label": "Обсуждение",
+      "activity": true,
+      "purpose": true
+    },
+    "self-check": {
+      "label": "Самопроверка",
+      "activity": true
+    },
+    "objectives": {
+      "label": "Цели",
+      "activity": false
+    },
+    "prerequisites": {
+      "label": "Предварительные знания",
+      "activity": false
+    },
+    "reading": {
+      "label": "Материалы",
+      "activity": false
+    },
+    "takeaway": {
+      "label": "Главное",
+      "activity": false
+    },
+    "limitation": {
+      "label": "Ограничение",
+      "activity": false
+    },
+    "misconception": {
+      "label": "Типичная ошибка",
+      "activity": false
+    },
+    "criteria": {
+      "label": "Критерии",
+      "activity": false
+    },
+    "deliverables": {
+      "label": "Что сдавать",
+      "activity": false
+    },
+    "independent-study": {
+      "label": "Самостоятельная работа",
+      "activity": true,
+      "purpose": true
+    },
+    "control": {
+      "label": "Контроль",
+      "activity": true,
+      "purpose": true
+    }
+  },
+  "implicitKinds": [
+    "exercise",
+    "solution",
+    "hint"
+  ],
+  "difficulty": {
+    "introductory": "Начальный",
+    "intermediate": "Средний",
+    "advanced": "Продвинутый"
+  },
+  "workMode": {
+    "individual": "Индивидуально",
+    "pair": "В паре",
+    "group": "В группе"
+  },
+  "requirement": {
+    "required": "Обязательно",
+    "recommended": "Рекомендуется",
+    "optional": "Дополнительно"
+  },
+  "pedagogyAttributes": [
+    "course-role",
+    "difficulty",
+    "time",
+    "work-mode",
+    "requirement",
+    "for"
+  ],
+  "activityAttributes": [
+    "difficulty",
+    "time",
+    "work-mode"
+  ],
+  "exerciseAttributes": [
+    "target",
+    "project"
+  ],
+  "assessmentKinds": [
+    "lab",
+    "test",
+    "exam"
+  ],
+  "memberKinds": [
+    "BulletList",
+    "OrderedList"
+  ],
+  "views": [
+    "student",
+    "full"
+  ],
+  "presentationModes": [
+    "lecture",
+    "study"
+  ],
+  "presentationAnswers": [
+    "auto",
+    "expanded"
+  ],
+  "maxMinutes": 1000000
+}

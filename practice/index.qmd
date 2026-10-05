@@ -1,0 +1,31 @@
+# Семинарские занятия {#sec-practice}
+
+## Программа семинаров
+
+В исходном курсе предусмотрены восемь занятий. Их страницы сохранены
+для последующего заполнения планов.
+
+- @practice:sec-seminar-1
+- @practice:sec-seminar-2
+- @practice:sec-seminar-3
+- @practice:sec-seminar-4
+- @practice:sec-seminar-5
+- @practice:sec-seminar-6
+- @practice:sec-seminar-7
+- @practice:sec-seminar-8
+
+## Подготовка к занятиям
+
+Теоретические материалы: @theory:sec-theory.
+
+Условия лабораторных: @tasks:sec-tasks.
+
+Порядок работы: @tasks:sec-plan.
+
+[Навигация курса](../index.html#sec-portal)
+
+:::: {.content-visible when-profile="full"}
+::: {.notes}
+{{< include _seminar-notes.qmd >}}
+:::
+::::
