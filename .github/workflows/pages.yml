@@ -1,0 +1,76 @@
+name: Native course validation and publication
+on:
+  pull_request:
+    branches:
+    - master
+  push:
+    branches:
+    - master
+  workflow_dispatch: null
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  check:
+    name: Native course (${{ matrix.quarto }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        quarto:
+        - 1.10.18
+        - 1.11.5
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        persist-credentials: false
+    - uses: quarto-dev/quarto-actions/setup@8a96df13519ee81fd526f2dfca5962811136661b
+      with:
+        version: ${{ matrix.quarto }}
+    - uses: cue-lang/setup-cue@b0e30e540a2dae47304ebf16586a5b2db023b61c
+      with:
+        version: v0.17.1
+    - name: Course runtime
+      run: 'sudo apt-get update
+
+        sudo apt-get install -y --no-install-recommends r-base r-cran-knitr r-cran-rmarkdown
+
+        '
+    - name: Render student, full, and student again
+      env:
+        XDG_CACHE_HOME: ${{ runner.temp }}/quarto-cache-${{ matrix.quarto }}
+      run: 'quarto --version
+
+        cue version
+
+        quarto render . --profile student
+
+        quarto render . --profile full
+
+        quarto render . --profile student
+
+        '
+    - name: Upload student site
+      if: vars.COURSE_PUBLISH_PAGES == 'true' && matrix.quarto == '1.10.18' && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+      uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
+      with:
+        path: _site-student
+  deploy:
+    needs: check
+    if: vars.COURSE_PUBLISH_PAGES == 'true' && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: course-pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+    - id: deployment
+      uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346

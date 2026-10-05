@@ -5,14 +5,14 @@
 В исходном курсе предусмотрены восемь занятий. Их страницы сохранены
 для последующего заполнения планов.
 
-- [Семинар 1](sessions/1.qmd)
-- [Семинар 2](sessions/2.qmd)
-- [Семинар 3](sessions/3.qmd)
-- [Семинар 4](sessions/4.qmd)
-- [Семинар 5](sessions/5.qmd)
-- [Семинар 6](sessions/6.qmd)
-- [Семинар 7](sessions/7.qmd)
-- [Семинар 8](sessions/8.qmd)
+- @practice:sec-seminar-1
+- @practice:sec-seminar-2
+- @practice:sec-seminar-3
+- @practice:sec-seminar-4
+- @practice:sec-seminar-5
+- @practice:sec-seminar-6
+- @practice:sec-seminar-7
+- @practice:sec-seminar-8
 
 ## Подготовка к занятиям
 

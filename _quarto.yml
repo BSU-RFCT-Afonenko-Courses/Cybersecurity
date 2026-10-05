@@ -1,7 +1,8 @@
 project:
   type: website
-  output-dir: .project-publish/native
-  render: []
+  output-dir: _site
+  render:
+  - index.qmd
   resources:
   - ./assets/**
   - '!theory/**'
@@ -10,8 +11,6 @@ project:
   - '!practice/**'
   - '!handbook/**'
   - '!_extensions/**'
-  - '!_publication/**'
-  - '!.project-publish/**'
   - '!_generated/**'
   - '!_site*/**'
   - '!README.md'
@@ -20,15 +19,17 @@ project:
   - '!.codex/**'
   - '!**/.render-cache/**'
   - '!**/.runtime-cache/**'
+  - '!_freeze/**'
+  - '!.quarto/**'
+  - '!UPSTREAM.md'
+  - '!providers.json'
+  - '!installed-packages.json'
   pre-render:
-  - _extensions/Afonenko-Course-Tools/project-publish/entrypoints/pre.ts
-  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/owner-freeze.ts
-  post-render: _extensions/Afonenko-Course-Tools/project-publish/entrypoints/post.ts
+  - _extensions/Afonenko-Course-Tools/course-site/entrypoints/pre.ts
+  post-render:
+  - _extensions/Afonenko-Course-Tools/course-site/entrypoints/post.ts
   preview:
     watch-inputs: false
-    serve:
-      cmd: quarto run ../preview.ts --port {port} --host {host}
-      ready: Публикация предпросмотр готов
 format:
   html:
     theme: cosmo
@@ -123,27 +124,25 @@ profile:
   group:
   - - student
     - full
-project-publish:
-  portal: index.qmd
-  output-dir: _site
+course-site:
   projects:
-    theory:
-      path: theory
-      format: html
-    tasks:
-      path: tasks
-      format: html
-    lectures:
-      path: lectures
-      format: revealjs
-    practice:
-      path: practice
-      format: revealjs
-    handbook:
-      path: handbook
-      format: html
-  integrations:
-  - _publication/prepare.ts
-  - _extensions/Afonenko-Course-Tools/reference-catalog/entrypoints/publication.ts
-  - _publication/finish.ts
-  - _publication/verify.ts
+  - id: theory
+    path: theory
+    format: html
+    mount: theory
+  - id: tasks
+    path: tasks
+    format: html
+    mount: tasks
+  - id: lectures
+    path: lectures
+    format: revealjs
+    mount: lectures
+  - id: practice
+    path: practice
+    format: revealjs
+    mount: practice
+  - id: handbook
+    path: handbook
+    format: html
+    mount: handbook
