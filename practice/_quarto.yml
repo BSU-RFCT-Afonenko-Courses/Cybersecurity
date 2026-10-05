@@ -15,9 +15,11 @@ project:
   - ./assets/**
   - '!materials/**'
   - '!**/*.qmd'
+  - '!**/_*.qmd'
   - '!_generated/**'
   - '!_freeze/**'
   - '!.quarto/**'
+  - '!_extensions/**'
   pre-render:
   - _extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts
   post-render:

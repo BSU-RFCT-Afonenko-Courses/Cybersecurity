@@ -52,6 +52,7 @@ reference-catalog:
   exports:
     portal:
     - sec-portal
+    - sec-course-plan
     theory:
     - sec-theory
     - sec-theory-crypto-random
@@ -107,6 +108,12 @@ reference-catalog:
     - exr-lab-crypto-rsa-factorization
     lectures:
     - sec-lectures
+    - sec-lectures-intro
+    - sec-lectures-crypto
+    - sec-lectures-access
+    - sec-lectures-integrity
+    - sec-lectures-audit
+    - sec-lectures-attacks
     practice:
     - sec-practice
     - sec-seminar-1

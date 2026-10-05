@@ -1,0 +1,18 @@
+---
+pagetitle: "04. Целостность данных"
+---
+
+## Целостность данных {#sec-lectures-integrity}
+
+Материалы тематического блока: {{< xref tasks sec-plan "План самостоятельной работы" >}}.
+
+### Обнаружение и исправление ошибок
+
+- {{< xref tasks sec-lab-data-integrity-detection "Обнаружение нарушений целостности" >}}
+- {{< xref tasks sec-lab-data-integrity-correction "Исправление нарушений целостности" >}}
+
+### Резервное копирование
+
+- {{< xref tasks sec-lab-data-integrity-backup "Резервное копирование" >}}
+
+[Все лекции](index.html#sec-lectures) · @portal:sec-course-plan.
