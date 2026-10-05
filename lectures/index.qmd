@@ -1,0 +1,24 @@
+# Лекции {#sec-lectures}
+
+## Криптография
+
+Материалы для подготовки к обсуждению:
+
+- @theory:sec-theory-crypto-random
+- @theory:sec-theory-crypto-hash
+- @theory:sec-theory-crypto-key-gen
+- @theory:sec-theory-crypto-cypher
+
+## Практическое применение
+
+Условия работ: @tasks:sec-tasks.
+
+Порядок изучения: @tasks:sec-plan.
+
+Семинарские занятия: @practice:sec-practice.
+
+## Материалы лекций
+
+Отдельные конспекты лекций пока не подготовлены.
+
+[Навигация курса](../index.html#sec-portal)

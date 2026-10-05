@@ -1,0 +1,18 @@
+---
+assessment:
+  kind: lab
+---
+
+# Аудит системных событий {#sec-work-audit-event}
+
+## Практические действия {#sec-lab-audit-event}
+
+::: {#exr-lab-audit-event course-role="independent-study" difficulty="introductory"}
+### Условие работы
+
+Сгенерировать некоторые события: напрмер запуск процесса или неудачный вход. Сохранить информацию о этих событиях в XML и отправить отчёт
+:::
+
+::: {.assessment-items}
+1. @exr-lab-audit-event
+:::

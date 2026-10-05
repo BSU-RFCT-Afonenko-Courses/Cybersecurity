@@ -1,0 +1,9 @@
+# Взлом алгоритма RSA {#sec-work-crypto-rsa-factorization}
+
+## Материалы для самостоятельной работы {#sec-lab-crypto-rsa-factorization}
+
+::: {#exr-lab-crypto-rsa-factorization course-role="independent-study" difficulty="intermediate"}
+### Исходные заметки
+
+Стойкость RSA это возможность разложить число на простые множители. Для небольших 100 бит чисел можно подобрать решение используя библиотеку <https://gitlab.inria.fr/cado-nfs/cado-nfs> (только для линукс) <https://habr.com/ru/articles/872622/>
+:::

@@ -1,0 +1,20 @@
+---
+assessment:
+  kind: lab
+---
+
+# Генерация ключей {#sec-work-crypto-key-gen}
+
+## Практические действия {#sec-lab-crypto-key-gen}
+
+::: {#exr-lab-crypto-key-gen course-role="independent-study" difficulty="introductory"}
+### Условие работы
+
+Сгенерировать ключ определённой длины используя случайные числа как показано в @sec-lab-crypto-rng
+
+Сгенерировать ключ на основании пароля используя `openssl` PBKDF2, а также Bcrypt/scrypt utility
+:::
+
+::: {.assessment-items}
+1. @exr-lab-crypto-key-gen
+:::

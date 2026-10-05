@@ -1,19 +1,149 @@
 project:
-  type: book
-
-book:
-  title: "Основы кибербезопасности"
-author:
-  - Афоненко Анатолий
-  - Лайша Богдан
-date: today
-
-profile:
-  group:
-    - [full,student]
-    - [dev,prod]
-    - [html,pdf-book,pdf-artcl]
-
+  type: website
+  output-dir: .project-publish/native
+  render: []
+  resources:
+  - ./assets/**
+  - '!theory/**'
+  - '!tasks/**'
+  - '!lectures/**'
+  - '!practice/**'
+  - '!handbook/**'
+  - '!_extensions/**'
+  - '!_publication/**'
+  - '!.project-publish/**'
+  - '!_generated/**'
+  - '!_site*/**'
+  - '!README.md'
+  - '!.agents/**'
+  - '!.aws/**'
+  - '!.codex/**'
+  - '!**/.render-cache/**'
+  - '!**/.runtime-cache/**'
+  pre-render:
+  - _extensions/Afonenko-Course-Tools/project-publish/entrypoints/pre.ts
+  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/owner-freeze.ts
+  post-render: _extensions/Afonenko-Course-Tools/project-publish/entrypoints/post.ts
+  preview:
+    watch-inputs: false
+    serve:
+      cmd: quarto run ../preview.ts --port {port} --host {host}
+      ready: Публикация предпросмотр готов
+format:
+  html:
+    theme: cosmo
+    toc: false
 lang: ru
-bibliography: references.bib
-engine: knitr
+course:
+  id: cybersecurity-portal
+website:
+  title: Основы кибербезопасности
+  search: true
+  page-footer: Афоненко Анатолий · Лайша Богдан
+  favicon: assets/cover.png
+filters:
+- course-core
+- reference-catalog
+reference-catalog:
+  namespace: portal
+  publication:
+    title: Основы кибербезопасности
+  exports:
+    portal:
+    - sec-portal
+    theory:
+    - sec-theory
+    - sec-theory-crypto-random
+    - sec-theory-crypto-hash
+    - sec-theory-crypto-key-gen
+    - sec-theory-crypto-cypher
+    tasks:
+    - sec-tasks
+    - sec-plan
+    - sec-lab-crypto-rng
+    - exr-lab-crypto-rng
+    - sec-lab-crypto-hash
+    - exr-lab-crypto-hash
+    - sec-lab-crypto-key-gen
+    - exr-lab-crypto-key-gen
+    - sec-lab-crypto-cypher-symmetric
+    - exr-lab-crypto-cypher-symmetric
+    - sec-lab-crypto-cypher-asymmetric
+    - exr-lab-crypto-cypher-asymmetric
+    - sec-lab-crypto-sign
+    - exr-lab-crypto-sign
+    - sec-lab-crypto-key-exchange
+    - exr-lab-crypto-key-exchange
+    - sec-lab-crypto-cert
+    - exr-lab-crypto-cert
+    - sec-lab-access-control-ident
+    - exr-lab-access-control-ident
+    - sec-lab-access-control-authn
+    - exr-lab-access-control-authn
+    - sec-lab-access-control-password-protection
+    - exr-lab-access-control-password-protection
+    - sec-lab-access-control-authz-model
+    - exr-lab-access-control-authz-model
+    - sec-lab-access-control-windows-acl
+    - exr-lab-access-control-windows-acl
+    - sec-lab-access-control-windows-mic
+    - exr-lab-access-control-windows-mic
+    - sec-lab-data-integrity-detection
+    - exr-lab-data-integrity-detection
+    - sec-lab-data-integrity-correction
+    - exr-lab-data-integrity-correction
+    - sec-lab-data-integrity-backup
+    - exr-lab-data-integrity-backup
+    - sec-lab-audit-code
+    - exr-lab-audit-code
+    - sec-lab-audit-event
+    - exr-lab-audit-event
+    - sec-lab-ddos
+    - exr-lab-ddos
+    - sec-lab-social-engineering
+    - exr-lab-social-engineering
+    - sec-lab-crypto-rsa-factorization
+    - exr-lab-crypto-rsa-factorization
+    lectures:
+    - sec-lectures
+    practice:
+    - sec-practice
+    - sec-seminar-1
+    - sec-seminar-2
+    - sec-seminar-3
+    - sec-seminar-4
+    - sec-seminar-5
+    - sec-seminar-6
+    - sec-seminar-7
+    - sec-seminar-8
+    handbook:
+    - sec-handbook
+profile:
+  default: student
+  group:
+  - - student
+    - full
+project-publish:
+  portal: index.qmd
+  output-dir: _site
+  projects:
+    theory:
+      path: theory
+      format: html
+    tasks:
+      path: tasks
+      format: html
+    lectures:
+      path: lectures
+      format: revealjs
+    practice:
+      path: practice
+      format: revealjs
+    handbook:
+      path: handbook
+      format: html
+  integrations:
+  - _publication/prepare.ts
+  - _extensions/Afonenko-Course-Tools/reference-catalog/entrypoints/publication.ts
+  - _publication/finish.ts
+  - _publication/verify.ts

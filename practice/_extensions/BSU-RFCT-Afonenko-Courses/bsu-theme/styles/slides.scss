@@ -1,0 +1,39 @@
+/*-- scss:defaults --*/
+$font-family-sans-serif: Arial, sans-serif;
+$font-family-monospace: "DejaVu Sans Mono", Consolas, monospace;
+$presentation-font-size-root: 32px;
+$presentation-line-height: 1.35;
+$presentation-heading-line-height: 1.1;
+$presentation-heading-font-weight: 600;
+$code-block-bg: #f3f6fa;
+$code-color: #144e9d;
+/*-- scss:rules --*/
+.reveal .slides { text-align: left; }
+.reveal h1, .reveal h2, .reveal h3 { text-transform: none; letter-spacing: -.025em; }
+.reveal h1 { font-size: 2.5em; }
+.reveal h2 { font-size: 1.65em; margin-bottom: .65em; padding-bottom: .23em; border-bottom: 2px solid #dce5ee; }
+.reveal h3 { font-size: 1.12em; }
+.reveal .slides section.level1 > h1 { max-width: 17ch; margin-top: 1.5em; }
+.reveal .slides section.level1::before { content: ""; display: block; height: 7px; width: 100px; background: var(--bsu-teal); margin-top: 1.5em; }
+.reveal #title-slide { text-align: left; }
+.reveal #title-slide .title { max-width: 18ch; margin: 1.05em 0 .45em; font-size: 2.55em; }
+.reveal #title-slide .subtitle { color: var(--bsu-blue); font-size: 1.05em; max-width: 38ch; }
+.reveal #title-slide .quarto-title-authors { justify-content: flex-start; margin-top: 1.8em; font-size: .66em; }
+.reveal #title-slide .quarto-title-author { padding: 0; text-align: left; }
+.reveal p, .reveal ul, .reveal ol { margin-bottom: .55em; }
+.reveal li { margin-bottom: .25em; }
+.reveal pre { font-size: .66em; width: 100%; box-shadow: none; line-height: 1.4; }
+.reveal pre code { max-height: 480px; padding: .75em; }
+.reveal pre.sourceCode { border: 1px solid #dce5ee; border-radius: .25em; }
+.reveal table { width: 100%; font-size: .77em; }
+.reveal table th { color: var(--bsu-navy); }
+.reveal table th, .reveal table td { border-bottom: 1px solid #dce5ee; padding: .45em .55em; }
+.reveal .columns { gap: 1.1em; }
+.reveal .slide aside.notes { display: none; }
+@media print { .reveal .slides { text-align: left; } }
+
+/* Копии в обзоре получают новые ID, сохраняя идентичность исходных объектов. */
+.course-nav-preview-title { text-align: left; }
+.course-nav-preview-title .title { max-width: 18ch; margin: 1.05em 0 .45em; font-size: 2.55em; }
+.course-nav-preview-title .subtitle { color: var(--bsu-blue); font-size: 1.05em; }
+.course-nav-preview-title .quarto-title-authors { justify-content: flex-start; margin-top: 1.8em; font-size: .66em; }

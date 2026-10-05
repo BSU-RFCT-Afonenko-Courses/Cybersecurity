@@ -1,0 +1,18 @@
+---
+assessment:
+  kind: lab
+---
+
+# Списки контроля доступа {#sec-work-access-control-windows-acl}
+
+## Практические действия {#sec-lab-access-control-windows-acl}
+
+::: {#exr-lab-access-control-windows-acl course-role="independent-study" difficulty="intermediate"}
+### Условие работы
+
+Создать несколько пользователей у себя на компьютере и реализовать конфигурацию безопасности для папок и файлов используя ACL. Сохранить папку в формат wim для автоматизированной проверки разрешений.
+:::
+
+::: {.assessment-items}
+1. @exr-lab-access-control-windows-acl
+:::

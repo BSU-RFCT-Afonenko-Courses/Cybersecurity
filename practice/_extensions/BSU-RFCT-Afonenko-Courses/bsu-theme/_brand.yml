@@ -1,0 +1,28 @@
+meta:
+  name: БГУ · учебные материалы
+color:
+  palette:
+    navy: "#0A3470"
+    blue: "#144E9D"
+    sky: "#3076AF"
+    teal: "#7BB8BF"
+    ochre: "#D9CBA0"
+    ink: "#17283B"
+    paper: "#FFFFFF"
+    mist: "#F3F6FA"
+  foreground: ink
+  background: paper
+  primary: blue
+  secondary: navy
+  light: mist
+  dark: ink
+typography:
+  base:
+    family: Arial
+    line-height: 1.6
+  headings:
+    family: Arial
+    weight: 600
+    color: navy
+  monospace:
+    family: "DejaVu Sans Mono"

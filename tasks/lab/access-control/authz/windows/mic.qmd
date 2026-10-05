@@ -1,0 +1,18 @@
+---
+assessment:
+  kind: lab
+---
+
+# Мандатный контроль целостности {#sec-work-access-control-windows-mic}
+
+## Практические действия {#sec-lab-access-control-windows-mic}
+
+::: {#exr-lab-access-control-windows-mic course-role="independent-study" difficulty="intermediate"}
+### Условие работы
+
+Показать что некоторые процессы не могу обратиться к другим из-за разного уровния integrity. Сохранить вывод командной строки для разных входных аргументов (тестов).
+:::
+
+::: {.assessment-items}
+1. @exr-lab-access-control-windows-mic
+:::

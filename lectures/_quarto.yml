@@ -1,0 +1,30 @@
+project:
+  type: default
+  render:
+  - index.qmd
+  output-dir: _output
+  resources:
+  - ./assets/**
+  - '!materials/**'
+  - '!**/_*.qmd'
+profile:
+  default: student
+  group:
+  - - student
+    - full
+course:
+  id: cybersecurity-lectures
+  validate: true
+filters:
+- course-core
+- course-presentation
+course-presentation:
+  mode: lecture
+format:
+  revealjs:
+    theme: default
+    show-notes: false
+    slide-number: true
+    revealjs-plugins:
+    - course-navigation
+lang: ru

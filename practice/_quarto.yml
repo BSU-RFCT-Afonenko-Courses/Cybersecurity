@@ -1,0 +1,38 @@
+project:
+  type: default
+  render:
+  - index.qmd
+  - sessions/1.qmd
+  - sessions/2.qmd
+  - sessions/3.qmd
+  - sessions/4.qmd
+  - sessions/5.qmd
+  - sessions/6.qmd
+  - sessions/7.qmd
+  - sessions/8.qmd
+  output-dir: _output
+  resources:
+  - ./assets/**
+  - '!materials/**'
+  - '!**/_*.qmd'
+profile:
+  default: student
+  group:
+  - - student
+    - full
+course:
+  id: cybersecurity-practice
+  validate: true
+filters:
+- course-core
+- course-presentation
+course-presentation:
+  mode: study
+format:
+  revealjs:
+    theme: default
+    show-notes: false
+    slide-number: true
+    revealjs-plugins:
+    - course-navigation
+lang: ru

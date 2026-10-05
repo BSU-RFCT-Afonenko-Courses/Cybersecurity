@@ -1,0 +1,47 @@
+/*-- scss:rules --*/
+/* Переменные оформления. Авторскому содержимому не нужны классы .bsu-*. */
+:root {
+  --bsu-navy: #{$brand-navy};
+  --bsu-blue: #{$brand-blue};
+  --bsu-sky: #{$brand-sky};
+  --bsu-teal: #{$brand-teal};
+  --bsu-ochre: #{$brand-ochre};
+  --bsu-ink: #{$brand-ink};
+  --bsu-paper: #{$brand-paper};
+  --bsu-mist: #{$brand-mist};
+  --course-nav-font: Arial, sans-serif;
+  --course-nav-foreground: var(--bsu-navy);
+  --course-nav-primary: var(--bsu-blue);
+  --course-nav-primary-hover: var(--bsu-navy);
+  --course-nav-secondary: var(--bsu-teal);
+  --course-nav-background: var(--bsu-paper);
+  --course-nav-on-primary: var(--bsu-paper);
+  --course-nav-surface: var(--bsu-mist);
+  --course-nav-active: #edf3fb;
+  --course-nav-hover: #eef5f7;
+  --course-nav-border: #dce3ec;
+  --course-nav-muted: #53657a;
+  --course-nav-completed: #27636b;
+  --course-nav-track: #e4eaf0;
+  --course-nav-input-border: #8195af;
+  --course-nav-shadow: #0a347033;
+  --course-nav-backdrop: #0a234e80;
+  --course-nav-preview-hover: #144e9d08;
+  --course-accent: var(--bsu-blue);
+  --course-muted: #53657a;
+  --course-border: #dce3ec;
+  --course-surface: var(--bsu-mist);
+}
+a { text-underline-offset: .16em; }
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible {
+  outline: 3px solid var(--bsu-blue);
+  outline-offset: 4px;
+}
+/* Сдержанная палитра подсветки. Смысл элементов определяет Pandoc. */
+code span.kw, code span.cf, code span.dt { color: var(--bsu-navy); font-weight: 700; }
+code span.dv, code span.bn, code span.fl, code span.cn { color: var(--bsu-blue); }
+code span.st, code span.ch { color: #285b65; }
+code span.co, code span.do { color: #586777; font-style: normal; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

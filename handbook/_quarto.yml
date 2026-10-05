@@ -1,0 +1,41 @@
+project:
+  type: book
+  output-dir: _output
+  resources:
+  - ./assets/**
+  - '!materials/**'
+  - '!**/_*.qmd'
+profile:
+  default: student
+  group:
+  - - student
+    - full
+course:
+  id: cybersecurity-handbook
+  validate: true
+filters:
+- course-core
+- course-presentation
+course-presentation:
+  mode: study
+book:
+  sidebar:
+    tools:
+    - icon: house
+      href: ../index.html#sec-portal
+      text: Навигация курса
+  title: Справочник
+  chapters:
+  - index.qmd
+  - references.qmd
+format:
+  html:
+    theme: cosmo
+    html-math-method:
+      method: mathjax
+lang: ru
+author:
+- Афоненко Анатолий
+- Лайша Богдан
+bibliography: references.bib
+engine: knitr

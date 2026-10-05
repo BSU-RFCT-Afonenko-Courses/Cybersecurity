@@ -1,0 +1,912 @@
+{
+  "schema": "course-native-listing-provider-catalog-v1",
+  "platform": "linux-x86_64",
+  "providers": [
+    {
+      "id": "quarto-v1.10.18-linux-amd64",
+      "version": "1.10.18",
+      "archive": {
+        "assetId": 488455948,
+        "url": "https://github.com/quarto-dev/quarto-cli/releases/download/v1.10.18/quarto-1.10.18-linux-amd64.tar.gz",
+        "bytes": 147010003,
+        "sha256": "afad071b5bd22c02f2d300695743189d3650e0537a53073e654b630cff2b0c73"
+      },
+      "reader": {
+        "explicitDataDir": true,
+        "dataDirConstruction": "inline"
+      },
+      "files": [
+        {
+          "relative": "bin/quarto",
+          "bytes": 8061,
+          "sha256": "72632b5b855ffec9db28a098cf62b9b83a80c57174bfa733b2b399a7bdef037f"
+        },
+        {
+          "relative": "bin/quarto.js",
+          "bytes": 7294091,
+          "sha256": "34f291359d2fc61c308193e546b76efba6f0ffcd74d1d3be0ae9264f30ce6b1d"
+        },
+        {
+          "relative": "bin/tools/x86_64/deno",
+          "bytes": 124242912,
+          "sha256": "83ae80d34812cb7a4f246a21f707901b71fa937461500f5f0a2e19865115f3fb"
+        },
+        {
+          "relative": "bin/tools/x86_64/deno_dom/libplugin.so",
+          "bytes": 4856624,
+          "sha256": "3885e8d6443955bdf6f2b2630dbd4b0d7e0d5fef255a23bae34f1d26f577dec5"
+        },
+        {
+          "relative": "bin/tools/x86_64/pandoc",
+          "bytes": 162316016,
+          "sha256": "8fedc028b2314cd649b6cabf363c94a7c940aff352a1c20753ffb0875f083cac"
+        },
+        {
+          "relative": "share/env/env.defaults",
+          "bytes": 128,
+          "sha256": "84571ff6332a99c0e9cbe6826ac362a9f15b1c7114b258c0fb4947296053f353"
+        },
+        {
+          "relative": "share/filters/crossref/crossref.lua",
+          "bytes": 463655,
+          "sha256": "68f316dafe10960335fb902b49951aecb3dac7916a99559928c054b4c6377db1"
+        },
+        {
+          "relative": "share/filters/customwriter/customwriter.lua",
+          "bytes": 280,
+          "sha256": "7a2a9966cc9d20a2d6bd418b3e9d8f8ac3705f78a496b8915fc26fb06567ed4a"
+        },
+        {
+          "relative": "share/filters/llms/llms.lua",
+          "bytes": 7843,
+          "sha256": "a36eb3b98cafc56aa58a329cec9c0e4dabc460dc5b1acf45fa8da5e352604b0c"
+        },
+        {
+          "relative": "share/filters/main.lua",
+          "bytes": 844251,
+          "sha256": "7f55875abad8c72bdbad3862bd907874d2f038b4fc513c8afdeb52be7820258d"
+        },
+        {
+          "relative": "share/filters/modules/astshortcode.lua",
+          "bytes": 8185,
+          "sha256": "e69f5601428784aef480c76a219d11435a0f3a110d026fc7719629c2a44670e8"
+        },
+        {
+          "relative": "share/filters/modules/authors.lua",
+          "bytes": 38783,
+          "sha256": "0e5b001ed147347c186adf5bb0f9ffe262552ea5c55b7504a2ccf2b633e9f0fc"
+        },
+        {
+          "relative": "share/filters/modules/brand/brand.lua",
+          "bytes": 2520,
+          "sha256": "01337bfa24cbd523d405132d9e8981ba67b9e078f1c2e14fd8a12e9f3935fa7a"
+        },
+        {
+          "relative": "share/filters/modules/callouts.lua",
+          "bytes": 11581,
+          "sha256": "7a52714104fb693c945d9e1ddc8871ad64af219dc4e0f10aa07c8f90b2d41150"
+        },
+        {
+          "relative": "share/filters/modules/classpredicates.lua",
+          "bytes": 730,
+          "sha256": "6d1d274b6e30aa2957a5585e1c93e718318a77a47fd99b1d089e0d47fce2d426"
+        },
+        {
+          "relative": "share/filters/modules/connectversion.lua",
+          "bytes": 2671,
+          "sha256": "14e7770be19fc571efa45b4f6dff0364369b0f60c9bd5459b3502999f23c5e7b"
+        },
+        {
+          "relative": "share/filters/modules/constants.lua",
+          "bytes": 8314,
+          "sha256": "90dad39341383e222cbfa70d4fdc9acaf6565e1c676805b17662e0aa1144a6ad"
+        },
+        {
+          "relative": "share/filters/modules/dashboard.lua",
+          "bytes": 3890,
+          "sha256": "3f0a95891edc5865b3ad432f904ca4213682c950070f0b84f10d6123c28fe213"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/card-sidebar.lua",
+          "bytes": 4511,
+          "sha256": "47fb13170a2e05323ef6532d6b036d68ca1100d700eb37043b483fba0c6032da"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/card-toolbar.lua",
+          "bytes": 5603,
+          "sha256": "eeb9c629e363b537d8dc08b0fffab13c09e6897bfcbeb0c93f25c11e00aca615"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/card.lua",
+          "bytes": 12421,
+          "sha256": "b624b28f28ba6879d6c131c4882051c453680d805015f8d029dd09304f3cf29b"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/document.lua",
+          "bytes": 549,
+          "sha256": "56dfc3db21e1c70f1c3e5b4ce693031b59971989745a1254d006b78899fc1413"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/layout.lua",
+          "bytes": 4174,
+          "sha256": "79fb6f84c0e432ffbe2c5b8cc0daf032f121b0d654ece2fb1af3f29a87771972"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/page.lua",
+          "bytes": 2016,
+          "sha256": "cd8e470c5453038b31de30faba6a19850594e7a0949a5b733c14261542362324"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/sidebar.lua",
+          "bytes": 3497,
+          "sha256": "3d3e303eba0dc6a95608e1b18f05a833baa63f73bab398128c6885b52b8b723e"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/tabset.lua",
+          "bytes": 6610,
+          "sha256": "ed3f6d7e8e1a746a407ca1834dd26d7379536f29c777b863f4f97142d8b8704b"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/toolbar.lua",
+          "bytes": 3522,
+          "sha256": "0015ad5f664668701c9a37d47c3c7ef480e1c70e884576361e744e11921a9934"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/utils.lua",
+          "bytes": 942,
+          "sha256": "45e4c94888032d71cc1350dd01bf46a7c42c932f603672efc02ae27d0ff66439"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/valuebox.lua",
+          "bytes": 7729,
+          "sha256": "52fd8b28e91bc79f3a968be716a8a878b42e08fc8bb4d193617b585a31638623"
+        },
+        {
+          "relative": "share/filters/modules/filenames.lua",
+          "bytes": 1617,
+          "sha256": "2868451220f236dda25d5889885c51f1dcf5a1582e9c67b469d7ea209dd384df"
+        },
+        {
+          "relative": "share/filters/modules/filters.lua",
+          "bytes": 339,
+          "sha256": "f8904f77de886c0d142867c55f10c1e8a581d59bdbf1587078fc0b5349cccbdc"
+        },
+        {
+          "relative": "share/filters/modules/import_all.lua",
+          "bytes": 1051,
+          "sha256": "ee8dd6409cbbd50f3cd148b27285a39ca73162bf1d11751c861de24db2b0e83d"
+        },
+        {
+          "relative": "share/filters/modules/jog.lua",
+          "bytes": 9031,
+          "sha256": "04b7cf2d514b2666d30c0cd5f64fbcf90cb542d647591796e6086bb1a93c4fd7"
+        },
+        {
+          "relative": "share/filters/modules/license.lua",
+          "bytes": 5062,
+          "sha256": "dc4cda1d7acafc4d4d6d38bf78db0c22d13ce8e6f4ef1096155afff831b19e82"
+        },
+        {
+          "relative": "share/filters/modules/lightbox.lua",
+          "bytes": 1125,
+          "sha256": "5b5b49d0b9b298e2a3c0b321679be7cf351cf3cae92c6d79c3af5fdf54d3c15a"
+        },
+        {
+          "relative": "share/filters/modules/listtable.lua",
+          "bytes": 8755,
+          "sha256": "060f13ce30835aa4dc5749012d7897833c8392220634a98e3b79e69b015c5e3b"
+        },
+        {
+          "relative": "share/filters/modules/mediabag.lua",
+          "bytes": 3292,
+          "sha256": "e4a072397bdb93cb159ca92ed8882ace1e9deef77f9ca5746d1bb04b4c90c8c4"
+        },
+        {
+          "relative": "share/filters/modules/openxml.lua",
+          "bytes": 905,
+          "sha256": "b5edf64013e35af5e09a866b32bbd72047b9a382668f4fe1c1661438817b39e1"
+        },
+        {
+          "relative": "share/filters/modules/path.lua",
+          "bytes": 410,
+          "sha256": "6029e23fedbc996fc068035a8931296c6c860436d0aaffda5ed3708b26eb6e76"
+        },
+        {
+          "relative": "share/filters/modules/patterns.lua",
+          "bytes": 3504,
+          "sha256": "8bb97eb6878e49d99c673f8504f60df780299ec179774bde2b5d61bf498e5dea"
+        },
+        {
+          "relative": "share/filters/modules/scope.lua",
+          "bytes": 991,
+          "sha256": "b9e2e162dd9674a57d1542352e737f3bb0869abdabddd3a0f54144273c3d4e5a"
+        },
+        {
+          "relative": "share/filters/modules/string.lua",
+          "bytes": 1448,
+          "sha256": "11cdbb86e16474a6793d2e2a86dc135a9fbc77925d091953d6b633aabcb43d05"
+        },
+        {
+          "relative": "share/filters/modules/tablecolwidths.lua",
+          "bytes": 4170,
+          "sha256": "821b1ab963fd06f1e89b8129c3e5f2029eba0e2077e3c49915f1b454088a439f"
+        },
+        {
+          "relative": "share/filters/modules/tableutils.lua",
+          "bytes": 844,
+          "sha256": "7f7df673bcf99fc0b257a772fa6066aa5d5ae32ac0e7e325288ec505fa839431"
+        },
+        {
+          "relative": "share/filters/modules/typst.lua",
+          "bytes": 3764,
+          "sha256": "354985a1e32d7224dd397389a65015c5cf18c3532abb07ce55e34817d2e0faff"
+        },
+        {
+          "relative": "share/filters/modules/typst_css.lua",
+          "bytes": 24801,
+          "sha256": "8a0f92aeb47c58effba312a23fd16826f64ea6e178625319d71528d35c412e7c"
+        },
+        {
+          "relative": "share/filters/qmd-reader.lua",
+          "bytes": 568,
+          "sha256": "8ac561d3e954894cc35dd968740e9155f74a953fbcdafb089bf3210f360ca08f"
+        },
+        {
+          "relative": "share/filters/quarto-init/quarto-init.lua",
+          "bytes": 21840,
+          "sha256": "6480cc70d6982c1d2965121d7e9952e84a7ed34d132dec4a9285b0761c538f29"
+        },
+        {
+          "relative": "share/filters/quarto-internals/leveloneanalysis.lua",
+          "bytes": 288,
+          "sha256": "4a8f0e8005d6bbc4dc3024ae75f6d632d1d6585ea8e689ee28b7cebd86bdb7d9"
+        },
+        {
+          "relative": "share/filters/rmarkdown/pagebreak.lua",
+          "bytes": 3675,
+          "sha256": "ee6c5b28e3ec66a272a0b81df8aa31748246531b99af5bff887b641d95723d95"
+        },
+        {
+          "relative": "share/formats/html/quarto.js",
+          "bytes": 26830,
+          "sha256": "4ecb60f215d96b2af0fe9d985c71e32863b1c993a64725a416ac18b5991c59c6"
+        },
+        {
+          "relative": "share/language/_language.yml",
+          "bytes": 4140,
+          "sha256": "a8a58c1db2ba3af735160ef9d29e26e1830c109a10cc351def7d8f2a75a3ac6e"
+        },
+        {
+          "relative": "share/pandoc/datadir/_base64.lua",
+          "bytes": 7272,
+          "sha256": "9f2172b2ec4fdc698dc190883f621d31b44287408cddd216d8526ea840bce797"
+        },
+        {
+          "relative": "share/pandoc/datadir/_format.lua",
+          "bytes": 9611,
+          "sha256": "83586f3036bf8d2968301cfd833d24ae1fcaf0ed76d4d6c15db18bf13d9c2b82"
+        },
+        {
+          "relative": "share/pandoc/datadir/_json.lua",
+          "bytes": 10426,
+          "sha256": "759a2185918da982399d8c0f917155a3856a2633cd060d722f94e99c4f6454b2"
+        },
+        {
+          "relative": "share/pandoc/datadir/_utils.lua",
+          "bytes": 18931,
+          "sha256": "c42918b8c8a6f56a8fbc99eb9617290b8ddee0f79e45d997eba5381983aadd4a"
+        },
+        {
+          "relative": "share/pandoc/datadir/init.lua",
+          "bytes": 35438,
+          "sha256": "e2a234ce9fdca0c0bff1712b1fe95b64e06db32fdefbcdd2ebd4587e9b222fea"
+        },
+        {
+          "relative": "share/pandoc/datadir/logging.lua",
+          "bytes": 8907,
+          "sha256": "1f485562b47c336387f4b18b8d53a0ffda8f51ce81421c2f09946304327058aa"
+        },
+        {
+          "relative": "share/pandoc/datadir/lpegfenceddiv.lua",
+          "bytes": 5070,
+          "sha256": "a390b9f9a076c93692c9b0b6d6d9bf4291756aacb0524b352790ca0b1d185159"
+        },
+        {
+          "relative": "share/pandoc/datadir/lpegshortcode.lua",
+          "bytes": 12779,
+          "sha256": "b2585b0c4ac4fde573a4e62ee8c41c3c9a41c684435cc4f402250f0c964b42c8"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov.lua",
+          "bytes": 281,
+          "sha256": "11243da09d66230c236dab427f45871893086e56c5e83b5734d7a825055d4d00"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/defaults.lua",
+          "bytes": 3214,
+          "sha256": "e008ed131968e463534a72e2e4b0eba1664772ee420b4991337341daec732e98"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/hook.lua",
+          "bytes": 2186,
+          "sha256": "b740112f32792a09a98b0c6a7f22db1ff401fc9abef3f76b8b0adcc658af2a5e"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/linescanner.lua",
+          "bytes": 11201,
+          "sha256": "acb3ab4f4b073a810f58491259df5c38799a0e2c8fc4a0f121c6323ba2115959"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/reporter.lua",
+          "bytes": 13890,
+          "sha256": "ca80ae58e2c7649ea408869085e663a5185161aedb771831ba1df91bb7d8c13d"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/reporter/default.lua",
+          "bytes": 32,
+          "sha256": "ed1156b734e32596fdc41872882e3e4db0c31df8a797b0863237ba2280a685f0"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/reporter/html.lua",
+          "bytes": 7238,
+          "sha256": "f4b19992409ead394b64f4696c162c1ba725bb7d13111a0f24f78428d0d2ce28"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/reporter/html/lang-lua.js",
+          "bytes": 1144,
+          "sha256": "b08ab059793d42668d7eee4634e054b217a1ecacf4377b142c33b2db82c1a16e"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/reporter/html/prettify.js",
+          "bytes": 15655,
+          "sha256": "6b4f67671fd72c3c65216bcd6a058328921d2a3723934cbcbbcf523cfb7724b5"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/reporter/html/report.css",
+          "bytes": 4389,
+          "sha256": "84d04f9b8d12fc91d21f537c2c13f250cae61b4703bec75d955aed834440b1a6"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/reporter/html/report.js",
+          "bytes": 1673,
+          "sha256": "e287dd81ef9e146472c47492a50f9696f683ab698ba429e8e7b239f173a1be95"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/reporter/html/template.lua",
+          "bytes": 2812,
+          "sha256": "175cd4d2ba21939cd369ad37d7fe4051e43f090337194dfb043b9388ad2aeeac"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/runner.lua",
+          "bytes": 22003,
+          "sha256": "47ac6a0a0c30d821ade2ee940aa9432844d93b22553567e0c357e8a7b1d3c40f"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/stats.lua",
+          "bytes": 2078,
+          "sha256": "238536d46a20d42b0a1fabd1f347c1d6903cfc4ffa9d668fc33fcd97f87ea122"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/tick.lua",
+          "bytes": 323,
+          "sha256": "a7500c69e488655cab3fd885f71a3455d084c072410bbbac39293a6c78380964"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/util.lua",
+          "bytes": 2371,
+          "sha256": "fbae18bc623c5275f6bf675183754c42a360fc190de5bf8d42892b1d266cfbef"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov_reporter.lua",
+          "bytes": 2566,
+          "sha256": "3818ffb7ccc4b8deb1bb9599b9a965226a4405851524e820237ba961196bc927"
+        },
+        {
+          "relative": "share/pandoc/datadir/profiler.lua",
+          "bytes": 1790,
+          "sha256": "dfbba223ecede07d84dcb7d856c0a4c691ba71ad317edf8537b96bfb9868f3ae"
+        },
+        {
+          "relative": "share/pandoc/datadir/readqmd.lua",
+          "bytes": 8999,
+          "sha256": "dc35388e9f18602f6e2a672c90fb3bcbc9734e3f5c0f02ac9f94ab37eec32123"
+        },
+        {
+          "relative": "share/projects/website/listing/_filter.ejs.md",
+          "bytes": 1657,
+          "sha256": "c6996b536bcd9614b0de4e166bf800657686af74b6e3e4a37af7d676235269e2"
+        },
+        {
+          "relative": "share/projects/website/listing/_metadata.ejs.md",
+          "bytes": 410,
+          "sha256": "f66c18667dbad660657227639e377650d25ae98791c97be772e60346ed95fd3b"
+        },
+        {
+          "relative": "share/projects/website/listing/_pagination.ejs.md",
+          "bytes": 320,
+          "sha256": "b6a38bc5965b76b9a2b458ae624d7f6ad2c324f0f8622817b79fbe99564dd648"
+        },
+        {
+          "relative": "share/projects/website/listing/list.min.js",
+          "bytes": 19446,
+          "sha256": "1efd7641f4c65889093d8410037e78791c9ce951b2d71457777caaa40b816b77"
+        },
+        {
+          "relative": "share/projects/website/listing/listing-table.ejs.md",
+          "bytes": 2670,
+          "sha256": "2b951ca1471824d894b8826de254d775900510e88db62b613233460acaa5c57b"
+        },
+        {
+          "relative": "share/projects/website/listing/quarto-listing.js",
+          "bytes": 7111,
+          "sha256": "48c09833376066bdeafd898d8e56b5992c6b756e4d44acaada2cc0e73bcbcfe2"
+        },
+        {
+          "relative": "share/version",
+          "bytes": 7,
+          "sha256": "0ab5f9190cba41c6e6d3629fd39ddb8edc91602fbb789f22e61df7b35fb15637"
+        }
+      ],
+      "loader": {
+        "defaultPackagePath": "/usr/local/share/lua/5.4/?.lua;/usr/local/share/lua/5.4/?/init.lua;/usr/local/lib/lua/5.4/?.lua;/usr/local/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua",
+        "trees": [
+          "share/filters",
+          "share/pandoc/datadir"
+        ]
+      }
+    },
+    {
+      "id": "quarto-v1.11.5-linux-amd64",
+      "version": "1.11.5",
+      "archive": {
+        "assetId": 570272500,
+        "url": "https://github.com/quarto-dev/quarto-cli/releases/download/v1.11.5/quarto-1.11.5-linux-amd64.tar.gz",
+        "bytes": 147038086,
+        "sha256": "eaf1d5b20a0e1356a24a4dd7b4dfc6bf3b740c0262c09f875560d13038b168b0"
+      },
+      "reader": {
+        "explicitDataDir": true,
+        "dataDirConstruction": "helper"
+      },
+      "files": [
+        {
+          "relative": "bin/quarto",
+          "bytes": 8061,
+          "sha256": "72632b5b855ffec9db28a098cf62b9b83a80c57174bfa733b2b399a7bdef037f"
+        },
+        {
+          "relative": "bin/quarto.js",
+          "bytes": 7372723,
+          "sha256": "fe7a7982126244c432986898f3a7c6750b8c518c45a3433c3809f2a39705daf3"
+        },
+        {
+          "relative": "bin/tools/x86_64/deno",
+          "bytes": 124242912,
+          "sha256": "83ae80d34812cb7a4f246a21f707901b71fa937461500f5f0a2e19865115f3fb"
+        },
+        {
+          "relative": "bin/tools/x86_64/deno_dom/libplugin.so",
+          "bytes": 4856624,
+          "sha256": "3885e8d6443955bdf6f2b2630dbd4b0d7e0d5fef255a23bae34f1d26f577dec5"
+        },
+        {
+          "relative": "bin/tools/x86_64/pandoc",
+          "bytes": 162316016,
+          "sha256": "8fedc028b2314cd649b6cabf363c94a7c940aff352a1c20753ffb0875f083cac"
+        },
+        {
+          "relative": "share/env/env.defaults",
+          "bytes": 128,
+          "sha256": "84571ff6332a99c0e9cbe6826ac362a9f15b1c7114b258c0fb4947296053f353"
+        },
+        {
+          "relative": "share/filters/crossref/crossref.lua",
+          "bytes": 464784,
+          "sha256": "4186a886282f94ff635296603ee8fd1e9699d6829c570d8b86d7c512bf3d9db1"
+        },
+        {
+          "relative": "share/filters/customwriter/customwriter.lua",
+          "bytes": 280,
+          "sha256": "7a2a9966cc9d20a2d6bd418b3e9d8f8ac3705f78a496b8915fc26fb06567ed4a"
+        },
+        {
+          "relative": "share/filters/llms/llms.lua",
+          "bytes": 7843,
+          "sha256": "a36eb3b98cafc56aa58a329cec9c0e4dabc460dc5b1acf45fa8da5e352604b0c"
+        },
+        {
+          "relative": "share/filters/main.lua",
+          "bytes": 845380,
+          "sha256": "96686a69be52aaa96aea645c3c35db7325fa045cd2bc665335015e10cafbfd85"
+        },
+        {
+          "relative": "share/filters/modules/astshortcode.lua",
+          "bytes": 8185,
+          "sha256": "e69f5601428784aef480c76a219d11435a0f3a110d026fc7719629c2a44670e8"
+        },
+        {
+          "relative": "share/filters/modules/authors.lua",
+          "bytes": 38783,
+          "sha256": "0e5b001ed147347c186adf5bb0f9ffe262552ea5c55b7504a2ccf2b633e9f0fc"
+        },
+        {
+          "relative": "share/filters/modules/brand/brand.lua",
+          "bytes": 2520,
+          "sha256": "01337bfa24cbd523d405132d9e8981ba67b9e078f1c2e14fd8a12e9f3935fa7a"
+        },
+        {
+          "relative": "share/filters/modules/callouts.lua",
+          "bytes": 11581,
+          "sha256": "7a52714104fb693c945d9e1ddc8871ad64af219dc4e0f10aa07c8f90b2d41150"
+        },
+        {
+          "relative": "share/filters/modules/classpredicates.lua",
+          "bytes": 730,
+          "sha256": "6d1d274b6e30aa2957a5585e1c93e718318a77a47fd99b1d089e0d47fce2d426"
+        },
+        {
+          "relative": "share/filters/modules/connectversion.lua",
+          "bytes": 2671,
+          "sha256": "14e7770be19fc571efa45b4f6dff0364369b0f60c9bd5459b3502999f23c5e7b"
+        },
+        {
+          "relative": "share/filters/modules/constants.lua",
+          "bytes": 8314,
+          "sha256": "90dad39341383e222cbfa70d4fdc9acaf6565e1c676805b17662e0aa1144a6ad"
+        },
+        {
+          "relative": "share/filters/modules/dashboard.lua",
+          "bytes": 3890,
+          "sha256": "3f0a95891edc5865b3ad432f904ca4213682c950070f0b84f10d6123c28fe213"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/card-sidebar.lua",
+          "bytes": 4511,
+          "sha256": "47fb13170a2e05323ef6532d6b036d68ca1100d700eb37043b483fba0c6032da"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/card-toolbar.lua",
+          "bytes": 5603,
+          "sha256": "eeb9c629e363b537d8dc08b0fffab13c09e6897bfcbeb0c93f25c11e00aca615"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/card.lua",
+          "bytes": 12421,
+          "sha256": "b624b28f28ba6879d6c131c4882051c453680d805015f8d029dd09304f3cf29b"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/document.lua",
+          "bytes": 549,
+          "sha256": "56dfc3db21e1c70f1c3e5b4ce693031b59971989745a1254d006b78899fc1413"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/layout.lua",
+          "bytes": 4174,
+          "sha256": "79fb6f84c0e432ffbe2c5b8cc0daf032f121b0d654ece2fb1af3f29a87771972"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/page.lua",
+          "bytes": 2016,
+          "sha256": "cd8e470c5453038b31de30faba6a19850594e7a0949a5b733c14261542362324"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/sidebar.lua",
+          "bytes": 3497,
+          "sha256": "3d3e303eba0dc6a95608e1b18f05a833baa63f73bab398128c6885b52b8b723e"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/tabset.lua",
+          "bytes": 6610,
+          "sha256": "ed3f6d7e8e1a746a407ca1834dd26d7379536f29c777b863f4f97142d8b8704b"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/toolbar.lua",
+          "bytes": 3522,
+          "sha256": "0015ad5f664668701c9a37d47c3c7ef480e1c70e884576361e744e11921a9934"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/utils.lua",
+          "bytes": 942,
+          "sha256": "45e4c94888032d71cc1350dd01bf46a7c42c932f603672efc02ae27d0ff66439"
+        },
+        {
+          "relative": "share/filters/modules/dashboard/valuebox.lua",
+          "bytes": 7729,
+          "sha256": "52fd8b28e91bc79f3a968be716a8a878b42e08fc8bb4d193617b585a31638623"
+        },
+        {
+          "relative": "share/filters/modules/filenames.lua",
+          "bytes": 1617,
+          "sha256": "2868451220f236dda25d5889885c51f1dcf5a1582e9c67b469d7ea209dd384df"
+        },
+        {
+          "relative": "share/filters/modules/filters.lua",
+          "bytes": 339,
+          "sha256": "f8904f77de886c0d142867c55f10c1e8a581d59bdbf1587078fc0b5349cccbdc"
+        },
+        {
+          "relative": "share/filters/modules/import_all.lua",
+          "bytes": 1051,
+          "sha256": "ee8dd6409cbbd50f3cd148b27285a39ca73162bf1d11751c861de24db2b0e83d"
+        },
+        {
+          "relative": "share/filters/modules/jog.lua",
+          "bytes": 9031,
+          "sha256": "04b7cf2d514b2666d30c0cd5f64fbcf90cb542d647591796e6086bb1a93c4fd7"
+        },
+        {
+          "relative": "share/filters/modules/license.lua",
+          "bytes": 5062,
+          "sha256": "dc4cda1d7acafc4d4d6d38bf78db0c22d13ce8e6f4ef1096155afff831b19e82"
+        },
+        {
+          "relative": "share/filters/modules/lightbox.lua",
+          "bytes": 1125,
+          "sha256": "5b5b49d0b9b298e2a3c0b321679be7cf351cf3cae92c6d79c3af5fdf54d3c15a"
+        },
+        {
+          "relative": "share/filters/modules/listtable.lua",
+          "bytes": 8755,
+          "sha256": "060f13ce30835aa4dc5749012d7897833c8392220634a98e3b79e69b015c5e3b"
+        },
+        {
+          "relative": "share/filters/modules/mediabag.lua",
+          "bytes": 3292,
+          "sha256": "e4a072397bdb93cb159ca92ed8882ace1e9deef77f9ca5746d1bb04b4c90c8c4"
+        },
+        {
+          "relative": "share/filters/modules/openxml.lua",
+          "bytes": 905,
+          "sha256": "b5edf64013e35af5e09a866b32bbd72047b9a382668f4fe1c1661438817b39e1"
+        },
+        {
+          "relative": "share/filters/modules/path.lua",
+          "bytes": 410,
+          "sha256": "6029e23fedbc996fc068035a8931296c6c860436d0aaffda5ed3708b26eb6e76"
+        },
+        {
+          "relative": "share/filters/modules/patterns.lua",
+          "bytes": 3504,
+          "sha256": "8bb97eb6878e49d99c673f8504f60df780299ec179774bde2b5d61bf498e5dea"
+        },
+        {
+          "relative": "share/filters/modules/scope.lua",
+          "bytes": 991,
+          "sha256": "b9e2e162dd9674a57d1542352e737f3bb0869abdabddd3a0f54144273c3d4e5a"
+        },
+        {
+          "relative": "share/filters/modules/string.lua",
+          "bytes": 1448,
+          "sha256": "11cdbb86e16474a6793d2e2a86dc135a9fbc77925d091953d6b633aabcb43d05"
+        },
+        {
+          "relative": "share/filters/modules/tablecolwidths.lua",
+          "bytes": 4170,
+          "sha256": "821b1ab963fd06f1e89b8129c3e5f2029eba0e2077e3c49915f1b454088a439f"
+        },
+        {
+          "relative": "share/filters/modules/tableutils.lua",
+          "bytes": 844,
+          "sha256": "7f7df673bcf99fc0b257a772fa6066aa5d5ae32ac0e7e325288ec505fa839431"
+        },
+        {
+          "relative": "share/filters/modules/typst.lua",
+          "bytes": 3764,
+          "sha256": "354985a1e32d7224dd397389a65015c5cf18c3532abb07ce55e34817d2e0faff"
+        },
+        {
+          "relative": "share/filters/modules/typst_css.lua",
+          "bytes": 24801,
+          "sha256": "8a0f92aeb47c58effba312a23fd16826f64ea6e178625319d71528d35c412e7c"
+        },
+        {
+          "relative": "share/filters/qmd-reader.lua",
+          "bytes": 568,
+          "sha256": "8ac561d3e954894cc35dd968740e9155f74a953fbcdafb089bf3210f360ca08f"
+        },
+        {
+          "relative": "share/filters/quarto-init/quarto-init.lua",
+          "bytes": 21840,
+          "sha256": "6480cc70d6982c1d2965121d7e9952e84a7ed34d132dec4a9285b0761c538f29"
+        },
+        {
+          "relative": "share/filters/quarto-internals/leveloneanalysis.lua",
+          "bytes": 288,
+          "sha256": "4a8f0e8005d6bbc4dc3024ae75f6d632d1d6585ea8e689ee28b7cebd86bdb7d9"
+        },
+        {
+          "relative": "share/filters/rmarkdown/pagebreak.lua",
+          "bytes": 3675,
+          "sha256": "ee6c5b28e3ec66a272a0b81df8aa31748246531b99af5bff887b641d95723d95"
+        },
+        {
+          "relative": "share/formats/html/quarto.js",
+          "bytes": 26830,
+          "sha256": "4ecb60f215d96b2af0fe9d985c71e32863b1c993a64725a416ac18b5991c59c6"
+        },
+        {
+          "relative": "share/language/_language.yml",
+          "bytes": 4695,
+          "sha256": "df8176a7fb1bceb1edd48419fdd4921fb2011b190c2ce7ec9aee60677a9b887c"
+        },
+        {
+          "relative": "share/pandoc/datadir/_base64.lua",
+          "bytes": 7272,
+          "sha256": "9f2172b2ec4fdc698dc190883f621d31b44287408cddd216d8526ea840bce797"
+        },
+        {
+          "relative": "share/pandoc/datadir/_format.lua",
+          "bytes": 9611,
+          "sha256": "83586f3036bf8d2968301cfd833d24ae1fcaf0ed76d4d6c15db18bf13d9c2b82"
+        },
+        {
+          "relative": "share/pandoc/datadir/_json.lua",
+          "bytes": 10426,
+          "sha256": "759a2185918da982399d8c0f917155a3856a2633cd060d722f94e99c4f6454b2"
+        },
+        {
+          "relative": "share/pandoc/datadir/_utils.lua",
+          "bytes": 18931,
+          "sha256": "c42918b8c8a6f56a8fbc99eb9617290b8ddee0f79e45d997eba5381983aadd4a"
+        },
+        {
+          "relative": "share/pandoc/datadir/init.lua",
+          "bytes": 36499,
+          "sha256": "f02efaefe1fa494d5c60d4d4f918c12352fb3cc7263de05e64e182dfc0a03233"
+        },
+        {
+          "relative": "share/pandoc/datadir/logging.lua",
+          "bytes": 8907,
+          "sha256": "1f485562b47c336387f4b18b8d53a0ffda8f51ce81421c2f09946304327058aa"
+        },
+        {
+          "relative": "share/pandoc/datadir/lpegfenceddiv.lua",
+          "bytes": 5070,
+          "sha256": "a390b9f9a076c93692c9b0b6d6d9bf4291756aacb0524b352790ca0b1d185159"
+        },
+        {
+          "relative": "share/pandoc/datadir/lpegshortcode.lua",
+          "bytes": 12779,
+          "sha256": "b2585b0c4ac4fde573a4e62ee8c41c3c9a41c684435cc4f402250f0c964b42c8"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov.lua",
+          "bytes": 281,
+          "sha256": "11243da09d66230c236dab427f45871893086e56c5e83b5734d7a825055d4d00"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/defaults.lua",
+          "bytes": 3214,
+          "sha256": "e008ed131968e463534a72e2e4b0eba1664772ee420b4991337341daec732e98"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/hook.lua",
+          "bytes": 2186,
+          "sha256": "b740112f32792a09a98b0c6a7f22db1ff401fc9abef3f76b8b0adcc658af2a5e"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/linescanner.lua",
+          "bytes": 11201,
+          "sha256": "acb3ab4f4b073a810f58491259df5c38799a0e2c8fc4a0f121c6323ba2115959"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/reporter.lua",
+          "bytes": 13890,
+          "sha256": "ca80ae58e2c7649ea408869085e663a5185161aedb771831ba1df91bb7d8c13d"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/reporter/default.lua",
+          "bytes": 32,
+          "sha256": "ed1156b734e32596fdc41872882e3e4db0c31df8a797b0863237ba2280a685f0"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/reporter/html.lua",
+          "bytes": 7238,
+          "sha256": "f4b19992409ead394b64f4696c162c1ba725bb7d13111a0f24f78428d0d2ce28"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/reporter/html/lang-lua.js",
+          "bytes": 1144,
+          "sha256": "b08ab059793d42668d7eee4634e054b217a1ecacf4377b142c33b2db82c1a16e"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/reporter/html/prettify.js",
+          "bytes": 15655,
+          "sha256": "6b4f67671fd72c3c65216bcd6a058328921d2a3723934cbcbbcf523cfb7724b5"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/reporter/html/report.css",
+          "bytes": 4389,
+          "sha256": "84d04f9b8d12fc91d21f537c2c13f250cae61b4703bec75d955aed834440b1a6"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/reporter/html/report.js",
+          "bytes": 1673,
+          "sha256": "e287dd81ef9e146472c47492a50f9696f683ab698ba429e8e7b239f173a1be95"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/reporter/html/template.lua",
+          "bytes": 2812,
+          "sha256": "175cd4d2ba21939cd369ad37d7fe4051e43f090337194dfb043b9388ad2aeeac"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/runner.lua",
+          "bytes": 22003,
+          "sha256": "47ac6a0a0c30d821ade2ee940aa9432844d93b22553567e0c357e8a7b1d3c40f"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/stats.lua",
+          "bytes": 2078,
+          "sha256": "238536d46a20d42b0a1fabd1f347c1d6903cfc4ffa9d668fc33fcd97f87ea122"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/tick.lua",
+          "bytes": 323,
+          "sha256": "a7500c69e488655cab3fd885f71a3455d084c072410bbbac39293a6c78380964"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov/util.lua",
+          "bytes": 2371,
+          "sha256": "fbae18bc623c5275f6bf675183754c42a360fc190de5bf8d42892b1d266cfbef"
+        },
+        {
+          "relative": "share/pandoc/datadir/luacov_reporter.lua",
+          "bytes": 2566,
+          "sha256": "3818ffb7ccc4b8deb1bb9599b9a965226a4405851524e820237ba961196bc927"
+        },
+        {
+          "relative": "share/pandoc/datadir/profiler.lua",
+          "bytes": 1790,
+          "sha256": "dfbba223ecede07d84dcb7d856c0a4c691ba71ad317edf8537b96bfb9868f3ae"
+        },
+        {
+          "relative": "share/pandoc/datadir/readqmd.lua",
+          "bytes": 8999,
+          "sha256": "dc35388e9f18602f6e2a672c90fb3bcbc9734e3f5c0f02ac9f94ab37eec32123"
+        },
+        {
+          "relative": "share/projects/website/listing/_filter.ejs.md",
+          "bytes": 1657,
+          "sha256": "c6996b536bcd9614b0de4e166bf800657686af74b6e3e4a37af7d676235269e2"
+        },
+        {
+          "relative": "share/projects/website/listing/_metadata.ejs.md",
+          "bytes": 410,
+          "sha256": "f66c18667dbad660657227639e377650d25ae98791c97be772e60346ed95fd3b"
+        },
+        {
+          "relative": "share/projects/website/listing/_pagination.ejs.md",
+          "bytes": 320,
+          "sha256": "b6a38bc5965b76b9a2b458ae624d7f6ad2c324f0f8622817b79fbe99564dd648"
+        },
+        {
+          "relative": "share/projects/website/listing/list.min.js",
+          "bytes": 19446,
+          "sha256": "1efd7641f4c65889093d8410037e78791c9ce951b2d71457777caaa40b816b77"
+        },
+        {
+          "relative": "share/projects/website/listing/listing-table.ejs.md",
+          "bytes": 2670,
+          "sha256": "2b951ca1471824d894b8826de254d775900510e88db62b613233460acaa5c57b"
+        },
+        {
+          "relative": "share/projects/website/listing/quarto-listing.js",
+          "bytes": 7111,
+          "sha256": "48c09833376066bdeafd898d8e56b5992c6b756e4d44acaada2cc0e73bcbcfe2"
+        },
+        {
+          "relative": "share/version",
+          "bytes": 6,
+          "sha256": "968e6f0aed8a073a0d1d710d79713808bfdd613f8ce6e29460513192f012b466"
+        }
+      ],
+      "loader": {
+        "defaultPackagePath": "/usr/local/share/lua/5.4/?.lua;/usr/local/share/lua/5.4/?/init.lua;/usr/local/lib/lua/5.4/?.lua;/usr/local/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua",
+        "trees": [
+          "share/filters",
+          "share/pandoc/datadir"
+        ]
+      }
+    }
+  ]
+}
