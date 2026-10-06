@@ -14,10 +14,6 @@ function M.wrap(div, kind, cfg)
   if not cfg.html or cfg.answers == "expanded" then
     return pandoc.Div({div}, pandoc.Attr("", classes))
   end
-  if cfg.mode == "lecture" then
-    if cfg.reveal then table.insert(classes, "fragment") end
-    return pandoc.Div({div}, pandoc.Attr("", classes))
-  end
   local summary = cfg.ru and (kind == "hint" and "Показать подсказку" or "Показать решение")
     or (kind == "hint" and "Show hint" or "Show solution")
   if not cfg.reveal then

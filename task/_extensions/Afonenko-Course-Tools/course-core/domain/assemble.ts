@@ -6,7 +6,7 @@ function withBody<T>(item: Extracted<T>): Omit<Extracted<T>, "bodyJson" | "gradi
 /** Объединение независимых фактов AST без правил файловой системы и платформ. */
 export function assemble(selected: string[], fragments: Map<string, Fragment>, adapters: Adapter[]): Course {
   if (!selected.length) throw new Error("В курсе не выбраны документы для сборки");
-  const result: Course = { course: { id: "" }, registeredTargets: ["manual", ...adapters.map(a => a.contract.name)], exercises: [], assessments: [] };
+  const result: Course = { course: {}, registeredTargets: ["manual", ...adapters.map(a => a.contract.name)], exercises: [], assessments: [] };
   for (const source of selected) {
     const part = fragments.get(source);
     if (!part) throw new Error(`Выполните сборку всех выбранных документов с course-core; отсутствует ${source}`);

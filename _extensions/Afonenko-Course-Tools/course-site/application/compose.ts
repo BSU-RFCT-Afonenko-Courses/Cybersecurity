@@ -13,7 +13,7 @@ import {
   toFileUrl,
 } from "../infrastructure/files.ts";
 import {
-  inspect,
+  inspectDocuments,
   validateAudienceOutputs,
   workspace,
 } from "../infrastructure/config.ts";
@@ -60,7 +60,8 @@ export async function pre(root = Deno.cwd()): Promise<void> {
   const inspected = [];
   // Validate all selected destinations before deleting any output.
   for (const project of ws.projects) {
-    const config = await inspect(project.path, ws.profiles);
+    const plan = await inspectDocuments(project.path, ws.profiles);
+    const config = plan.config;
     if (typeof config.project?.["output-dir"] !== "string") {
       throw new Error(
         `course-site component ${project.id} requires a native output-dir`,
@@ -70,13 +71,31 @@ export async function pre(root = Deno.cwd()): Promise<void> {
       project.path,
       config.project["output-dir"],
     );
-    await validateAudienceOutputs(project.path, ws.profiles, output);
-    inspected.push({ project, config, output });
+    await validateAudienceOutputs(
+      project.path,
+      ws.profiles,
+      output,
+      config.course?.view,
+    );
+    inspected.push({ project, config, output, plan });
+  }
+  for (const { project, output } of inspected) {
+    for (const other of ws.projects) {
+      if (
+        inside(output, other.path) ||
+        inside(other.path, output) && other.path !== project.path
+      ) {
+        throw new Error("course-site component output overlaps another source");
+      }
+    }
+    if (inside(output, ws.output) || inside(ws.output, output)) {
+      throw new Error("course-site component and root outputs overlap");
+    }
   }
   await cleanOutput(root, ws.output);
   await beginCore(root, ws.config);
   const records = [];
-  for (const { project, config, output } of inspected) {
+  for (const { project, config, output, plan } of inspected) {
     await cleanOutput(project.path, output);
     if (config.course) {
       const completion = join(
@@ -86,21 +105,73 @@ export async function pre(root = Deno.cwd()): Promise<void> {
       await safePath(project.path, completion);
       await remove(completion);
     }
-    const collection = join(run, `${project.id}.json`);
-    await quarto(
-      ["render", ".", "--to", project.format, ...profileArguments(ws.profiles)],
-      project.path,
-      { COURSE_SITE_COLLECTION: collection, COURSE_SITE_PROJECT: project.id },
-      true,
-    );
-    const record = await readCollection(
-      collection,
-      project.id,
-      project.path,
-      output,
-      ws.profiles,
-    );
-    records.push({ project, config, record });
+    const calls = plan.renderTo === null
+      ? plan.documents.map(
+        (document) => ["render", document.source, "--to", document.format],
+      )
+      : [["render", ".", ...(plan.renderTo ? ["--to", plan.renderTo] : [])]];
+    const collected = [], nativeRuns = [];
+    for (let index = 0; index < calls.length; index++) {
+      const collection = join(run, `${project.id}-${index}.json`);
+      await quarto(
+        [...calls[index], ...profileArguments(ws.profiles)],
+        project.path,
+        { COURSE_SITE_COLLECTION: collection, COURSE_SITE_PROJECT: project.id },
+        true,
+      );
+      collected.push(
+        await readCollection(
+          collection,
+          project.id,
+          project.path,
+          output,
+          ws.profiles,
+          true,
+        ),
+      );
+      if (config.course) {
+        const native =
+          await (await module("course-core", "infrastructure/native-run.ts"))
+            .loadNativeRun(project.path, {
+              profiles: collected[index].profiles,
+              view: config.course.view,
+              outputDirectory: output,
+            });
+        nativeRuns.push({
+          ...native,
+          adapters: native.adapters.map((adapter: any) => ({
+            ...adapter,
+            fragments: [...adapter.fragments.values()],
+          })),
+        });
+      }
+    }
+    const record = {
+      id: project.id,
+      projectRoot: project.path,
+      outputDir: output,
+      profiles: collected[0].profiles,
+      nativeOutputs: [
+        ...new Set(collected.flatMap((record) => record.nativeOutputs)),
+      ],
+      files: [...new Set(collected.flatMap((record) => record.files))],
+    };
+    if (
+      collected.some((value) =>
+        JSON.stringify(value.profiles) !== JSON.stringify(record.profiles)
+      )
+    ) {
+      throw new Error(
+        "course-site inconsistent native profiles between document renders",
+      );
+    }
+    records.push({
+      project,
+      config,
+      record,
+      nativeRuns,
+      documents: plan.documents,
+    });
   }
   await Deno.writeTextFile(state, JSON.stringify({ ws, records, run }));
 }
@@ -203,7 +274,7 @@ export async function post(root = Deno.cwd()): Promise<void> {
     });
   }
   const members = [];
-  for (const { project, config, record } of records) {
+  for (const { project, config, record, nativeRuns, documents } of records) {
     const mount = join(ws.output, project.mount);
     if (rootFiles.some((path: string) => inside(mount, path))) {
       throw new Error(
@@ -224,22 +295,29 @@ export async function post(root = Deno.cwd()): Promise<void> {
         mount: project.mount,
       });
     }
-    if (config.course) {
+    for (const nativeRun of nativeRuns || []) {
       native.push({
         prefix: project.id,
-        view: ws.config.course ? ws.config.course.view : config.course.view,
-        run: await (await module("course-core", "infrastructure/native-run.ts"))
-          .loadNativeRun(project.path, {
-            profiles: ws.profiles,
-            view: ws.config.course ? ws.config.course.view : config.course.view,
-            outputDirectory: record.outputDir,
-          }),
+        view: config.course.view,
+        run: {
+          ...nativeRun,
+          adapters: nativeRun.adapters.map((adapter: any) => ({
+            ...adapter,
+            fragments: new Map(
+              adapter.fragments.map((
+                fragment: any,
+              ) => [fragment.source, fragment]),
+            ),
+          })),
+        },
       });
     }
     if (config["reference-catalog"]) {
       members.push({
         namespace: config["reference-catalog"].namespace,
-        format: project.format,
+        format: documents?.some((document: any) => document.web)
+          ? "html"
+          : "nonweb",
       });
     }
   }
@@ -250,6 +328,7 @@ export async function post(root = Deno.cwd()): Promise<void> {
         documents: any[];
         adapters: any[];
         view: "student" | "full" | undefined;
+        profiles: string[];
       }
     >();
     const sourceRoots: Record<string, string> = {};
@@ -264,8 +343,14 @@ export async function post(root = Deno.cwd()): Promise<void> {
       }
       for (const document of item.run.documents) {
         const id = document.course.id;
-        const group = groups.get(id) ||
-          { documents: [] as any[], adapters: [] as any[], view: item.view };
+        const key = item.prefix + ":" + (id || "");
+        const group = groups.get(key) ||
+          {
+            documents: [] as any[],
+            adapters: [] as any[],
+            view: item.view,
+            profiles: item.run.profiles,
+          };
         if (group.view !== item.view) {
           throw new Error(
             `course-site inconsistent configured audience for ${id}`,
@@ -273,12 +358,12 @@ export async function post(root = Deno.cwd()): Promise<void> {
         }
         group.documents.push(qualify(document, item.prefix));
         sourceRoots[`${item.prefix}/${document.source}`] = item.run.projectRoot;
-        groups.set(id, group);
+        groups.set(key, group);
       }
       for (
         const id of new Set(item.run.documents.map((d: any) => d.course.id))
       ) {
-        const group = groups.get(id as string)!;
+        const group = groups.get(item.prefix + ":" + (id || ""))!;
         for (const adapter of item.run.adapters) {
           const fragments = new Map(
             [...adapter.fragments].filter(([, fragment]: any) =>
@@ -307,7 +392,7 @@ export async function post(root = Deno.cwd()): Promise<void> {
         group.documents.map((d: any) => d.source),
         group.documents,
         group.adapters,
-        { view: group.view, profiles: ws.profiles },
+        { view: group.view, profiles: group.profiles },
       );
       await (await module("course-core", "infrastructure/validate.ts"))
         .validateRelease(release, root, group.adapters, sourceRoots);

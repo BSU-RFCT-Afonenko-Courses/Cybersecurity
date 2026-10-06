@@ -18,7 +18,7 @@ function M.prepare(doc)
       pandoc.Pandoc(node.content):walk({Div = function(child)
         assert(not notes(child), "Блоки grading-notes нельзя вкладывать друг в друга")
         assert(not exercise(child), "Блок grading-notes не может содержать задание")
-        assert(not child.classes:includes("assessment-items"), "Блок grading-notes не может содержать assessment-items")
+        assert(not child.classes:includes("task-items"), "Блок grading-notes не может содержать task-items")
       end})
     end
   end})

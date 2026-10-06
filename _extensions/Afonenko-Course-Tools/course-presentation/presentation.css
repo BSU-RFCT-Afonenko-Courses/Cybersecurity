@@ -52,3 +52,21 @@ html.print-pdf .course-answer > details > summary { display: none; }
    измерения должна совпадать с конечной шириной слайда: иначе длинный ответ
    после переноса строк будет обрезан на последней странице. */
 html.print-pdf .reveal .slides section:not(.stack) { width: var(--slide-width); }
+
+/* Native Reveal notes reserve the remaining right-hand area. */
+.course-mode-toggle { position: fixed; z-index: 40; top: .6rem; right: .6rem; padding: .45rem .75rem; font: 14px/1.4 system-ui,sans-serif; color: #24292f; background: #fff; border: 1px solid #8995a1; border-radius: .3rem; cursor: pointer; }
+.course-mode-toggle:focus-visible { outline: 3px solid #2963a3; outline-offset: 2px; }
+html[lang^="ru"] .reveal .speaker-notes::before { content: "Общие заметки"; }
+body.course-navigation-active .reveal.show-notes { width: calc((100% - var(--course-nav-width)) * .75); max-width: none; }
+body.course-navigation-no-sidebar .reveal.show-notes { width: 75%; }
+@media screen and (max-width: 1024px) {
+ body.course-navigation-active .reveal.show-notes { width: calc(100% - var(--course-nav-width)); height: calc((100% - var(--course-nav-footer)) * .7); }
+ body.course-navigation-no-sidebar .reveal.show-notes { width: 100%; }
+ body.course-navigation-active .reveal.show-notes .speaker-notes { height: calc((100vh - var(--course-nav-footer)) * .3); }
+}
+@media screen and (max-width: 600px) {
+ body.course-navigation-active .reveal.show-notes { left: 0; width: 100%; height: calc((100% - var(--course-nav-footer)) * .6); }
+ body.course-navigation-active .reveal.show-notes .speaker-notes { height: calc((100vh - var(--course-nav-footer)) * .4); }
+}
+@media print { .course-mode-toggle, .reveal .speaker-notes, .reveal aside.notes { display: none !important; } }
+html.print-pdf .course-mode-toggle, html.print-pdf .reveal .speaker-notes, html.print-pdf .reveal aside.notes { display: none !important; }

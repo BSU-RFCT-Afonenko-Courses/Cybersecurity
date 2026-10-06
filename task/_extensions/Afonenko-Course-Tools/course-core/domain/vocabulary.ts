@@ -4,6 +4,6 @@ export type PedagogicalKind = "exercise" | "solution" | "hint" | "demonstration"
 export type Difficulty = "introductory" | "intermediate" | "advanced";
 export type WorkMode = "individual" | "pair" | "group";
 export type Requirement = "required" | "recommended" | "optional";
-export type AssessmentKind = "lab" | "test" | "exam";
+export type AssessmentKind = "lab" | "test" | "exam" | "handout";
 export type MemberKind = "BulletList" | "OrderedList";
 export type View = "student" | "full";

@@ -15,8 +15,9 @@ packageData: {
 		closedKey:  _, solution: [...], gradingNotes: [...]
 	}] & list.MinItems(1)
 	works: [...{
-		key:  "\(owner)/\(id)", owner:        string, id: string & =~"^sec-[a-z0-9][a-z0-9-]*$", source: string & !=""
-		kind: "lab" | "test" | "exam", title: string & !="", items: [...string] & list.MinItems(1) & list.UniqueItems
+		key:  "\(owner)/\(id)", owner:        string, id: string & =~"^[a-z][a-z0-9-]*$", source: string & !=""
+		kind: "lab" | "test" | "exam" | "handout", title: string & !="", items: [...string] & list.MinItems(1) & list.UniqueItems
+        requirements?: {[string]: "required" | "optional"}
 	}] & list.MinItems(1)
 	resources: [...]
 	_keys: [for q in questions {q.key}] & list.UniqueItems

@@ -46,11 +46,15 @@ jobs:
 
         cue version
 
+        bash tools/install-extensions.sh
+
         quarto render . --profile student
 
         quarto render . --profile full
 
         quarto render . --profile student
+
+        python3 tests/site.py
 
         '
     - name: Upload student site

@@ -23,6 +23,17 @@ project:
   - '!_freeze/**'
   - '!.quarto/**'
   - '!UPSTREAM.md'
+  - '!**/_extensions/**'
+  - '!**/_generated/**'
+  - '!**/_site-full/**'
+  - '!**/_site-student/**'
+  - '!**/_output/**'
+  - '!**/.quarto/**'
+  - '!**/_freeze/**'
+  - '!task/**'
+  - '!seminars/**'
+  - '!Новые семинары'
+  - '!tests/**'
   pre-render:
   - _extensions/Afonenko-Course-Tools/course-site/entrypoints/pre.ts
   post-render:
@@ -35,7 +46,7 @@ format:
     toc: false
 lang: ru
 course:
-  id: cybersecurity-portal
+  id: cybersecurity
 website:
   title: Основы кибербезопасности
   search: true
@@ -54,17 +65,7 @@ profile:
   group:
   - - student
     - full
-course-site:
-  projects:
-  - id: theory
-    path: theory
-    format: html
-    mount: theory
-  - id: task
-    path: task
-    format: html
-    mount: task
-  - id: seminars
-    path: seminars
-    format: revealjs
-    mount: seminars
+subprojects:
+- theory
+- task
+- seminars

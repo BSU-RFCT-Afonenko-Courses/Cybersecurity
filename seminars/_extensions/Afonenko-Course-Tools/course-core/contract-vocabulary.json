@@ -101,7 +101,8 @@
   "assessmentKinds": [
     "lab",
     "test",
-    "exam"
+    "exam",
+    "handout"
   ],
   "memberKinds": [
     "BulletList",

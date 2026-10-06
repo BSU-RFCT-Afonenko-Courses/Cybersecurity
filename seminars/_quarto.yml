@@ -1,9 +1,8 @@
 project:
-  type: default
+  type: website
   render:
   - index.qmd
   - 1.qmd
-
   output-dir: _output
   resources:
   - ./assets/**
@@ -14,6 +13,13 @@ project:
   - '!_freeze/**'
   - '!.quarto/**'
   - '!_extensions/**'
+  - '!**/_extensions/**'
+  - '!**/_generated/**'
+  - '!**/_site-full/**'
+  - '!**/_site-student/**'
+  - '!**/_output/**'
+  - '!**/.quarto/**'
+  - '!**/_freeze/**'
   pre-render:
   - _extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts
   post-render:
@@ -25,14 +31,10 @@ profile:
   group:
   - - student
     - full
-course:
-  id: cybersecurity-practice
 filters:
 - course-core
 - course-presentation
 - reference-catalog
-course-presentation:
-  mode: study
 format:
   revealjs:
     shift-heading-level-by: -1
@@ -43,6 +45,7 @@ format:
     slide-number: true
     revealjs-plugins:
     - course-navigation
+    pdf-separate-fragments: false
 bibliography: ../references.bib
 lang: ru
 reference-catalog:

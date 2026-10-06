@@ -36,7 +36,7 @@
       const isTitle = element.id === 'title-slide';
       const sectionStart = !isTitle && !!heading && (heading.tagName === 'H1' || element.classList.contains('level1'));
       const clone = element.cloneNode(true);
-      clone.querySelectorAll('aside.notes,script,style,.speaker-notes').forEach(node => node.remove());
+      clone.querySelectorAll('script,style,.speaker-notes').forEach(node => node.remove());
       const indices = deck.getIndices(element);
       return {
         element, title, h: indices.h, v: indices.v || 0,
@@ -46,6 +46,14 @@
       };
     });
     return groupEntries(entries, labels.material);
+  }
+
+  function findTarget(slide, term) {
+    if (!term) return slide.element;
+    const selector = 'p,li,pre,h1,h2,h3,h4,h5,h6,td,th,figcaption,summary';
+    const matches = Array.from(slide.element.querySelectorAll(selector)).filter(node =>
+      !node.closest('script,style,.speaker-notes') && clean(node.textContent).toLocaleLowerCase().includes(term));
+    return matches.find(node => !matches.some(child => child !== node && node.contains(child))) || slide.element;
   }
 
   class VisitHistory {
@@ -66,6 +74,6 @@
     canMove(direction) { const target = this.cursor + direction; return target >= 0 && target < this.entries.length; }
   }
 
-  namespace.NavigationModel = { collect, groupEntries, VisitHistory };
+  namespace.NavigationModel = { collect, groupEntries, VisitHistory, findTarget };
   if (typeof module === 'object' && module.exports) module.exports = namespace.NavigationModel;
 })(typeof window === 'undefined' ? globalThis : window);

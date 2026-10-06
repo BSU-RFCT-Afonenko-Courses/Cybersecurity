@@ -1,4 +1,4 @@
-import { files, join, resolve, safePath, within } from "./files.ts";
+import { files, resolve, safePath, within } from "./files.ts";
 export interface Record {
   id: string;
   projectRoot: string;
@@ -57,12 +57,25 @@ export async function readCollection(
   projectRoot: string,
   outputDir: string,
   profiles: string[],
+  // Quarto's post-render environment is the authority for implicit child
+  // defaults/groups; only explicitly requested profiles are known beforehand.
+  nativeProfileContext = false,
 ): Promise<Record> {
   const value = JSON.parse(await Deno.readTextFile(path));
   if (
     value.id !== id || value.projectRoot !== projectRoot ||
     value.outputDir !== outputDir ||
-    JSON.stringify(value.profiles) !== JSON.stringify(profiles) ||
+    !Array.isArray(value.profiles) ||
+    value.profiles.some((profile: any) =>
+      typeof profile !== "string" || !/^[\w][\w.-]*$/.test(profile)
+    ) || new Set(value.profiles).size !== value.profiles.length ||
+    JSON.stringify(
+        nativeProfileContext
+          ? value.profiles.filter((profile: string) =>
+            profiles.includes(profile)
+          )
+          : value.profiles,
+      ) !== JSON.stringify(profiles) ||
     !Array.isArray(value.nativeOutputs) || !Array.isArray(value.files)
   ) throw new Error("course-site current collection mismatch");
   for (const path of [...value.nativeOutputs, ...value.files]) {

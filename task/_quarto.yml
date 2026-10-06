@@ -16,20 +16,23 @@ project:
   - '!_generated/**'
   - '!_freeze/**'
   - '!.quarto/**'
+  - '!**/_extensions/**'
+  - '!**/_generated/**'
+  - '!**/_site-full/**'
+  - '!**/_site-student/**'
+  - '!**/_output/**'
+  - '!**/.quarto/**'
+  - '!**/_freeze/**'
 profile:
   default: student
   group:
   - - student
     - full
-course:
-  id: course-tasks
 filters:
 - course-core
 - course-presentation
 - project-download
 - reference-catalog
-course-presentation:
-  mode: study
 book:
   title: Задания и работы — Основы кибербезопасности
   sidebar:
@@ -37,29 +40,6 @@ book:
     - icon: house
       href: ../index.html#sec-portal
       text: Навигация курса
-  chapters:
-  - index.qmd
-  - part: Криптография
-    chapters:
-    - seminar/crypto/random.qmd
-    - seminar/crypto/hash.qmd
-    - seminar/crypto/cypher/symmetric.qmd
-    - seminar/crypto/cypher/asymmetric.qmd
-    - seminar/crypto/sign.qmd
-    - seminar/crypto/cert.qmd
-  - part: Управление доступом
-    chapters:
-    - seminar/access-control/ident.qmd
-    - seminar/access-control/authn.qmd
-    - seminar/access-control/authz.qmd
-  - part: Целостность данных
-    chapters:
-    - seminar/data-integrity/checksum.qmd
-    - seminar/data-integrity/backup.qmd
-#  - part: Дополнительные задания
-#    chapters:
-#    -
-
 author:
 - Афоненко Анатолий
 date: today

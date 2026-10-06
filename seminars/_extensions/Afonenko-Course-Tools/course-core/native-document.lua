@@ -72,7 +72,7 @@ end
 
 function M.validate(doc)
   local owner = pandoc.utils.stringify(doc.meta.course.id or '')
-  check(valid(owner,'^[a-z][a-z0-9%-]*$'),'CORE.COURSE_INVALID','course.id='..owner)
+  check(owner=='' or valid(owner,'^[a-z][a-z0-9%-]*$'),'CORE.COURSE_INVALID','course.id='..owner)
   local source,rows = source_path(),occurrences(doc)
   local defaults=contract.defaults(doc.meta)
   local identities, facts, domains,activities = {},pandoc.List(),{},{}
@@ -96,12 +96,11 @@ function M.validate(doc)
       if contract.is_exercise(node) or node.attributes.target~=nil then
         check(contract.is_exercise(node),'CORE.EXERCISE_INVALID','target requires exr-*')
         local role=vocabulary.roles[node.attributes['course-role']]
-        check(role and role.purpose,'CORE.EXERCISE_PURPOSE_REQUIRED',id)
-        check(vocabulary.difficulty[node.attributes.difficulty]~=nil,'CORE.EXERCISE_DIFFICULTY_REQUIRED',id)
+        if node.attributes['course-role'] then contract.kind(node) end
         for key,_ in pairs(node.attributes) do
           -- Visibility syntax is evaluated by the common native projection.
           check(contract.exerciseAttributes[key] or contract.attributes[key] and key~='for' and key~='requirement'
-            or key=='when-profile' or key=='unless-profile', 'CORE.EXERCISE_INVALID',id..'/'..key)
+            or contract.nativeExerciseAttributes[key], 'CORE.EXERCISE_INVALID',id..'/'..key)
         end
         check(node.attributes.target==nil or node.attributes.target~='', 'CORE.EXERCISE_INVALID',id..'/target')
         check(node.attributes.target==nil or node.content[1] and node.content[1].t=='Header', 'CORE.EXERCISE_INVALID',id..'/head')
@@ -124,8 +123,7 @@ function M.validate(doc)
             if outside then nearest=header.node.identifier end
           end
         end
-        check(nearest and valid(nearest,'^sec%-[a-z0-9][a-z0-9%-]*$'),'CORE.EXERCISE_SOURCE_TOPIC_REQUIRED',id)
-        facts:insert({id=id,project=node.attributes.project,sourceTopic={id=nearest,owner=owner,rootQmd=source}})
+        facts:insert({id=id,project=node.attributes.project,sourceTopic=nearest and {id=nearest,owner=owner~='' and owner or nil,rootQmd=source} or nil})
       end
       -- Closed grading notes are excluded from public pedagogy extraction,
       -- but their actual Course declarations still require valid metadata
@@ -150,7 +148,7 @@ end
 function M.assessment(doc)
   local work=assessment.collect(doc)
   if work then
-    check(valid(work.id,'^sec%-[a-z0-9][a-z0-9%-]*$') and work.title~='' and contains(vocabulary.assessmentKinds,work.kind)
+    check(valid(work.id,'^[a-z][a-z0-9%-]*$') and work.title~='' and contains(vocabulary.assessmentKinds,work.kind)
       and work.memberContainers==1 and #work.memberKinds==1 and contains(vocabulary.memberKinds,work.memberKinds[1]) and #work.items>0,
       'CORE.ASSESSMENT_INVALID',source_path())
     local members={}

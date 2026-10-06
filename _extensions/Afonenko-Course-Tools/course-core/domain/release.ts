@@ -57,9 +57,6 @@ export function assembleRelease(
     if (result.course.view !== first.course.view) {
       fail("RELEASE.MIXED_VIEW", result.source);
     }
-    if (result.document.format !== first.document.format) {
-      fail("RELEASE.MIXED_FORMAT", result.source);
-    }
     if (
       JSON.stringify(result.document.profiles) !==
         JSON.stringify(first.document.profiles)
@@ -78,7 +75,7 @@ export function assembleRelease(
       fail("CORE.DUPLICATE_EXERCISE", exercise.id);
     }
     exercises.add(exercise.id);
-    if (!model.registeredTargets.includes(exercise.target)) {
+    if (exercise.target && !model.registeredTargets.includes(exercise.target)) {
       fail("CORE.UNKNOWN_TARGET", exercise.id + "/" + exercise.target);
     }
   }

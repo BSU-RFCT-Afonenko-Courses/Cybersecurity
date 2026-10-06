@@ -5,9 +5,9 @@ local schema=pandoc.path.join({directory,'body-export/answer.cue'})
 local function vet(data)
   return pandoc.system.with_temporary_directory('course-answer',function(temp)
     local file=assert(io.open(temp..'/answer.yaml','w'));file:write(data);file:close()
-    local ok,err=pcall(pandoc.pipe,os.getenv('CUE') or 'cue',{'vet',schema,temp..'/answer.yaml','-c'},'')
-    assert(ok,'ANSWER_INVALID: '..tostring(err))
-    return pandoc.json.decode(pandoc.pipe(os.getenv('CUE') or 'cue',{'export',schema,temp..'/answer.yaml','-e','answer','--out','json'},''))
+    local ok,result=pcall(pandoc.pipe,os.getenv('CUE') or 'cue',{'export',schema,temp..'/answer.yaml','-e','answer','--out','json'},'')
+    assert(ok,'ANSWER_INVALID: '..tostring(result))
+    return pandoc.json.decode(result)
   end)
 end
 function M.validate(doc)
@@ -30,7 +30,7 @@ function M.validate(doc)
         end}) end
         vet('answer: '..pandoc.json.encode({type='single-choice',count=#div.content[1].content,correct=correct,markedCount=count}))
         local projected=pandoc.Pandoc(div.content):walk({Span=function(span) if span.classes:includes('correct') then return span.content end end})
-        answers[nextowner.id]={answerType='single-choice',publicAnswerJson=pandoc.write(projected,'json')}
+        answers[nextowner.id]={answerType='single-choice',publicAnswerJson=pandoc.write(projected,'json'),closedKey={correct=correct}}
         nextrole='answer'
       end
       walk(pandoc.Pandoc(div.content),nextowner,nextrole)
@@ -54,7 +54,7 @@ function M.validate(doc)
           end
           return blocks
         end
-        answers[owner.id]={answerType=bank.type,publicAnswerJson=pandoc.write(pandoc.Pandoc(project(bank)),'json')}
+        answers[owner.id]={answerType=bank.type,publicAnswerJson=pandoc.write(pandoc.Pandoc(project(bank)),'json'),closedKey=bank}
       end
     end,Span=function(span)
       if span.classes:includes('correct') then assert(role=='answer','ANSWER_INVALID: orphan correct marker') end

@@ -2,3 +2,12 @@ project:
   output-dir: _output/student
 course:
   view: student
+book:
+  chapters:
+  - index.qmd
+  - part: Криптография
+    chapters:
+    - crypto/random.qmd
+    - crypto/hash.qmd
+    - crypto/key-gen.qmd
+    - crypto/cypher.qmd

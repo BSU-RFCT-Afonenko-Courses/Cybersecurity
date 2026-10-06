@@ -171,7 +171,8 @@
       matches.forEach(slide => {
         const li = el('li'); const control = el('button', 'course-nav-result'); control.type = 'button';
         control.append(el('span', 'course-nav-result-number', String(slide.index + 1)), el('span', '', slide.title));
-        control.addEventListener('click', () => { search.close(); actions.goto(slide.index); }); li.append(control); results.append(li);
+        const target = namespace.NavigationModel.findTarget(slide, term);
+        control.addEventListener('click', () => { search.close(); actions.goto(slide.index, target); }); li.append(control); results.append(li);
       });
     };
     input.addEventListener('input', updateResults);

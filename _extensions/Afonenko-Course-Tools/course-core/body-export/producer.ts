@@ -56,6 +56,8 @@ function assertSupported(value: any) {
     return;
   }
   if (!value || typeof value !== "object") return;
+  const reference = attr(value)?.[2]?.find((pair: string[]) => pair[0] === "data-qrc-ref")?.[1];
+  if (reference) throw Error("BODY.QRC_REFERENCE_UNRESOLVED: " + reference);
   if (value.t && !supported.has(value.t)) {
     throw Error("BODY.CAPABILITY_UNSUPPORTED: " + value.t);
   }
@@ -74,6 +76,8 @@ export async function buildBodies(
     release?: string;
     sources?: string[];
     includeClosed?: boolean;
+    courseId?: string;
+    work?: string;
   },
 ): Promise<{ package: BodyPackage; publicPackage: PublicBodyPackage }> {
   const all = result.scope === "document" ? [result] : result.documents;
@@ -83,13 +87,29 @@ export async function buildBodies(
     sources.some((s) => !all.some((d) => d.source === s))
   ) throw Error("BODY.SELECTION_INVALID");
   const documents = sources.map((s) => all.find((d) => d.source === s)!);
-  if (
-    options.includeClosed && documents.some((d) => d.course.view !== "full")
-  ) throw Error("BODY.FULL_FACTS_REQUIRED");
-  const owner = documents[0].course.id;
-  if (documents.some((d) => d.course.id !== owner)) {
-    throw Error("BODY.MIXED_OWNER");
+  if (options.includeClosed && documents.some((d) => d.course.view !== "full")) {
+    throw Error("BODY.FULL_FACTS_REQUIRED");
   }
+  const owner = options.courseId ?? documents[0].course.id;
+  if (!owner || !/^[a-z][a-z0-9-]*$/.test(owner)) throw Error("BODY.COURSE_ID_REQUIRED");
+  const bank = new Map<string, {doc: DocumentResult; exercise: DocumentResult["exercises"][number]}>();
+  const works = new Map<string, NonNullable<DocumentResult["assessment"]> & {source: string}>();
+  for (const doc of documents) {
+    for (const exercise of doc.exercises) {
+      if (bank.has(exercise.id)) throw Error("BODY.DUPLICATE_EXERCISE: " + exercise.id);
+      bank.set(exercise.id, {doc, exercise});
+    }
+    if (doc.assessment) {
+      if (works.has(doc.assessment.id)) throw Error("BODY.DUPLICATE_WORK: " + doc.assessment.id);
+      works.set(doc.assessment.id, {...doc.assessment, source: doc.source});
+    }
+  }
+  const selectedId = options.work?.replace(owner + "/", "") ?? (works.size === 1 ? [...works.keys()][0] : undefined);
+  if (!selectedId) throw Error("BODY.WORK_REQUIRED");
+  const work = works.get(selectedId);
+  if (!work) throw Error("BODY.WORK_MISSING: " + selectedId);
+  if (new Set(work.items).size !== work.items.length) throw Error("BODY.DUPLICATE_MEMBER");
+  for (const id of work.items) if (!bank.has(id)) throw Error("BODY.EXERCISE_MISSING: " + id);
   const pkg: BodyPackage = {
     schema: "course-body-package-v1",
     owner,
@@ -99,18 +119,14 @@ export async function buildBodies(
     works: [],
     resources: [],
   };
-  for (const doc of documents) {
-    if (doc.course.view === "full" && !doc.body) {
-      throw Error("BODY.PUBLIC_FACTS_REQUIRED");
-    }
-    const publicExercises = doc.body?.publicExercises ?? doc.exercises;
-    for (const e of publicExercises) {
-      if (e.target !== "manual") {
-        throw Error("BODY.TARGET_UNSUPPORTED: " + e.target);
-      }
-      const current = doc.exercises.find((x) => x.id === e.id);
-      if (!current) throw Error("BODY.EXERCISE_MISSING");
-      const publicBody = JSON.parse(e.bodyJson),
+  for (const id of work.items) {
+      const {doc, exercise: current} = bank.get(id)!;
+      // Export conditions come from the selected complete source, independently
+      // of whether the page/question participates in a public HTML projection.
+      const e = current;
+      const projected = doc.body?.publicExercises.find(item => item.id === e.id);
+      if (doc.body && !projected) throw Error("BODY.PUBLIC_FACTS_REQUIRED: " + e.id);
+      const publicBody = JSON.parse(projected?.bodyJson ?? e.bodyJson),
         fullBody = JSON.parse(current.bodyJson);
       if (
         pkg.apiVersion.length &&
@@ -133,7 +149,10 @@ export async function buildBodies(
         closedKey: null,
       };
       if (banks.length > 1) throw Error("BODY.MULTIPLE_ANSWERS");
-      if (banks.length && doc.course.view === "full") {
+      const normalized = doc.body?.fullAnswers?.[e.id];
+      if (normalized) {
+        answer={answerType:normalized.answerType,publicAnswer:JSON.parse(normalized.publicAnswerJson).blocks,closedKey:normalized.closedKey};
+      } else if (banks.length && doc.course.view === "full") {
         answer = banks[0].t === "CodeBlock"
           ? await validateAnswer(banks[0].c[1])
           : await projectChoice(banks[0]);
@@ -177,21 +196,12 @@ export async function buildBodies(
       assertSupported(q.condition);
       assertSupported(q.publicAnswer);
       pkg.questions.push(q);
-    }
-    const work = doc.body?.publicAssessment ??
-      (doc.course.view === "full" ? null : doc.assessment);
-    if (work) {
-      pkg.works.push({
-        owner,
-        id: work.id,
-        key: owner + "/" + work.id,
-        source: doc.source,
-        kind: work.kind,
-        title: work.title,
-        items: work.items.map((id) => owner + "/" + id),
-      });
-    }
   }
+  pkg.works.push({
+    owner, id: work.id, key: owner + "/" + work.id, source: work.source,
+    kind: work.kind, title: work.title, items: work.items.map((id) => owner + "/" + id),
+    ...(work.requirements ? {requirements: work.requirements} : {}),
+  });
   const facts = documents.flatMap((d) => d.resources ? [d.resources] : []);
   const selected: string[] = [];
   const scan = (v: any, source: string, targets?: Map<string, string>) => {

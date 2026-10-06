@@ -19,10 +19,10 @@ function M.collect(doc,facts)
       child:walk({Div = function(d) if canonical(d) then nested = nested + 1 end end})
     end
     for key, _ in pairs(div.attributes) do
-      if not pedagogic.exerciseAttributes[key] and not pedagogic.attributes[key] then unknown:insert(key) end
+      if not pedagogic.exerciseAttributes[key] and not pedagogic.attributes[key] and not pedagogic.nativeExerciseAttributes[key] then unknown:insert(key) end
     end
     local body, notes = grading.split(div.content)
-    result:insert({id = div.identifier, target = div.attributes.target or "manual", authoredTarget=div.attributes.target,
+    result:insert({id = div.identifier, target = div.attributes.target, authoredTarget=div.attributes.target,
       purpose=div.attributes["course-role"], difficulty=div.attributes.difficulty,
       time=div.attributes.time and tonumber(div.attributes.time) or nil, workMode=div.attributes["work-mode"] or (defaults and defaults.workMode),
       sourceTopic=topics[div.identifier],

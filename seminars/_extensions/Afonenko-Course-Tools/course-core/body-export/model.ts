@@ -27,6 +27,7 @@ export interface BodyPackage {
     kind: AssessmentKind;
     title: string;
     items: string[];
+    requirements?: Record<string, "required" | "optional">;
   }[];
   resources: {
     owner: string;

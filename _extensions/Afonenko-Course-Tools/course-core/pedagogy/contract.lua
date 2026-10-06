@@ -9,6 +9,9 @@ M.activities = {}
 for key, value in pairs(vocabulary.roles) do if value.activity then M.activities[key] = true end end
 M.attributes = set(vocabulary.pedagogyAttributes)
 M.exerciseAttributes = set(vocabulary.exerciseAttributes)
+-- Native theorem name and conditional attributes remain owned by Quarto.
+M.nativeExerciseAttributes = set({"name", "when-profile", "unless-profile",
+  "when-format", "unless-format", "when-meta", "unless-meta"})
 local difficulties, modes, requirements = vocabulary.difficulty, vocabulary.workMode, vocabulary.requirement
 
 local function choice(value, values, name)
@@ -51,21 +54,20 @@ end
 function M.is_exercise(div) return div.identifier:match("^exr%-") ~= nil end
 function M.is_example(div) return div.identifier:match("^exm%-") ~= nil end
 function M.is_activity(div) return M.is_exercise(div) or M.is_example(div) end
--- A native sol suffix names exactly one exercise or display example in this
--- expanded document. An explicit for cannot redirect that identity.
+-- Native solution IDs remain ordinary Quarto identifiers. An explicit link or
+-- containing exercise owns the relationship; suffix pairing is only a helpful
+-- unambiguous inference for export and visibility, never an authoring gate.
 function M.related(div, indexed, owner)
-  if not div.identifier:match("^sol%-") then return div.attributes["for"] or owner end
+  if div.attributes['for'] or owner then return div.attributes['for'] or owner end
+  if not div.identifier:match('^sol%-') then return nil end
   local suffix=div.identifier:sub(5)
-  local found, count=nil, 0
+  local found
   for _,prefix in ipairs({'exr-', 'exm-'}) do
-    local id=prefix..suffix
-    if indexed[id] then
-      found=id
-      count=count+1
+    if indexed[prefix..suffix] then
+      if found then return nil end
+      found=prefix..suffix
     end
   end
-  assert(count==1 and (not div.attributes['for'] or div.attributes['for']==found)
-    and (not owner or owner==found), 'CORE.SOLUTION_PAIRING_INVALID: '..div.identifier)
   return found
 end
 
