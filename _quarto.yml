@@ -14,6 +14,7 @@ project:
   - '!_generated/**'
   - '!_site*/**'
   - '!README.md'
+  - '!tools/**'
   - '!.agents/**'
   - '!.aws/**'
   - '!.codex/**'
@@ -22,8 +23,6 @@ project:
   - '!_freeze/**'
   - '!.quarto/**'
   - '!UPSTREAM.md'
-  - '!providers.json'
-  - '!installed-packages.json'
   pre-render:
   - _extensions/Afonenko-Course-Tools/course-site/entrypoints/pre.ts
   post-render:
@@ -44,6 +43,7 @@ website:
   favicon: assets/cover.png
 filters:
 - course-core
+- course-presentation
 - reference-catalog
 reference-catalog:
   namespace: portal
