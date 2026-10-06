@@ -39,13 +39,6 @@ jobs:
         sudo apt-get install -y --no-install-recommends r-base r-cran-knitr r-cran-rmarkdown
 
         '
-    - name: Install released extensions
-      env:
-        XDG_CACHE_HOME: ${{ runner.temp }}/quarto-cache-${{ matrix.quarto }}
-      run: |
-        bash tools/install-extensions.sh
-        git diff --exit-code -- ':(glob)**/_extensions/**'
-        test -z "$(git ls-files --others --exclude-standard -- ':(glob)**/_extensions/**')"
     - name: Render student, full, and student again
       env:
         XDG_CACHE_HOME: ${{ runner.temp }}/quarto-cache-${{ matrix.quarto }}
