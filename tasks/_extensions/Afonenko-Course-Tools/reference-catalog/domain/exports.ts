@@ -1,10 +1,10 @@
 import type { Exports, Target } from "./model.ts";
 import { assemble } from "./catalog.ts";
 
-/** Выбор экспорта определяет публичный каталог, сохраняя все локальные цели для ссылок. */
+/** По умолчанию экспортируются все собственные цели; явный выбор ограничивает каталог. */
 export function exportedTargets(local: Target[], selection?: Exports): Record<string, Target> {
   const available = assemble(local);
-  const chosen = new Map<string, Target>();
+  const chosen = selection === undefined ? new Map(available) : new Map<string, Target>();
   for (const [namespace, ids] of Object.entries(selection ?? {})) {
     if (ids === "*") {
       for (const [key, target] of available) if (target.namespace === namespace) chosen.set(key, target);

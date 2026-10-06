@@ -15,9 +15,11 @@ project:
   - ./assets/**
   - '!materials/**'
   - '!**/*.qmd'
+  - '!**/_*.qmd'
   - '!_generated/**'
   - '!_freeze/**'
   - '!.quarto/**'
+  - '!_extensions/**'
   pre-render:
   - _extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts
   post-render:
@@ -39,6 +41,9 @@ course-presentation:
   mode: study
 format:
   revealjs:
+    shift-heading-level-by: -1
+    slide-level: 2
+    navigation-mode: linear
     theme: default
     show-notes: false
     slide-number: true

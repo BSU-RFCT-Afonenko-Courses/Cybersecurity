@@ -75,7 +75,6 @@ book:
   - lab/crypto/cypher/asymmetric/factorization.qmd
 author:
 - Афоненко Анатолий
-- Лайша Богдан
 date: today
 lang: ru
 bibliography: references.bib

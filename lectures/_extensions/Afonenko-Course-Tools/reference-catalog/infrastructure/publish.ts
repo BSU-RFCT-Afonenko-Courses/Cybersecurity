@@ -68,8 +68,8 @@ export async function publish(context: CatalogPublication): Promise<void> {
   const css = await Deno.readTextFile(join(extension, "browser/external.css"));
   const localTargets = pages.flatMap(page => page.targets);
   const available = new Set(localTargets.map(target => `${target.namespace}:${target.id}`));
-  const selection: Exports | undefined = context.scope === "local"
-    ? Object.fromEntries(Object.entries(config.exports ?? {}).map(([namespace, ids]) => [namespace, ids === "*" ? ids : ids.filter(id => available.has(`${namespace}:${id}`))]))
+  const selection: Exports | undefined = context.scope === "local" && config.exports !== undefined
+    ? Object.fromEntries(Object.entries(config.exports).map(([namespace, ids]) => [namespace, ids === "*" ? ids : ids.filter(id => available.has(`${namespace}:${id}`))]))
     : config.exports;
   const exported = exportedTargets(localTargets, selection);
   const linked = linkPages(pages, script, imports, css, context.scope);

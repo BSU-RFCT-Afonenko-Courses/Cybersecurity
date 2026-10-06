@@ -2,14 +2,22 @@ project:
   type: default
   render:
   - index.qmd
+  - 01-intro.qmd
+  - 02-cryptography.qmd
+  - 03-access-control.qmd
+  - 04-data-integrity.qmd
+  - 05-audit.qmd
+  - 06-attacks.qmd
   output-dir: _output
   resources:
   - ./assets/**
   - '!materials/**'
   - '!**/*.qmd'
+  - '!**/_*.qmd'
   - '!_generated/**'
   - '!_freeze/**'
   - '!.quarto/**'
+  - '!_extensions/**'
   pre-render:
   - _extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts
   post-render:
@@ -31,6 +39,9 @@ course-presentation:
   mode: lecture
 format:
   revealjs:
+    shift-heading-level-by: -1
+    slide-level: 2
+    navigation-mode: linear
     theme: default
     show-notes: false
     slide-number: true

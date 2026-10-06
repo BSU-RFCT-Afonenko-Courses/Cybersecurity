@@ -1,23 +1,30 @@
-# Лекции {#sec-lectures}
+---
+pagetitle: Каталог лекций
+---
 
-## Криптография
+## Лекции {#sec-lectures}
 
-Материалы для подготовки к обсуждению:
+Каждая лекция открывается как отдельная презентация.
 
-- @theory:sec-theory-crypto-random
-- @theory:sec-theory-crypto-hash
-- @theory:sec-theory-crypto-key-gen
-- @theory:sec-theory-crypto-cypher
+- @sec-lectures-intro
+- @sec-lectures-crypto
+- @sec-lectures-access
+- @sec-lectures-integrity
+- @sec-lectures-audit
+- @sec-lectures-attacks
 
-## Практическое применение
+### Криптография
 
-Условия работ: @tasks:sec-tasks.
+Материалы для подготовки к обсуждению: @sec-lectures-crypto.
 
-Порядок изучения: @tasks:sec-plan.
+### Практическое применение
 
-Семинарские занятия: @practice:sec-practice.
+Порядок обращения к материалам: @sec-lectures-intro.
 
-## Материалы лекций
+Тематические презентации: @sec-lectures-access, @sec-lectures-integrity,
+@sec-lectures-audit и @sec-lectures-attacks.
+
+### Материалы лекций
 
 Отдельные конспекты лекций пока не подготовлены.
 

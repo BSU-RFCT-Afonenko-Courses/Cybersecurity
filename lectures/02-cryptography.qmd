@@ -1,0 +1,32 @@
+---
+pagetitle: "02. Криптография"
+---
+
+## Криптография {#sec-lectures-crypto}
+
+Материалы для подготовки к обсуждению:
+
+- {{< xref theory sec-theory-crypto-random "Генераторы случайных чисел" >}}
+- {{< xref theory sec-theory-crypto-hash "Хеш функции" >}}
+- {{< xref theory sec-theory-crypto-key-gen "Генерация ключей" >}}
+- {{< xref theory sec-theory-crypto-cypher "Шифрование" >}}
+
+### Случайные числа и хеширование
+
+- {{< xref tasks sec-lab-crypto-rng "Генерация случайных чисел" >}}
+- {{< xref tasks sec-lab-crypto-hash "Хеширование" >}}
+
+### Ключи и шифрование
+
+- {{< xref tasks sec-lab-crypto-key-gen "Генерация ключей" >}}
+- {{< xref tasks sec-lab-crypto-cypher-symmetric "Симметричное шифрование" >}}
+- {{< xref tasks sec-lab-crypto-cypher-asymmetric "Асимметричное шифрование" >}}
+- {{< xref tasks sec-lab-crypto-rsa-factorization "Взлом алгоритма RSA" >}}
+
+### Подпись, обмен ключами и сертификаты
+
+- {{< xref tasks sec-lab-crypto-sign "Цифровая подпись" >}}
+- {{< xref tasks sec-lab-crypto-key-exchange "Обмен ключами" >}}
+- {{< xref tasks sec-lab-crypto-cert "Сертификат открытого ключа" >}}
+
+[Все лекции](index.html#sec-lectures) · @portal:sec-course-plan.

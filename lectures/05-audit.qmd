@@ -1,0 +1,17 @@
+---
+pagetitle: "05. Аудит"
+---
+
+## Аудит {#sec-lectures-audit}
+
+Материалы тематического блока: {{< xref tasks sec-plan "План самостоятельной работы" >}}.
+
+### Аудит кода
+
+- {{< xref tasks sec-lab-audit-code "Аудит программного кода" >}}
+
+### Аудит событий
+
+- {{< xref tasks sec-lab-audit-event "Аудит системных событий" >}}
+
+[Все лекции](index.html#sec-lectures) · @portal:sec-course-plan.

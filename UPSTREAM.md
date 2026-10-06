@@ -1,30 +1,56 @@
-# Общий шаблон курса
+# Версионированные расширения Quarto
 
-Конфигурация пяти частей и полные используемые пакеты обновлены по
-[quarto-template-course](https://github.com/Afonenko-Course-Tools/quarto-template-course)
-на commit `e2cad0930ab4315228388f0b43b3ec6088ed418f`,
-Git tree `650efe41d9113b422e666320a4f68f7596716c76`.
+Конфигурация курса следует опубликованному
+[quarto-template-course v1.0.0](https://github.com/Afonenko-Course-Tools/quarto-template-course/tree/v1.0.0),
+commit `37f2cf37bb67b5405bbdb50089a05c3d81b2bda7`.
+Портал объединяет пять нативных проектов: theory, tasks, lectures, practice,
+handbook. Сохраняются текущие главы, профили, явные ID и ссылки курса.
+Книги используют Cosmo; Reveal — стандартную тему и актуальные уровни заголовков.
 
-Сайт использует нативные `quarto render` и `quarto preview`. Course Site
-координирует сборку частей; Core обрабатывает учебную разметку, Presentation
-оформляет блоки, Navigation управляет слайдами, Reference Catalog объединяет
-явно экспортируемые ссылки и поиск. В части tasks установлен Project Download.
-Книги используют Cosmo, слайды — стандартную тему Reveal.
+## Установленные версии
 
-| Поставщик | Зафиксированный commit |
-| --- | --- |
-| [quarto-course](https://github.com/Afonenko-Course-Tools/quarto-course) | `27d7c437d386f5489c8a0a4c09ed1afeb07c7967` |
-| [quarto-project-publish](https://github.com/Afonenko-Course-Tools/quarto-project-publish) — пакет course-site | `be92f189f267a8bbc986c40254c685b4f33f9f0b` |
-| [quarto-reference-catalog](https://github.com/Afonenko-Course-Tools/quarto-reference-catalog) | `84f653c8d4e3e74fdb1a62249af28250846721a4` |
-| [quarto-project-download](https://github.com/Afonenko-Course-Tools/quarto-project-download) | `f25475af13f42c1a32c3bbacb0d1feb205920df8` |
+| Репозиторий | Тег | Пакеты | Каталоги установки |
+| --- | --- | --- | --- |
+| [quarto-course](https://github.com/Afonenko-Course-Tools/quarto-course/pull/21) | `v2.1.1` (подготовлен в PR) | course-core, course-presentation, course-navigation | Корень и все пять частей |
+| [quarto-reference-catalog](https://github.com/Afonenko-Course-Tools/quarto-reference-catalog/releases/tag/v2.1.0) | `v2.1.0` | reference-catalog | Корень и все пять частей |
+| [quarto-project-publish](https://github.com/Afonenko-Course-Tools/quarto-project-publish/releases/tag/v3.0.1) | `v3.0.1` | course-site | Корень |
+| [quarto-project-download](https://github.com/Afonenko-Course-Tools/quarto-project-download/releases/tag/v1.0.1) | `v1.0.1` | project-download | tasks |
 
-[providers.json](providers.json) фиксирует репозитории, версии, имена пакетов
-и каталоги установки. [installed-packages.json](installed-packages.json)
-содержит Git tree поставщика, полный список файлов, SHA256, размеры и права
-каждого пакета. Манифесты адаптированы к шести фактическим каталогам курса;
-демонстрационные разделы и необязательные интеграции шаблона не установлены.
+Точные команды `quarto add organization/repository@version --no-prompt`
+находятся в [tools/install-extensions.sh](tools/install-extensions.sh).
+Course устанавливается полным bundle; авторский YAML активирует нужные фильтры
+и плагины. Установленные каталоги `_extensions`, включая зависимости
+и лицензии, хранятся в Git курса. Course v2.1.1 скопирован целиком
+из локального checkout поставщика; остальные пакеты установлены из релизных тегов.
+Каждый `_extension.yml` содержит семантическую версию расширения.
 
-Пакеты перенесены целиком, включая vendor-файлы и лицензии, без локальных
-изменений кода. Учебные исходники и списки экспортируемых ID сохранены.
-Обновлять расширения следует целыми пакетами из выбранного шаблона, затем
-сверять манифесты и проверять сборки `student → full → student`.
+Course `v2.1.1` подготовлен в
+[PR quarto-course #21](https://github.com/Afonenko-Course-Tools/quarto-course/pull/21),
+commit [41aa244](https://github.com/Afonenko-Course-Tools/quarto-course/commit/41aa244df3a2814ac80d8bc3d47b4fd02f26c021)
+в ветке `codex/course-plan-v2.1.1`.
+Тег существует только локально и не опубликован. До его публикации повторная
+установка Course из GitHub и соответствующий шаг CI недоступны.
+
+Для обновления выберите опубликованный тег в установщике, выполните его
+и рассмотрите изменения в Git. Опубликованные теги не перемещаются:
+исправления поставляются новыми версиями. Проверки сборки выполняются отдельно
+командами из README; установщик не запускает render или CI.
+Собственный реестр commit поставщиков и манифесты хэшей не используются.
+Обычные `quarto render` и `quarto preview` читают установленные файлы
+и не обновляют расширения.
+
+## Стиль таблицы плана
+
+Общий стиль `.course-plan` основан на
+[изменении quarto-course 3cd3dcf](https://github.com/Afonenko-Course-Tools/quarto-course/commit/3cd3dcf099c7f85d0497e81631d53f60562728c0).
+Его правила находятся в
+[presentation.css](https://github.com/Afonenko-Course-Tools/quarto-course/blob/3cd3dcf099c7f85d0497e81631d53f60562728c0/_extensions/course-presentation/presentation.css),
+а исходное описание — в
+[руководстве по представлению](https://github.com/Afonenko-Course-Tools/quarto-course/blob/3cd3dcf099c7f85d0497e81631d53f60562728c0/docs/presentation.md).
+
+В локальной версии `v2.1.1` добавлены CSS-селекторы для самой таблицы
+с классом `.course-plan` и штатной прокрутки Quarto `.responsive`.
+Класс задаётся в нативной подписи таблицы, без авторского `div`.
+Фильтр `course-presentation` подключает общий stylesheet расширения;
+отдельный CSS страницы удалён. Содержимое, ссылки, подпись, ID и ширины
+колонок таблицы сохранены. Правила экрана и печати находятся в пакете.

@@ -1,0 +1,17 @@
+---
+pagetitle: "06. Сетевые атаки и социальная инженерия"
+---
+
+## Сетевые атаки и социальная инженерия {#sec-lectures-attacks}
+
+Материалы тематического блока: {{< xref tasks sec-plan "План самостоятельной работы" >}}.
+
+### Сетевые атаки
+
+- {{< xref tasks sec-lab-ddos "DDoS-атака" >}}
+
+### Социальная инженерия
+
+- {{< xref tasks sec-lab-social-engineering "Социальная инженерия" >}}
+
+[Все лекции](index.html#sec-lectures) · @portal:sec-course-plan.

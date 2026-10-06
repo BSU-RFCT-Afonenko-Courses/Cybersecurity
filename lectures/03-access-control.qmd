@@ -1,0 +1,21 @@
+---
+pagetitle: "03. Управление доступом"
+---
+
+## Управление доступом {#sec-lectures-access}
+
+Материалы тематического блока: {{< xref tasks sec-plan "План самостоятельной работы" >}}.
+
+### Идентификация и аутентификация
+
+- {{< xref tasks sec-lab-access-control-ident "Идентификация" >}}
+- {{< xref tasks sec-lab-access-control-authn "Аутентификация" >}}
+- {{< xref tasks sec-lab-access-control-password-protection "Защищённое хранение паролей" >}}
+
+### Модели авторизации
+
+- {{< xref tasks sec-lab-access-control-authz-model "Модели управления доступом" >}}
+- {{< xref tasks sec-lab-access-control-windows-acl "Списки контроля доступа" >}}
+- {{< xref tasks sec-lab-access-control-windows-mic "Мандатный контроль целостности" >}}
+
+[Все лекции](index.html#sec-lectures) · @portal:sec-course-plan.
