@@ -8,4 +8,4 @@
 - @tasks:sec-tasks
 - @theory:sec-theory
 
-[Все семинары](../index.html#sec-practice) · [Навигация курса](../../index.html#sec-portal)
+{{< xref practice sec-practice "Все семинары" >}} · {{< xref portal sec-portal "Навигация курса" >}}

@@ -50,7 +50,7 @@ format:
 lang: ru
 author:
 - Афоненко Анатолий
-bibliography: references.bib
+bibliography: ../references.bib
 engine: knitr
 reference-catalog:
   namespace: theory

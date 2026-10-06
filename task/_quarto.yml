@@ -1,0 +1,72 @@
+project:
+  type: book
+  output-dir: _output
+  pre-render:
+  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts
+  - _extensions/Afonenko-Course-Tools/project-download/entrypoints/pre.ts
+  post-render:
+  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/post.ts
+  - _extensions/Afonenko-Course-Tools/project-download/entrypoints/post.ts
+  - _extensions/Afonenko-Course-Tools/reference-catalog/entrypoints/post.ts
+  - ../_extensions/Afonenko-Course-Tools/course-site/entrypoints/collect.ts
+  resources:
+  - '!**/*.qmd'
+  - ./assets/**
+  - '!materials/**'
+  - '!_generated/**'
+  - '!_freeze/**'
+  - '!.quarto/**'
+profile:
+  default: student
+  group:
+  - - student
+    - full
+course:
+  id: course-tasks
+filters:
+- course-core
+- course-presentation
+- project-download
+- reference-catalog
+course-presentation:
+  mode: study
+book:
+  title: Задания и работы — Основы кибербезопасности
+  sidebar:
+    tools:
+    - icon: house
+      href: ../index.html#sec-portal
+      text: Навигация курса
+  chapters:
+  - index.qmd
+  - part: Криптография
+    chapters:
+    - seminar/crypto/random.qmd
+    - seminar/crypto/hash.qmd
+    - seminar/crypto/cypher/symmetric.qmd
+    - seminar/crypto/cypher/asymmetric.qmd
+    - seminar/crypto/sign.qmd
+    - seminar/crypto/cert.qmd
+  - part: Управление доступом
+    chapters:
+    - seminar/access-control/ident.qmd
+    - seminar/access-control/authn.qmd
+    - seminar/access-control/authz.qmd
+  - part: Целостность данных
+    chapters:
+    - seminar/data-integrity/checksum.qmd
+    - seminar/data-integrity/backup.qmd
+#  - part: Дополнительные задания
+#    chapters:
+#    -
+
+author:
+- Афоненко Анатолий
+date: today
+lang: ru
+bibliography: ../references.bib
+format:
+  html:
+    theme: cosmo
+reference-catalog:
+  namespace: tasks
