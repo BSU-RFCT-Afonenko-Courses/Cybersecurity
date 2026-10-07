@@ -1,3 +1,4 @@
+import { contextualize, diagnostic } from "./diagnostics.ts";
 import {
   inside,
   isAbsolute,
@@ -33,7 +34,17 @@ export function activeProfiles(): string[] {
   if (
     new Set(profiles).size !== profiles.length ||
     profiles.some((p) => !/^[\w][\w.-]*$/.test(p))
-  ) throw new Error("course-site invalid profiles");
+  ) {
+    throw diagnostic(
+      "SITE.CONFIG_INVALID",
+      "Некорректные или повторяющиеся профили",
+      {
+        source: Deno.cwd(),
+        field: "QUARTO_PROFILE",
+        hint: "Укажите уникальные имена профилей.",
+      },
+    );
+  }
   return profiles;
 }
 export async function validateConfig(
@@ -43,15 +54,29 @@ export async function validateConfig(
 ): Promise<Workspace> {
   root = resolve(root);
   if (config.project?.type !== "website") {
-    throw new Error("course-site root must be a native website");
+    throw diagnostic(
+      "SITE.CONFIG_INVALID",
+      "Корневой проект должен иметь тип website",
+      {
+        source: root,
+        field: "project.type",
+        hint: "Задайте project.type: website.",
+      },
+    );
   }
   const output = await outputDirectory(
     root,
     config.project["output-dir"] || "_site",
   );
   if (config["course-site"] !== undefined) {
-    throw new Error(
-      "course-site configuration was replaced by root subprojects",
+    throw diagnostic(
+      "SITE.CONFIG_INVALID",
+      "Прежняя конфигурация course-site заменена списком subprojects",
+      {
+        source: root,
+        field: "course-site",
+        hint: "Перенесите пути компонентов в subprojects.",
+      },
     );
   }
   const raw = config.subprojects;
@@ -59,26 +84,110 @@ export async function validateConfig(
     !Array.isArray(raw) || !raw.length ||
     raw.some((path) => typeof path !== "string" || !path)
   ) {
-    throw new Error("subprojects must be a nonempty array of relative paths");
+    throw diagnostic(
+      "SITE.CONFIG_INVALID",
+      "subprojects должен быть непустым списком относительных путей",
+      {
+        source: root,
+        field: "subprojects",
+        hint: "Укажите пути папок самостоятельных проектов.",
+      },
+    );
   }
   const projects: Project[] = [];
   for (const item of raw) {
     if (isAbsolute(item) || /^[a-z][a-z0-9+.-]*:/i.test(item)) {
-      throw new Error("subprojects paths must be relative");
+      throw diagnostic(
+        "SITE.SUBPROJECT_INVALID",
+        "Путь компонента должен быть относительным",
+        {
+          source: root,
+          field: "subprojects",
+          related: [{ source: item }],
+          hint: "Укажите папку внутри корневого проекта.",
+        },
+      );
     }
-    const path = within(root, item);
+    let path: string;
+    try {
+      path = within(root, item);
+    } catch (error) {
+      throw contextualize(error, {
+        source: root,
+        field: "subprojects",
+        related: [{ source: item }],
+      });
+    }
     const mount = relative(root, path).replaceAll("\\", "/");
-    await safePath(root, path);
-    await safePath(root, within(output, mount));
-    if (
-      !(await Deno.stat(path)).isDirectory || inside(output, path) ||
-      inside(path, output)
-    ) {
-      throw new Error("course-site source/output overlap");
+    try {
+      await safePath(root, path);
+      await safePath(root, within(output, mount));
+    } catch (error) {
+      throw contextualize(error, {
+        source: root,
+        field: "subprojects",
+        related: [{ source: item }],
+      });
+    }
+    let stat: Deno.FileInfo;
+    try {
+      stat = await Deno.stat(path);
+    } catch (cause) {
+      if (!(cause instanceof Deno.errors.NotFound)) throw cause;
+      throw diagnostic(
+        "SITE.SUBPROJECT_INVALID",
+        "Папка компонента отсутствует",
+        {
+          source: root,
+          id: `subproject-${encodeURIComponent(mount)}`,
+          field: "subprojects",
+          related: [{ source: path }],
+          hint: "Укажите существующую папку самостоятельного проекта.",
+        },
+        cause,
+      );
+    }
+    if (!stat.isDirectory) {
+      throw diagnostic(
+        "SITE.SUBPROJECT_INVALID",
+        "Компонент должен быть папкой",
+        {
+          source: root,
+          id: `subproject-${encodeURIComponent(mount)}`,
+          field: "subprojects",
+          related: [{ source: path }],
+          hint: "Укажите папку с собственной конфигурацией Quarto.",
+        },
+      );
+    }
+    if (inside(output, path) || inside(path, output)) {
+      throw diagnostic(
+        "SITE.OUTPUT_OVERLAP",
+        "Источники компонента и каталог результата пересекаются",
+        {
+          source: root,
+          id: `subproject-${encodeURIComponent(mount)}`,
+          field: "subprojects",
+          related: [{ source: path }, {
+            source: output,
+            field: "project.output-dir",
+          }],
+          hint: "Разделите исходники и результат.",
+        },
+      );
     }
     for (const prev of projects) {
       if (inside(prev.path, path) || inside(path, prev.path)) {
-        throw new Error("course-site duplicate/overlapping subprojects");
+        throw diagnostic(
+          "SITE.SUBPROJECT_INVALID",
+          "Компоненты повторяются или вложены друг в друга",
+          {
+            source: root,
+            field: "subprojects",
+            related: [{ source: path }, { source: prev.path, id: prev.id }],
+            hint: "Оставьте непересекающиеся папки компонентов.",
+          },
+        );
       }
     }
     projects.push({
@@ -135,7 +244,16 @@ export async function validateAudienceOutputs(
         inside(output, other) || inside(other, output)
       )
     ) {
-      throw new Error("course-site student and full outputs overlap");
+      throw diagnostic(
+        "SITE.OUTPUT_OVERLAP",
+        "Каталоги student и full пересекаются",
+        {
+          source: root,
+          field: "project.output-dir",
+          related: [...alternateOutputs, output].map((source) => ({ source })),
+          hint: "Задайте отдельные каталоги для каждой аудитории.",
+        },
+      );
     }
     alternateOutputs.push(output);
     // When native defaults/groups select an unknown audience, its output may
@@ -146,8 +264,15 @@ export async function validateAudienceOutputs(
       (selectedAudience || output !== selectedOutput) &&
       (inside(output, selectedOutput) || inside(selectedOutput, output))
     ) {
-      throw new Error(
-        `course-site selected output overlaps ${audience} output: ${output}`,
+      throw diagnostic(
+        "SITE.OUTPUT_OVERLAP",
+        `Выбранный каталог пересекается с результатом ${audience}`,
+        {
+          source: root,
+          field: "project.output-dir",
+          related: [{ source: selectedOutput }, { source: output }],
+          hint: "Разделите каталоги аудиторий.",
+        },
       );
     }
   }
@@ -177,9 +302,26 @@ export async function inspectDocuments(
   // Validate the entire selected list before inspecting any document or
   // cleaning output. Optional Core is not the source-path safety boundary.
   for (const input of project.files.input) {
-    await safePath(root, within(root, input));
+    try {
+      await safePath(root, within(root, input));
+    } catch (error) {
+      throw contextualize(error, {
+        source: root,
+        field: "input",
+        related: [{ source: input }],
+      });
+    }
     if (!(await Deno.lstat(input)).isFile) {
-      throw new Error(`course-site selected source is not a file: ${input}`);
+      throw diagnostic(
+        "SITE.SUBPROJECT_INVALID",
+        "Выбранный источник не является файлом",
+        {
+          source: root,
+          field: "input",
+          related: [{ source: input }],
+          hint: "Выберите обычный исходный документ.",
+        },
+      );
     }
   }
   const documents: DocumentFormat[] = [];
@@ -193,8 +335,15 @@ export async function inspectDocuments(
       value.render?.["output-ext"] === "html"
     );
     if (web.length > 1) {
-      throw new Error(
-        `course-site multiple web formats for ${input}; select one format in configuration or a profile`,
+      throw diagnostic(
+        "SITE.FORMAT_AMBIGUOUS",
+        "У документа выбрано несколько веб-форматов",
+        {
+          source: input,
+          field: "format",
+          related: [{ source: root }],
+          hint: "Выберите один веб-формат в конфигурации или профиле.",
+        },
       );
     }
     const selected = web.length
@@ -203,8 +352,15 @@ export async function inspectDocuments(
       ? entries[0]
       : undefined;
     if (!selected) {
-      throw new Error(
-        `course-site requires one selected format for ${input}; use a format profile`,
+      throw diagnostic(
+        "SITE.FORMAT_AMBIGUOUS",
+        "Для документа требуется один выбранный формат",
+        {
+          source: input,
+          field: "format",
+          related: [{ source: root }],
+          hint: "Выберите формат отдельным профилем.",
+        },
       );
     }
     const [format, value] = selected;

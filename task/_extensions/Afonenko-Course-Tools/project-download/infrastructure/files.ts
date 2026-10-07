@@ -1,3 +1,4 @@
+import { diagnostic, externalFailure } from "../diagnostics.ts";
 import { join, relative, resolve, isAbsolute } from "stdlib/path";
 import { globToRegExp } from "stdlib/path";
 import type { ArchiveEntry } from "../domain/zip.ts";
@@ -7,14 +8,14 @@ export async function exists(path: string): Promise<boolean> {
 }
 export function child(root: string, path: string): string {
   const value = resolve(root, path), rel = relative(root, value);
-  if (!rel || rel === ".." || rel.startsWith("../") || rel.startsWith("..\\") || isAbsolute(rel)) throw new Error(`Путь выходит за пределы проекта: ${path}`);
+  if (!rel || rel === ".." || rel.startsWith("../") || rel.startsWith("..\\") || isAbsolute(rel)) throw diagnostic("DOWNLOAD.PATH_INVALID", `Путь выходит за пределы проекта: ${path}`, {source:path,field:"path",hint:"Выберите каталог внутри текущего проекта."});
   return value;
 }
 export async function noSymlinks(root: string, path: string): Promise<void> {
   const rel = relative(root, child(root, path)); let current = root;
   for (const name of rel.split(/[\\/]/)) {
     current = join(current, name);
-    if ((await Deno.lstat(current)).isSymlink) throw new Error(`Символические ссылки в пути ресурса запрещены: ${current}`);
+    if ((await Deno.lstat(current)).isSymlink) throw diagnostic("DOWNLOAD.PATH_INVALID", `Символические ссылки в пути ресурса запрещены: ${current}`, {source:current,field:"path"});
   }
 }
 /** Git применяет правила игнорирования: вложенные файлы, отрицания и исключения каталогов. */
@@ -24,22 +25,35 @@ async function gitIgnored(root: string, paths: string[]): Promise<Set<string>> {
   // издатель может собирать копию внутри игнорируемого рабочего каталога.
   const gitDirectory=await Deno.makeTempDir({prefix:"project-download-git-"});
   try {
-    const initialized=await new Deno.Command("git",{args:["init","--bare","--quiet",gitDirectory],stdout:"piped",stderr:"piped"}).output();
-    if(!initialized.success) throw new Error("Не удалось создать изолированный контекст правил .gitignore");
+    let initialized: Deno.CommandOutput;
+    try { initialized=await new Deno.Command("git",{args:["init","--bare","--quiet",gitDirectory],stdout:"piped",stderr:"piped"}).output(); } catch(cause) { if (!Object.values(Deno.errors).some(kind => cause instanceof kind)) throw cause; throw externalFailure("git",undefined,cause); }
+    if(!initialized.success) throw externalFailure("git",initialized);
+    if(initialized.stderr.length) await Deno.stderr.write(initialized.stderr);
     const excludesFile=join(gitDirectory,"empty-excludes");
     await Deno.writeTextFile(excludesFile,"");
     const names=paths.map(path=>relative(root,path).replaceAll("\\","/"));
-    const process=new Deno.Command("git",{args:["-c","core.excludesFile="+excludesFile,"--git-dir="+gitDirectory,"--work-tree="+root,"check-ignore","--no-index","-z","--stdin"],cwd:root,stdin:"piped",stdout:"piped",stderr:"piped"}).spawn();
-    const writer=process.stdin.getWriter();await writer.write(new TextEncoder().encode(names.join("\0")+"\0"));await writer.close();
+    let process:Deno.ChildProcess;
+    try { process=new Deno.Command("git",{args:["-c","core.excludesFile="+excludesFile,"--git-dir="+gitDirectory,"--work-tree="+root,"check-ignore","--no-index","-z","--stdin"],cwd:root,stdin:"piped",stdout:"piped",stderr:"piped"}).spawn(); } catch(cause) { if (!Object.values(Deno.errors).some(kind => cause instanceof kind)) throw cause; throw externalFailure("git",undefined,cause); }
+    const writer=process.stdin.getWriter();
+    let inputFailure:unknown;
+    try { await writer.write(new TextEncoder().encode(names.join("\0")+"\0")); }
+    catch(cause) { inputFailure=cause; }
+    try { await writer.close(); } catch(cause) { inputFailure ??= cause; }
+    // Получить собственный exit/потоки Git даже при раннем закрытии stdin.
     const result=await process.output();
-    if(result.code>1) throw new Error("Git не смог обработать правила .gitignore: "+new TextDecoder().decode(result.stderr));
+    if(result.code>1) throw externalFailure("git",result,inputFailure);
+    if(inputFailure!==undefined) {
+      if(Object.values(Deno.errors).some(kind => inputFailure instanceof kind)) throw externalFailure("git",result,inputFailure);
+      throw inputFailure;
+    }
+    if(result.stderr.length) await Deno.stderr.write(result.stderr);
     return new Set(new TextDecoder().decode(result.stdout).split("\0").filter(Boolean).map(path=>resolve(root,path)));
   } finally { await Deno.remove(gitDirectory,{recursive:true}); }
 }
 export async function resourceFiles(root: string, resource: Resource): Promise<ArchiveEntry[]> {
   const directory=child(root, resource.path.startsWith("/") ? resource.path.slice(1) : resource.path);
   await noSymlinks(root,directory);
-  if (!(await Deno.stat(directory)).isDirectory) throw new Error(`Ресурс не является каталогом: ${resource.path}`);
+  if (!(await Deno.stat(directory)).isDirectory) throw diagnostic("DOWNLOAD.PATH_INVALID", `Ресурс не является каталогом: ${resource.path}`, {source:resource.path,field:"path"});
   const include=(resource.include ?? ["**/*"]).map(pattern=>globToRegExp(pattern,{globstar:true}));
   const exclude=[...DEFAULT_EXCLUDES,...(resource.exclude??[])].map(pattern=>globToRegExp(pattern,{globstar:true}));
   const paths: {path:string;name:string}[]=[];
@@ -49,7 +63,7 @@ export async function resourceFiles(root: string, resource: Resource): Promise<A
     for (const entry of children) {
       const path=join(current,entry.name),name=relative(directory,path).replaceAll("\\","/");
       if (excluded(name) || (entry.isDirectory && excluded(name+"/"))) continue;
-      if (entry.isSymlink) throw new Error(`Ресурс содержит символическую ссылку: ${path}`);
+      if (entry.isSymlink) throw diagnostic("DOWNLOAD.PATH_INVALID", `Ресурс содержит символическую ссылку: ${path}`, {source:path,field:"path"});
       if (entry.isDirectory) await walk(path);
       else if(entry.isFile && include.some(pattern=>pattern.test(name))) paths.push({path,name});
     }
@@ -58,6 +72,6 @@ export async function resourceFiles(root: string, resource: Resource): Promise<A
   const ignored = resource.gitignore === false ? new Set<string>() : await gitIgnored(root,paths.map(item=>item.path));
   const entries:ArchiveEntry[]=[];
   for(const item of paths) if(!ignored.has(item.path)) entries.push({name:item.name,bytes:await Deno.readFile(item.path)});
-  if(!entries.length) throw new Error(`Ресурс пуст после отбора файлов: ${resource.path}`);
+  if(!entries.length) throw diagnostic("DOWNLOAD.SELECTION_EMPTY", `Ресурс пуст после отбора файлов: ${resource.path}`, {source:resource.path,field:"include/exclude",hint:"Проверьте шаблоны отбора и .gitignore."});
   return entries;
 }

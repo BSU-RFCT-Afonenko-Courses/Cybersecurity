@@ -1,3 +1,4 @@
+local diagnostics = require("./diagnostics")
 local M = {}
 local grading = require("./grading")
 function M.collect(doc)
@@ -30,8 +31,8 @@ function M.collect(doc)
           pandoc.Pandoc(item):walk({Span=function(span)
             local value=span.attributes.requirement
             if value then
-              assert(value=='required' or value=='optional','CORE.ASSESSMENT_INVALID: requirement must be required or optional')
-              assert(not requirement,'CORE.ASSESSMENT_INVALID: repeated requirement')
+              assert(value=='required' or value=='optional', diagnostics.format("CORE.ASSESSMENT_INVALID", 'requirement должен принимать значение required или optional', {id=id,field="requirement"}))
+              assert(not requirement, diagnostics.format("CORE.ASSESSMENT_INVALID", 'Повторный атрибут requirement', {id=id,field="requirement"}))
               requirement=value
             end
           end,Cite=function(cite)

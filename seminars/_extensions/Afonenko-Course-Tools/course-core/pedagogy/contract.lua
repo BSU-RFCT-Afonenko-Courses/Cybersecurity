@@ -1,3 +1,4 @@
+local diagnostics = require("../diagnostics")
 -- Словарь авторской разметки. Отображение выполняет course-presentation.
 local M = {}
 local vocabulary = require("../vocabulary")
@@ -14,22 +15,22 @@ M.nativeExerciseAttributes = set({"name", "when-profile", "unless-profile",
   "when-format", "unless-format", "when-meta", "unless-meta"})
 local difficulties, modes, requirements = vocabulary.difficulty, vocabulary.workMode, vocabulary.requirement
 
-local function choice(value, values, name)
-  if value ~= nil then assert(values[value], "Недопустимое значение учебного атрибута " .. name .. ": " .. tostring(value)) end
+local function choice(value, values, name, context)
+  if value ~= nil then assert(values[value], diagnostics.format("CORE.METADATA_INVALID", "Недопустимое значение учебного атрибута " .. name .. ": " .. tostring(value), {id=context and context.id,field=name})) end
   return value
 end
 
 -- Время задаёт оценку трудоёмкости в целых минутах.
-function M.metadata(values)
+function M.metadata(values, context)
   local time = values.time
   if time ~= nil then
-    assert(tostring(time):match("^[1-9][0-9]*$"), "Атрибут time должен задавать положительное целое число минут")
+    assert(tostring(time):match("^[1-9][0-9]*$"), diagnostics.format("CORE.METADATA_INVALID", "Атрибут time должен задавать положительное целое число минут", {id=context and context.id,field="time"}))
     time = tonumber(time)
-    assert(time <= vocabulary.maxMinutes, "Атрибут time не может превышать 1000000 минут")
+    assert(time <= vocabulary.maxMinutes, diagnostics.format("CORE.METADATA_INVALID", "Атрибут time не может превышать 1000000 минут", {id=context and context.id,field="time"}))
   end
-  return {difficulty=choice(values.difficulty, difficulties, "difficulty"), time=time,
-    workMode=choice(values["work-mode"], modes, "work-mode"),
-    requirement=choice(values.requirement, requirements, "requirement")}
+  return {difficulty=choice(values.difficulty, difficulties, "difficulty", context), time=time,
+    workMode=choice(values["work-mode"], modes, "work-mode", context),
+    requirement=choice(values.requirement, requirements, "requirement", context)}
 end
 
 -- Явное включение наследования сохраняет независимые метаданные других проектов.
@@ -37,12 +38,12 @@ end
 function M.defaults(meta)
   local config = meta["course-pedagogy"]
   if config == nil then return nil end
-  assert(type(config) == "table", "course-pedagogy должен содержать YAML-словарь параметров")
+  assert(type(config) == "table", diagnostics.format("CORE.PEDAGOGY_CONFIG_INVALID", "course-pedagogy должен содержать YAML-словарь параметров", {field="course-pedagogy"}))
   for key, _ in pairs(config) do
-    assert(key == "document-defaults", "Неизвестный параметр course-pedagogy: " .. tostring(key))
+    assert(key == "document-defaults", diagnostics.format("CORE.PEDAGOGY_CONFIG_INVALID", "Неизвестный параметр course-pedagogy: " .. tostring(key), {field="course-pedagogy"}))
   end
   local enabled = config["document-defaults"]
-  assert(enabled == nil or type(enabled) == "boolean", "course-pedagogy.document-defaults должен принимать значение true или false")
+  assert(enabled == nil or type(enabled) == "boolean", diagnostics.format("CORE.PEDAGOGY_CONFIG_INVALID", "course-pedagogy.document-defaults должен принимать значение true или false", {field="course-pedagogy"}))
   if not enabled then return nil end
   local values = {}
   for _, key in ipairs(vocabulary.activityAttributes) do
@@ -73,16 +74,16 @@ end
 
 function M.kind(div, owner)
   local role = div.attributes["course-role"]
-  if role then assert(M.roles[role], "Неизвестная учебная роль course-role: " .. role) end
+  if role then assert(M.roles[role], diagnostics.format("CORE.PEDAGOGY_ROLE_INVALID", "Неизвестная учебная роль course-role: " .. role, {id=div.identifier,field="course-role"})) end
   if M.is_activity(div) then
-    assert(not role or M.activities[role], "Упражнению exr-* можно назначить только роль деятельности course-role")
+    assert(not role or M.activities[role], diagnostics.format("CORE.PEDAGOGY_ROLE_INVALID", "Упражнению exr-* можно назначить только роль деятельности course-role", {id=div.identifier,field="course-role"}))
     return role or (M.is_example(div) and "demonstration" or "exercise")
   end
   local solution = div.identifier:match("^sol%-") or div.classes:includes("solution")
   -- Визуальный callout может содержать материалы или цели обучения.
   -- Явная авторская роль имеет приоритет над автоматическим определением подсказки.
   local hint = not role and div.classes:includes("callout-tip") and (div.attributes["for"] ~= nil or owner ~= nil)
-  assert(not role or not solution, "Для решения нельзя дополнительно задавать course-role")
+  assert(not role or not solution, diagnostics.format("CORE.PEDAGOGY_ROLE_INVALID", "Для решения нельзя дополнительно задавать course-role", {id=div.identifier,field="course-role"}))
   return role or (solution and "solution") or (hint and "hint") or nil
 end
 
@@ -92,14 +93,13 @@ function M.describe(div, defaults, owner)
   local values = {}
   for _, key in ipairs(vocabulary.activityAttributes) do
     local value = div.attributes[key]
-    assert(value == nil or educational, key .. " допустим только для exr-* или роли деятельности course-role")
+    assert(value == nil or educational, diagnostics.format("CORE.PEDAGOGY_ATTRIBUTE_INVALID", key .. " допустим только для exr-* или роли деятельности course-role", {id=div.identifier,field=key}))
     values[key] = value
   end
   values.requirement = div.attributes.requirement
-  assert(values.requirement == nil or kind == "reading", "Атрибут requirement допустим только при course-role=reading")
-  assert(div.attributes["for"] == nil or (kind and not M.is_activity(div)),
-    "Атрибут for связывает учебный блок с упражнением и недопустим у самого упражнения")
-  local metadata = M.metadata(values)
+  assert(values.requirement == nil or kind == "reading", diagnostics.format("CORE.PEDAGOGY_ATTRIBUTE_INVALID", "Атрибут requirement допустим только при course-role=reading", {id=div.identifier,field="requirement"}))
+  assert(div.attributes["for"] == nil or (kind and not M.is_activity(div)), diagnostics.format("CORE.PEDAGOGY_REFERENCE_INVALID", "Атрибут for связывает учебный блок с упражнением и недопустим у самого упражнения", {id=div.identifier,field="for"}))
+  local metadata = M.metadata(values, {id=div.identifier})
   if educational and defaults then
     for key, value in pairs(defaults) do
       if metadata[key] == nil and (not M.is_exercise(div) or key == "workMode") then metadata[key] = value end

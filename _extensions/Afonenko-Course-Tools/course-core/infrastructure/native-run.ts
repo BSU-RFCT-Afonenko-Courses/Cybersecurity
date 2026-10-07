@@ -1,3 +1,4 @@
+import { diagnostic } from "../domain/diagnostics.ts";
 import { isAbsolute, join, relative, resolve } from "stdlib/path";
 import type {
   Adapter,
@@ -47,7 +48,7 @@ async function contained(root: string, path: string) {
 async function pointer(root: string): Promise<NativeRunPointer> {
   const p = await read(join(base(root), "active-native-run.json"));
   if (p.schema !== "course-native-run-pointer-v1" || p.projectRoot !== root) {
-    throw Error("NATIVE.RUN_POINTER_INVALID");
+    throw diagnostic("NATIVE.RUN_POINTER_INVALID", "Указатель текущей native-сборки некорректен", {source: root, field: "native-run"});
   }
   child(join(base(root), "native-runs"), p.directory);
   await contained(root, p.directory);
@@ -112,15 +113,15 @@ export async function finishNativeRun(projectRoot: string): Promise<NativeRun> {
   const complete = join(base(root), "native-run.json");
   if (await exists(complete)) await Deno.remove(complete);
   if (JSON.stringify(p.profiles) !== JSON.stringify(profiles())) {
-    throw Error("NATIVE.PROFILES_CHANGED");
+    throw diagnostic("NATIVE.PROFILES_CHANGED", "Профили изменились во время сборки", {source: root, field: "native-run"});
   }
   const outputFiles = await currentNativeOutputs(root);
-  if (!outputFiles.length) throw Error("NATIVE.NO_CURRENT_OUTPUTS");
+  if (!outputFiles.length) throw diagnostic("NATIVE.NO_CURRENT_OUTPUTS", "У сборки нет текущих выходных файлов", {source: root, field: "native-run"});
   for (const path of outputFiles) {
     if (path !== p.outputDirectory) child(p.outputDirectory, path);
     await contained(root, path);
     if (!(await Deno.stat(path)).isFile) {
-      throw Error("NATIVE.OUTPUT_NOT_FILE: " + path);
+      throw diagnostic("NATIVE.OUTPUT_NOT_FILE", "Выходной путь не является файлом: " + path, {source: root, field: "native-run"});
     }
   }
   const documents: DocumentResult[] = [];
@@ -133,7 +134,7 @@ export async function finishNativeRun(projectRoot: string): Promise<NativeRun> {
     if (
       d.scope !== "document" || d.source !== d.document?.source ||
       JSON.stringify(d.document.profiles) !== JSON.stringify(p.profiles)
-    ) throw Error("NATIVE.DOCUMENT_INVALID");
+    ) throw diagnostic("NATIVE.DOCUMENT_INVALID", "Контекст входного документа не соответствует текущей сборке", {source: d.source, field: "document"});
     const input = child(root, d.source);
     let out = child(p.outputDirectory, d.document.output);
     await contained(root, input);
@@ -157,20 +158,20 @@ export async function finishNativeRun(projectRoot: string): Promise<NativeRun> {
       }
     }
     if (!outputFiles.includes(out)) {
-      throw Error("NATIVE.DOCUMENT_NOT_CURRENT: " + d.source);
+      throw diagnostic("NATIVE.DOCUMENT_NOT_CURRENT", "Документ не связан с текущим выходным файлом: " + d.source, {source: d.source, field: "document"});
     }
     if (
       documents.some((x) =>
         x.source === d.source && x.document.format === d.document.format
       )
-    ) throw Error("NATIVE.DUPLICATE_DOCUMENT");
+    ) throw diagnostic("NATIVE.DUPLICATE_DOCUMENT", "Повторный документ одного формата", {source: d.source, field: "document"});
     if (d.resources) {
       d.resources = normalizeResourceFacts(d.resources);
       if (
         d.resources.source !== d.source ||
         resolve(d.resources.outputDirectory) !== p.outputDirectory
       ) {
-        throw Error("NATIVE.RESOURCE_CONTEXT_INVALID");
+        throw diagnostic("NATIVE.RESOURCE_CONTEXT_INVALID", "Ресурс относится к другому документу или выходному каталогу", {source: d.source, field: "document"});
       }
       for (const file of d.resources.capturedFiles || []) {
         if (file.capture) {
@@ -188,7 +189,7 @@ export async function finishNativeRun(projectRoot: string): Promise<NativeRun> {
         !documents.some((d) =>
           resolve(p.outputDirectory, d.document.output) === output
         )
-      ) throw Error("NATIVE.MISSING_DOCUMENT: " + output);
+      ) throw diagnostic("NATIVE.MISSING_DOCUMENT", "Для текущего HTML не найден результат Core: " + output, {source: root, field: "native-run"});
     }
   }
   await cleanHiddenResourceOutputs(
@@ -206,7 +207,7 @@ export async function finishNativeRun(projectRoot: string): Promise<NativeRun> {
     if (
       c.name !== e.name || typeof c.rules !== "string" ||
       typeof c.directory !== "string"
-    ) throw Error("NATIVE.ADAPTER_CONTRACT_INVALID");
+    ) throw diagnostic("NATIVE.ADAPTER_CONTRACT_INVALID", "Некорректный контракт установленного адаптера", {source: root, field: "native-run"});
     child(c.directory, c.rules);
     await contained(root, c.directory);
     const fragments = new Map<string, AdapterFragment>();
@@ -231,7 +232,7 @@ export async function finishNativeRun(projectRoot: string): Promise<NativeRun> {
           JSON.stringify(d.document.profiles) ||
         v.course?.id !== d.course.id || v.course?.view !== d.course.view ||
         v.adapter !== c.name || fragments.has(v.source)
-      ) throw Error("NATIVE.ADAPTER_NOT_CURRENT");
+      ) throw diagnostic("NATIVE.ADAPTER_NOT_CURRENT", "Фрагмент адаптера не относится к текущему документу", {source: v.source, id: c.name, field: "adapter"});
       fragments.set(v.source, v);
     }
     adapters.push({
@@ -273,7 +274,7 @@ export async function loadNativeRun(
   if (
     run.schema !== "course-native-run-v1" || run.directory !== p.directory ||
     run.projectRoot !== root
-  ) throw Error("NATIVE.RUN_NOT_CURRENT");
+  ) throw diagnostic("NATIVE.RUN_NOT_CURRENT", "Сохранённая native-сборка не является текущей", {source: root, field: "native-run"});
   if (
     expectation.profiles &&
       JSON.stringify(expectation.profiles) !== JSON.stringify(run.profiles) ||
@@ -283,7 +284,7 @@ export async function loadNativeRun(
       ) ||
     expectation.outputDirectory &&
       resolve(root, expectation.outputDirectory) !== run.outputDirectory
-  ) throw Error("NATIVE.EXPECTATION_MISMATCH");
+  ) throw diagnostic("NATIVE.EXPECTATION_MISMATCH", "Native-сборка не соответствует выбранному профилю, представлению или каталогу", {source: root, field: "native-run"});
   run.adapters = run.adapters.map((a: any) => ({
     ...a,
     fragments: new Map(a.fragments.map((f: AdapterFragment) => [f.source, f])),

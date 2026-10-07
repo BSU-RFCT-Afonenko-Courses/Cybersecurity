@@ -1,5 +1,5 @@
 title: Скачивание материалов проекта
-version: 1.1.0
+version: 1.1.1
 quarto-required: ">=1.10.0"
 contributes:
   shortcodes:

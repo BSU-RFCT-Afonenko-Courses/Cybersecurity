@@ -1,2 +1,3 @@
+import { runHook } from "../infrastructure/diagnostics.ts";
 import { pre } from "../application/compose.ts";
-await pre();
+await runHook(() => pre());

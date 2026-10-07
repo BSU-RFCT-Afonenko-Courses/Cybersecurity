@@ -16,7 +16,7 @@ end
 
 return {{Pandoc = function(doc)
   assert(not doc.meta.course or doc.meta["course-core-processed"] == true,
-    "Фильтр course-core должен предшествовать course-presentation при наличии метаданных course")
+    "PRESENTATION.FILTER_ORDER_INVALID: Фильтр course-core должен предшествовать course-presentation при наличии метаданных course; источник="..quarto.doc.input_file.."; поле=filters")
   local cfg = config.read(doc.meta)
   doc.blocks = transform(doc.blocks, nil, cfg)
   if cfg.html then

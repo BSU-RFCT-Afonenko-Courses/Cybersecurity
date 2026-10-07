@@ -1,3 +1,4 @@
+import { diagnostic } from "../domain/diagnostics.ts";
 // Maintained common answer contract promoted from Core #8, exact 4f5caf9a15b9bd36476cad8a646e81521fbd29d1.
 // Native CodeBlock answer data only; no QMD reader/resource producer.
 import { isAlias, parseDocument } from "./vendor/libraries.js";
@@ -7,7 +8,7 @@ async function run(cmd: string, args: string[]): Promise<string> {
   return await command(Deno.env.get("CUE") || cmd, args, Deno.cwd());
 }
 const para = (s: string): Node => ({ t: "Para", c: [{ t: "Str", c: s }] });
-async function vet(answer: any) {
+async function vet(answer: any, context: {source?: string; id?: string} = {}) {
   const dir = await Deno.makeTempDir();
   try {
     await Deno.writeTextFile(dir + "/input.json", JSON.stringify({ answer }));
@@ -16,20 +17,22 @@ async function vet(answer: any) {
       new URL("answer.cue", import.meta.url).pathname,
       dir + "/input.json",
     ]);
-  } catch {
-    throw new Error("ANSWER_INVALID: CUE rejected answer contract");
+  } catch (cause) {
+    if (!(cause instanceof Error) || cause.name !== "ExternalToolFailure" || !(cause as any).exitCode) throw cause;
+    throw diagnostic("ANSWER_INVALID", "CUE отклонил контракт ответа", {...context, field: "answer"}, cause);
   } finally {
     await Deno.remove(dir, { recursive: true });
   }
 }
 export async function validateAnswer(
   source: string,
+  context: {source?: string; id?: string} = {},
 ): Promise<{ publicAnswer: Node[]; closedKey: any; answerType: string }> {
   let data: any;
   try {
     const doc = parseDocument(source, { uniqueKeys: true, version: "1.2" });
     if (!doc || doc.errors.length || doc.warnings.length) {
-      throw Error("invalid YAML");
+      throw doc?.errors[0] ?? doc?.warnings[0] ?? Error("Требуется корректный YAML");
     }
     const inspect = (v: any) => {
       if (!v || typeof v !== "object") return;
@@ -45,26 +48,24 @@ export async function validateAnswer(
     if (!data || typeof data !== "object" || Array.isArray(data)) {
       throw Error("mapping required");
     }
-  } catch {
-    throw new Error(
-      "ANSWER_YAML: single mapping, no duplicate keys, aliases or custom tags",
-    );
+  } catch (cause) {
+    throw diagnostic("ANSWER_YAML", "Требуется один YAML-словарь без повторных ключей, aliases и пользовательских тегов", {...context, field: "answer"}, cause);
   }
-  await vet(data);
+  await vet(data, context);
   const project = (a: any): Node[] =>
     a.type === "numeric"
-      ? [para("Answer: ____________________")]
+      ? [para("Ответ: ____________________")]
       : a.type === "manual"
-      ? [para("Response: ________________________________________")]
+      ? [para("Ответ: ________________________________________")]
       : a.type === "multipart"
       ? a.parts.flatMap((p: any) => [para(p.label), ...project(p)])
       : a.type === "matching"
       ? [
-        para("Prompts"),
+        para("Условия"),
         { t: "BulletList", c: a.prompts.map((p: string) => [para(p)]) },
-        para("Options"),
+        para("Варианты"),
         { t: "BulletList", c: a.options.map((p: string) => [para(p)]) },
-        para("Matches: ____________________"),
+        para("Соответствия: ____________________"),
       ]
       : [];
   return {
@@ -74,11 +75,11 @@ export async function validateAnswer(
   };
 }
 
-export async function projectChoice(b: Node) {
+export async function projectChoice(b: Node, context: {source?: string; id?: string} = {}) {
   if (
     !b.c[0][2].some((x: any) => x[0] === "type" && x[1] === "single-choice") ||
     b.c[1].length !== 1 || b.c[1][0].t !== "BulletList"
-  ) throw Error("ADAPTER: unsupported answer body");
+  ) throw diagnostic("ADAPTER", "Компонент Core/projectChoice: неподдерживаемая структура ответа single-choice", {...context, field: "answer"});
   let correct = -1, count = 0;
   const strip = (v: any, index: number): any => {
     if (Array.isArray(v)) {
@@ -104,7 +105,7 @@ export async function projectChoice(b: Node) {
     count: clean.length,
     correct,
     markedCount: count,
-  });
+  }, context);
   return {
     answerType: "single-choice",
     closedKey: { correct },

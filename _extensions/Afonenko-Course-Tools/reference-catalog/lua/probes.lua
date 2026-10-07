@@ -1,10 +1,11 @@
+local diagnostics = require("./diagnostics")
 local targets = require("./targets")
 local constants = require("./constants")
 local function finish(doc)
   if not quarto.doc.is_format("html") then return doc end
   local config = doc.meta["reference-catalog"]
   local ns = os.getenv("QRC_NAMESPACE") or (config and pandoc.utils.stringify(config.namespace))
-  assert(ns and ns ~= "", "QRC задайте reference-catalog.namespace в конфигурации native проекта")
+  assert(ns and ns ~= "", diagnostics.message("QRC.CONFIG_INVALID", "задайте reference-catalog.namespace в конфигурации native проекта", nil, "reference-catalog.namespace"))
   local rows = pandoc.Blocks({})
   for _, id in ipairs(targets.sorted()) do
     for _, style in ipairs(constants.probe_styles) do

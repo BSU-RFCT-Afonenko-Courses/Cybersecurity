@@ -1,3 +1,4 @@
+import { diagnostic } from "../diagnostics.ts";
 import type { Catalog, Import, Target } from "../domain/model.ts";
 import { readCatalogSource } from "./catalog-source.ts";
 import { validateImportedCatalog } from "./catalog-validation.ts";
@@ -6,7 +7,7 @@ async function readCatalog(source: string): Promise<Catalog> {
   const text = await readCatalogSource(source);
   let data: unknown;
   try { data = JSON.parse(text); }
-  catch { throw new Error(`QRC некорректный JSON импортированного каталога in ${source}`); }
+  catch (cause) { throw diagnostic("QRC.IMPORT_INVALID", "некорректный JSON импортированного каталога", { source, field: "JSON", hint: "Проверьте выбранный каталог публикации; позиции JSON не являются строками QMD." }, cause); }
   return validateImportedCatalog(data, source);
 }
 
@@ -34,7 +35,7 @@ export async function importTargets(imports: Import[], options: { allowMissingLo
       });
       count++;
     }
-    if (!count && !(options.allowMissingLocal && local)) throw new Error(`QRC импорт не содержит пространство имён ${spec.sourceNamespace}: ${spec.source}`);
+    if (!count && !(options.allowMissingLocal && local)) throw diagnostic("QRC.IMPORT_INVALID", `импорт не содержит пространство имён ${spec.sourceNamespace}: ${spec.source}`, { source: spec.source, id: spec.namespace, field: "namespace", related: [{ id: spec.sourceNamespace }], hint: "Проверьте namespace производителя и текущий экспорт." });
   }
   return result;
 }

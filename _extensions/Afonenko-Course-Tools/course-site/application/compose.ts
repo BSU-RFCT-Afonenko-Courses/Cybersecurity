@@ -1,3 +1,4 @@
+import { diagnostic } from "../infrastructure/diagnostics.ts";
 import {
   cleanOutput,
   copyFiles,
@@ -21,13 +22,25 @@ import { profileArguments, quarto } from "../infrastructure/process.ts";
 import { publicOutputs, readCollection } from "../infrastructure/collection.ts";
 const siblings = dirname(dirname(dirname(fromFileUrl(import.meta.url))));
 async function module(name: string, path: string): Promise<any> {
+  const source = join(siblings, name, path);
   try {
-    return await import(toFileUrl(join(siblings, name, path)).href);
-  } catch (e) {
-    throw new Error(
-      `course-site requires installed sibling ${name}/${path}: ${e}`,
+    await Deno.stat(source);
+  } catch (cause) {
+    if (!(cause instanceof Deno.errors.NotFound)) throw cause;
+    throw diagnostic(
+      "SITE.SIBLING_MISSING",
+      "Не установлен требуемый модуль соседнего расширения",
+      {
+        source,
+        id: name,
+        field: "module",
+        hint: "Установите Core/QRC рядом с course-site в одном namespace.",
+      },
+      cause,
     );
   }
+  // An existing module's initialization/import failure belongs to its owner.
+  return await import(toFileUrl(source).href);
 }
 const statePath = (root: string) =>
   join(root, "_generated/course-site/active.json");
@@ -63,8 +76,15 @@ export async function pre(root = Deno.cwd()): Promise<void> {
     const plan = await inspectDocuments(project.path, ws.profiles);
     const config = plan.config;
     if (typeof config.project?.["output-dir"] !== "string") {
-      throw new Error(
-        `course-site component ${project.id} requires a native output-dir`,
+      throw diagnostic(
+        "SITE.CONFIG_INVALID",
+        "Компоненту требуется native каталог результата",
+        {
+          source: project.path,
+          id: project.id,
+          field: "project.output-dir",
+          hint: "Задайте project.output-dir в конфигурации компонента.",
+        },
       );
     }
     const output = await outputDirectory(
@@ -85,11 +105,31 @@ export async function pre(root = Deno.cwd()): Promise<void> {
         inside(output, other.path) ||
         inside(other.path, output) && other.path !== project.path
       ) {
-        throw new Error("course-site component output overlaps another source");
+        throw diagnostic(
+          "SITE.OUTPUT_OVERLAP",
+          "Результат компонента пересекается с источником другого компонента",
+          {
+            source: project.path,
+            id: project.id,
+            field: "project.output-dir",
+            related: [{ source: output }, { source: other.path, id: other.id }],
+            hint: "Разделите исходники и результаты проектов.",
+          },
+        );
       }
     }
     if (inside(output, ws.output) || inside(ws.output, output)) {
-      throw new Error("course-site component and root outputs overlap");
+      throw diagnostic(
+        "SITE.OUTPUT_OVERLAP",
+        "Каталоги результата компонента и корня пересекаются",
+        {
+          source: project.path,
+          id: project.id,
+          field: "project.output-dir",
+          related: [{ source: output }, { source: ws.output }],
+          hint: "Выберите независимые каталоги результата.",
+        },
+      );
     }
   }
   await cleanOutput(root, ws.output);
@@ -161,8 +201,15 @@ export async function pre(root = Deno.cwd()): Promise<void> {
         JSON.stringify(value.profiles) !== JSON.stringify(record.profiles)
       )
     ) {
-      throw new Error(
-        "course-site inconsistent native profiles between document renders",
+      throw diagnostic(
+        "SITE.COLLECTION_INVALID",
+        "Профили текущих рендеров документов не согласованы",
+        {
+          source: project.path,
+          id: project.id,
+          field: "profiles",
+          hint: "Используйте одинаковые профили документов компонента.",
+        },
       );
     }
     records.push({
@@ -256,7 +303,18 @@ export async function post(root = Deno.cwd()): Promise<void> {
     ws.root !== root ||
     ws.output !==
       resolve(root, Deno.env.get("QUARTO_PROJECT_OUTPUT_DIR") || ws.output)
-  ) throw new Error("course-site active root mismatch");
+  ) {
+    throw diagnostic(
+      "SITE.COLLECTION_INVALID",
+      "Активная сборка не соответствует корню или каталогу результата",
+      {
+        source: root,
+        field: "root/output",
+        related: [{ source: ws.root }, { source: ws.output }],
+        hint: "Запустите полную сборку заново.",
+      },
+    );
+  }
   const rootOutputs = await publicOutputs(root, ws.output),
     rootFiles = await files(ws.output);
   const outputs = [...rootOutputs], searchIndexes: any[] = [];
@@ -277,8 +335,16 @@ export async function post(root = Deno.cwd()): Promise<void> {
   for (const { project, config, record, nativeRuns, documents } of records) {
     const mount = join(ws.output, project.mount);
     if (rootFiles.some((path: string) => inside(mount, path))) {
-      throw new Error(
-        `course-site mount conflicts with root output: ${project.mount}`,
+      throw diagnostic(
+        "SITE.OUTPUT_OVERLAP",
+        "Путь монтирования занят корневым результатом",
+        {
+          source: root,
+          id: project.id,
+          field: "subprojects",
+          related: [{ source: mount }],
+          hint: "Измените путь компонента или корневого ресурса.",
+        },
       );
     }
     await safePath(root, mount);
@@ -339,7 +405,19 @@ export async function post(root = Deno.cwd()): Promise<void> {
         ),
       );
       if (item.run.outputFiles.some((path: string) => !emitted.has(path))) {
-        throw new Error("course-site required current Core result is missing");
+        throw diagnostic(
+          "SITE.CURRENT_RESULT_MISSING",
+          "Не получен требуемый текущий результат Core",
+          {
+            source: item.run.projectRoot,
+            id: item.prefix,
+            field: "outputFiles",
+            related: item.run.outputFiles.filter((path: string) =>
+              !emitted.has(path)
+            ).map((source: string) => ({ source })),
+            hint: "Проверьте Core hooks компонента и повторите сборку.",
+          },
+        );
       }
       for (const document of item.run.documents) {
         const id = document.course.id;
@@ -352,8 +430,15 @@ export async function post(root = Deno.cwd()): Promise<void> {
             profiles: item.run.profiles,
           };
         if (group.view !== item.view) {
-          throw new Error(
-            `course-site inconsistent configured audience for ${id}`,
+          throw diagnostic(
+            "SITE.CONFIG_INVALID",
+            "Аудитория документов курса не согласована",
+            {
+              source: item.run.projectRoot,
+              id,
+              field: "course.view",
+              hint: "Задайте согласованную аудиторию курса.",
+            },
           );
         }
         group.documents.push(qualify(document, item.prefix));

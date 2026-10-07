@@ -1,3 +1,4 @@
+local diagnostics = require("./diagnostics")
 local native_document = require("./native-document")
 local answers = require("./native-answers")
 local adapters = require("./native-adapters")
@@ -16,10 +17,9 @@ return {{Pandoc = function(doc)
     return doc
   end
   output.invalidate(doc)
-  assert(doc.meta.course.schema == nil, "Поле course.schema не поддерживается; удалите его из YAML: действует единый текущий контракт")
-  local canonical,domains = native_document.validate(doc)
+  assert(doc.meta.course.schema == nil, diagnostics.format("CORE.SCHEMA_INVALID", "Поле course.schema не поддерживается; удалите его из YAML: действует единый текущий контракт", {field="course.schema"}))
+  local canonical,domains,rawAssessment = native_document.validate(doc)
   local publicAnswers=answers.validate(doc)
-  local rawAssessment=native_document.assessment(doc)
   if rawAssessment then doc.meta["course-assessment-id"]=pandoc.MetaString(rawAssessment.id) end
   adapters.validate(doc)
   local raw=doc:clone()

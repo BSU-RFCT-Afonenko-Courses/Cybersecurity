@@ -1,3 +1,4 @@
+fail-if-warnings: true
 project:
   type: website
   output-dir: _site

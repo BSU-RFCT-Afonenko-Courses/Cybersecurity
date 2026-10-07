@@ -1,3 +1,4 @@
+local diagnostics = require("./diagnostics")
 local M = {}
 local vocabulary = require("./vocabulary")
 local contract = require("./pedagogy/contract")
@@ -11,9 +12,8 @@ local function member_count(doc)
   return count
 end
 
-local function profile_name(value)
-  assert(type(value) == "string" and value:match("^[a-z][a-z0-9%-]*$"),
-    "Условие видимости должно содержать одно имя профиля в нижнем регистре, например full")
+local function profile_name(value, node, field)
+  assert(type(value) == "string" and value:match("^[a-z][a-z0-9%-]*$"), diagnostics.format("CORE.VISIBILITY_INVALID", "Условие видимости должно содержать одно имя профиля в нижнем регистре, например full", {id=node.identifier,field=field}))
   return value
 end
 
@@ -21,17 +21,16 @@ end
 -- не должно определять публикацию оцениваемых заданий и закрытых исходников.
 local function condition(node)
   for _,class in ipairs(node.classes) do
-    assert(not class:match('^when%-') and not class:match('^unless%-'),
-      'Краткие классы when-/unless- не поддерживаются; используйте штатные content-visible/content-hidden и when-profile/unless-profile')
+    assert(not class:match('^when%-') and not class:match('^unless%-'), diagnostics.format("CORE.VISIBILITY_INVALID", 'Краткие классы when-/unless- не поддерживаются; используйте штатные content-visible/content-hidden и when-profile/unless-profile', {id=node.identifier,field="visibility"}))
   end
   local when,unless=node.attributes['when-profile'],node.attributes['unless-profile']
   if not when and not unless then return nil end
   local visible=node.classes:includes('content-visible')
   local hidden=node.classes:includes('content-hidden')
-  assert(not (visible and hidden), 'Элемент не может одновременно иметь классы content-visible и content-hidden')
-  assert(visible or hidden, 'Атрибуты when-profile/unless-profile требуют класса content-visible или content-hidden')
-  when=when and profile_name(when)
-  unless=unless and profile_name(unless)
+  assert(not (visible and hidden), diagnostics.format("CORE.VISIBILITY_INVALID", 'Элемент не может одновременно иметь классы content-visible и content-hidden', {id=node.identifier,field="visibility"}))
+  assert(visible or hidden, diagnostics.format("CORE.VISIBILITY_INVALID", 'Атрибуты when-profile/unless-profile требуют класса content-visible или content-hidden', {id=node.identifier,field="visibility"}))
+  when=when and profile_name(when, node, "when-profile")
+  unless=unless and profile_name(unless, node, "unless-profile")
   local other=false
   for key, _ in pairs(node.attributes) do
     if (key:match("^when%-") or key:match("^unless%-"))
@@ -58,14 +57,13 @@ end
 function M.prepare(doc, override)
   local raw = doc.meta.course and doc.meta.course.view
   local view = override or (raw and pandoc.utils.stringify(raw) or nil)
-  assert(not view or views[view], "course.view должен принимать значение student или full")
+  assert(not view or views[view], diagnostics.format("CORE.VIEW_INVALID", "course.view должен принимать значение student или full", {field="course.view"}))
   local active = {}
   for _,name in ipairs(quarto.project.profile or {}) do active[name] = true end
   -- Public projection changes only the audience; native feature profiles survive.
   if override then active.student,active.full=nil,nil;active[override]=true end
-  assert(not (active.student and active.full), "Профили student и full нельзя включать одновременно")
-  assert(not view or not ((active.student and view ~= "student") or (active.full and view ~= "full")),
-    "course.view не соответствует выбранному профилю Quarto")
+  assert(not (active.student and active.full), diagnostics.format("CORE.PROFILES_INVALID", "Профили student и full нельзя включать одновременно", {field="profiles"}))
+  assert(not view or not ((active.student and view ~= "student") or (active.full and view ~= "full")), diagnostics.format("CORE.VIEW_INVALID", "course.view не соответствует выбранному профилю Quarto", {field="course.view"}))
   if view then active[view] = true end
 
   if doc.meta["course-export-context"] == true then
@@ -130,8 +128,7 @@ function M.prepare(doc, override)
     fragment:walk({traverse='topdown',Div=function(div)
       local visible=parent_visible and keep(div)
       if contract.is_activity(div) then
-        assert(not contract.is_example(div) or not indexed[div.identifier],
-          'CORE.SOLUTION_PAIRING_INVALID: duplicate example '..div.identifier)
+        assert(not contract.is_example(div) or not indexed[div.identifier], diagnostics.format("CORE.SOLUTION_PAIRING_INVALID", 'Повторный идентификатор примера '..div.identifier, {id=div.identifier,field="id"}))
         local purpose=div.attributes['course-role']
         -- Control page inclusion is owned by native project file lists.
         indexed[div.identifier]={purpose=purpose,visible=visible,example=contract.is_example(div)}
@@ -150,8 +147,7 @@ function M.prepare(doc, override)
   local function index_solutions(fragment,owner)
     fragment:walk({traverse='topdown',Div=function(div)
       if div.identifier:match('^sol%-') then
-        assert(not solutions[div.identifier],
-          'Повторный идентификатор учебного элемента: '..div.identifier)
+        assert(not solutions[div.identifier], diagnostics.format("CORE.DUPLICATE_DECLARATION", 'Повторный идентификатор учебного элемента: '..div.identifier, {id=div.identifier,field="id"}))
         solutions[div.identifier]=contract.related(div,indexed,owner)
       end
       index_solutions(pandoc.Pandoc(div.content),

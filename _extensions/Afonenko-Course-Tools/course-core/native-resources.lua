@@ -1,3 +1,4 @@
+local diagnostics = require("./diagnostics")
 local M={}
 function M.uses(doc)
   local result,seen=pandoc.List(),{}
@@ -22,7 +23,7 @@ function M.facts(raw,public,canonical)
   -- Reuse pre-projection validation facts; retain paths only, never private bodies.
   for _,fact in ipairs(canonical or {}) do
     if fact.project then
-      if fact.project:sub(1,1)~='/' or fact.project:sub(1,2)=='//' then error('RESOURCE.PROJECT_PATH_INVALID: '..fact.project) end
+      if fact.project:sub(1,1)~='/' or fact.project:sub(1,2)=='//' then diagnostics.fail('RESOURCE.PROJECT_PATH_INVALID','Путь проекта должен начинаться с /: '..fact.project,{id=fact.id,field='project'}) end
       local path=pandoc.path.normalize(pandoc.path.join({root,fact.project:sub(2)}))
       if not seenProjects[path] then rawProjectRoots:insert(path);seenProjects[path]=true end
     end

@@ -1,3 +1,4 @@
+import { diagnostic } from "../domain/diagnostics.ts";
 import { dirname, fromFileUrl, join } from "stdlib/path";
 import type { Adapter, ReleaseResult } from "../domain/model.ts";
 import { checkPaths } from "./files.ts";
@@ -13,7 +14,7 @@ export async function validateRelease(
       const item of [...result.model.exercises, ...result.model.assessments]
     ) {
       if (!sourceRoots[item.source]) {
-        throw Error("CORE.SOURCE_ROOT_MISSING: " + item.source);
+        throw diagnostic("CORE.SOURCE_ROOT_MISSING", "Не найден корень входного документа: " + item.source, {source: item.source, id: item.id, field: "sourceRoots"});
       }
     }
     for (const root of new Set(Object.values(sourceRoots))) {

@@ -1,3 +1,4 @@
+local diagnostics = require("./diagnostics")
 local links = require("./links")
 return {{Meta = function(meta)
   -- Конфигурацию сборки обрабатывают проектные скрипты; она не задаёт ресурсы документа.
@@ -11,7 +12,7 @@ end}, {Cite = function(el)
     if ns then refs[#refs + 1] = {ns=ns, id=id, cite=c} end
   end
   if #refs == 0 then return nil end
-  assert(#refs == #el.citations, "QRC библиографические ссылки и ссылки каталога следует записывать отдельно")
+  assert(#refs == #el.citations, diagnostics.message("QRC.REFERENCE_INVALID", "библиографические ссылки и ссылки каталога следует записывать отдельно", nil, "citations"))
   local out = pandoc.Inlines({})
   for i, r in ipairs(refs) do
     if i > 1 then out:insert(pandoc.Str(";")); out:insert(pandoc.Space()) end

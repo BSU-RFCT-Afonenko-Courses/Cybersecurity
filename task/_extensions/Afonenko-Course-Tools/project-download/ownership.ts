@@ -1,3 +1,4 @@
+import { diagnostic } from "./diagnostics.ts";
 import { dirname, relative, resolve } from "stdlib/path";
 import type { Request } from "./application/publish.ts";
 import { RESOURCE_ID } from "./domain/config.ts";
@@ -17,21 +18,21 @@ async function hash(algorithm:"SHA-1"|"SHA-256",bytes:Uint8Array):Promise<string
 }
 
 async function requestDirectory(root:string,sources:string[]):Promise<{directory:string;present:boolean}> {
-  if(root!==resolve(root)) throw new Error("Корень заявок должен быть каноническим абсолютным путём");
+  if(root!==resolve(root)) throw diagnostic("DOWNLOAD.REQUEST_INVALID", "Корень заявок должен быть каноническим абсолютным путём", {source:root,field:"root"});
   // lstat проверяет и dangling links; realPath не должен скрыть ссылку в корне/родителях.
   for(let current=root;;current=dirname(current)) {
     const info=await Deno.lstat(current);
-    if(info.isSymlink || !info.isDirectory) throw new Error(`Недопустимый каталог в пути корня заявок: ${current}`);
+    if(info.isSymlink || !info.isDirectory) throw diagnostic("DOWNLOAD.REQUEST_INVALID", `Недопустимый каталог в пути корня заявок: ${current}`, {source:current,field:"root"});
     if(dirname(current)===current) break;
   }
   for(const source of sources) {
-    if(relative(root,child(root,source))!==source) throw new Error(`Источник заявки должен быть каноническим относительным путём: ${source}`);
+    if(relative(root,child(root,source))!==source) throw diagnostic("DOWNLOAD.REQUEST_INVALID", `Источник заявки должен быть каноническим относительным путём: ${source}`, {source,field:"source"});
   }
   const directory=child(root,"_generated/project-download/requests");
   for(const path of [child(root,"_generated"),child(root,"_generated/project-download"),directory]) {
     if(!await exists(path)) return {directory,present:false};
     const info=await Deno.lstat(path);
-    if(info.isSymlink || !info.isDirectory) throw new Error(`Недопустимый каталог заявок: ${path}`);
+    if(info.isSymlink || !info.isDirectory) throw diagnostic("DOWNLOAD.REQUEST_INVALID", `Недопустимый каталог заявок: ${path}`, {source:path,field:"request"});
   }
   await noSymlinks(root,directory);
   return {directory,present:true};
@@ -47,15 +48,16 @@ export async function inspectOwnedRequests(root:string,sources:string[]):Promise
   entries.sort((a,b)=>a.name<b.name?-1:a.name>b.name?1:0);
   for(const entry of entries) {
     const path=child(directory,entry.name),info=await Deno.lstat(path);
-    if(info.isSymlink || !info.isFile || !/^[a-f0-9]{40}\.json$/.test(entry.name)) throw new Error(`Посторонний объект в области заявок: ${path}`);
+    if(info.isSymlink || !info.isFile || !/^[a-f0-9]{40}\.json$/.test(entry.name)) throw diagnostic("DOWNLOAD.REQUEST_INVALID", `Посторонний объект в области заявок: ${path}`, {source:path,field:"request"});
     await noSymlinks(root,path);
     const bytes=await Deno.readFile(path);
-    const value:unknown=JSON.parse(new TextDecoder("utf-8",{fatal:true}).decode(bytes));
-    if(!value || typeof value!=="object" || Array.isArray(value)) throw new Error(`Повреждённая заявка: ${path}`);
+    let value:unknown;
+    try { value=JSON.parse(new TextDecoder("utf-8",{fatal:true}).decode(bytes)); } catch(cause) { throw diagnostic("DOWNLOAD.REQUEST_INVALID", "Не удалось прочитать JSON заявки", {source:path,field:"request"},cause); }
+    if(!value || typeof value!=="object" || Array.isArray(value)) throw diagnostic("DOWNLOAD.REQUEST_INVALID", `Повреждённая заявка: ${path}`, {source:path,field:"request"});
     const fields=value as Record<string,unknown>;
-    if(Object.keys(fields).some(key=>!["source","resources","courseProcessed"].includes(key)) || (Object.hasOwn(fields,"courseProcessed") && typeof fields.courseProcessed!=="boolean") || !Object.hasOwn(fields,"source") || !Object.hasOwn(fields,"resources") || typeof fields.source!=="string" || !allowed.has(fields.source) || !Array.isArray(fields.resources) || fields.resources.some(id=>typeof id!=="string" || !RESOURCE_ID.test(id))) throw new Error(`Недопустимые поля заявки: ${path}`);
+    if(Object.keys(fields).some(key=>!["source","resources","courseProcessed"].includes(key)) || (Object.hasOwn(fields,"courseProcessed") && typeof fields.courseProcessed!=="boolean") || !Object.hasOwn(fields,"source") || !Object.hasOwn(fields,"resources") || typeof fields.source!=="string" || !allowed.has(fields.source) || !Array.isArray(fields.resources) || fields.resources.some(id=>typeof id!=="string" || !RESOURCE_ID.test(id))) throw diagnostic("DOWNLOAD.REQUEST_INVALID", `Недопустимые поля заявки: ${path}`, {source:path,field:"request"});
     const request=value as Request;
-    if(entry.name!==await hash("SHA-1",new TextEncoder().encode(request.source))+".json") throw new Error(`Имя заявки не соответствует источнику: ${path}`);
+    if(entry.name!==await hash("SHA-1",new TextEncoder().encode(request.source))+".json") throw diagnostic("DOWNLOAD.REQUEST_INVALID", `Имя заявки не соответствует источнику: ${path}`, {source:path,field:"request"});
     state.files.push({path,source:request.source,resources:request.resources,sha256:await hash("SHA-256",bytes)});
   }
   return state;

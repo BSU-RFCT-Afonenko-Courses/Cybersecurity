@@ -1,3 +1,4 @@
+import { diagnostic } from "../domain/diagnostics.ts";
 import { isAbsolute, join, relative, resolve } from "stdlib/path";
 import type { Course, Json } from "../domain/model.ts";
 export async function exists(path: string): Promise<boolean> {
@@ -11,18 +12,18 @@ export async function fragments<T extends { source: string }>(root: string, name
     const item: T = JSON.parse(await Deno.readTextFile(join(directory, entry.name)));
     item.source = item.source.replaceAll("\\", "/");
     if (!selected.includes(item.source)) continue;
-    if (result.has(item.source)) throw new Error(`Повторно извлечён документ: ${item.source}`);
+    if (result.has(item.source)) throw diagnostic("RELEASE.DUPLICATE_DOCUMENT", `Повторно извлечён документ: ${item.source}`, {source: item.source, field: "document"});
     result.set(item.source, item);
   }
   return result;
 }
 export function child(root: string, name: string): string {
   const path = resolve(root, name), rel = relative(root, path);
-  if (!rel || rel === ".." || rel.startsWith("..\\") || rel.startsWith("../") || isAbsolute(rel)) throw new Error(`Путь выходит за пределы курса: ${name}`);
+  if (!rel || rel === ".." || rel.startsWith("..\\") || rel.startsWith("../") || isAbsolute(rel)) throw diagnostic("RESOURCE.PATH_OUTSIDE_COURSE", `Путь выходит за пределы курса: ${name}`, {source: name, field: "path"});
   return path;
 }
 async function owned(root: string, virtual: string): Promise<string> {
-  if (!virtual.startsWith("/") || virtual.startsWith("//")) throw new Error(`Путь относительно корня проекта должен начинаться с /: ${virtual}`);
+  if (!virtual.startsWith("/") || virtual.startsWith("//")) throw diagnostic("RESOURCE.PROJECT_PATH_INVALID", `Путь относительно корня проекта должен начинаться с /: ${virtual}`, {source: virtual, field: "project"});
   const path = child(root, virtual.slice(1));
   const real = await Deno.realPath(path);
   child(root, real);
@@ -37,11 +38,11 @@ function* sourceFiles(value: Json): Generator<string> {
 }
 export async function checkPaths(root: string, model: Course): Promise<void> {
   for (const exercise of model.exercises) {
-    if (exercise.project && !(await Deno.stat(await owned(root, exercise.project))).isDirectory) throw new Error(`Отсутствует каталог проекта для ${exercise.id}: ${exercise.project}`);
+    if (exercise.project && !(await Deno.stat(await owned(root, exercise.project))).isDirectory) throw diagnostic("RESOURCE.PROJECT_MISSING", `Отсутствует каталог проекта для ${exercise.id}: ${exercise.project}`, {source: exercise.source, id: exercise.id, field: "project"});
   }
   for (const item of [...model.exercises, ...model.assessments]) {
     for (const file of sourceFiles(item.extensions)) {
-      if (!(await Deno.stat(await owned(root, file))).isFile) throw new Error(`Отсутствует исходный файл: ${file}`);
+      if (!(await Deno.stat(await owned(root, file))).isFile) throw diagnostic("RESOURCE.SOURCE_MISSING", `Отсутствует исходный файл: ${file}`, {source: item.source, id: item.id, field: file});
     }
   }
 }
