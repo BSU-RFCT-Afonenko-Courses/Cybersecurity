@@ -40,7 +40,13 @@ function M.write(value)
     run=pandoc.json.decode(pointer:read("*a"));pointer:close()
     assert(run.schema=="course-native-run-pointer-v1" and run.projectRoot==root, diagnostics.format("NATIVE.RUN_POINTER_INVALID", "Указатель текущей сборки не соответствует проекту", {field="native-run"}))
     local prefix=root.."/_generated/course-spec/native-runs/"
-    assert(run.directory:sub(1,#prefix)==prefix and run.directory:sub(#prefix+1):match('^[%w%-]+$'), diagnostics.format("NATIVE.RUN_DIRECTORY_INVALID", "Каталог запуска должен принадлежать служебной области проекта", {field="native-run"}))
+    local directory=run.directory
+    -- Deno writes native Windows separators; compare equivalent spellings.
+    if pandoc.system.os=="mingw32" then
+      prefix=prefix:gsub("\\","/")
+      directory=directory:gsub("\\","/")
+    end
+    assert(directory:sub(1,#prefix)==prefix and directory:sub(#prefix+1):match('^[%w%-]+$'), diagnostics.format("NATIVE.RUN_DIRECTORY_INVALID", "Каталог запуска должен принадлежать служебной области проекта", {field="native-run"}))
     local completed=io.open(run.directory.."/native-run.json","r")
     if completed then completed:close();run=nil end
   end
