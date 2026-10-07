@@ -14,7 +14,8 @@ project:
   - '!_generated/**'
   - '!_site*/**'
   - '!README.md'
-  - '!tools/**'
+  - '!CI/**'
+  - '!ci-logs/**'
   - '!.agents/**'
   - '!.aws/**'
   - '!.codex/**'
@@ -33,7 +34,6 @@ project:
   - '!task/**'
   - '!seminars/**'
   - '!Новые семинары'
-  - '!tests/**'
   pre-render:
   - _extensions/Afonenko-Course-Tools/course-site/entrypoints/pre.ts
   post-render:

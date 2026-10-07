@@ -17,6 +17,8 @@ jobs:
     name: Native course (${{ matrix.quarto }})
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      XDG_CACHE_HOME: ${{ runner.temp }}/quarto-cache-${{ matrix.quarto }}
     strategy:
       fail-fast: false
       matrix:
@@ -33,30 +35,26 @@ jobs:
     - uses: cue-lang/setup-cue@b0e30e540a2dae47304ebf16586a5b2db023b61c
       with:
         version: v0.17.1
-    - name: Course runtime
-      run: 'sudo apt-get update
-
-        sudo apt-get install -y --no-install-recommends r-base r-cran-knitr r-cran-rmarkdown
-
-        '
-    - name: Render student, full, and student again
-      env:
-        XDG_CACHE_HOME: ${{ runner.temp }}/quarto-cache-${{ matrix.quarto }}
-      run: 'quarto --version
-
+    - name: Runtime versions
+      run: |
+        quarto --version
         cue version
-
-        bash tools/install-extensions.sh
-
-        quarto render . --profile student
-
-        quarto render . --profile full
-
-        quarto render . --profile student
-
-        python3 tests/site.py
-
-        '
+        python3 --version
+    - name: Render student
+      run: bash CI/render.sh student
+    - name: Render full
+      run: bash CI/render.sh full
+    - name: Render student after full
+      run: bash CI/render.sh student
+    - name: Validate rendered pages and local links
+      run: python3 CI/site.py _site-student _site-full
+    - name: Upload build diagnostics
+      if: failure()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: ci-logs-quarto-${{ matrix.quarto }}
+        path: ci-logs/
+        if-no-files-found: ignore
     - name: Upload student site
       if: vars.COURSE_PUBLISH_PAGES == 'true' && matrix.quarto == '1.10.18' && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
       uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9

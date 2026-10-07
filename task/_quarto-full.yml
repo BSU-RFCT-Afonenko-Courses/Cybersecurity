@@ -5,24 +5,27 @@ course:
 book:
   chapters:
   - index.qmd
-  - plans/index.qmd
   - part: Криптография
     chapters:
-    - seminar/crypto/random.qmd
-    - seminar/crypto/hash.qmd
-    - seminar/crypto/cypher/symmetric.qmd
-    - seminar/crypto/cypher/asymmetric.qmd
-    - seminar/crypto/sign.qmd
-    - seminar/crypto/cert.qmd
+    - crypto/random.qmd
+    - crypto/hash.qmd
+    - crypto/cypher/symmetric.qmd
+    - crypto/cypher/asymmetric.qmd
+    - crypto/sign.qmd
+    - crypto/cert.qmd
   - part: Управление доступом
     chapters:
-    - seminar/access-control/ident.qmd
-    - seminar/access-control/authn.qmd
-    - seminar/access-control/authz.qmd
+    - access-control/ident.qmd
+    - access-control/authn.qmd
+    - access-control/authz.qmd
   - part: Целостность данных
     chapters:
-    - seminar/data-integrity/backup.qmd
-  - part: Контрольные материалы (черновики)
+    - data-integrity/backup.qmd
+  - part: Семинары
+    chapters:
+    - seminar/01-introduction.qmd
+    - seminar/02-structure.qmd
+  - part: Контрольные материалы
     chapters:
     - exam/paper.qmd
     - exam/technical.qmd

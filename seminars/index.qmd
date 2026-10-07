@@ -10,5 +10,4 @@ format: html
 
 Теоретические материалы: @theory:sec-theory.
 Условия лабораторных: @tasks:sec-tasks.
-Порядок работы: @tasks:sec-plan.
 Навигация курса: @portal:sec-portal.

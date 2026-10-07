@@ -1,14 +1,7 @@
----
-assessment:
-  kind: lab
----
+# Резервное копирование {#sec-data-integrity-backup}
 
-# Резервное копирование {#sec-work-data-integrity-backup}
-
-## Практические действия {#sec-lab-data-integrity-backup}
-
-::: {#exr-lab-data-integrity-backup course-role="independent-study" difficulty="intermediate"}
-### Условие работы
+::: {#exr-data-integrity-backup course-role="independent-study" difficulty="intermediate"}
+## Виды резервных копий
 
 С помощью утилиты <https://github.com/MatteoGuadrini/Butterfly-Backup> реализовать все 4 (полный, инкрементальный, дифференциальный и зеркальный) бекапы. Изменять исходные файлы, откатывать бекапы.
 
@@ -24,6 +17,3 @@ assessment:
 :::
 :::
 
-::: {.task-items}
-1. @exr-lab-data-integrity-backup
-:::

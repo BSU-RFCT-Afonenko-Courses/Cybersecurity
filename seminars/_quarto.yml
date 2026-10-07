@@ -2,7 +2,7 @@ project:
   type: website
   render:
   - index.qmd
-  - 1.qmd
+  - 01-introduction.qmd
   output-dir: _output
   resources:
   - ./assets/**
