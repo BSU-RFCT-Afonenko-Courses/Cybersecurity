@@ -17,8 +17,6 @@ jobs:
     name: Native course (${{ matrix.quarto }})
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    env:
-      XDG_CACHE_HOME: ${{ runner.temp }}/quarto-cache-${{ matrix.quarto }}
     strategy:
       fail-fast: false
       matrix:
@@ -40,6 +38,8 @@ jobs:
         quarto --version
         cue version
         python3 --version
+    - name: Подготовить каталог кэша
+      run: echo "XDG_CACHE_HOME=$RUNNER_TEMP/quarto-cache-${{ matrix.quarto }}" >> "$GITHUB_ENV"
     - name: Render student
       run: bash CI/render.sh student
     - name: Render full
