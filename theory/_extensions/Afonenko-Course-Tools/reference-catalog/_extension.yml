@@ -1,6 +1,6 @@
 title: Каталог перекрёстных ссылок
 author: Анатолий Афоненко
-version: 2.1.0
+version: 2.2.1
 contributes:
   filters:
     - at: pre-ast

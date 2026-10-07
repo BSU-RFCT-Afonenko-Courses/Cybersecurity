@@ -1,3 +1,4 @@
+local diagnostics = require("./diagnostics")
 local M = {}
 local vocabulary = require("./vocabulary")
 local contract = require("./pedagogy/contract")
@@ -6,84 +7,120 @@ local views = {}; for _, view in ipairs(vocabulary.views) do views[view] = true 
 local function member_count(doc)
   local count = 0
   doc:walk({Div = function(node)
-    if node.classes:includes("assessment-items") then count = count + 1 end
+    if node.classes:includes("task-items") then count = count + 1 end
   end})
   return count
 end
 
-local function profile_name(value)
-  assert(type(value) == "string" and value:match("^[a-z][a-z0-9%-]*$"),
-    "Условие видимости должно содержать одно имя профиля в нижнем регистре, например full")
+local function profile_name(value, node, field)
+  assert(type(value) == "string" and value:match("^[a-z][a-z0-9%-]*$"), diagnostics.format("CORE.VISIBILITY_INVALID", "Условие видимости должно содержать одно имя профиля в нижнем регистре, например full", {id=node.identifier,field=field}))
   return value
 end
 
 -- Отбор по профилю предшествует извлечению модели; форматирование Quarto
 -- не должно определять публикацию оцениваемых заданий и закрытых исходников.
 local function condition(node)
-  local when, unless
-  for _, class in ipairs(node.classes) do
-    local prefix, name = class:match("^(when)%-(.*)$")
-    if not prefix then prefix, name = class:match("^(unless)%-(.*)$") end
-    if prefix == "when" then
-      assert(not when, "Для одного элемента допустим только один класс .when-<profile>")
-      when = profile_name(name)
-    elseif prefix == "unless" then
-      assert(not unless, "Для одного элемента допустим только один класс .unless-<profile>")
-      unless = profile_name(name)
-    end
+  for _,class in ipairs(node.classes) do
+    assert(not class:match('^when%-') and not class:match('^unless%-'), diagnostics.format("CORE.VISIBILITY_INVALID", 'Краткие классы when-/unless- не поддерживаются; используйте штатные content-visible/content-hidden и when-profile/unless-profile', {id=node.identifier,field="visibility"}))
   end
-  local visible = node.classes:includes("content-visible")
-  local hidden = node.classes:includes("content-hidden")
-  local standard_when, standard_unless = node.attributes["when-profile"], node.attributes["unless-profile"]
-  if not when and not unless and not standard_when and not standard_unless then return nil end
-  assert(not (visible and hidden), "Элемент не может одновременно иметь классы content-visible и content-hidden")
-  if when or unless then
-    assert(not visible and not hidden and not standard_when and not standard_unless,
-      "Нельзя смешивать краткую и стандартную запись условий профиля в одном элементе")
-  else
-    assert(visible or hidden, "Атрибуты when-profile/unless-profile требуют класса content-visible или content-hidden")
-    when = standard_when and profile_name(standard_when)
-    unless = standard_unless and profile_name(standard_unless)
-  end
+  local when,unless=node.attributes['when-profile'],node.attributes['unless-profile']
+  if not when and not unless then return nil end
+  local visible=node.classes:includes('content-visible')
+  local hidden=node.classes:includes('content-hidden')
+  assert(not (visible and hidden), diagnostics.format("CORE.VISIBILITY_INVALID", 'Элемент не может одновременно иметь классы content-visible и content-hidden', {id=node.identifier,field="visibility"}))
+  assert(visible or hidden, diagnostics.format("CORE.VISIBILITY_INVALID", 'Атрибуты when-profile/unless-profile требуют класса content-visible или content-hidden', {id=node.identifier,field="visibility"}))
+  when=when and profile_name(when, node, "when-profile")
+  unless=unless and profile_name(unless, node, "unless-profile")
+  local other=false
   for key, _ in pairs(node.attributes) do
-    assert(not ((key:match("^when%-") or key:match("^unless%-"))
-      and key ~= "when-profile" and key ~= "unless-profile"),
-      "Условия профиля нельзя совмещать с условиями формата или метаданных в одном элементе")
+    if (key:match("^when%-") or key:match("^unless%-"))
+      and key ~= "when-profile" and key ~= "unless-profile" then other=true end
   end
-  return {when = when, unless = unless, invert = hidden}
+  return {when = when, unless = unless, invert = hidden, other = other}
 end
 
-local function strip(node)
+local function strip(node,test,match)
   node.attributes["when-profile"], node.attributes["unless-profile"] = nil, nil
+  -- Native conditions combine with AND. A failed profile makes a hidden
+  -- conjunction impossible; otherwise Quarto evaluates its remaining terms.
+  if test.other and match then return end
+  if test.other and test.invert then
+    for key,_ in pairs(node.attributes) do
+      if key:match("^when%-") or key:match("^unless%-") then node.attributes[key]=nil end
+    end
+  end
   node.classes = node.classes:filter(function(class)
     return class ~= "content-visible" and class ~= "content-hidden"
-      and not class:match("^when%-") and not class:match("^unless%-")
   end)
 end
 
 function M.prepare(doc, override)
   local raw = doc.meta.course and doc.meta.course.view
   local view = override or (raw and pandoc.utils.stringify(raw) or nil)
-  assert(not view or views[view], "course.view должен принимать значение student или full")
+  assert(not view or views[view], diagnostics.format("CORE.VIEW_INVALID", "course.view должен принимать значение student или full", {field="course.view"}))
   local active = {}
-  for name in (os.getenv("QUARTO_PROFILE") or ""):gmatch("[^, ]+") do active[name] = true end
+  for _,name in ipairs(quarto.project.profile or {}) do active[name] = true end
   -- Public projection changes only the audience; native feature profiles survive.
   if override then active.student,active.full=nil,nil;active[override]=true end
-  assert(not (active.student and active.full), "Профили student и full нельзя включать одновременно")
-  assert(not view or not ((active.student and view ~= "student") or (active.full and view ~= "full")),
-    "course.view не соответствует выбранному профилю Quarto")
+  assert(not (active.student and active.full), diagnostics.format("CORE.PROFILES_INVALID", "Профили student и full нельзя включать одновременно", {field="profiles"}))
+  assert(not view or not ((active.student and view ~= "student") or (active.full and view ~= "full")), diagnostics.format("CORE.VIEW_INVALID", "course.view не соответствует выбранному профилю Quarto", {field="course.view"}))
   if view then active[view] = true end
+
+  if doc.meta["course-export-context"] == true then
+    -- Publication audience may gate an entire task/work and its ancestor
+    -- containers. Export keeps those identities, while audience predicates
+    -- inside each task still project its participant condition normally.
+    local marker="data-course-export-identity-scope"
+    local function mark(fragment,ancestors,inside)
+      return fragment:walk({traverse="topdown",Div=function(div)
+        local activity=contract.is_exercise(div)
+        if not inside and (activity or div.classes:includes("task-items")) then
+          div.attributes[marker]="true"
+          for _,ancestor in ipairs(ancestors) do ancestor.attributes[marker]="true" end
+        end
+        local chain={table.unpack(ancestors)}; chain[#chain+1]=div
+        div.content=mark(pandoc.Pandoc(div.content),chain,inside or activity).blocks
+        return div,false
+      end,Span=function(span)
+        local chain={table.unpack(ancestors)}; chain[#chain+1]=span
+        span.content=mark(pandoc.Pandoc({pandoc.Plain(span.content)}),chain,inside).blocks[1].content
+        return span,false
+      end})
+    end
+    doc=mark(doc,{},false)
+    local function identity_scope(node)
+      if node.attributes[marker]~="true" then return nil end
+      node.attributes[marker]=nil
+      condition(node) -- validate native author syntax before bypassing audience
+      for _,key in ipairs({"when-profile","unless-profile"}) do
+        if node.attributes[key]=="student" or node.attributes[key]=="full" then node.attributes[key]=nil end
+      end
+      local remaining=false
+      for key,_ in pairs(node.attributes) do
+        if key:match("^when%-") or key:match("^unless%-") then remaining=true end
+      end
+      if not remaining then
+        node.classes=node.classes:filter(function(class) return class~="content-visible" and class~="content-hidden" end)
+      end
+      return node
+    end
+    doc=doc:walk({Div=identity_scope,Span=identity_scope})
+  end
 
   -- Скрытые ветви тоже проверяются: ошибки разметки не зависят от профиля.
   local validate = function(node) condition(node) end
   doc:walk({Div = validate, Span = validate, CodeBlock = validate})
   -- Index the original expanded document before removing any branch. A paired
   -- solution outside its task still inherits the task's closed context.
+  local function matches(test)
+    return (not test.when or active[test.when] == true)
+      and (not test.unless or not active[test.unless])
+  end
   local function keep(node)
     local test = condition(node)
     if not test then return true end
-    local match = (not test.when or active[test.when] == true)
-      and (not test.unless or not active[test.unless])
+    local match=matches(test)
+    if test.invert and test.other then return true end
     return test.invert and not match or (not test.invert and match)
   end
   local indexed = {}
@@ -91,10 +128,9 @@ function M.prepare(doc, override)
     fragment:walk({traverse='topdown',Div=function(div)
       local visible=parent_visible and keep(div)
       if contract.is_activity(div) then
-        assert(not contract.is_example(div) or not indexed[div.identifier],
-          'CORE.SOLUTION_PAIRING_INVALID: duplicate example '..div.identifier)
+        assert(not contract.is_example(div) or not indexed[div.identifier], diagnostics.format("CORE.SOLUTION_PAIRING_INVALID", 'Повторный идентификатор примера '..div.identifier, {id=div.identifier,field="id"}))
         local purpose=div.attributes['course-role']
-        visible=visible and (view=='full' or not contract.is_exercise(div) or purpose~='control')
+        -- Control page inclusion is owned by native project file lists.
         indexed[div.identifier]={purpose=purpose,visible=visible,example=contract.is_example(div)}
       end
       index(pandoc.Pandoc(div.content),visible)
@@ -111,8 +147,7 @@ function M.prepare(doc, override)
   local function index_solutions(fragment,owner)
     fragment:walk({traverse='topdown',Div=function(div)
       if div.identifier:match('^sol%-') then
-        assert(not solutions[div.identifier],
-          'Повторный идентификатор учебного элемента: '..div.identifier)
+        assert(not solutions[div.identifier], diagnostics.format("CORE.DUPLICATE_DECLARATION", 'Повторный идентификатор учебного элемента: '..div.identifier, {id=div.identifier,field="id"}))
         solutions[div.identifier]=contract.related(div,indexed,owner)
       end
       index_solutions(pandoc.Pandoc(div.content),
@@ -131,17 +166,18 @@ function M.prepare(doc, override)
       local task=related and indexed[related]
       if own and not own.visible then visible=false end
       if task and not task.visible then visible=false end
-      if view~='full' then
+      if view=='student' then
         if node.classes:includes('grading-notes') then visible=false end
-        if node.identifier:match('^sol%-') or node.classes:includes('solution') then
+        if not quarto.doc.is_format('revealjs') and (node.identifier:match('^sol%-') or node.classes:includes('solution')) then
           if not task or (not task.example and task.purpose~='demonstration') then visible=false end
         end
       end
     end
-    if view~='full' and node.t=='CodeBlock' and node.classes:includes('answer-spec') then visible=false end
+    if view=='student' and node.t=='CodeBlock' and node.classes:includes('answer-spec') then visible=false end
     if not visible then return {} end
-    if view~='full' and node.t=='Span' and node.classes:includes('correct') then return node.content end
-    if condition(node) then strip(node) end
+    if view=='student' and node.t=='Span' and node.classes:includes('correct') then return node.content end
+    local test=condition(node)
+    if test then strip(node,test,matches(test)) end
     return node
   end
   doc = doc:walk({traverse = "topdown", Div = project, Span = project, CodeBlock = project})

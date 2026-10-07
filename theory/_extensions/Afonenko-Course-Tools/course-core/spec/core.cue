@@ -9,7 +9,7 @@ import "list"
 #Difficulty: "introductory" | "intermediate" | "advanced"
 #WorkMode: "individual" | "pair" | "group"
 #Requirement: "required" | "recommended" | "optional"
-#AssessmentKind: "lab" | "test" | "exam"
+#AssessmentKind: "lab" | "test" | "exam" | "handout"
 #MemberKind: "BulletList" | "OrderedList"
 #View: "student" | "full"
 #ActivityKinds: ["exercise","demonstration","prediction","discussion","self-check","independent-study","control"]
@@ -20,15 +20,14 @@ import "list"
 #Body: {"pandoc-api-version": [...int], meta: {...}, blocks: [...]}
 #Exercise: {
 	id:              string & =~"^exr-[a-z0-9][a-z0-9-]*$"
-	target:          string & !=""
+	target?:         string & !=""
 	authoredTarget?: string & !=""
-	if authoredTarget == _|_ {target: "manual"}
 	if authoredTarget != _|_ {target: authoredTarget}
-	purpose:    #ExercisePurpose
-	difficulty: #Difficulty
+	purpose?:   #ExercisePurpose
+	difficulty?: #Difficulty
 	time?:      int & >0 & <=#MaxMinutes
 	workMode?:  #WorkMode
-	sourceTopic: {id: string & =~"^sec-[a-z0-9][a-z0-9-]*$", owner: string & !="", rootQmd: string & !=""}
+	sourceTopic?: {id: string & !="", owner?: string & !="", rootQmd: string & !=""}
 	project: string
 	head: {kind: string, level: int & >=0 & <=6, title: string}
 	if authoredTarget != _|_ {head: #Head}
@@ -40,11 +39,12 @@ import "list"
 	extensions: {[string]: _}
 }
 #Assessment: {
-	id:    string & =~"^sec-[a-z0-9][a-z0-9-]*$"
+	id:    string & =~"^[a-z][a-z0-9-]*$"
 	kind:  #AssessmentKind
 	title: string & !=""
 	body:  #Body
 	items: [...string] & list.MinItems(1) & list.UniqueItems
+	requirements?: {[string]: "required" | "optional"}
 	memberContainers: 1
 	memberKinds: [#MemberKind]
 	memberSizes: [...1]
@@ -88,7 +88,7 @@ import "list"
 	}
 }
 #Course: {
-	course: {id: string & =~"^[a-z][a-z0-9-]*$", view?: #View}
+	course: {id?: string & =~"^[a-z][a-z0-9-]*$", view?: #View}
 	registeredTargets: [...string] & list.UniqueItems
 	exercises: [...#Exercise]
 	assessments: [...#Assessment]
@@ -96,7 +96,7 @@ import "list"
 	CORE001_uniqueExerciseIds: [for e in exercises {e.id}] & list.UniqueItems
 	CORE002_uniqueAssessmentIds: [for a in assessments {a.id}] & list.UniqueItems
 	CORE003_registeredTargets: {
-		for e in exercises {(e.id): list.Contains(registeredTargets, e.target) & true}
+		for e in exercises if e.target != _|_ {(e.id): list.Contains(registeredTargets, e.target) & true}
 	}
 	CORE004_existingMembers: {
 		for a in assessments {
@@ -105,6 +105,6 @@ import "list"
 			}
 		}
 	}
-	for e in exercises if e.gradingNotes != _|_ || e.purpose == "control" {course: view: "full"}
-	CORE008_canonicalSource: {for e in exercises {(e.id): {owner: e.sourceTopic.owner & course.id, source: e.sourceTopic.rootQmd & e.source}}}
+	for e in exercises if e.gradingNotes != _|_ {course: view: "full"}
+	CORE008_canonicalSource: {for e in exercises if e.sourceTopic != _|_ {(e.id): {source: e.sourceTopic.rootQmd & e.source}}}
 }

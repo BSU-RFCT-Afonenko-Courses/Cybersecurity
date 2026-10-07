@@ -1,0 +1,13 @@
+---
+assessment:
+  id: sec-work-data-integrity-backup
+  kind: lab
+---
+
+# Введение в кибербезопасность {#sec-work-data-integrity-backup}
+
+::: {.task-items}
+1. @exr-data-integrity-backup
+:::
+
+Это страница семинара с сылками на задачи, группировки с дз и демонстрационными вариантами, контрольные вопросы

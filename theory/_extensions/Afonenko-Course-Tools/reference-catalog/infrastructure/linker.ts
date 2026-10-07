@@ -1,3 +1,4 @@
+import { diagnostic } from "../diagnostics.ts";
 import { namespacePattern, referenceStyles } from "../domain/contract.ts";
 import type { Target } from "../domain/model.ts";
 import { assemble, resolve } from "../domain/catalog.ts";
@@ -17,11 +18,11 @@ export function linkPages(pages: Page[], navigationScript: string, imports: Targ
     for (const node of page.nodes) {
       const key = attr(node, "data-qrc-ref");
       if (!key) continue;
-      if (node.tagName !== "a") throw new Error(`QRC некорректная разметка ссылки в ${page.path}`);
+      if (node.tagName !== "a") throw diagnostic("QRC.REFERENCE_INVALID", `некорректная разметка ссылки в ${page.path}`, { source: `HTML-результат ${page.path}`, id: key, field: "data-qrc-ref" });
       const [namespace, id, extra] = key.split(":");
-      if (!namespacePattern.test(namespace) || !id || /[\s#]/.test(id) || extra !== undefined) throw new Error(`QRC некорректная ссылка ${key} в ${page.path}`);
+      if (!namespacePattern.test(namespace) || !id || /[\s#]/.test(id) || extra !== undefined) throw diagnostic("QRC.REFERENCE_INVALID", `некорректная ссылка ${key} в ${page.path}`, { source: `HTML-результат ${page.path}`, id: key, field: "data-qrc-ref" });
       const requestedStyle = attr(node, "data-qrc-style");
-      if (!(referenceStyles as readonly string[]).includes(requestedStyle ?? "")) throw new Error(`QRC некорректный стиль ссылки в ${page.path}`);
+      if (!(referenceStyles as readonly string[]).includes(requestedStyle ?? "")) throw diagnostic("QRC.REFERENCE_INVALID", `некорректный стиль ссылки в ${page.path}`, { source: `HTML-результат ${page.path}`, id: key, field: "data-qrc-style" });
       if (scope === "local" && !targets.has(key)) {
         const attributes = node.attrs.filter(a => !["href", "data-qrc-deferred"].includes(a.name));
         attributes.push({ name: "data-qrc-deferred", value: "true" });
@@ -33,13 +34,13 @@ export function linkPages(pages: Page[], navigationScript: string, imports: Targ
       }
       const target = resolve(targets, key, page.path);
       const style = requestedStyle === "default" ? target.defaultStyle ?? "default" : requestedStyle;
-      if (style === "external" && !target.baseUrl) throw new Error(`QRC стиль external требует импортированной цели: ${key}`);
+      if (style === "external" && !target.baseUrl) throw diagnostic("QRC.REFERENCE_INVALID", `стиль external требует импортированной цели: ${key}`, { source: `HTML-результат ${page.path}`, id: key, field: "data-qrc-style" });
       const custom = attr(node, "data-qrc-custom") === "true";
       // Внешний каталог предоставляет данные, а не выполняемую разметку.
       // Локальные подписи Quarto и явно написанный автором текст сохраняют HTML.
       const number = target.baseUrl ? escape(target.number) : target.numberHtml;
       const caption = target.baseUrl ? escape(target.label) : target.labelHtml;
-      if (style === "number" && !custom && !number) throw new Error(`QRC ${key} не имеет номера; используйте название или задайте текст ссылки`);
+      if (style === "number" && !custom && !number) throw diagnostic("QRC.REFERENCE_INVALID", `${key} не имеет номера; используйте название или задайте текст ссылки`, { source: `HTML-результат ${page.path}`, id: key, field: "data-qrc-style" });
       // Повторная финализация меняет источник, сохраняя только авторский текст.
       const priorTitle = hasClass(node, "qrc-external") ? node.childNodes.find(child => "tagName" in child && child.tagName === "span" && hasClass(child, "qrc-title")) : undefined;
       const authored = priorTitle && "tagName" in priorTitle ? priorTitle : node;
@@ -91,7 +92,7 @@ export function linkPages(pages: Page[], navigationScript: string, imports: Targ
     // Фрагмент URL может указывать на цель внутри свёрнутого блока.
     // Статические ресурсы без явного закрывающего body сохраняются без изменений.
     const body = page.nodes.find((n) => n.tagName === "body")?.sourceCodeLocation?.endTag;
-    if (!body && page.reveal) throw new Error(`QRC отсутствует элемент body в ${page.path}`);
+    if (!body && page.reveal) throw diagnostic("QRC.OUTPUT_INVALID", `отсутствует элемент body в ${page.path}`, { source: `HTML-результат ${page.path}`, field: "body" });
     if (body) {
       // В результатах портала может остаться ранее добавленный скрипт.
       // Заменяем его, чтобы обработчики событий не дублировались.

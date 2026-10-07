@@ -1,3 +1,4 @@
+local diagnostics = require("./diagnostics")
 local M={}
 function M.validate(doc)
   local selected=doc.meta.course.adapters or {}
@@ -22,7 +23,7 @@ function M.validate(doc)
   for _,raw in ipairs(selected) do
     local name=pandoc.utils.stringify(raw)
     local matches={};for _,p in ipairs(packages) do if p.contract.name==name then matches[#matches+1]=p end end
-    assert(#matches==1,'CORE.ADAPTER_INVALID: '..name)
+    assert(#matches==1, diagnostics.format("CORE.ADAPTER_INVALID", 'Требуется ровно один установленный пакет адаптера: '..name, {id=name,field="course.adapters"}))
     local file=matches[1].path..'/validate.lua'
     local validator=assert(loadfile(file))()
     validator.validate(doc)

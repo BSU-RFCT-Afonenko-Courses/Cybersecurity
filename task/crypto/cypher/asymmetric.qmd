@@ -1,0 +1,1 @@
+# Ассиметричное шифрование {#sec-work-crypto-cypher-asymmetric}

@@ -1,1 +1,0 @@
-{"name":"CourseNavigation","script":["model.js","ui.js","plugin.js"],"stylesheet":["navigation.css"],"config":{"scrollActivationWidth":0,"courseNav":{"sidebar":true}}}

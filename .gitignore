@@ -31,3 +31,6 @@ _freeze/
 **/.render-cache/
 **/_freeze/
 **/_downloads/
+
+# Логи локального запуска CI.
+/ci-logs/

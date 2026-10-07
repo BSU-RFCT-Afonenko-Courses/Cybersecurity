@@ -1,0 +1,1 @@
+# Симметричное шифрование {#sec-seminar-crypto-cypher-symmetric}

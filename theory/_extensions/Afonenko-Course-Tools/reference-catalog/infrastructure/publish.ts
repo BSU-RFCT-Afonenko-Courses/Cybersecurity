@@ -1,3 +1,4 @@
+import { diagnostic } from "../diagnostics.ts";
 import type { Catalog, Exports } from "../domain/model.ts";
 import { join, relative, dirname, fromFileUrl, resolve, isAbsolute } from "./files.ts";
 import { readPage } from "./pages.ts";
@@ -22,21 +23,22 @@ export interface CatalogPublication {
   portal?: { input: string; output: string };
 }
 async function currentFiles(root: string, stage: string, outputs: string[] | undefined, local: boolean): Promise<string[]> {
-  if (!outputs) throw new Error("QRC требует явный список текущих outputs");
+  if (!outputs) throw diagnostic("QRC.OUTPUT_INVALID", "требует явный список текущих outputs", { source: stage, field: "outputs" });
   const actualStage = await Deno.realPath(stage);
   const paths = [...new Set(outputs.map(path => resolve(root, path)))];
   for (const path of paths) {
     const within = relative(stage, path);
-    if (isAbsolute(within) || within === ".." || within.startsWith("../") || within.startsWith("..\\")) throw new Error(`QRC output вне текущего stage: ${path}`);
-    const stat = await Deno.lstat(path);
-    if (stat.isSymlink || !stat.isFile) throw new Error(`QRC output должен быть обычным файлом: ${path}`);
+    if (isAbsolute(within) || within === ".." || within.startsWith("../") || within.startsWith("..\\")) throw diagnostic("QRC.OUTPUT_INVALID", `output вне текущего stage: ${path}`, { source: path, field: "outputs" });
+    let stat: Deno.FileInfo;
+    try { stat = await Deno.lstat(path); } catch (cause) { throw diagnostic("QRC.OUTPUT_INVALID", "текущий output недоступен", { source: path, field: "outputs" }, cause); }
+    if (stat.isSymlink || !stat.isFile) throw diagnostic("QRC.OUTPUT_INVALID", `output должен быть обычным файлом: ${path}`, { source: path, field: "outputs" });
     const actual = relative(actualStage, await Deno.realPath(path));
-    if (isAbsolute(actual) || actual === ".." || actual.startsWith("../") || actual.startsWith("..\\")) throw new Error(`QRC output вне текущего stage: ${path}`);
+    if (isAbsolute(actual) || actual === ".." || actual.startsWith("../") || actual.startsWith("..\\")) throw diagnostic("QRC.OUTPUT_INVALID", `output вне текущего stage: ${path}`, { source: path, field: "outputs" });
   }
   const search = join(stage, "search.json");
   if (local) try {
     const stat = await Deno.lstat(search);
-    if (stat.isSymlink || !stat.isFile) throw new Error(`QRC output должен быть обычным файлом: ${search}`);
+    if (stat.isSymlink || !stat.isFile) throw diagnostic("QRC.OUTPUT_INVALID", `output должен быть обычным файлом: ${search}`, { source: search, field: "outputs" });
     if (!paths.includes(search)) paths.push(search);
   } catch (error) { if (!(error instanceof Deno.errors.NotFound)) throw error; }
   return paths;
@@ -50,10 +52,10 @@ export async function publish(context: CatalogPublication): Promise<void> {
     const raw = context.config["reference-catalog"];
     const namespace = isRecord(raw) ? raw.namespace : undefined;
     if (typeof namespace !== "string" || !namespacePattern.test(namespace)) {
-      throw new Error("QRC порталу требуется корректное reference-catalog.namespace");
+      throw diagnostic("QRC.CONFIG_INVALID", "порталу требуется корректное reference-catalog.namespace", { source: context.portal.input, field: "reference-catalog.namespace" });
     }
     if (members.some(member => member.namespace === namespace)) {
-      throw new Error(`QRC пространство имён портала совпадает с участником: ${namespace}`);
+      throw diagnostic("QRC.CONFIG_INVALID", `пространство имён портала совпадает с участником: ${namespace}`, { source: context.portal.input, field: "reference-catalog.namespace" });
     }
     namespaces.push(namespace);
   }
@@ -85,7 +87,7 @@ export async function publish(context: CatalogPublication): Promise<void> {
       for (const row of sourceRows) {
         const base = searchIndexBase(stage, index);
         const url = new URL(row.href, `https://qrc.invalid/${base}`);
-        if (url.origin !== "https://qrc.invalid") throw new Error(`QRC внешний адрес в локальном поисковом индексе: ${row.href}`);
+        if (url.origin !== "https://qrc.invalid") throw diagnostic("QRC.OUTPUT_INVALID", `внешний адрес в локальном поисковом индексе: ${row.href}`, { source: path, field: "outputs" });
         if (!linked.parsedPages.has(decodeURIComponent(url.pathname).slice(1))) continue;
         const href = url.pathname.slice(1) + url.search + url.hash;
         rows.set(href, { ...row, href });

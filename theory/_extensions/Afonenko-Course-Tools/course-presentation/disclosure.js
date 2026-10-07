@@ -1,6 +1,6 @@
 /* Локальные ссылки @sol / @tip работают без каталога ссылок.
  * Межпроектные переходы обрабатывает QRC; совместная обработка допускает повтор.
- * Обрабатываются только ссылки внутрь контейнеров course-answer. */
+ * Notes и поиск используют ту же операцию раскрытия целевого блока. */
 (() => {
   'use strict';
   function targetForHash(hash) {
@@ -8,7 +8,9 @@
     catch { return null; }
   }
   function expose(target) {
-    if (!target?.closest('.course-answer')) return;
+    if (!target) return;
+    const displayed = window.CoursePresentation?.exposeNote(target);
+    if (displayed) target = displayed;
     let fragment = -1;
     const scroll = () => { if (!window.Reveal) target.scrollIntoView({block: 'center', behavior: 'auto'}); };
     for (let element = target; element; element = element.parentElement) {
@@ -42,6 +44,7 @@
     }
   }
   function onHash() { expose(targetForHash(window.location.hash)); }
+  window.CourseDisclosure = {expose};
   function initialize() {
     document.addEventListener('click', (event) => {
       // Quarto обрабатывает якоря Reveal с preventDefault; цель раскрывается

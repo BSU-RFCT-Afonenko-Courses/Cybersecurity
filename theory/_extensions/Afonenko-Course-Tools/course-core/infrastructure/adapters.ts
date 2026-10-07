@@ -1,3 +1,4 @@
+import { diagnostic } from "../domain/diagnostics.ts";
 import { join, resolve } from "stdlib/path";
 import type { Adapter, Contract } from "../domain/model.ts";
 import { child, exists } from "./files.ts";
@@ -28,7 +29,7 @@ export async function adapters(root: string, explicit: string[]): Promise<Adapte
         catch { continue; } // Неактивный повреждённый пакет не участвует в контракте.
         if (candidate.name === argument) matches.push(path);
       }
-      if (matches.length !== 1) throw new Error(`Для адаптера ${argument} требуется ровно один установленный пакет; найдено: ${matches.length}`);
+      if (matches.length !== 1) throw diagnostic("ADAPTER", "Компонент Core/adapters: " + `Для адаптера ${argument} требуется ровно один установленный пакет; найдено: ${matches.length}`, {field: "adapter"});
       paths.push(matches[0]); continue;
     }
     const path = resolve(root, argument);
@@ -39,15 +40,15 @@ export async function adapters(root: string, explicit: string[]): Promise<Adapte
   for (const path of paths) {
     const contract: Contract = JSON.parse(await Deno.readTextFile(join(path, "contract.json")));
     if (contract.name === "course-core" || contract.name === "reference-catalog") continue;
-    if (!/^[a-z][a-z0-9-]*$/.test(contract.name) || contract.name === "manual") throw new Error(`Недопустимое имя адаптера: ${contract.name}`);
+    if (!/^[a-z][a-z0-9-]*$/.test(contract.name) || contract.name === "manual") throw diagnostic("ADAPTER", "Компонент Core/adapters: " + `Недопустимое имя адаптера: ${contract.name}`, {field: "adapter"});
     for (const field of ["version", "requires_core", "api", "ir", "supported_ir"]) {
-      if (field in contract) throw new Error(`Адаптер ${contract.name}: поле ${field} не поддерживается; обновите пакет до текущего контракта`);
+      if (field in contract) throw diagnostic("ADAPTER", "Компонент Core/adapters: " + `Адаптер ${contract.name}: поле ${field} не поддерживается; обновите пакет до текущего контракта`, {field: "adapter"});
     }
-    if (typeof contract.rules !== "string" || !contract.rules) throw new Error(`Адаптер ${contract.name}: требуется путь rules к схеме CUE`);
+    if (typeof contract.rules !== "string" || !contract.rules) throw diagnostic("ADAPTER", "Компонент Core/adapters: " + `Адаптер ${contract.name}: требуется путь rules к схеме CUE`, {field: "adapter"});
     child(path, contract.rules);
-    if (result.some(a => a.contract.name === contract.name)) throw new Error(`Повторный адаптер: ${contract.name}`);
+    if (result.some(a => a.contract.name === contract.name)) throw diagnostic("ADAPTER", "Компонент Core/adapters: " + `Повторный адаптер: ${contract.name}`, {field: "adapter"});
     result.push({ directory: path, contract, fragments: new Map() });
   }
-  if (explicit.length && !result.length) throw new Error("По указанным путям не найдены контракты адаптеров");
+  if (explicit.length && !result.length) throw diagnostic("ADAPTER", "Компонент Core/adapters: по указанным путям не найдены контракты адаптеров", {field: "adapter"});
   return result;
 }

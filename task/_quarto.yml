@@ -1,0 +1,53 @@
+fail-if-warnings: true
+project:
+  type: book
+  output-dir: _output
+  pre-render:
+  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts
+  - _extensions/Afonenko-Course-Tools/project-download/entrypoints/pre.ts
+  post-render:
+  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/post.ts
+  - _extensions/Afonenko-Course-Tools/project-download/entrypoints/post.ts
+  - _extensions/Afonenko-Course-Tools/reference-catalog/entrypoints/post.ts
+  - ../_extensions/Afonenko-Course-Tools/course-site/entrypoints/collect.ts
+  resources:
+  - '!**/*.qmd'
+  - ./assets/**
+  - '!materials/**'
+  - '!_generated/**'
+  - '!_freeze/**'
+  - '!.quarto/**'
+  - '!**/_extensions/**'
+  - '!**/_generated/**'
+  - '!**/_site-full/**'
+  - '!**/_site-student/**'
+  - '!**/_output/**'
+  - '!**/.quarto/**'
+  - '!**/_freeze/**'
+profile:
+  default: student
+  group:
+  - - student
+    - full
+filters:
+- course-core
+- course-presentation
+- project-download
+- reference-catalog
+book:
+  title: Задания и работы — Основы кибербезопасности
+  sidebar:
+    tools:
+    - icon: house
+      href: ../index.html#sec-portal
+      text: Навигация курса
+author:
+- Афоненко Анатолий
+date: today
+lang: ru
+bibliography: ../references.bib
+format:
+  html:
+    theme: cosmo
+reference-catalog:
+  namespace: tasks

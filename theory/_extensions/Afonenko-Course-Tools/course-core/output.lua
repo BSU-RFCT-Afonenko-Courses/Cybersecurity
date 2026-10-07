@@ -1,3 +1,4 @@
+local diagnostics = require("./diagnostics")
 local M = {}
 local function source(root)
   local input = quarto.doc.input_file
@@ -37,9 +38,9 @@ function M.write(value)
   local pointer=io.open(root .. "/_generated/course-spec/active-native-run.json","r")
   if pointer then
     run=pandoc.json.decode(pointer:read("*a"));pointer:close()
-    assert(run.schema=="course-native-run-pointer-v1" and run.projectRoot==root,"NATIVE.RUN_POINTER_INVALID")
+    assert(run.schema=="course-native-run-pointer-v1" and run.projectRoot==root, diagnostics.format("NATIVE.RUN_POINTER_INVALID", "Указатель текущей сборки не соответствует проекту", {field="native-run"}))
     local prefix=root.."/_generated/course-spec/native-runs/"
-    assert(run.directory:sub(1,#prefix)==prefix and run.directory:sub(#prefix+1):match('^[%w%-]+$'),"NATIVE.RUN_DIRECTORY_INVALID")
+    assert(run.directory:sub(1,#prefix)==prefix and run.directory:sub(#prefix+1):match('^[%w%-]+$'), diagnostics.format("NATIVE.RUN_DIRECTORY_INVALID", "Каталог запуска должен принадлежать служебной области проекта", {field="native-run"}))
     local completed=io.open(run.directory.."/native-run.json","r")
     if completed then completed:close();run=nil end
   end

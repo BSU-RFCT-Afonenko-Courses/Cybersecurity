@@ -1,3 +1,4 @@
+fail-if-warnings: true
 project:
   type: website
   output-dir: _site
@@ -14,7 +15,8 @@ project:
   - '!_generated/**'
   - '!_site*/**'
   - '!README.md'
-  - '!tools/**'
+  - '!CI/**'
+  - '!ci-logs/**'
   - '!.agents/**'
   - '!.aws/**'
   - '!.codex/**'
@@ -23,6 +25,16 @@ project:
   - '!_freeze/**'
   - '!.quarto/**'
   - '!UPSTREAM.md'
+  - '!**/_extensions/**'
+  - '!**/_generated/**'
+  - '!**/_site-full/**'
+  - '!**/_site-student/**'
+  - '!**/_output/**'
+  - '!**/.quarto/**'
+  - '!**/_freeze/**'
+  - '!task/**'
+  - '!seminars/**'
+  - '!Новые семинары'
   pre-render:
   - _extensions/Afonenko-Course-Tools/course-site/entrypoints/pre.ts
   post-render:
@@ -35,7 +47,7 @@ format:
     toc: false
 lang: ru
 course:
-  id: cybersecurity-portal
+  id: cybersecurity
 website:
   title: Основы кибербезопасности
   search: true
@@ -49,107 +61,12 @@ reference-catalog:
   namespace: portal
   publication:
     title: Основы кибербезопасности
-  exports:
-    portal:
-    - sec-portal
-    - sec-course-plan
-    theory:
-    - sec-theory
-    - sec-theory-crypto-random
-    - sec-theory-crypto-hash
-    - sec-theory-crypto-key-gen
-    - sec-theory-crypto-cypher
-    tasks:
-    - sec-tasks
-    - sec-plan
-    - sec-lab-crypto-rng
-    - exr-lab-crypto-rng
-    - sec-lab-crypto-hash
-    - exr-lab-crypto-hash
-    - sec-lab-crypto-key-gen
-    - exr-lab-crypto-key-gen
-    - sec-lab-crypto-cypher-symmetric
-    - exr-lab-crypto-cypher-symmetric
-    - sec-lab-crypto-cypher-asymmetric
-    - exr-lab-crypto-cypher-asymmetric
-    - sec-lab-crypto-sign
-    - exr-lab-crypto-sign
-    - sec-lab-crypto-key-exchange
-    - exr-lab-crypto-key-exchange
-    - sec-lab-crypto-cert
-    - exr-lab-crypto-cert
-    - sec-lab-access-control-ident
-    - exr-lab-access-control-ident
-    - sec-lab-access-control-authn
-    - exr-lab-access-control-authn
-    - sec-lab-access-control-password-protection
-    - exr-lab-access-control-password-protection
-    - sec-lab-access-control-authz-model
-    - exr-lab-access-control-authz-model
-    - sec-lab-access-control-windows-acl
-    - exr-lab-access-control-windows-acl
-    - sec-lab-access-control-windows-mic
-    - exr-lab-access-control-windows-mic
-    - sec-lab-data-integrity-detection
-    - exr-lab-data-integrity-detection
-    - sec-lab-data-integrity-correction
-    - exr-lab-data-integrity-correction
-    - sec-lab-data-integrity-backup
-    - exr-lab-data-integrity-backup
-    - sec-lab-audit-code
-    - exr-lab-audit-code
-    - sec-lab-audit-event
-    - exr-lab-audit-event
-    - sec-lab-ddos
-    - exr-lab-ddos
-    - sec-lab-social-engineering
-    - exr-lab-social-engineering
-    - sec-lab-crypto-rsa-factorization
-    - exr-lab-crypto-rsa-factorization
-    lectures:
-    - sec-lectures
-    - sec-lectures-intro
-    - sec-lectures-crypto
-    - sec-lectures-access
-    - sec-lectures-integrity
-    - sec-lectures-audit
-    - sec-lectures-attacks
-    practice:
-    - sec-practice
-    - sec-seminar-1
-    - sec-seminar-2
-    - sec-seminar-3
-    - sec-seminar-4
-    - sec-seminar-5
-    - sec-seminar-6
-    - sec-seminar-7
-    - sec-seminar-8
-    handbook:
-    - sec-handbook
 profile:
   default: student
   group:
   - - student
     - full
-course-site:
-  projects:
-  - id: theory
-    path: theory
-    format: html
-    mount: theory
-  - id: tasks
-    path: tasks
-    format: html
-    mount: tasks
-  - id: lectures
-    path: lectures
-    format: revealjs
-    mount: lectures
-  - id: practice
-    path: practice
-    format: revealjs
-    mount: practice
-  - id: handbook
-    path: handbook
-    format: html
-    mount: handbook
+subprojects:
+- theory
+- task
+- seminars

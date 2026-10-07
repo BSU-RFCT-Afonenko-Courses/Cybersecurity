@@ -1,3 +1,4 @@
+fail-if-warnings: true
 project:
   type: book
   output-dir: _output
@@ -8,6 +9,13 @@ project:
   - '!_generated/**'
   - '!_freeze/**'
   - '!.quarto/**'
+  - '!**/_extensions/**'
+  - '!**/_generated/**'
+  - '!**/_site-full/**'
+  - '!**/_site-student/**'
+  - '!**/_output/**'
+  - '!**/.quarto/**'
+  - '!**/_freeze/**'
   pre-render:
   - _extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts
   post-render:
@@ -19,14 +27,10 @@ profile:
   group:
   - - student
     - full
-course:
-  id: cybersecurity-theory
 filters:
 - course-core
 - course-presentation
 - reference-catalog
-course-presentation:
-  mode: study
 book:
   sidebar:
     tools:
@@ -34,14 +38,6 @@ book:
       href: ../index.html#sec-portal
       text: Навигация курса
   title: Теория
-  chapters:
-  - index.qmd
-  - part: Криптография
-    chapters:
-    - crypto/random.qmd
-    - crypto/hash.qmd
-    - crypto/key-gen.qmd
-    - crypto/cypher.qmd
 format:
   html:
     theme: cosmo
@@ -50,7 +46,6 @@ format:
 lang: ru
 author:
 - Афоненко Анатолий
-bibliography: references.bib
-engine: knitr
+bibliography: ../references.bib
 reference-catalog:
   namespace: theory

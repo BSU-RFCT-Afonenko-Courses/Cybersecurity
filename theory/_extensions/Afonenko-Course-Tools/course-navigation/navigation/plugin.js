@@ -22,11 +22,12 @@
         let historyTarget = null;
         let ui;
         const current = () => model.slides.find(slide => slide.element === deck.getCurrentSlide());
-        function goto(index) {
+        function goto(index, target) {
           const slide = model.slides[index];
           if (!slide) return;
           const indices = deck.getIndices(slide.element);
           deck.slide(indices.h, indices.v || 0, -1);
+          if (target) root.CourseDisclosure?.expose(target);
         }
         function update() {
           const slide = current();

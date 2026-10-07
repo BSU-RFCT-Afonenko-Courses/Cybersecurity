@@ -1,5 +1,5 @@
-title: Native course site composition
-version: 3.0.1
+title: Составной сайт курса
+version: 4.0.1
 contributes:
   metadata:
     course-site-runtime: true

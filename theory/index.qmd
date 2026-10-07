@@ -7,4 +7,4 @@
 - @sec-theory-crypto-key-gen — получение криптографических ключей.
 - @sec-theory-crypto-cypher — симметричное и асимметричное шифрование.
 
-Практическое применение: @tasks:sec-tasks. Порядок работы: @tasks:sec-plan.
+Практическое применение: @tasks:sec-tasks.

@@ -3,9 +3,10 @@ local contract = require('./pedagogy/contract')
 local pedagogy = require('./pedagogy/collect')
 local assessment = require('./assessment')
 local vocabulary = require('./vocabulary')
+local diagnostics = require('./diagnostics')
 local M = {}
 local function valid(value, pattern) return type(value)=='string' and value:match(pattern) ~= nil end
-local function check(value, code, detail) assert(value, code..': '..(detail or '')) end
+local function check(value, code, detail, context) if not value then diagnostics.fail(code, detail or 'Некорректное объявление', context) end end
 local function prefix(value, kind) return value:match('^'..kind..'%-') ~= nil end
 local function contains(values, value)
   for _,item in ipairs(values) do if item==value then return true end end
@@ -72,7 +73,7 @@ end
 
 function M.validate(doc)
   local owner = pandoc.utils.stringify(doc.meta.course.id or '')
-  check(valid(owner,'^[a-z][a-z0-9%-]*$'),'CORE.COURSE_INVALID','course.id='..owner)
+  check(owner=='' or valid(owner,'^[a-z][a-z0-9%-]*$'),'CORE.COURSE_INVALID','Идентификатор курса должен состоять из строчных латинских букв, цифр и дефисов', {id=owner,field='course.id',hint='Используйте имя вроде course-demo'})
   local source,rows = source_path(),occurrences(doc)
   local defaults=contract.defaults(doc.meta)
   local identities, facts, domains,activities = {},pandoc.List(),{},{}
@@ -84,36 +85,31 @@ function M.validate(doc)
     local domain = row.kind=='Header' and prefix(id,'sec') or row.kind=='Div' and
       (contract.is_activity(node) or prefix(id,'sol') or node.classes:includes('solution') or node.attributes['course-role']~=nil or node.attributes.target~=nil)
     if domain and id~='' then
-      check(not identities[id],'CORE.DUPLICATE_DECLARATION','Повторный идентификатор учебного элемента: '..id)
+      check(not identities[id],'CORE.DUPLICATE_DECLARATION','Повторный идентификатор учебного элемента: '..id, {id=id,field='id',related={{source=source,id=id}},hint='Назначьте уникальный идентификатор'})
       identities[id]=true;domains[id]=true
     end
     if row.kind=='Header' and prefix(id,'sec') then
-      check(valid(id,'^sec%-[a-z0-9][a-z0-9%-]*$'),'CORE.TOPIC_INVALID',id)
+      check(valid(id,'^sec%-[a-z0-9][a-z0-9%-]*$'),'CORE.TOPIC_INVALID','Некорректный идентификатор темы: '..id, {id=id,field='id'})
     elseif row.kind=='Div' then
       if contract.is_activity(node) or prefix(id,'sol') then
-        check(valid(id,'^ex[rm]%-[a-z0-9][a-z0-9%-]*$') or valid(id,'^sol%-[a-z0-9][a-z0-9%-]*$'),'CORE.EXERCISE_INVALID',id)
+        check(valid(id,'^ex[rm]%-[a-z0-9][a-z0-9%-]*$') or valid(id,'^sol%-[a-z0-9][a-z0-9%-]*$'),'CORE.EXERCISE_INVALID','Некорректный идентификатор упражнения: '..id, {id=id,field='id'})
       end
       if contract.is_exercise(node) or node.attributes.target~=nil then
-        check(contract.is_exercise(node),'CORE.EXERCISE_INVALID','target requires exr-*')
-        local role=vocabulary.roles[node.attributes['course-role']]
-        check(role and role.purpose,'CORE.EXERCISE_PURPOSE_REQUIRED',id)
-        check(vocabulary.difficulty[node.attributes.difficulty]~=nil,'CORE.EXERCISE_DIFFICULTY_REQUIRED',id)
+        check(contract.is_exercise(node),'CORE.EXERCISE_INVALID','target допустим только у exr-*', {id=id,field='target'})
         for key,_ in pairs(node.attributes) do
           -- Visibility syntax is evaluated by the common native projection.
           check(contract.exerciseAttributes[key] or contract.attributes[key] and key~='for' and key~='requirement'
-            or key=='when-profile' or key=='unless-profile', 'CORE.EXERCISE_INVALID',id..'/'..key)
+            or contract.nativeExerciseAttributes[key], 'CORE.EXERCISE_INVALID','Неизвестный атрибут упражнения: '..key, {id=id,field=key})
         end
-        check(node.attributes.target==nil or node.attributes.target~='', 'CORE.EXERCISE_INVALID',id..'/target')
-        check(node.attributes.target==nil or node.content[1] and node.content[1].t=='Header', 'CORE.EXERCISE_INVALID',id..'/head')
+        check(node.attributes.target==nil or node.attributes.target~='', 'CORE.EXERCISE_INVALID','target не может быть пустым', {id=id,field='target'})
+        check(node.attributes.target==nil or node.content[1] and node.content[1].t=='Header', 'CORE.EXERCISE_INVALID','Упражнение с target требует непустой заголовок уровня 1–6', {id=id,field='head'})
         if node.attributes.target~=nil then
           local header=node.content[1]
-          check(header.level>=1 and header.level<=6 and pandoc.utils.stringify(header.content)~='', 'CORE.EXERCISE_INVALID',id..'/head')
+          check(header.level>=1 and header.level<=6 and pandoc.utils.stringify(header.content)~='', 'CORE.EXERCISE_INVALID','Упражнение с target требует непустой заголовок уровня 1–6', {id=id,field='head'})
         end
         for _,parent in ipairs(row.ancestors) do
-          check(not contract.is_exercise(parent) and parent.attributes.target==nil,'CORE.EXERCISE_INVALID',id..'/nested')
+          check(not contract.is_exercise(parent) and parent.attributes.target==nil,'CORE.EXERCISE_INVALID','Упражнения нельзя вкладывать друг в друга', {id=id,field='nested'})
         end
-        -- validates time/work-mode without inheriting required difficulty.
-        contract.metadata(node.attributes)
         -- Native book processing moves the chapter heading to public metadata.
         local chapter=doc.meta.crossref and doc.meta.crossref['chapter-id']
         local nearest=chapter and pandoc.utils.stringify(chapter) or nil
@@ -124,8 +120,7 @@ function M.validate(doc)
             if outside then nearest=header.node.identifier end
           end
         end
-        check(nearest and valid(nearest,'^sec%-[a-z0-9][a-z0-9%-]*$'),'CORE.EXERCISE_SOURCE_TOPIC_REQUIRED',id)
-        facts:insert({id=id,project=node.attributes.project,sourceTopic={id=nearest,owner=owner,rootQmd=source}})
+        facts:insert({id=id,project=node.attributes.project,sourceTopic=nearest and {id=nearest,owner=owner~='' and owner or nil,rootQmd=source} or nil})
       end
       -- Closed grading notes are excluded from public pedagogy extraction,
       -- but their actual Course declarations still require valid metadata
@@ -135,28 +130,28 @@ function M.validate(doc)
       contract.describe(node,defaults,activity)
       local related=contract.related(node,activities,activity)
       if node.attributes['for'] then
-        assert(activities[related], 'Атрибут for должен указывать на видимое упражнение текущего документа: '..related)
-        assert(not activity or activity==related, 'Атрибут for противоречит окружающему упражнению: '..related)
+        check(activities[related], 'CORE.PEDAGOGY_REFERENCE_INVALID','Атрибут for должен указывать на видимое упражнение текущего документа: '..related, {id=id,field='for',related={{id=related}}})
+        check(not activity or activity==related, 'CORE.PEDAGOGY_REFERENCE_CONFLICT','Атрибут for противоречит окружающему упражнению: '..related, {id=id,field='for',related={{id=related},{id=activity}}})
       end
     end
   end
   -- This checks all current pedagogy/solution declarations, including hidden
   -- ones. Visibility still owns profile conditions and closed-context policy.
   pedagogy.collect(doc)
-  M.assessment(doc)
-  return facts,domains
+  local rawAssessment = M.assessment(doc)
+  return facts,domains,rawAssessment
 end
 
 function M.assessment(doc)
   local work=assessment.collect(doc)
   if work then
-    check(valid(work.id,'^sec%-[a-z0-9][a-z0-9%-]*$') and work.title~='' and contains(vocabulary.assessmentKinds,work.kind)
+    check(valid(work.id,'^[a-z][a-z0-9%-]*$') and work.title~='' and contains(vocabulary.assessmentKinds,work.kind)
       and work.memberContainers==1 and #work.memberKinds==1 and contains(vocabulary.memberKinds,work.memberKinds[1]) and #work.items>0,
-      'CORE.ASSESSMENT_INVALID',source_path())
+      'CORE.ASSESSMENT_INVALID','Работа требует корректный ID, название, вид и один непустой список участников', {id=work.id,field='assessment/task-items'})
     local members={}
-    for _,size in ipairs(work.memberSizes) do check(size==1,'CORE.ASSESSMENT_INVALID','member') end
+    for _,size in ipairs(work.memberSizes) do check(size==1,'CORE.ASSESSMENT_INVALID','Каждый пункт работы должен содержать одну ссылку на упражнение', {id=work.id,field='items'}) end
     for _,id in ipairs(work.items) do
-      check(not members[id],'CORE.ASSESSMENT_INVALID','duplicate member '..id);members[id]=true
+      check(not members[id],'CORE.ASSESSMENT_INVALID','Повторный участник работы: '..id, {id=work.id,field='items',related={{id=id}}});members[id]=true
     end
   end
   return work
@@ -185,7 +180,7 @@ function M.references(doc, original)
   end
   local function target(id,explicit)
     local namespace=id:match('^ex[rm]%-') or prefix(id,'sol') or prefix(id,'sec')
-    if original[id] or explicit and namespace then check(visible[id],'CORE.PROFILE_REFERENCE_INTEGRITY',id) end
+    if original[id] or explicit and namespace then check(visible[id],'CORE.PROFILE_REFERENCE_INTEGRITY','Ссылка указывает на отсутствующий в текущем представлении элемент', {id=id,field='reference',hint='Проверьте профиль и условия видимости ссылки и цели'}) end
   end
   doc:walk({Link=function(link)
     local path,id=link.target:match('^([^#]*)#(.+)$')
