@@ -1,8 +1,0 @@
-{
-  "argv": [
-    "bash",
-    "CI/install-extensions.sh"
-  ],
-  "exitCode": 0,
-  "durationSeconds": 48.668
-}
