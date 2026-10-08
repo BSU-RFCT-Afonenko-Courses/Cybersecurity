@@ -1,0 +1,38 @@
+Running script '_extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts'
+Running script '_extensions/Afonenko-Course-Tools/project-download/entrypoints/pre.ts'
+Running script '/home/tolya/Cybersecurity/_extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts'
+
+[ 1/22] access-control/access-control.qmd
+[ 2/22] access-control/authn.qmd
+[ 3/22] access-control/authz.qmd
+[ 4/22] access-control/ident.qmd
+[ 5/22] crypto/cert-graph.qmd
+[ 6/22] crypto/cert.qmd
+[ 7/22] crypto/ctf.qmd
+[ 8/22] crypto/cypher/asymmetric.qmd
+[ 9/22] crypto/cypher/symmetric.qmd
+[10/22] crypto/decrypt.qmd
+[11/22] crypto/hash.qmd
+[12/22] crypto/random.qmd
+[13/22] crypto/rng-exploit.qmd
+[14/22] crypto/rsa-factorization.qmd
+[15/22] crypto/sign.qmd
+[16/22] data-integrity/backup.qmd
+[17/22] data-integrity/checksum.qmd
+[18/22] exam/paper.qmd
+[19/22] exam/technical.qmd
+[20/22] index.qmd
+[33mWARNING (/opt/quarto/share/filters/main.lua:14840) Unable to resolve crossref @sec-work-data-integrity-backup
+[39m[33mWARNING (/opt/quarto/share/filters/main.lua:14840) Unable to resolve crossref @sec-work-data-integrity-backup
+[39m[21/22] seminar/01-introduction.qmd
+[22/22] seminar/02-structure.qmd
+
+Running script '_extensions/Afonenko-Course-Tools/course-core/entrypoints/post.ts'
+Running script '_extensions/Afonenko-Course-Tools/project-download/entrypoints/post.ts'
+Running script '_extensions/Afonenko-Course-Tools/reference-catalog/entrypoints/post.ts'
+Running script '../_extensions/Afonenko-Course-Tools/course-site/entrypoints/collect.ts'
+Running script '/home/tolya/Cybersecurity/_extensions/Afonenko-Course-Tools/course-core/entrypoints/post.ts'
+
+Output created: _generated/course-spec/export-output/course-export-833cf606-d92b-4e9e-9bf9-4e2fe10b53d3/seminar/02-structure.json
+
+Экспорт: 1 вопросов, cybersecurity/sec-work-data-integrity-backup
