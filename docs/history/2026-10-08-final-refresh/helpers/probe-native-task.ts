@@ -1,0 +1,9 @@
+import {loadNativeRun} from "file:///home/tolya/Cybersecurity/task/_extensions/Afonenko-Course-Tools/course-core/infrastructure/native-run.ts";
+import {inspectOwnedRequests} from "file:///home/tolya/Cybersecurity/task/_extensions/Afonenko-Course-Tools/project-download/ownership.ts";
+const root=await Deno.realPath(Deno.args[0]);const run=await loadNativeRun(root,{view:"student"});
+const exercises=run.documents.flatMap(d=>d.exercises.map(e=>({id:e.id,source:d.source,difficulty:e.difficulty,time:e.time,statementVisibility:e.statementVisibility,hasSolution:e.hasSolution,hasPublicSolution:e.hasPublicSolution})));
+if(exercises.length!==1||exercises[0].id!=="exr-data-integrity-backup"||exercises[0].difficulty!=="intermediate"||exercises[0].time!==90||exercises[0].statementVisibility!=="open"||exercises[0].hasSolution||exercises[0].hasPublicSolution)throw Error("Actual native backup declaration differs");
+const works=run.documents.flatMap(d=>d.assessment?[d.assessment]:[]);if(works.length!==1||works[0].id!=="sec-work-data-integrity-backup"||works[0].kind!=="lab"||JSON.stringify(works[0].items)!==JSON.stringify(["exr-data-integrity-backup"]))throw Error("Actual native lab differs");
+const assignment=works[0].assignments["exr-data-integrity-backup"];if(assignment.requirement!=="required"||assignment.workMode!=="individual"||assignment.stage!==undefined)throw Error("Actual assignment defaults differ");
+const owned=await inspectOwnedRequests(root,run.documents.map(d=>d.source));if(owned.files.some(file=>file.resources.length))throw Error("Unexpected real download resource route");
+console.log(JSON.stringify({passed:true,exercises,works:works.map(w=>({id:w.id,kind:w.kind,items:w.items,assignments:w.assignments})),inputFiles:run.inputFiles,downloadOwnedRequests:owned,declaredActualDownloadResourceCount:0},null,2));

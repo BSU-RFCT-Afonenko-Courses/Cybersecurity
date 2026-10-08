@@ -177,8 +177,7 @@ export async function finish(
     },
     async courseResource(id, source): Promise<Resource> {
       const document = current?.run.documents.find((d) => d.source === source);
-      const exercise = (document?.body?.publicExercises ??
-        (document?.course.view === "full" ? [] : document?.exercises ?? []))
+      const exercise = (document?.body?.publicExercises ?? [])
         .find((item: any) => item.id === id);
       if (!exercise?.project) {
         throw diagnostic("DOWNLOAD.RESOURCE_UNAVAILABLE", `В текущем документе отсутствует публичное задание с проектом: ${id}`, {source,id,field:"project"});

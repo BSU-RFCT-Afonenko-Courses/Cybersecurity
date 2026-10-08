@@ -13,6 +13,7 @@ local function vet(data, context)
 end
 function M.validate(doc)
   local answers={}
+  if not require("./pedagogy/contract").bank(doc.meta) then return answers end
   local function walk(fragment,owner,role)
     fragment:walk({traverse='topdown',Div=function(div)
       assert(not div.classes:includes("answer-spec"), diagnostics.format("ANSWER_INVALID", "Банк ответов должен быть CodeBlock", {id=owner and owner.id or div.identifier,field="answer"}))

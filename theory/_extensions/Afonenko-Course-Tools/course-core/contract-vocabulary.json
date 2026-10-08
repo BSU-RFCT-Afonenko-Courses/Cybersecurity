@@ -5,18 +5,10 @@
       "activity": true,
       "purpose": true
     },
-    "prediction": {
-      "label": "Прогноз",
-      "activity": true
-    },
     "discussion": {
       "label": "Обсуждение",
       "activity": true,
       "purpose": true
-    },
-    "self-check": {
-      "label": "Самопроверка",
-      "activity": true
     },
     "objectives": {
       "label": "Цели",
@@ -78,7 +70,6 @@
   },
   "requirement": {
     "required": "Обязательно",
-    "recommended": "Рекомендуется",
     "optional": "Дополнительно"
   },
   "pedagogyAttributes": [
@@ -96,13 +87,14 @@
   ],
   "exerciseAttributes": [
     "target",
-    "project"
+    "project",
+    "statement-visibility"
   ],
   "assessmentKinds": [
     "lab",
-    "test",
-    "exam",
-    "handout"
+    "seminar",
+    "practical",
+    "test"
   ],
   "memberKinds": [
     "BulletList",
@@ -120,5 +112,13 @@
     "auto",
     "expanded"
   ],
-  "maxMinutes": 1000000
+  "stages": [
+    "demonstration",
+    "classroom",
+    "homework"
+  ],
+  "statementVisibility": [
+    "open",
+    "restricted"
+  ]
 }

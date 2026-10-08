@@ -48,7 +48,8 @@ pandoc.system.with_temporary_directory("native-run-test", function(temp)
       pandoc.system.make_directory(runDirectory .. "/documents", true)
       write(base .. "/active-native-run.json", pandoc.json.encode({
         schema="course-native-run-pointer-v1", projectRoot=case.pointerRoot or root,
-        directory=root .. case.suffix,
+        directory=root .. case.suffix, profiles={"student"},
+        configurationHashes={["_quarto.yml"]=false,["_quarto.yaml"]=false,["_quarto-student.yml"]=false,["_quarto-student.yaml"]=false},
       }))
       if case.completed then write(runDirectory .. "/native-run.json", "{}") end
 

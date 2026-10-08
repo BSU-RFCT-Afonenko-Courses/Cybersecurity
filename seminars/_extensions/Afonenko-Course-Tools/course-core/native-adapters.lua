@@ -26,7 +26,7 @@ function M.validate(doc)
     assert(#matches==1, diagnostics.format("CORE.ADAPTER_INVALID", 'Требуется ровно один установленный пакет адаптера: '..name, {id=name,field="course.adapters"}))
     local file=matches[1].path..'/validate.lua'
     local validator=assert(loadfile(file))()
-    validator.validate(doc)
+    if require("./pedagogy/contract").bank(doc.meta) or doc.meta.assessment then validator.validate(doc) end
   end
 end
 return M

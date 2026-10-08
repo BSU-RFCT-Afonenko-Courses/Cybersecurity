@@ -19,6 +19,7 @@ export interface NativeRunPointer {
   outputDirectory: string;
   initialInputFiles?: string[];
   renderAll: boolean;
+  configurationHashes: Record<string,string|false>;
 }
 export interface NativeRun {
   schema: "course-native-run-v1";
@@ -45,6 +46,18 @@ async function contained(root: string, path: string) {
   if (real !== root) child(root, real);
   return real;
 }
+async function configurationHashes(root:string,activeProfiles:string[]):Promise<Record<string,string|false>>{
+  const names=["_quarto.yml","_quarto.yaml",...activeProfiles.flatMap(profile=>["_quarto-"+profile+".yml","_quarto-"+profile+".yaml"])];
+  const hashes:Record<string,string|false>={};
+  for(const name of names){
+    try{
+      const bytes=await Deno.readFile(child(root,name));
+      const digest=await crypto.subtle.digest("SHA-1",bytes);
+      hashes[name]=Array.from(new Uint8Array(digest)).map(byte=>byte.toString(16).padStart(2,"0")).join("");
+    }catch(error){if(error instanceof Deno.errors.NotFound)hashes[name]=false;else throw error;}
+  }
+  return hashes;
+}
 async function pointer(root: string): Promise<NativeRunPointer> {
   const p = await read(join(base(root), "active-native-run.json"));
   if (p.schema !== "course-native-run-pointer-v1" || p.projectRoot !== root) {
@@ -52,6 +65,10 @@ async function pointer(root: string): Promise<NativeRunPointer> {
   }
   child(join(base(root), "native-runs"), p.directory);
   await contained(root, p.directory);
+  const current=Array.isArray(p.profiles)?await configurationHashes(root,p.profiles):{};
+  if(!Array.isArray(p.profiles) || !p.configurationHashes || Object.keys(current).length!==Object.keys(p.configurationHashes).length || Object.entries(current).some(([name,hash])=>p.configurationHashes[name]!==hash)) {
+    throw diagnostic("NATIVE.RUN_NOT_CURRENT","Нативная конфигурация изменилась после начала запуска",{source:root,field:"native-run"});
+  }
   return p;
 }
 async function list(root: string, key: string) {
@@ -101,6 +118,7 @@ export async function beginNativeRun(
     outputDirectory,
     initialInputFiles: await list(root, "QUARTO_PROJECT_INPUT_FILES"),
     renderAll: Deno.env.get("QUARTO_PROJECT_RENDER_ALL") === "1",
+    configurationHashes:await configurationHashes(root,profiles()),
   };
   await Deno.writeTextFile(
     join(base(root), "active-native-run.json"),
@@ -252,17 +270,39 @@ export async function finishNativeRun(projectRoot: string): Promise<NativeRun> {
     outputFiles,
     inputFiles,
   };
-  const serialized = JSON.stringify({
-    ...run,
-    directory: p.directory,
-    adapters: adapters.map((a) => ({
-      ...a,
-      fragments: [...a.fragments.values()],
-    })),
-  });
-  await Deno.writeTextFile(join(p.directory, "native-run.json"), serialized);
-  await Deno.writeTextFile(join(base(root), "native-run.json"), serialized);
+  await saveNativeRun(run);
   return run;
+}
+export async function saveNativeRun(run:NativeRun,persistDocuments=false){
+  const root=await Deno.realPath(run.projectRoot),p=await pointer(root);
+  for(const doc of persistDocuments?run.documents:[]){
+    const digest=await crypto.subtle.digest("SHA-1",new TextEncoder().encode(doc.source+"\0"+doc.document.format));
+    const filename=Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,"0")).join("")+".json";
+    const encoded=JSON.stringify(doc);
+    for await(const entry of Deno.readDir(join(p.directory,"documents"))){
+      if(!entry.isFile||!entry.name.endsWith(".json"))continue;
+      const current=await read(join(p.directory,"documents",entry.name));
+      if(current.source===doc.source&&current.document?.format===doc.document.format)await Deno.writeTextFile(join(p.directory,"documents",entry.name),encoded);
+    }
+    const directory=join(base(root),"documents",doc.course.view??"default");
+    await Deno.mkdir(directory,{recursive:true});
+    await Deno.writeTextFile(join(directory,filename),encoded);
+  }
+  const serialized=JSON.stringify({...run,directory:p.directory,adapters:run.adapters.map(a=>({...a,fragments:[...a.fragments.values()]}))});
+  await Deno.writeTextFile(join(p.directory,"native-run.json"),serialized);
+  await Deno.writeTextFile(join(base(root),"native-run.json"),serialized);
+}
+/** Rebind only the exporter-owned temporary profile's planned removal. */
+export async function prepareNativeExportCleanup(projectRoot:string,profile:string){
+  const root=await Deno.realPath(projectRoot),p=await pointer(root);
+  const run=await read(join(p.directory,"native-run.json"));
+  if(run.directory!==p.directory || !run.documents?.length || !run.documents.every((doc:DocumentResult)=>doc.document.exportContext===true) || !p.profiles.includes(profile)) {
+    throw diagnostic("NATIVE.RUN_NOT_CURRENT","Нельзя завершить временную конфигурацию чужого запуска",{source:root,field:"native-run"});
+  }
+  const name="_quarto-"+profile+".yml";
+  if(!(name in p.configurationHashes))throw diagnostic("NATIVE.RUN_NOT_CURRENT","Временный профиль отсутствует в текущем запуске",{source:root,field:"native-run"});
+  p.configurationHashes[name]=false;
+  await Deno.writeTextFile(join(base(root),"active-native-run.json"),JSON.stringify(p));
 }
 export async function loadNativeRun(
   projectRoot: string,

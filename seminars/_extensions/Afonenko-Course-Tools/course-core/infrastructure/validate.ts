@@ -29,7 +29,6 @@ export async function validateRelease(
       });
     }
   } else await checkPaths(projectRoot, result.model);
-  // CUE resolves inputs relative to projectRoot, including Windows volumes.
   const file = await Deno.makeTempFile({ dir: projectRoot, prefix: ".course-validation-", suffix: ".json" });
   try {
     await Deno.writeTextFile(file, JSON.stringify(result.model));

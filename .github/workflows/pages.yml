@@ -21,7 +21,6 @@ jobs:
       fail-fast: false
       matrix:
         quarto:
-        - 1.10.18
         - 1.11.5
     steps:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
@@ -60,7 +59,7 @@ jobs:
         path: ci-logs/
         if-no-files-found: ignore
     - name: Upload student site
-      if: vars.COURSE_PUBLISH_PAGES == 'true' && matrix.quarto == '1.10.18' && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+      if: vars.COURSE_PUBLISH_PAGES == 'true' && matrix.quarto == '1.11.5' && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
       uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
       with:
         path: _site-student
