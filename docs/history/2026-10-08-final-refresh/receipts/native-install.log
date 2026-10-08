@@ -1,148 +1,0 @@
-[2K[G[✓] Downloading
-[2K[G[✓] Unzipping
-    Found 3 extensions.
-
-The following changes will be made:
-Ядро учебного курса                [Update] 4.0.0 -> 4.0.1 (filters)
-Навигация по презентации           [Update] 4.0.0 -> 4.0.1          
-Представление учебных материалов   [Update] 4.0.0 -> 4.0.1 (filter) 
-
-[2K[G[✓] Copying
-[2K[G[✓] Extension installation complete
-
-
-Learn more about this extension at:
-https://github.com/Afonenko-Course-Tools/quarto-course/tree/v4.0.1#readme
-
-[2K[G[✓] Downloading
-[2K[G[✓] Unzipping
-    Found 1 extension.
-
-The following changes will be made:
-Каталог перекрёстных ссылок   [No Change]    (shortcode,filters)
-
-[2K[G[✓] Copying
-[2K[G[✓] Extension installation complete
-
-
-Learn more about this extension at:
-https://github.com/Afonenko-Course-Tools/quarto-reference-catalog/tree/v3.0.0#readme
-
-[2K[G[✓] Downloading
-[2K[G[✓] Unzipping
-    Found 3 extensions.
-
-The following changes will be made:
-Ядро учебного курса                [Update] 4.0.0 -> 4.0.1 (filters)
-Навигация по презентации           [Update] 4.0.0 -> 4.0.1          
-Представление учебных материалов   [Update] 4.0.0 -> 4.0.1 (filter) 
-
-[2K[G[✓] Copying
-[2K[G[✓] Extension installation complete
-
-
-Learn more about this extension at:
-https://github.com/Afonenko-Course-Tools/quarto-course/tree/v4.0.1#readme
-
-[2K[G[✓] Downloading
-[2K[G[✓] Unzipping
-    Found 1 extension.
-
-The following changes will be made:
-Каталог перекрёстных ссылок   [No Change]    (shortcode,filters)
-
-[2K[G[✓] Copying
-[2K[G[✓] Extension installation complete
-
-
-Learn more about this extension at:
-https://github.com/Afonenko-Course-Tools/quarto-reference-catalog/tree/v3.0.0#readme
-
-[2K[GDownloading [                                   ] 0.0MB[2K[GDownloading [                                   ] 0.0MB[2K[GDownloading [                                   ] 0.0MB[2K[GDownloading [#                                  ] 0.0MB[2K[GDownloading [#                                  ] 0.1MB[2K[GDownloading [#                                  ] 0.1MB[2K[GDownloading [#                                  ] 0.1MB[2K[GDownloading [#                                  ] 0.1MB[2K[GDownloading [#                                  ] 0.1MB[2K[GDownloading [##                                 ] 0.1MB[2K[GDownloading [##                                 ] 0.1MB[2K[GDownloading [##                                 ] 0.1MB[2K[GDownloading [##                                 ] 0.1MB[2K[GDownloading [##                                 ] 0.1MB[2K[GDownloading [###                                ] 0.1MB[2K[GDownloading [###                                ] 0.1MB[2K[GDownloading [###                                ] 0.1MB[2K[GDownloading [###                                ] 0.1MB[2K[GDownloading [###                                ] 0.1MB[2K[GDownloading [###                                ] 0.1MB[2K[GDownloading [####                               ] 0.1MB[2K[GDownloading [####                               ] 0.2MB[2K[GDownloading [####                               ] 0.2MB[2K[GDownloading [####                               ] 0.2MB[2K[GDownloading [#####                              ] 0.2MB[2K[GDownloading [#####                              ] 0.2MB[2K[GDownloading [#####                              ] 0.2MB[2K[GDownloading [######                             ] 0.2MB[2K[GDownloading [######                             ] 0.2MB[2K[GDownloading [######                             ] 0.2MB[2K[GDownloading [######                             ] 0.2MB[2K[GDownloading [######                             ] 0.2MB[2K[GDownloading [######                             ] 0.2MB[2K[GDownloading [######                             ] 0.2MB[2K[GDownloading [######                             ] 0.2MB[2K[GDownloading [#######                            ] 0.3MB[2K[GDownloading [#######                            ] 0.3MB[2K[GDownloading [#######                            ] 0.3MB[2K[GDownloading [#######                            ] 0.3MB[2K[GDownloading [#######                            ] 0.3MB[2K[GDownloading [#######                            ] 0.3MB[2K[GDownloading [#######                            ] 0.3MB[2K[GDownloading [########                           ] 0.3MB[2K[GDownloading [########                           ] 0.3MB[2K[GDownloading [########                           ] 0.3MB[2K[GDownloading [#########                          ] 0.3MB[2K[GDownloading [#########                          ] 0.4MB[2K[GDownloading [##########                         ] 0.4MB[2K[GDownloading [##########                         ] 0.4MB[2K[GDownloading [###########                        ] 0.4MB[2K[GDownloading [###########                        ] 0.4MB[2K[GDownloading [############                       ] 0.4MB[2K[GDownloading [############                       ] 0.4MB[2K[GDownloading [############                       ] 0.5MB[2K[GDownloading [#############                      ] 0.5MB[2K[GDownloading [#############                      ] 0.5MB[2K[GDownloading [##############                     ] 0.5MB[2K[GDownloading [##############                     ] 0.5MB[2K[GDownloading [###############                    ] 0.5MB[2K[GDownloading [###############                    ] 0.6MB[2K[GDownloading [###############                    ] 0.6MB[2K[GDownloading [################                   ] 0.6MB[2K[GDownloading [################                   ] 0.6MB[2K[GDownloading [#################                  ] 0.6MB[2K[GDownloading [#################                  ] 0.6MB[2K[GDownloading [##################                 ] 0.7MB[2K[GDownloading [##################                 ] 0.7MB[2K[GDownloading [##################                 ] 0.7MB[2K[GDownloading [###################                ] 0.7MB[2K[GDownloading [###################                ] 0.7MB[2K[GDownloading [####################               ] 0.7MB[2K[GDownloading [####################               ] 0.7MB[2K[GDownloading [####################               ] 0.7MB[2K[GDownloading [#####################              ] 0.8MB[2K[GDownloading [#####################              ] 0.8MB[2K[GDownloading [######################             ] 0.8MB[2K[GDownloading [######################             ] 0.8MB[2K[GDownloading [######################             ] 0.8MB[2K[GDownloading [#######################            ] 0.8MB[2K[GDownloading [#######################            ] 0.9MB[2K[GDownloading [########################           ] 0.9MB[2K[GDownloading [########################           ] 0.9MB[2K[GDownloading [#########################          ] 0.9MB[2K[GDownloading [#########################          ] 0.9MB[2K[GDownloading [##########################         ] 0.9MB[2K[GDownloading [##########################         ] 1.0MB[2K[GDownloading [##########################         ] 1.0MB[2K[GDownloading [###########################        ] 1.0MB[2K[GDownloading [###########################        ] 1.0MB[2K[GDownloading [############################       ] 1.0MB[2K[GDownloading [############################       ] 1.0MB[2K[GDownloading [#############################      ] 1.0MB[2K[GDownloading [#############################      ] 1.1MB[2K[GDownloading [#############################      ] 1.1MB[2K[GDownloading [##############################     ] 1.1MB[2K[GDownloading [##############################     ] 1.1MB[2K[GDownloading [###############################    ] 1.1MB[2K[GDownloading [###############################    ] 1.1MB[2K[GDownloading [################################   ] 1.2MB[2K[GDownloading [################################   ] 1.2MB[2K[GDownloading [################################   ] 1.2MB[2K[GDownloading [#################################  ] 1.2MB[2K[GDownloading [#################################  ] 1.2MB[2K[GDownloading [################################## ] 1.2MB[2K[GDownloading [################################## ] 1.2MB[2K[GDownloading [###################################] 1.3MB[2K[G[✓] Downloading
-[2K[G[✓] Unzipping
-    Found 3 extensions.
-
-The following changes will be made:
-Ядро учебного курса                [Update] 4.0.0 -> 4.0.1 (filters)
-Навигация по презентации           [Update] 4.0.0 -> 4.0.1          
-Представление учебных материалов   [Update] 4.0.0 -> 4.0.1 (filter) 
-
-[2K[G[✓] Copying
-[2K[G[✓] Extension installation complete
-
-
-Learn more about this extension at:
-https://github.com/Afonenko-Course-Tools/quarto-course/tree/v4.0.1#readme
-
-[2K[G[✓] Downloading
-[2K[G[✓] Unzipping
-    Found 1 extension.
-
-The following changes will be made:
-Каталог перекрёстных ссылок   [No Change]    (shortcode,filters)
-
-[2K[G[✓] Copying
-[2K[G[✓] Extension installation complete
-
-
-Learn more about this extension at:
-https://github.com/Afonenko-Course-Tools/quarto-reference-catalog/tree/v3.0.0#readme
-
-[2K[GDownloading [                                   ] 0.0MB[2K[GDownloading [                                   ] 0.0MB[2K[GDownloading [#                                  ] 0.0MB[2K[GDownloading [#                                  ] 0.0MB[2K[GDownloading [#                                  ] 0.1MB[2K[GDownloading [##                                 ] 0.1MB[2K[GDownloading [##                                 ] 0.1MB[2K[GDownloading [##                                 ] 0.1MB[2K[GDownloading [###                                ] 0.1MB[2K[GDownloading [###                                ] 0.1MB[2K[GDownloading [###                                ] 0.1MB[2K[GDownloading [####                               ] 0.2MB[2K[GDownloading [####                               ] 0.2MB[2K[GDownloading [#####                              ] 0.2MB[2K[GDownloading [#####                              ] 0.2MB[2K[GDownloading [#####                              ] 0.2MB[2K[GDownloading [######                             ] 0.2MB[2K[GDownloading [######                             ] 0.2MB[2K[GDownloading [#######                            ] 0.3MB[2K[GDownloading [#######                            ] 0.3MB[2K[GDownloading [########                           ] 0.3MB[2K[GDownloading [########                           ] 0.3MB[2K[GDownloading [########                           ] 0.3MB[2K[GDownloading [#########                          ] 0.3MB[2K[GDownloading [#########                          ] 0.4MB[2K[GDownloading [##########                         ] 0.4MB[2K[GDownloading [##########                         ] 0.4MB[2K[GDownloading [###########                        ] 0.4MB[2K[GDownloading [###########                        ] 0.4MB[2K[GDownloading [############                       ] 0.4MB[2K[GDownloading [############                       ] 0.4MB[2K[GDownloading [############                       ] 0.5MB[2K[GDownloading [#############                      ] 0.5MB[2K[GDownloading [#############                      ] 0.5MB[2K[GDownloading [##############                     ] 0.5MB[2K[GDownloading [##############                     ] 0.5MB[2K[GDownloading [###############                    ] 0.5MB[2K[GDownloading [###############                    ] 0.6MB[2K[GDownloading [###############                    ] 0.6MB[2K[GDownloading [################                   ] 0.6MB[2K[GDownloading [################                   ] 0.6MB[2K[GDownloading [#################                  ] 0.6MB[2K[GDownloading [#################                  ] 0.6MB[2K[GDownloading [##################                 ] 0.7MB[2K[GDownloading [##################                 ] 0.7MB[2K[GDownloading [##################                 ] 0.7MB[2K[GDownloading [###################                ] 0.7MB[2K[GDownloading [###################                ] 0.7MB[2K[GDownloading [####################               ] 0.7MB[2K[GDownloading [####################               ] 0.7MB[2K[GDownloading [#####################              ] 0.8MB[2K[GDownloading [#####################              ] 0.8MB[2K[GDownloading [######################             ] 0.8MB[2K[GDownloading [######################             ] 0.8MB[2K[GDownloading [######################             ] 0.8MB[2K[GDownloading [#######################            ] 0.8MB[2K[GDownloading [#######################            ] 0.9MB[2K[GDownloading [########################           ] 0.9MB[2K[GDownloading [########################           ] 0.9MB[2K[GDownloading [#########################          ] 0.9MB[2K[GDownloading [#########################          ] 0.9MB[2K[GDownloading [#########################          ] 0.9MB[2K[GDownloading [##########################         ] 0.9MB[2K[GDownloading [##########################         ] 1.0MB[2K[GDownloading [###########################        ] 1.0MB[2K[GDownloading [###########################        ] 1.0MB[2K[GDownloading [############################       ] 1.0MB[2K[GDownloading [############################       ] 1.0MB[2K[GDownloading [#############################      ] 1.0MB[2K[GDownloading [#############################      ] 1.1MB[2K[GDownloading [#############################      ] 1.1MB[2K[GDownloading [##############################     ] 1.1MB[2K[GDownloading [##############################     ] 1.1MB[2K[GDownloading [##############################     ] 1.1MB[2K[GDownloading [###############################    ] 1.1MB[2K[GDownloading [###############################    ] 1.1MB[2K[GDownloading [################################   ] 1.2MB[2K[GDownloading [################################   ] 1.2MB[2K[GDownloading [################################   ] 1.2MB[2K[GDownloading [#################################  ] 1.2MB[2K[GDownloading [#################################  ] 1.2MB[2K[GDownloading [################################## ] 1.2MB[2K[GDownloading [################################## ] 1.2MB[2K[GDownloading [###################################] 1.3MB[2K[G[✓] Downloading
-[2K[G[✓] Unzipping
-    Found 3 extensions.
-
-The following changes will be made:
-Ядро учебного курса                [Update] 4.0.0 -> 4.0.1 (filters)
-Навигация по презентации           [Update] 4.0.0 -> 4.0.1          
-Представление учебных материалов   [Update] 4.0.0 -> 4.0.1 (filter) 
-
-[2K[G[✓] Copying
-[2K[G[✓] Extension installation complete
-
-
-Learn more about this extension at:
-https://github.com/Afonenko-Course-Tools/quarto-course/tree/v4.0.1#readme
-
-[2K[GDownloading [###                                ] 0.0MB[2K[GDownloading [###                                ] 0.0MB[2K[GDownloading [#####                              ] 0.0MB[2K[GDownloading [#####                              ] 0.0MB[2K[GDownloading [######                             ] 0.0MB[2K[GDownloading [######                             ] 0.0MB[2K[GDownloading [#######                            ] 0.0MB[2K[GDownloading [#######                            ] 0.0MB[2K[GDownloading [########                           ] 0.0MB[2K[GDownloading [########                           ] 0.0MB[2K[GDownloading [#########                          ] 0.0MB[2K[GDownloading [#########                          ] 0.0MB[2K[GDownloading [#########                          ] 0.0MB[2K[GDownloading [##########                         ] 0.1MB[2K[GDownloading [##########                         ] 0.1MB[2K[GDownloading [##########                         ] 0.1MB[2K[GDownloading [##########                         ] 0.1MB[2K[GDownloading [###########                        ] 0.1MB[2K[GDownloading [############                       ] 0.1MB[2K[GDownloading [############                       ] 0.1MB[2K[GDownloading [############                       ] 0.1MB[2K[GDownloading [#############                      ] 0.1MB[2K[GDownloading [#############                      ] 0.1MB[2K[GDownloading [#############                      ] 0.1MB[2K[GDownloading [##############                     ] 0.1MB[2K[GDownloading [##############                     ] 0.1MB[2K[GDownloading [###############                    ] 0.1MB[2K[GDownloading [###############                    ] 0.1MB[2K[GDownloading [################                   ] 0.1MB[2K[GDownloading [################                   ] 0.1MB[2K[GDownloading [################                   ] 0.1MB[2K[GDownloading [#################                  ] 0.1MB[2K[GDownloading [#################                  ] 0.1MB[2K[GDownloading [#################                  ] 0.1MB[2K[GDownloading [##################                 ] 0.1MB[2K[GDownloading [##################                 ] 0.1MB[2K[GDownloading [###################                ] 0.1MB[2K[GDownloading [###################                ] 0.1MB[2K[GDownloading [###################                ] 0.1MB[2K[GDownloading [####################               ] 0.1MB[2K[GDownloading [####################               ] 0.1MB[2K[GDownloading [#####################              ] 0.1MB[2K[GDownloading [#####################              ] 0.1MB[2K[GDownloading [######################             ] 0.1MB[2K[GDownloading [######################             ] 0.1MB[2K[GDownloading [######################             ] 0.1MB[2K[GDownloading [#######################            ] 0.1MB[2K[GDownloading [#######################            ] 0.1MB[2K[GDownloading [########################           ] 0.1MB[2K[GDownloading [########################           ] 0.1MB[2K[GDownloading [########################           ] 0.1MB[2K[GDownloading [#########################          ] 0.1MB[2K[GDownloading [#########################          ] 0.1MB[2K[GDownloading [##########################         ] 0.1MB[2K[GDownloading [##########################         ] 0.1MB[2K[GDownloading [##########################         ] 0.1MB[2K[GDownloading [###########################        ] 0.1MB[2K[GDownloading [###########################        ] 0.1MB[2K[GDownloading [############################       ] 0.1MB[2K[GDownloading [############################       ] 0.1MB[2K[GDownloading [############################       ] 0.1MB[2K[GDownloading [#############################      ] 0.1MB[2K[GDownloading [#############################      ] 0.1MB[2K[GDownloading [##############################     ] 0.1MB[2K[GDownloading [##############################     ] 0.2MB[2K[GDownloading [###############################    ] 0.2MB[2K[GDownloading [###############################    ] 0.2MB[2K[GDownloading [###############################    ] 0.2MB[2K[GDownloading [################################   ] 0.2MB[2K[GDownloading [################################   ] 0.2MB[2K[GDownloading [#################################  ] 0.2MB[2K[GDownloading [#################################  ] 0.2MB[2K[GDownloading [################################## ] 0.2MB[2K[GDownloading [################################## ] 0.2MB[2K[GDownloading [###################################] 0.2MB[2K[G[✓] Downloading
-[2K[G[✓] Unzipping
-    Found 1 extension.
-
-The following changes will be made:
-Каталог перекрёстных ссылок   [No Change]    (shortcode,filters)
-
-[2K[G[✓] Copying
-[2K[G[✓] Extension installation complete
-
-
-Learn more about this extension at:
-https://github.com/Afonenko-Course-Tools/quarto-reference-catalog/tree/v3.0.0#readme
-
-[2K[G[✓] Downloading
-[2K[G[✓] Unzipping
-    Found 1 extension.
-
-The following changes will be made:
-Составной сайт курса   [No Change]    
-
-[2K[G[✓] Copying
-[2K[G[✓] Extension installation complete
-
-
-Learn more about this extension at:
-https://github.com/Afonenko-Course-Tools/quarto-project-publish/tree/v5.0.0#readme
-
-[2K[G[✓] Downloading
-[2K[G[✓] Unzipping
-    Found 1 extension.
-
-The following changes will be made:
-Скачивание материалов проекта   [No Change]    (shortcode,filter)
-
-[2K[G[✓] Copying
-[2K[G[✓] Extension installation complete
-
-
-Learn more about this extension at:
-https://github.com/Afonenko-Course-Tools/quarto-project-download/tree/v2.0.0#readme
-

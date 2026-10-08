@@ -1,5 +1,0 @@
-# Cybersecurity actual native final verification
-
-Passed native Core4.0.1 installation and complete618path/byte check in4scopes; existing48NativeRun and8CUEcases; actual student/full/student render cycle and unchanged CI/site.py. Both views contain actual nested bank href and11.1 native caption inside main, no unresolved/pending wire. Selected native backup Body preserves root-only cybersecurity owner, one real90-minute author-estimated open/manual task and real lab required/individual assignment, no closed participant fields/resources. Student tree unchanged by export; no declaredDownload or ZIP route/resources and no actualZIP output invented.
-
-Exact commands/exits/durations in verified-final-native.json; all43authoredinputs unchanged; final authored/CI/workflow/vendor hashes in final-scope-hashes.json. Original9853history remains ancestor and userdeletedinputs remain absent. No documentation edits, course commit/PR/merge/deploy or branch cleanup performed here. Root owns final documentation/review/commit/newOPENPR gates.
