@@ -26,7 +26,7 @@ function M.metadata(values, context)
   if time ~= nil then
     assert(tostring(time):match("^[1-9][0-9]*$"), diagnostics.format("CORE.METADATA_INVALID", "Атрибут time должен задавать положительное целое число минут", {id=context and context.id,field="time"}))
     time = tonumber(time)
-    assert(time <= vocabulary.maxMinutes, diagnostics.format("CORE.METADATA_INVALID", "Атрибут time не может превышать 1000000 минут", {id=context and context.id,field="time"}))
+    assert(time and time>0 and time<math.huge and time%1==0, diagnostics.format("CORE.METADATA_INVALID", "Атрибут time должен задавать положительное конечное целое число минут", {id=context and context.id,field="time"}))
   end
   return {difficulty=choice(values.difficulty, difficulties, "difficulty", context), time=time,
     workMode=choice(values["work-mode"], modes, "work-mode", context),
@@ -52,6 +52,16 @@ function M.defaults(meta)
   return M.metadata(values)
 end
 
+function M.bank(meta)
+  local value=meta["exercise-bank"]
+  assert(value==nil or type(value)=="boolean", diagnostics.format("CORE.METADATA_INVALID", "exercise-bank должен принимать true или false", {field="exercise-bank"}))
+  return value==true
+end
+function M.statement_visibility(div,meta)
+  local value=div.attributes["statement-visibility"] or (meta["exercise-statement-visibility"] and pandoc.utils.stringify(meta["exercise-statement-visibility"]))
+  assert(value=="open" or value=="restricted", diagnostics.format("CORE.METADATA_INVALID", "Для банковской задачи требуется statement-visibility open или restricted", {id=div.identifier,field="statement-visibility"}))
+  return value
+end
 function M.is_exercise(div) return div.identifier:match("^exr%-") ~= nil end
 function M.is_example(div) return div.identifier:match("^exm%-") ~= nil end
 function M.is_activity(div) return M.is_exercise(div) or M.is_example(div) end
@@ -77,7 +87,7 @@ function M.kind(div, owner)
   if role then assert(M.roles[role], diagnostics.format("CORE.PEDAGOGY_ROLE_INVALID", "Неизвестная учебная роль course-role: " .. role, {id=div.identifier,field="course-role"})) end
   if M.is_activity(div) then
     assert(not role or M.activities[role], diagnostics.format("CORE.PEDAGOGY_ROLE_INVALID", "Упражнению exr-* можно назначить только роль деятельности course-role", {id=div.identifier,field="course-role"}))
-    return role or (M.is_example(div) and "demonstration" or "exercise")
+    return role or (not M.is_example(div) and "exercise" or nil)
   end
   local solution = div.identifier:match("^sol%-") or div.classes:includes("solution")
   -- Визуальный callout может содержать материалы или цели обучения.
@@ -102,7 +112,7 @@ function M.describe(div, defaults, owner)
   local metadata = M.metadata(values, {id=div.identifier})
   if educational and defaults then
     for key, value in pairs(defaults) do
-      if metadata[key] == nil and (not M.is_exercise(div) or key == "workMode") then metadata[key] = value end
+      if metadata[key] == nil and not M.is_exercise(div) then metadata[key] = value end
     end
   end
   return kind, metadata

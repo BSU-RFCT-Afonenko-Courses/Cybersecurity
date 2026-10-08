@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "argv": [
+    "quarto",
+    "run",
+    "_extensions/Afonenko-Course-Tools/course-core/entrypoints/export.ts",
+    "--book",
+    "task",
+    "--work",
+    "sec-work-data-integrity-backup",
+    "--output",
+    "_generated/backup.json"
+  ],
+  "exitCode": 0,
+  "durationSeconds": 40.629,
+  "rootOnlyCourseId": "cybersecurity",
+  "questions": [
+    "cybersecurity/exr-data-integrity-backup"
+  ],
+  "work": "cybersecurity/sec-work-data-integrity-backup",
+  "nativeBackupTimeMinutes": 90,
+  "timeIsAuthorEstimate": true,
+  "assignment": {
+    "requirement": "required",
+    "workMode": "individual"
+  },
+  "publicClosedFieldsAbsent": true,
+  "resourcesCount": 0,
+  "zipOutputs": [],
+  "zipRouteLimitation": "No resource/project/Download shortcode declared in current course; no starter archive invented",
+  "studentTreeUnchanged": true,
+  "studentFiles": 178,
+  "authoredInputsUnchanged": true,
+  "authoredInputCount": 43,
+  "teacherSha256": "372e499d6c0d8bb7d032e61f27650953c02b4264577a945ae04cd97c82fb8944",
+  "publicSha256": "4818d76ea894e1b033919f89802235b8395e9d3f265190ffdc460850679788b4"
+}

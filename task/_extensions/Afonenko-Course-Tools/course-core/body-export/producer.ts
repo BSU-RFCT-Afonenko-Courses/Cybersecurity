@@ -173,6 +173,7 @@ export async function buildBodies(
         key: owner + "/" + e.id,
         source: doc.source,
         visibility: "public",
+        statementVisibility: e.statementVisibility, purpose:e.purpose, hasPublicSolution:e.hasPublicSolution,
         condition,
         ...answer,
         closedKey: options.includeClosed ? answer.closedKey : null,
@@ -201,7 +202,8 @@ export async function buildBodies(
   pkg.works.push({
     owner, id: work.id, key: owner + "/" + work.id, source: work.source,
     kind: work.kind, title: work.title, items: work.items.map((id) => owner + "/" + id),
-    ...(work.requirements ? {requirements: work.requirements} : {}),
+    assignments:Object.fromEntries(work.items.map(id=>[owner+"/"+id,work.assignments[id]])),
+    ...(work.theoryTime!==undefined ? {theoryTime:work.theoryTime} : {}),
   });
   const facts = documents.flatMap((d) => d.resources ? [d.resources] : []);
   const selected: string[] = [];
@@ -269,7 +271,7 @@ export async function buildBodies(
       visibility: "public",
     });
   }
-  const file = await Deno.makeTempFile({ suffix: ".json" });
+  const file = await Deno.makeTempFile({ dir:options.projectRoot, prefix:".course-body-validation-",suffix: ".json" });
   try {
     await Deno.writeTextFile(file, JSON.stringify({ packageData: pkg }));
     await command(Deno.env.get("CUE") || "cue", [

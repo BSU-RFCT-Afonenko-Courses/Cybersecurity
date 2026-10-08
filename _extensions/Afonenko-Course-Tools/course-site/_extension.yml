@@ -1,5 +1,6 @@
 title: Составной сайт курса
-version: 4.0.1
+version: 5.0.0
+quarto-required: ">=1.11.5"
 contributes:
   metadata:
     course-site-runtime: true

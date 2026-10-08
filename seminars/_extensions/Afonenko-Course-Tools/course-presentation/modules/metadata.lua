@@ -8,7 +8,8 @@ local function add_class(div, name) if not div.classes:includes(name) then div.c
 function M.decorate(div, cfg)
   local attrs = div.attributes
   local role = attrs["course-role"]
-  local defaults = (div.identifier:match("^exr%-") or (roles[role] and roles[role].activity)) and cfg.defaults or {}
+  local canonical=cfg.bank and div.identifier:match("^exr%-")
+  local defaults = not canonical and (div.identifier:match("^exr%-") or (roles[role] and roles[role].activity)) and cfg.defaults or {}
   local values = {}
   for _, key in ipairs({"difficulty", "time", "work-mode", "requirement"}) do
     values[key] = attrs[key] or defaults[key]

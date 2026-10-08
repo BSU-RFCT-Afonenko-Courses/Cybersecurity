@@ -1,6 +1,6 @@
 title: Скачивание материалов проекта
-version: 1.1.1
-quarto-required: ">=1.10.0"
+version: 2.0.0
+quarto-required: ">=1.11.5"
 contributes:
   shortcodes:
     - shortcodes.lua

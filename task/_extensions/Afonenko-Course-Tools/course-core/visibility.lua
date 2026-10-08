@@ -55,6 +55,8 @@ local function strip(node,test,match)
 end
 
 function M.prepare(doc, override)
+  local bank=contract.bank(doc.meta)
+  local export=doc.meta["course-export-context"]==true
   local raw = doc.meta.course and doc.meta.course.view
   local view = override or (raw and pandoc.utils.stringify(raw) or nil)
   assert(not view or views[view], diagnostics.format("CORE.VIEW_INVALID", "course.view должен принимать значение student или full", {field="course.view"}))
@@ -128,10 +130,12 @@ function M.prepare(doc, override)
     fragment:walk({traverse='topdown',Div=function(div)
       local visible=parent_visible and keep(div)
       if contract.is_activity(div) then
-        assert(not contract.is_example(div) or not indexed[div.identifier], diagnostics.format("CORE.SOLUTION_PAIRING_INVALID", 'Повторный идентификатор примера '..div.identifier, {id=div.identifier,field="id"}))
+        assert(not bank or not contract.is_example(div) or not indexed[div.identifier], diagnostics.format("CORE.SOLUTION_PAIRING_INVALID", 'Повторный идентификатор примера '..div.identifier, {id=div.identifier,field="id"}))
         local purpose=div.attributes['course-role']
         -- Control page inclusion is owned by native project file lists.
-        indexed[div.identifier]={purpose=purpose,visible=visible,example=contract.is_example(div)}
+        local statement=bank and contract.is_exercise(div) and contract.statement_visibility(div,doc.meta) or nil
+        if view=='student' and statement=='restricted' and not export then visible=false end
+        indexed[div.identifier]={purpose=purpose,visible=visible,example=contract.is_example(div),statementVisibility=statement}
       end
       index(pandoc.Pandoc(div.content),visible)
       return div,false
@@ -145,17 +149,54 @@ function M.prepare(doc, override)
   index(doc,true)
   local solutions={}
   local function index_solutions(fragment,owner)
-    fragment:walk({traverse='topdown',Div=function(div)
-      if div.identifier:match('^sol%-') then
-        assert(not solutions[div.identifier], diagnostics.format("CORE.DUPLICATE_DECLARATION", 'Повторный идентификатор учебного элемента: '..div.identifier, {id=div.identifier,field="id"}))
-        solutions[div.identifier]=contract.related(div,indexed,owner)
+    return fragment:walk({traverse='topdown',Div=function(div)
+      if div.identifier:match('^sol%-') or div.classes:includes('solution') then
+        assert(not bank or div.identifier=='' or not solutions[div.identifier], diagnostics.format("CORE.DUPLICATE_DECLARATION", 'Повторный идентификатор учебного элемента: '..div.identifier, {id=div.identifier,field="id"}))
+        local related=contract.related(div,indexed,owner)
+        if div.identifier~='' then solutions[div.identifier]=related end
+        if related then div.attributes['data-course-solution-owner']=related end
       end
-      index_solutions(pandoc.Pandoc(div.content),
-        contract.is_activity(div) and div.identifier or owner)
+      div.content=index_solutions(pandoc.Pandoc(div.content),
+        contract.is_activity(div) and div.identifier or owner).blocks
       return div,false
     end})
   end
-  index_solutions(doc,nil)
+  doc=index_solutions(doc,nil)
+  -- Only a currently active native run can defer unknown cross-document
+  -- membership to post-render facts. Filters-only/partial local output fails
+  -- closed without consulting historical sidecars or constructing URLs.
+  local defer=doc.meta["course-current-native-run"]==true and quarto.doc.is_format('html')
+  if view=='student' and not export then
+    doc=doc:walk({Div=function(div)
+      if not div.classes:includes('task-items') then return end
+      for _,list in ipairs(div.content) do
+        if list.t=='OrderedList' or list.t=='BulletList' then
+          local kept=pandoc.List()
+          for _,item in ipairs(list.content) do
+            local member
+            pandoc.Pandoc(item):walk({Cite=function(cite) if #cite.citations==1 then member=cite.citations[1].id end end})
+            local fact=member and indexed[member]
+            if member and (fact and fact.visible or not fact and defer) then
+              if defer then
+                local blocks=pandoc.List({pandoc.RawBlock('html','<!--course-assignment:'..member..':start--><template>')})
+                blocks:extend(item)
+                blocks:insert(pandoc.RawBlock('html','</template><!--course-assignment:'..member..':end-->'))
+                kept:insert(blocks)
+              else kept:insert(item) end
+            end
+          end
+          list.content=kept
+        end
+      end
+      return div
+    end})
+    if defer then
+      local headers=doc.meta['header-includes'] or pandoc.MetaList({})
+      if headers.t~='MetaList' then headers=pandoc.MetaList({headers}) end
+      headers:insert(pandoc.MetaBlocks({pandoc.RawBlock('html','<style>.task-items li:has(.course-assignment-omitted){display:none}</style>')}))
+      doc.meta['header-includes']=headers
+    end
+  end
   local before = member_count(doc)
   local function project(node)
     local visible=keep(node)
@@ -163,13 +204,15 @@ function M.prepare(doc, override)
       local own=indexed[node.identifier]
       local related=node.attributes['for']
       if node.identifier:match('^sol%-') then related=solutions[node.identifier] end
+      if node.classes:includes('solution') then related=node.attributes['data-course-solution-owner'] or related end
+      node.attributes['data-course-solution-owner']=nil
       local task=related and indexed[related]
       if own and not own.visible then visible=false end
-      if task and not task.visible then visible=false end
+      if task and not task.visible and (bank or task.purpose~=nil or node.attributes['course-role']~=nil) then visible=false end
       if view=='student' then
         if node.classes:includes('grading-notes') then visible=false end
-        if not quarto.doc.is_format('revealjs') and (node.identifier:match('^sol%-') or node.classes:includes('solution')) then
-          if not task or (not task.example and task.purpose~='demonstration') then visible=false end
+        if bank and (node.identifier:match('^sol%-') or node.classes:includes('solution')) then
+          if not task or task.statementVisibility~='open' or task.example or task.purpose~='demonstration' then visible=false end
         end
       end
     end
@@ -186,4 +229,27 @@ function M.prepare(doc, override)
   return doc
 end
 
+-- Native crossref AST is ready only after Quarto's normal filters. Keep its
+-- exact HTML outside main while the native book resolver and search run.
+function M.defer_native_assignments(doc)
+  if not quarto.doc.is_format('html') then return doc end
+  return doc:walk({Div=function(div)
+    if not div.classes:includes('task-items') then return end
+    for _,list in ipairs(div.content) do
+      if list.t=='OrderedList' or list.t=='BulletList' then
+        for index,item in ipairs(list.content) do
+          local first,last=item[1],item[#item]
+          local member=first and first.t=='RawBlock' and first.text:match('^<!%-%-course%-assignment:(exr%-[a-z0-9%-]+):start%-%-><template>')
+          if member and last and last.t=='RawBlock' and last.text=='</template><!--course-assignment:'..member..':end-->' then
+            local native=pandoc.List()
+            for i=2,#item-1 do native:insert(item[i]) end
+            quarto.doc.include_text('after-body','<!--course-assignment-pending:'..member..':start--><div hidden inert>'..pandoc.write(pandoc.Pandoc(native),'html')..'</div><!--course-assignment-pending:'..member..':end-->')
+            list.content[index]=pandoc.List({pandoc.RawBlock('html','<!--course-assignment:'..member..':start--><template></template><!--course-assignment:'..member..':end-->')})
+          end
+        end
+      end
+    end
+    return div
+  end})
+end
 return M

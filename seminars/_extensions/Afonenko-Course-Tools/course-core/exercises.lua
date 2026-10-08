@@ -8,9 +8,10 @@ local function head(block)
           title = block and pandoc.utils.stringify(block) or ""}
 end
 function M.collect(doc,facts)
+  if not pedagogic.bank(doc.meta) then return pandoc.List() end
   local defaults=pedagogic.defaults(doc.meta)
-  local topics={}
-  for _,fact in ipairs(facts or {}) do topics[fact.id]=fact.sourceTopic end
+  local topics,declared={},{}
+  for _,fact in ipairs(facts or {}) do topics[fact.id]=fact.sourceTopic;declared[fact.id]=fact end
   local result = pandoc.List()
   doc:walk({Div = function(div)
     if not canonical(div) then return end
@@ -24,7 +25,7 @@ function M.collect(doc,facts)
     local body, notes = grading.split(div.content)
     result:insert({id = div.identifier, target = div.attributes.target, authoredTarget=div.attributes.target,
       purpose=div.attributes["course-role"], difficulty=div.attributes.difficulty,
-      time=div.attributes.time and tonumber(div.attributes.time) or nil, workMode=div.attributes["work-mode"] or (defaults and defaults.workMode),
+      time=tonumber(div.attributes.time), statementVisibility=pedagogic.statement_visibility(div,doc.meta),hasSolution=declared[div.identifier] and declared[div.identifier].hasSolution or false,hasPublicSolution=declared[div.identifier] and declared[div.identifier].hasPublicSolution or false,
       sourceTopic=topics[div.identifier],
       project = div.attributes.project or "", head = head(div.content[1]),
       bodyJson = body, gradingNotesJson = notes,

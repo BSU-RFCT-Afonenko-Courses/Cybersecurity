@@ -1,4 +1,4 @@
-import type { AssessmentKind } from "../domain/vocabulary.ts";
+import type { AssessmentKind, StatementVisibility, ExercisePurpose } from "../domain/vocabulary.ts";
 export type Node = { t: string; c?: any };
 export interface BodyQuestion {
   owner: string;
@@ -6,6 +6,9 @@ export interface BodyQuestion {
   key: string;
   source: string;
   visibility: "public";
+  statementVisibility: StatementVisibility;
+  purpose?: ExercisePurpose;
+  hasPublicSolution: boolean;
   answerType: "manual" | "single-choice" | "numeric" | "multipart" | "matching";
   condition: Node[];
   publicAnswer: Node[];
@@ -27,7 +30,8 @@ export interface BodyPackage {
     kind: AssessmentKind;
     title: string;
     items: string[];
-    requirements?: Record<string, "required" | "optional">;
+    assignments: Record<string, import("../domain/model.ts").Assignment>;
+    theoryTime?: number;
   }[];
   resources: {
     owner: string;

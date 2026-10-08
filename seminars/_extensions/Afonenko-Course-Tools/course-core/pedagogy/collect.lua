@@ -15,7 +15,7 @@ local function exercise_index(doc)
   local indexed = {}
   doc:walk({traverse="topdown", Div=function(div)
     if div.classes:includes("grading-notes") then return div, false end
-    if contract.is_activity(div) then
+    if contract.is_activity(div) and (contract.bank(doc.meta) or div.attributes["course-role"]) then
       assert(div.identifier:match("^ex[rm]%-[a-z0-9][a-z0-9%-]*$"), diagnostics.format("CORE.EXERCISE_INVALID", "Недопустимый идентификатор упражнения: " .. div.identifier, {id=div.identifier,field="id"}))
       assert(not indexed[div.identifier], diagnostics.format("CORE.DUPLICATE_DECLARATION", "Повторный идентификатор упражнения: " .. div.identifier, {id=div.identifier,field="id",related={{id=div.identifier,source=quarto.doc.input_file}}}))
       indexed[div.identifier] = true
@@ -25,16 +25,19 @@ local function exercise_index(doc)
 end
 
 function M.collect(doc)
+  local bank = contract.bank(doc.meta)
   local defaults = contract.defaults(doc.meta)
   local indexed = exercise_index(doc)
   local result, identities = pandoc.List(), {}
   local function walk(document, owner)
     return document:walk({traverse="topdown", Div=function(div)
       if div.classes:includes("grading-notes") then return div, false end
-      local kind, metadata = contract.describe(div, defaults, owner)
-      local own = contract.is_activity(div)
+      local eligible=bank or div.attributes["course-role"] or owner
+      local kind, metadata
+      if eligible then kind,metadata=contract.describe(div, defaults, owner) else metadata={} end
+      local own = contract.is_activity(div) and (bank or div.attributes["course-role"]~=nil)
       local related = contract.related(div, indexed, owner)
-      if div.attributes["for"] then
+      if eligible and div.attributes["for"] then
         assert(indexed[related], diagnostics.format("CORE.PEDAGOGY_REFERENCE_INVALID", "Атрибут for должен указывать на видимое упражнение текущего документа: " .. related, {id=div.identifier,field="for",related={{id=related}}}))
         assert(not owner or owner == related, diagnostics.format("CORE.PEDAGOGY_REFERENCE_CONFLICT", "Атрибут for противоречит окружающему упражнению: " .. related, {id=div.identifier,field="for",related={{id=related},{id=owner}}}))
       end
