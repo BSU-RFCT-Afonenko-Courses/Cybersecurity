@@ -3,7 +3,7 @@ import { dirname, fromFileUrl, join, relative, resolve } from "stdlib/path";
 import { assembleRelease } from "../domain/release.ts";
 import type { ReleaseResult } from "../domain/model.ts";
 import { command, quartoExecutable } from "../infrastructure/process.ts";
-import { loadNativeRun } from "../infrastructure/native-run.ts";
+import { loadNativeRun, prepareNativeExportCleanup } from "../infrastructure/native-run.ts";
 
 /** One native source pass, from the logical root, over one explicitly chosen bank.
  * Quarto resolves includes, computations and functional profiles. Its JSON writer
@@ -59,6 +59,7 @@ export async function collectExport(root: string, options: {
     crossref: false,
   };
   await Deno.writeTextFile(profile, JSON.stringify(config));
+  let collected=false;
   try {
     const profiles = [name, "full", ...functional];
     // Explicit recursive render globs cross nested Quarto project boundaries.
@@ -110,13 +111,16 @@ export async function collectExport(root: string, options: {
     }
     const workId = options.work.startsWith(courseId + "/") ? options.work.slice(courseId.length + 1) : options.work;
     const selected = run.documents.find(d => d.assessment?.id === workId)?.assessment;
-    if (!selected) throw diagnostic("BODY.WORK_MISSING", "Выбранная работа отсутствует: " + workId, {source: projectRoot, id: options.work});
-    const ids = new Set(selected.items);
-    const documents = run.documents.filter(d => d.assessment?.id === workId || d.exercises.some(e => ids.has(e.id))).map(d => ({
+    if (!selected && options.work!=="*") throw diagnostic("BODY.WORK_MISSING", "Выбранная работа отсутствует: " + workId, {source: projectRoot, id: options.work});
+    const ids = new Set(options.work==="*"?run.documents.flatMap(d=>d.exercises.map(e=>e.id)):selected!.items);
+    const declarationIds=new Set([...ids,...(selected?.relatedExercise?[selected.relatedExercise]:[])]);
+    const documents = run.documents.filter(d => options.work==="*" || d.assessment?.id === workId || d.exercises.some(e => ids.has(e.id)) || d.declarations?.some(e=>declarationIds.has(e.id))).map(d => ({
       ...d,
       exercises: d.exercises.filter(e => ids.has(e.id)),
-      assessment: d.assessment?.id === workId ? d.assessment : null,
-      body: d.body ? {...d.body, publicExercises: d.body.publicExercises.filter(e => ids.has(e.id)), publicAssessment: d.assessment?.id === workId ? d.body.publicAssessment : null} : undefined,
+      declarations:d.declarations?.filter(e=>declarationIds.has(e.id)),
+      rawAssessment:options.work==="*"||d.rawAssessment?.id===workId?d.rawAssessment:null,
+      assessment: options.work==="*"||d.assessment?.id === workId ? d.assessment : null,
+      body: d.body ? {...d.body, publicExercises: d.body.publicExercises.filter(e => ids.has(e.id)), publicAssessment: options.work==="*"||d.assessment?.id === workId ? d.body.publicAssessment : null} : undefined,
     }));
     // The native writer resolves shortcodes after Core's pre-ast capture. Read
     // native JSON nodes, preserving Core's independent public projection and
@@ -134,6 +138,21 @@ export async function collectExport(root: string, options: {
       }
       index(ast.blocks.filter((n: any) => n !== wrapper), fullNodes);
       index(wrapper.c[1], publicNodes);
+      const publicSolutions=new Set<string>();
+      function solutions(value:any,owner?:string){
+        if(Array.isArray(value)){for(const child of value)solutions(child,owner);return;}
+        if(!value||typeof value!=="object")return;
+        if(value.t==="Div"){
+          const [id,classes,attrs]=value.c[0];
+          const related=attrs.find((pair:string[])=>pair[0]==="data-course-solution-owner")?.[1] ?? (id.startsWith("sol-")?"exr-"+id.slice(4):classes.includes("solution")?owner:undefined);
+          if(related)publicSolutions.add(related);
+          solutions(value.c[1],id.startsWith("exr-")?id:owner);return;
+        }
+        for(const child of Object.values(value))solutions(child,owner);
+      }
+      solutions(wrapper.c[1]);
+      for(const fact of d.declarations??[])fact.hasPublicSolution=publicSolutions.has(fact.id);
+      for(const exercise of [...d.exercises,...d.body?.publicExercises??[]])exercise.hasPublicSolution=publicSolutions.has(exercise.id);
       const body = (node: any) => JSON.stringify({"pandoc-api-version": ast["pandoc-api-version"], meta: {}, blocks: node.c[1]});
       for (const e of d.exercises) {
         const node = fullNodes.get(e.id);
@@ -147,8 +166,15 @@ export async function collectExport(root: string, options: {
       }
     }
     const result = assembleRelease(documents.map(d => d.source), documents, run.adapters, {view: "full", profiles});
+    collected=true;
     return {result, projectRoot, courseId, work: workId};
   } finally {
-    await Deno.remove(profile);
+    try { if(collected)await prepareNativeExportCleanup(projectRoot,name); }
+    finally { await Deno.remove(profile); }
   }
+}
+
+/** Fresh native owner inventory independent of any platform or selected work. */
+export async function collectNativeModel(root:string,options:{book:string;profiles?:string[]}) {
+  return await collectExport(root,{...options,work:"*"});
 }
