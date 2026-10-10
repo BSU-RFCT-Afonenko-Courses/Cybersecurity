@@ -4,7 +4,7 @@ export interface Configuration { resources: Record<string, Resource>; "course-mo
 export const RESOURCE_ID = /^[a-z0-9][a-z0-9-]*$/;
 export const CONFIG_FIELDS = new Set(["resources", "course-model"]);
 export const RESOURCE_FIELDS = new Set(["path", "include", "exclude", "profiles", "gitignore"]);
-export const DEFAULT_EXCLUDES = ["**/.git/**", "**/.quarto/**", "**/.gradle/**", "**/.idea/**", "**/.vscode/**", "**/build/**", "**/target/**", "**/out/**", "**/node_modules/**", "**/__pycache__/**", "**/_generated/**", "**/_book/**", "**/_site/**", "**/_output/**", "**/_downloads/**", "**/*.class", "**/*.pyc", "**/.DS_Store", "**/.gitkeep"];
+export const DEFAULT_EXCLUDES = ["**/.git/**", "**/.quarto/**", "**/.gradle/**", "**/.idea/**", "**/.vscode/**", "**/build/**", "**/target/**", "**/out/**", "**/node_modules/**", "**/__pycache__/**", "**/_generated/**", "**/_book/**", "**/_site/**", "**/_output/**", "**/_downloads/**", "**/*.class", "**/*.jar", "**/*.pyc", "**/.DS_Store", "**/.gitkeep"];
 export function configuration(input: unknown): Configuration {
   if (input == null) return { resources: {} };
   if (typeof input !== "object" || Array.isArray(input)) throw diagnostic("DOWNLOAD.CONFIG_INVALID", "project-download должен быть словарём");

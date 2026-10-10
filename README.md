@@ -11,14 +11,15 @@
 
 | Инструмент | Выпуск | Проекты |
 | --- | --- | --- |
-| Core, Presentation, Navigation | `v4.0.1` | Корень, theory, task, seminars |
+| Core, Presentation, Navigation | `v5.0.1` | Корень, theory, task, seminars |
 | Publisher | `v5.0.0` | Корень |
 | Reference Catalog | `v3.0.0` | Корень, theory, task, seminars |
-| Download | `v2.0.0` | task |
+| Download | `v3.0.0` | task |
 
 [Опубликованное руководство](https://afonenko-course-tools.github.io/quarto-template-course/guide/index.html)
-объясняет авторские действия; [контракты Core 4.0.1](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v4.0.1/spec/index.md)
+объясняет авторские действия; [контракты Core 5.0.1](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v5.0.1/spec/index.md)
 задают правила банка, работ, видимости и экспорта.
+Точные установленные commits и границы пакетов приведены в [UPSTREAM.md](UPSTREAM.md).
 
 ```sh
 bash CI/install-extensions.sh
@@ -47,14 +48,20 @@ quarto preview --profile student --no-watch-inputs
 
 ```yaml
 exercise-bank: true
-exercise-statement-visibility: open
+default-exercise-target: manual
+default-exercise-course-role: independent-study
+default-exercise-statement-visibility: open
 ```
 
 Имя книги `task`, формат book и `course.id` сами банк не включают.
 Вне этой области обычные `exr`, `exm`, `sol` сохраняют смысл Quarto.
-Для новой банковской задачи нужны собственные difficulty/time и эффективная
-политика условия; решения связываются по одинаковому суффиксу `sol-ID`
+Defaults наследует Quarto; атрибут задачи может переопределить роль, видимость,
+сложность и время. Target должен совпадать с общим значением; смешанная область
+отменяет default через `false`. У backup difficulty/time заданы явно и сохраняются.
+Решения связываются по одинаковому суффиксу `sol-ID`
 либо анонимным `.solution` внутри задачи. Текущая задача решения не объявляет.
+Ручная задача не объявляет программный project или project-check и не проверяется
+как Java. Declared inventory остаётся пустым; это не отсутствие самой задачи в банке.
 
 `task/seminar/01-introduction.qmd` описывает одну лабораторную:
 `assessment.kind: lab`, ID `sec-work-data-integrity-backup`. Единственный
@@ -71,7 +78,9 @@ stage не задан. Страница работы ссылается на у�
 ## Профили и семинарские материалы
 
 Student предназначен для публикации, full — для отдельной преподавательской
-сборки. Книги используют полные списки глав в каждом профиле. Full output,
+сборки. Общая преподавательская фраза находится в `task/teacher.qmd`, включённом
+только в full chapters; авторские student/full audience wrappers не используются.
+Книги используют полные списки глав в каждом профиле. Full output,
 служебные файлы и teacher-пакеты исключены из student resources.
 
 Одна презентация семинара публична в обоих профилях: общие notes, скрытые
@@ -100,9 +109,11 @@ Core читает корневой `course.id` и выбранную книгу 
 но курс пока не объявляет shortcode или ресурс для выдачи ZIP.
 
 Для отдельного маршрута можно установить Print `v0.3.0`, Moodle `v0.3.0`,
-PrairieLearn `v3.0.0` или Cloud `v3.0.0`. Курс их не активирует.
+PrairieLearn `v5.0.0` или Cloud `v3.0.0`. Курс их не активирует.
 Print получает participant-пакет; Moodle — teacher-пакет с нужным ключом;
-PrairieLearn требует программный проект и binding, Cloud задаёт модель
+PrairieLearn использует программный проект, явный нейтральный project-check
+и декларативную delivery-конфигурацию; ручные binding/native JSON не создаются.
+Cloud задаёт модель
 VM/действий. Экспорт, оценивание и доступ настраиваются по контракту выбранного
 потребителя, без автоматического создания LMS-теста или запуска инфраструктуры.
 
@@ -110,14 +121,16 @@ VM/действий. Экспорт, оценивание и доступ нас
 
 CI использует Quarto 1.11.5, CUE 0.17.1 и установленные в репозитории
 расширения. `CI/install-extensions.sh` нужен для явного обновления pins.
-Проверки NativeRun и project-local CUE inputs сохранены в `CI/native-run.lua`
-и `CI/cue-validation.ts`. Затем идут student → full → student и
+`CI/check-model.sh` запускает выпущенные Core collectors для свежего declared
+inventory и выбранного Body; внутренние owner-тесты в курс не копируются.
+Затем идут student → full → student и
 `python3 CI/site.py _site-student _site-full`.
 
 Каждая сборка — отдельный шаг. При отказе CI сохраняет полные `ci-logs`,
 отладочный вывод Quarto и трассу подпроектов. Локально:
 
 ```sh
+bash CI/check-model.sh /absolute/private/cybersecurity-model
 bash CI/render.sh student
 bash CI/render.sh full
 bash CI/render.sh student
@@ -129,7 +142,7 @@ python3 CI/site.py _site-student _site-full
 Служебные скрипты `CI/` исключены из ресурсов сайта.
 
 Исправления Windows-путей NativeRun и временного JSON CUE входят в upstream
-Core 4.0.1; локальные overlay поверх выпуска не применяются. Нативный прогон
+Core 5.0.1; локальные overlay поверх выпуска не применяются. Нативный прогон
 курса в Windows здесь не заявляется. Условный случай Quarto `recoverEncode`
 разобран в [руководстве по путям](https://afonenko-course-tools.github.io/quarto-template-course/guide/windows.html).
 

@@ -27,5 +27,6 @@ book:
     - seminar/02-structure.qmd
   - part: Контрольные материалы
     chapters:
+    - teacher.qmd
     - exam/paper.qmd
     - exam/technical.qmd

@@ -31,7 +31,7 @@ export interface BodyPackage {
     title: string;
     items: string[];
     assignments: Record<string, import("../domain/model.ts").Assignment>;
-    theoryTime?: number;
+    theoryTime?: number; relatedExercise?: string;
   }[];
   resources: {
     owner: string;

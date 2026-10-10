@@ -97,6 +97,7 @@ export function assembleRelease(
     if(!["lab","seminar","practical","test"].includes(assessment.kind) || assessment.theoryTime!==undefined && (!Number.isFinite(assessment.theoryTime)||assessment.theoryTime<=0) || new Set(assessment.items).size!==assessment.items.length) {
       fail("CORE.ASSESSMENT_INVALID","Некорректный вид, время или состав работы",{source:assessment.source,id:assessment.id,field:"assessment"});
     }
+    if(assessment.relatedExercise!==undefined && !facts.has(assessment.relatedExercise)) fail("CORE.RELATED_EXERCISE_MISSING","Связанное упражнение отсутствует в текущих декларациях",{source:assessment.source,id:assessment.id,field:"related-exercise",related:[{id:assessment.relatedExercise}]});
     for (const member of assessment.items) {
       if (!facts.has(member)) {
         fail("CORE.UNKNOWN_MEMBER", "Участник работы отсутствует в текущем курсе", {source: assessment.source, id: assessment.id, field: "items", related: [{id: member}], hint: "Проверьте ID и состав текущей сборки"});
@@ -115,6 +116,11 @@ export function assembleRelease(
   }
   for(const assessment of model.assessmentCompositions??model.assessments){
     if(Object.keys(assessment.assignments??{}).some(id=>!assessment.items.includes(id)))fail("CORE.ASSESSMENT_INVALID","Карта назначений содержит посторонний ID",{source:assessment.source,id:assessment.id,field:"assignments"});
+  }
+  const projectIds=new Map<string,string>();
+  for(const fact of model.projects??[]){
+    if(projectIds.has(fact.exerciseId))fail("CORE.PROJECT_CONFLICT","Повторная декларация project/check",{source:fact.source,id:fact.exerciseId,field:"projects"});
+    projectIds.set(fact.exerciseId,fact.source);
   }
   return { scope: "release", documents: ordered, model };
 }

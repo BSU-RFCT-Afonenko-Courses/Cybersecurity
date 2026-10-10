@@ -88,7 +88,8 @@
   "exerciseAttributes": [
     "target",
     "project",
-    "statement-visibility"
+    "statement-visibility",
+    "project-check"
   ],
   "assessmentKinds": [
     "lab",

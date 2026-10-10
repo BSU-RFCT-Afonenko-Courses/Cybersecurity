@@ -1,6 +1,8 @@
 local diagnostics = require("./diagnostics")
 local M={}
-function M.validate(doc)
+local resolved={}
+function M.validate(doc,facts)
+  resolved={}
   local selected=doc.meta.course.adapters or {}
   if #selected==0 then return end
   local root=quarto.project.directory
@@ -24,9 +26,21 @@ function M.validate(doc)
     local name=pandoc.utils.stringify(raw)
     local matches={};for _,p in ipairs(packages) do if p.contract.name==name then matches[#matches+1]=p end end
     assert(#matches==1, diagnostics.format("CORE.ADAPTER_INVALID", 'Требуется ровно один установленный пакет адаптера: '..name, {id=name,field="course.adapters"}))
+    resolved[#resolved+1]=matches[1].path
     local file=matches[1].path..'/validate.lua'
     local validator=assert(loadfile(file))()
-    if require("./pedagogy/contract").bank(doc.meta) or doc.meta.assessment then validator.validate(doc) end
+    if require("./pedagogy/contract").bank(doc.meta) or doc.meta.assessment then validator.validate(doc,facts) end
   end
+end
+function M.read(doc,facts)
+  for _,path in ipairs(resolved) do
+    local file=io.open(path..'/native.lua','r')
+    if file then
+      file:close()
+      local native=assert(loadfile(path..'/native.lua'))()
+      if native.read and native.write then native.write(doc,native.read(doc,facts)) end
+    end
+  end
+  doc.meta['course-adapters-read']=true
 end
 return M

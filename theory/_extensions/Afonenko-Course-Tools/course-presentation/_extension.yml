@@ -1,5 +1,5 @@
 title: Представление учебных материалов
-version: 4.0.1
+version: 5.0.1
 quarto-required: ">=1.11.5"
 contributes:
   filters:

@@ -1,2 +1,4 @@
 exercise-bank: true
-exercise-statement-visibility: open
+default-exercise-target: manual
+default-exercise-course-role: independent-study
+default-exercise-statement-visibility: open

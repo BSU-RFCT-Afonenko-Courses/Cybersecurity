@@ -9,7 +9,7 @@ export interface OwnedRequestState {
   protocol:1;
   root:string;
   directory:string;
-  files:{path:string; source:string; resources:string[]; sha256:string}[];
+  files:{path:string; source:string; resources:string[]; artifacts?:Request["artifacts"]; sha256:string}[];
 }
 
 async function hash(algorithm:"SHA-1"|"SHA-256",bytes:Uint8Array):Promise<string> {
@@ -55,10 +55,11 @@ export async function inspectOwnedRequests(root:string,sources:string[]):Promise
     try { value=JSON.parse(new TextDecoder("utf-8",{fatal:true}).decode(bytes)); } catch(cause) { throw diagnostic("DOWNLOAD.REQUEST_INVALID", "Не удалось прочитать JSON заявки", {source:path,field:"request"},cause); }
     if(!value || typeof value!=="object" || Array.isArray(value)) throw diagnostic("DOWNLOAD.REQUEST_INVALID", `Повреждённая заявка: ${path}`, {source:path,field:"request"});
     const fields=value as Record<string,unknown>;
-    if(Object.keys(fields).some(key=>!["source","resources","courseProcessed"].includes(key)) || (Object.hasOwn(fields,"courseProcessed") && typeof fields.courseProcessed!=="boolean") || !Object.hasOwn(fields,"source") || !Object.hasOwn(fields,"resources") || typeof fields.source!=="string" || !allowed.has(fields.source) || !Array.isArray(fields.resources) || fields.resources.some(id=>typeof id!=="string" || !RESOURCE_ID.test(id))) throw diagnostic("DOWNLOAD.REQUEST_INVALID", `Недопустимые поля заявки: ${path}`, {source:path,field:"request"});
+    if(Object.keys(fields).some(key=>!["source","resources","artifacts","courseProcessed"].includes(key)) || (Object.hasOwn(fields,"courseProcessed") && typeof fields.courseProcessed!=="boolean") || !Object.hasOwn(fields,"source") || !Object.hasOwn(fields,"resources") || typeof fields.source!=="string" || !allowed.has(fields.source) || !Array.isArray(fields.resources) || fields.resources.some(id=>typeof id!=="string" || !RESOURCE_ID.test(id))) throw diagnostic("DOWNLOAD.REQUEST_INVALID", `Недопустимые поля заявки: ${path}`, {source:path,field:"request"});
+    if(fields.artifacts !== undefined && (!Array.isArray(fields.artifacts) || fields.artifacts.some((v:any)=> !v || typeof v!=="object" || Array.isArray(v) || Object.keys(v).some(k=>!["exerciseId","kind"].includes(k)) || typeof v.exerciseId!=="string" || !RESOURCE_ID.test(v.exerciseId) || !["starter","full","conditions"].includes(v.kind)))) throw diagnostic("DOWNLOAD.REQUEST_INVALID", "Недопустимые модельные заявки", {source:path,field:"artifacts"});
     const request=value as Request;
     if(entry.name!==await hash("SHA-1",new TextEncoder().encode(request.source))+".json") throw diagnostic("DOWNLOAD.REQUEST_INVALID", `Имя заявки не соответствует источнику: ${path}`, {source:path,field:"request"});
-    state.files.push({path,source:request.source,resources:request.resources,sha256:await hash("SHA-256",bytes)});
+    state.files.push({path,source:request.source,resources:request.resources,...(request.artifacts ? {artifacts:request.artifacts} : {}),sha256:await hash("SHA-256",bytes)});
   }
   return state;
 }
