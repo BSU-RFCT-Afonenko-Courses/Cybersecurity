@@ -6,13 +6,13 @@
 
 | Поставщик | Тег | Exact source commit | Native scopes |
 | --- | --- | --- | --- |
-| Core / Presentation / Navigation | `v5.0.1` | `d9c764823beee6ea45af1d7093933382aafce663` | Корень, theory, task, seminars |
+| Core / Presentation / Navigation | `v5.0.2` | `a340d542b821831a6e209e7abfbdaacd569002fd` | Корень, theory, task, seminars |
 | Publisher | `v5.0.0` | `215309b5c41669e56a857a1bc3e4f7f2ce782c5f` | Корень |
 | Reference Catalog | `v3.0.0` | `559583805a514ae8a244b6ea4cb5124867064024` | Корень, theory, task, seminars |
 | Download | `v3.0.0` | `6fb3945020cd74fda40cc4d333389864e06609b5` | task |
 
 Совместимость и нормативные правила читаются по тому же immutable tag:
-[Core](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v5.0.1/spec/index.md),
+[Core](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v5.0.2/spec/index.md),
 [Publisher](https://github.com/Afonenko-Course-Tools/quarto-project-publish/blob/v5.0.0/spec/index.md),
 [QRC](https://github.com/Afonenko-Course-Tools/quarto-reference-catalog/blob/v3.0.0/spec/index.md),
 [Download](https://github.com/Afonenko-Course-Tools/quarto-project-download/blob/v3.0.0/spec/index.md).
