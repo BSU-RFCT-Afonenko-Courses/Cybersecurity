@@ -2,6 +2,11 @@ project:
   output-dir: _output/student
 course:
   view: student
+format:
+  html:
+    code-tools:
+      source: false
+    keep-source: false
 book:
   chapters:
   - index.qmd
