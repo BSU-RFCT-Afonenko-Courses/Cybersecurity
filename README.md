@@ -16,10 +16,14 @@
 | Reference Catalog | `v3.0.0` | Корень, theory, task, seminars |
 | Download | `v3.0.0` | task |
 
-[Опубликованное руководство](https://afonenko-course-tools.github.io/quarto-template-course/guide/index.html)
-объясняет авторские действия; [контракты Core 5.0.1](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v5.0.1/spec/index.md)
+[Руководство Template из draft PR21](https://github.com/Afonenko-Course-Tools/quarto-template-course/blob/13fa3da421ddffabdd9281c9e2794e25f7664145/guide/index.qmd)
+закреплено на exact head `13fa3da421ddffabdd9281c9e2794e25f7664145` и объясняет авторские действия;
+[контракты Core 5.0.1](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v5.0.1/spec/index.md)
 задают правила банка, работ, видимости и экспорта.
 Точные установленные commits и границы пакетов приведены в [UPSTREAM.md](UPSTREAM.md).
+Template PR21 остаётся draft: окончательная Java acceptance, Platform source tag
+1.0.1 и публичный OCI pull ещё ожидаются. Этот guide pin не объявляет их выполненными
+или новый сайт руководства опубликованным.
 
 ```sh
 bash CI/install-extensions.sh
@@ -103,7 +107,7 @@ Core читает корневой `course.id` и выбранную книгу 
 не становится условием; ключи, решения и заметки преподавателя отделяются
 в teacher-пакет, когда они объявлены. `_generated` исключён из веб-ресурсов.
 
-Полный HTML для [selected source export](https://afonenko-course-tools.github.io/quarto-template-course/guide/export.html)
+Полный HTML для [selected source export](https://github.com/Afonenko-Course-Tools/quarto-template-course/blob/13fa3da421ddffabdd9281c9e2794e25f7664145/guide/export.qmd)
 не требуется; student/full в его CLI не передаются. Пустые черновики контрольных
 не являются допустимой заменой существующей лабораторной. Download установлен,
 но курс пока не объявляет shortcode или ресурс для выдачи ZIP.

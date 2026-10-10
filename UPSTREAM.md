@@ -18,6 +18,16 @@
 [Download](https://github.com/Afonenko-Course-Tools/quarto-project-download/blob/v3.0.0/spec/index.md).
 Минимальная линия: Quarto 1.11.5 и CUE 0.17.1.
 
+Authoring guide закреплён на фактическом head
+`13fa3da421ddffabdd9281c9e2794e25f7664145` открытого
+[Template draft PR21](https://github.com/Afonenko-Course-Tools/quarto-template-course/pull/21)
+(tree `5009e92502c96b6b46853732527b0b7806864da2`).
+[Исходник руководства](https://github.com/Afonenko-Course-Tools/quarto-template-course/tree/13fa3da421ddffabdd9281c9e2794e25f7664145/guide)
+содержит проверенные правила текущих owner packages. Это draft guide source,
+а не новый опубликованный сайт или завершённая общая приёмка. Final Java exacthead,
+Platform source tag 1.0.1 и публичная доступность OCI images ещё ожидаются;
+guide pin обновляется только по фактическому reviewed successor.
+
 Банк backup — ручное задание без project/project-check; пустой declared inventory
 не исключает его из банка или назначений. В курсе нет executable Java, PrairieLearn
 delivery или platform image pins. Эти маршруты нельзя считать проверенными по
