@@ -22,6 +22,7 @@ import "list"
 #Composition: {
   id: string & =~"^[a-z][a-z0-9-]*$", source: string, kind: #AssessmentKind, title: string & !=""
   items: [...string] & list.MinItems(1) & list.UniqueItems
+  relatedExercise?: string
   assignments: {[string]: #Assignment}, theoryTime?: number & >0
   memberContainers: int & >=1, memberKinds: [...#MemberKind], memberSizes: [...1]
   _containers: len(memberKinds) & memberContainers
@@ -45,7 +46,7 @@ import "list"
 	sourceTopic?: {id: string & !="", owner?: string & !="", rootQmd: string & !=""}
 	project: string
 	head: {kind: string, level: int & >=0 & <=6, title: string}
-	if authoredTarget != _|_ {head: #Head}
+	if target != _|_ {head: #Head}
 	body: #Body
 	gradingNotes?: [...#Body]
 	nested: 0
@@ -61,6 +62,7 @@ import "list"
 	items: [...string] & list.MinItems(1) & list.UniqueItems
 	assignments: {[string]: #Assignment}
 	theoryTime?: number & >0
+  relatedExercise?: string
 	memberContainers: int & >=1
 	memberKinds: [...#MemberKind] & list.MinItems(1)
 	_members: len(memberKinds) & memberContainers
@@ -107,7 +109,25 @@ import "list"
 		}
 	}
 }
+#SourceProfile: {mode:"implementation"|"student-tests",root:string & !="",include:[...string] & list.MinItems(1)}
+#VerificationExpectation: {"student-compilation"?:"success"|"failure",job?:"complete"|"failure","required-tests"?:"all-pass",classification?:string,"failed-tests"?:{"at-least"?:int & >=0,exactly?:int & >=0},"executed-tests"?:{"at-least"?:int & >=0,exactly?:int & >=0},"test-ids"?:[...string],score?:{"less-than"?:number & >=0,"at-least"?:number & >=0,exactly?:number & >=0}}
+#Scoring: {mode:"weighted"} | {mode:"all-pass"} | {mode:"contract-groups",groups:[...{id:string & !="",weight:number & >0,tests:[...string] & list.MinItems(1)}] & list.MinItems(1)} | {mode:"threshold",basis:"score"|"passed-tests",value:number & >=0}
+#ResolvedProjectCheck: {
+ profile:string & !="",runtime:string & !="",sourceProfile:#SourceProfile,"source-profile":string & !="",tests:[...string]
+ java?:{release:int & >0,encoding?:string & !="","compiler-options"?:[...string]}
+ limits?:{"outer-seconds"?:number & >0,"compile-seconds"?:number & >0,"run-seconds"?:number & >0,networking?:false,"max-output-bytes"?:int & >0}
+ scoring:#Scoring
+ references?:[...{name:string & !="",root:string & !="",optional:bool}]
+ "verification-tests"?:[...string],"contract-cases"?:string & !=""
+ "verification-expectations"?:{reference?:#VerificationExpectation,starter?:#VerificationExpectation}
+ discovery?:{"min-executed"?:int & >0,"allow-skipped"?:bool}
+ variants?:{correct:[...string] & list.MinItems(1),mutants:[...string] & list.MinItems(1)}
+}
+#ProjectFact: {exerciseId:string, source:string, projectRoot:string & !="", bankMember:bool, purpose?:#ExercisePurpose, statementVisibility:#StatementVisibility, artifactPolicy:{student?:"starter"|"full",full:"full",conditions:bool},check?:#ResolvedProjectCheck}
+#TopicFact: {source:string,semester?:string,categories:[...string]}
 #Course: {
+  projects?: [...#ProjectFact]
+  topics?: [...#TopicFact]
 	course: {id?: string & =~"^[a-z][a-z0-9-]*$", view?: #View}
 	registeredTargets: [...string] & list.UniqueItems
 	exercises: [...#Exercise]
@@ -127,6 +147,7 @@ import "list"
 	CORE003_registeredTargets: {
 		for e in exercises if e.target != _|_ {(e.id): list.Contains(registeredTargets, e.target) & true}
 	}
+	_relatedExercises: {for a in _works if a.relatedExercise != _|_ {(a.id): list.Contains([for e in _facts {e.id}],a.relatedExercise) & true}}
 	CORE004_existingMembers: {
 		for a in _works {
 			for id in a.items {

@@ -19,11 +19,15 @@ return {{Pandoc = function(doc)
   output.invalidate(doc)
   assert(doc.meta.course.schema == nil, diagnostics.format("CORE.SCHEMA_INVALID", "Поле course.schema не поддерживается; удалите его из YAML: действует единый текущий контракт", {field="course.schema"}))
   assert(doc.meta["course-export-context"] ~= true or quarto.doc.is_format("json"), diagnostics.format("CORE.VISIBILITY_INVALID", "course-export-context требует native JSON export", {field="course-export-context"}))
-  local canonical,domains,rawAssessment = native_document.validate(doc)
+  local effective=require("./exercise-defaults").normalize(doc)
+  local projectFacts=require("./projects").collect(doc,effective)
+  local canonical,domains,rawAssessment = native_document.validate(doc,effective)
   local publicAnswers=answers.validate(doc)
   if rawAssessment then doc.meta["course-assessment-id"]=pandoc.MetaString(rawAssessment.id) end
-  adapters.validate(doc)
-  if (require("./pedagogy/contract").bank(doc.meta) or rawAssessment) and pandoc.utils.stringify(doc.meta.course.view or "")=="student" then
+  adapters.validate(doc,effective)
+  local managed=false
+  for _,fact in pairs(effective) do if fact.managed then managed=true end end
+  if (require("./pedagogy/contract").bank(doc.meta) or rawAssessment or managed) and pandoc.utils.stringify(doc.meta.course.view or "")=="student" then
     -- Quarto has already appended its native source container before Lua.
     -- Drop that whole generated AST node; metadata alone cannot undo the
     -- writer options resolved earlier by the native HTML pipeline.
@@ -32,39 +36,56 @@ return {{Pandoc = function(doc)
   doc.meta["course-current-native-run"]=output.current_run(quarto.project.directory)~=nil
   local raw=doc:clone()
   local view=doc.meta.course.view and pandoc.utils.stringify(doc.meta.course.view) or nil
-  local public=visibility.prepare(doc:clone(),view=="full" and "student" or nil)
+  local public=visibility.prepare(doc:clone(),view=="full" and "student" or nil,effective)
   doc = grading.prepare(doc)
-  doc = visibility.prepare(doc)
+  doc = visibility.prepare(doc,nil,effective)
+  adapters.read(doc,effective)
   native_document.references(doc,domains)
   local current = require("./assessment").collect(doc)
   if current and #current.items==0 then current=nil end
   if current then doc.meta["course-assessment-id"] = pandoc.MetaString(current.id) end
-  local publicPedagogy=pedagogy.collect(public)
+  local publicPedagogy=pedagogy.collect(public,effective)
   local publicSolutions={}
   for _,element in ipairs(publicPedagogy and publicPedagogy.elements or {}) do
     if element.kind=="solution" and element.exercise then publicSolutions[element.exercise]=true end
   end
   for _,fact in ipairs(canonical) do fact.hasPublicSolution=publicSolutions[fact.id]==true end
-  local publicExercises=exercises.collect(public,canonical)
+  local publicExercises=exercises.collect(public,canonical,effective)
   local selectedAnswers={}
   for _,exercise in ipairs(publicExercises) do
     local answer=publicAnswers[exercise.id]
     if answer then selectedAnswers[exercise.id]={answerType=answer.answerType,publicAnswerJson=answer.publicAnswerJson} end
   end
+  local topicSource=quarto.doc.input_file
+  if not pandoc.path.is_relative(topicSource) then topicSource=pandoc.path.make_relative(topicSource,quarto.project.directory) end
+  local topic={source=topicSource,categories=pandoc.List()}
+  if doc.meta.semester then topic.semester=pandoc.utils.stringify(doc.meta.semester) end
+  local categories=doc.meta.categories or (quarto.metadata and quarto.metadata.get("categories"))
+  if categories then for _,category in ipairs(categories) do
+    -- Quarto preserves category strings as pandoc-native scalar inlines until
+    -- its later native resolution phase; decode that transport, not source YAML.
+    local value=pandoc.Pandoc({pandoc.Plain(category)}):walk({RawInline=function(raw)
+      if raw.format=="pandoc-native" then return pandoc.Str(pandoc.utils.stringify(pandoc.read(raw.text,"native"))) end
+    end})
+    topic.categories:insert(pandoc.utils.stringify(value))
+  end end
+  local resourceProjects=pandoc.List()
+  for _,fact in pairs(effective) do if fact.project then resourceProjects:insert(fact) end end
   local declarations=pandoc.List()
   for _,fact in ipairs(canonical) do
     declarations:insert({id=fact.id,source=fact.source,difficulty=fact.difficulty,time=fact.time,statementVisibility=fact.statementVisibility,purpose=fact.purpose,hasSolution=fact.hasSolution,hasPublicSolution=fact.hasPublicSolution})
   end
   output.write({
     exportContext=doc.meta["course-export-context"]==true or nil,
+    projects=projectFacts, topic=topic,
     declarations=declarations, rawAssessment=require("./assessment").composition(rawAssessment),
     course = {id = doc.meta.course.id and pandoc.utils.stringify(doc.meta.course.id) or nil,
               view = doc.meta.course.view and pandoc.utils.stringify(doc.meta.course.view) or nil},
-    exercises = exercises.collect(doc,canonical),
-    pedagogy = pedagogy.collect(doc),
+    exercises = exercises.collect(doc,canonical,effective),
+    pedagogy = pedagogy.collect(doc,effective),
     assessment = current,
     body = {publicExercises=publicExercises,publicAssessment=require("./assessment").collect(public),publicAnswers=selectedAnswers,fullAnswers=view=="full" and publicAnswers or nil},
-    resources = resources.facts(raw,public,canonical)
+    resources = resources.facts(raw,public,resourceProjects)
   })
   if rawAssessment and doc.meta["course-current-native-run"]==true and quarto.doc.is_format("html") then
     doc.blocks:insert(pandoc.RawBlock("html","<!--course-assessment-time-->"))
@@ -119,6 +140,22 @@ return {{Pandoc = function(doc)
   end
   -- Фильтр представления использует учебные атрибуты только после сохранения.
   -- Маркер документа позволяет обнаружить неверный порядок фильтров.
+  local artifactContext={}
+  for _,project in ipairs(projectFacts) do artifactContext[project.exerciseId]={purpose=project.purpose,statementVisibility=project.statementVisibility} end
+  doc.meta["course-artifact-context"]=artifactContext
+  doc.meta["course-effective-exercise-facts"]=pandoc.MetaString(pandoc.json.encode(effective))
+  doc=require("./exercise-defaults").present(doc,effective)
+  local function markDependencies(blocks,owner)
+    return pandoc.Pandoc(blocks):walk({traverse="topdown",Div=function(div)
+      if div.identifier:match("^sol%-") or div.classes:includes("solution") or div.classes:includes("course-answer-solution") or div.classes:includes("grading-notes") or div.classes:includes("answer-spec") or div.classes:includes("answer") then return div,false end
+      local current=div.identifier:match("^exr%-") and div.identifier or owner
+      if div.attributes["course-role"]=="prerequisites" then div.attributes["data-course-artifact-dependency"]=div.attributes["for"] or current or "*" end
+      div.content=markDependencies(div.content,current)
+      return div,false
+    end}).blocks
+  end
+  doc.blocks=markDependencies(doc.blocks,nil)
+  public=require("./exercise-defaults").present(public,effective)
   doc.meta["course-core-processed"] = true
   -- Native shortcode resolution runs after pre-ast filters. The source writer
   -- carries both independently projected ASTs through that same native pass.

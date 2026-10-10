@@ -71,7 +71,8 @@ local function occurrences(doc)
   return rows
 end
 
-function M.validate(doc)
+function M.validate(doc, effective)
+  effective=effective or require("./exercise-defaults").normalize(doc)
   local owner = pandoc.utils.stringify(doc.meta.course.id or '')
   check(owner=='' or valid(owner,'^[a-z][a-z0-9%-]*$'),'CORE.COURSE_INVALID','Идентификатор курса должен состоять из строчных латинских букв, цифр и дефисов', {id=owner,field='course.id',hint='Используйте имя вроде course-demo'})
   local source,rows = source_path(),occurrences(doc)
@@ -83,6 +84,7 @@ function M.validate(doc)
   end
   for _,row in ipairs(rows) do
     local node,id=row.node,row.node.identifier
+    local normalized=effective[id]
     local domain = row.kind=='Header' and prefix(id,'sec') or row.kind=='Div' and
       (bank and (contract.is_exercise(node) or prefix(id,'sol') or node.classes:includes('solution')) or node.attributes['course-role']~=nil)
     if domain and id~='' then
@@ -99,12 +101,12 @@ function M.validate(doc)
         check(contract.is_exercise(node),'CORE.EXERCISE_INVALID','target допустим только у exr-*', {id=id,field='target'})
         for key,_ in pairs(node.attributes) do
           -- Visibility syntax is evaluated by the common native projection.
-          check(contract.exerciseAttributes[key] or contract.attributes[key] and key~='for' and key~='requirement' and key~='work-mode'
+          check(contract.adapter_attribute(key,doc.meta) or contract.exerciseAttributes[key] or contract.attributes[key] and key~='for' and key~='requirement' and key~='work-mode'
             or contract.nativeExerciseAttributes[key], 'CORE.EXERCISE_INVALID','Неизвестный атрибут упражнения: '..key, {id=id,field=key})
         end
         check(node.attributes.target==nil or node.attributes.target~='', 'CORE.EXERCISE_INVALID','target не может быть пустым', {id=id,field='target'})
-        check(node.attributes.target==nil or node.content[1] and node.content[1].t=='Header', 'CORE.EXERCISE_INVALID','Упражнение с target требует непустой заголовок уровня 1–6', {id=id,field='head'})
-        if node.attributes.target~=nil then
+        check(not normalized.target or node.content[1] and node.content[1].t=='Header', 'CORE.EXERCISE_INVALID','Упражнение с target требует непустой заголовок уровня 1–6', {id=id,field='head'})
+        if normalized.target then
           local header=node.content[1]
           check(header.level>=1 and header.level<=6 and pandoc.utils.stringify(header.content)~='', 'CORE.EXERCISE_INVALID','Упражнение с target требует непустой заголовок уровня 1–6', {id=id,field='head'})
         end
@@ -121,9 +123,10 @@ function M.validate(doc)
             if outside then nearest=header.node.identifier end
           end
         end
-        local metadata=contract.metadata(node.attributes,{id=id})
+        local metadata=normalized
         check(metadata.difficulty~=nil and metadata.time~=nil,'CORE.METADATA_INVALID','Банковская задача требует собственные difficulty и time', {id=id,field=metadata.difficulty==nil and 'difficulty' or 'time'})
-        facts:insert({id=id,source=source,difficulty=metadata.difficulty,time=metadata.time,statementVisibility=contract.statement_visibility(node,doc.meta),purpose=node.attributes['course-role'],hasSolution=false,project=node.attributes.project,sourceTopic=nearest and {id=nearest,owner=owner~='' and owner or nil,rootQmd=source} or nil})
+        check(normalized.statementVisibility=='open' or normalized.statementVisibility=='restricted','CORE.METADATA_INVALID','Банковская задача требует statement-visibility open или restricted',{id=id,field='statement-visibility'})
+        facts:insert({id=id,source=source,difficulty=metadata.difficulty,time=metadata.time,statementVisibility=normalized.statementVisibility,purpose=normalized.purpose,hasSolution=false,project=node.attributes.project,target=normalized.target,authoredTarget=normalized.authoredTarget,projectCheck=normalized.projectCheck,sourceTopic=nearest and {id=nearest,owner=owner~='' and owner or nil,rootQmd=source} or nil})
       end
       -- Closed grading notes are excluded from public pedagogy extraction,
       -- but their actual Course declarations still require valid metadata
@@ -161,7 +164,7 @@ function M.validate(doc)
       end
     end
   end
-  pedagogy.collect(doc)
+  pedagogy.collect(doc,effective)
   local rawAssessment = M.assessment(doc)
   return facts,domains,rawAssessment
 end

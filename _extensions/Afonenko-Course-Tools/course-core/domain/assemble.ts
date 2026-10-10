@@ -17,6 +17,8 @@ export function assemble(selected: string[], fragments: Map<string, Fragment>, a
     if (result.course.id && result.course.id !== part.course.id) throw diagnostic("RELEASE.MIXED_COURSE", `Несогласованный идентификатор курса в ${source}`, {source, field: "course.id"});
     if (result.course.id && result.course.view !== part.course.view) throw diagnostic("RELEASE.MIXED_VIEW", `Несогласованное представление курса в ${source}`, {source, field: "course.view"});
     result.course = { id: part.course.id, ...(part.course.view ? { view: part.course.view } : {}) };
+    if(part.projects){result.projects??=[];result.projects.push(...part.projects);}
+    if(part.topic){result.topics??=[];result.topics.push(part.topic);}
     if (part.declarations) {
       result.declarations ??= [];
       result.declarations.push(...part.declarations);

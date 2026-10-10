@@ -1,3 +1,4 @@
+import { inspectOwnedRequests } from "../ownership.ts";
 import { diagnostic, externalFailure } from "../diagnostics.ts";
 import {
   dirname,
@@ -11,6 +12,9 @@ import { configuration, type Resource, RESOURCE_ID } from "../domain/config.ts";
 import { publish, type Request } from "../application/publish.ts";
 import { child, exists, noSymlinks, resourceFiles } from "./files.ts";
 const manifestName = ".project-download-manifest.json";
+async function sha256(bytes:Uint8Array):Promise<string> {
+  return Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256",new Uint8Array(bytes))),v=>v.toString(16).padStart(2,"0")).join("");
+}
 async function inspect(root: string) {
   const executable = Deno.env.get("QUARTO") ||
     Deno.env.get("QUARTO_BIN_PATH") &&
@@ -61,6 +65,13 @@ export async function prepare(root: string): Promise<void> {
   const output = Deno.env.get("QUARTO_PROJECT_OUTPUT_DIR") ||
     inspected.config.project?.["output-dir"] || ".";
   await clearOwned(root, output);
+  const receipt=child(root,"_generated/project-download/artifacts-receipt.json");
+  if(await exists(receipt)) {
+    await noSymlinks(root,receipt);
+    const value=JSON.parse(await Deno.readTextFile(receipt));
+    if(value?.schema!=="project-download-artifacts-v1") throw diagnostic("DOWNLOAD.OUTPUT_CONFLICT","Чужой файл на пути receipt",{source:receipt,field:"receipt"});
+    await Deno.remove(receipt);
+  }
   const requests = child(root, "_generated/project-download/requests");
   if (await exists(requests)) {
     await noSymlinks(root, requests);
@@ -75,6 +86,7 @@ export interface NativeDownloadContext {
     documents: any[];
     inputFiles?: string[];
   };
+  resolveArtifact?(run:any, request:{source:string;exerciseId:string;kind:string}):Promise<any>;
   evaluateResources(
     options: { facts: any[]; selected: string[]; projectRoot: string; publicPayload?: boolean; authoredInputs?: string[] },
   ): Promise<unknown>;
@@ -99,14 +111,8 @@ export async function finish(
   const directory = join(root, "_generated/project-download/requests");
   const requests: Request[] = [];
   if (await exists(directory)) {
-    for await (const entry of Deno.readDir(directory)) {
-      if (entry.isFile && entry.name.endsWith(".json")) {
-        const request: Request = JSON.parse(
-          await Deno.readTextFile(join(directory, entry.name)),
-        );
-        if (selected.has(request.source)) requests.push(request);
-      }
-    }
+    const owned = await inspectOwnedRequests(root, [...selected]);
+    for (const file of owned.files) requests.push(JSON.parse(await Deno.readTextFile(file.path)));
   }
   if (
     !current &&
@@ -122,7 +128,8 @@ export async function finish(
     const { evaluateResources } = await import(
       toFileUrl(join(core, "infrastructure/resources.ts")).href
     );
-    current = { run: await loadNativeRun(root), evaluateResources };
+    const { resolveArtifact } = await import(toFileUrl(join(core, "artifacts/resolve.ts")).href);
+    current = { run: await loadNativeRun(root), evaluateResources, resolveArtifact };
   }
   if (
     current &&
@@ -184,6 +191,28 @@ export async function finish(
       }
       return { path: exercise.project.replace(/\/$/, "") + "/student" };
     },
+    async modelArtifact(request, source) {
+      if (!current?.resolveArtifact) throw diagnostic("DOWNLOAD.CONFIG_INVALID", "Требуется Core с модельными комплектами", {source,id:request.exerciseId,field:"course-model"});
+      const artifact = await current.resolveArtifact(current.run, {source,exerciseId:request.exerciseId,kind:request.kind});
+      if (artifact.kind === "conditions") {
+        if (!Array.isArray(artifact.files)) throw diagnostic("DOWNLOAD.RESOURCE_UNAVAILABLE", "Core не предоставил переносимое условие", {source,id:request.exerciseId,field:"conditions"});
+        return {kind:artifact.kind,files:artifact.files};
+      }
+      const project = artifact.projectRoot;
+      if (typeof project !== "string") throw diagnostic("DOWNLOAD.REQUEST_INVALID", "Core не предоставил разрешённый проект", {source,id:request.exerciseId,field:"projectRoot"});
+      const base = project.replace(/^\//, "").replace(/\/$/, "");
+      const directory = artifact.kind === "starter" ? base+"/student" : base;
+      const files = await resourceFiles(root, {path:directory});
+      const accepted=[];
+      for(const file of files) {
+        const path=join(directory,file.name);
+        const gitignore=artifact.kind === "starter" ? file.name === ".gitignore" : file.name === "student/.gitignore";
+        if (/\.(?:qmd|rmd|ipynb|class|jar)$/i.test(file.name) || /(^|\/)(?:_quarto(?:[-.][^/]*)?|_metadata\.ya?ml)$/i.test(file.name) || authoredInputs.has(resolve(root,path)) || (!gitignore && /(^|\/)(?:\.[^/]+|_extensions|_freeze|_generated|_site[^/]*|_book[^/]*)(\/|$)/.test(file.name)) || file.name === "check.sh") continue;
+        accepted.push(file);
+      }
+      if (!accepted.length) throw diagnostic("DOWNLOAD.SELECTION_EMPTY", "Разрешённый комплект пуст", {source,id:request.exerciseId,field:"project"});
+      return {kind:artifact.kind,files:accepted};
+    },
     async files(resource) {
       const files = await resourceFiles(root, resource);
       const directory = resource.path.replace(/^\//, "");
@@ -209,6 +238,12 @@ export async function finish(
       return files;
     },
     async save(archives) {
+      const receiptPath=child(root,"_generated/project-download/artifacts-receipt.json");
+      if(await exists(receiptPath)) {
+        await noSymlinks(root,receiptPath);
+        const previous=JSON.parse(await Deno.readTextFile(receiptPath));
+        if(previous?.schema!=="project-download-artifacts-v1") throw diagnostic("DOWNLOAD.OUTPUT_CONFLICT","Чужой файл на пути receipt",{source:receiptPath,field:"receipt"});
+      }
       await clearOwned(root, output);
       if (!archives.length) return;
       const outputRoot = resolve(root, output);
@@ -234,6 +269,22 @@ export async function finish(
           createNew: true,
         });
       }
+      await Deno.mkdir(dirname(receiptPath),{recursive:true});
+      if(await exists(receiptPath)) {
+        await noSymlinks(root,receiptPath);
+        const previous=JSON.parse(await Deno.readTextFile(receiptPath));
+        if(previous?.schema!=="project-download-artifacts-v1") throw diagnostic("DOWNLOAD.OUTPUT_CONFLICT","Чужой файл на пути receipt",{source:receiptPath,field:"receipt"});
+        await Deno.remove(receiptPath);
+      }
+      const artifactRequests=requests.flatMap(request=>(request.artifacts??[]).map(artifact=>({...artifact,source:request.source})));
+      const audienceValues=[...new Set((current?.run.documents ?? []).map(d=>d.course?.view).filter(v=>v==="student" || v==="full"))].sort();
+      const audience=audienceValues.length===1 ? audienceValues[0] : null;
+      const entries=[];
+      for(const archive of archives) {
+        const request=artifactRequests.find(a=>a.exerciseId+"-"+a.kind+".zip"===archive.name);
+        entries.push({name:archive.name,audience,sha256:await sha256(archive.bytes),...(request?{exerciseId:request.exerciseId,kind:request.kind,source:request.source,audience:current?.run.documents.find(d=>d.source===request.source)?.course?.view??null}:{} )});
+      }
+      await Deno.writeTextFile(receiptPath,JSON.stringify({schema:"project-download-artifacts-v1",audience,audiences:audienceValues,profiles,sourceRunHash:current?await sha256(new TextEncoder().encode(JSON.stringify(current.run))):null,archives:entries},null,2)+"\n",{createNew:true});
     },
   });
 }

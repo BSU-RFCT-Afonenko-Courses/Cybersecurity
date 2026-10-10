@@ -18,7 +18,8 @@ packageData: {
 		key:  "\(owner)/\(id)", owner:        string, id: string & =~"^[a-z][a-z0-9-]*$", source: string & !=""
 		kind: "lab" | "seminar" | "practical" | "test", title: string & !="", items: [...string] & list.MinItems(1) & list.UniqueItems
         assignments: {[string]: {stage?: "demonstration" | "classroom" | "homework", requirement: "required" | "optional", workMode: "individual" | "pair" | "group"}}
-        theoryTime?: number & >0
+        relatedExercise?: string
+    theoryTime?: number & >0
         for id in items {assignments: (id): {requirement: _,workMode:_}}
         for id, _ in assignments {_assignmentKeys: (id): true & list.Contains(items,id)}
 	}] & list.MinItems(1)

@@ -26,6 +26,9 @@ function M.collect(doc)
       break
     end
   end
+  if not config.id and not (crossref and crossref['chapter-id']) then
+    doc:walk({Header=function(header) if header.identifier:match('^sec%-') and not id:match('^sec%-') then id=header.identifier end end})
+  end
   local kind=config.kind and pandoc.utils.stringify(config.kind) or ''
   local theoryTime=config['theory-time'] and tonumber(pandoc.utils.stringify(config['theory-time'])) or nil
   check(config['theory-time']==nil or theoryTime and theoryTime>0 and theoryTime<math.huge,'theory-time должен задавать положительное число минут',id,'assessment.theory-time')
@@ -34,6 +37,10 @@ function M.collect(doc)
   doc:walk({Div=function(div)
     if not div.classes:includes('task-items') then return end
     local stage=div.attributes.stage
+    local defaultRequirement=div.attributes.requirement or "required"
+    local defaultMode=div.attributes["work-mode"] or "individual"
+    check(vocabulary.requirement[defaultRequirement],"Недопустимый requirement списка",id,"requirement")
+    check(vocabulary.workMode[defaultMode],"Недопустимый work-mode списка",id,"work-mode")
     check(stage==nil or contains(vocabulary.stages,stage),'stage должен принимать demonstration, classroom или homework',id,'stage')
     check(#div.content==1,'task-items требует один непустой список',id,'task-items')
     for _,block in ipairs(div.content) do
@@ -42,6 +49,7 @@ function M.collect(doc)
         for _,item in ipairs(block.content) do
           local size,member,requirement,workMode=0,nil,nil,nil
           pandoc.Pandoc(item):walk({Span=function(span)
+            check(span.attributes.stage==nil,'stage принадлежит task-items, не Span',id,'stage')
             for _,field in ipairs({'requirement','work-mode'}) do
               local value=span.attributes[field]
               if value then
@@ -67,7 +75,7 @@ function M.collect(doc)
           if size==1 then
             check(not assignments[member],'Повторный участник работы: '..member,id,'items')
             items:insert(member)
-            assignments[member]={stage=stage,requirement=requirement or 'required',workMode=workMode or 'individual'}
+            assignments[member]={stage=stage,requirement=requirement or defaultRequirement,workMode=workMode or defaultMode}
           end
         end
       end
@@ -75,7 +83,7 @@ function M.collect(doc)
   end})
   local body=grading.split(doc.blocks)
   return {id=id,title=title,bodyJson=body,kind=kind,items=items,assignments=assignments,theoryTime=theoryTime,
-    memberContainers=count,memberKinds=kinds,memberSizes=sizes}
+    relatedExercise=config['related-exercise'] and pandoc.utils.stringify(config['related-exercise']) or nil,memberContainers=count,memberKinds=kinds,memberSizes=sizes}
 end
 function M.composition(work)
   if not work then return nil end

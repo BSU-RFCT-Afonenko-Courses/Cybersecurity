@@ -111,15 +111,16 @@ export async function collectExport(root: string, options: {
     }
     const workId = options.work.startsWith(courseId + "/") ? options.work.slice(courseId.length + 1) : options.work;
     const selected = run.documents.find(d => d.assessment?.id === workId)?.assessment;
-    if (!selected) throw diagnostic("BODY.WORK_MISSING", "Выбранная работа отсутствует: " + workId, {source: projectRoot, id: options.work});
-    const ids = new Set(selected.items);
-    const documents = run.documents.filter(d => d.assessment?.id === workId || d.exercises.some(e => ids.has(e.id))).map(d => ({
+    if (!selected && options.work!=="*") throw diagnostic("BODY.WORK_MISSING", "Выбранная работа отсутствует: " + workId, {source: projectRoot, id: options.work});
+    const ids = new Set(options.work==="*"?run.documents.flatMap(d=>d.exercises.map(e=>e.id)):selected!.items);
+    const declarationIds=new Set([...ids,...(selected?.relatedExercise?[selected.relatedExercise]:[])]);
+    const documents = run.documents.filter(d => options.work==="*" || d.assessment?.id === workId || d.exercises.some(e => ids.has(e.id)) || d.declarations?.some(e=>declarationIds.has(e.id))).map(d => ({
       ...d,
       exercises: d.exercises.filter(e => ids.has(e.id)),
-      declarations:d.declarations?.filter(e=>ids.has(e.id)),
-      rawAssessment:d.rawAssessment?.id===workId?d.rawAssessment:null,
-      assessment: d.assessment?.id === workId ? d.assessment : null,
-      body: d.body ? {...d.body, publicExercises: d.body.publicExercises.filter(e => ids.has(e.id)), publicAssessment: d.assessment?.id === workId ? d.body.publicAssessment : null} : undefined,
+      declarations:d.declarations?.filter(e=>declarationIds.has(e.id)),
+      rawAssessment:options.work==="*"||d.rawAssessment?.id===workId?d.rawAssessment:null,
+      assessment: options.work==="*"||d.assessment?.id === workId ? d.assessment : null,
+      body: d.body ? {...d.body, publicExercises: d.body.publicExercises.filter(e => ids.has(e.id)), publicAssessment: options.work==="*"||d.assessment?.id === workId ? d.body.publicAssessment : null} : undefined,
     }));
     // The native writer resolves shortcodes after Core's pre-ast capture. Read
     // native JSON nodes, preserving Core's independent public projection and
@@ -171,4 +172,9 @@ export async function collectExport(root: string, options: {
     try { if(collected)await prepareNativeExportCleanup(projectRoot,name); }
     finally { await Deno.remove(profile); }
   }
+}
+
+/** Fresh native owner inventory independent of any platform or selected work. */
+export async function collectNativeModel(root:string,options:{book:string;profiles?:string[]}) {
+  return await collectExport(root,{...options,work:"*"});
 }

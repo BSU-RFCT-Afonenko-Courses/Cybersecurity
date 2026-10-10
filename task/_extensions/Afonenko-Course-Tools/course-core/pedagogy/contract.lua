@@ -52,6 +52,10 @@ function M.defaults(meta)
   return M.metadata(values)
 end
 
+function M.adapter_attribute(key,meta)
+  for _,name in ipairs(meta.course and meta.course.adapters or {}) do if key:sub(1,#pandoc.utils.stringify(name)+1)==pandoc.utils.stringify(name).."-" then return true end end
+  return false
+end
 function M.bank(meta)
   local value=meta["exercise-bank"]
   assert(value==nil or type(value)=="boolean", diagnostics.format("CORE.METADATA_INVALID", "exercise-bank должен принимать true или false", {field="exercise-bank"}))
@@ -99,6 +103,10 @@ end
 
 function M.describe(div, defaults, owner)
   local kind = M.kind(div, owner)
+  if div.classes:includes("task-items") then
+    M.metadata({difficulty=div.attributes.difficulty,time=div.attributes.time},{id=div.identifier})
+    return nil,{}
+  end
   local educational = M.is_activity(div) or M.activities[kind]
   local values = {}
   for _, key in ipairs(vocabulary.activityAttributes) do
