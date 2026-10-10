@@ -11,14 +11,14 @@
 
 | Инструмент | Выпуск | Проекты |
 | --- | --- | --- |
-| Core, Presentation, Navigation | `v5.0.1` | Корень, theory, task, seminars |
+| Core, Presentation, Navigation | `v5.0.2` | Корень, theory, task, seminars |
 | Publisher | `v5.0.0` | Корень |
 | Reference Catalog | `v3.0.0` | Корень, theory, task, seminars |
 | Download | `v3.0.0` | task |
 
 [Руководство Template из draft PR21](https://github.com/Afonenko-Course-Tools/quarto-template-course/blob/13fa3da421ddffabdd9281c9e2794e25f7664145/guide/index.qmd)
 закреплено на exact head `13fa3da421ddffabdd9281c9e2794e25f7664145` и объясняет авторские действия;
-[контракты Core 5.0.1](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v5.0.1/spec/index.md)
+[контракты Core 5.0.2](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v5.0.2/spec/index.md)
 задают правила банка, работ, видимости и экспорта.
 Точные установленные commits и границы пакетов приведены в [UPSTREAM.md](UPSTREAM.md).
 Template PR21 остаётся draft: окончательная Java acceptance, Platform source tag
@@ -146,7 +146,7 @@ python3 CI/site.py _site-student _site-full
 Служебные скрипты `CI/` исключены из ресурсов сайта.
 
 Исправления Windows-путей NativeRun и временного JSON CUE входят в upstream
-Core 5.0.1; локальные overlay поверх выпуска не применяются. Нативный прогон
+Core 5.0.2; локальные overlay поверх выпуска не применяются. Нативный прогон
 курса в Windows здесь не заявляется. Условный случай Quarto `recoverEncode`
 разобран в [руководстве по путям](https://afonenko-course-tools.github.io/quarto-template-course/guide/windows.html).
 
