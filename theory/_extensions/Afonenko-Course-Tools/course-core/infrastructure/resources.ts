@@ -35,6 +35,24 @@ export function normalizeResourceFacts(fact: ResourceFacts): ResourceFacts {
     })),
   };
 }
+/** Same native Link/Image/raw HTML uses as the Lua observation, after existing
+ * Pandoc JSON projection. Whole-page AST retains other public/shared uses. */
+export function projectedResourceUses(ast:unknown):string[]{
+  const uses=new Set<string>();
+  const add=(uri:unknown)=>{
+    if(typeof uri!=="string"||!uri||/^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(uri))return;
+    const path=uri.split(/[?#]/)[0];if(path)uses.add(path);
+  };
+  const walk=(value:any)=>{
+    if(Array.isArray(value)){value.forEach(walk);return;}
+    if(!value||typeof value!=="object")return;
+    if(value.t==="Link"||value.t==="Image")add(value.c?.[2]?.[0]);
+    if((value.t==="RawBlock"||value.t==="RawInline")&&value.c?.[0]==="html"){
+      for(const match of value.c[1].matchAll(/(?:src|href)\s*=\s*["']([^"']+)["']/gi))add(match[1]);
+    }
+    Object.values(value).forEach(walk);
+  };walk(ast);return [...uses];
+}
 export interface ResourceFile {
   source: string;
   path: string;

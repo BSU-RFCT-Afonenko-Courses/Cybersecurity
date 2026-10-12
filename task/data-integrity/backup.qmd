@@ -1,6 +1,6 @@
 # Резервное копирование {#sec-data-integrity-backup}
 
-::: {#exr-data-integrity-backup course-role="independent-study" difficulty="intermediate"}
+::: {#exr-data-integrity-backup course-role="independent-study" difficulty="intermediate" time="90"}
 ## Виды резервных копий
 
 С помощью утилиты <https://github.com/MatteoGuadrini/Butterfly-Backup> реализовать все 4 (полный, инкрементальный, дифференциальный и зеркальный) бекапы. Изменять исходные файлы, откатывать бекапы.

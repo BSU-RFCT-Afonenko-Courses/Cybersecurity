@@ -23,7 +23,3 @@ toc: false
 
 Условия находятся в общем банке: @tasks:sec-tasks. Теория: @theory:sec-theory.
 Семинарские занятия: @practice:sec-practice.
-
-::: {.content-visible when-profile="full"}
-В локальном полном варианте также доступны исходные черновики контрольных работ.
-:::
