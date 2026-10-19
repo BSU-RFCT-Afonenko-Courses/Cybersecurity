@@ -21,6 +21,7 @@ export interface Workspace {
   profiles: string[];
   projects: Project[];
   config: any;
+  resources?: string[];
 }
 export async function inspect(root: string, profiles: string[]): Promise<any> {
   return JSON.parse(
@@ -199,10 +200,17 @@ export async function validateConfig(
   return { root, output, projects, profiles, config };
 }
 export async function workspace(root: string): Promise<Workspace> {
-  const profiles = activeProfiles(), config = await inspect(root, profiles);
+  const profiles = activeProfiles();
+  const project = JSON.parse(
+    await quarto(["inspect", root, ...profileArguments(profiles)], root),
+  );
+  const config = project.config;
   const override = Deno.env.get("QUARTO_PROJECT_OUTPUT_DIR");
   if (override) config.project["output-dir"] = override;
-  return await validateConfig(root, config, profiles);
+  return {
+    ...await validateConfig(root, config, profiles),
+    resources: project.files?.resources || [],
+  };
 }
 
 export async function validateAudienceOutputs(
@@ -285,6 +293,7 @@ export interface DocumentFormat {
   web: boolean;
 }
 export interface DocumentPlan {
+  resources?: string[];
   config: any;
   documents: DocumentFormat[];
   /** undefined: native configuration; default: native first format; null: selected files. */
@@ -382,5 +391,10 @@ export async function inspectDocuments(
     : project.config.project.type === "book" && formats.size === 1
     ? documents[0].format
     : null;
-  return { config: project.config, documents, renderTo };
+  return {
+    config: project.config,
+    documents,
+    renderTo,
+    resources: project.files?.resources || [],
+  };
 }

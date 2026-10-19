@@ -1,3 +1,5 @@
+import {createMetrics as __createMetrics} from "../observability/bridge.ts";
+const __metrics=__createMetrics("reference-catalog");
 import { diagnostic } from "../diagnostics.ts";
 import type { Catalog, Exports } from "../domain/model.ts";
 import { join, relative, dirname, fromFileUrl, resolve, isAbsolute } from "./files.ts";
@@ -99,3 +101,6 @@ export async function publish(context: CatalogPublication): Promise<void> {
   await Deno.writeTextFile(join(stage, context.scope === "local" ? "reference-catalog-local.json" : "reference-catalog.json"), JSON.stringify(catalog, null, 2) + "\n");
   console.log(`QRC разрешено ссылок: ${linked.links}; отложено ссылок: ${linked.deferred}; целей: ${linked.targets.size}; страниц: ${pages.length}`);
 }
+
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+publish=__metrics.wrapAsync({id:"reference-catalog.infrastructure.publish.publish",kind:"io"},publish);

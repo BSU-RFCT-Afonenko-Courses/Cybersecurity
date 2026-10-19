@@ -1,3 +1,5 @@
+local __metrics=require("../observability/bridge").create_metrics("reference-catalog",1)
+local __perfWalk1=__metrics.wrap_walk({id="reference-catalog.lua.targets.walk.1",kind='ast_walk',scope="block"},function(node,filter)return node:walk(filter)end)
 -- Адаптер использует публичные узлы Pandoc/Quarto, не обращаясь к внутреннему индексу.
 local M = {}
 local constants = require("./constants")
@@ -25,7 +27,7 @@ function M.capture(el)
     -- Quarto сохраняет там явный ID и элементы chapter-title.
     if el.t == "Span" and el.classes:includes("quarto-section-identifier") then
       local title = nil
-      el:walk({Span = function(span)
+      __perfWalk1(el,{Span = function(span)
         if span.classes:includes("chapter-title") then title = str(span.content) end
       end})
       heading_titles[id] = title or str(el.content)
@@ -58,4 +60,10 @@ function M.title(id) return titles[id] end
 -- Название — обычный текст; штатная подпись перекрёстной ссылки хранится отдельно.
 -- Для ненумерованных целей M.title предоставляет название вместо номера.
 function M.heading_title(id) return heading_titles[id] end
+M.init=__metrics.wrap_sync({id="reference-catalog.lua.targets.init",kind='phase'},M.init)
+M.capture=__metrics.wrap_sync({id="reference-catalog.lua.targets.capture",kind='phase'},M.capture)
+M.equations=__metrics.wrap_sync({id="reference-catalog.lua.targets.equations",kind='phase'},M.equations)
+M.sorted=__metrics.wrap_sync({id="reference-catalog.lua.targets.sorted",kind='phase'},M.sorted)
+M.title=__metrics.wrap_sync({id="reference-catalog.lua.targets.title",kind='phase'},M.title)
+M.heading_title=__metrics.wrap_sync({id="reference-catalog.lua.targets.heading_title",kind='phase'},M.heading_title)
 return M

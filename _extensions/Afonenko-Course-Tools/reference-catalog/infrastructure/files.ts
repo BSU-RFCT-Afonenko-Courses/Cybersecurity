@@ -1,3 +1,5 @@
+import {createMetrics as __createMetrics} from "../observability/bridge.ts";
+const __metrics=__createMetrics("reference-catalog");
 import { join, resolve, relative, isAbsolute, dirname, fromFileUrl } from "stdlib/path";
 export { join, resolve, relative, isAbsolute, dirname, fromFileUrl };
 export async function exists(path: string): Promise<boolean> {
@@ -12,3 +14,8 @@ export async function files(root: string): Promise<string[]> {
   }
   return out.sort();
 }
+
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+exists=__metrics.wrapAsync({id:"reference-catalog.infrastructure.files.exists",kind:"io"},exists);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+files=__metrics.wrapAsync({id:"reference-catalog.infrastructure.files.files",kind:"io"},files);

@@ -1,10 +1,19 @@
+local __metrics=require("./observability/bridge").create_metrics("project-download",1)
+
+local function __perfFilters(filters)
+ for key,value in pairs(filters) do
+  if type(value)=='function' then filters[key]=__metrics.wrap_sync({id="project-download.shortcodes.handler."..tostring(key),kind=key=='Pandoc' and 'phase' or 'function'},value)
+  elseif type(value)=='table' and type(key)=='number' then filters[key]=__perfFilters(value) end
+ end
+ return filters
+end
 local function fail(message, id, field)
   local context = "\nфайл: " .. tostring(quarto.doc.input_file or "")
   if id then context = context .. ", ID: " .. id end
   if field then context = context .. ", поле: " .. field end
   assert(false, "DOWNLOAD.REQUEST_INVALID: " .. message .. context)
 end
-return {
+return __perfFilters({
   ["project-download"] = function(args, kwargs)
     if #args ~= 1 then fail("project-download принимает один идентификатор ресурса", nil, "resource") end
     local id = pandoc.utils.stringify(args[1])
@@ -22,4 +31,4 @@ return {
     end
     return pandoc.Span({pandoc.Str(text)}, pandoc.Attr("", {"project-download-request"}, attributes))
   end
-}
+})

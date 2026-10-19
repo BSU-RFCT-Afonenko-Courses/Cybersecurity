@@ -4,18 +4,18 @@
 и штатный `quarto add`. Vendored файлы не исправляются по одному. Native projects:
 корень, `theory`, `task`, `seminars`; `course.id: cybersecurity` задан только в корне.
 
-| Поставщик | Тег | Exact source commit | Native scopes |
+| Поставщик | Тег | Точный коммит исходников | Проекты Quarto |
 | --- | --- | --- | --- |
-| Core / Presentation / Navigation | `v5.0.2` | `a340d542b821831a6e209e7abfbdaacd569002fd` | Корень, theory, task, seminars |
-| Publisher | `v5.0.0` | `215309b5c41669e56a857a1bc3e4f7f2ce782c5f` | Корень |
-| Reference Catalog | `v3.0.0` | `559583805a514ae8a244b6ea4cb5124867064024` | Корень, theory, task, seminars |
-| Download | `v3.0.0` | `6fb3945020cd74fda40cc4d333389864e06609b5` | task |
+| Core / Presentation / Navigation | `v7.3.0` | `e93bc3aa5c5f747e647d42ed6c0f65c127920184` | Корень, theory, task, seminars |
+| Publisher | `v5.1.1` | `4a1d7d19f5a232d8ff91ea91a02097e0acf7d9c0` | Корень |
+| Reference Catalog | `v3.1.0` | `3df2110e9f525f03f3ecb4926b5d55718e955c4c` | Корень, theory, task, seminars |
+| Download | `v3.1.0` | `73797d3807e2433d33751d538746e1e9d82d6d57` | task |
 
 Совместимость и нормативные правила читаются по тому же immutable tag:
-[Core](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v5.0.2/spec/index.md),
-[Publisher](https://github.com/Afonenko-Course-Tools/quarto-project-publish/blob/v5.0.0/spec/index.md),
-[QRC](https://github.com/Afonenko-Course-Tools/quarto-reference-catalog/blob/v3.0.0/spec/index.md),
-[Download](https://github.com/Afonenko-Course-Tools/quarto-project-download/blob/v3.0.0/spec/index.md).
+[Core](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v7.3.0/spec/index.md),
+[Publisher](https://github.com/Afonenko-Course-Tools/quarto-project-publish/blob/v5.1.1/spec/index.md),
+[QRC](https://github.com/Afonenko-Course-Tools/quarto-reference-catalog/blob/v3.1.0/spec/index.md),
+[Download](https://github.com/Afonenko-Course-Tools/quarto-project-download/blob/v3.1.0/spec/index.md).
 Минимальная линия: Quarto 1.11.5 и CUE 0.17.1.
 
 Руководство для автора закреплено на проверенном коммите Template
@@ -24,7 +24,8 @@
 (tree `db4b9df84d29a475759af88ece021696c013c858`).
 [Точный исходник руководства](https://github.com/Afonenko-Course-Tools/quarto-template-course/blob/d453be9aa4d44f79222323672ebc30a4ef86f0ce/guide/index.qmd)
 и [опубликованный сайт](https://afonenko-course-tools.github.io/quarto-template-course/guide/index.html)
-описывают закреплённые пакеты. Штатная публикация в `gh-pages`
+сохраняют исторический снимок руководства до текущего обновления пакетов;
+актуальные контракты читаются по тегам из таблицы выше. Штатная публикация в `gh-pages`
 `ecf1229ccc0899f84d34640c78a77470fa10352f` и публичные страницы проверены отдельно.
 Окончательная приёмка точного Java head, Platform source tag 1.0.1 и анонимное
 получение OCI-образов из GHCR ещё ожидаются; публикация документации их не заменяет.

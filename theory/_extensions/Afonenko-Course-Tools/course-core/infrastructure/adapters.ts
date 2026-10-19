@@ -1,3 +1,5 @@
+import {createMetrics as __createMetrics} from "../observability/bridge.ts";
+const __metrics=__createMetrics("course-core");
 import { diagnostic } from "../domain/diagnostics.ts";
 import { join, resolve } from "stdlib/path";
 import type { Adapter, Contract } from "../domain/model.ts";
@@ -52,3 +54,6 @@ export async function adapters(root: string, explicit: string[]): Promise<Adapte
   if (explicit.length && !result.length) throw diagnostic("ADAPTER", "Компонент Core/adapters: по указанным путям не найдены контракты адаптеров", {field: "adapter"});
   return result;
 }
+
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+adapters=__metrics.wrapAsync({id:"course-core.infrastructure.adapters.adapters",kind:"io"},adapters);

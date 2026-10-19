@@ -1,3 +1,5 @@
+import {createMetrics as __createMetrics} from "../observability/bridge.ts";
+const __metrics=__createMetrics("project-download");
 import { diagnostic, externalFailure } from "../diagnostics.ts";
 import { join, relative, resolve, isAbsolute } from "stdlib/path";
 import { globToRegExp } from "stdlib/path";
@@ -75,3 +77,12 @@ export async function resourceFiles(root: string, resource: Resource): Promise<A
   if(!entries.length) throw diagnostic("DOWNLOAD.SELECTION_EMPTY", `Ресурс пуст после отбора файлов: ${resource.path}`, {source:resource.path,field:"include/exclude",hint:"Проверьте шаблоны отбора и .gitignore."});
   return entries;
 }
+
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+exists=__metrics.wrapAsync({id:"project-download.infrastructure.files.exists",kind:"io"},exists);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+child=__metrics.wrapSync({id:"project-download.infrastructure.files.child",kind:"io"},child);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+noSymlinks=__metrics.wrapAsync({id:"project-download.infrastructure.files.noSymlinks",kind:"io"},noSymlinks);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+resourceFiles=__metrics.wrapAsync({id:"project-download.infrastructure.files.resourceFiles",kind:"io"},resourceFiles);

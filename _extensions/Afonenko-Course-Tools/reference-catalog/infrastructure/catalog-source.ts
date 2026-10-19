@@ -1,3 +1,5 @@
+import {createMetrics as __createMetrics} from "../observability/bridge.ts";
+const __metrics=__createMetrics("reference-catalog");
 import { diagnostic } from "../diagnostics.ts";
 import { fromFileUrl, isAbsolute, resolve } from "./files.ts";
 
@@ -45,3 +47,8 @@ export async function readCatalogSource(source: string): Promise<string> {
     throw refusal(source, controller.signal.aborted ? "не удалось загрузить импортированный каталог (сервер не ответил за 30 секунд)" : "не удалось загрузить импортированный каталог", error);
   } finally { clearTimeout(timeout); }
 }
+
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+normalizeCatalogSource=__metrics.wrapSync({id:"reference-catalog.infrastructure.catalog-source.normalizeCatalogSource",kind:"io"},normalizeCatalogSource);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+readCatalogSource=__metrics.wrapAsync({id:"reference-catalog.infrastructure.catalog-source.readCatalogSource",kind:"io"},readCatalogSource);

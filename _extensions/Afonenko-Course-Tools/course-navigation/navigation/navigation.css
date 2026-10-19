@@ -92,3 +92,9 @@ body.course-navigation-active .reveal > .controls, body.course-navigation-active
 }
 html.print-pdf .course-nav-shell, body.course-navigation-print .course-nav-shell { display: none !important; }
 html.print-pdf body.course-navigation-active .reveal, body.course-navigation-print .reveal { position: relative; left: auto; top: auto; width: 100%; height: 100%; }
+
+/* Постоянные выходы доступны в панели и в меню узкого экрана. */
+.course-nav-permanent { display: grid; gap: 4px; margin-bottom: 18px; }
+.course-nav-permanent-link { display: flex; align-items: center; min-height: 44px; padding: 10px 9px; border-radius: 5px; color: inherit; overflow-wrap: anywhere; text-decoration: none; }
+.course-nav-permanent-link:hover { background: var(--course-nav-hover, #f1f3f5); }
+.course-nav-permanent-link:focus-visible { outline: 3px solid var(--course-nav-primary, #2963a3); outline-offset: 2px; }

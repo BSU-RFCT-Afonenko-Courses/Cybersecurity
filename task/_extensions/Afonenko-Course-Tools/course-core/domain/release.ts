@@ -84,8 +84,8 @@ export function assembleRelease(
   const facts=new Map<string,typeof declarations[number]>();
   for(const exercise of declarations){
     if(facts.has(exercise.id))fail("CORE.DUPLICATE_EXERCISE","Повторный идентификатор упражнения",{source:exercise.source,id:exercise.id,field:"id",related:[{source:facts.get(exercise.id)!.source,id:exercise.id}]});
-    if(!["introductory","intermediate","advanced"].includes(exercise.difficulty) || !Number.isInteger(exercise.time) || !Number.isFinite(exercise.time) || exercise.time<=0 || !["open","restricted"].includes(exercise.statementVisibility) || typeof exercise.hasSolution!=="boolean" || typeof exercise.hasPublicSolution!=="boolean") {
-      fail("CORE.METADATA_INVALID","Декларация требует собственные difficulty/time и явную политику условия",{source:exercise.source,id:exercise.id,field:"declarations"});
+    if(!["introductory","intermediate","advanced"].includes(exercise.difficulty) || exercise.time!==undefined && (!Number.isInteger(exercise.time) || !Number.isFinite(exercise.time) || exercise.time<=0) || !["open","restricted"].includes(exercise.statementVisibility) || typeof exercise.hasSolution!=="boolean" || typeof exercise.hasPublicSolution!=="boolean") {
+      fail("CORE.METADATA_INVALID","Декларация требует difficulty, положительное целое time при наличии и явную политику условия",{source:exercise.source,id:exercise.id,field:"declarations"});
     }
     facts.set(exercise.id,exercise);
   }
@@ -94,16 +94,21 @@ export function assembleRelease(
       fail("CORE.DUPLICATE_ASSESSMENT", "Повторный идентификатор работы", {source: assessment.source, id: assessment.id, field: "id", related: [{source: assessments.get(assessment.id), id: assessment.id}], hint: "Назначьте уникальный ID"});
     }
     assessments.set(assessment.id, assessment.source);
-    if(!["lab","seminar","practical","test"].includes(assessment.kind) || assessment.theoryTime!==undefined && (!Number.isFinite(assessment.theoryTime)||assessment.theoryTime<=0) || new Set(assessment.items).size!==assessment.items.length) {
+    if(!["lab","seminar","practical","test"].includes(assessment.kind) || assessment.theoryTime!==undefined && (!Number.isFinite(assessment.theoryTime)||assessment.theoryTime<=0) || !Array.isArray(assessment.slots) || !assessment.slots.length || "items" in assessment || "assignments" in assessment) {
       fail("CORE.ASSESSMENT_INVALID","Некорректный вид, время или состав работы",{source:assessment.source,id:assessment.id,field:"assessment"});
     }
     if(assessment.relatedExercise!==undefined && !facts.has(assessment.relatedExercise)) fail("CORE.RELATED_EXERCISE_MISSING","Связанное упражнение отсутствует в текущих декларациях",{source:assessment.source,id:assessment.id,field:"related-exercise",related:[{id:assessment.relatedExercise}]});
-    for (const member of assessment.items) {
+    const used=new Set<string>(),slotIds=new Set<string>();
+    for (const slot of assessment.slots) {
+      if(Object.keys(slot).some(k=>!["id","selection","candidates","assignment"].includes(k)) || !/^(exr|alt)-[a-z0-9][a-z0-9-]*$/.test(slot.id) || slotIds.has(slot.id) || !Array.isArray(slot.candidates) || (slot.selection==="fixed" ? slot.candidates.length!==1 || slot.id!==slot.candidates[0] : slot.selection!=="random" || !slot.id.startsWith("alt-") || slot.candidates.length<2)) fail("CORE.ASSESSMENT_INVALID","Некорректная позиция",{id:assessment.id,field:"slots"});
+      slotIds.add(slot.id);
+      for(const member of slot.candidates){
+      if(used.has(member))fail("CORE.ASSESSMENT_INVALID","Повторный кандидат",{id:assessment.id,field:"slots"});used.add(member);
       if (!facts.has(member)) {
         fail("CORE.UNKNOWN_MEMBER", "Участник работы отсутствует в текущем курсе", {source: assessment.source, id: assessment.id, field: "items", related: [{id: member}], hint: "Проверьте ID и состав текущей сборки"});
       }
-      const fact=facts.get(member)!,assignment=assessment.assignments?.[member];
-      if(!assignment || !["required","optional"].includes(assignment.requirement) || !["individual","pair","group"].includes(assignment.workMode) || assignment.stage!==undefined && !["demonstration","classroom","homework"].includes(assignment.stage)) {
+      const fact=facts.get(member)!,assignment=slot.assignment;
+      if(!assignment || Object.keys(assignment).some(k=>!["stage","requirement","workMode"].includes(k)) || !["required","optional"].includes(assignment.requirement) || !["individual","pair","group"].includes(assignment.workMode) || assignment.stage!==undefined && !["demonstration","classroom","homework"].includes(assignment.stage)) {
         fail("CORE.ASSESSMENT_INVALID","Некорректные поля назначения",{source:assessment.source,id:assessment.id,field:"assignments",related:[{id:member}]});
       }
       if((assessment.kind==="test" || assessment.kind==="practical") && fact.statementVisibility!=="restricted") {
@@ -112,10 +117,7 @@ export function assembleRelease(
       if(assignment.stage==="demonstration" && (fact.statementVisibility!=="open" || fact.purpose!=="demonstration" || !fact.hasPublicSolution)) {
         fail("CORE.ASSESSMENT_INVALID","Stage demonstration требует open условия, роли demonstration и фактического решения",{source:assessment.source,id:assessment.id,field:"stage",related:[{source:fact.source,id:member}]});
       }
-    }
-  }
-  for(const assessment of model.assessmentCompositions??model.assessments){
-    if(Object.keys(assessment.assignments??{}).some(id=>!assessment.items.includes(id)))fail("CORE.ASSESSMENT_INVALID","Карта назначений содержит посторонний ID",{source:assessment.source,id:assessment.id,field:"assignments"});
+    }}
   }
   const projectIds=new Map<string,string>();
   for(const fact of model.projects??[]){

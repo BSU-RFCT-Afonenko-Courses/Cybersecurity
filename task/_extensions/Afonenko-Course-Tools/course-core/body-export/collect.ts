@@ -1,7 +1,10 @@
+import {createMetrics as __createMetrics} from "../observability/bridge.ts";
+const __metrics=__createMetrics("course-core");
 import { diagnostic } from "../domain/diagnostics.ts";
-import { dirname, fromFileUrl, join, relative, resolve } from "stdlib/path";
+import { dirname, fromFileUrl, toFileUrl, join, relative, resolve } from "stdlib/path";
 import { assembleRelease } from "../domain/release.ts";
 import type { ReleaseResult } from "../domain/model.ts";
+import type {BodyReferenceContext} from "./links.ts";
 import { command, quartoExecutable } from "../infrastructure/process.ts";
 import { loadNativeRun, prepareNativeExportCleanup } from "../infrastructure/native-run.ts";
 
@@ -14,7 +17,7 @@ export async function collectExport(root: string, options: {
   book: string;
   work: string;
   profiles?: string[];
-}): Promise<{result: ReleaseResult; projectRoot: string; courseId: string; work: string}> {
+}): Promise<{result: ReleaseResult; projectRoot: string; courseId: string; work: string; bodyReferences?: BodyReferenceContext}> {
   root = await Deno.realPath(root);
   if (!options.book || !options.work) throw diagnostic("EXPORT.BOOK_WORK_REQUIRED", "Укажите банк и работу", {source: root, field: "book/work"});
   const projectRoot = await Deno.realPath(resolve(root, options.book));
@@ -56,7 +59,7 @@ export async function collectExport(root: string, options: {
     "course-export-context": true,
     format: {json: {}},
     filters: ["course-core"],
-    crossref: false,
+    crossref: {},
   };
   await Deno.writeTextFile(profile, JSON.stringify(config));
   let collected=false;
@@ -112,7 +115,7 @@ export async function collectExport(root: string, options: {
     const workId = options.work.startsWith(courseId + "/") ? options.work.slice(courseId.length + 1) : options.work;
     const selected = run.documents.find(d => d.assessment?.id === workId)?.assessment;
     if (!selected && options.work!=="*") throw diagnostic("BODY.WORK_MISSING", "Выбранная работа отсутствует: " + workId, {source: projectRoot, id: options.work});
-    const ids = new Set(options.work==="*"?run.documents.flatMap(d=>d.exercises.map(e=>e.id)):selected!.items);
+    const ids = new Set(options.work==="*"?run.documents.flatMap(d=>d.exercises.map(e=>e.id)):selected!.slots.flatMap(slot=>slot.candidates));
     const declarationIds=new Set([...ids,...(selected?.relatedExercise?[selected.relatedExercise]:[])]);
     const documents = run.documents.filter(d => options.work==="*" || d.assessment?.id === workId || d.exercises.some(e => ids.has(e.id)) || d.declarations?.some(e=>declarationIds.has(e.id))).map(d => ({
       ...d,
@@ -153,7 +156,8 @@ export async function collectExport(root: string, options: {
       solutions(wrapper.c[1]);
       for(const fact of d.declarations??[])fact.hasPublicSolution=publicSolutions.has(fact.id);
       for(const exercise of [...d.exercises,...d.body?.publicExercises??[]])exercise.hasPublicSolution=publicSolutions.has(exercise.id);
-      const body = (node: any) => JSON.stringify({"pandoc-api-version": ast["pandoc-api-version"], meta: {}, blocks: node.c[1]});
+      const body = (node: any) => JSON.stringify({"pandoc-api-version": ast["pandoc-api-version"], meta: ast.meta, blocks: node.c[1]});
+      if (d.body?.publicAssessment) d.body.publicIntroductionJson = body(wrapper);
       for (const e of d.exercises) {
         const node = fullNodes.get(e.id);
         if (!node) throw diagnostic("EXPORT.SOURCE_EXERCISE_MISSING", "В полном native AST не найдено упражнение: " + d.source + "/" + e.id, {source: d.source, id: e.id, field: "bodyJson", related: [{id: options.work}]});
@@ -167,7 +171,54 @@ export async function collectExport(root: string, options: {
     }
     const result = assembleRelease(documents.map(d => d.source), documents, run.adapters, {view: "full", profiles});
     collected=true;
-    return {result, projectRoot, courseId, work: workId};
+    const namespace = bank.config["reference-catalog"]?.namespace;
+    let bodyReferences: BodyReferenceContext | undefined;
+    if (typeof namespace === "string") {
+      const baseUrl = inspected.config.website?.["site-url"] ?? inspected.config["course-navigation"]?.["course-url"] ?? bank.config["course-navigation"]?.["course-url"];
+      const catalogFile = join(root, inspected.config.project?.["output-dir"] ?? "_site", "reference-catalog.json");
+      let resolver: Promise<any> | undefined;
+      const sourceUrls = new Map<string, Promise<string>>();
+      bodyReferences = {
+        namespace,
+        ...(baseUrl ? {
+        async sourceUrl(source: string) {
+          if (!sourceUrls.has(source)) sourceUrls.set(source, (async () => {
+            const input = await Deno.realPath(resolve(projectRoot, source));
+            const inside = relative(root, input);
+            if (inside === ".." || inside.startsWith("../") || inside.startsWith("..\\")) {
+              throw diagnostic("BODY.PUBLICATION_TARGET_OUTSIDE_COURSE", "Ссылка ведёт за пределы native курса", {source, field: "reference"});
+            }
+            // Inspect the original native profile, not the temporary JSON writer.
+            // Quarto owns output-file, format inheritance and Reveal selection.
+            const native = JSON.parse(await command(quarto, ["inspect", input, "--profile", ["full", ...functional].join(",")], projectRoot));
+            const formats = Object.values(native.formats ?? {}).filter((format: any) =>
+              ["html", "revealjs"].includes(format.identifier?.["base-format"] ?? format.pandoc?.to)) as any[];
+            if (formats.length !== 1 || typeof formats[0].pandoc?.["output-file"] !== "string") {
+              throw diagnostic("BODY.PUBLICATION_TARGET_AMBIGUOUS", "Требуется однозначный native HTML/Reveal output", {source, field: "reference"});
+            }
+            const output = relative(root, resolve(dirname(input), formats[0].pandoc["output-file"])).replaceAll("\\", "/");
+            if (output.startsWith("../") || output === "..") throw diagnostic("BODY.PUBLICATION_TARGET_OUTSIDE_COURSE", "Native output ведёт за пределы курса", {source, field: "reference"});
+            return new URL(output.split("/").map(encodeURIComponent).join("/"), baseUrl).href;
+          })());
+          return await sourceUrls.get(source)!;
+        },
+        } : {}),
+        async resolve(key: string, style: string, source: string) {
+          if (!baseUrl) throw diagnostic("BODY.QRC_REFERENCE_UNRESOLVED", "Для ссылки QRC требуется публичный базовый URL", {source, id: key, field: "publication"});
+          if (!resolver) resolver = (async () => {
+            const candidates = [join(projectRoot, "_extensions/reference-catalog/entrypoints/body-links.ts"), join(projectRoot, "_extensions/Afonenko-Course-Tools/reference-catalog/entrypoints/body-links.ts")];
+            for (const candidate of candidates) {
+              try {await Deno.stat(candidate);} catch (e) {if (e instanceof Deno.errors.NotFound) continue; throw e;}
+              const api = await import(toFileUrl(candidate).href);
+              return await api.loadBodyLinks({root: projectRoot, namespace, baseUrl, catalogFile, imports: bank.config["reference-catalog"]?.imports});
+            }
+            throw diagnostic("BODY.QRC_REFERENCE_UNRESOLVED", "Установите QRC с публичным Body API", {source, id: key, field: "reference"});
+          })();
+          return (await resolver).resolve(key, style, source);
+        },
+      };
+    }
+    return {result, projectRoot, courseId, work: workId, bodyReferences};
   } finally {
     try { if(collected)await prepareNativeExportCleanup(projectRoot,name); }
     finally { await Deno.remove(profile); }
@@ -178,3 +229,8 @@ export async function collectExport(root: string, options: {
 export async function collectNativeModel(root:string,options:{book:string;profiles?:string[]}) {
   return await collectExport(root,{...options,work:"*"});
 }
+
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+collectExport=__metrics.wrapAsync({id:"course-core.body-export.collect.collectExport",kind:"phase"},collectExport);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+collectNativeModel=__metrics.wrapAsync({id:"course-core.body-export.collect.collectNativeModel",kind:"phase"},collectNativeModel);

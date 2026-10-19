@@ -1,3 +1,18 @@
+local __metrics=require("./observability/bridge").create_metrics("course-core",1)
+local __perfWalk1=__metrics.wrap_walk({id="course-core.filter.walk.1",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
+local __perfWalk2=__metrics.wrap_walk({id="course-core.filter.walk.2",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
+local __perfWalk3=__metrics.wrap_walk({id="course-core.filter.walk.3",kind='ast_walk',scope="fragment"},function(node,filter)return node:walk(filter)end)
+local __perfWalk4=__metrics.wrap_walk({id="course-core.filter.walk.4",kind='ast_walk',scope="fragment"},function(node,filter)return node:walk(filter)end)
+local __perfWalk5=__metrics.wrap_walk({id="course-core.filter.walk.5",kind='ast_walk',scope="fragment"},function(node,filter)return node:walk(filter)end)
+local __perfWalk6=__metrics.wrap_walk({id="course-core.filter.walk.6",kind='ast_walk',scope="fragment"},function(node,filter)return node:walk(filter)end)
+local __perfWalk7=__metrics.wrap_walk({id="course-core.filter.walk.7",kind='ast_walk',scope="fragment"},function(node,filter)return node:walk(filter)end)
+local function __perfFilters(filters)
+ for key,value in pairs(filters) do
+  if type(value)=='function' then filters[key]=__metrics.wrap_sync({id="course-core.filter.handler."..tostring(key),kind=key=='Pandoc' and 'phase' or 'function'},value)
+  elseif type(value)=='table' and type(key)=='number' then filters[key]=__perfFilters(value) end
+ end
+ return filters
+end
 local diagnostics = require("./diagnostics")
 local native_document = require("./native-document")
 local answers = require("./native-answers")
@@ -9,7 +24,7 @@ local exercises = require("./exercises")
 local output = require("./output")
 local pedagogy = require("./pedagogy/collect")
 
-return {{Pandoc = function(doc)
+return __perfFilters({{Pandoc = function(doc)
   doc.meta.course = doc.meta.course or {}
   if not quarto.project.directory then
     pedagogy.collect(doc)
@@ -31,7 +46,7 @@ return {{Pandoc = function(doc)
     -- Quarto has already appended its native source container before Lua.
     -- Drop that whole generated AST node; metadata alone cannot undo the
     -- writer options resolved earlier by the native HTML pipeline.
-    doc=doc:walk({Div=function(div) if div.classes:includes("quarto-embedded-source-code") then return {} end end})
+    doc=__perfWalk1(doc,{Div=function(div) if div.classes:includes("quarto-embedded-source-code") then return {} end end})
   end
   doc.meta["course-current-native-run"]=output.current_run(quarto.project.directory)~=nil
   local raw=doc:clone()
@@ -41,8 +56,20 @@ return {{Pandoc = function(doc)
   doc = visibility.prepare(doc,nil,effective)
   adapters.read(doc,effective)
   native_document.references(doc,domains)
-  local current = require("./assessment").collect(doc)
-  if current and #current.items==0 then current=nil end
+  local function projectedAssessment(document)
+    if not rawAssessment or not document.meta.assessment then return nil end
+    local result={},{};local members={}
+    __perfWalk2(document,{Div=function(div) if div.classes:includes('task-items') then __perfWalk3(pandoc.Pandoc(div.content),{Cite=function(cite) for _,c in ipairs(cite.citations) do members[c.id]=true end end}) end end})
+    for key,value in pairs(rawAssessment) do result[key]=value end
+    result.slots=pandoc.List();result.memberSizes=pandoc.List()
+    for _,slot in ipairs(rawAssessment.slots) do
+      local present=true;for _,id in ipairs(slot.candidates) do if not members[id] then present=false end end
+      if present then result.slots:insert(slot);result.memberSizes:insert(1) end
+    end
+    if #result.slots==0 then return nil end
+    result.bodyJson=grading.split(document.blocks);return result
+  end
+  local current = projectedAssessment(doc)
   if current then doc.meta["course-assessment-id"] = pandoc.MetaString(current.id) end
   local publicPedagogy=pedagogy.collect(public,effective)
   local publicSolutions={}
@@ -64,7 +91,7 @@ return {{Pandoc = function(doc)
   if categories then for _,category in ipairs(categories) do
     -- Quarto preserves category strings as pandoc-native scalar inlines until
     -- its later native resolution phase; decode that transport, not source YAML.
-    local value=pandoc.Pandoc({pandoc.Plain(category)}):walk({RawInline=function(raw)
+    local value=__perfWalk4(pandoc.Pandoc({pandoc.Plain(category)}),{RawInline=function(raw)
       if raw.format=="pandoc-native" then return pandoc.Str(pandoc.utils.stringify(pandoc.read(raw.text,"native"))) end
     end})
     topic.categories:insert(pandoc.utils.stringify(value))
@@ -84,10 +111,10 @@ return {{Pandoc = function(doc)
     exercises = exercises.collect(doc,canonical,effective),
     pedagogy = pedagogy.collect(doc,effective),
     assessment = current,
-    body = {publicExercises=publicExercises,publicAssessment=require("./assessment").collect(public),publicAnswers=selectedAnswers,fullAnswers=view=="full" and publicAnswers or nil},
+    body = {publicExercises=publicExercises,publicAssessment=projectedAssessment(public),publicAnswers=selectedAnswers,fullAnswers=view=="full" and publicAnswers or nil},
     resources = resources.facts(raw,public,resourceProjects)
   })
-  if rawAssessment and doc.meta["course-current-native-run"]==true and quarto.doc.is_format("html") then
+  if rawAssessment and doc.meta.course["assessment-time"]~=false and doc.meta["course-current-native-run"]==true and quarto.doc.is_format("html") then
     doc.blocks:insert(pandoc.RawBlock("html","<!--course-assessment-time-->"))
   end
   if #canonical>0 and doc.meta["course-current-native-run"]==true and quarto.doc.is_format("html") then
@@ -118,7 +145,7 @@ return {{Pandoc = function(doc)
           -- Native solutions can live inside quotes, lists, table cells or
           -- Notes. Extract only their probes, retaining conditional ancestors,
           -- without copying the enclosing visual structure or its payload.
-          pandoc.Pandoc({block}):walk({traverse="topdown",Div=function(div)
+          __perfWalk5(pandoc.Pandoc({block}),{traverse="topdown",Div=function(div)
             result:extend(probes({div},owner));return {},false
           end,Span=function(span)
             if not span.classes:includes("content-visible") and not span.classes:includes("content-hidden") then return end
@@ -146,7 +173,7 @@ return {{Pandoc = function(doc)
   doc.meta["course-effective-exercise-facts"]=pandoc.MetaString(pandoc.json.encode(effective))
   doc=require("./exercise-defaults").present(doc,effective)
   local function markDependencies(blocks,owner)
-    return pandoc.Pandoc(blocks):walk({traverse="topdown",Div=function(div)
+    return __perfWalk6(pandoc.Pandoc(blocks),{traverse="topdown",Div=function(div)
       if div.identifier:match("^sol%-") or div.classes:includes("solution") or div.classes:includes("course-answer-solution") or div.classes:includes("grading-notes") or div.classes:includes("answer-spec") or div.classes:includes("answer") then return div,false end
       local current=div.identifier:match("^exr%-") and div.identifier or owner
       if div.attributes["course-role"]=="prerequisites" then div.attributes["data-course-artifact-dependency"]=div.attributes["for"] or current or "*" end
@@ -165,7 +192,7 @@ return {{Pandoc = function(doc)
     -- Work member lists are already captured as semantic facts. They are not
     -- question conditions and need no per-document native crossref rendering.
     local function skeleton(fragment)
-      return fragment:walk({traverse="topdown",Div=function(div)
+      return __perfWalk7(fragment,{traverse="topdown",Div=function(div)
         if div.identifier:match("^exr%-") then return div,false end
         if div.classes:includes("task-items") or div.classes:includes("assessment-preview") then return {} end
       end})
@@ -176,4 +203,4 @@ return {{Pandoc = function(doc)
       {"course-export-projection"}, {["data-course-export-projection"]="public"})))
   end
   return doc
-end}}
+end}})

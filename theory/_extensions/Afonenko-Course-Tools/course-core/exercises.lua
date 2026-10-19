@@ -1,3 +1,6 @@
+local __metrics=require("./observability/bridge").create_metrics("course-core",1)
+local __perfWalk1=__metrics.wrap_walk({id="course-core.exercises.walk.1",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
+local __perfWalk2=__metrics.wrap_walk({id="course-core.exercises.walk.2",kind='ast_walk',scope="unknown"},function(node,filter)return node:walk(filter)end)
 local M = {}
 local grading = require("./grading")
 local pedagogic = require("./pedagogy/contract")
@@ -14,11 +17,11 @@ function M.collect(doc,facts,effective)
   local topics,declared={},{}
   for _,fact in ipairs(facts or {}) do topics[fact.id]=fact.sourceTopic;declared[fact.id]=fact end
   local result = pandoc.List()
-  doc:walk({Div = function(div)
+  __perfWalk1(doc,{Div = function(div)
     if not canonical(div) then return end
     local nested, unknown = 0, pandoc.List()
     for _, child in ipairs(div.content) do
-      child:walk({Div = function(d) if canonical(d) then nested = nested + 1 end end})
+      __perfWalk2(child,{Div = function(d) if canonical(d) then nested = nested + 1 end end})
     end
     for key, _ in pairs(div.attributes) do
       if not pedagogic.adapter_attribute(key,doc.meta) and not pedagogic.exerciseAttributes[key] and not pedagogic.attributes[key] and not pedagogic.nativeExerciseAttributes[key] then unknown:insert(key) end
@@ -35,4 +38,5 @@ function M.collect(doc,facts,effective)
   end})
   return result
 end
+M.collect=__metrics.wrap_sync({id="course-core.exercises.collect",kind='phase'},M.collect)
 return M

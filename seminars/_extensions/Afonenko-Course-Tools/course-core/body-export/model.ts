@@ -4,6 +4,9 @@ export interface BodyQuestion {
   owner: string;
   id: string;
   key: string;
+  title?: string;
+  difficulty?: import("../domain/vocabulary.ts").Difficulty;
+  time?: number;
   source: string;
   visibility: "public";
   statementVisibility: StatementVisibility;
@@ -17,7 +20,7 @@ export interface BodyQuestion {
   gradingNotes: Node[];
 }
 export interface BodyPackage {
-  schema: "course-body-package-v1";
+  schema: "course-body-package-v2";
   owner: string;
   release: string;
   apiVersion: number[];
@@ -29,8 +32,8 @@ export interface BodyPackage {
     source: string;
     kind: AssessmentKind;
     title: string;
-    items: string[];
-    assignments: Record<string, import("../domain/model.ts").Assignment>;
+    introduction?: Node[];
+    slots: import("../domain/model.ts").AssessmentSlot[];
     theoryTime?: number; relatedExercise?: string;
   }[];
   resources: {

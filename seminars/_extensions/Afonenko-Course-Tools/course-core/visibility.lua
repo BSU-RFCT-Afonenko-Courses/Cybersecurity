@@ -1,3 +1,17 @@
+local __metrics=require("./observability/bridge").create_metrics("course-core",1)
+local __perfWalk1=__metrics.wrap_walk({id="course-core.visibility.walk.1",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
+local __perfWalk2=__metrics.wrap_walk({id="course-core.visibility.walk.2",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
+local __perfWalk3=__metrics.wrap_walk({id="course-core.visibility.walk.3",kind='ast_walk',scope="fragment"},function(node,filter)return node:walk(filter)end)
+local __perfWalk4=__metrics.wrap_walk({id="course-core.visibility.walk.4",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
+local __perfWalk5=__metrics.wrap_walk({id="course-core.visibility.walk.5",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
+local __perfWalk6=__metrics.wrap_walk({id="course-core.visibility.walk.6",kind='ast_walk',scope="fragment"},function(node,filter)return node:walk(filter)end)
+local __perfWalk7=__metrics.wrap_walk({id="course-core.visibility.walk.7",kind='ast_walk',scope="fragment"},function(node,filter)return node:walk(filter)end)
+local __perfWalk8=__metrics.wrap_walk({id="course-core.visibility.walk.8",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
+local __perfWalk9=__metrics.wrap_walk({id="course-core.visibility.walk.9",kind='ast_walk',scope="fragment"},function(node,filter)return node:walk(filter)end)
+local __perfWalk10=__metrics.wrap_walk({id="course-core.visibility.walk.10",kind='ast_walk',scope="fragment"},function(node,filter)return node:walk(filter)end)
+local __perfWalk11=__metrics.wrap_walk({id="course-core.visibility.walk.11",kind='ast_walk',scope="fragment"},function(node,filter)return node:walk(filter)end)
+local __perfWalk12=__metrics.wrap_walk({id="course-core.visibility.walk.12",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
+local __perfWalk13=__metrics.wrap_walk({id="course-core.visibility.walk.13",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
 local diagnostics = require("./diagnostics")
 local M = {}
 local vocabulary = require("./vocabulary")
@@ -6,7 +20,7 @@ local views = {}; for _, view in ipairs(vocabulary.views) do views[view] = true 
 
 local function member_count(doc)
   local count = 0
-  doc:walk({Div = function(node)
+  __perfWalk1(doc,{Div = function(node)
     if node.classes:includes("task-items") then count = count + 1 end
   end})
   return count
@@ -55,7 +69,7 @@ local function strip(node,test,match)
 end
 
 function M.validate_conditions(doc)
-  doc:walk({Div=function(node)condition(node)end,Span=function(node)condition(node)end,CodeBlock=function(node)condition(node)end})
+  __perfWalk2(doc,{Div=function(node)condition(node)end,Span=function(node)condition(node)end,CodeBlock=function(node)condition(node)end})
 end
 
 function M.prepare(doc, override, facts)
@@ -79,7 +93,7 @@ function M.prepare(doc, override, facts)
     -- inside each task still project its participant condition normally.
     local marker="data-course-export-identity-scope"
     local function mark(fragment,ancestors,inside)
-      return fragment:walk({traverse="topdown",Div=function(div)
+      return __perfWalk3(fragment,{traverse="topdown",Div=function(div)
         local activity=contract.is_exercise(div)
         if not inside and (activity or div.classes:includes("task-items")) then
           div.attributes[marker]="true"
@@ -111,12 +125,12 @@ function M.prepare(doc, override, facts)
       end
       return node
     end
-    doc=doc:walk({Div=identity_scope,Span=identity_scope})
+    doc=__perfWalk4(doc,{Div=identity_scope,Span=identity_scope})
   end
 
   -- Скрытые ветви тоже проверяются: ошибки разметки не зависят от профиля.
   local validate = function(node) condition(node) end
-  doc:walk({Div = validate, Span = validate, CodeBlock = validate})
+  __perfWalk5(doc,{Div = validate, Span = validate, CodeBlock = validate})
   -- Index the original expanded document before removing any branch. A paired
   -- solution outside its task still inherits the task's closed context.
   local function matches(test)
@@ -132,7 +146,7 @@ function M.prepare(doc, override, facts)
   end
   local indexed = {}
   local function index(fragment,parent_visible)
-    fragment:walk({traverse='topdown',Div=function(div)
+    __perfWalk6(fragment,{traverse='topdown',Div=function(div)
       local visible=parent_visible and keep(div)
       if contract.is_activity(div) then
         assert(not bank or not contract.is_example(div) or not indexed[div.identifier], diagnostics.format("CORE.SOLUTION_PAIRING_INVALID", 'Повторный идентификатор примера '..div.identifier, {id=div.identifier,field="id"}))
@@ -154,7 +168,7 @@ function M.prepare(doc, override, facts)
   index(doc,true)
   local solutions={}
   local function index_solutions(fragment,owner)
-    return fragment:walk({traverse='topdown',Div=function(div)
+    return __perfWalk7(fragment,{traverse='topdown',Div=function(div)
       if div.identifier:match('^sol%-') or div.classes:includes('solution') then
         assert(not bank or div.identifier=='' or not solutions[div.identifier], diagnostics.format("CORE.DUPLICATE_DECLARATION", 'Повторный идентификатор учебного элемента: '..div.identifier, {id=div.identifier,field="id"}))
         local related=contract.related(div,indexed,owner)
@@ -172,14 +186,33 @@ function M.prepare(doc, override, facts)
   -- closed without consulting historical sidecars or constructing URLs.
   local defer=doc.meta["course-current-native-run"]==true and quarto.doc.is_format('html')
   if view=='student' and not export then
-    doc=doc:walk({Div=function(div)
+    doc=__perfWalk8(doc,{Div=function(div)
       if not div.classes:includes('task-items') then return end
       for _,list in ipairs(div.content) do
         if list.t=='OrderedList' or list.t=='BulletList' then
           local kept=pandoc.List()
           for _,item in ipairs(list.content) do
+            local alternatives=false
+            __perfWalk9(pandoc.Pandoc(item),{Span=function(span) if span.classes:includes('task-alternatives') then alternatives=true end end})
+            if alternatives then
+              local visible=0
+              local projected=__perfWalk10(pandoc.Pandoc(item),{Cite=function(cite)
+                local content=pandoc.List()
+                for _,citation in ipairs(cite.citations) do
+                  local member=citation.id;local fact=indexed[member]
+                  if fact and fact.visible or not fact and defer then
+                    if #content>0 then content:insert(pandoc.Str(';'));content:insert(pandoc.Space()) end
+                    local single=pandoc.Cite({pandoc.Str('@'..member)},{citation})
+                    if defer then content:insert(pandoc.Span({single},pandoc.Attr('',{}, {['data-course-assignment-id']=member}))) else content:insert(single) end
+                    visible=visible+1
+                  end
+                end
+                return content
+              end})
+              if visible>0 then kept:insert(projected.blocks) end
+            else
             local member
-            pandoc.Pandoc(item):walk({Cite=function(cite) if #cite.citations==1 then member=cite.citations[1].id end end})
+            __perfWalk11(pandoc.Pandoc(item),{Cite=function(cite) if #cite.citations==1 then member=cite.citations[1].id end end})
             local fact=member and indexed[member]
             if member and (fact and fact.visible or not fact and defer) then
               if defer then
@@ -188,6 +221,7 @@ function M.prepare(doc, override, facts)
                 blocks:insert(pandoc.RawBlock('html','</template><!--course-assignment:'..member..':end-->'))
                 kept:insert(blocks)
               else kept:insert(item) end
+            end
             end
           end
           list.content=kept
@@ -198,7 +232,7 @@ function M.prepare(doc, override, facts)
     if defer then
       local headers=doc.meta['header-includes'] or pandoc.MetaList({})
       if headers.t~='MetaList' then headers=pandoc.MetaList({headers}) end
-      headers:insert(pandoc.MetaBlocks({pandoc.RawBlock('html','<style>.task-items li:has(.course-assignment-omitted){display:none}</style>')}))
+      headers:insert(pandoc.MetaBlocks({pandoc.RawBlock('html','<style>.task-items li:has(.course-assignment-omitted):not(:has(a)){display:none}</style>')}))
       doc.meta['header-includes']=headers
     end
   end
@@ -228,7 +262,7 @@ function M.prepare(doc, override, facts)
     if test then strip(node,test,matches(test)) end
     return node
   end
-  doc = doc:walk({traverse = "topdown", Div = project, Span = project, CodeBlock = project})
+  doc = __perfWalk12(doc,{traverse = "topdown", Div = project, Span = project, CodeBlock = project})
   -- Скрытая контрольная не имеет состава заданий; публичная контрольная PL сохраняется.
   if before > 0 and member_count(doc) == 0 then doc.meta.assessment = nil end
   return doc
@@ -238,7 +272,12 @@ end
 -- exact HTML outside main while the native book resolver and search run.
 function M.defer_native_assignments(doc)
   if not quarto.doc.is_format('html') then return doc end
-  return doc:walk({Div=function(div)
+  return __perfWalk13(doc,{Span=function(span)
+    local member=span.attributes['data-course-assignment-id']
+    if not member then return end
+    quarto.doc.include_text('after-body','<div hidden inert><!--course-assignment-pending:'..member..':start-->'..pandoc.write(pandoc.Pandoc({pandoc.Plain(span.content)}),'html')..'<!--course-assignment-pending:'..member..':end--></div>')
+    return pandoc.RawInline('html','<!--course-assignment:'..member..':start--><template></template><!--course-assignment:'..member..':end-->')
+  end,Div=function(div)
     if not div.classes:includes('task-items') then return end
     for _,list in ipairs(div.content) do
       if list.t=='OrderedList' or list.t=='BulletList' then
@@ -248,7 +287,7 @@ function M.defer_native_assignments(doc)
           if member and last and last.t=='RawBlock' and last.text=='</template><!--course-assignment:'..member..':end-->' then
             local native=pandoc.List()
             for i=2,#item-1 do native:insert(item[i]) end
-            quarto.doc.include_text('after-body','<!--course-assignment-pending:'..member..':start--><div hidden inert>'..pandoc.write(pandoc.Pandoc(native),'html')..'</div><!--course-assignment-pending:'..member..':end-->')
+            quarto.doc.include_text('after-body','<div hidden inert><!--course-assignment-pending:'..member..':start-->'..pandoc.write(pandoc.Pandoc(native),'html')..'<!--course-assignment-pending:'..member..':end--></div>')
             list.content[index]=pandoc.List({pandoc.RawBlock('html','<!--course-assignment:'..member..':start--><template></template><!--course-assignment:'..member..':end-->')})
           end
         end
@@ -257,4 +296,7 @@ function M.defer_native_assignments(doc)
     return div
   end})
 end
+M.validate_conditions=__metrics.wrap_sync({id="course-core.visibility.validate_conditions",kind='phase'},M.validate_conditions)
+M.prepare=__metrics.wrap_sync({id="course-core.visibility.prepare",kind='phase'},M.prepare)
+M.defer_native_assignments=__metrics.wrap_sync({id="course-core.visibility.defer_native_assignments",kind='phase'},M.defer_native_assignments)
 return M

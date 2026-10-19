@@ -11,15 +11,15 @@
 
 | Инструмент | Выпуск | Проекты |
 | --- | --- | --- |
-| Core, Presentation, Navigation | `v5.0.2` | Корень, theory, task, seminars |
-| Publisher | `v5.0.0` | Корень |
-| Reference Catalog | `v3.0.0` | Корень, theory, task, seminars |
-| Download | `v3.0.0` | task |
+| Core, Presentation, Navigation | `v7.3.0` | Корень, theory, task, seminars |
+| Publisher | `v5.1.1` | Корень |
+| Reference Catalog | `v3.1.0` | Корень, theory, task, seminars |
+| Download | `v3.1.0` | task |
 
 [Опубликованное руководство Template](https://afonenko-course-tools.github.io/quarto-template-course/guide/index.html)
 объясняет авторские действия; [точный исходник руководства](https://github.com/Afonenko-Course-Tools/quarto-template-course/blob/d453be9aa4d44f79222323672ebc30a4ef86f0ce/guide/index.qmd)
 закреплён на `d453be9aa4d44f79222323672ebc30a4ef86f0ce`.
-[Контракты Core 5.0.2](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v5.0.2/spec/index.md)
+[Контракты Core 7.3.0](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v7.3.0/spec/index.md)
 задают правила банка, работ, видимости и экспорта.
 Точные установленные commits и границы пакетов приведены в [UPSTREAM.md](UPSTREAM.md).
 Окончательная приёмка Java, Platform source tag 1.0.1 и анонимное получение
@@ -114,7 +114,7 @@ Core читает корневой `course.id` и выбранную книгу 
 но курс пока не объявляет shortcode или ресурс для выдачи ZIP.
 
 Для отдельного маршрута можно установить Print `v0.3.0`, Moodle `v0.3.0`,
-PrairieLearn `v5.0.0` или Cloud `v3.0.0`. Курс их не активирует.
+PrairieLearn `v7.1.1` или Cloud `v3.0.0`. Курс их не активирует.
 Print получает participant-пакет; Moodle — teacher-пакет с нужным ключом;
 PrairieLearn использует программный проект, явный нейтральный project-check
 и декларативную delivery-конфигурацию; ручные binding/native JSON не создаются.
@@ -147,7 +147,7 @@ python3 CI/site.py _site-student _site-full
 Служебные скрипты `CI/` исключены из ресурсов сайта.
 
 Исправления Windows-путей NativeRun и временного JSON CUE входят в upstream
-Core 5.0.2; локальные overlay поверх выпуска не применяются. Нативный прогон
+Core 7.3.0; локальные overlay поверх выпуска не применяются. Нативный прогон
 курса в Windows здесь не заявляется. Условный случай Quarto `recoverEncode`
 разобран в [руководстве по путям](https://afonenko-course-tools.github.io/quarto-template-course/guide/windows.html).
 

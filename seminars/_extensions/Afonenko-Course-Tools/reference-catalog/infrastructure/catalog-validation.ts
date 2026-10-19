@@ -1,3 +1,5 @@
+import {createMetrics as __createMetrics} from "../observability/bridge.ts";
+const __metrics=__createMetrics("reference-catalog");
 import { diagnostic } from "../diagnostics.ts";
 import { targetKeys, catalogKeys } from "../domain/contract.ts";
 import type { Catalog, Target } from "../domain/model.ts";
@@ -54,3 +56,6 @@ export function validateImportedCatalog(value: unknown, source: string): Catalog
     targets: Object.fromEntries(Object.entries(value.targets).map(([key, value]) => [key, target(value, key, source)])),
   };
 }
+
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+validateImportedCatalog=__metrics.wrapSync({id:"reference-catalog.infrastructure.catalog-validation.validateImportedCatalog",kind:"io"},validateImportedCatalog);

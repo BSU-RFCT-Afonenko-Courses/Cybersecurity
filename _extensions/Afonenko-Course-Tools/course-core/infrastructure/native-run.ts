@@ -1,3 +1,5 @@
+import {createMetrics as __createMetrics} from "../observability/bridge.ts";
+const __metrics=__createMetrics("course-core");
 import { diagnostic } from "../domain/diagnostics.ts";
 import { isAbsolute, join, relative, resolve } from "stdlib/path";
 import type {
@@ -154,7 +156,20 @@ export async function finishNativeRun(projectRoot: string): Promise<NativeRun> {
       JSON.stringify(d.document.profiles) !== JSON.stringify(p.profiles)
     ) throw diagnostic("NATIVE.DOCUMENT_INVALID", "Контекст входного документа не соответствует текущей сборке", {source: d.source, field: "document"});
     const input = child(root, d.source);
-    let out = child(p.outputDirectory, d.document.output);
+    let out = resolve(p.outputDirectory, d.document.output);
+    // Quarto's JSON writer reports an authored output-file beside the input
+    // before project relocation. Accept only its exact relocated file from
+    // this run's native inventory, never a guessed or previously saved output.
+    if (d.document.exportContext === true && d.document.format === "json" && !outputFiles.includes(out)) {
+      child(root, out);
+      const relocated = child(p.outputDirectory, relative(root, out));
+      if (outputFiles.includes(relocated)) {
+        intermediateOutputs.set(d.source + "\0" + d.document.format, d.document.output);
+        d.document.output = relative(p.outputDirectory, relocated).replaceAll("\\", "/");
+        out = relocated;
+      }
+    }
+    child(p.outputDirectory, out);
     await contained(root, input);
     // Pandoc reports the native LaTeX intermediate before Quarto builds the PDF.
     // Bind only its exact final stem present in this process's public inventory.
@@ -177,6 +192,9 @@ export async function finishNativeRun(projectRoot: string): Promise<NativeRun> {
     }
     if (!outputFiles.includes(out)) {
       throw diagnostic("NATIVE.DOCUMENT_NOT_CURRENT", "Документ не связан с текущим выходным файлом: " + d.source, {source: d.source, field: "document"});
+    }
+    if (d.document.exportContext === true && d.document.format === "json" && documents.some(existing => resolve(p.outputDirectory, existing.document.output) === out)) {
+      throw diagnostic("NATIVE.DUPLICATE_OUTPUT", "Несколько исходных документов используют один выходной файл: " + d.document.output, {source: d.source, field: "output-file"});
     }
     if (
       documents.some((x) =>
@@ -331,3 +349,16 @@ export async function loadNativeRun(
   }));
   return run;
 }
+
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+currentNativeOutputs=__metrics.wrapAsync({id:"course-core.infrastructure.native-run.currentNativeOutputs",kind:"io"},currentNativeOutputs);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+beginNativeRun=__metrics.wrapAsync({id:"course-core.infrastructure.native-run.beginNativeRun",kind:"io"},beginNativeRun);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+finishNativeRun=__metrics.wrapAsync({id:"course-core.infrastructure.native-run.finishNativeRun",kind:"io"},finishNativeRun);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+saveNativeRun=__metrics.wrapAsync({id:"course-core.infrastructure.native-run.saveNativeRun",kind:"io"},saveNativeRun);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+prepareNativeExportCleanup=__metrics.wrapAsync({id:"course-core.infrastructure.native-run.prepareNativeExportCleanup",kind:"io"},prepareNativeExportCleanup);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+loadNativeRun=__metrics.wrapAsync({id:"course-core.infrastructure.native-run.loadNativeRun",kind:"io"},loadNativeRun);

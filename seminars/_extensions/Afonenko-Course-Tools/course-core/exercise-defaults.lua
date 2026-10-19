@@ -1,3 +1,7 @@
+local __metrics=require("./observability/bridge").create_metrics("course-core",1)
+local __perfWalk1=__metrics.wrap_walk({id="course-core.exercise-defaults.walk.1",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
+local __perfWalk2=__metrics.wrap_walk({id="course-core.exercise-defaults.walk.2",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
+local __perfWalk3=__metrics.wrap_walk({id="course-core.exercise-defaults.walk.3",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
 -- Quarto owns metadata inheritance. This pass reads its final metadata once,
 -- before adapters and audience projection, and never mutates the authored AST.
 local contract=require('./pedagogy/contract')
@@ -51,9 +55,9 @@ function M.normalize(doc)
    if class=='when-student' or class=='when-full' or class=='unless-student' or class=='unless-full' then diagnostics.fail('CORE.AUDIENCE_WRAPPER_FORBIDDEN','Audience wrapper запрещён',{id=node.identifier,field='visibility'}) end
   end
  end
- doc:walk({Div=audience,Span=audience,CodeBlock=audience})
+ __perfWalk1(doc,{Div=audience,Span=audience,CodeBlock=audience})
  local result={}
- doc:walk({Div=function(div)
+ __perfWalk2(doc,{Div=function(div)
   if not contract.is_exercise(div) then return end
   local id=div.identifier
   if result[id] then diagnostics.fail('CORE.DUPLICATE_DECLARATION','Повторный ID упражнения',{source=quarto.doc.input_file,id=id,field='id',related={{source=quarto.doc.input_file,id=id}}}) end
@@ -75,11 +79,16 @@ function M.normalize(doc)
  return result
 end
 function M.present(doc,facts)
- return doc:walk({Div=function(div)
+ return __perfWalk3(doc,{Div=function(div)
   local f=facts[div.identifier];if not f then return end
   local values={target=f.target,['course-role']=f.purpose,difficulty=f.difficulty,time=f.time,['statement-visibility']=f.statementVisibility,['project-check']=f.projectCheck}
-  for key,value in pairs(values) do div.attributes[key]=tostring(value) end
+  for _,key in ipairs(fields) do
+   local value=values[key]
+   if value~=nil then div.attributes[key]=tostring(value) end
+  end
   return div
  end})
 end
+M.normalize=__metrics.wrap_sync({id="course-core.exercise-defaults.normalize",kind='phase'},M.normalize)
+M.present=__metrics.wrap_sync({id="course-core.exercise-defaults.present",kind='phase'},M.present)
 return M

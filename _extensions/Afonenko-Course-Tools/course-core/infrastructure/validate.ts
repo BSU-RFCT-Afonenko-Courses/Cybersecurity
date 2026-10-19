@@ -1,3 +1,5 @@
+import {createMetrics as __createMetrics} from "../observability/bridge.ts";
+const __metrics=__createMetrics("course-core");
 import { diagnostic } from "../domain/diagnostics.ts";
 import { dirname, fromFileUrl, join } from "stdlib/path";
 import type { Adapter, ReleaseResult } from "../domain/model.ts";
@@ -46,3 +48,6 @@ export async function validateRelease(
     await Deno.remove(file);
   }
 }
+
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+validateRelease=__metrics.wrapAsync({id:"course-core.infrastructure.validate.validateRelease",kind:"io"},validateRelease);

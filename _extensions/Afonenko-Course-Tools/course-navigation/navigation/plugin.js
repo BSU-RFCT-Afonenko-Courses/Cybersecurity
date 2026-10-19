@@ -15,6 +15,8 @@
       // Координаты собираются после удаления, чтобы переходы были корректными.
       const start = () => {
         const options = Object.assign({ language: document.documentElement.lang?.startsWith('en') ? 'en' : 'ru', sidebar: true, title: document.querySelector('#title-slide h1')?.textContent.trim() || document.title }, configured);
+        const context = document.getElementById('course-navigation-context');
+        if (context) options.links = [...JSON.parse(context.textContent).links, ...(options.links || [])];
         options.slideWidth = config.width; options.slideHeight = config.height;
         const { NavigationModel: Model, NavigationUI: UI } = root.CourseNavigationModules;
         const model = Model.collect(deck, UI.strings[options.language] || UI.strings.ru);
@@ -61,6 +63,8 @@
             catch (_) { /* Внешний фрейм может запрещать полноэкранный режим. */ }
           }
         };
+        const notes = deck.getPlugin?.('notes');
+        if (typeof notes?.open === 'function') actions.speaker = () => notes.open();
         document.body.classList.add('course-navigation-active');
         if (options.sidebar === false) document.body.classList.add('course-navigation-no-sidebar');
         ui = UI.build(model, options, actions);
