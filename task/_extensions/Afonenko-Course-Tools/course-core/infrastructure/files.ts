@@ -1,3 +1,5 @@
+import {createMetrics as __createMetrics} from "../observability/bridge.ts";
+const __metrics=__createMetrics("course-core");
 import { diagnostic } from "../domain/diagnostics.ts";
 import { isAbsolute, join, relative, resolve } from "stdlib/path";
 import type { Course, Json } from "../domain/model.ts";
@@ -46,3 +48,12 @@ export async function checkPaths(root: string, model: Course): Promise<void> {
     }
   }
 }
+
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+exists=__metrics.wrapAsync({id:"course-core.infrastructure.files.exists",kind:"io"},exists);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+fragments=__metrics.wrapAsync({id:"course-core.infrastructure.files.fragments",kind:"io"},fragments);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+child=__metrics.wrapSync({id:"course-core.infrastructure.files.child",kind:"io"},child);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+checkPaths=__metrics.wrapAsync({id:"course-core.infrastructure.files.checkPaths",kind:"io"},checkPaths);

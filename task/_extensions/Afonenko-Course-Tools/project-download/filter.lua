@@ -1,10 +1,20 @@
+local __metrics=require("./observability/bridge").create_metrics("project-download",1)
+local __perfWalk1=__metrics.wrap_walk({id="project-download.filter.walk.1",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
+local __perfWalk2=__metrics.wrap_walk({id="project-download.filter.walk.2",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
+local function __perfFilters(filters)
+ for key,value in pairs(filters) do
+  if type(value)=='function' then filters[key]=__metrics.wrap_sync({id="project-download.filter.handler."..tostring(key),kind=key=='Pandoc' and 'phase' or 'function'},value)
+  elseif type(value)=='table' and type(key)=='number' then filters[key]=__perfFilters(value) end
+ end
+ return filters
+end
 local function fail(code, message, id, field)
   local context = "\nфайл: " .. tostring(quarto.doc.input_file or "")
   if id then context = context .. ", ID: " .. id end
   if field then context = context .. ", поле: " .. field end
   assert(false, code .. ": " .. message .. context)
 end
-return {{Pandoc = function(doc)
+return __perfFilters({{Pandoc = function(doc)
   local root = quarto.project.directory
   if not root then fail("DOWNLOAD.CONFIG_INVALID", "project-download требует проект Quarto", nil, "project") end
   local input = quarto.doc.input_file
@@ -14,12 +24,12 @@ return {{Pandoc = function(doc)
   local config = doc.meta["project-download"]
   local _, depth = source:gsub("[/\\]", "")
   local exercises = {}
-  doc:walk({Div = function(div)
+  __perfWalk1(doc,{Div = function(div)
     if div.identifier:match("^exr%-") then exercises[div.identifier] = div.attributes end
   end})
   local view = doc.meta.course and doc.meta.course.view and pandoc.utils.stringify(doc.meta.course.view) or "student"
   local captions = {starter="Скачать заготовку", full="Скачать полный проект", conditions="Скачать условие"}
-  doc = doc:walk({Span = function(span)
+  doc = __perfWalk2(doc,{Span = function(span)
     if not span.classes:includes("project-download-request") then return end
     local id = span.attributes.resource
     if not config then fail("DOWNLOAD.CONFIG_INVALID", "Для project-download требуется явная конфигурация ресурсов", id, "project-download") end
@@ -61,4 +71,4 @@ return {{Pandoc = function(doc)
   if doc.meta["course-core-processed"] == true then request.courseProcessed = true end
   file:write(pandoc.json.encode(request)); file:close()
   return doc
-end}}
+end}})

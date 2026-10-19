@@ -1,3 +1,5 @@
+import {createMetrics as __createMetrics} from "../observability/bridge.ts";
+const __metrics=__createMetrics("course-core");
 import {resolve,relative,join,dirname} from 'stdlib/path';
 import type {NativeRun} from '../infrastructure/native-run.ts';
 import {diagnostic} from '../domain/diagnostics.ts';
@@ -26,8 +28,9 @@ function walk(value:any,visit:(node:any,owner?:string)=>void,publicOnly=false,ow
  const id=attributes(value)?.[0];const current=id?.startsWith('exr-')?id:owner;
  visit(value,current);Object.values(value).forEach(v=>walk(v,visit,publicOnly,current));
 }
+const __perfWalk=__metrics.wrapWalk({id:"course-core.artifacts.resolve.walk",kind:"ast_walk",scope:"fragment"},walk);
 async function writeHtml(ast:any,cwd:string){
- const child=new Deno.Command(quartoExecutable(),{args:['pandoc','--from','json','--to','html'],cwd,stdin:'piped',stdout:'piped',stderr:'piped'}).spawn();
+ const child=new Deno.Command(quartoExecutable(),{args:['pandoc','--from','json','--to','html'],cwd,env:__metrics.childEnv({}),stdin:'piped',stdout:'piped',stderr:'piped'}).spawn();
  const input=child.stdin.getWriter();await input.write(new TextEncoder().encode(JSON.stringify(ast)));await input.close();
  const result=await child.output();if(!result.success)throw diagnostic('ARTIFACT.WRITER_FAILED',new TextDecoder().decode(result.stderr));return new TextDecoder().decode(result.stdout);
 }
@@ -51,12 +54,12 @@ export async function resolveArtifact(run:NativeRun,request:ArtifactRequest):Pro
  // no authored QMD/include/Cite/shortcode is parsed or copied into the bundle.
  const native=JSON.parse(await command(quartoExecutable(),['pandoc',output,'--from','html','--to','json'],run.projectRoot));
  let selected:any;const preparation:any[]=[];
- walk(native.blocks,(node,owner)=>{
+ __perfWalk(native.blocks,(node,owner)=>{
   if(attributes(node)?.[0]===request.exerciseId)selected=node;
   const dependency=field(node,'data-course-artifact-dependency')??field(node,'course-artifact-dependency');if(dependency===request.exerciseId||dependency==='*'&&(!owner||owner===request.exerciseId))preparation.push(node);
  },true);
  if(!selected)throw diagnostic('ARTIFACT.CONDITIONS_MISSING','Native output не содержит условие',{id:request.exerciseId});
- const inside=new Set<any>();walk(selected,node=>inside.add(node));
+ const inside=new Set<any>();__perfWalk(selected,node=>inside.add(node));
  const ast={...native,meta:{},blocks:project([...preparation.filter(node=>!inside.has(node)),selected])};
  const files:{name:string;bytes:Uint8Array}[]=[];
  const resources=doc.resources,uses=projectedResourceUses(ast);
@@ -89,3 +92,8 @@ export async function resolveArtifact(run:NativeRun,request:ArtifactRequest):Pro
  files.push({name:'README.md',bytes:new TextEncoder().encode('# Условия упражнения\n\nРаспакуйте весь архив, сохранив папку `assets`, и откройте `index.html` в браузере.\n\nИз каталога распакованного архива:\n\n- Linux: `xdg-open index.html`\n- macOS: `open index.html`\n- Windows (cmd): `start "" index.html`\n\nЛокальные изображения находятся в архиве; для переходов к материалам курса нужен доступ к сайту курса.\n')});
  return {kind,projectRoot:fact.projectRoot,files};
 }
+
+// @ts-expect-error JS допускает замену function binding; публичная сигнатура сохраняется.
+writeHtml=__metrics.wrapAsync({id:"course-core.artifacts.resolve.writeHtml",kind:"command"},writeHtml);
+// @ts-expect-error JS допускает замену function binding; публичная сигнатура сохраняется.
+resolveArtifact=__metrics.wrapAsync({id:"course-core.artifacts.resolve.resolveArtifact",kind:"phase"},resolveArtifact);

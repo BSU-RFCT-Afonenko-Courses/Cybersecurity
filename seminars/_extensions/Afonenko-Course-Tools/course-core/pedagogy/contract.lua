@@ -1,3 +1,5 @@
+local __metrics=require("../observability/bridge").create_metrics("course-core",1)
+
 local diagnostics = require("../diagnostics")
 -- Словарь авторской разметки. Отображение выполняет course-presentation.
 local M = {}
@@ -125,4 +127,15 @@ function M.describe(div, defaults, owner)
   end
   return kind, metadata
 end
+M.metadata=__metrics.wrap_sync({id="course-core.pedagogy.contract.metadata",kind='phase'},M.metadata)
+M.defaults=__metrics.wrap_sync({id="course-core.pedagogy.contract.defaults",kind='phase'},M.defaults)
+M.adapter_attribute=__metrics.wrap_sync({id="course-core.pedagogy.contract.adapter_attribute",kind='phase'},M.adapter_attribute)
+M.bank=__metrics.wrap_sync({id="course-core.pedagogy.contract.bank",kind='phase'},M.bank)
+M.statement_visibility=__metrics.wrap_sync({id="course-core.pedagogy.contract.statement_visibility",kind='phase'},M.statement_visibility)
+M.is_exercise=__metrics.wrap_sync({id="course-core.pedagogy.contract.is_exercise",kind='phase'},M.is_exercise)
+M.is_example=__metrics.wrap_sync({id="course-core.pedagogy.contract.is_example",kind='phase'},M.is_example)
+M.is_activity=__metrics.wrap_sync({id="course-core.pedagogy.contract.is_activity",kind='phase'},M.is_activity)
+M.related=__metrics.wrap_sync({id="course-core.pedagogy.contract.related",kind='phase'},M.related)
+M.kind=__metrics.wrap_sync({id="course-core.pedagogy.contract.kind",kind='phase'},M.kind)
+M.describe=__metrics.wrap_sync({id="course-core.pedagogy.contract.describe",kind='phase'},M.describe)
 return M

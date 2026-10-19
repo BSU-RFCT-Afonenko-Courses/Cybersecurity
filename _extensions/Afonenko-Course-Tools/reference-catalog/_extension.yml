@@ -1,6 +1,6 @@
 title: Каталог перекрёстных ссылок
 author: Анатолий Афоненко
-version: 3.0.0
+version: 3.1.0
 quarto-required: ">=1.11.5"
 contributes:
   filters:

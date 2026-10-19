@@ -1,3 +1,5 @@
+local __metrics=require("../observability/bridge").create_metrics("reference-catalog",1)
+
 local M = {}
 -- Formatter завершает существующий guard и не вводит новый runtime ошибок.
 function M.message(code, message, id, field, hint)
@@ -8,4 +10,5 @@ function M.message(code, message, id, field, hint)
   if hint then details[#details + 1] = "подсказка: " .. hint end
   return table.concat(details, "; ")
 end
+M.message=__metrics.wrap_sync({id="reference-catalog.lua.diagnostics.message",kind='phase'},M.message)
 return M

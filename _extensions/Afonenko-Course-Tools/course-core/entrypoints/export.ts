@@ -19,7 +19,7 @@ export async function main(args = Deno.args) {
   const profiles=(values["--profile"] ?? Deno.env.get("QUARTO_PROFILE") ?? "")
     .split(",").filter(p => p && !["student", "full"].includes(p));
   const collected=await collectExport(root,{book:values["--book"],work:values["--work"],profiles});
-  const bodies=await buildBodies(collected.result,{projectRoot:collected.projectRoot,courseId:collected.courseId,work:collected.work,includeClosed:true});
+  const bodies=await buildBodies(collected.result,{projectRoot:collected.projectRoot,courseId:collected.courseId,work:collected.work,bodyReferences:collected.bodyReferences,includeClosed:true});
   await Deno.mkdir(dirname(output), {recursive:true});
   await Deno.writeTextFile(output,JSON.stringify(bodies.package,null,2)+"\n");
   await Deno.writeTextFile(output.slice(0,-5)+".public.json",JSON.stringify(bodies.publicPackage,null,2)+"\n");

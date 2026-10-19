@@ -1,3 +1,5 @@
+local __metrics=require("../observability/bridge").create_metrics("course-presentation",1)
+
 -- Профили и course.view определяют публикуемое содержимое; этот модуль
 -- задаёт способ его отображения после отбора.
 local M = {}
@@ -28,10 +30,12 @@ function M.read(meta)
   local pedagogy = meta["course-pedagogy"] or {}
   if type(pedagogy) ~= "table" then assert(false, message("course-pedagogy должен содержать YAML-словарь параметров", "course-pedagogy")) end
   return {answers = answers, reveal = reveal, html = html,bank=meta["exercise-bank"]==true,
+    assessmentTime = not (type(meta.course) == "table" and meta.course["assessment-time"] == false),
     ru = lang:match("^ru") ~= nil,
     defaults = pedagogy["document-defaults"] == true and {
       difficulty = string(meta.difficulty), time = string(meta.time),
       ["work-mode"] = string(meta["work-mode"])
     } or {}}
 end
+M.read=__metrics.wrap_sync({id="course-presentation.modules.config.read",kind='phase'},M.read)
 return M

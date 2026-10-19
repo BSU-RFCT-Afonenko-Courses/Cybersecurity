@@ -1,3 +1,5 @@
+local __metrics=require("./observability/bridge").create_metrics("course-core",1)
+
 local diagnostics = require("./diagnostics")
 local M = {}
 local function comparison(path)
@@ -93,4 +95,7 @@ function M.write(value)
     current:write(encoded);current:close()
   end
 end
+M.invalidate=__metrics.wrap_sync({id="course-core.output.invalidate",kind='phase'},M.invalidate)
+M.current_run=__metrics.wrap_sync({id="course-core.output.current_run",kind='phase'},M.current_run)
+M.write=__metrics.wrap_sync({id="course-core.output.write",kind='phase'},M.write)
 return M

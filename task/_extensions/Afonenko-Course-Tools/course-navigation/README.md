@@ -108,3 +108,13 @@ format:
 ```sh
 node --test tests/navigation-model.cjs # из корня репозитория
 ```
+
+## Постоянные выходы и действия репозитория
+
+Подключите `filters: [course-navigation]` вместе с Reveal plugin.
+`course-navigation.links` хранит подписи `text`, URL-пути `href` с ведущим `/`
+и область `scope: project|course`. `course-navigation.course-url` задаёт общий
+публичный корень для standalone. Publisher вычисляет адреса композиции.
+Native `repo-url`, `repo-branch`, `repo-subdir`, `repo-actions` и `issue-url`
+используются для эквивалентных действий Reveal; HTML сохраняет native actions.
+Полный контракт и пример: [Navigation](../../docs/navigation.md).

@@ -10,11 +10,37 @@
   let mode = parameters.get('course-mode') === 'lecture' ? 'lecture' : 'study';
   let reveal, modeButton, notesBeforePrint, printing = false;
 
+  function localizeQuartoLabels() {
+    if (!document.documentElement.lang.startsWith('ru')) return;
+    const labels = [
+      ['#quarto-search .aa-Autocomplete[aria-label="Search"]', 'aria-label', 'Поиск'],
+      ['#quarto-search button[title="Search"]', 'title', 'Поиск'],
+      ['.anchorjs-link[aria-label="Anchor"]', 'aria-label', 'Ссылка на раздел'],
+    ];
+    const localize = root => {
+      if (root.nodeType !== Node.ELEMENT_NODE) return;
+      for (const [selector, attribute, text] of labels) {
+        if (root.matches(selector)) root.setAttribute(attribute, text);
+        root.querySelectorAll(selector).forEach(node => node.setAttribute(attribute, text));
+      }
+    };
+    localize(document.body);
+    // Quarto создаёт ссылки после DOMContentLoaded и может перестроить поиск.
+    // Проверяются только добавленные поддеревья; запись атрибутов не вызывает наблюдатель.
+    new MutationObserver(records => records.forEach(record => record.addedNodes.forEach(localize)))
+      .observe(document.body, {childList: true, subtree: true});
+  }
+
   // Reveal owns the side panel and speaker window. Its panel is a native copy;
   // preserve the original IDs in the slide and remove IDs only from that copy.
   function normalizeNotes() {
     const panel = reveal?.getRevealElement().querySelector('.speaker-notes');
     if (!panel) return;
+    const placeholder = panel.querySelector('.notes-placeholder');
+    if (document.documentElement.lang.startsWith('ru') &&
+        placeholder?.textContent === 'No notes on this slide.') {
+      placeholder.textContent = 'Заметок к этому слайду нет.';
+    }
     panel.querySelectorAll('[id]').forEach(node => {
       node.dataset.courseNoteId = node.id; node.removeAttribute('id');
     });
@@ -104,6 +130,7 @@
   }
 
   function initialize() {
+    localizeQuartoLabels();
     labelTabPanels();
     const deck = window.Reveal;
     if (deck && document.querySelector('.reveal')) {

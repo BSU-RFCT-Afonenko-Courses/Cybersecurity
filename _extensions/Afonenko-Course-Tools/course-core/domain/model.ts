@@ -2,22 +2,23 @@ export type Json = null | boolean | number | string | Json[] | { [key: string]: 
 export interface Body { "pandoc-api-version": number[]; meta: Record<string, Json>; blocks: Json[] }
 export interface Exercise {
   id: string; target?: string; authoredTarget?: string; project: string;
-  purpose?: ExercisePurpose; difficulty: Difficulty; time: number; statementVisibility: StatementVisibility; hasSolution: boolean; hasPublicSolution: boolean;
+  purpose?: ExercisePurpose; difficulty: Difficulty; time?: number; statementVisibility: StatementVisibility; hasSolution: boolean; hasPublicSolution: boolean;
   sourceTopic?: { id: string; owner?: string; rootQmd: string };
   head: { kind: string; level: number; title: string };
   nested: number; unknownAttributes: string[];
   body: Body; gradingNotes?: Body[]; source: string; extensions: Record<string, Json>;
 }
 export interface Assessment {
-  id: string; kind: AssessmentKind; title: string; body: Body; items: string[]; assignments: Record<string, Assignment>; theoryTime?: number;
+  id: string; kind: AssessmentKind; title: string; body: Body; slots: AssessmentSlot[]; theoryTime?: number;
   relatedExercise?: string;
   memberContainers: number; memberKinds: string[]; memberSizes: number[];
   source: string; extensions: Record<string, Json>;
 }
 import type { AssessmentKind, ExercisePurpose, PedagogicalKind, Difficulty, WorkMode, Requirement, View, Stage, StatementVisibility } from "./vocabulary.ts";
 export type { PedagogicalKind, ExercisePurpose } from "./vocabulary.ts";
+export interface AssessmentSlot { id: string; selection: "fixed" | "random"; candidates: string[]; assignment: Assignment }
 export interface Assignment { stage?: Stage; requirement: "required" | "optional"; workMode: WorkMode }
-export interface ExerciseDeclaration { id: string; source: string; difficulty: Difficulty; time: number; statementVisibility: StatementVisibility; purpose?: ExercisePurpose; hasSolution: boolean; hasPublicSolution: boolean }
+export interface ExerciseDeclaration { id: string; source: string; difficulty: Difficulty; time?: number; statementVisibility: StatementVisibility; purpose?: ExercisePurpose; hasSolution: boolean; hasPublicSolution: boolean }
 export type AssessmentComposition = Omit<Assessment, "body" | "source" | "extensions">;
 export interface PedagogicalMetadata {
   difficulty?: Difficulty; time?: number; workMode?: WorkMode; requirement?: Requirement;
@@ -33,7 +34,9 @@ export interface Pedagogy {
 export type Extracted<T> = Omit<T, "body" | "gradingNotes" | "source" | "extensions"> & { bodyJson: string; gradingNotesJson?: string[] };
 export interface TopicFact { source: string; semester?: string; categories: string[] }
 export interface SourceProfile {mode:"implementation"|"student-tests";root:string;include:string[]}
-export interface ResolvedProjectCheck {profile:string; runtime:string; sourceProfile:SourceProfile; "source-profile":string; tests:string[]; references?:{name:string;root:string;optional:boolean}[]; [key:string]: unknown}
+export interface AdditionalJavaSources {archive:string; "max-files":number; "max-file-bytes":number; "max-total-bytes":number; "max-archive-bytes":number}
+export interface ApiPrecheck {files:string[];entry:string}
+export interface ResolvedProjectCheck {profile:string; runtime:string; sourceProfile:SourceProfile; "source-profile":string; tests:string[]; "additional-java-sources"?:AdditionalJavaSources; "api-precheck"?:ApiPrecheck; "verification-api-precheck"?:ApiPrecheck; references?:{name:string;root:string;optional:boolean}[]; [key:string]: unknown}
 export interface ProjectFact {exerciseId:string;source:string;projectRoot:string;bankMember:boolean;purpose?:ExercisePurpose;statementVisibility:StatementVisibility;artifactPolicy:{student?:"starter"|"full";full:"full";conditions:boolean};check?:ResolvedProjectCheck}
 export interface Fragment {
   projects?: ProjectFact[]; topic?: TopicFact;
@@ -47,7 +50,7 @@ export interface Fragment {
 }
 export interface DocumentResult extends Fragment {
   scope: "document";
-  body?: { publicExercises: Fragment["exercises"]; publicAssessment?: Fragment["assessment"]; publicAnswers?: Record<string, {answerType: string; publicAnswerJson: string}>; fullAnswers?: Record<string, {answerType: string; publicAnswerJson: string; closedKey: unknown}> };
+  body?: { publicExercises: Fragment["exercises"]; publicAssessment?: Fragment["assessment"]; publicIntroductionJson?: string; publicAnswers?: Record<string, {answerType: string; publicAnswerJson: string}>; fullAnswers?: Record<string, {answerType: string; publicAnswerJson: string; closedKey: unknown}> };
   resources?: import("../infrastructure/resources.ts").ResourceFacts;
   document: { source: string; format: string; output: string; profiles: string[]; exportContext?: boolean };
 }

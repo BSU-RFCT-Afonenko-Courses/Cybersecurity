@@ -1,3 +1,5 @@
+local __metrics=require("./observability/bridge").create_metrics("course-core",1)
+
 -- Platform-neutral project/check declarations. No filesystem execution here.
 local diagnostics=require('./diagnostics')
 local M={}
@@ -6,7 +8,9 @@ local expectationShape={['student-compilation']=true,job=true,['required-tests']
 local checkShape={['source-profile']=true,runtime=true,java={release=true,encoding=true,['compiler-options']='array'},limits={['outer-seconds']=true,['compile-seconds']=true,['run-seconds']=true,networking=true,['max-output-bytes']=true},
  scoring={mode=true,groups='array',basis=true,value=true},references='array',tests='array',['verification-tests']='array',['contract-cases']=true,
  ['verification-expectations']={reference=expectationShape,starter=expectationShape},
- discovery={['min-executed']=true,['allow-skipped']=true},variants={correct='array',mutants='array'}}
+ discovery={['min-executed']=true,['allow-skipped']=true},variants={correct='array',mutants='array'},
+ ['additional-java-sources']={archive=true,['max-files']='integer',['max-file-bytes']='integer',['max-total-bytes']='integer',['max-archive-bytes']='integer'},
+ ['api-precheck']={files='array',entry=true},['verification-api-precheck']={files='array',entry=true}}
 local function fail(field,detail,id) diagnostics.fail('CORE.PROJECT_CHECK_INVALID',detail,{source=quarto.doc.input_file,id=id,field=field}) end
 local function scalar(value)
  if type(value)=='boolean' then return value end
@@ -94,6 +98,22 @@ function M.resolve(config,name,id)
  if result.limits and result.limits.networking~=nil and result.limits.networking~=false then fail('limits.networking','Network must be false',id) end
  if result.discovery and result.discovery['allow-skipped']~=nil and type(result.discovery['allow-skipped'])~='boolean' then fail('discovery.allow-skipped','Требуется boolean',id) end
  if result.discovery and result.discovery['min-executed'] then result.discovery['min-executed']=tonumber(result.discovery['min-executed']);if not result.discovery['min-executed'] or result.discovery['min-executed']<1 or result.discovery['min-executed']%1~=0 then fail('discovery.min-executed','Требуется положительный integer',id) end end
+ local extras=result['additional-java-sources']
+ if extras then
+  if source.mode~='implementation' or result.runtime~='java25-junit-v1' then fail('additional-java-sources','Дополнительные Java sources требуют Java implementation',id) end
+  if type(extras.archive)~='string' or not extras.archive:match('^[A-Za-z0-9][A-Za-z0-9_-]*%.zip$') or #extras.archive>105 then fail('additional-java-sources.archive','Требуется безопасное basename ZIP',id) end
+  for key,cap in pairs({['max-files']=128,['max-file-bytes']=1048576,['max-total-bytes']=4194304,['max-archive-bytes']=2097152}) do
+   local n=extras[key];if type(n)~='number' or n<1 or n>cap or n%1~=0 then fail('additional-java-sources.'..key,'Требуется положительный integer в защитных пределах',id) end
+  end
+ end
+ for _,name in ipairs({'api-precheck','verification-api-precheck'}) do
+  local api=result[name]
+  if api then
+   if source.mode~='implementation' or result.runtime~='java25-junit-v1' then fail(name,'API precheck требует Java implementation',id) end
+   if not api.files or #api.files==0 or not api.entry or not api.entry:match('^[%a_$][%w_$.]*$') then fail(name,'API precheck требует files и Java entry class',id) end
+   for _,value in ipairs(api.files) do path(value,name..'.files') end
+  end
+ end
  return result
 end
 function M.collect(doc,facts)
@@ -112,4 +132,7 @@ function M.collect(doc,facts)
  table.sort(result,function(a,b)return a.exerciseId<b.exerciseId end)
  return result
 end
+M.configuration=__metrics.wrap_sync({id="course-core.projects.configuration",kind='phase'},M.configuration)
+M.resolve=__metrics.wrap_sync({id="course-core.projects.resolve",kind='phase'},M.resolve)
+M.collect=__metrics.wrap_sync({id="course-core.projects.collect",kind='phase'},M.collect)
 return M

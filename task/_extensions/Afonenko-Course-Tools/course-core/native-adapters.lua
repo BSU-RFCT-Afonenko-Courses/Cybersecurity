@@ -1,3 +1,5 @@
+local __metrics=require("./observability/bridge").create_metrics("course-core",1)
+
 local diagnostics = require("./diagnostics")
 local M={}
 local resolved={}
@@ -43,4 +45,6 @@ function M.read(doc,facts)
   end
   doc.meta['course-adapters-read']=true
 end
+M.validate=__metrics.wrap_sync({id="course-core.native-adapters.validate",kind='phase'},M.validate)
+M.read=__metrics.wrap_sync({id="course-core.native-adapters.read",kind='phase'},M.read)
 return M

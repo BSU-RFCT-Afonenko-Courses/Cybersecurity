@@ -1,3 +1,5 @@
+import {createMetrics as __createMetrics} from "../observability/bridge.ts";
+const __metrics=__createMetrics("reference-catalog");
 import { diagnostic } from "../diagnostics.ts";
 import type { Catalog, Import, Target } from "../domain/model.ts";
 import { readCatalogSource } from "./catalog-source.ts";
@@ -39,3 +41,6 @@ export async function importTargets(imports: Import[], options: { allowMissingLo
   }
   return result;
 }
+
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+importTargets=__metrics.wrapAsync({id:"reference-catalog.infrastructure.imports.importTargets",kind:"io"},importTargets);

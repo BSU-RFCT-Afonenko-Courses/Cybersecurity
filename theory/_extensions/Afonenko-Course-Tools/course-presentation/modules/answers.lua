@@ -1,3 +1,5 @@
+local __metrics=require("../observability/bridge").create_metrics("course-presentation",1)
+
 -- Узел #sol-* или callout и его ID сохраняются. Раскрытием управляет
 -- внешний контейнер без ID, поэтому штатные перекрёстные ссылки работают.
 local M = {}
@@ -27,4 +29,6 @@ function M.wrap(div, kind, cfg)
   return pandoc.Div({pandoc.RawBlock("html", "<details><summary>" .. summary .. "</summary>"),
     div, pandoc.RawBlock("html", "</details>")}, pandoc.Attr("", classes))
 end
+M.kind=__metrics.wrap_sync({id="course-presentation.modules.answers.kind",kind='phase'},M.kind)
+M.wrap=__metrics.wrap_sync({id="course-presentation.modules.answers.wrap",kind='phase'},M.wrap)
 return M

@@ -1,3 +1,5 @@
+import {createMetrics as __createMetrics} from "../observability/bridge.ts";
+const __metrics=__createMetrics("course-site");
 export function executable(): string {
   return Deno.env.get("QUARTO") || "quarto";
 }
@@ -7,14 +9,13 @@ export async function quarto(
   env: Record<string, string> = {},
   forward = false,
 ): Promise<string> {
-  const start = performance.now();
   const tool = executable();
   let result: Deno.CommandOutput;
   try {
     result = await new Deno.Command(tool, {
       args,
       cwd,
-      env,
+      env: __metrics.childEnv(env),
       stdout: "piped",
       stderr: "piped",
     }).output();
@@ -43,20 +44,6 @@ export async function quarto(
     await Deno.stdout.write(result.stdout);
     await Deno.stderr.write(result.stderr);
   }
-  const trace = Deno.env.get("COURSE_BUILD_TRACE");
-  if (trace) {
-    await Deno.writeTextFile(
-      trace,
-      JSON.stringify({
-        kind: args[0],
-        args,
-        cwd,
-        elapsedMs: performance.now() - start,
-        exitCode: result.code,
-      }) + "\n",
-      { append: true },
-    );
-  }
   if (!result.success) {
     const error = new Error(
       `course-site: Quarto ${
@@ -80,3 +67,10 @@ export async function quarto(
 export function profileArguments(profiles: string[]): string[] {
   return profiles.length ? ["--profile", profiles.join(",")] : [];
 }
+
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+executable=__metrics.wrapSync({id:"course-site.infrastructure.process.executable",kind:"command"},executable);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+quarto=__metrics.wrapAsync({id:"course-site.infrastructure.process.quarto",kind:"command"},quarto);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+profileArguments=__metrics.wrapSync({id:"course-site.infrastructure.process.profileArguments",kind:"command"},profileArguments);

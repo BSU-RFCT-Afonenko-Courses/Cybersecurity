@@ -1,3 +1,7 @@
+local __metrics=require("./observability/bridge").create_metrics("course-core",1)
+local __perfWalk1=__metrics.wrap_walk({id="course-core.native-document.walk.1",kind='ast_walk',scope="fragment"},function(node,filter)return node:walk(filter)end)
+local __perfWalk2=__metrics.wrap_walk({id="course-core.native-document.walk.2",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
+local __perfWalk3=__metrics.wrap_walk({id="course-core.native-document.walk.3",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
 -- Domain validation of the current native AST, before audience projection.
 local contract = require('./pedagogy/contract')
 local pedagogy = require('./pedagogy/collect')
@@ -44,7 +48,7 @@ local function occurrences(doc)
     local function table_rows(values)
       for _,row in ipairs(values) do for _,cell in ipairs(row.cells) do blocks(cell.contents) end end
     end
-    fragment:walk({traverse='topdown',Header=function(header)
+    __perfWalk1(fragment,{traverse='topdown',Header=function(header)
       rows[#rows+1]={node=header,kind='Header',order=#rows+1,ancestors=ancestors,containers=containers}
     end,Div=function(div)
       rows[#rows+1]={node=div,kind='Div',order=#rows+1,ancestors=ancestors,containers=containers}
@@ -75,6 +79,8 @@ function M.validate(doc, effective)
   effective=effective or require("./exercise-defaults").normalize(doc)
   local owner = pandoc.utils.stringify(doc.meta.course.id or '')
   check(owner=='' or valid(owner,'^[a-z][a-z0-9%-]*$'),'CORE.COURSE_INVALID','Идентификатор курса должен состоять из строчных латинских букв, цифр и дефисов', {id=owner,field='course.id',hint='Используйте имя вроде course-demo'})
+  local assessmentTime=doc.meta.course['assessment-time']
+  check(assessmentTime==nil or type(assessmentTime)=='boolean','CORE.COURSE_INVALID','Настройка публикации времени должна быть boolean', {field='course.assessment-time',hint='Укажите true или false'})
   local source,rows = source_path(),occurrences(doc)
   local bank=contract.bank(doc.meta)
   local defaults=contract.defaults(doc.meta)
@@ -124,7 +130,7 @@ function M.validate(doc, effective)
           end
         end
         local metadata=normalized
-        check(metadata.difficulty~=nil and metadata.time~=nil,'CORE.METADATA_INVALID','Банковская задача требует собственные difficulty и time', {id=id,field=metadata.difficulty==nil and 'difficulty' or 'time'})
+        check(metadata.difficulty~=nil,'CORE.METADATA_INVALID','Банковская задача требует собственную difficulty', {id=id,field='difficulty'})
         check(normalized.statementVisibility=='open' or normalized.statementVisibility=='restricted','CORE.METADATA_INVALID','Банковская задача требует statement-visibility open или restricted',{id=id,field='statement-visibility'})
         facts:insert({id=id,source=source,difficulty=metadata.difficulty,time=metadata.time,statementVisibility=normalized.statementVisibility,purpose=normalized.purpose,hasSolution=false,project=node.attributes.project,target=normalized.target,authoredTarget=normalized.authoredTarget,projectCheck=normalized.projectCheck,sourceTopic=nearest and {id=nearest,owner=owner~='' and owner or nil,rootQmd=source} or nil})
       end
@@ -173,21 +179,21 @@ function M.assessment(doc)
   local work=assessment.collect(doc)
   if work then
     check(valid(work.id,'^[a-z][a-z0-9%-]*$') and work.title~='' and contains(vocabulary.assessmentKinds,work.kind)
-      and work.memberContainers>=1 and #work.memberKinds==work.memberContainers and #work.items>0,
+      and work.memberContainers>=1 and #work.memberKinds==work.memberContainers and #work.slots>0,
       'CORE.ASSESSMENT_INVALID','Работа требует корректный ID, название, явный вид и непустые списки участников', {id=work.id,field='assessment/task-items'})
     for _,kind in ipairs(work.memberKinds) do check(contains(vocabulary.memberKinds,kind),'CORE.ASSESSMENT_INVALID','task-items требует BulletList или OrderedList',{id=work.id,field='task-items'}) end
     local members={}
     for _,size in ipairs(work.memberSizes) do check(size==1,'CORE.ASSESSMENT_INVALID','Каждый пункт работы должен содержать одну ссылку на упражнение', {id=work.id,field='items'}) end
-    for _,id in ipairs(work.items) do
-      check(not members[id],'CORE.ASSESSMENT_INVALID','Повторный участник работы: '..id, {id=work.id,field='items',related={{id=id}}});members[id]=true
-    end
+    for _,slot in ipairs(work.slots) do for _,id in ipairs(slot.candidates) do
+      check(not members[id],'CORE.ASSESSMENT_INVALID','Повторный участник работы: '..id, {id=work.id,field='slots',related={{id=id}}});members[id]=true
+    end end
   end
   return work
 end
 
 function M.references(doc, original)
   local visible={}
-  doc:walk({Header=function(node) visible[node.identifier]=true end,Div=function(node) visible[node.identifier]=true end})
+  __perfWalk2(doc,{Header=function(node) visible[node.identifier]=true end,Div=function(node) visible[node.identifier]=true end})
   local root=quarto.project.directory
   local function absolute(path,base)
     if pandoc.path.is_relative(path) then path=pandoc.path.join({base,path}) end
@@ -210,11 +216,14 @@ function M.references(doc, original)
     local namespace=prefix(id,'sec') or contract.bank(doc.meta) and (id:match('^ex[rm]%-') or prefix(id,'sol'))
     if original[id] or explicit and namespace then check(visible[id],'CORE.PROFILE_REFERENCE_INTEGRITY','Ссылка указывает на отсутствующий в текущем представлении элемент', {id=id,field='reference',hint='Проверьте профиль и условия видимости ссылки и цели'}) end
   end
-  doc:walk({Link=function(link)
+  __perfWalk3(doc,{Link=function(link)
     local path,id=link.target:match('^([^#]*)#(.+)$')
     if id and current_document(path) then target(id,true) end
   end,Cite=function(cite)
     for _,ref in ipairs(cite.citations) do target(ref.id) end
   end})
 end
+M.validate=__metrics.wrap_sync({id="course-core.native-document.validate",kind='phase'},M.validate)
+M.assessment=__metrics.wrap_sync({id="course-core.native-document.assessment",kind='phase'},M.assessment)
+M.references=__metrics.wrap_sync({id="course-core.native-document.references",kind='phase'},M.references)
 return M

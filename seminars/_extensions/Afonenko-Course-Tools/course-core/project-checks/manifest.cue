@@ -7,11 +7,13 @@ import "list"
  qualifiedId:string & !=""
  check:#ResolvedProjectCheck
  sources:[...#Selection],trustedTests:[...#Selection],verificationTests:[...#Selection]
+ apiPrecheck?:{files:[...string],entry:#ApiPrecheck.entry}
+ verificationApiPrecheck?:{files:[...string],entry:#ApiPrecheck.entry}
  references:[...{name:string,root:string,optional:bool,sources:[...#Selection],available:bool}]
  contractFixtures:[...#Selection]
  contractCasesHash?:{projectRelativePath:string,sha256:#SHA256}
  readiness:{ready:bool,missing:[...string]}
- if readiness.ready {readiness:missing:[],sources:list.MinItems(1),trustedTests:list.MinItems(1)}
+ if readiness.ready {readiness:missing:[],sources:list.MinItems(1),trustedTests:list.MinItems(1),apiPrecheck?:files:list.MinItems(1),verificationApiPrecheck?:files:list.MinItems(1)}
  if !readiness.ready {readiness:missing:list.MinItems(1)}
 }
 #ChecksManifest: {

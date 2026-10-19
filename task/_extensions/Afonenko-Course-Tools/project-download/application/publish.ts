@@ -1,3 +1,5 @@
+import {createMetrics as __createMetrics} from "../observability/bridge.ts";
+const __metrics=__createMetrics("project-download");
 import { diagnostic } from "../diagnostics.ts";
 import { RESOURCE_ID, type Configuration, type Resource } from "../domain/config.ts";
 import { zip, type ArchiveEntry } from "../domain/zip.ts";
@@ -46,3 +48,6 @@ export async function publish(config:Configuration,profiles:string[],ports:Publi
   await ports.save(archives); return archives.length;
 }
 function equalBytes(a:Uint8Array,b:Uint8Array):boolean { return a.length===b.length && a.every((v,i)=>v===b[i]); }
+
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+publish=__metrics.wrapAsync({id:"project-download.application.publish.publish",kind:"phase"},publish);

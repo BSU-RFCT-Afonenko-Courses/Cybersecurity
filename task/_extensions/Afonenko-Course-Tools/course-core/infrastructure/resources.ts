@@ -1,3 +1,5 @@
+import {createMetrics as __createMetrics} from "../observability/bridge.ts";
+const __metrics=__createMetrics("course-core");
 import { diagnostic } from "../domain/diagnostics.ts";
 import { dirname, relative, resolve } from "stdlib/path";
 import { child } from "./files.ts";
@@ -330,3 +332,14 @@ export async function evaluateResources(
   }
   return { files, diagnostics: [] };
 }
+
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+normalizeResourceFacts=__metrics.wrapSync({id:"course-core.infrastructure.resources.normalizeResourceFacts",kind:"io"},normalizeResourceFacts);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+projectedResourceUses=__metrics.wrapSync({id:"course-core.infrastructure.resources.projectedResourceUses",kind:"io"},projectedResourceUses);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+cleanHiddenResourceOutputs=__metrics.wrapAsync({id:"course-core.infrastructure.resources.cleanHiddenResourceOutputs",kind:"io"},cleanHiddenResourceOutputs);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+validateCapturedResources=__metrics.wrapAsync({id:"course-core.infrastructure.resources.validateCapturedResources",kind:"io"},validateCapturedResources);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+evaluateResources=__metrics.wrapAsync({id:"course-core.infrastructure.resources.evaluateResources",kind:"io"},evaluateResources);

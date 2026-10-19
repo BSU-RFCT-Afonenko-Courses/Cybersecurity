@@ -1,8 +1,10 @@
 title: Навигация по презентации
 author: Анатолий Афоненко
-version: 5.0.2
+version: 7.3.0
 quarto-required: ">=1.11.5"
 contributes:
+  filters:
+    - filter.lua
   shortcodes:
     - shortcodes.lua
   revealjs-plugins:

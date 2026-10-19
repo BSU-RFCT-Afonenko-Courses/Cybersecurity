@@ -1,3 +1,5 @@
+import {createMetrics as __createMetrics} from "../observability/bridge.ts";
+const __metrics=__createMetrics("course-core");
 import { diagnostic } from "../domain/diagnostics.ts";
 // Maintained common answer contract promoted from Core #8, exact 4f5caf9a15b9bd36476cad8a646e81521fbd29d1.
 // Native CodeBlock answer data only; no QMD reader/resource producer.
@@ -112,3 +114,8 @@ export async function projectChoice(b: Node, context: {source?: string; id?: str
     publicAnswer: [{ t: "BulletList", c: clean }],
   };
 }
+
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+validateAnswer=__metrics.wrapAsync({id:"course-core.body-export.answer.validateAnswer",kind:"phase"},validateAnswer);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+projectChoice=__metrics.wrapAsync({id:"course-core.body-export.answer.projectChoice",kind:"phase"},projectChoice);

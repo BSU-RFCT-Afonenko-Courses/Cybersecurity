@@ -1,3 +1,13 @@
+local __metrics=require("./observability/bridge").create_metrics("course-core",1)
+local __perfProbe={}
+local __perfChildContext=__metrics.child_env(__perfProbe)~=__perfProbe
+local __perfPipe=__metrics.wrap_sync({id="course-core.native-answers.command.pipe",kind='command'},function(tool,args,input)
+ if not __perfChildContext then return pandoc.pipe(tool,args,input) end
+ return pandoc.system.with_environment(__metrics.child_env({}),function()return pandoc.pipe(tool,args,input)end)
+end)
+local __perfWalk1=__metrics.wrap_walk({id="course-core.native-answers.walk.1",kind='ast_walk',scope="fragment"},function(node,filter)return node:walk(filter)end)
+local __perfWalk2=__metrics.wrap_walk({id="course-core.native-answers.walk.2",kind='ast_walk',scope="fragment"},function(node,filter)return node:walk(filter)end)
+local __perfWalk3=__metrics.wrap_walk({id="course-core.native-answers.walk.3",kind='ast_walk',scope="fragment"},function(node,filter)return node:walk(filter)end)
 local diagnostics = require("./diagnostics")
 -- Validate answer banks in the actual AST before audience projection.
 local M={}
@@ -6,7 +16,7 @@ local schema=pandoc.path.join({directory,'body-export/answer.cue'})
 local function vet(data, context)
   return pandoc.system.with_temporary_directory('course-answer',function(temp)
     local file=assert(io.open(temp..'/answer.yaml','w'));file:write(data);file:close()
-    local ok,result=pcall(pandoc.pipe,os.getenv('CUE') or 'cue',{'export',schema,temp..'/answer.yaml','-e','answer','--out','json'},'')
+    local ok,result=pcall(__perfPipe,os.getenv('CUE') or 'cue',{'export',schema,temp..'/answer.yaml','-e','answer','--out','json'},'')
     assert(ok, diagnostics.format("ANSWER_INVALID", 'Не удалось проверить контракт ответа с помощью CUE: '..tostring(result), context))
     return pandoc.json.decode(result)
   end)
@@ -15,7 +25,7 @@ function M.validate(doc)
   local answers={}
   if not require("./pedagogy/contract").bank(doc.meta) then return answers end
   local function walk(fragment,owner,role)
-    fragment:walk({traverse='topdown',Div=function(div)
+    __perfWalk1(fragment,{traverse='topdown',Div=function(div)
       assert(not div.classes:includes("answer-spec"), diagnostics.format("ANSWER_INVALID", "Банк ответов должен быть CodeBlock", {id=owner and owner.id or div.identifier,field="answer"}))
       local nextowner=owner
       if div.identifier:match('^ex[rm]%-') then nextowner={id=div.identifier,banks=0,choices=0} end
@@ -27,11 +37,11 @@ function M.validate(doc)
         assert(div.attributes.type=='single-choice' and #div.content==1 and div.content[1].t=='BulletList', diagnostics.format("ANSWER_INVALID", 'Ответ single-choice должен содержать один BulletList', {id=nextowner.id,field="answer"}))
         nextowner.choices=nextowner.choices+1
         local count,correct=0,-1
-        for index,item in ipairs(div.content[1].content) do pandoc.Pandoc(item):walk({Span=function(span)
+        for index,item in ipairs(div.content[1].content) do __perfWalk2(pandoc.Pandoc(item),{Span=function(span)
           if span.classes:includes('correct') then count=count+1;correct=index-1 end
         end}) end
         vet('answer: '..pandoc.json.encode({type='single-choice',count=#div.content[1].content,correct=correct,markedCount=count}),{id=nextowner.id,field='answer'})
-        local projected=pandoc.Pandoc(div.content):walk({Span=function(span) if span.classes:includes('correct') then return span.content end end})
+        local projected=__perfWalk3(pandoc.Pandoc(div.content),{Span=function(span) if span.classes:includes('correct') then return span.content end end})
         answers[nextowner.id]={answerType='single-choice',publicAnswerJson=pandoc.write(projected,'json'),closedKey={correct=correct}}
         nextrole='answer'
       end
@@ -65,4 +75,5 @@ function M.validate(doc)
   walk(doc,nil,nil)
   return answers
 end
+M.validate=__metrics.wrap_sync({id="course-core.native-answers.validate",kind='phase'},M.validate)
 return M

@@ -1,3 +1,5 @@
+import {createMetrics as __createMetrics} from "../observability/bridge.ts";
+const __metrics=__createMetrics("project-download");
 import { inspectOwnedRequests } from "../ownership.ts";
 import { diagnostic, externalFailure } from "../diagnostics.ts";
 import {
@@ -24,6 +26,7 @@ async function inspect(root: string) {
   try { result = await new Deno.Command(executable, {
     args: ["inspect", root],
     cwd: root,
+    env: __metrics.childEnv({}),
     stdout: "piped",
     stderr: "piped",
   }).output(); } catch(cause) { if (!Object.values(Deno.errors).some(kind => cause instanceof kind)) throw cause; throw externalFailure(executable,undefined,cause); }
@@ -288,3 +291,10 @@ export async function finish(
     },
   });
 }
+
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+clearOwned=__metrics.wrapAsync({id:"project-download.infrastructure.runtime.clearOwned",kind:"io"},clearOwned);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+prepare=__metrics.wrapAsync({id:"project-download.infrastructure.runtime.prepare",kind:"io"},prepare);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+finish=__metrics.wrapAsync({id:"project-download.infrastructure.runtime.finish",kind:"io"},finish);

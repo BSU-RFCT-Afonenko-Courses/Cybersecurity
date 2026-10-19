@@ -1,3 +1,5 @@
+local __metrics=require("./observability/bridge").create_metrics("course-core",1)
+
 -- Локальное оформление guard: входной документ, объект и поле, без span.
 local M = {}
 function M.format(code, message, context)
@@ -18,4 +20,6 @@ function M.format(code, message, context)
   return table.concat(parts, '; ')
 end
 function M.fail(code, message, context) assert(false, M.format(code, message, context)) end
+M.format=__metrics.wrap_sync({id="course-core.diagnostics.format",kind='phase'},M.format)
+M.fail=__metrics.wrap_sync({id="course-core.diagnostics.fail",kind='phase'},M.fail)
 return M

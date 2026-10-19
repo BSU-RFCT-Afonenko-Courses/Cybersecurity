@@ -1,3 +1,6 @@
+import {createMetrics as __createMetrics} from "../observability/bridge.ts";
+const __metrics=__createMetrics("course-site");
+import { addressNavigation } from "./navigation.ts";
 import { diagnostic } from "./diagnostics.ts";
 import { files, resolve, safePath, within } from "./files.ts";
 export interface Record {
@@ -73,7 +76,10 @@ export async function publicOutputs(
 }
 export async function collect(): Promise<void> {
   const destination = Deno.env.get("COURSE_SITE_COLLECTION");
-  if (!destination) return;
+  if (
+    !destination && !Deno.env.has("QUARTO_PROJECT_OUTPUT_FILES") &&
+    !Deno.env.has("QUARTO_USE_FILE_FOR_PROJECT_OUTPUT_FILES")
+  ) return;
   const root = Deno.cwd(),
     outputDir = resolve(root, Deno.env.get("QUARTO_PROJECT_OUTPUT_DIR") || "");
   if (outputDir === root) {
@@ -87,12 +93,15 @@ export async function collect(): Promise<void> {
       },
     );
   }
+  const nativeOutputs = await publicOutputs(root, outputDir);
+  await addressNavigation(outputDir, nativeOutputs);
+  if (!destination) return;
   const record: Record = {
     id: Deno.env.get("COURSE_SITE_PROJECT")!,
     projectRoot: root,
     outputDir,
     profiles: (Deno.env.get("QUARTO_PROFILE") || "").split(",").filter(Boolean),
-    nativeOutputs: await publicOutputs(root, outputDir),
+    nativeOutputs,
     files: await files(outputDir),
   };
   await Deno.writeTextFile(destination, JSON.stringify(record));
@@ -194,3 +203,10 @@ export async function readCollection(
   }
   return value;
 }
+
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+publicOutputs=__metrics.wrapAsync({id:"course-site.infrastructure.collection.publicOutputs",kind:"io"},publicOutputs);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+collect=__metrics.wrapAsync({id:"course-site.infrastructure.collection.collect",kind:"io"},collect);
+// @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
+readCollection=__metrics.wrapAsync({id:"course-site.infrastructure.collection.readCollection",kind:"io"},readCollection);

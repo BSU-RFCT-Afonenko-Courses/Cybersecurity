@@ -12,7 +12,14 @@
     const displayed = window.CoursePresentation?.exposeNote(target);
     if (displayed) target = displayed;
     let fragment = -1;
-    const scroll = () => { if (!window.Reveal) target.scrollIntoView({block: 'center', behavior: 'auto'}); };
+    const scroll = () => {
+      if (!window.Reveal) {
+        // Начало длинного раздела должно оставаться видимым. Отступ под
+        // навигационную панель задаёт штатное оформление Quarto для :target.
+        const block = target.tagName === 'SECTION' ? 'start' : 'center';
+        target.scrollIntoView({block, behavior: 'auto'});
+      }
+    };
     for (let element = target; element; element = element.parentElement) {
       if (element.tagName === 'DETAILS') element.open = true;
       if (element.classList.contains('collapse') && !element.classList.contains('show')) {
