@@ -1,0 +1,224 @@
+{
+  "schema": "quarto-reference-catalog",
+  "generator": {
+    "quarto": "1.11.6"
+  },
+  "targets": {
+    "theory:exm-random-output": {
+      "namespace": "theory",
+      "id": "exm-random-output",
+      "page": "crypto/random.html",
+      "fragment": "exm-random-output",
+      "labelHtml": "Пример&nbsp;<span>9.1</span>",
+      "numberHtml": "<span>9.1</span>",
+      "label": "Пример 9.1",
+      "number": "9.1"
+    },
+    "theory:fig-security-center-incident-alert": {
+      "namespace": "theory",
+      "id": "fig-security-center-incident-alert",
+      "page": "security-center/workflow.html",
+      "fragment": "fig-security-center-incident-alert",
+      "labelHtml": "Рисунок&nbsp;<span>7.2</span>",
+      "numberHtml": "<span>7.2</span>",
+      "label": "Рисунок 7.2",
+      "number": "7.2"
+    },
+    "theory:fig-security-center-national-system": {
+      "namespace": "theory",
+      "id": "fig-security-center-national-system",
+      "page": "security-center/organization.html",
+      "fragment": "fig-security-center-national-system",
+      "labelHtml": "Рисунок&nbsp;<span>6.1</span>",
+      "numberHtml": "<span>6.1</span>",
+      "label": "Рисунок 6.1",
+      "number": "6.1"
+    },
+    "theory:fig-security-center-siem-flow": {
+      "namespace": "theory",
+      "id": "fig-security-center-siem-flow",
+      "page": "security-center/workflow.html",
+      "fragment": "fig-security-center-siem-flow",
+      "labelHtml": "Рисунок&nbsp;<span>7.1</span>",
+      "numberHtml": "<span>7.1</span>",
+      "label": "Рисунок 7.1",
+      "number": "7.1"
+    },
+    "theory:sec-random-concepts": {
+      "namespace": "theory",
+      "id": "sec-random-concepts",
+      "page": "crypto/random.html",
+      "fragment": "sec-random-concepts",
+      "labelHtml": "Основные понятия",
+      "numberHtml": "",
+      "label": "Основные понятия",
+      "number": "",
+      "title": "Основные понятия"
+    },
+    "theory:sec-theory": {
+      "namespace": "theory",
+      "id": "sec-theory",
+      "page": "index.html",
+      "fragment": "sec-theory",
+      "labelHtml": "Теория",
+      "numberHtml": "",
+      "label": "Теория",
+      "number": "",
+      "title": "Теория"
+    },
+    "theory:sec-theory-crypto-cypher": {
+      "namespace": "theory",
+      "id": "sec-theory-crypto-cypher",
+      "page": "crypto/cypher.html",
+      "fragment": "sec-theory-crypto-cypher",
+      "labelHtml": "Основные понятия",
+      "numberHtml": "",
+      "label": "Основные понятия",
+      "number": "",
+      "title": "Основные понятия"
+    },
+    "theory:sec-theory-crypto-hash": {
+      "namespace": "theory",
+      "id": "sec-theory-crypto-hash",
+      "page": "crypto/hash.html",
+      "fragment": "sec-theory-crypto-hash",
+      "labelHtml": "Основные понятия",
+      "numberHtml": "",
+      "label": "Основные понятия",
+      "number": "",
+      "title": "Основные понятия"
+    },
+    "theory:sec-theory-crypto-key-gen": {
+      "namespace": "theory",
+      "id": "sec-theory-crypto-key-gen",
+      "page": "crypto/key-gen.html",
+      "fragment": "sec-theory-crypto-key-gen",
+      "labelHtml": "Основные понятия",
+      "numberHtml": "",
+      "label": "Основные понятия",
+      "number": "",
+      "title": "Основные понятия"
+    },
+    "theory:sec-theory-crypto-random": {
+      "namespace": "theory",
+      "id": "sec-theory-crypto-random",
+      "page": "crypto/random.html",
+      "fragment": "sec-theory-crypto-random",
+      "labelHtml": "<span>Глава 9</span>",
+      "numberHtml": "<span>9</span>",
+      "label": "Глава 9",
+      "number": "9",
+      "title": "Генераторы случайных чисел"
+    },
+    "theory:sec-theory-fundamentals-cia": {
+      "namespace": "theory",
+      "id": "sec-theory-fundamentals-cia",
+      "page": "fundamentals/concepts.html",
+      "fragment": "sec-theory-fundamentals-cia",
+      "labelHtml": "Конфиденциальность, целостность и доступность",
+      "numberHtml": "",
+      "label": "Конфиденциальность, целостность и доступность",
+      "number": "",
+      "title": "Конфиденциальность, целостность и доступность"
+    },
+    "theory:sec-theory-fundamentals-concepts": {
+      "namespace": "theory",
+      "id": "sec-theory-fundamentals-concepts",
+      "page": "fundamentals/concepts.html",
+      "fragment": "sec-theory-fundamentals-concepts",
+      "labelHtml": "<span>Глава 2</span>",
+      "numberHtml": "<span>2</span>",
+      "label": "Глава 2",
+      "number": "2",
+      "title": "Основные понятия и КЦД"
+    },
+    "theory:sec-theory-fundamentals-events-incidents": {
+      "namespace": "theory",
+      "id": "sec-theory-fundamentals-events-incidents",
+      "page": "fundamentals/concepts.html",
+      "fragment": "sec-theory-fundamentals-events-incidents",
+      "labelHtml": "Угрозы, уязвимости, события и инциденты",
+      "numberHtml": "",
+      "label": "Угрозы, уязвимости, события и инциденты",
+      "number": "",
+      "title": "Угрозы, уязвимости, события и инциденты"
+    },
+    "theory:sec-theory-fundamentals-information-system": {
+      "namespace": "theory",
+      "id": "sec-theory-fundamentals-information-system",
+      "page": "fundamentals/concepts.html",
+      "fragment": "sec-theory-fundamentals-information-system",
+      "labelHtml": "Информационная система и активы",
+      "numberHtml": "",
+      "label": "Информационная система и активы",
+      "number": "",
+      "title": "Информационная система и активы"
+    },
+    "theory:sec-theory-legal-information-access": {
+      "namespace": "theory",
+      "id": "sec-theory-legal-information-access",
+      "page": "legal/information-access.html",
+      "fragment": "sec-theory-legal-information-access",
+      "labelHtml": "<span>Глава 3</span>",
+      "numberHtml": "<span>3</span>",
+      "label": "Глава 3",
+      "number": "3",
+      "title": "Категории доступа к информации"
+    },
+    "theory:sec-theory-legal-protection-measures": {
+      "namespace": "theory",
+      "id": "sec-theory-legal-protection-measures",
+      "page": "legal/protection-measures.html",
+      "fragment": "sec-theory-legal-protection-measures",
+      "labelHtml": "<span>Глава 5</span>",
+      "numberHtml": "<span>5</span>",
+      "label": "Глава 5",
+      "number": "5",
+      "title": "Меры защиты информации"
+    },
+    "theory:sec-theory-legal-system-classes": {
+      "namespace": "theory",
+      "id": "sec-theory-legal-system-classes",
+      "page": "legal/system-classes.html",
+      "fragment": "sec-theory-legal-system-classes",
+      "labelHtml": "<span>Глава 4</span>",
+      "numberHtml": "<span>4</span>",
+      "label": "Глава 4",
+      "number": "4",
+      "title": "Классы информационных систем"
+    },
+    "theory:sec-theory-security-center-organization": {
+      "namespace": "theory",
+      "id": "sec-theory-security-center-organization",
+      "page": "security-center/organization.html",
+      "fragment": "sec-theory-security-center-organization",
+      "labelHtml": "<span>Глава 6</span>",
+      "numberHtml": "<span>6</span>",
+      "label": "Глава 6",
+      "number": "6",
+      "title": "Информационная безопасность и кибербезопасность: в чём разница?"
+    },
+    "theory:sec-theory-security-center-workflow": {
+      "namespace": "theory",
+      "id": "sec-theory-security-center-workflow",
+      "page": "security-center/workflow.html",
+      "fragment": "sec-theory-security-center-workflow",
+      "labelHtml": "<span>Глава 7</span>",
+      "numberHtml": "<span>7</span>",
+      "label": "Глава 7",
+      "number": "7",
+      "title": "Обобщенный процесс оказания услуги обеспечения кибербезопасности"
+    },
+    "theory:sec-theory-standards-risk-requirements-decisions": {
+      "namespace": "theory",
+      "id": "sec-theory-standards-risk-requirements-decisions",
+      "page": "standards-risk/requirements-decisions.html",
+      "fragment": "sec-theory-standards-risk-requirements-decisions",
+      "labelHtml": "<span>Глава 8</span>",
+      "numberHtml": "<span>8</span>",
+      "label": "Глава 8",
+      "number": "8",
+      "title": "От нормативных требований к обоснованным решениям: стандарты, системы защиты и риски"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "quarto-reference-catalog",
+  "generator": {
+    "quarto": "1.11.6"
+  },
+  "targets": {
+    "practice:sec-practice": {
+      "namespace": "practice",
+      "id": "sec-practice",
+      "page": "index.html",
+      "fragment": "sec-practice",
+      "labelHtml": "Семинарские занятия",
+      "numberHtml": "",
+      "label": "Семинарские занятия",
+      "number": "",
+      "title": "Семинарские занятия"
+    },
+    "practice:sec-seminar-1": {
+      "namespace": "practice",
+      "id": "sec-seminar-1",
+      "page": "01-introduction.html",
+      "fragment": "sec-seminar-1",
+      "slide": "sec-seminar-1",
+      "labelHtml": "Занятие 1 – Понятия и КЦД",
+      "numberHtml": "",
+      "label": "Занятие 1 – Понятия и КЦД",
+      "number": "",
+      "title": "Занятие 1 – Понятия и КЦД"
+    },
+    "practice:sec-seminar-2": {
+      "namespace": "practice",
+      "id": "sec-seminar-2",
+      "page": "02-legal-requirements.html",
+      "fragment": "sec-seminar-2",
+      "slide": "sec-seminar-2",
+      "labelHtml": "<span class=\"r-fit-text\">Семинар 2 – Правовые аспекты и формирование требований по защите информации и кибербезопасности</span>",
+      "numberHtml": "",
+      "label": "Семинар 2 – Правовые аспекты и формирование требований по защите информации и кибербезопасности",
+      "number": "",
+      "title": "Семинар 2 – Правовые аспекты и формирование требований по защите информации и кибербезопасности"
+    },
+    "practice:sec-seminar-3": {
+      "namespace": "practice",
+      "id": "sec-seminar-3",
+      "page": "03-standards-risk.html",
+      "fragment": "sec-seminar-3",
+      "slide": "sec-seminar-3",
+      "labelHtml": "<span class=\"r-fit-text\">Семинар 3 – От нормативных требований к обоснованным решениям: стандарты, системы защиты и риски</span>",
+      "numberHtml": "",
+      "label": "Семинар 3 – От нормативных требований к обоснованным решениям: стандарты, системы защиты и риски",
+      "number": "",
+      "title": "Семинар 3 – От нормативных требований к обоснованным решениям: стандарты, системы защиты и риски"
+    }
+  }
+}

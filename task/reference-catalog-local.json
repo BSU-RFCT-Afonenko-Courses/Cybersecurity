@@ -1,0 +1,529 @@
+{
+  "schema": "quarto-reference-catalog",
+  "generator": {
+    "quarto": "1.11.6"
+  },
+  "targets": {
+    "tasks:exr-data-integrity-backup": {
+      "namespace": "tasks",
+      "id": "exr-data-integrity-backup",
+      "page": "data-integrity/backup.html",
+      "fragment": "exr-data-integrity-backup",
+      "labelHtml": "Упражнение&nbsp;<span>27.1</span>",
+      "numberHtml": "<span>27.1</span>",
+      "label": "Упражнение 27.1",
+      "number": "27.1"
+    },
+    "tasks:exr-fundamentals-carsharing": {
+      "namespace": "tasks",
+      "id": "exr-fundamentals-carsharing",
+      "page": "fundamentals/carsharing.html",
+      "fragment": "exr-fundamentals-carsharing",
+      "labelHtml": "Упражнение&nbsp;<span>7.1</span>",
+      "numberHtml": "<span>7.1</span>",
+      "label": "Упражнение 7.1",
+      "number": "7.1"
+    },
+    "tasks:exr-fundamentals-cia-cases": {
+      "namespace": "tasks",
+      "id": "exr-fundamentals-cia-cases",
+      "page": "fundamentals/cia-cases.html",
+      "fragment": "exr-fundamentals-cia-cases",
+      "labelHtml": "Упражнение&nbsp;<span>3.1</span>",
+      "numberHtml": "<span>3.1</span>",
+      "label": "Упражнение 3.1",
+      "number": "3.1"
+    },
+    "tasks:exr-fundamentals-educational-portal": {
+      "namespace": "tasks",
+      "id": "exr-fundamentals-educational-portal",
+      "page": "fundamentals/educational-portal.html",
+      "fragment": "exr-fundamentals-educational-portal",
+      "labelHtml": "Упражнение&nbsp;<span>2.1</span>",
+      "numberHtml": "<span>2.1</span>",
+      "label": "Упражнение 2.1",
+      "number": "2.1"
+    },
+    "tasks:exr-fundamentals-event-or-incident": {
+      "namespace": "tasks",
+      "id": "exr-fundamentals-event-or-incident",
+      "page": "fundamentals/event-or-incident.html",
+      "fragment": "exr-fundamentals-event-or-incident",
+      "labelHtml": "Упражнение&nbsp;<span>4.1</span>",
+      "numberHtml": "<span>4.1</span>",
+      "label": "Упражнение 4.1",
+      "number": "4.1"
+    },
+    "tasks:exr-fundamentals-exhibition": {
+      "namespace": "tasks",
+      "id": "exr-fundamentals-exhibition",
+      "page": "fundamentals/exhibition.html",
+      "fragment": "exr-fundamentals-exhibition",
+      "labelHtml": "Упражнение&nbsp;<span>6.1</span>",
+      "numberHtml": "<span>6.1</span>",
+      "label": "Упражнение 6.1",
+      "number": "6.1"
+    },
+    "tasks:exr-fundamentals-pizza-incident": {
+      "namespace": "tasks",
+      "id": "exr-fundamentals-pizza-incident",
+      "page": "fundamentals/pizza-incident.html",
+      "fragment": "exr-fundamentals-pizza-incident",
+      "labelHtml": "Упражнение&nbsp;<span>5.1</span>",
+      "numberHtml": "<span>5.1</span>",
+      "label": "Упражнение 5.1",
+      "number": "5.1"
+    },
+    "tasks:exr-legal-information-sharing": {
+      "namespace": "tasks",
+      "id": "exr-legal-information-sharing",
+      "page": "legal/information-sharing.html",
+      "fragment": "exr-legal-information-sharing",
+      "labelHtml": "Упражнение&nbsp;<span>10.1</span>",
+      "numberHtml": "<span>10.1</span>",
+      "label": "Упражнение 10.1",
+      "number": "10.1"
+    },
+    "tasks:exr-legal-protection-measures": {
+      "namespace": "tasks",
+      "id": "exr-legal-protection-measures",
+      "page": "legal/protection-measures.html",
+      "fragment": "exr-legal-protection-measures",
+      "labelHtml": "Упражнение&nbsp;<span>9.1</span>",
+      "numberHtml": "<span>9.1</span>",
+      "label": "Упражнение 9.1",
+      "number": "9.1"
+    },
+    "tasks:exr-legal-requirements-audit": {
+      "namespace": "tasks",
+      "id": "exr-legal-requirements-audit",
+      "page": "legal/requirements-audit.html",
+      "fragment": "exr-legal-requirements-audit",
+      "labelHtml": "Упражнение&nbsp;<span>11.1</span>",
+      "numberHtml": "<span>11.1</span>",
+      "label": "Упражнение 11.1",
+      "number": "11.1"
+    },
+    "tasks:exr-legal-system-classes": {
+      "namespace": "tasks",
+      "id": "exr-legal-system-classes",
+      "page": "legal/system-classes.html",
+      "fragment": "exr-legal-system-classes",
+      "labelHtml": "Упражнение&nbsp;<span>8.1</span>",
+      "numberHtml": "<span>8.1</span>",
+      "label": "Упражнение 8.1",
+      "number": "8.1"
+    },
+    "tasks:exr-security-center-roles": {
+      "namespace": "tasks",
+      "id": "exr-security-center-roles",
+      "page": "security-center/roles.html",
+      "fragment": "exr-security-center-roles",
+      "labelHtml": "Упражнение&nbsp;<span>12.1</span>",
+      "numberHtml": "<span>12.1</span>",
+      "label": "Упражнение 12.1",
+      "number": "12.1"
+    },
+    "tasks:exr-standards-risk-certificate": {
+      "namespace": "tasks",
+      "id": "exr-standards-risk-certificate",
+      "page": "standards-risk/certificate.html",
+      "fragment": "exr-standards-risk-certificate",
+      "labelHtml": "Упражнение&nbsp;<span>15.1</span>",
+      "numberHtml": "<span>15.1</span>",
+      "label": "Упражнение 15.1",
+      "number": "15.1"
+    },
+    "tasks:exr-standards-risk-document-first": {
+      "namespace": "tasks",
+      "id": "exr-standards-risk-document-first",
+      "page": "standards-risk/document-first.html",
+      "fragment": "exr-standards-risk-document-first",
+      "labelHtml": "Упражнение&nbsp;<span>13.1</span>",
+      "numberHtml": "<span>13.1</span>",
+      "label": "Упражнение 13.1",
+      "number": "13.1"
+    },
+    "tasks:exr-standards-risk-inspection": {
+      "namespace": "tasks",
+      "id": "exr-standards-risk-inspection",
+      "page": "standards-risk/inspection.html",
+      "fragment": "exr-standards-risk-inspection",
+      "labelHtml": "Упражнение&nbsp;<span>17.1</span>",
+      "numberHtml": "<span>17.1</span>",
+      "label": "Упражнение 17.1",
+      "number": "17.1"
+    },
+    "tasks:exr-standards-risk-requirement-or-standard": {
+      "namespace": "tasks",
+      "id": "exr-standards-risk-requirement-or-standard",
+      "page": "standards-risk/requirement-or-standard.html",
+      "fragment": "exr-standards-risk-requirement-or-standard",
+      "labelHtml": "Упражнение&nbsp;<span>14.1</span>",
+      "numberHtml": "<span>14.1</span>",
+      "label": "Упражнение 14.1",
+      "number": "14.1"
+    },
+    "tasks:exr-standards-risk-risk-cost": {
+      "namespace": "tasks",
+      "id": "exr-standards-risk-risk-cost",
+      "page": "standards-risk/risk-cost.html",
+      "fragment": "exr-standards-risk-risk-cost",
+      "labelHtml": "Упражнение&nbsp;<span>16.1</span>",
+      "numberHtml": "<span>16.1</span>",
+      "label": "Упражнение 16.1",
+      "number": "16.1"
+    },
+    "tasks:sec-data-integrity-backup": {
+      "namespace": "tasks",
+      "id": "sec-data-integrity-backup",
+      "page": "data-integrity/backup.html",
+      "fragment": "sec-data-integrity-backup",
+      "labelHtml": "<span>Глава 27</span>",
+      "numberHtml": "<span>27</span>",
+      "label": "Глава 27",
+      "number": "27",
+      "title": "Резервное копирование"
+    },
+    "tasks:sec-fundamentals-carsharing": {
+      "namespace": "tasks",
+      "id": "sec-fundamentals-carsharing",
+      "page": "fundamentals/carsharing.html",
+      "fragment": "sec-fundamentals-carsharing",
+      "labelHtml": "<span>Глава 7</span>",
+      "numberHtml": "<span>7</span>",
+      "label": "Глава 7",
+      "number": "7",
+      "title": "Каршеринг"
+    },
+    "tasks:sec-fundamentals-cia-cases": {
+      "namespace": "tasks",
+      "id": "sec-fundamentals-cia-cases",
+      "page": "fundamentals/cia-cases.html",
+      "fragment": "sec-fundamentals-cia-cases",
+      "labelHtml": "<span>Глава 3</span>",
+      "numberHtml": "<span>3</span>",
+      "label": "Глава 3",
+      "number": "3",
+      "title": "КЦД"
+    },
+    "tasks:sec-fundamentals-educational-portal": {
+      "namespace": "tasks",
+      "id": "sec-fundamentals-educational-portal",
+      "page": "fundamentals/educational-portal.html",
+      "fragment": "sec-fundamentals-educational-portal",
+      "labelHtml": "<span>Глава 2</span>",
+      "numberHtml": "<span>2</span>",
+      "label": "Глава 2",
+      "number": "2",
+      "title": "Образовательный портал"
+    },
+    "tasks:sec-fundamentals-event-or-incident": {
+      "namespace": "tasks",
+      "id": "sec-fundamentals-event-or-incident",
+      "page": "fundamentals/event-or-incident.html",
+      "fragment": "sec-fundamentals-event-or-incident",
+      "labelHtml": "<span>Глава 4</span>",
+      "numberHtml": "<span>4</span>",
+      "label": "Глава 4",
+      "number": "4",
+      "title": "События и инциденты"
+    },
+    "tasks:sec-fundamentals-exhibition": {
+      "namespace": "tasks",
+      "id": "sec-fundamentals-exhibition",
+      "page": "fundamentals/exhibition.html",
+      "fragment": "sec-fundamentals-exhibition",
+      "labelHtml": "<span>Глава 6</span>",
+      "numberHtml": "<span>6</span>",
+      "label": "Глава 6",
+      "number": "6",
+      "title": "Электронные браслеты на выставке"
+    },
+    "tasks:sec-fundamentals-pizza-incident": {
+      "namespace": "tasks",
+      "id": "sec-fundamentals-pizza-incident",
+      "page": "fundamentals/pizza-incident.html",
+      "fragment": "sec-fundamentals-pizza-incident",
+      "labelHtml": "<span>Глава 5</span>",
+      "numberHtml": "<span>5</span>",
+      "label": "Глава 5",
+      "number": "5",
+      "title": "Инцидент в сервисе доставки"
+    },
+    "tasks:sec-legal-information-sharing": {
+      "namespace": "tasks",
+      "id": "sec-legal-information-sharing",
+      "page": "legal/information-sharing.html",
+      "fragment": "sec-legal-information-sharing",
+      "labelHtml": "<span>Глава 10</span>",
+      "numberHtml": "<span>10</span>",
+      "label": "Глава 10",
+      "number": "10",
+      "title": "Предоставление и распространение информации"
+    },
+    "tasks:sec-legal-protection-measures": {
+      "namespace": "tasks",
+      "id": "sec-legal-protection-measures",
+      "page": "legal/protection-measures.html",
+      "fragment": "sec-legal-protection-measures",
+      "labelHtml": "<span>Глава 9</span>",
+      "numberHtml": "<span>9</span>",
+      "label": "Глава 9",
+      "number": "9",
+      "title": "Меры защиты информации"
+    },
+    "tasks:sec-legal-requirements-audit": {
+      "namespace": "tasks",
+      "id": "sec-legal-requirements-audit",
+      "page": "legal/requirements-audit.html",
+      "fragment": "sec-legal-requirements-audit",
+      "labelHtml": "<span>Глава 11</span>",
+      "numberHtml": "<span>11</span>",
+      "label": "Глава 11",
+      "number": "11",
+      "title": "Проверка требований к защите информации"
+    },
+    "tasks:sec-legal-system-classes": {
+      "namespace": "tasks",
+      "id": "sec-legal-system-classes",
+      "page": "legal/system-classes.html",
+      "fragment": "sec-legal-system-classes",
+      "labelHtml": "<span>Глава 8</span>",
+      "numberHtml": "<span>8</span>",
+      "label": "Глава 8",
+      "number": "8",
+      "title": "Классы информационных систем"
+    },
+    "tasks:sec-security-center-roles": {
+      "namespace": "tasks",
+      "id": "sec-security-center-roles",
+      "page": "security-center/roles.html",
+      "fragment": "sec-security-center-roles",
+      "labelHtml": "<span>Глава 12</span>",
+      "numberHtml": "<span>12</span>",
+      "label": "Глава 12",
+      "number": "12",
+      "title": "Роли в центре кибербезопасности"
+    },
+    "tasks:sec-seminar-access-control-authn": {
+      "namespace": "tasks",
+      "id": "sec-seminar-access-control-authn",
+      "page": "access-control/authn.html",
+      "fragment": "sec-seminar-access-control-authn",
+      "labelHtml": "<span>Глава 25</span>",
+      "numberHtml": "<span>25</span>",
+      "label": "Глава 25",
+      "number": "25",
+      "title": "Аутентификация"
+    },
+    "tasks:sec-seminar-access-control-authz": {
+      "namespace": "tasks",
+      "id": "sec-seminar-access-control-authz",
+      "page": "access-control/authz.html",
+      "fragment": "sec-seminar-access-control-authz",
+      "labelHtml": "<span>Глава 26</span>",
+      "numberHtml": "<span>26</span>",
+      "label": "Глава 26",
+      "number": "26",
+      "title": "Авторизация"
+    },
+    "tasks:sec-seminar-access-control-ident": {
+      "namespace": "tasks",
+      "id": "sec-seminar-access-control-ident",
+      "page": "access-control/ident.html",
+      "fragment": "sec-seminar-access-control-ident",
+      "labelHtml": "<span>Глава 24</span>",
+      "numberHtml": "<span>24</span>",
+      "label": "Глава 24",
+      "number": "24",
+      "title": "Идентификация"
+    },
+    "tasks:sec-seminar-crypto-cert": {
+      "namespace": "tasks",
+      "id": "sec-seminar-crypto-cert",
+      "page": "crypto/cert.html",
+      "fragment": "sec-seminar-crypto-cert",
+      "labelHtml": "<span>Глава 23</span>",
+      "numberHtml": "<span>23</span>",
+      "label": "Глава 23",
+      "number": "23",
+      "title": "Сертификат открытого ключа"
+    },
+    "tasks:sec-seminar-crypto-cypher-symmetric": {
+      "namespace": "tasks",
+      "id": "sec-seminar-crypto-cypher-symmetric",
+      "page": "crypto/cypher/symmetric.html",
+      "fragment": "sec-seminar-crypto-cypher-symmetric",
+      "labelHtml": "<span>Глава 20</span>",
+      "numberHtml": "<span>20</span>",
+      "label": "Глава 20",
+      "number": "20",
+      "title": "Симметричное шифрование"
+    },
+    "tasks:sec-seminar-crypto-hash": {
+      "namespace": "tasks",
+      "id": "sec-seminar-crypto-hash",
+      "page": "crypto/hash.html",
+      "fragment": "sec-seminar-crypto-hash",
+      "labelHtml": "<span>Глава 19</span>",
+      "numberHtml": "<span>19</span>",
+      "label": "Глава 19",
+      "number": "19",
+      "title": "Хеширование"
+    },
+    "tasks:sec-seminar-crypto-rng": {
+      "namespace": "tasks",
+      "id": "sec-seminar-crypto-rng",
+      "page": "crypto/random.html",
+      "fragment": "sec-seminar-crypto-rng",
+      "labelHtml": "<span>Глава 18</span>",
+      "numberHtml": "<span>18</span>",
+      "label": "Глава 18",
+      "number": "18",
+      "title": "Генерация случайных чисел"
+    },
+    "tasks:sec-seminar-crypto-sign": {
+      "namespace": "tasks",
+      "id": "sec-seminar-crypto-sign",
+      "page": "crypto/sign.html",
+      "fragment": "sec-seminar-crypto-sign",
+      "labelHtml": "<span>Глава 22</span>",
+      "numberHtml": "<span>22</span>",
+      "label": "Глава 22",
+      "number": "22",
+      "title": "Цифровая подпись"
+    },
+    "tasks:sec-standards-risk-certificate": {
+      "namespace": "tasks",
+      "id": "sec-standards-risk-certificate",
+      "page": "standards-risk/certificate.html",
+      "fragment": "sec-standards-risk-certificate",
+      "labelHtml": "<span>Глава 15</span>",
+      "numberHtml": "<span>15</span>",
+      "label": "Глава 15",
+      "number": "15",
+      "title": "Сертификат и система защиты"
+    },
+    "tasks:sec-standards-risk-document-first": {
+      "namespace": "tasks",
+      "id": "sec-standards-risk-document-first",
+      "page": "standards-risk/document-first.html",
+      "fragment": "sec-standards-risk-document-first",
+      "labelHtml": "<span>Глава 13</span>",
+      "numberHtml": "<span>13</span>",
+      "label": "Глава 13",
+      "number": "13",
+      "title": "Выбор нормативного документа"
+    },
+    "tasks:sec-standards-risk-inspection": {
+      "namespace": "tasks",
+      "id": "sec-standards-risk-inspection",
+      "page": "standards-risk/inspection.html",
+      "fragment": "sec-standards-risk-inspection",
+      "labelHtml": "<span>Глава 17</span>",
+      "numberHtml": "<span>17</span>",
+      "label": "Глава 17",
+      "number": "17",
+      "title": "Проверка и уборка"
+    },
+    "tasks:sec-standards-risk-requirement-or-standard": {
+      "namespace": "tasks",
+      "id": "sec-standards-risk-requirement-or-standard",
+      "page": "standards-risk/requirement-or-standard.html",
+      "fragment": "sec-standards-risk-requirement-or-standard",
+      "labelHtml": "<span>Глава 14</span>",
+      "numberHtml": "<span>14</span>",
+      "label": "Глава 14",
+      "number": "14",
+      "title": "Приказ, стандарт и требование"
+    },
+    "tasks:sec-standards-risk-risk-cost": {
+      "namespace": "tasks",
+      "id": "sec-standards-risk-risk-cost",
+      "page": "standards-risk/risk-cost.html",
+      "fragment": "sec-standards-risk-risk-cost",
+      "labelHtml": "<span>Глава 16</span>",
+      "numberHtml": "<span>16</span>",
+      "label": "Глава 16",
+      "number": "16",
+      "title": "Стоимость риска"
+    },
+    "tasks:sec-tasks": {
+      "namespace": "tasks",
+      "id": "sec-tasks",
+      "page": "index.html",
+      "fragment": "sec-tasks",
+      "labelHtml": "Задания и работы",
+      "numberHtml": "",
+      "label": "Задания и работы",
+      "number": "",
+      "title": "Задания и работы"
+    },
+    "tasks:sec-work-crypto-cypher-asymmetric": {
+      "namespace": "tasks",
+      "id": "sec-work-crypto-cypher-asymmetric",
+      "page": "crypto/cypher/asymmetric.html",
+      "fragment": "sec-work-crypto-cypher-asymmetric",
+      "labelHtml": "<span>Глава 21</span>",
+      "numberHtml": "<span>21</span>",
+      "label": "Глава 21",
+      "number": "21",
+      "title": "Ассиметричное шифрование"
+    },
+    "tasks:sec-work-data-integrity-backup": {
+      "namespace": "tasks",
+      "id": "sec-work-data-integrity-backup",
+      "page": "seminar/01-introduction.html",
+      "fragment": "sec-work-data-integrity-backup",
+      "labelHtml": "<span>Глава 29</span>",
+      "numberHtml": "<span>29</span>",
+      "label": "Глава 29",
+      "number": "29",
+      "title": "Введение в кибербезопасность"
+    },
+    "tasks:sec-work-fundamentals-concepts": {
+      "namespace": "tasks",
+      "id": "sec-work-fundamentals-concepts",
+      "page": "seminar/concepts.html",
+      "fragment": "sec-work-fundamentals-concepts",
+      "labelHtml": "<span>Глава 28</span>",
+      "numberHtml": "<span>28</span>",
+      "label": "Глава 28",
+      "number": "28",
+      "title": "Занятие 1 – Понятия и КЦД"
+    },
+    "tasks:sec-work-legal-requirements": {
+      "namespace": "tasks",
+      "id": "sec-work-legal-requirements",
+      "page": "seminar/02-structure.html",
+      "fragment": "sec-work-legal-requirements",
+      "labelHtml": "<span>Глава 30</span>",
+      "numberHtml": "<span>30</span>",
+      "label": "Глава 30",
+      "number": "30",
+      "title": "Структура обеспечения кибербезопасности в РБ"
+    },
+    "tasks:sec-work-standards-risk": {
+      "namespace": "tasks",
+      "id": "sec-work-standards-risk",
+      "page": "seminar/03-standards-risk.html",
+      "fragment": "sec-work-standards-risk",
+      "labelHtml": "<span>Глава 31</span>",
+      "numberHtml": "<span>31</span>",
+      "label": "Глава 31",
+      "number": "31",
+      "title": "Семинар 3 – От нормативных требований к обоснованным решениям: стандарты, системы защиты и риски"
+    },
+    "tasks:sol-fundamentals-cia-cases": {
+      "namespace": "tasks",
+      "id": "sol-fundamentals-cia-cases",
+      "page": "fundamentals/cia-cases.html",
+      "fragment": "sol-fundamentals-cia-cases",
+      "labelHtml": "Solution&nbsp;<span>3.1</span>",
+      "numberHtml": "<span>3.1</span>",
+      "label": "Solution 3.1",
+      "number": "3.1"
+    }
+  }
+}
