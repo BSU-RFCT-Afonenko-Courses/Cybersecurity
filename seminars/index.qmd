@@ -7,6 +7,8 @@ format: html
 
 - @practice:sec-seminar-1 — Занятие 1 – Понятия и КЦД.
   Работа: @tasks:sec-work-fundamentals-concepts.
+- @practice:sec-seminar-2 — Семинар 2 – Правовые аспекты и формирование требований по защите информации и кибербезопасности.
+  Работа: @tasks:sec-work-legal-requirements.
 
 Остальные планы будут добавляться по мере подготовки материалов.
 

@@ -1,1 +1,34 @@
-# Структура обеспечения кибербезопасности в РБ
+---
+assessment:
+  id: sec-work-legal-requirements
+  kind: seminar
+---
+
+# Структура обеспечения кибербезопасности в РБ {#sec-work-legal-requirements}
+
+::: {.assessment-preview}
+@theory:sec-theory-legal-information-access
+
+@theory:sec-theory-legal-system-classes
+
+@theory:sec-theory-legal-protection-measures
+
+@theory:sec-theory-security-center-organization
+
+@theory:sec-theory-security-center-workflow
+:::
+
+## Аудиторные задачи
+
+::: {.task-items stage="classroom"}
+1. @exr-legal-system-classes
+2. @exr-legal-protection-measures
+3. @exr-legal-information-sharing
+4. @exr-security-center-roles
+:::
+
+## Домашнее задание
+
+::: {.task-items stage="homework"}
+1. @exr-legal-requirements-audit
+:::

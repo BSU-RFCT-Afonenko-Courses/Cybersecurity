@@ -18,6 +18,15 @@ book:
     - fundamentals/pizza-incident.qmd
     - fundamentals/exhibition.qmd
     - fundamentals/carsharing.qmd
+  - part: Правовые основы
+    chapters:
+    - legal/system-classes.qmd
+    - legal/protection-measures.qmd
+    - legal/information-sharing.qmd
+    - legal/requirements-audit.qmd
+  - part: Организация обеспечения кибербезопасности
+    chapters:
+    - security-center/roles.qmd
   - part: Криптография
     chapters:
     - crypto/random.qmd

@@ -5,6 +5,7 @@
 @sec-work-data-integrity-backup.
 
 Первое занятие: @sec-work-fundamentals-concepts.
+Второе занятие: @sec-work-legal-requirements.
 
 Задачи по основным понятиям:
 
@@ -14,6 +15,17 @@
 - @sec-fundamentals-pizza-incident
 - @sec-fundamentals-exhibition
 - @sec-fundamentals-carsharing
+
+Задачи по правовым основам:
+
+- @sec-legal-system-classes
+- @sec-legal-protection-measures
+- @sec-legal-information-sharing
+- @sec-legal-requirements-audit
+
+Задача по организации обеспечения кибербезопасности:
+
+- @sec-security-center-roles
 
 Состав работы задаётся явным списком `.task-items`. Задания лабораторной
 обязательны по умолчанию; дополнительные задания обозначаются отдельно и

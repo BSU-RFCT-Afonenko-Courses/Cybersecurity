@@ -1,0 +1,38 @@
+## Семинар 2 – Правовые аспекты и формирование требований по защите информации и кибербезопасности {#sec-seminar-2}
+
+Трудные задачи выполняем немедленно, невозможные – после изучения мат.части
+
+### Категории доступа к информации
+
+@theory:sec-theory-legal-information-access
+
+### Классы информационных систем
+
+@theory:sec-theory-legal-system-classes
+
+### Меры защиты информации
+
+@theory:sec-theory-legal-protection-measures
+
+### Информационная безопасность и кибербезопасность: в чём разница?
+
+@theory:sec-theory-security-center-organization
+
+### Обобщенный процесс оказания услуги обеспечения кибербезопасности
+
+@theory:sec-theory-security-center-workflow
+
+### Аудиторные задачи
+
+- @tasks:exr-legal-system-classes
+- @tasks:exr-legal-protection-measures
+- @tasks:exr-legal-information-sharing
+- @tasks:exr-security-center-roles
+
+### Домашнее задание
+
+@tasks:exr-legal-requirements-audit
+
+### Семинарская работа
+
+@tasks:sec-work-legal-requirements
