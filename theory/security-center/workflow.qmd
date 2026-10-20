@@ -10,7 +10,11 @@
 
 - Осуществляется интеграция уведомлений с SIEM-системы в IRP-систему ЦКБ для возможности реагирования первой линии на алерты.
 
-![](../assets/security-center/siem-flow.png){#fig-security-center-siem-flow}
+::: {#fig-security-center-siem-flow}
+
+![](../assets/security-center/siem-flow.png)
+
+:::
 
 - После того как все это выполнено, аналитики (1 линия мониторинга) видят алерты, приходящие с этого ОИИ.
 
@@ -18,7 +22,11 @@
 
 4. После того как проведены работы группой администрирования, 1 линия отдела обработки информации (aka аналитики, aka мониторинг, aka L1 SOC) видят алерты, вот так это выглядит:
 
-![](../assets/security-center/incident-alert.png){#fig-security-center-incident-alert}
+::: {#fig-security-center-incident-alert}
+
+![](../assets/security-center/incident-alert.png)
+
+:::
 
 Потом проводится детальный анализ, где и что произошло, это может быть как легитимная активность, так и инцидент.
 
