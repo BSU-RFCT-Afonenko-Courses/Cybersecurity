@@ -16,6 +16,7 @@ project:
   - '!_site*/**'
   - '!README.md'
   - '!CI/**'
+  - '!docs/**'
   - '!ci-logs/**'
   - '!.agents/**'
   - '!.aws/**'
@@ -46,6 +47,9 @@ format:
     theme: cosmo
     toc: false
 lang: ru
+author:
+- Афоненко Анатолий
+- Войтович Елизавета
 course:
   id: cybersecurity
 website:

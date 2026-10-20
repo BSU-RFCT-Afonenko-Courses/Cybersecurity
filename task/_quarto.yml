@@ -43,6 +43,7 @@ book:
       text: Навигация курса
 author:
 - Афоненко Анатолий
+- Войтович Елизавета
 date: today
 lang: ru
 bibliography: ../references.bib

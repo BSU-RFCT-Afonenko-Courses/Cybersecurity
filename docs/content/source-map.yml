@@ -1,0 +1,407 @@
+# Ведомость источников и целевого размещения
+version: 1
+description: "Ведомость дословного переноса подготовленных материалов; не конфигурация курса."
+locator_convention:
+  М1: "Номера строк исходного Markdown, начиная с 1."
+  М2: "P — абзац верхнего уровня word/document.xml, включая пустые; T — таблица верхнего уровня. Абзацы ячеек и фигур в счётчик P не входят."
+  figures: "Текст фигур берётся только из mc:Choice; альтернативный mc:Fallback повторно не учитывается."
+sources:
+  М1:
+    path: "/home/tolya/Загрузки/Telegram Desktop/иб1.docx.md"
+    sha256: "64767e01abba1c4f588ef5369e5bc00541edf614152a6ab79ed7f482fddcf4f1"
+    sha256_verified: true
+    line_count: 253
+    creator: "schulz lizaveta"
+    creator_locator: "L1–L3"
+  М2:
+    path: "/home/tolya/Загрузки/Telegram Desktop/иб2 v2 (1).docx"
+    sha256: "37cb3d2101b8e3038950aed2fbc4d92660afbbfb21ecb11720893d29e3ed5489"
+    sha256_verified: true
+    top_level_paragraph_count: 242
+    table_count: 8
+    composite_figure_count: 3
+  М3:
+    path: "/home/tolya/Загрузки/Telegram Desktop/иб3.docx"
+    sha256: "fe9e09817ea5d9b97ab3ac3cc7eb019a4d6b60eea68ae1cfbf4546e9db6eeea3"
+    sha256_verified: true
+    status: "Зарегистрированы только путь и SHA-256; структурный перенос учитывается отдельной партией без редакционного аудита."
+blocks:
+  -
+    source: "М1"
+    locator: "L1–L3"
+    target: "docs/content/source-map.yml"
+    id: null
+    kind: "исходные метаданные"
+  -
+    source: "М1"
+    locator: "L4"
+    target: "seminars/01-introduction.qmd"
+    id: "sec-seminar-1"
+    kind: "исходный заголовок занятия"
+  -
+    source: "М1"
+    locator: "L6–L17"
+    target: "theory/fundamentals/concepts.qmd"
+    id: "sec-theory-fundamentals-information-system"
+    kind: "теория"
+  -
+    source: "М1"
+    locator: "L18–L29"
+    target: "theory/fundamentals/concepts.qmd"
+    id: "sec-theory-fundamentals-cia"
+    kind: "теория"
+  -
+    source: "М1"
+    locator: "L30–L53"
+    target: "theory/fundamentals/concepts.qmd"
+    id: "sec-theory-fundamentals-events-incidents"
+    kind: "теория"
+    parent_id: "sec-theory-fundamentals-concepts"
+  -
+    source: "М1"
+    locator: "L55–L99"
+    target: "task/fundamentals/educational-portal.qmd"
+    id: "exr-fundamentals-educational-portal"
+    kind: "условие задачи"
+    solution:
+      status: "Ключ в исходнике отсутствует; не дописывать."
+  -
+    source: "М1"
+    locator: "L102–L108"
+    target: "task/fundamentals/cia-cases.qmd"
+    id: "exr-fundamentals-cia-cases"
+    kind: "условие задачи"
+    solution:
+      locator: "L109–L114"
+      id: "sol-fundamentals-cia-cases"
+      target: "task/fundamentals/cia-cases.qmd"
+      visibility: "student и full"
+  -
+    source: "М1"
+    locator: "L117–L130"
+    target: "task/fundamentals/event-or-incident.qmd"
+    id: "exr-fundamentals-event-or-incident"
+    kind: "условие задачи"
+    solution:
+      locator: "L131–L138"
+      id: "sol-fundamentals-event-or-incident"
+      target: "task/fundamentals/event-or-incident.qmd"
+      visibility: "только full"
+  -
+    source: "М1"
+    locator: "L141–L168"
+    target: "task/fundamentals/pizza-incident.qmd"
+    id: "exr-fundamentals-pizza-incident"
+    kind: "условие задачи"
+    solution:
+      locator: "L169–L175"
+      id: "sol-fundamentals-pizza-incident"
+      target: "task/fundamentals/pizza-incident.qmd"
+      visibility: "только full"
+  -
+    source: "М1"
+    locator: "L178–L195"
+    target: "task/fundamentals/exhibition.qmd"
+    id: "exr-fundamentals-exhibition"
+    kind: "условие задачи"
+    solution:
+      locator: "L196–L200"
+      id: "sol-fundamentals-exhibition"
+      target: "task/fundamentals/exhibition.qmd"
+      visibility: "только full"
+  -
+    source: "М1"
+    locator: "L203–L242"
+    target: "task/fundamentals/carsharing.qmd"
+    id: "exr-fundamentals-carsharing"
+    kind: "условие задачи"
+    solution:
+      locator: "L243–L252"
+      id: "sol-fundamentals-carsharing"
+      target: "task/fundamentals/carsharing.qmd"
+      visibility: "только full"
+  -
+    source: "М2"
+    locator: "P1"
+    target: "seminars/02-legal-requirements.qmd"
+    id: "sec-seminar-2"
+    kind: "исходный заголовок занятия"
+  -
+    source: "М2"
+    locator: "P3"
+    target: "seminars/02-legal-requirements.qmd"
+    id: "sec-seminar-2"
+    kind: "эпиграф"
+  -
+    source: "М2"
+    locator: "P5–P14"
+    target: "theory/legal/information-access.qmd"
+    id: "sec-theory-legal-information-access"
+    kind: "теория"
+  -
+    source: "М2"
+    locator: "P15–P29 и T1 после P21"
+    target: "theory/legal/system-classes.qmd"
+    id: "sec-theory-legal-system-classes"
+    kind: "теория"
+    resources:
+      - "T1"
+  -
+    source: "М2"
+    locator: "P30–P40"
+    target: "theory/legal/protection-measures.qmd"
+    id: "sec-theory-legal-protection-measures"
+    kind: "теория"
+  -
+    source: "М2"
+    locator: "P41–P76"
+    target: "theory/security-center/organization.qmd"
+    id: "sec-theory-security-center-organization"
+    kind: "теория"
+    resources:
+      - "national-system.png"
+  -
+    source: "М2"
+    locator: "P77–P98"
+    target: "theory/security-center/workflow.qmd"
+    id: "sec-theory-security-center-workflow"
+    kind: "теория"
+    resources:
+      - "siem-flow.png"
+      - "incident-alert.png"
+  -
+    source: "М2"
+    locator: "P101–P112"
+    target: "task/legal/system-classes.qmd"
+    id: "exr-legal-system-classes"
+    kind: "условие задачи"
+    solution:
+      locator: "P113 и T2"
+      id: "sol-legal-system-classes"
+      target: "task/legal/system-classes.qmd"
+      visibility: "только full"
+    resources:
+      - "T2"
+  -
+    source: "М2"
+    locator: "P115–P127"
+    target: "task/legal/protection-measures.qmd"
+    id: "exr-legal-protection-measures"
+    kind: "условие задачи"
+    solution:
+      locator: "P128 и T3"
+      id: "sol-legal-protection-measures"
+      target: "task/legal/protection-measures.qmd"
+      visibility: "только full"
+    resources:
+      - "T3"
+  -
+    source: "М2"
+    locator: "P130–P142"
+    target: "task/legal/information-sharing.qmd"
+    id: "exr-legal-information-sharing"
+    kind: "условие задачи"
+    solution:
+      locator: "P144 и T4"
+      id: "sol-legal-information-sharing"
+      target: "task/legal/information-sharing.qmd"
+      visibility: "только full"
+    resources:
+      - "T4"
+  -
+    source: "М2"
+    locator: "P147–P185"
+    target: "task/security-center/roles.qmd"
+    id: "exr-security-center-roles"
+    kind: "условие задачи"
+    solution:
+      locator: "P187, T5 и P188"
+      id: "sol-security-center-roles"
+      target: "task/security-center/roles.qmd"
+      visibility: "только full"
+    resources:
+      - "T5"
+  -
+    source: "М2"
+    locator: "P191–P220 и T6 после P215"
+    target: "task/legal/requirements-audit.qmd"
+    id: "exr-legal-requirements-audit"
+    kind: "условие задачи"
+    solution:
+      locator: "P226–P241, T7 после P227 и T8 после P229"
+      id: "sol-legal-requirements-audit"
+      target: "task/legal/requirements-audit.qmd"
+      visibility: "только full"
+    resources:
+      - "T6"
+      - "T7"
+      - "T8"
+tables:
+  -
+    source: "М1"
+    source_id: "M1-T1"
+    locator: "L209–L218"
+    target: "task/fundamentals/carsharing.qmd"
+    block_id: "exr-fundamentals-carsharing"
+    placement: "условие"
+    description: "Журнал событий"
+  -
+    source: "М1"
+    source_id: "M1-T2"
+    locator: "L229–L237"
+    target: "task/fundamentals/carsharing.qmd"
+    block_id: "exr-fundamentals-carsharing"
+    placement: "условие"
+    description: "Таблица для ответа"
+  -
+    source: "М2"
+    source_id: "T1"
+    locator: "T1 после P21"
+    target: "theory/legal/system-classes.qmd"
+    block_id: "sec-theory-legal-system-classes"
+    placement: "теория"
+    row_count: 11
+    cell_count: 22
+    text_sha256: "6d9e8c7dd99118ff3439f6a2a48d2b629cd69a1a8b19f8d48135ba3df3288f98"
+  -
+    source: "М2"
+    source_id: "T2"
+    locator: "T2 после P113"
+    target: "task/legal/system-classes.qmd"
+    block_id: "sol-legal-system-classes"
+    placement: "ключ"
+    row_count: 10
+    cell_count: 20
+    text_sha256: "6c03088b55ec82e1a7e77e2d482379cafec29ba4d633cc1f10685127abec0bd5"
+  -
+    source: "М2"
+    source_id: "T3"
+    locator: "T3 после P128"
+    target: "task/legal/protection-measures.qmd"
+    block_id: "sol-legal-protection-measures"
+    placement: "ключ"
+    row_count: 11
+    cell_count: 22
+    text_sha256: "5e07d19ae1255ad181d6495c46da91a7d58f1a1baac7764e81c96896d5a38bcc"
+  -
+    source: "М2"
+    source_id: "T4"
+    locator: "T4 после P144"
+    target: "task/legal/information-sharing.qmd"
+    block_id: "sol-legal-information-sharing"
+    placement: "ключ"
+    row_count: 11
+    cell_count: 33
+    text_sha256: "37556a35e718e15a7285054cabed8efd1eb9229aa235c41a69787171547569b9"
+  -
+    source: "М2"
+    source_id: "T5"
+    locator: "T5 после P187"
+    target: "task/security-center/roles.qmd"
+    block_id: "sol-security-center-roles"
+    placement: "ключ"
+    row_count: 9
+    cell_count: 27
+    text_sha256: "cf6dc795ea3813386b937622a10f073b9731f1bbd12acc0a020818e43a50663f"
+  -
+    source: "М2"
+    source_id: "T6"
+    locator: "T6 после P215"
+    target: "task/legal/requirements-audit.qmd"
+    block_id: "exr-legal-requirements-audit"
+    placement: "условие"
+    row_count: 14
+    cell_count: 28
+    text_sha256: "1de137e7f83cabdeb451207d7c05a8fa58ab3830bd718dfff90d13e399484916"
+  -
+    source: "М2"
+    source_id: "T7"
+    locator: "T7 после P227"
+    target: "task/legal/requirements-audit.qmd"
+    block_id: "sol-legal-requirements-audit"
+    placement: "ключ"
+    row_count: 12
+    cell_count: 36
+    text_sha256: "7e93e997bc8678d2d7e4b061e088e4ed23f10b387b7ff2a7cb52349027c2a58f"
+  -
+    source: "М2"
+    source_id: "T8"
+    locator: "T8 после P229"
+    target: "task/legal/requirements-audit.qmd"
+    block_id: "sol-legal-requirements-audit"
+    placement: "ключ"
+    row_count: 6
+    cell_count: 12
+    text_sha256: "af9e7b5110aa4dacfd6dd9e16c717e807f9b431543c9c026a8bedffb178d290e"
+figures:
+  -
+    source: "М2"
+    locator: "P55, P62"
+    target: "theory/security-center/organization.qmd"
+    id: "fig-security-center-national-system"
+    resource: "theory/assets/security-center/national-system.png"
+    image_count: 1
+    additional_shape_count: 2
+    shape_texts:
+      - "ЦКБ"
+      - "ЦКБ"
+    render_page: 7
+    flattening: "Фрагмент PDF комплектного LibreOffice при 300 dpi; все исходные фигуры и плашки сохранены; исходный DOCX не изменён."
+    sha256: "c63d2c433886fee2aac34824c2eebfa65fcedf81b3e3299e99fbd4c739edb441"
+  -
+    source: "М2"
+    locator: "P82"
+    target: "theory/security-center/workflow.qmd"
+    id: "fig-security-center-siem-flow"
+    resource: "theory/assets/security-center/siem-flow.png"
+    image_count: 1
+    additional_shape_count: 4
+    shape_texts:
+      - "Алерт"
+      - "На основе правил формируется алерт в IRP"
+      - "Выделяются потенциально сигнализирующие о плохом"
+      - "Сюда летят все события"
+    render_page: 9
+    flattening: "Фрагмент PDF комплектного LibreOffice при 300 dpi; все исходные фигуры и плашки сохранены; исходный DOCX не изменён."
+    sha256: "c9189b686637f93bf7a85743cbb66c08423233450471e4cc48ef4fe2ee878220"
+    render_limitation: "Комплектный LibreOffice показывает только «Выделяются потенциально» вместо полного текста фигуры «Выделяются потенциально сигнализирующие о плохом». Полный текст учтён выше. Геометрия и текст не исправлялись. Сверить с отображением Microsoft Word в этой среде невозможно."
+  -
+    source: "М2"
+    locator: "P85"
+    target: "theory/security-center/workflow.qmd"
+    id: "fig-security-center-incident-alert"
+    resource: "theory/assets/security-center/incident-alert.png"
+    image_count: 1
+    additional_shape_count: 9
+    shape_texts:
+      - "С какого актива"
+      - "Тут написано с какого ОИИ прилетело"
+      - "Какое правило отработало"
+    render_page: 10
+    flattening: "Фрагмент PDF комплектного LibreOffice при 300 dpi; все исходные фигуры и плашки сохранены; исходный DOCX не изменён."
+    sha256: "434270f78a5167fce179ef12b2eb66008ac30ba444448ce2e7015365e7d4c60d"
+    masking_shape_count: 6
+external_links:
+  -
+    source: "М2"
+    locator: "T1, строка 11, столбец 2"
+    url: "https://www.oac.gov.by/public/content/files/files/law/resolutions-sm/2014-783.pdf"
+  -
+    source: "М2"
+    locator: "P25"
+    url: "https://www.oac.gov.by/public/content/files/files/law/decrees-rb/2013-196.pdf"
+  -
+    source: "М2"
+    locator: "P26"
+    url: "https://www.oac.gov.by/public/content/files/files/law/decrees-rb/2023-40.pdf"
+  -
+    source: "М2"
+    locator: "P65"
+    url: "https://www.oac.gov.by/public/content/files/files/law/resolutions-sm/2026-246.pdf"
+accounting_notes:
+  - "М1: 6 условий, 5 ключей, 2 таблицы; М2: 5 условий, 5 ключей, 8 таблиц, 3 композиции."
+  - "Пустые абзацы, строки и разделители не являются самостоятельными учебными блоками."
+  - "Текст в фигурах не дублируется в обычных абзацах."
+  - "Номера Word, заданные numbering.xml, необходимо сохранять при разметке; P/T не являются читательской нумерацией."
+  - "Реестр задаёт целевые пути по утверждённому плану; наличие файла и точность его текста проверяются при интеграции каждой партии."
+  - "Отложенные замечания не применены; М3 не подвергался редакционному аудиту."
