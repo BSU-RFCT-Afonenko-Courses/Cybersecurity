@@ -8,6 +8,15 @@ book:
   - part: Основные понятия
     chapters:
     - fundamentals/concepts.qmd
+  - part: Правовые основы
+    chapters:
+    - legal/information-access.qmd
+    - legal/system-classes.qmd
+    - legal/protection-measures.qmd
+  - part: Организация обеспечения кибербезопасности
+    chapters:
+    - security-center/organization.qmd
+    - security-center/workflow.qmd
   - part: Криптография
     chapters:
     - crypto/random.qmd
