@@ -1,0 +1,20 @@
+## Семинар 3 – От нормативных требований к обоснованным решениям: стандарты, системы защиты и риски {#sec-seminar-3}
+
+### Теория
+
+@theory:sec-theory-standards-risk-requirements-decisions
+
+### Подготовительная задача
+
+@tasks:exr-standards-risk-document-first
+
+### Аудиторные задачи
+
+- @tasks:exr-standards-risk-requirement-or-standard
+- @tasks:exr-standards-risk-certificate
+- @tasks:exr-standards-risk-risk-cost
+- @tasks:exr-standards-risk-inspection
+
+### Семинарская работа
+
+@tasks:sec-work-standards-risk

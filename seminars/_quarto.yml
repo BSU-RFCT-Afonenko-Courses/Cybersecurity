@@ -5,6 +5,7 @@ project:
   - index.qmd
   - 01-introduction.qmd
   - 02-legal-requirements.qmd
+  - 03-standards-risk.qmd
   output-dir: _output
   resources:
   - ./assets/**

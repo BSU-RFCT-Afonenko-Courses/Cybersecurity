@@ -6,6 +6,7 @@
 
 Первое занятие: @sec-work-fundamentals-concepts.
 Второе занятие: @sec-work-legal-requirements.
+Третье занятие: @sec-work-standards-risk.
 
 Задачи по основным понятиям:
 
@@ -26,6 +27,14 @@
 Задача по организации обеспечения кибербезопасности:
 
 - @sec-security-center-roles
+
+Задачи по стандартам, системам защиты и рискам:
+
+- @sec-standards-risk-document-first
+- @sec-standards-risk-requirement-or-standard
+- @sec-standards-risk-certificate
+- @sec-standards-risk-risk-cost
+- @sec-standards-risk-inspection
 
 Состав работы задаётся явным списком `.task-items`. Задания лабораторной
 обязательны по умолчанию; дополнительные задания обозначаются отдельно и

@@ -1,0 +1,26 @@
+---
+assessment:
+  id: sec-work-standards-risk
+  kind: seminar
+---
+
+# Семинар 3 – От нормативных требований к обоснованным решениям: стандарты, системы защиты и риски {#sec-work-standards-risk}
+
+::: {.assessment-preview}
+@theory:sec-theory-standards-risk-requirements-decisions
+:::
+
+## Подготовительная задача
+
+::: {.task-items}
+1. @exr-standards-risk-document-first
+:::
+
+## Аудиторные задачи
+
+::: {.task-items stage="classroom"}
+1. @exr-standards-risk-requirement-or-standard
+2. @exr-standards-risk-certificate
+3. @exr-standards-risk-risk-cost
+4. @exr-standards-risk-inspection
+:::

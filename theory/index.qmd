@@ -1,7 +1,7 @@
 # Теория {#sec-theory}
 
 Материалы об основных понятиях, правовых основах, организации обеспечения
-кибербезопасности и криптографии.
+кибербезопасности, стандартах, системах защиты, рисках и криптографии.
 
 - @sec-theory-fundamentals-concepts — основные понятия и КЦД.
 - @sec-theory-legal-information-access — категории доступа к информации.
@@ -9,6 +9,7 @@
 - @sec-theory-legal-protection-measures — меры защиты информации.
 - @sec-theory-security-center-organization — организация обеспечения кибербезопасности.
 - @sec-theory-security-center-workflow — процесс оказания услуги обеспечения кибербезопасности.
+- @sec-theory-standards-risk-requirements-decisions — стандарты, системы защиты и риски.
 - @sec-theory-crypto-random — генераторы случайных чисел и энтропия.
 - @sec-theory-crypto-hash — хеширование и криптографические хеш-функции.
 - @sec-theory-crypto-key-gen — получение криптографических ключей.
