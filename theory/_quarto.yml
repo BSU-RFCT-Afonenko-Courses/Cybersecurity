@@ -46,6 +46,7 @@ format:
 lang: ru
 author:
 - Афоненко Анатолий
+- Войтович Елизавета
 bibliography: ../references.bib
 reference-catalog:
   namespace: theory

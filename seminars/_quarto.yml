@@ -49,5 +49,8 @@ format:
     pdf-separate-fragments: false
 bibliography: ../references.bib
 lang: ru
+author:
+- Афоненко Анатолий
+- Войтович Елизавета
 reference-catalog:
   namespace: practice
