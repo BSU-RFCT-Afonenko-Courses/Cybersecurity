@@ -467,7 +467,7 @@ tables:
     block_id: sol-standards-risk-requirement-or-standard
     row_count: 6
     cell_count: 12
-    target_line: 21
+    target_line: 23
     text_sha256: 91da56516ffbfb24410e4faa7da86832005dc9f47aeb324c9dbb6b6f2eb5c4a5
     cell_paragraph_counts:
     - - 1
@@ -890,7 +890,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-document-first
   empty: false
   text_sha256: 650728e69cc57277142bc07c6e91f67e6c95fa67ddb59dc2c768527179c47578
-  target_line: 33
+  target_line: 35
   numbering_prefix: null
 - source: М3
   source_id: P43
@@ -898,7 +898,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-document-first
   empty: false
   text_sha256: 14a3acc5a31ea36b735b21ba09a4cd5239ea710c685d5509cbf8cde3b34f55b0
-  target_line: 35
+  target_line: 37
   numbering_prefix: ''
 - source: М3
   source_id: P44
@@ -906,7 +906,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-document-first
   empty: false
   text_sha256: 1e7cd67d7c866527893be90c385998c59f4a2ded615dd325465c48deab52d124
-  target_line: 37
+  target_line: 39
   numbering_prefix: ''
 - source: М3
   source_id: P45
@@ -914,7 +914,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-document-first
   empty: false
   text_sha256: 6c7d0ce2d6c7e41d2b1a4018a5919a64b5fa54d5b101b2e1050970f080589ad7
-  target_line: 39
+  target_line: 41
   numbering_prefix: ''
 - source: М3
   source_id: P46
@@ -930,7 +930,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-document-first
   empty: false
   text_sha256: c93211f67fa68668c4a3978ab8d2e07143a1df99acc0008abf9113d70cec69b3
-  target_line: 41
+  target_line: 43
   numbering_prefix: ''
 - source: М3
   source_id: P48
@@ -938,7 +938,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-document-first
   empty: false
   text_sha256: 4aa1452fcf52548ccf07f84fa4e6d12a0b66f72d0937190e92d6a6cfca8a216e
-  target_line: 43
+  target_line: 45
   numbering_prefix: ''
 - source: М3
   source_id: P49
@@ -946,7 +946,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-document-first
   empty: false
   text_sha256: 58a91fb06965e52c6375650906edb0cd3ed85ef300e26e431462e508f964d503
-  target_line: 45
+  target_line: 47
   numbering_prefix: ''
 - source: М3
   source_id: P50
@@ -962,7 +962,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-document-first
   empty: false
   text_sha256: 2e742baeb8e2a4fff8455ccd8ed36cd57fc337b5973bc8d16839aa187d0fb25d
-  target_line: 47
+  target_line: 49
   numbering_prefix: ''
 - source: М3
   source_id: P52
@@ -970,7 +970,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-document-first
   empty: false
   text_sha256: 1f549d8106270b54fc2957676be4258b40e5e3652acd415336edcd466a765a13
-  target_line: 49
+  target_line: 51
   numbering_prefix: ''
 - source: М3
   source_id: P53
@@ -978,7 +978,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-document-first
   empty: false
   text_sha256: dd89f298520e1ad26851ad5abf57984c204dcb77dd0ca43cbbf98a9e828d2a32
-  target_line: 51
+  target_line: 53
   numbering_prefix: ''
 - source: М3
   source_id: P54
@@ -1018,7 +1018,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-requirement-or-standard
   empty: false
   text_sha256: 650728e69cc57277142bc07c6e91f67e6c95fa67ddb59dc2c768527179c47578
-  target_line: 19
+  target_line: 21
   numbering_prefix: null
 - source: М3
   source_id: P59
@@ -1090,7 +1090,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-certificate
   empty: false
   text_sha256: 650728e69cc57277142bc07c6e91f67e6c95fa67ddb59dc2c768527179c47578
-  target_line: 21
+  target_line: 23
   numbering_prefix: null
 - source: М3
   source_id: P68
@@ -1098,7 +1098,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-certificate
   empty: false
   text_sha256: 30a6432754cf40dac3229b8dea66998b0729e310bdcc42e4f65cfbb4b957db76
-  target_line: 23
+  target_line: 25
   numbering_prefix: '- '
 - source: М3
   source_id: P69
@@ -1106,7 +1106,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-certificate
   empty: false
   text_sha256: e6240664830bc70d8cf0feeff156a807aed606ab6c9888fab50e7348e5fa3ec6
-  target_line: 25
+  target_line: 27
   numbering_prefix: '- '
 - source: М3
   source_id: P70
@@ -1114,7 +1114,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-certificate
   empty: false
   text_sha256: 6822a22cbcf4942009755376534be2ff4ba4131ba1b36652612d41346bbba300
-  target_line: 27
+  target_line: 29
   numbering_prefix: '- '
 - source: М3
   source_id: P71
@@ -1122,7 +1122,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-certificate
   empty: false
   text_sha256: 4ade8fd8c4e8878b40a072608bc00261a59e451d861be432c3a81c5965147aed
-  target_line: 29
+  target_line: 31
   numbering_prefix: '- '
 - source: М3
   source_id: P72
@@ -1210,7 +1210,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-risk-cost
   empty: false
   text_sha256: 650728e69cc57277142bc07c6e91f67e6c95fa67ddb59dc2c768527179c47578
-  target_line: 27
+  target_line: 29
   numbering_prefix: null
 - source: М3
   source_id: P83
@@ -1218,7 +1218,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-risk-cost
   empty: false
   text_sha256: 56f4c0e9eaeee2b51d3fa7d8910f2b407f90446d0fb60f2773b9b6dc25db2c46
-  target_line: 29
+  target_line: 31
   numbering_prefix: ''
 - source: М3
   source_id: P84
@@ -1226,7 +1226,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-risk-cost
   empty: false
   text_sha256: c9c610515a0c53698f5d499491c7f9f0375fbbfbd78d530725bd92865f3792c8
-  target_line: 31
+  target_line: 33
   numbering_prefix: ''
 - source: М3
   source_id: P85
@@ -1234,7 +1234,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-risk-cost
   empty: false
   text_sha256: 4d38ebe88e7ef30628a7d53801e6ea079700c25621325fffda947b0815698d22
-  target_line: 33
+  target_line: 35
   numbering_prefix: ''
 - source: М3
   source_id: P86
@@ -1242,7 +1242,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-risk-cost
   empty: false
   text_sha256: 131e78d0b0d73bfd37b7878738466bf86e479f9db8c77ec4a26ded4c5a5d001d
-  target_line: 35
+  target_line: 37
   numbering_prefix: ''
 - source: М3
   source_id: P87
@@ -1330,7 +1330,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-inspection
   empty: false
   text_sha256: 650728e69cc57277142bc07c6e91f67e6c95fa67ddb59dc2c768527179c47578
-  target_line: 23
+  target_line: 25
   numbering_prefix: null
 - source: М3
   source_id: P98
@@ -1338,7 +1338,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-inspection
   empty: false
   text_sha256: 03a9471c33cd0f16f6d945ade71690169c16f59ce8a88a652ff892b18e282a6d
-  target_line: 25
+  target_line: 27
   numbering_prefix: ''
 - source: М3
   source_id: P99
@@ -1346,7 +1346,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-inspection
   empty: false
   text_sha256: 890d7046fe45f572abca6261ad121f420cc1c6065e223449e91521241eeeca2d
-  target_line: 27
+  target_line: 29
   numbering_prefix: ''
 - source: М3
   source_id: P100
@@ -1354,7 +1354,7 @@ m3_paragraphs:
   block_id: sol-standards-risk-inspection
   empty: false
   text_sha256: 8a4e5231b81800bd24183cb8e6f70837f7eecd2b7d9a16b3ed724fa1e13a7926
-  target_line: 29
+  target_line: 31
   numbering_prefix: ''
 - source: М3
   source_id: P101
@@ -1362,5 +1362,5 @@ m3_paragraphs:
   block_id: sol-standards-risk-inspection
   empty: false
   text_sha256: 3f5da59d5e023bd18dc9cd3077b04d2ce32000b0ea7734dff015ae0aa715f1a4
-  target_line: 31
+  target_line: 33
   numbering_prefix: ''
