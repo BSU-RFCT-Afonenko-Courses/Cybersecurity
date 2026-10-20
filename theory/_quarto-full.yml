@@ -17,6 +17,9 @@ book:
     chapters:
     - security-center/organization.qmd
     - security-center/workflow.qmd
+  - part: Стандарты, системы защиты и риски
+    chapters:
+    - standards-risk/requirements-decisions.qmd
   - part: Криптография
     chapters:
     - crypto/random.qmd

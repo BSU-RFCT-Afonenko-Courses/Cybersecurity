@@ -9,6 +9,8 @@ format: html
   Работа: @tasks:sec-work-fundamentals-concepts.
 - @practice:sec-seminar-2 — Семинар 2 – Правовые аспекты и формирование требований по защите информации и кибербезопасности.
   Работа: @tasks:sec-work-legal-requirements.
+- @practice:sec-seminar-3 — Семинар 3 – От нормативных требований к обоснованным решениям: стандарты, системы защиты и риски.
+  Работа: @tasks:sec-work-standards-risk.
 
 Остальные планы будут добавляться по мере подготовки материалов.
 

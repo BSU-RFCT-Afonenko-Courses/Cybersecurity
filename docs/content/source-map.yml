@@ -4,6 +4,7 @@ description: "Ведомость дословного переноса подг�
 locator_convention:
   М1: "Номера строк исходного Markdown, начиная с 1."
   М2: "P — абзац верхнего уровня word/document.xml, включая пустые; T — таблица верхнего уровня. Абзацы ячеек и фигур в счётчик P не входят."
+  М3: "P — абзац верхнего уровня word/document.xml, включая пустые; T — таблица верхнего уровня. Абзацы ячеек в счётчик P не входят."
   figures: "Текст фигур берётся только из mc:Choice; альтернативный mc:Fallback повторно не учитывается."
 sources:
   М1:
@@ -24,7 +25,26 @@ sources:
     path: "/home/tolya/Загрузки/Telegram Desktop/иб3.docx"
     sha256: "fe9e09817ea5d9b97ab3ac3cc7eb019a4d6b60eea68ae1cfbf4546e9db6eeea3"
     sha256_verified: true
-    status: "Зарегистрированы только путь и SHA-256; структурный перенос учитывается отдельной партией без редакционного аудита."
+    status: "Дословный перенос одного связного занятия; только структурный учёт."
+    top_level_paragraph_count: 101
+    nonempty_paragraph_count: 89
+    table_count: 3
+    figure_count: 0
+    hyperlink_count: 0
+    omml_count: 0
+    footnote_reference_count: 0
+    endnote_reference_count: 0
+    field_count: 0
+    source_page_breaks: "P54, P60, P87; границы страниц исходного DOCX учтены, веб-страницы расположены по тематическим блокам."
+    source_tabs: "Шесть отступов в первом столбце T2; представлены пробелами оформления таблицы."
+    cell_paragraph_breaks: "T3, строка 5, столбец 2: два исходных абзаца; сохранены через <br><br>."
+    activity_count: 1
+    exercise_count: 5
+    solution_count: 5
+    numbering: "P32–P34: numId=11, abstractNumId=10, уровень 0, decimal, начало 1, шаблон %1.; P62–P65 и P68–P71: style a0 → numId=1 → abstractNumId=8, bullet."
+    stage: "Подготовительная задача без stage; четыре аудиторные задачи classroom."
+    solution_visibility: "Все пять ключей — штатные решения full-only."
+    resources: []
 blocks:
   -
     source: "М1"
@@ -236,6 +256,66 @@ blocks:
       - "T6"
       - "T7"
       - "T8"
+  - source: М3
+    locator: P1
+    target: task/seminar/03-standards-risk.qmd
+    id: sec-work-standards-risk
+    kind: исходный заголовок занятия
+  - source: М3
+    locator: P2–P24; T1 после P8
+    target: theory/standards-risk/requirements-decisions.qmd
+    id: sec-theory-standards-risk-requirements-decisions
+    kind: теория с исходными заголовками и вводными абзацами
+  - source: М3
+    locator: P25–P53
+    target: task/standards-risk/document-first.qmd
+    id: exr-standards-risk-document-first
+    kind: задача с исходным заголовком
+    solution:
+      locator: P42–P53
+      id: sol-standards-risk-document-first
+      placement: в том же файле
+      visibility: full
+  - source: М3
+    locator: P55–P58; T2 после P56; T3 после P58
+    target: task/standards-risk/requirement-or-standard.qmd
+    id: exr-standards-risk-requirement-or-standard
+    kind: задача с исходным заголовком
+    solution:
+      locator: P58–P58; T3 после P58
+      id: sol-standards-risk-requirement-or-standard
+      placement: в том же файле
+      visibility: full
+  - source: М3
+    locator: P60–P71
+    target: task/standards-risk/certificate.qmd
+    id: exr-standards-risk-certificate
+    kind: задача с исходным заголовком
+    solution:
+      locator: P67–P71
+      id: sol-standards-risk-certificate
+      placement: в том же файле
+      visibility: full
+  - source: М3
+    locator: P72–P86
+    target: task/standards-risk/risk-cost.qmd
+    id: exr-standards-risk-risk-cost
+    kind: задача с исходным заголовком
+    solution:
+      locator: P82–P86
+      id: sol-standards-risk-risk-cost
+      placement: в том же файле
+      visibility: full
+  - source: М3
+    locator: P89–P101
+    target: task/standards-risk/inspection.qmd
+    id: exr-standards-risk-inspection
+    kind: задача с исходным заголовком
+    solution:
+      locator: P97–P101
+      id: sol-standards-risk-inspection
+      placement: в том же файле
+      visibility: full
 tables:
   -
     source: "М1"
@@ -333,6 +413,75 @@ tables:
     row_count: 6
     cell_count: 12
     text_sha256: "af9e7b5110aa4dacfd6dd9e16c717e807f9b431543c9c026a8bedffb178d290e"
+  - source: М3
+    source_id: T1
+    target: theory/standards-risk/requirements-decisions.qmd
+    block_id: sec-theory-standards-risk-requirements-decisions
+    row_count: 9
+    cell_count: 18
+    target_line: 17
+    text_sha256: 226f9e8184abeddec462b78ebdd787bf25f7cfefc0becf112e6e6b3cd80d5a3a
+    cell_paragraph_counts:
+    - - 1
+      - 1
+    - - 1
+      - 1
+    - - 1
+      - 1
+    - - 1
+      - 1
+    - - 1
+      - 1
+    - - 1
+      - 1
+    - - 1
+      - 1
+    - - 1
+      - 1
+    - - 1
+      - 1
+  - source: М3
+    source_id: T2
+    target: task/standards-risk/requirement-or-standard.qmd
+    block_id: exr-standards-risk-requirement-or-standard
+    row_count: 6
+    cell_count: 12
+    target_line: 9
+    text_sha256: eb58eed0464a6938e5c685a4b67bf6feea952a8a04c238bfd8bc9425d1825b63
+    cell_paragraph_counts:
+    - - 1
+      - 1
+    - - 1
+      - 1
+    - - 1
+      - 1
+    - - 1
+      - 1
+    - - 1
+      - 1
+    - - 1
+      - 1
+  - source: М3
+    source_id: T3
+    target: task/standards-risk/requirement-or-standard.qmd
+    block_id: sol-standards-risk-requirement-or-standard
+    row_count: 6
+    cell_count: 12
+    target_line: 21
+    text_sha256: 91da56516ffbfb24410e4faa7da86832005dc9f47aeb324c9dbb6b6f2eb5c4a5
+    cell_paragraph_counts:
+    - - 1
+      - 1
+    - - 1
+      - 1
+    - - 1
+      - 1
+    - - 1
+      - 1
+    - - 1
+      - 2
+    - - 1
+      - 1
 figures:
   -
     source: "М2"
@@ -405,3 +554,813 @@ accounting_notes:
   - "Номера Word, заданные numbering.xml, необходимо сохранять при разметке; P/T не являются читательской нумерацией."
   - "Реестр задаёт целевые пути по утверждённому плану; наличие файла и точность его текста проверяются при интеграции каждой партии."
   - "Отложенные замечания не применены; М3 не подвергался редакционному аудиту."
+
+m3_paragraphs:
+- source: М3
+  source_id: P1
+  target: task/seminar/03-standards-risk.qmd
+  block_id: sec-work-standards-risk
+  empty: false
+  text_sha256: 5989db6ed8ed47187d3f3a9280d22b79fa9bb58c540a24c98f466ce42bce318c
+  target_line: 7
+  numbering_prefix: null
+- source: М3
+  source_id: P2
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: 385a9e8bc0699f3b42b11029bd699d948b9cc3a14cdcb35729f1c567c986393b
+  target_line: 3
+  numbering_prefix: ''
+- source: М3
+  source_id: P3
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: bb70a138be7f6cd9d50ec8f1b6e499af9208d0eccd3e475005cbae3be8dad520
+  target_line: 5
+  numbering_prefix: ''
+- source: М3
+  source_id: P4
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: 71d123ae17fc41735a00d36b00ae46d9387a64d8af77c60dd38eabda468b302e
+  target_line: 7
+  numbering_prefix: null
+- source: М3
+  source_id: P5
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: 1c48515dddf5163b3d047a82de52768cbdf987701db0305603d10e09cf779758
+  target_line: 9
+  numbering_prefix: ''
+- source: М3
+  source_id: P6
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: 7b3abf65023f8dd50543d284ef69f7bda9b244c6dfc6caae17281ddd9633719c
+  target_line: 11
+  numbering_prefix: ''
+- source: М3
+  source_id: P7
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: 176abb1cc35e1a7d8195aee917e05981ea6acb27564105a18e60119dfced052c
+  target_line: 13
+  numbering_prefix: ''
+- source: М3
+  source_id: P8
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: ee7cae7b147af10f0e2b4f1af2618f72a1a02b1e1f26628d5566e659b8029224
+  target_line: 15
+  numbering_prefix: ''
+- source: М3
+  source_id: P9
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: true
+  text_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  target_line: null
+  numbering_prefix: ''
+- source: М3
+  source_id: P10
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: 832634bd8ad6327a756d2e97618139e767ca4bda6a72af84bb0f662ee6df25d1
+  target_line: 28
+  numbering_prefix: null
+- source: М3
+  source_id: P11
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: dbf11d0868862f0bcb67b13fe0fbe1f4575b33c393de8db0bdc85ad834ea6d4d
+  target_line: 30
+  numbering_prefix: ''
+- source: М3
+  source_id: P12
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: 7affb40cd15264bd794f22aa58517897bb25ec11178dcfa8f2f7dfd15a20577f
+  target_line: 32
+  numbering_prefix: ''
+- source: М3
+  source_id: P13
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: 1a815be27ecfac2e24c44186773755ca0cd4de2b128d3ad291be5a054de5c1ed
+  target_line: 34
+  numbering_prefix: ''
+- source: М3
+  source_id: P14
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: de06982930a18c8c6e6ebf89489ad687a044061769d2bc338ec891fa9fb95774
+  target_line: 36
+  numbering_prefix: null
+- source: М3
+  source_id: P15
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: 01be35fe476fd9d4bbf1adaa00aaf40f6c4c4922b9a614f6a56be90198995333
+  target_line: 38
+  numbering_prefix: ''
+- source: М3
+  source_id: P16
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: 96e5678b7dabfd1c682437ea7ba81305f51d324a2a90b8f2c2c88575811c894d
+  target_line: 40
+  numbering_prefix: ''
+- source: М3
+  source_id: P17
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: f354cb9ab81c02061b89f1b1bdab330cdde1602afc84f77edfa88dfa02eb8965
+  target_line: 42
+  numbering_prefix: ''
+- source: М3
+  source_id: P18
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: 62b684512b9cd2f32605ba6bf7d86ef18f7fae886d6d23e6f0b816eb7f722bf7
+  target_line: 44
+  numbering_prefix: ''
+- source: М3
+  source_id: P19
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: 9b5bf369fa1f159d3f8b22a46c9e51f08ccb8db68ee6bd78791961334397ba7f
+  target_line: 46
+  numbering_prefix: null
+- source: М3
+  source_id: P20
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: 5e6191cce33d8a6242647c83d05951d3001a8acf8f3c7d58da7a5abe06a95fd3
+  target_line: 48
+  numbering_prefix: ''
+- source: М3
+  source_id: P21
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: a10ca9f0bb70274206077c5be27d3fcaa81ed43e27b1ce618d8535813bf95335
+  target_line: 50
+  numbering_prefix: ''
+- source: М3
+  source_id: P22
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: 4b5c3002f51f48f8433439f892070519e0a35c311bab3ebb1989df6b2233c269
+  target_line: 52
+  numbering_prefix: ''
+- source: М3
+  source_id: P23
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: 74210b3ef80c51852e0a9684d9a88c639b566b153e5600066b148efdde24fa18
+  target_line: 54
+  numbering_prefix: ''
+- source: М3
+  source_id: P24
+  target: theory/standards-risk/requirements-decisions.qmd
+  block_id: sec-theory-standards-risk-requirements-decisions
+  empty: false
+  text_sha256: e6dbb8587851a3f0fa89c46347d8fa3a3db3b05cf8b030c66a0d3471b04229ba
+  target_line: 56
+  numbering_prefix: ''
+- source: М3
+  source_id: P25
+  target: task/standards-risk/document-first.qmd
+  block_id: exr-standards-risk-document-first
+  empty: false
+  text_sha256: 426d09dd51e00f4ad8c86dbf32786f2fcb7b4ffc4cd02791b0f3146fb6cc22ef
+  target_line: 5
+  numbering_prefix: null
+- source: М3
+  source_id: P26
+  target: task/standards-risk/document-first.qmd
+  block_id: exr-standards-risk-document-first
+  empty: false
+  text_sha256: 0c13b6a36ad4f071638d1f49b6b88f4554997849ef157e71b05eb4b6bc7095ea
+  target_line: 7
+  numbering_prefix: ''
+- source: М3
+  source_id: P27
+  target: task/standards-risk/document-first.qmd
+  block_id: exr-standards-risk-document-first
+  empty: false
+  text_sha256: 28fe9d3737e4a00ab515b283a7ebee1dc80da4f482eb54f2c7fab8f72ee90f87
+  target_line: 9
+  numbering_prefix: ''
+- source: М3
+  source_id: P28
+  target: task/standards-risk/document-first.qmd
+  block_id: exr-standards-risk-document-first
+  empty: false
+  text_sha256: 43aa780e01b9f2e2c6a408eacf6d54a6083e07536cecedad421ea7d68b6a7db9
+  target_line: 11
+  numbering_prefix: ''
+- source: М3
+  source_id: P29
+  target: task/standards-risk/document-first.qmd
+  block_id: exr-standards-risk-document-first
+  empty: false
+  text_sha256: de5474439df1efb5ce501e69cf45e5f012762f1fc5a2b088954b2c87db3aea02
+  target_line: 13
+  numbering_prefix: ''
+- source: М3
+  source_id: P30
+  target: task/standards-risk/document-first.qmd
+  block_id: exr-standards-risk-document-first
+  empty: false
+  text_sha256: 7e41fdfe7e6cf7b888306fe2544cdeb448d880e74ca878a8dafbe8bea780845f
+  target_line: 15
+  numbering_prefix: ''
+- source: М3
+  source_id: P31
+  target: task/standards-risk/document-first.qmd
+  block_id: exr-standards-risk-document-first
+  empty: false
+  text_sha256: 7bd8196027d1c988a01ff0b745df6f3b92e0ec080fa4a8043d74048288cc0740
+  target_line: 17
+  numbering_prefix: ''
+- source: М3
+  source_id: P32
+  target: task/standards-risk/document-first.qmd
+  block_id: exr-standards-risk-document-first
+  empty: false
+  text_sha256: 795e3e16cc9d78e75507c1dcd43efd4f7496a05c48d367202de5d4fc764abfd4
+  target_line: 19
+  numbering_prefix: '1. '
+- source: М3
+  source_id: P33
+  target: task/standards-risk/document-first.qmd
+  block_id: exr-standards-risk-document-first
+  empty: false
+  text_sha256: 92bc204af43d53ed9ce2c177a1b6d4d2c645ed9d7021448653577801781fb9eb
+  target_line: 21
+  numbering_prefix: '2. '
+- source: М3
+  source_id: P34
+  target: task/standards-risk/document-first.qmd
+  block_id: exr-standards-risk-document-first
+  empty: false
+  text_sha256: d7d665fc38af7a0a416e71eea1da1547745643a471ae8604c2873feea9de89f3
+  target_line: 23
+  numbering_prefix: '3. '
+- source: М3
+  source_id: P35
+  target: task/standards-risk/document-first.qmd
+  block_id: exr-standards-risk-document-first
+  empty: true
+  text_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  target_line: null
+  numbering_prefix: ''
+- source: М3
+  source_id: P36
+  target: task/standards-risk/document-first.qmd
+  block_id: exr-standards-risk-document-first
+  empty: false
+  text_sha256: 4a220a78a2017bbf24d8fe03e71f2cb44cb4ea1a0d0ce61675bcdd2bdcc30387
+  target_line: 25
+  numbering_prefix: null
+- source: М3
+  source_id: P37
+  target: task/standards-risk/document-first.qmd
+  block_id: exr-standards-risk-document-first
+  empty: false
+  text_sha256: a12d7300ca12777643bde447686222c0dc3032f8db2ee951afb7a89c010b1458
+  target_line: 27
+  numbering_prefix: ''
+- source: М3
+  source_id: P38
+  target: task/standards-risk/document-first.qmd
+  block_id: exr-standards-risk-document-first
+  empty: false
+  text_sha256: 2b83ddc1c01b035508033d833b0b4e1ce7525820a1f3d827d0937f77a97ba452
+  target_line: 29
+  numbering_prefix: ''
+- source: М3
+  source_id: P39
+  target: task/standards-risk/document-first.qmd
+  block_id: exr-standards-risk-document-first
+  empty: true
+  text_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  target_line: null
+  numbering_prefix: ''
+- source: М3
+  source_id: P40
+  target: task/standards-risk/document-first.qmd
+  block_id: exr-standards-risk-document-first
+  empty: true
+  text_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  target_line: null
+  numbering_prefix: ''
+- source: М3
+  source_id: P41
+  target: task/standards-risk/document-first.qmd
+  block_id: exr-standards-risk-document-first
+  empty: true
+  text_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  target_line: null
+  numbering_prefix: ''
+- source: М3
+  source_id: P42
+  target: task/standards-risk/document-first.qmd
+  block_id: sol-standards-risk-document-first
+  empty: false
+  text_sha256: 650728e69cc57277142bc07c6e91f67e6c95fa67ddb59dc2c768527179c47578
+  target_line: 33
+  numbering_prefix: null
+- source: М3
+  source_id: P43
+  target: task/standards-risk/document-first.qmd
+  block_id: sol-standards-risk-document-first
+  empty: false
+  text_sha256: 14a3acc5a31ea36b735b21ba09a4cd5239ea710c685d5509cbf8cde3b34f55b0
+  target_line: 35
+  numbering_prefix: ''
+- source: М3
+  source_id: P44
+  target: task/standards-risk/document-first.qmd
+  block_id: sol-standards-risk-document-first
+  empty: false
+  text_sha256: 1e7cd67d7c866527893be90c385998c59f4a2ded615dd325465c48deab52d124
+  target_line: 37
+  numbering_prefix: ''
+- source: М3
+  source_id: P45
+  target: task/standards-risk/document-first.qmd
+  block_id: sol-standards-risk-document-first
+  empty: false
+  text_sha256: 6c7d0ce2d6c7e41d2b1a4018a5919a64b5fa54d5b101b2e1050970f080589ad7
+  target_line: 39
+  numbering_prefix: ''
+- source: М3
+  source_id: P46
+  target: task/standards-risk/document-first.qmd
+  block_id: sol-standards-risk-document-first
+  empty: true
+  text_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  target_line: null
+  numbering_prefix: ''
+- source: М3
+  source_id: P47
+  target: task/standards-risk/document-first.qmd
+  block_id: sol-standards-risk-document-first
+  empty: false
+  text_sha256: c93211f67fa68668c4a3978ab8d2e07143a1df99acc0008abf9113d70cec69b3
+  target_line: 41
+  numbering_prefix: ''
+- source: М3
+  source_id: P48
+  target: task/standards-risk/document-first.qmd
+  block_id: sol-standards-risk-document-first
+  empty: false
+  text_sha256: 4aa1452fcf52548ccf07f84fa4e6d12a0b66f72d0937190e92d6a6cfca8a216e
+  target_line: 43
+  numbering_prefix: ''
+- source: М3
+  source_id: P49
+  target: task/standards-risk/document-first.qmd
+  block_id: sol-standards-risk-document-first
+  empty: false
+  text_sha256: 58a91fb06965e52c6375650906edb0cd3ed85ef300e26e431462e508f964d503
+  target_line: 45
+  numbering_prefix: ''
+- source: М3
+  source_id: P50
+  target: task/standards-risk/document-first.qmd
+  block_id: sol-standards-risk-document-first
+  empty: true
+  text_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  target_line: null
+  numbering_prefix: ''
+- source: М3
+  source_id: P51
+  target: task/standards-risk/document-first.qmd
+  block_id: sol-standards-risk-document-first
+  empty: false
+  text_sha256: 2e742baeb8e2a4fff8455ccd8ed36cd57fc337b5973bc8d16839aa187d0fb25d
+  target_line: 47
+  numbering_prefix: ''
+- source: М3
+  source_id: P52
+  target: task/standards-risk/document-first.qmd
+  block_id: sol-standards-risk-document-first
+  empty: false
+  text_sha256: 1f549d8106270b54fc2957676be4258b40e5e3652acd415336edcd466a765a13
+  target_line: 49
+  numbering_prefix: ''
+- source: М3
+  source_id: P53
+  target: task/standards-risk/document-first.qmd
+  block_id: sol-standards-risk-document-first
+  empty: false
+  text_sha256: dd89f298520e1ad26851ad5abf57984c204dcb77dd0ca43cbbf98a9e828d2a32
+  target_line: 51
+  numbering_prefix: ''
+- source: М3
+  source_id: P54
+  target: task/standards-risk/document-first.qmd
+  block_id: sol-standards-risk-document-first
+  empty: true
+  text_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  target_line: null
+  numbering_prefix: null
+- source: М3
+  source_id: P55
+  target: task/standards-risk/requirement-or-standard.qmd
+  block_id: exr-standards-risk-requirement-or-standard
+  empty: false
+  text_sha256: 8d31a2f50ce2dc55ea08cd0e928104c5bfa375c6925977cc677b12c951854782
+  target_line: 5
+  numbering_prefix: null
+- source: М3
+  source_id: P56
+  target: task/standards-risk/requirement-or-standard.qmd
+  block_id: exr-standards-risk-requirement-or-standard
+  empty: false
+  text_sha256: 3a298ebfc547118f2ea995d5dda23df0e8b48dcbdc0520dbd02c87a4f17be1fd
+  target_line: 7
+  numbering_prefix: ''
+- source: М3
+  source_id: P57
+  target: task/standards-risk/requirement-or-standard.qmd
+  block_id: exr-standards-risk-requirement-or-standard
+  empty: true
+  text_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  target_line: null
+  numbering_prefix: ''
+- source: М3
+  source_id: P58
+  target: task/standards-risk/requirement-or-standard.qmd
+  block_id: sol-standards-risk-requirement-or-standard
+  empty: false
+  text_sha256: 650728e69cc57277142bc07c6e91f67e6c95fa67ddb59dc2c768527179c47578
+  target_line: 19
+  numbering_prefix: null
+- source: М3
+  source_id: P59
+  target: task/standards-risk/requirement-or-standard.qmd
+  block_id: sol-standards-risk-requirement-or-standard
+  empty: true
+  text_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  target_line: null
+  numbering_prefix: null
+- source: М3
+  source_id: P60
+  target: task/standards-risk/certificate.qmd
+  block_id: exr-standards-risk-certificate
+  empty: false
+  text_sha256: 515c4a7f4e52a2383115d868559aba689824a5c8c9e30e5320158d3a5b440b2d
+  target_line: 5
+  numbering_prefix: null
+- source: М3
+  source_id: P61
+  target: task/standards-risk/certificate.qmd
+  block_id: exr-standards-risk-certificate
+  empty: false
+  text_sha256: 149335d851571226df7a270fc3f9403411b4fa37bac3f24db221308159099a14
+  target_line: 7
+  numbering_prefix: ''
+- source: М3
+  source_id: P62
+  target: task/standards-risk/certificate.qmd
+  block_id: exr-standards-risk-certificate
+  empty: false
+  text_sha256: 1ec37e7ad1585a62e99305767f64554b3a323e5fc152baab1617c059767a30b7
+  target_line: 9
+  numbering_prefix: '- '
+- source: М3
+  source_id: P63
+  target: task/standards-risk/certificate.qmd
+  block_id: exr-standards-risk-certificate
+  empty: false
+  text_sha256: c86b599d63c1621838824fb767c1488186c10142719c7706d28a40969f05d886
+  target_line: 11
+  numbering_prefix: '- '
+- source: М3
+  source_id: P64
+  target: task/standards-risk/certificate.qmd
+  block_id: exr-standards-risk-certificate
+  empty: false
+  text_sha256: b5714bb54f9e856484ce4a79e2b2298f769063c90306753cae85c2acc654eddc
+  target_line: 13
+  numbering_prefix: '- '
+- source: М3
+  source_id: P65
+  target: task/standards-risk/certificate.qmd
+  block_id: exr-standards-risk-certificate
+  empty: false
+  text_sha256: 0233fd65e37d995fceb27f94c318ecdf514aecb9b22b06214c6c2f025fce7a2d
+  target_line: 15
+  numbering_prefix: '- '
+- source: М3
+  source_id: P66
+  target: task/standards-risk/certificate.qmd
+  block_id: exr-standards-risk-certificate
+  empty: false
+  text_sha256: f53e105d772757b1f28bce8b01dd3bfd895acf8a987f67a29eb792a0e2d8461f
+  target_line: 17
+  numbering_prefix: ''
+- source: М3
+  source_id: P67
+  target: task/standards-risk/certificate.qmd
+  block_id: sol-standards-risk-certificate
+  empty: false
+  text_sha256: 650728e69cc57277142bc07c6e91f67e6c95fa67ddb59dc2c768527179c47578
+  target_line: 21
+  numbering_prefix: null
+- source: М3
+  source_id: P68
+  target: task/standards-risk/certificate.qmd
+  block_id: sol-standards-risk-certificate
+  empty: false
+  text_sha256: 30a6432754cf40dac3229b8dea66998b0729e310bdcc42e4f65cfbb4b957db76
+  target_line: 23
+  numbering_prefix: '- '
+- source: М3
+  source_id: P69
+  target: task/standards-risk/certificate.qmd
+  block_id: sol-standards-risk-certificate
+  empty: false
+  text_sha256: e6240664830bc70d8cf0feeff156a807aed606ab6c9888fab50e7348e5fa3ec6
+  target_line: 25
+  numbering_prefix: '- '
+- source: М3
+  source_id: P70
+  target: task/standards-risk/certificate.qmd
+  block_id: sol-standards-risk-certificate
+  empty: false
+  text_sha256: 6822a22cbcf4942009755376534be2ff4ba4131ba1b36652612d41346bbba300
+  target_line: 27
+  numbering_prefix: '- '
+- source: М3
+  source_id: P71
+  target: task/standards-risk/certificate.qmd
+  block_id: sol-standards-risk-certificate
+  empty: false
+  text_sha256: 4ade8fd8c4e8878b40a072608bc00261a59e451d861be432c3a81c5965147aed
+  target_line: 29
+  numbering_prefix: '- '
+- source: М3
+  source_id: P72
+  target: task/standards-risk/risk-cost.qmd
+  block_id: exr-standards-risk-risk-cost
+  empty: false
+  text_sha256: e5508987f60ea37a2f6b13f749b1f221553978e782b3277cd4ebaaae67a3e16a
+  target_line: 5
+  numbering_prefix: null
+- source: М3
+  source_id: P73
+  target: task/standards-risk/risk-cost.qmd
+  block_id: exr-standards-risk-risk-cost
+  empty: false
+  text_sha256: ed0a0b4c94188ca23eadee5008143404c311f6436288c2f4ca408b86624c90ed
+  target_line: 7
+  numbering_prefix: ''
+- source: М3
+  source_id: P74
+  target: task/standards-risk/risk-cost.qmd
+  block_id: exr-standards-risk-risk-cost
+  empty: false
+  text_sha256: eaa8a0dd898cb2905898333d05aa1d6eaa4c9ba4c0d9747651cf7a967888bb0e
+  target_line: 9
+  numbering_prefix: ''
+- source: М3
+  source_id: P75
+  target: task/standards-risk/risk-cost.qmd
+  block_id: exr-standards-risk-risk-cost
+  empty: false
+  text_sha256: c136b80b830b7018b89b0ad0328855acf69260667cd93e918f9de872f42dedd3
+  target_line: 11
+  numbering_prefix: ''
+- source: М3
+  source_id: P76
+  target: task/standards-risk/risk-cost.qmd
+  block_id: exr-standards-risk-risk-cost
+  empty: false
+  text_sha256: 4a220a78a2017bbf24d8fe03e71f2cb44cb4ea1a0d0ce61675bcdd2bdcc30387
+  target_line: 13
+  numbering_prefix: null
+- source: М3
+  source_id: P77
+  target: task/standards-risk/risk-cost.qmd
+  block_id: exr-standards-risk-risk-cost
+  empty: false
+  text_sha256: 0dcdf2b924f84abf9e2d03188c95ed506c2ea75095a33f508775695391cc0e6e
+  target_line: 15
+  numbering_prefix: ''
+- source: М3
+  source_id: P78
+  target: task/standards-risk/risk-cost.qmd
+  block_id: exr-standards-risk-risk-cost
+  empty: false
+  text_sha256: bb9b355dbf9f252709224d09008be44bbe2173c65ff62b4f6c76354806337e02
+  target_line: 17
+  numbering_prefix: ''
+- source: М3
+  source_id: P79
+  target: task/standards-risk/risk-cost.qmd
+  block_id: exr-standards-risk-risk-cost
+  empty: false
+  text_sha256: e5f6ddaf1392c2bfa651d7049e267c71d5dea716398466ba9da69b5453ed1c2b
+  target_line: 19
+  numbering_prefix: ''
+- source: М3
+  source_id: P80
+  target: task/standards-risk/risk-cost.qmd
+  block_id: exr-standards-risk-risk-cost
+  empty: false
+  text_sha256: 353f5be426fd9bda962717d46e7d31f8cfb4a3c90cf86832167183100b15a1d2
+  target_line: 21
+  numbering_prefix: ''
+- source: М3
+  source_id: P81
+  target: task/standards-risk/risk-cost.qmd
+  block_id: exr-standards-risk-risk-cost
+  empty: false
+  text_sha256: 5b44130d593a6133f8cc7f480521d327dca15be051ecb2a2e9d1fe30aa73dfb1
+  target_line: 23
+  numbering_prefix: ''
+- source: М3
+  source_id: P82
+  target: task/standards-risk/risk-cost.qmd
+  block_id: sol-standards-risk-risk-cost
+  empty: false
+  text_sha256: 650728e69cc57277142bc07c6e91f67e6c95fa67ddb59dc2c768527179c47578
+  target_line: 27
+  numbering_prefix: null
+- source: М3
+  source_id: P83
+  target: task/standards-risk/risk-cost.qmd
+  block_id: sol-standards-risk-risk-cost
+  empty: false
+  text_sha256: 56f4c0e9eaeee2b51d3fa7d8910f2b407f90446d0fb60f2773b9b6dc25db2c46
+  target_line: 29
+  numbering_prefix: ''
+- source: М3
+  source_id: P84
+  target: task/standards-risk/risk-cost.qmd
+  block_id: sol-standards-risk-risk-cost
+  empty: false
+  text_sha256: c9c610515a0c53698f5d499491c7f9f0375fbbfbd78d530725bd92865f3792c8
+  target_line: 31
+  numbering_prefix: ''
+- source: М3
+  source_id: P85
+  target: task/standards-risk/risk-cost.qmd
+  block_id: sol-standards-risk-risk-cost
+  empty: false
+  text_sha256: 4d38ebe88e7ef30628a7d53801e6ea079700c25621325fffda947b0815698d22
+  target_line: 33
+  numbering_prefix: ''
+- source: М3
+  source_id: P86
+  target: task/standards-risk/risk-cost.qmd
+  block_id: sol-standards-risk-risk-cost
+  empty: false
+  text_sha256: 131e78d0b0d73bfd37b7878738466bf86e479f9db8c77ec4a26ded4c5a5d001d
+  target_line: 35
+  numbering_prefix: ''
+- source: М3
+  source_id: P87
+  target: task/standards-risk/risk-cost.qmd
+  block_id: sol-standards-risk-risk-cost
+  empty: true
+  text_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  target_line: null
+  numbering_prefix: null
+- source: М3
+  source_id: P88
+  target: task/standards-risk/risk-cost.qmd
+  block_id: sol-standards-risk-risk-cost
+  empty: true
+  text_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  target_line: null
+  numbering_prefix: null
+- source: М3
+  source_id: P89
+  target: task/standards-risk/inspection.qmd
+  block_id: exr-standards-risk-inspection
+  empty: false
+  text_sha256: 46bf56c45c9050ac0c6b7cb2c53b97dbfac08828b992ed21ed23dc912df6d35c
+  target_line: 5
+  numbering_prefix: null
+- source: М3
+  source_id: P90
+  target: task/standards-risk/inspection.qmd
+  block_id: exr-standards-risk-inspection
+  empty: false
+  text_sha256: a4b307ceaacc342926c4b10ddab4221a636868f0420f103156b5dca5cfcb16f7
+  target_line: 7
+  numbering_prefix: ''
+- source: М3
+  source_id: P91
+  target: task/standards-risk/inspection.qmd
+  block_id: exr-standards-risk-inspection
+  empty: false
+  text_sha256: af72bfe9aaaa3a345bb6faef6069e8b2467afc1f5be8c897d6bc30f10109248f
+  target_line: 9
+  numbering_prefix: ''
+- source: М3
+  source_id: P92
+  target: task/standards-risk/inspection.qmd
+  block_id: exr-standards-risk-inspection
+  empty: false
+  text_sha256: 4a220a78a2017bbf24d8fe03e71f2cb44cb4ea1a0d0ce61675bcdd2bdcc30387
+  target_line: 11
+  numbering_prefix: null
+- source: М3
+  source_id: P93
+  target: task/standards-risk/inspection.qmd
+  block_id: exr-standards-risk-inspection
+  empty: false
+  text_sha256: 1c852b4c618c7f927565f8ec59d437ebaece0d565e3c735e7238262473ae69f5
+  target_line: 13
+  numbering_prefix: ''
+- source: М3
+  source_id: P94
+  target: task/standards-risk/inspection.qmd
+  block_id: exr-standards-risk-inspection
+  empty: false
+  text_sha256: 7f9d009123264ade06aa0bb2f0d27ae8ea39fca496a87451e441585a258b6bd3
+  target_line: 15
+  numbering_prefix: ''
+- source: М3
+  source_id: P95
+  target: task/standards-risk/inspection.qmd
+  block_id: exr-standards-risk-inspection
+  empty: false
+  text_sha256: 1aee8c1d5302eae715b5d936207dd6a2fe13d1c87a59226fc66330172e9c0370
+  target_line: 17
+  numbering_prefix: ''
+- source: М3
+  source_id: P96
+  target: task/standards-risk/inspection.qmd
+  block_id: exr-standards-risk-inspection
+  empty: false
+  text_sha256: e05f13b5a17b32a2621b225918c5b900b632d7e0e7711f39174b6ec663316706
+  target_line: 19
+  numbering_prefix: ''
+- source: М3
+  source_id: P97
+  target: task/standards-risk/inspection.qmd
+  block_id: sol-standards-risk-inspection
+  empty: false
+  text_sha256: 650728e69cc57277142bc07c6e91f67e6c95fa67ddb59dc2c768527179c47578
+  target_line: 23
+  numbering_prefix: null
+- source: М3
+  source_id: P98
+  target: task/standards-risk/inspection.qmd
+  block_id: sol-standards-risk-inspection
+  empty: false
+  text_sha256: 03a9471c33cd0f16f6d945ade71690169c16f59ce8a88a652ff892b18e282a6d
+  target_line: 25
+  numbering_prefix: ''
+- source: М3
+  source_id: P99
+  target: task/standards-risk/inspection.qmd
+  block_id: sol-standards-risk-inspection
+  empty: false
+  text_sha256: 890d7046fe45f572abca6261ad121f420cc1c6065e223449e91521241eeeca2d
+  target_line: 27
+  numbering_prefix: ''
+- source: М3
+  source_id: P100
+  target: task/standards-risk/inspection.qmd
+  block_id: sol-standards-risk-inspection
+  empty: false
+  text_sha256: 8a4e5231b81800bd24183cb8e6f70837f7eecd2b7d9a16b3ed724fa1e13a7926
+  target_line: 29
+  numbering_prefix: ''
+- source: М3
+  source_id: P101
+  target: task/standards-risk/inspection.qmd
+  block_id: sol-standards-risk-inspection
+  empty: false
+  text_sha256: 3f5da59d5e023bd18dc9cd3077b04d2ce32000b0ea7734dff015ae0aa715f1a4
+  target_line: 31
+  numbering_prefix: ''

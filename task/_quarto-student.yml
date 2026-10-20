@@ -27,6 +27,13 @@ book:
   - part: Организация обеспечения кибербезопасности
     chapters:
     - security-center/roles.qmd
+  - part: Стандарты, системы защиты и риски
+    chapters:
+    - standards-risk/document-first.qmd
+    - standards-risk/requirement-or-standard.qmd
+    - standards-risk/certificate.qmd
+    - standards-risk/risk-cost.qmd
+    - standards-risk/inspection.qmd
   - part: Криптография
     chapters:
     - crypto/random.qmd
@@ -48,3 +55,4 @@ book:
     - seminar/concepts.qmd
     - seminar/01-introduction.qmd
     - seminar/02-structure.qmd
+    - seminar/03-standards-risk.qmd
