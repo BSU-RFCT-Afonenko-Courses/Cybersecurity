@@ -5,6 +5,14 @@ course:
 book:
   chapters:
   - index.qmd
+  - part: Основные понятия
+    chapters:
+    - fundamentals/educational-portal.qmd
+    - fundamentals/cia-cases.qmd
+    - fundamentals/event-or-incident.qmd
+    - fundamentals/pizza-incident.qmd
+    - fundamentals/exhibition.qmd
+    - fundamentals/carsharing.qmd
   - part: Криптография
     chapters:
     - crypto/random.qmd
@@ -23,6 +31,7 @@ book:
     - data-integrity/backup.qmd
   - part: Семинары
     chapters:
+    - seminar/concepts.qmd
     - seminar/01-introduction.qmd
     - seminar/02-structure.qmd
   - part: Контрольные материалы

@@ -4,6 +4,17 @@
 из общего банка. Лабораторная работа по резервному копированию:
 @sec-work-data-integrity-backup.
 
+Первое занятие: @sec-work-fundamentals-concepts.
+
+Задачи по основным понятиям:
+
+- @sec-fundamentals-educational-portal
+- @sec-fundamentals-cia-cases
+- @sec-fundamentals-event-or-incident
+- @sec-fundamentals-pizza-incident
+- @sec-fundamentals-exhibition
+- @sec-fundamentals-carsharing
+
 Состав работы задаётся явным списком `.task-items`. Задания лабораторной
 обязательны по умолчанию; дополнительные задания обозначаются отдельно и
 не заменяют выполнение обязательных. Условия повторно используемых задач

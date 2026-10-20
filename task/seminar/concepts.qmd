@@ -1,0 +1,37 @@
+---
+assessment:
+  id: sec-work-fundamentals-concepts
+  kind: seminar
+---
+
+# Занятие 1 – Понятия и КЦД {#sec-work-fundamentals-concepts}
+
+::: {.assessment-preview}
+@theory:sec-theory-fundamentals-concepts
+:::
+
+## Подготовительная задача
+
+::: {.task-items}
+1. @exr-fundamentals-educational-portal
+:::
+
+## Демонстрационная задача
+
+::: {.task-items stage="demonstration"}
+1. @exr-fundamentals-cia-cases
+:::
+
+## Аудиторные задачи
+
+::: {.task-items stage="classroom"}
+1. @exr-fundamentals-event-or-incident
+2. @exr-fundamentals-pizza-incident
+:::
+
+## Необязательные домашние задания
+
+::: {.task-items stage="homework" requirement="optional"}
+1. @exr-fundamentals-exhibition
+2. @exr-fundamentals-carsharing
+:::
