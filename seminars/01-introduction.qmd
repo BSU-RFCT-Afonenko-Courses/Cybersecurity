@@ -1,11 +1,35 @@
-## Введение в кибербезопасность {#sec-seminar-1}
+## Занятие 1 – Понятия и КЦД {#sec-seminar-1}
 
-### Подготовка к занятию
+### Информационная система и активы
 
-Теория: @theory:sec-theory.
+@theory:sec-theory-fundamentals-information-system
 
-Это презентация для практического занятия.
+### Конфиденциальность, целостность и доступность
 
-::: {.notes}
-Перед занятием ознакомьтесь с планом курса и выберите материалы для обсуждения.
-:::
+@theory:sec-theory-fundamentals-cia
+
+### Угрозы, уязвимости, события и инциденты
+
+@theory:sec-theory-fundamentals-events-incidents
+
+### Подготовительная задача
+
+@tasks:exr-fundamentals-educational-portal
+
+### Демонстрационная задача
+
+@tasks:exr-fundamentals-cia-cases
+
+### Аудиторные задачи
+
+- @tasks:exr-fundamentals-event-or-incident
+- @tasks:exr-fundamentals-pizza-incident
+
+### Необязательные домашние задания
+
+- @tasks:exr-fundamentals-exhibition
+- @tasks:exr-fundamentals-carsharing
+
+### Семинарская работа
+
+@tasks:sec-work-fundamentals-concepts

@@ -5,6 +5,9 @@ course:
 book:
   chapters:
   - index.qmd
+  - part: Основные понятия
+    chapters:
+    - fundamentals/concepts.qmd
   - part: Криптография
     chapters:
     - crypto/random.qmd
