@@ -9,7 +9,7 @@
 <meta name="author" content="Афоненко Анатолий">
 <meta name="author" content="Войтович Елизавета">
 
-<title>Каталог семинарских занятий</title>
+<title>Каталог семинарских занятий – Семинары — Основы кибербезопасности</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -32,6 +32,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
@@ -54,11 +55,11 @@ ul.task-list li input[type="checkbox"] {
 
 <style>.task-items li:has(.course-assignment-omitted):not(:has(a)){display:none}</style>
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -84,11 +85,48 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="fullcontent quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+<body class="nav-fixed fullcontent quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Сайт">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/index.html">
+    <span class="navbar-title">Основы кибербезопасности</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Поиск"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Переключить навигацию" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/index.html"> 
+<span class="menu-text">Курс</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/theory/index.html"> 
+<span class="menu-text">Теория</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/task/index.html"> 
+<span class="menu-text">Задания и работы</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Семинары</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
@@ -637,7 +675,7 @@ ul.task-list li input[type="checkbox"] {
 })();
 </script>
 <script id="course-site-navigation">(function(){
-const base=null;
+const base={"courseUrl":"https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/","rootHref":"../"};
 if(base){
  const course=new URL(base.courseUrl); course.pathname=course.pathname.replace(/\/$/,'')+'/';
  const root=new URL(base.rootHref,document.baseURI);
