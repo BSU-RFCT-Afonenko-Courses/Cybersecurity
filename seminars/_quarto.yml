@@ -35,6 +35,7 @@ profile:
   - - student
     - full
 filters:
+- course-navigation
 - course-core
 - course-presentation
 - reference-catalog
@@ -49,6 +50,35 @@ format:
     revealjs-plugins:
     - course-navigation
     pdf-separate-fragments: false
+website:
+  title: Семинары — Основы кибербезопасности
+  navbar:
+    title: Основы кибербезопасности
+    logo-href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/index.html
+    left:
+    - text: Курс
+      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/index.html
+    - text: Теория
+      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/theory/index.html
+    - text: Задания и работы
+      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/task/index.html
+    - text: Семинары
+      href: index.html
+course-navigation:
+  course-url: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/
+  links:
+  - text: Курс
+    href: /index.html
+    scope: course
+  - text: Теория
+    href: /theory/index.html
+    scope: course
+  - text: Задания и работы
+    href: /task/index.html
+    scope: course
+  - text: Семинары
+    href: /index.html
+    scope: project
 bibliography: ../references.bib
 lang: ru
 author:
