@@ -9,7 +9,7 @@
 - @sec-theory-legal-protection-measures — меры защиты информации.
 - @sec-theory-security-center-organization — организация обеспечения кибербезопасности.
 - @sec-theory-security-center-workflow — процесс оказания услуги обеспечения кибербезопасности.
-- @sec-theory-standards-risk-requirements-decisions — стандарты, системы защиты и риски.
+- @sec-theory-standards-risk-requirements-decisions — применение нормативно-правовых актов.
 - @sec-theory-crypto-random — генераторы случайных чисел и энтропия.
 - @sec-theory-crypto-hash — хеширование и криптографические хеш-функции.
 - @sec-theory-crypto-key-gen — получение криптографических ключей.
