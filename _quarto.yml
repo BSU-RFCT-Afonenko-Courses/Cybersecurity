@@ -54,6 +54,17 @@ course:
   id: cybersecurity
 website:
   title: Основы кибербезопасности
+  site-url: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/
+  navbar:
+    left:
+    - text: Курс
+      href: index.html
+    - text: Теория
+      href: theory/index.html
+    - text: Задания и работы
+      href: task/index.html
+    - text: Семинары
+      href: seminars/index.html
   search: true
   page-footer: Афоненко Анатолий
   favicon: assets/cover.png
