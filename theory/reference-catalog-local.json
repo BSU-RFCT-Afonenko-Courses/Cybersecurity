@@ -44,6 +44,26 @@
       "label": "Рисунок 7.1",
       "number": "7.1"
     },
+    "theory:fig-standards-risk-protection-product-certificate": {
+      "namespace": "theory",
+      "id": "fig-standards-risk-protection-product-certificate",
+      "page": "standards-risk/requirements-decisions.html",
+      "fragment": "fig-standards-risk-protection-product-certificate",
+      "labelHtml": "Рисунок&nbsp;<span>8.2</span>",
+      "numberHtml": "<span>8.2</span>",
+      "label": "Рисунок 8.2",
+      "number": "8.2"
+    },
+    "theory:fig-standards-risk-protection-product-requirements": {
+      "namespace": "theory",
+      "id": "fig-standards-risk-protection-product-requirements",
+      "page": "standards-risk/requirements-decisions.html",
+      "fragment": "fig-standards-risk-protection-product-requirements",
+      "labelHtml": "Рисунок&nbsp;<span>8.1</span>",
+      "numberHtml": "<span>8.1</span>",
+      "label": "Рисунок 8.1",
+      "number": "8.1"
+    },
     "theory:sec-random-concepts": {
       "namespace": "theory",
       "id": "sec-random-concepts",
@@ -209,6 +229,17 @@
       "number": "7",
       "title": "Обобщенный процесс оказания услуги обеспечения кибербезопасности"
     },
+    "theory:sec-theory-standards-risk-protection-system": {
+      "namespace": "theory",
+      "id": "sec-theory-standards-risk-protection-system",
+      "page": "standards-risk/requirements-decisions.html",
+      "fragment": "sec-theory-standards-risk-protection-system",
+      "labelHtml": "Создание системы защиты информации",
+      "numberHtml": "",
+      "label": "Создание системы защиты информации",
+      "number": "",
+      "title": "Создание системы защиты информации"
+    },
     "theory:sec-theory-standards-risk-requirements-decisions": {
       "namespace": "theory",
       "id": "sec-theory-standards-risk-requirements-decisions",
@@ -218,7 +249,7 @@
       "numberHtml": "<span>8</span>",
       "label": "Глава 8",
       "number": "8",
-      "title": "От нормативных требований к обоснованным решениям: стандарты, системы защиты и риски"
+      "title": "Применение нормативно-правовых актов"
     }
   }
 }

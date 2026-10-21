@@ -80,11 +80,11 @@
       "page": "seminars/03-standards-risk.html",
       "fragment": "sec-seminar-3",
       "slide": "sec-seminar-3",
-      "labelHtml": "<span class=\"r-fit-text\">Семинар 3 – От нормативных требований к обоснованным решениям: стандарты, системы защиты и риски</span>",
+      "labelHtml": "<span class=\"r-fit-text\">Семинар 3 – Применение нормативно-правовых актов</span>",
       "numberHtml": "",
-      "label": "Семинар 3 – От нормативных требований к обоснованным решениям: стандарты, системы защиты и риски",
+      "label": "Семинар 3 – Применение нормативно-правовых актов",
       "number": "",
-      "title": "Семинар 3 – От нормативных требований к обоснованным решениям: стандарты, системы защиты и риски"
+      "title": "Семинар 3 – Применение нормативно-правовых актов"
     },
     "tasks:exr-data-integrity-backup": {
       "namespace": "tasks",
@@ -595,7 +595,7 @@
       "numberHtml": "<span>31</span>",
       "label": "Глава 31",
       "number": "31",
-      "title": "Семинар 3 – От нормативных требований к обоснованным решениям: стандарты, системы защиты и риски"
+      "title": "Семинар 3 – Применение нормативно-правовых актов"
     },
     "tasks:sol-fundamentals-cia-cases": {
       "namespace": "tasks",
@@ -646,6 +646,26 @@
       "numberHtml": "<span>7.1</span>",
       "label": "Рисунок 7.1",
       "number": "7.1"
+    },
+    "theory:fig-standards-risk-protection-product-certificate": {
+      "namespace": "theory",
+      "id": "fig-standards-risk-protection-product-certificate",
+      "page": "theory/standards-risk/requirements-decisions.html",
+      "fragment": "fig-standards-risk-protection-product-certificate",
+      "labelHtml": "Рисунок&nbsp;<span>8.2</span>",
+      "numberHtml": "<span>8.2</span>",
+      "label": "Рисунок 8.2",
+      "number": "8.2"
+    },
+    "theory:fig-standards-risk-protection-product-requirements": {
+      "namespace": "theory",
+      "id": "fig-standards-risk-protection-product-requirements",
+      "page": "theory/standards-risk/requirements-decisions.html",
+      "fragment": "fig-standards-risk-protection-product-requirements",
+      "labelHtml": "Рисунок&nbsp;<span>8.1</span>",
+      "numberHtml": "<span>8.1</span>",
+      "label": "Рисунок 8.1",
+      "number": "8.1"
     },
     "theory:sec-random-concepts": {
       "namespace": "theory",
@@ -812,6 +832,17 @@
       "number": "7",
       "title": "Обобщенный процесс оказания услуги обеспечения кибербезопасности"
     },
+    "theory:sec-theory-standards-risk-protection-system": {
+      "namespace": "theory",
+      "id": "sec-theory-standards-risk-protection-system",
+      "page": "theory/standards-risk/requirements-decisions.html",
+      "fragment": "sec-theory-standards-risk-protection-system",
+      "labelHtml": "Создание системы защиты информации",
+      "numberHtml": "",
+      "label": "Создание системы защиты информации",
+      "number": "",
+      "title": "Создание системы защиты информации"
+    },
     "theory:sec-theory-standards-risk-requirements-decisions": {
       "namespace": "theory",
       "id": "sec-theory-standards-risk-requirements-decisions",
@@ -821,7 +852,7 @@
       "numberHtml": "<span>8</span>",
       "label": "Глава 8",
       "number": "8",
-      "title": "От нормативных требований к обоснованным решениям: стандарты, системы защиты и риски"
+      "title": "Применение нормативно-правовых актов"
     }
   }
 }
