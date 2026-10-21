@@ -1,8 +1,16 @@
-## [Семинар 3 – От нормативных требований к обоснованным решениям: стандарты, системы защиты и риски]{.r-fit-text} {#sec-seminar-3}
+## [Семинар 3 – Применение нормативно-правовых актов]{.r-fit-text} {#sec-seminar-3}
 
-### Теория
+### Применение нормативно-правовых актов
 
 @theory:sec-theory-standards-risk-requirements-decisions
+
+### Аудиторная задача 1. «Приказ, стандарт или обязательное требование?»
+
+@tasks:exr-standards-risk-requirement-or-standard
+
+### Создание системы защиты информации
+
+@theory:sec-theory-standards-risk-protection-system
 
 ### Подготовительная задача
 
@@ -10,7 +18,6 @@
 
 ### Аудиторные задачи
 
-- @tasks:exr-standards-risk-requirement-or-standard
 - @tasks:exr-standards-risk-certificate
 - @tasks:exr-standards-risk-risk-cost
 - @tasks:exr-standards-risk-inspection

@@ -4,7 +4,7 @@ assessment:
   kind: seminar
 ---
 
-# Семинар 3 – От нормативных требований к обоснованным решениям: стандарты, системы защиты и риски {#sec-work-standards-risk}
+# Семинар 3 – Применение нормативно-правовых актов {#sec-work-standards-risk}
 
 ::: {.assessment-preview}
 @theory:sec-theory-standards-risk-requirements-decisions
