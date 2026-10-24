@@ -39,16 +39,18 @@ jobs:
         python3 --version
     - name: Подготовить каталог кэша
       run: echo "XDG_CACHE_HOME=$RUNNER_TEMP/quarto-cache-${{ matrix.quarto }}" >> "$GITHUB_ENV"
-    - name: Validate current manual inventory and selected Body
-      run: bash CI/check-model.sh "$RUNNER_TEMP/cybersecurity-model"
     - name: Render student
       run: bash CI/render.sh student
+    - name: Проверить inventory и выбранные Body по готовому QRC-каталогу
+      run: bash CI/check-model.sh "$RUNNER_TEMP/cybersecurity-model"
     - name: Render full
       run: bash CI/render.sh full
     - name: Render student after full
       run: bash CI/render.sh student
     - name: Validate rendered pages and local links
       run: python3 CI/site.py _site-student _site-full
+    - name: Проверить отделение решений семинара 4
+      run: python3 CI/check-access-control.py site _site-student _site-full
     - name: Upload build diagnostics
       if: failure()
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

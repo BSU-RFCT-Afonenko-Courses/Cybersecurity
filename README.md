@@ -127,24 +127,29 @@ VM/действий. Экспорт, оценивание и доступ нас
 
 CI использует Quarto 1.11.5, CUE 0.17.1 и установленные в репозитории
 расширения. `CI/install-extensions.sh` нужен для явного обновления pins.
-`CI/check-model.sh` запускает выпущенные Core collectors для свежего declared
-inventory и выбранного Body; внутренние owner-тесты в курс не копируются.
-Затем идут student → full → student и
-`python3 CI/site.py _site-student _site-full`.
+Первый student-рендер создаёт QRC-каталог курса. Затем `CI/check-model.sh`
+запускает выпущенные Core collectors для свежего declared inventory и выбранных
+Body и проверяет их через `CI/check-access-control.py body`. После full и
+повторного student-рендера проверяются локальные ссылки и отделение решений.
+Внутренние owner-тесты в курс не копируются.
 
 Каждая сборка — отдельный шаг. При отказе CI сохраняет полные `ci-logs`,
 отладочный вывод Quarto и трассу подпроектов. Локально:
 
 ```sh
-bash CI/check-model.sh /absolute/private/cybersecurity-model
 bash CI/render.sh student
+bash CI/check-model.sh /absolute/private/cybersecurity-model
 bash CI/render.sh full
 bash CI/render.sh student
 python3 CI/site.py _site-student _site-full
+python3 CI/check-access-control.py site _site-student _site-full
 ```
 
 Проверка готовых сайтов контролирует страницы, локальные ссылки и отсутствие
 служебных/закрытых каталогов. Она не зависит от числа страниц или ID задания.
+Предметная проверка семинара 4 дополнительно контролирует 13 решений по текущим
+исходникам, student HTML, поиск и ресурсы, пять схем и их печатные представления.
+В Body проверяются назначения, teacher/public, условия и разрешённая QRC-ссылка.
 Служебные скрипты `CI/` исключены из ресурсов сайта.
 
 Исправления Windows-путей NativeRun и временного JSON CUE входят в upstream
