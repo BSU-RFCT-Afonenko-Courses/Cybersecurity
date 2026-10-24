@@ -1,5 +1,9 @@
 /* Подключается только к заданиям по управлению доступом. */
 @media screen and (max-width: 700px) {
+  main :not(pre) > code {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
   main :not(.ac-table) > table.table {
     display: block;
     max-width: 100%;
