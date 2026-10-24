@@ -149,11 +149,25 @@ class PageText(HTMLParser):
 
 def check_site(student, full):
     sources = {}
+    source_solutions = {}
+    solution_pattern = r'^::: \{#(sol-[\w-]+)\}\n(.*?)^:::\s*$'
     for source in sorted((ROOT / 'task/access-control').glob('*.qmd')):
-        for sid in re.findall(r'#(sol-[\w-]+)', source.read_text()):
+        for sid, body in re.findall(solution_pattern, source.read_text(), re.M | re.S):
             require(sid not in sources, f'Повторный исходный ID {sid}')
             sources[sid] = source
+            body = re.sub(r'^`{3,}[^\n]*$', '', body, flags=re.M)
+            words = norm(body).split()
+            require(len(words) >= 12, f'{sid}: короткий исходник решения')
+            source_solutions[sid] = {' '.join(words[i:i + 12])
+                                     for i in range(len(words) - 11)}
     require(len(sources) == 13, f'Исходники: ожидалось 13 sol-ID, получено {len(sources)}')
+    open_sources = []
+    for source in ROOT.rglob('*.qmd'):
+        relative = source.relative_to(ROOT)
+        if any(part.startswith(('_', '.')) for part in relative.parts):
+            continue
+        open_sources.append(norm(re.sub(solution_pattern, '', source.read_text(), flags=re.M | re.S)))
+    open_text = '\n'.join(open_sources)
     search = list(student.rglob('search.json'))
     require(bool(search), 'Нет student search.json')
     solution_texts = {}
@@ -163,9 +177,12 @@ def check_site(student, full):
         content = Solutions((full / relative).read_text()).content
         require(sid in content, f'{relative}: нет full {sid}')
         text = norm(' '.join(content[sid]))
-        require(len(text.split()) >= 10, f'{sid}: пустое или короткое full solution')
+        require(all(fragment in text for fragment in source_solutions[sid]),
+                f'{relative}: изменено содержимое решения {sid}')
         require(sid not in public_html and text not in norm(public_html), f'{relative}: утечка {sid}')
-        solution_texts[sid] = text
+        solution_texts[sid] = {fragment for fragment in source_solutions[sid]
+                              if fragment not in open_text}
+        require(bool(solution_texts[sid]), f'{sid}: нет частных сигнатур решения')
     for file in student.rglob('*'):
         if not file.is_file():
             continue
@@ -173,13 +190,6 @@ def check_site(student, full):
         relative = file.relative_to(student)
         for sid in sources:
             require(sid.encode() not in raw, f'{relative}: закрытый sol-ID {sid}')
-        require(file.suffix not in {'.qmd', '.lua', '.ts', '.zip', '.tar', '.gz', '.diff', '.patch'},
-                f'{relative}: служебный исходник/архив в student')
-        require(file.name not in {'backup.json', 'backup.public.json', 'access-control.json',
-                                  'access-control.public.json', 'teacher.json', 'checks.json'},
-                f'{relative}: Body/служебный JSON в student')
-        require(not any(part in {'_extensions', '_generated', 'CI', 'ci-logs'} for part in relative.parts),
-                f'{relative}: служебный каталог в student')
         try:
             decoded = raw.decode('utf-8')
         except UnicodeDecodeError:
@@ -193,14 +203,31 @@ def check_site(student, full):
             representations.append(' '.join(text_values(json.loads(decoded))))
         for representation in representations:
             text = norm(representation)
-            for sid, solution in solution_texts.items():
+            for sid, fragments in solution_texts.items():
                 require(sid not in representation, f'{relative}: закрытый sol-ID {sid}')
-                require(solution not in text, f'{relative}: текст решения {sid}')
+                require(not any(fragment in text for fragment in fragments),
+                        f'{relative}: текст решения {sid}')
     for site in (student, full):
-        for file in site.rglob('*.json'):
+        for file in site.rglob('*'):
+            if not file.is_file():
+                continue
+            relative = file.relative_to(site)
+            require(file.suffix not in {'.qmd', '.lua', '.ts', '.py', '.sh', '.cue',
+                                        '.zip', '.tar', '.gz', '.tgz', '.zst', '.diff', '.patch'}
+                    and not (file.name.startswith('_quarto') and file.suffix in {'.yml', '.yaml'}),
+                    f'{site.name}/{relative}: служебный исходник/архив')
+            require(not any(part in {'_extensions', '_generated', 'CI', 'ci-logs'}
+                            for part in relative.parts), f'{site.name}/{relative}: служебный каталог')
+            if file.suffix != '.json':
+                continue
             require(file.name not in {'backup.json', 'backup.public.json', 'access-control.json',
                                       'access-control.public.json', 'teacher.json', 'checks.json'},
-                    f'{site.name}/{file.relative_to(site)}: Body/служебный JSON')
+                    f'{site.name}/{relative}: Body/служебный JSON')
+            payload = json.loads(file.read_text())
+            for node in nodes(payload):
+                require(node.get('schema') != 'course-body-package-v2'
+                        and not any(key in node for key in ('closedKey', 'solution', 'gradingNotes')),
+                        f'{site.name}/{relative}: Body/закрытое поле JSON')
         for source in (ROOT / 'theory/assets/access-control').iterdir():
             if source.is_file():
                 target = site / source.relative_to(ROOT)
