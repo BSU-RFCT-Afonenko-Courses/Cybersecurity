@@ -1,0 +1,8 @@
+/* Подключается только к заданиям по управлению доступом. */
+@media screen and (max-width: 700px) {
+  main :not(.ac-table) > table.table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
