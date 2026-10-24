@@ -12,6 +12,9 @@ format: html
 - @practice:sec-seminar-3 — Семинар 3 – Применение нормативно-правовых актов.
   Работа: @tasks:sec-work-standards-risk.
 
+- @practice:sec-seminar-4 — Семинар 4 – Управление доступом.
+  Работа: @tasks:sec-work-access-control.
+
 Остальные планы будут добавляться по мере подготовки материалов.
 
 Теоретические материалы: @theory:sec-theory.

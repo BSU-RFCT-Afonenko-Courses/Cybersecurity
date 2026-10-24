@@ -47,6 +47,13 @@ book:
     - access-control/ident.qmd
     - access-control/authn.qmd
     - access-control/authz.qmd
+    - access-control/dac.qmd
+    - access-control/mac.qmd
+    - access-control/rbac.qmd
+    - access-control/session.qmd
+    - access-control/grade.qmd
+    - access-control/verification.qmd
+    - access-control/extensions.qmd
   - part: Целостность данных
     chapters:
     - data-integrity/backup.qmd
@@ -56,3 +63,4 @@ book:
     - seminar/01-introduction.qmd
     - seminar/02-structure.qmd
     - seminar/03-standards-risk.qmd
+    - seminar/04-access-control.qmd
