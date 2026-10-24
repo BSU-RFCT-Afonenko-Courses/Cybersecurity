@@ -1,4 +1,7 @@
 ---
+format:
+  html:
+    css: ../assets/access-control/page.css
 assessment:
   id: sec-work-access-control
   kind: seminar

@@ -6,3 +6,10 @@
     overflow-x: auto;
   }
 }
+
+/* На узком экране длинные названия соседних страниц переносятся. */
+@media screen and (max-width: 400px) {
+  nav.page-navigation {
+    flex-wrap: wrap;
+  }
+}
