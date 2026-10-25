@@ -1,4 +1,5 @@
 import { diagnostic } from "./diagnostics.ts";
+import {bindProjectMaterializations} from './project-materialization.ts';
 import type { Adapter, Assessment, Body, Course, Exercise, Extracted, Fragment, Json } from "./model.ts";
 function withBody<T>(item: Extracted<T>): Omit<Extracted<T>, "bodyJson" | "gradingNotesJson"> & { body: Body; gradingNotes?: Body[] } {
   const { bodyJson, gradingNotesJson, ...rest } = item;
@@ -59,5 +60,7 @@ export function assemble(selected: string[], fragments: Map<string, Fragment>, a
       result.assessments.push({ ...withBody<Assessment>(part.assessment), source, extensions });
     }
   }
+  const bound=bindProjectMaterializations(selected.map(source=>fragments.get(source)!));
+  if(bound.length)result.projects=bound;
   return result;
 }

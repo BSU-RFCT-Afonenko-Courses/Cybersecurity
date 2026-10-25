@@ -1,10 +1,12 @@
 import {createMetrics as __createMetrics} from "../observability/bridge.ts";
 const __metrics=__createMetrics("course-core");
 import {resolve,relative,join,dirname} from 'stdlib/path';
-import type {NativeRun} from '../infrastructure/native-run.ts';
+import {withLoadedNativeRun,withNativeRunProof,nativeRunSiteUrl,type NativeRun,type NativeRunExpectation} from '../infrastructure/native-run.ts';
 import {diagnostic} from '../domain/diagnostics.ts';
 import {evaluateResources,projectedResourceUses} from '../infrastructure/resources.ts';
 import {command,quartoExecutable} from '../infrastructure/process.ts';
+import {materializeStarterArtifact} from './materialize.ts';
+import {bindArtifactProjectMaterializations} from '../domain/project-materialization.ts';
 export interface ArtifactRequest {source:string;exerciseId:string;kind?:'starter'|'full'|'conditions'}
 export interface ResolvedArtifact {kind:'starter'|'full'|'conditions';projectRoot:string;partition?:'student';files?:{name:string;bytes:Uint8Array}[]}
 const attributes=(node:any)=>node.t==='Header'?node.c[1]:['Div','Span','CodeBlock','Code','Link','Image'].includes(node.t)?node.c[0]:undefined;
@@ -34,10 +36,32 @@ async function writeHtml(ast:any,cwd:string){
  const input=child.stdin.getWriter();await input.write(new TextEncoder().encode(JSON.stringify(ast)));await input.close();
  const result=await child.output();if(!result.success)throw diagnostic('ARTIFACT.WRITER_FAILED',new TextDecoder().decode(result.stderr));return new TextDecoder().decode(result.stdout);
 }
+function freezeBatchRun(value:any):any{
+ if(value&&typeof value==='object'&&!Object.isFrozen(value)){
+  if(value instanceof Map){for(const child of value.values())freezeBatchRun(child);const reject=()=>{throw diagnostic('NATIVE.RUN_NOT_CURRENT','Batch NativeRun is immutable')};for(const name of ['set','delete','clear'])Object.defineProperty(value,name,{value:reject})}
+  else for(const child of Object.values(value))freezeBatchRun(child);
+  Object.freeze(value);
+ }return value;
+}
+export async function withNativeArtifactBatch<T>(root:string,expectation:NativeRunExpectation,use:(batch:Readonly<{run:NativeRun;resolveArtifact:(request:ArtifactRequest)=>Promise<ResolvedArtifact>}>)=>Promise<T>):Promise<T>{
+ return await withLoadedNativeRun(root,expectation,async run=>{
+  freezeBatchRun(run);let active=true,busy=false,pending:Promise<ResolvedArtifact>|undefined;
+  const batch=Object.freeze({run,resolveArtifact:(request:ArtifactRequest)=>{
+   if(!active||busy)return Promise.reject(diagnostic('NATIVE.RUN_NOT_CURRENT','Expired/reentrant native artifact batch'));busy=true;
+   // Храним тот же Promise, который получает caller, включая его finally.
+   pending=(async()=>{try{return await resolveArtifact(run,Object.freeze({...request}))}finally{busy=false;pending=undefined}})();
+   return pending;
+  }});
+  try{const result=await use(batch);if(busy)throw diagnostic('NATIVE.RUN_NOT_CURRENT','Pending artifact request at batch exit');return result}finally{active=false;if(pending)await pending.catch(()=>{})}
+ });
+}
 export async function resolveArtifact(run:NativeRun,request:ArtifactRequest):Promise<ResolvedArtifact>{
+ return await withNativeRunProof(run,()=>resolveArtifactUsing(run,request));
+}
+async function resolveArtifactUsing(run:NativeRun,request:ArtifactRequest):Promise<ResolvedArtifact>{
  if(run.schema!=='course-native-run-v1'||!run.documents.length)throw diagnostic('ARTIFACT.TRUSTED_RUN_REQUIRED','Требуется текущий NativeRun');
  const doc=run.documents.find(d=>d.source===request.source);
- const fact=doc?.projects?.find(p=>p.exerciseId===request.exerciseId);
+ const fact=bindArtifactProjectMaterializations(run).find(p=>p.exerciseId===request.exerciseId&&p.source===request.source);
  if(!doc||!fact)throw diagnostic('ARTIFACT.PROJECT_MISSING','Проект упражнения отсутствует в текущей модели',{source:request.source,id:request.exerciseId});
  const audience=doc.course.view;
  if(audience!=='student'&&audience!=='full')throw diagnostic('ARTIFACT.AUDIENCE_REQUIRED','NativeRun должен иметь student/full audience');
@@ -46,7 +70,11 @@ export async function resolveArtifact(run:NativeRun,request:ArtifactRequest):Pro
  const path=resolve(run.projectRoot,fact.projectRoot),location=relative(run.projectRoot,path);
  if(!location||location==='..'||location.startsWith('../')||location.startsWith('..\\'))throw diagnostic('ARTIFACT.PROJECT_OUTSIDE_OWNER','Проект находится вне native owner');
  if(await Deno.realPath(path)!==path)throw diagnostic('ARTIFACT.SYMLINK_FORBIDDEN','Project root не должен содержать symlink');
- if(kind!=='conditions')return {kind,projectRoot:fact.projectRoot,...(kind==='starter'?{partition:'student' as const}:{})};
+ if(kind==='starter'){
+  const files=await materializeStarterArtifact(run,{source:request.source,exerciseId:request.exerciseId});
+  return {kind,projectRoot:fact.projectRoot,partition:'student',files};
+ }
+ if(kind!=='conditions')return {kind,projectRoot:fact.projectRoot};
  if(audience==='student'&&!fact.artifactPolicy.conditions)throw diagnostic('ARTIFACT.ACCESS_DENIED','Условия недоступны');
  const output=join(run.outputDirectory,doc.document.output);
  if(!/\.html$/.test(output)||!run.outputFiles.includes(output))throw diagnostic('ARTIFACT.NATIVE_HTML_REQUIRED','Conditions требуют resolved текущий HTML output');
@@ -82,7 +110,7 @@ export async function resolveArtifact(run:NativeRun,request:ArtifactRequest):Pro
   if(/^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(href))continue;
   if(/\.qmd(?:[?#]|$)/.test(href))throw diagnostic('ARTIFACT.SOURCE_LINK_FORBIDDEN','Conditions не должны ссылаться на source QMD');
   if(/\.html(?:[?#]|$)/.test(href)){
-   siteUrl??=JSON.parse(await command(quartoExecutable(),['inspect',run.projectRoot],run.projectRoot)).config.website?.['site-url'];
+   siteUrl??=await nativeRunSiteUrl(run);
    if(!siteUrl)throw diagnostic('ARTIFACT.SITE_URL_REQUIRED','Для междокументной ссылки conditions требуется website.site-url');
    node.c[2][0]=new URL(href,new URL(dirname(doc.document.output)+'/',siteUrl.endsWith('/')?siteUrl:siteUrl+'/')).href;
   }else throw diagnostic('ARTIFACT.RESOURCE_UNRESOLVED','Conditions содержит неупакованный local href/src: '+href);
@@ -97,3 +125,5 @@ export async function resolveArtifact(run:NativeRun,request:ArtifactRequest):Pro
 writeHtml=__metrics.wrapAsync({id:"course-core.artifacts.resolve.writeHtml",kind:"command"},writeHtml);
 // @ts-expect-error JS допускает замену function binding; публичная сигнатура сохраняется.
 resolveArtifact=__metrics.wrapAsync({id:"course-core.artifacts.resolve.resolveArtifact",kind:"phase"},resolveArtifact);
+// @ts-expect-error JS допускает замену function binding; generic callback API сохраняется.
+withNativeArtifactBatch=__metrics.wrapAsync({id:"course-core.artifacts.resolve.withNativeArtifactBatch",kind:"phase"},withNativeArtifactBatch);

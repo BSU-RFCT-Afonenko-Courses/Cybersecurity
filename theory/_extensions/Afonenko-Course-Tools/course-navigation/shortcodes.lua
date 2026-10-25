@@ -2,7 +2,13 @@ local __metrics=require("./observability/bridge").create_metrics("course-navigat
 
 local function __perfFilters(filters)
  for key,value in pairs(filters) do
-  if type(value)=='function' then filters[key]=__metrics.wrap_sync({id="course-navigation.shortcodes.handler."..tostring(key),kind=key=='Pandoc' and 'phase' or 'function'},value)
+  if type(value)=='function' then local spec={id="course-navigation.shortcodes.handler."..tostring(key),kind=key=='Pandoc' and 'phase' or 'function'}
+   if os.getenv('COURSE_PERF_MODE') and os.getenv('COURSE_PERF_MODE')~='off' then
+    filters[key]=function(...)
+     spec.document_id=quarto and quarto.doc and quarto.doc.input_file or nil
+     return __metrics.wrap_sync(spec,value)(...)
+    end
+   else filters[key]=__metrics.wrap_sync(spec,value) end
   elseif type(value)=='table' and type(key)=='number' then filters[key]=__perfFilters(value) end
  end
  return filters
