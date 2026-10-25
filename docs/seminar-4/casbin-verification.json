@@ -1,0 +1,15 @@
+{
+  "casbin": "1.43.0",
+  "queries": 540,
+  "initial_mismatches": 8,
+  "candidate_configs_through_minimum": 67,
+  "minimum_deletions": 2,
+  "all_minimal_repairs": [
+    [
+      "g, role_shift, role_release",
+      "g, role_backup, role_release"
+    ]
+  ],
+  "partial_repair_counterexample": true,
+  "final_all_queries_pass": true
+}

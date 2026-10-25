@@ -2,7 +2,11 @@ local __metrics=require("../observability/bridge").create_metrics("reference-cat
 
 local function __perfFilters(filters)
  for key,value in pairs(filters) do
-  if type(value)=='function' then filters[key]=__metrics.wrap_sync({id="reference-catalog.lua.probes.handler."..tostring(key),kind=key=='Pandoc' and 'phase' or 'function'},value)
+  if type(value)=='function' then
+   filters[key]=function(...)
+    local input=quarto and quarto.doc and quarto.doc.input_file
+    return __metrics.wrap_sync({id="reference-catalog.lua.probes.handler."..tostring(key),kind=key=='Pandoc' and 'phase' or 'function',document_id=type(input)=='string' and input~='' and input or nil},value)(...)
+   end
   elseif type(value)=='table' and type(key)=='number' then filters[key]=__perfFilters(value) end
  end
  return filters

@@ -7,6 +7,7 @@
 Первое занятие: @sec-work-fundamentals-concepts.
 Второе занятие: @sec-work-legal-requirements.
 Третье занятие: @sec-work-standards-risk.
+Четвёртое занятие: @sec-work-access-control.
 
 Задачи по основным понятиям:
 

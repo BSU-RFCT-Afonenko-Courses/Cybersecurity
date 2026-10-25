@@ -13,7 +13,7 @@ local function local_path(value,field)
  for part in value:gmatch('[^/]+') do if part=='..' or part=='.' then fail(field,'Путь не должен выходить за корень публикации') end end
  return value
 end
-return {{Pandoc=metrics.wrap_sync({id='course-navigation.filter.handler.Pandoc',kind='phase'},function(doc)
+local function transform(doc)
  if not quarto.format.is_format('revealjs') then return doc end
  local cfg=doc.meta['course-navigation'] or {}
  local input=quarto.doc.input_file
@@ -59,4 +59,8 @@ return {{Pandoc=metrics.wrap_sync({id='course-navigation.filter.handler.Pandoc',
   quarto.doc.include_text('in-header','<script id="course-navigation-context" type="application/json">'..payload..'</script>')
  end
  return doc
-end)}}
+end
+local function handler(doc)
+ return metrics.wrap_sync({id='course-navigation.filter.handler.Pandoc',kind='phase',document_id=quarto.doc.input_file},transform)(doc)
+end
+return {{Pandoc=(os.getenv('COURSE_PERF_MODE') and os.getenv('COURSE_PERF_MODE')~='off') and handler or transform}}

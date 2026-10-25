@@ -6,20 +6,21 @@
 папкам `theory`, `task`, `seminars`. Устойчивый `course.id: cybersecurity`
 объявлен один раз в корневом `_quarto.yml`.
 
-Требуются Quarto **не ниже 1.11.5**, CUE **0.17.1** и Python 3 для проверок.
+Требуются Quarto **не ниже 1.11.5**, CUE **0.17.1**, Python 3 и Node.js
+с поддержкой встроенного модуля `node:test` для проверок.
 Установка выполняется штатным `quarto add` через `CI/install-extensions.sh`:
 
 | Инструмент | Выпуск | Проекты |
 | --- | --- | --- |
-| Core, Presentation, Navigation | `v7.3.0` | Корень, theory, task, seminars |
-| Publisher | `v5.1.1` | Корень |
-| Reference Catalog | `v3.1.0` | Корень, theory, task, seminars |
-| Download | `v3.1.0` | task |
+| Core, Presentation, Navigation | `v8.2.8` | Корень, theory, task, seminars |
+| Publisher | `v5.1.4` | Корень |
+| Reference Catalog | `v3.1.1` | Корень, theory, task, seminars |
+| Download | `v3.2.2` | task |
 
 [Опубликованное руководство Template](https://afonenko-course-tools.github.io/quarto-template-course/guide/index.html)
 объясняет авторские действия; [точный исходник руководства](https://github.com/Afonenko-Course-Tools/quarto-template-course/blob/d453be9aa4d44f79222323672ebc30a4ef86f0ce/guide/index.qmd)
 закреплён на `d453be9aa4d44f79222323672ebc30a4ef86f0ce`.
-[Контракты Core 7.3.0](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v7.3.0/spec/index.md)
+[Контракты Core 8.2.8](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v8.2.8/spec/index.md)
 задают правила банка, работ, видимости и экспорта.
 Точные установленные commits и границы пакетов приведены в [UPSTREAM.md](UPSTREAM.md).
 Окончательная приёмка Java, Platform source tag 1.0.1 и анонимное получение
@@ -49,7 +50,7 @@ quarto preview --profile student --no-watch-inputs
 У задачи собственные `difficulty="intermediate"` и `time="90"`;
 90 минут — авторская оценка этих опытов, а не измеренная длительность.
 
-Банк включён только в `task/data-integrity/_metadata.yml`:
+Банк включён в `task/data-integrity/_metadata.yml` и `task/access-control/_metadata.yml`:
 
 ```yaml
 exercise-bank: true
@@ -74,7 +75,11 @@ Defaults наследует Quarto; атрибут задачи может пе�
 stage не задан. Страница работы ссылается на условие без его дублирования.
 Открытое условие и назначение видны в student и full.
 
-Остальные тематические страницы пока содержат заготовки. В
+Семинар 4 — `task/seminar/04-access-control.qmd` с ID `sec-work-access-control` —
+назначает 13 вопросов банка `task/access-control`: пять required и восемь optional.
+Условия доступны в обоих профилях, решения — только в full.
+
+В
 `task/data-integrity/checksum.qmd` есть только заголовок; файл сохранён
 и исключён из текущей публикации. Full включает два черновика контрольных
 `task/exam/paper.qmd` и `technical.qmd` без готовых условий или назначений.
@@ -88,7 +93,7 @@ Student предназначен для публикации, full — для о
 Книги используют полные списки глав в каждом профиле. Full output,
 служебные файлы и teacher-пакеты исключены из student resources.
 
-Одна презентация семинара публична в обоих профилях: общие notes, скрытые
+Презентации семинаров 1–4 публичны в обоих профилях: общие notes, скрытые
 details и режим страницы не требуют повторной сборки. Каталог семинаров —
 обычный HTML в том же native website; отдельный документ — Reveal.
 Штатные уровни `##`/`###`, порядок слайдов и QRC targets сохраняются.
@@ -113,8 +118,9 @@ Core читает корневой `course.id` и выбранную книгу 
 не являются допустимой заменой существующей лабораторной. Download установлен,
 но курс пока не объявляет shortcode или ресурс для выдачи ZIP.
 
-Для отдельного маршрута можно установить Print `v0.3.0`, Moodle `v0.3.0`,
-PrairieLearn `v7.1.1` или Cloud `v3.0.0`. Курс их не активирует.
+Для отдельных маршрутов существуют Print, Moodle, PrairieLearn и Cloud.
+Курс их не устанавливает и не проверяет; совместимые выпуски выбираются
+по контракту потребителя.
 Print получает participant-пакет; Moodle — teacher-пакет с нужным ключом;
 PrairieLearn использует программный проект, явный нейтральный project-check
 и декларативную delivery-конфигурацию; ручные binding/native JSON не создаются.
@@ -126,31 +132,55 @@ VM/действий. Экспорт, оценивание и доступ нас
 
 CI использует Quarto 1.11.5, CUE 0.17.1 и установленные в репозитории
 расширения. `CI/install-extensions.sh` нужен для явного обновления pins.
-`CI/check-model.sh` запускает выпущенные Core collectors для свежего declared
-inventory и выбранного Body; внутренние owner-тесты в курс не копируются.
-Затем идут student → full → student и
-`python3 CI/site.py _site-student _site-full`.
+Первый student-рендер создаёт QRC-каталог курса. Затем `CI/check-model.sh`
+запускает выпущенные Core collectors для свежего declared inventory и выбранных
+Body и проверяет их через `CI/check-access-control.py body`. После full и
+повторного student-рендера проверяются локальные ссылки и отделение решений.
+Внутренние owner-тесты в курс не копируются.
 
 Каждая сборка — отдельный шаг. При отказе CI сохраняет полные `ci-logs`,
-отладочный вывод Quarto и трассу подпроектов. Локально:
+отладочный вывод Quarto. Локально:
 
 ```sh
-bash CI/check-model.sh /absolute/private/cybersecurity-model
 bash CI/render.sh student
+bash CI/check-model.sh /absolute/private/cybersecurity-model
 bash CI/render.sh full
 bash CI/render.sh student
 python3 CI/site.py _site-student _site-full
+python3 CI/check-access-control.py site _site-student _site-full
 ```
 
 Проверка готовых сайтов контролирует страницы, локальные ссылки и отсутствие
 служебных/закрытых каталогов. Она не зависит от числа страниц или ID задания.
+Предметная проверка семинара 4 дополнительно контролирует 13 решений по текущим
+исходникам, student HTML, поиск и ресурсы, пять схем и их печатные представления.
+В Body проверяются назначения, teacher/public, условия и разрешённая QRC-ссылка.
 Служебные скрипты `CI/` исключены из ресурсов сайта.
 
 Исправления Windows-путей NativeRun и временного JSON CUE входят в upstream
-Core 7.3.0; локальные overlay поверх выпуска не применяются. Нативный прогон
+Core 8.2.8; локальные overlay поверх выпуска не применяются. Нативный прогон
 курса в Windows здесь не заявляется. Условный случай Quarto `recoverEncode`
 разобран в [руководстве по путям](https://afonenko-course-tools.github.io/quarto-template-course/guide/windows.html).
 
 PR workflow выполняет проверки курса. Публикация требует отдельно
 разрешённого запуска из `master` с `COURSE_PUBLISH_PAGES`; проверки PR
 курс не публикуют.
+
+## Измерение рендера
+
+Установите `quarto-course-perf` по [инструкции упаковки для Arch Linux](https://github.com/Afonenko-Course-Tools/quarto-course-perf-arch). Из корня курса можно измерить штатную сборку:
+
+```sh
+quarto-course-perf render --perf-mode summary --perf-output ../cybersecurity-measurements --profile student
+quarto-course-perf render --perf-mode cpu --perf-output ../cybersecurity-measurements seminars/04-access-control.qmd --profile student --to revealjs
+```
+
+Режимы `off`, `summary` и `cpu` сохраняют разную глубину диагностики одного
+нативного рендера. Для сравнения сохраняйте одинаковые cwd, цель, профиль и
+формат: времена полного курса и одной презентации напрямую несопоставимы.
+Отчёты сохраняйте вне
+`.quarto`, публикуемых каталогов и исходников курса. Наличие 18 физических копий
+расширений не означает выполнение каждой операции: Download в этом курсе не
+запрашивает ZIP. Успешный рендер, `dataValid` и `quality.coverageComplete`
+проверяются отдельно; одиночный запуск не доказывает универсальное ускорение.
+Подробности — в [руководстве Performance 2.0.0](https://github.com/Afonenko-Course-Tools/quarto-course-performance/blob/v2.0.0/docs/diagnostics.md).

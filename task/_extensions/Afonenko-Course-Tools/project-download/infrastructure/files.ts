@@ -23,19 +23,26 @@ export async function noSymlinks(root: string, path: string): Promise<void> {
 /** Git применяет правила игнорирования: вложенные файлы, отрицания и исключения каталогов. */
 async function gitIgnored(root: string, paths: string[]): Promise<Set<string>> {
   if (!paths.length) return new Set();
+  const childOptions = () => {
+    const base: Record<string, string> = {};
+    const context = __metrics.childEnv(base);
+    return context === base ? {} : {
+      env: __metrics.childEnv(Deno.env.toObject()), clearEnv: true,
+    };
+  };
   // Изолированный индекс не наследует .gitignore внешнего репозитория:
   // издатель может собирать копию внутри игнорируемого рабочего каталога.
   const gitDirectory=await Deno.makeTempDir({prefix:"project-download-git-"});
   try {
     let initialized: Deno.CommandOutput;
-    try { initialized=await new Deno.Command("git",{args:["init","--bare","--quiet",gitDirectory],stdout:"piped",stderr:"piped"}).output(); } catch(cause) { if (!Object.values(Deno.errors).some(kind => cause instanceof kind)) throw cause; throw externalFailure("git",undefined,cause); }
+    try { initialized=await new Deno.Command("git",{...childOptions(),args:["init","--bare","--quiet",gitDirectory],stdout:"piped",stderr:"piped"}).output(); } catch(cause) { if (!Object.values(Deno.errors).some(kind => cause instanceof kind)) throw cause; throw externalFailure("git",undefined,cause); }
     if(!initialized.success) throw externalFailure("git",initialized);
     if(initialized.stderr.length) await Deno.stderr.write(initialized.stderr);
     const excludesFile=join(gitDirectory,"empty-excludes");
     await Deno.writeTextFile(excludesFile,"");
     const names=paths.map(path=>relative(root,path).replaceAll("\\","/"));
     let process:Deno.ChildProcess;
-    try { process=new Deno.Command("git",{args:["-c","core.excludesFile="+excludesFile,"--git-dir="+gitDirectory,"--work-tree="+root,"check-ignore","--no-index","-z","--stdin"],cwd:root,stdin:"piped",stdout:"piped",stderr:"piped"}).spawn(); } catch(cause) { if (!Object.values(Deno.errors).some(kind => cause instanceof kind)) throw cause; throw externalFailure("git",undefined,cause); }
+    try { process=new Deno.Command("git",{...childOptions(),args:["-c","core.excludesFile="+excludesFile,"--git-dir="+gitDirectory,"--work-tree="+root,"check-ignore","--no-index","-z","--stdin"],cwd:root,stdin:"piped",stdout:"piped",stderr:"piped"}).spawn(); } catch(cause) { if (!Object.values(Deno.errors).some(kind => cause instanceof kind)) throw cause; throw externalFailure("git",undefined,cause); }
     const writer=process.stdin.getWriter();
     let inputFailure:unknown;
     try { await writer.write(new TextEncoder().encode(names.join("\0")+"\0")); }

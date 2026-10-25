@@ -18,7 +18,7 @@ toc: false
 | Организация обеспечения кибербезопасности | @theory:sec-theory-security-center-organization · @theory:sec-theory-security-center-workflow | @tasks:sec-security-center-roles · @tasks:sec-work-legal-requirements · @practice:sec-seminar-2 |
 | Применение нормативно-правовых актов | @theory:sec-theory-standards-risk-requirements-decisions | @tasks:sec-standards-risk-document-first · @tasks:sec-standards-risk-requirement-or-standard · @tasks:sec-standards-risk-certificate · @tasks:sec-standards-risk-risk-cost · @tasks:sec-standards-risk-inspection · @tasks:sec-work-standards-risk · @practice:sec-seminar-3 |
 | Криптография | @theory:sec-theory-crypto-random · @theory:sec-theory-crypto-hash · @theory:sec-theory-crypto-key-gen · @theory:sec-theory-crypto-cypher | @tasks:sec-seminar-crypto-rng · @tasks:sec-seminar-crypto-hash · @tasks:sec-seminar-crypto-cypher-symmetric · @tasks:sec-work-crypto-cypher-asymmetric · @tasks:sec-seminar-crypto-sign · @tasks:sec-seminar-crypto-cert |
-| Управление доступом | Материалы готовятся. | @tasks:sec-seminar-access-control-ident · @tasks:sec-seminar-access-control-authn · @tasks:sec-seminar-access-control-authz |
+| Управление доступом | @theory:sec-theory-access-control | @tasks:sec-seminar-access-control-ident · @tasks:sec-seminar-access-control-authn · @tasks:sec-seminar-access-control-authz · @tasks:sec-work-access-control · @practice:sec-seminar-4 |
 | Целостность данных | Материалы готовятся. | @tasks:sec-work-data-integrity-backup |
 
 : Материалы курса {#tbl-course-plan .course-plan .striped .hover .responsive}
