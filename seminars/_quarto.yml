@@ -6,6 +6,7 @@ project:
   - 01-introduction.qmd
   - 02-legal-requirements.qmd
   - 03-standards-risk.qmd
+  - control-demo.qmd
   output-dir: _output
   resources:
   - ./assets/**
@@ -64,6 +65,10 @@ website:
       href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/task/index.html
     - text: Семинары
       href: index.html
+    - text: Контрольные
+      menu:
+      - text: Демонстрационный вариант
+        href: control-demo.qmd
 course-navigation:
   course-url: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/
   links:
@@ -78,6 +83,9 @@ course-navigation:
     scope: course
   - text: Семинары
     href: /index.html
+    scope: project
+  - text: Контрольные
+    href: /control-demo.html
     scope: project
 bibliography: ../references.bib
 lang: ru
