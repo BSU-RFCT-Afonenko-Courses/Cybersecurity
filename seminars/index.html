@@ -118,6 +118,17 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link active" href="./index.html" aria-current="page"> 
 <span class="menu-text">Семинары</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Контрольные</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="./control-demo.html">
+ <span class="dropdown-text">Демонстрационный вариант</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -164,6 +175,7 @@ ul.task-list li input[type="checkbox"] {
 <li><a data-qrc-custom="false" data-qrc-ref="practice:sec-seminar-1" data-qrc-style="default" class="qrc-link" href="01-introduction.html#/sec-seminar-1">Занятие 1 – Понятия и КЦД</a> — Занятие 1 – Понятия и КЦД. Работа: <a data-qrc-custom="false" data-qrc-ref="tasks:sec-work-fundamentals-concepts" data-qrc-style="default" class="qrc-link" href="../task/seminar/concepts.html#sec-work-fundamentals-concepts"><span>Глава 28</span></a>.</li>
 <li><a data-qrc-custom="false" data-qrc-ref="practice:sec-seminar-2" data-qrc-style="default" class="qrc-link" href="02-legal-requirements.html#/sec-seminar-2"><span class="r-fit-text">Семинар 2 – Правовые аспекты и формирование требований по защите информации и кибербезопасности</span></a> — Семинар 2 – Правовые аспекты и формирование требований по защите информации и кибербезопасности. Работа: <a data-qrc-custom="false" data-qrc-ref="tasks:sec-work-legal-requirements" data-qrc-style="default" class="qrc-link" href="../task/seminar/02-structure.html#sec-work-legal-requirements"><span>Глава 30</span></a>.</li>
 <li><a data-qrc-custom="false" data-qrc-ref="practice:sec-seminar-3" data-qrc-style="default" class="qrc-link" href="03-standards-risk.html#/sec-seminar-3"><span class="r-fit-text">Семинар 3 – Применение нормативно-правовых актов</span></a> — Семинар 3 – Применение нормативно-правовых актов. Работа: <a data-qrc-custom="false" data-qrc-ref="tasks:sec-work-standards-risk" data-qrc-style="default" class="qrc-link" href="../task/seminar/03-standards-risk.html#sec-work-standards-risk"><span>Глава 31</span></a>.</li>
+<li><a href="./control-demo.html">Демонстрационный вариант контрольной работы</a> — задания и материалы для подготовки по темам семинаров 1–3.</li>
 </ul>
 <p>Остальные планы будут добавляться по мере подготовки материалов.</p>
 <p>Теоретические материалы: <a data-qrc-custom="false" data-qrc-ref="theory:sec-theory" data-qrc-style="default" class="qrc-link" href="../theory/index.html#sec-theory">Теория</a>. Условия лабораторных: <a data-qrc-custom="false" data-qrc-ref="tasks:sec-tasks" data-qrc-style="default" class="qrc-link" href="../task/index.html#sec-tasks">Задания и работы</a>. Навигация курса: <a data-qrc-custom="false" data-qrc-ref="portal:sec-portal" data-qrc-style="default" class="qrc-link" href="../index.html#sec-portal">Основы кибербезопасности</a>.</p>
@@ -687,7 +699,7 @@ if(base){
   }
  }
 }
-const targets=["03-standards-risk.html","01-introduction.html","02-legal-requirements.html"].map(path=>new URL(path,document.baseURI));
+const targets=["02-legal-requirements.html","01-introduction.html","03-standards-risk.html"].map(path=>new URL(path,document.baseURI));
 for(const link of document.querySelectorAll('a[href]')){
  const url=new URL(link.href,document.baseURI);
  if(targets.some(target=>target.origin===url.origin&&(

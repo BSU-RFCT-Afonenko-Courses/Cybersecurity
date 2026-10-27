@@ -39,6 +39,67 @@
       "label": "Таблица 1",
       "number": "1"
     },
+    "practice:exr-control-demo-document-selection": {
+      "namespace": "practice",
+      "id": "exr-control-demo-document-selection",
+      "page": "seminars/control-demo.html",
+      "fragment": "exr-control-demo-document-selection",
+      "labelHtml": "Упражнение&nbsp;2",
+      "numberHtml": "2",
+      "label": "Упражнение 2",
+      "number": "2"
+    },
+    "practice:exr-control-demo-protection-measures": {
+      "namespace": "practice",
+      "id": "exr-control-demo-protection-measures",
+      "page": "seminars/control-demo.html",
+      "fragment": "exr-control-demo-protection-measures",
+      "labelHtml": "Упражнение&nbsp;5",
+      "numberHtml": "5",
+      "label": "Упражнение 5",
+      "number": "5"
+    },
+    "practice:exr-control-demo-security-center": {
+      "namespace": "practice",
+      "id": "exr-control-demo-security-center",
+      "page": "seminars/control-demo.html",
+      "fragment": "exr-control-demo-security-center",
+      "labelHtml": "Упражнение&nbsp;4",
+      "numberHtml": "4",
+      "label": "Упражнение 4",
+      "number": "4"
+    },
+    "practice:exr-control-demo-service-center": {
+      "namespace": "practice",
+      "id": "exr-control-demo-service-center",
+      "page": "seminars/control-demo.html",
+      "fragment": "exr-control-demo-service-center",
+      "labelHtml": "Упражнение&nbsp;1",
+      "numberHtml": "1",
+      "label": "Упражнение 1",
+      "number": "1"
+    },
+    "practice:exr-control-demo-system-requirements": {
+      "namespace": "practice",
+      "id": "exr-control-demo-system-requirements",
+      "page": "seminars/control-demo.html",
+      "fragment": "exr-control-demo-system-requirements",
+      "labelHtml": "Упражнение&nbsp;3",
+      "numberHtml": "3",
+      "label": "Упражнение 3",
+      "number": "3"
+    },
+    "practice:sec-control-demo": {
+      "namespace": "practice",
+      "id": "sec-control-demo",
+      "page": "seminars/control-demo.html",
+      "fragment": "sec-control-demo",
+      "labelHtml": "Демонстрационный вариант контрольной работы",
+      "numberHtml": "",
+      "label": "Демонстрационный вариант контрольной работы",
+      "number": "",
+      "title": "Демонстрационный вариант контрольной работы"
+    },
     "practice:sec-practice": {
       "namespace": "practice",
       "id": "sec-practice",
@@ -85,6 +146,56 @@
       "label": "Семинар 3 – Применение нормативно-правовых актов",
       "number": "",
       "title": "Семинар 3 – Применение нормативно-правовых актов"
+    },
+    "practice:sol-control-demo-document-selection": {
+      "namespace": "practice",
+      "id": "sol-control-demo-document-selection",
+      "page": "seminars/control-demo.html",
+      "fragment": "sol-control-demo-document-selection",
+      "labelHtml": "Solution&nbsp;2",
+      "numberHtml": "2",
+      "label": "Solution 2",
+      "number": "2"
+    },
+    "practice:sol-control-demo-protection-measures": {
+      "namespace": "practice",
+      "id": "sol-control-demo-protection-measures",
+      "page": "seminars/control-demo.html",
+      "fragment": "sol-control-demo-protection-measures",
+      "labelHtml": "Solution&nbsp;5",
+      "numberHtml": "5",
+      "label": "Solution 5",
+      "number": "5"
+    },
+    "practice:sol-control-demo-security-center": {
+      "namespace": "practice",
+      "id": "sol-control-demo-security-center",
+      "page": "seminars/control-demo.html",
+      "fragment": "sol-control-demo-security-center",
+      "labelHtml": "Solution&nbsp;4",
+      "numberHtml": "4",
+      "label": "Solution 4",
+      "number": "4"
+    },
+    "practice:sol-control-demo-service-center": {
+      "namespace": "practice",
+      "id": "sol-control-demo-service-center",
+      "page": "seminars/control-demo.html",
+      "fragment": "sol-control-demo-service-center",
+      "labelHtml": "Solution&nbsp;1",
+      "numberHtml": "1",
+      "label": "Solution 1",
+      "number": "1"
+    },
+    "practice:sol-control-demo-system-requirements": {
+      "namespace": "practice",
+      "id": "sol-control-demo-system-requirements",
+      "page": "seminars/control-demo.html",
+      "fragment": "sol-control-demo-system-requirements",
+      "labelHtml": "Solution&nbsp;3",
+      "numberHtml": "3",
+      "label": "Solution 3",
+      "number": "3"
     },
     "tasks:exr-data-integrity-backup": {
       "namespace": "tasks",
