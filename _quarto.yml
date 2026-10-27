@@ -35,6 +35,7 @@ project:
   - '!**/_freeze/**'
   - '!task/**'
   - '!seminars/**'
+  - '!control-works/**'
   - '!Новые семинары'
   pre-render:
   - _extensions/Afonenko-Course-Tools/course-site/entrypoints/pre.ts
