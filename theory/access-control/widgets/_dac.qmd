@@ -1,0 +1,3 @@
+```{=html}
+<div class="acx-widget" data-access-model="dac"><p>Для изменения примера нужен JavaScript. Статическая схема приведена в разделе.</p></div>
+```

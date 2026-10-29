@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Один пример — три модели доступа</title>
+<link rel="stylesheet" href="widget.css">
+<style>body{max-width:1100px;margin:1.2rem auto;padding:0 1rem;font:16px/1.5 "DejaVu Sans",Arial,sans-serif;color:#183247;background:#fff}h1{font-size:1.5rem}</style>
+</head>
+<body>
+<h1 data-access-page-title>Один пример — три модели доступа</h1>
+<p>Лена — преподаватель, Борис — ассистент. Они работают с памяткой, черновиком заданий и ответами к экзамену.</p>
+<div data-access-model="comparison"><p>Для изменения примера нужен JavaScript. Статическая схема приведена в разделе.</p></div>
+<script>
+const requestedView = new URLSearchParams(location.search).get('view');
+if (['dac','mac','rbac','comparison'].includes(requestedView)) document.querySelector('[data-access-model]').dataset.accessModel = requestedView;
+</script>
+<script src="widget.js"></script>
+</body>
+</html>
