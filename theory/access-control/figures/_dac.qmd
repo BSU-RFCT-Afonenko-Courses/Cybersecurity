@@ -1,0 +1,25 @@
+```{=html}
+<style>
+.acv-figure{box-sizing:border-box;max-width:100%;min-width:0;margin:1rem 0;color:#183247;background:#fff;break-inside:avoid}
+.acv-figure .acv-caption{margin:0 0 .5rem;font-weight:650;font-size:1.05em;line-height:1.25;text-align:left;color:#183247}
+.acv-figure .acv-scroll{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;border:1px solid #d7e2ea;border-radius:12px;background:#fff}
+.acv-figure .acv-scroll:focus-visible{outline:3px solid #235eaa;outline-offset:3px}
+.acv-figure svg{display:block;width:100%;min-width:650px;height:auto;max-height:400px;background:#fff}
+.acv-figure svg text{font-family:DejaVu Sans,Arial,sans-serif}
+.reveal .acv-figure{margin:.4rem 0}
+.reveal .acv-figure .acv-caption{font-size:.7em}
+@media print{.acv-figure{margin:.7rem 0;break-inside:avoid}.acv-figure .acv-scroll{overflow:visible;border-color:#bacbd8}.acv-figure svg{min-width:0;max-height:none;width:100%}}
+</style>
+<figure class="acv-figure acv-dac">
+<figcaption class="acv-caption">Права на конкретный объект</figcaption>
+<div class="acv-scroll" role="region" aria-label="Схема с горизонтальной прокруткой: Права на конкретный объект" tabindex="0">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 415" width="1000" height="415" role="img" aria-label="Права на конкретный объект">
+<desc>Матрица содержит три строки субъектов и два столбца объектов. Выделенный столбец черновика представлен как ACL: Анна имеет чтение и запись, Борис — чтение, Вера — без доступа. Владелец Анна отдельно управляет разрешениями; право записи данных не означает право изменять ACL.</desc>
+<rect width="1000" height="415" fill="white"/>
+<g font-family="DejaVu Sans,Arial,sans-serif" fill="#183247">
+<rect x="20" y="22" width="560" height="222" rx="0" fill="white" stroke="#bacbd8" stroke-width="2"/><rect x="240" y="22" width="170" height="222" rx="0" fill="#eef5ff" stroke="#235eaa" stroke-width="3"/><path d="M20,76 L580,76" fill="none" stroke="#bacbd8" stroke-width="2"/><path d="M20,132 L580,132" fill="none" stroke="#bacbd8" stroke-width="2"/><path d="M20,188 L580,188" fill="none" stroke="#bacbd8" stroke-width="2"/><path d="M240,22 L240,244" fill="none" stroke="#235eaa" stroke-width="2"/><path d="M410,22 L410,244" fill="none" stroke="#bacbd8" stroke-width="2"/><text x="130" y="57" text-anchor="middle" font-size="24" font-weight="650" fill="#183247">Субъект</text><text x="325" y="57" text-anchor="middle" font-size="24" font-weight="650" fill="#235eaa">Черновик</text><text x="495" y="57" text-anchor="middle" font-size="24" font-weight="650" fill="#183247">Материалы</text><text x="130" y="113" text-anchor="middle" font-size="24" font-weight="400" fill="#183247">Анна</text><text x="325" y="113" text-anchor="middle" font-size="25" font-weight="600" fill="#235eaa">r, w</text><text x="495" y="113" text-anchor="middle" font-size="25" font-weight="400" fill="#183247">r, w</text><text x="130" y="169" text-anchor="middle" font-size="24" font-weight="400" fill="#183247">Борис</text><text x="325" y="169" text-anchor="middle" font-size="25" font-weight="600" fill="#235eaa">r</text><text x="495" y="169" text-anchor="middle" font-size="25" font-weight="400" fill="#183247">r</text><text x="130" y="225" text-anchor="middle" font-size="24" font-weight="400" fill="#183247">Вера</text><text x="325" y="225" text-anchor="middle" font-size="25" font-weight="600" fill="#235eaa">—</text><text x="495" y="225" text-anchor="middle" font-size="25" font-weight="400" fill="#183247">r</text><path d="M596,134 L639.0,134.0" fill="none" stroke="#235eaa" stroke-width="5" stroke-linecap="round"/><polygon points="651,134 639.0,140.0 639.0,128.0" fill="#235eaa"/><rect x="670" y="22" width="310" height="222" rx="14" fill="#eef5ff" stroke="#235eaa" stroke-width="2"/><text x="825" y="59" text-anchor="middle" font-size="25" font-weight="650" fill="#235eaa">ACL черновика</text><path d="M690,78 L960,78" fill="none" stroke="#235eaa" stroke-width="2"/><text x="825" y="113" text-anchor="middle" font-size="25" font-weight="400" fill="#183247">Анна: r, w</text><text x="825" y="169" text-anchor="middle" font-size="25" font-weight="400" fill="#183247">Борис: r</text><text x="825" y="225" text-anchor="middle" font-size="25" font-weight="400" fill="#183247">Вера: —</text><rect x="20" y="286" width="290" height="64" rx="14" fill="#fff5df" stroke="#a86508" stroke-width="2"/><text x="165.0" y="328.0" text-anchor="middle" font-size="25" font-weight="650" fill="#a86508">Владелец: Анна</text><path d="M325,318 L825,318" fill="none" stroke="#a86508" stroke-width="5"/><path d="M825,318 L825.0,268.0" fill="none" stroke="#a86508" stroke-width="5" stroke-linecap="round"/><polygon points="825,256 831.0,268.0 819.0,268.0" fill="#a86508"/><text x="560" y="298" text-anchor="middle" font-size="24" font-weight="600" fill="#a86508">изменяет разрешения</text><text x="500" y="391" text-anchor="middle" font-size="22" font-weight="500" fill="#183247">r — чтение; w — запись. Изменять права ≠ записывать данные.</text>
+</g>
+</svg>
+</div>
+</figure>
+```
