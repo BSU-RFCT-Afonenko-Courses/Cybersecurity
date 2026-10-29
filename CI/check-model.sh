@@ -2,6 +2,7 @@
 set -euo pipefail
 repo=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)
 cd "$repo"
+node CI/build-access-control.mjs --check
 node CI/access-control.test.mjs
 TASK_CYBER_CHECK_ROOT=${1:-$(mktemp -d)}
 mkdir -p "$TASK_CYBER_CHECK_ROOT"
