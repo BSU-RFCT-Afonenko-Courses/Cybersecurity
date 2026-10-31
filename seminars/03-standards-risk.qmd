@@ -25,3 +25,5 @@
 ### Дополнительная работа
 
 @tasks:exr-standards-risk-requirement-or-standard; @tasks:exr-standards-risk-certificate; @tasks:sec-work-standards-risk.
+
+Дополнительные задания: @tasks:exr-standards-risk-document-first; @tasks:exr-standards-risk-inspection.

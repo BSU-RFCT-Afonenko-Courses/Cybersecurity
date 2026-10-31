@@ -36,3 +36,5 @@
 ### Дополнительная работа
 
 @tasks:exr-fundamentals-educational-portal; @tasks:exr-fundamentals-pizza-incident; @tasks:sec-work-fundamentals-concepts.
+
+Дополнительные задания: @tasks:exr-fundamentals-exhibition; @tasks:exr-fundamentals-carsharing.

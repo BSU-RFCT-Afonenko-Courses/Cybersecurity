@@ -33,3 +33,5 @@
 ### Дополнительная работа
 
 @tasks:exr-legal-system-classes; @tasks:exr-legal-requirements-audit; @tasks:sec-work-legal-requirements.
+
+Дополнительное задание: @tasks:exr-security-center-roles.
