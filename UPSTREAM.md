@@ -6,16 +6,16 @@
 
 | Поставщик | Тег | Точный коммит исходников | Проекты Quarto |
 | --- | --- | --- | --- |
-| Core / Presentation / Navigation | `v7.3.0` | `e93bc3aa5c5f747e647d42ed6c0f65c127920184` | Корень, theory, task, seminars |
-| Publisher | `v5.1.1` | `4a1d7d19f5a232d8ff91ea91a02097e0acf7d9c0` | Корень |
-| Reference Catalog | `v3.1.0` | `3df2110e9f525f03f3ecb4926b5d55718e955c4c` | Корень, theory, task, seminars |
-| Download | `v3.1.0` | `73797d3807e2433d33751d538746e1e9d82d6d57` | task |
+| Core / Presentation / Navigation | `v8.2.8` | `b0dad2522e69a673c060ba3963f8fb0ba1e0b85d` | Корень, theory, task, seminars |
+| Publisher | `v5.1.4` | `a0fc543fb461d90b9f467dbe8b6a0b286a39311a` | Корень |
+| Reference Catalog | `v3.1.1` | `989448d2afa4df7db882b0874c88808a00ae52c2` | Корень, theory, task, seminars |
+| Download | `v3.2.2` | `10cb38f2ba5c88e585a0ff6800adf5fc2b77597e` | task |
 
 Совместимость и нормативные правила читаются по тому же immutable tag:
-[Core](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v7.3.0/spec/index.md),
-[Publisher](https://github.com/Afonenko-Course-Tools/quarto-project-publish/blob/v5.1.1/spec/index.md),
-[QRC](https://github.com/Afonenko-Course-Tools/quarto-reference-catalog/blob/v3.1.0/spec/index.md),
-[Download](https://github.com/Afonenko-Course-Tools/quarto-project-download/blob/v3.1.0/spec/index.md).
+[Core](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v8.2.8/spec/index.md),
+[Publisher](https://github.com/Afonenko-Course-Tools/quarto-project-publish/blob/v5.1.4/spec/index.md),
+[QRC](https://github.com/Afonenko-Course-Tools/quarto-reference-catalog/blob/v3.1.1/spec/index.md),
+[Download](https://github.com/Afonenko-Course-Tools/quarto-project-download/blob/v3.2.2/spec/index.md).
 Минимальная линия: Quarto 1.11.5 и CUE 0.17.1.
 
 Руководство для автора закреплено на проверенном коммите Template

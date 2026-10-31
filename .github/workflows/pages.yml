@@ -49,6 +49,8 @@ jobs:
       run: bash CI/render.sh student
     - name: Validate rendered pages and local links
       run: python3 CI/site.py _site-student _site-full
+    - name: Проверить отделение решений семинара 4
+      run: python3 CI/check-access-control.py site _site-student _site-full
     - name: Upload build diagnostics
       if: failure()
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

@@ -6,7 +6,9 @@ import { assembleRelease } from "../domain/release.ts";
 import type { ReleaseResult } from "../domain/model.ts";
 import type {BodyReferenceContext} from "./links.ts";
 import { command, quartoExecutable } from "../infrastructure/process.ts";
-import { loadNativeRun, prepareNativeExportCleanup } from "../infrastructure/native-run.ts";
+import { loadNativeRun, prepareNativeExportCleanup, prepareOverlayNativeCleanup } from "../infrastructure/native-run.ts";
+
+import {startOwnedConfigOverlay} from '../infrastructure/owned-config-overlay.ts';
 
 /** One native source pass, from the logical root, over one explicitly chosen bank.
  * Quarto resolves includes, computations and functional profiles. Its JSON writer
@@ -34,7 +36,8 @@ export async function collectExport(root: string, options: {
     catch (e) { if (e instanceof Deno.errors.NotFound) return false; throw e; }
   }));
   if (!configs.some(Boolean)) throw diagnostic("EXPORT.BOOK_PROJECT_REQUIRED", "Выбранный банк должен быть самостоятельным проектом book", {source: projectRoot, id: options.work});
-  const bank = JSON.parse(await command(quarto, ["inspect", projectRoot, "--profile", ["full", ...functional].join(",")], projectRoot));
+  const bankText=await command(quarto, ["inspect", projectRoot, "--profile", ["full", ...functional].join(",")], projectRoot);
+  const bank=JSON.parse(bankText);
   if (bank.config.project?.type !== "book") throw diagnostic("EXPORT.BOOK_PROJECT_REQUIRED", "Выбранный банк должен быть самостоятельным проектом book", {source: projectRoot, id: options.work});
   for (const p of functional) {
     const files = await Promise.all(["yml", "yaml"].map(async suffix => {
@@ -61,10 +64,12 @@ export async function collectExport(root: string, options: {
     filters: ["course-core"],
     crossref: {},
   };
-  await Deno.writeTextFile(profile, JSON.stringify(config));
-  let collected=false;
+  const multiple=(v:unknown)=>Array.isArray(v)&&v.length>1;
+  const overlay=multiple(bank.config.project['pre-render'])||multiple(bank.config.project['post-render'])?await startOwnedConfigOverlay(projectRoot,bankText,['full',...functional]):undefined;
+  await Deno.writeTextFile(profile, JSON.stringify(config),overlay?{createNew:true,mode:0o600}:{});
+  let collected=false,overlayActivated=false,overlayRestored=false;
   try {
-    const profiles = [name, "full", ...functional];
+    let profiles = [name, "full", ...functional];
     // Explicit recursive render globs cross nested Quarto project boundaries.
     // Use the public native inventory, then resolve native project ownership
     // once per input directory before any source executes or Core validates it.
@@ -95,6 +100,7 @@ export async function collectExport(root: string, options: {
     if (!selectedInputs.length) throw diagnostic("EXPORT.BANK_INPUTS_EMPTY", "У выбранного банка нет входных документов", {source: projectRoot, id: options.work});
     config.project.render = selectedInputs;
     await Deno.writeTextFile(profile, JSON.stringify(config));
+    if(overlay){await overlay.prepare(name,new TextEncoder().encode(JSON.stringify(config)),selectedInputs,output);overlayActivated=true;await overlay.activate();profiles=[name]}
     await command(quarto, ["render", ".", "--profile", profiles.join(","), "--to", "json", "--output-dir", output, "--fail-if-warnings=false"], projectRoot);
     const run = await loadNativeRun(projectRoot, {profiles, view: "full", outputDirectory: output});
     const allowed = new Set(selectedInputs);
@@ -218,10 +224,17 @@ export async function collectExport(root: string, options: {
         },
       };
     }
+    if(overlay){const complete=await prepareOverlayNativeCleanup(projectRoot,name);const restored=await overlay.restore();overlayRestored=true;await complete(restored)}
     return {result, projectRoot, courseId, work: workId, bodyReferences};
   } finally {
-    try { if(collected)await prepareNativeExportCleanup(projectRoot,name); }
-    finally { await Deno.remove(profile); }
+    if(overlay){
+      // Failure restores the held source inode when safe, but never publishes capability.
+      try{if(overlayActivated&&!overlayRestored){await overlay.abort();overlayRestored=true}}
+      finally{overlay.close()}
+    }else{
+      try { if(collected)await prepareNativeExportCleanup(projectRoot,name); }
+      finally { await Deno.remove(profile); }
+    }
   }
 }
 

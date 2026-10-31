@@ -68,7 +68,7 @@ function M.collect(doc)
               check(candidate.attributes.requirement==nil and candidate.attributes['work-mode']==nil,'Атрибуты назначения принадлежат внешней позиции, не кандидату группы',id,'slots')
             end})
             group=span
-            check(span.identifier:match('^alt%-[a-z0-9][a-z0-9%-]*$') and span.attributes.selection=='random','Группа требует явные alt-* и selection=random',id,'slots')
+            check(span.identifier:match('^alt%-[a-z0-9][a-z0-9%-]*$') and (span.attributes.selection=='random' or span.attributes.selection=='choice'),'Группа требует явные alt-* и selection=random|choice',id,'slots')
           end
           for key,_ in pairs(span.attributes) do
             check(key=='requirement' or key=='work-mode' or alternatives and key=='selection' or visibilityFields[key],'Неизвестный атрибут позиции: '..key,id,key)
@@ -95,8 +95,9 @@ function M.collect(doc)
         else check(#refs==1,'Каждый пункт требует одну ссылку или task-alternatives',id,'slots') end
         local slotId=group and group.identifier or refs[1]
         check(not slotIds[slotId],'Повторный ID позиции: '..slotId,id,'slots');slotIds[slotId]=true
+        if group and group.attributes.selection=='choice' then check((requirement or defaultRequirement)=='required','Самостоятельный выбор требует required',id,'requirement') end
         sizes:insert(1)
-        slots:insert({id=slotId,selection=group and 'random' or 'fixed',candidates=refs,assignment={stage=stage,requirement=requirement or defaultRequirement,workMode=workMode or defaultMode}})
+        slots:insert({id=slotId,selection=group and group.attributes.selection or 'fixed',candidates=refs,assignment={stage=stage,requirement=requirement or defaultRequirement,workMode=workMode or defaultMode}})
       end
     end
   end})

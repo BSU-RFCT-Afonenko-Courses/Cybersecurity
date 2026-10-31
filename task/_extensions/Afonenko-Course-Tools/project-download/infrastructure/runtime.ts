@@ -94,6 +94,15 @@ export interface NativeDownloadContext {
     options: { facts: any[]; selected: string[]; projectRoot: string; publicPayload?: boolean; authoredInputs?: string[] },
   ): Promise<unknown>;
 }
+type NativeArtifactBatch = Readonly<{
+  run: NativeDownloadContext["run"];
+  resolveArtifact(request:{source:string;exerciseId:string;kind:string}):Promise<any>;
+}>;
+type ArtifactBatchRunner = (
+  root:string,
+  expectation:{profiles:string[];outputDirectory:string},
+  use:(batch:NativeArtifactBatch)=>Promise<number>,
+)=>Promise<number>;
 /** Explicit current native inventory; the caller also requires successful process exit. */
 export async function finish(
   root: string,
@@ -117,6 +126,8 @@ export async function finish(
     const owned = await inspectOwnedRequests(root, [...selected]);
     for (const file of owned.files) requests.push(JSON.parse(await Deno.readTextFile(file.path)));
   }
+  let withBatch:ArtifactBatchRunner|undefined;
+  let batchResources:NativeDownloadContext["evaluateResources"]|undefined;
   if (
     !current &&
     (config["course-model"] ||
@@ -125,21 +136,27 @@ export async function finish(
     // Core and Download installed from GitHub share the provider directory.
     const extension = dirname(dirname(fromFileUrl(import.meta.url)));
     const core = join(dirname(extension), "course-core");
-    const { loadNativeRun } = await import(
-      toFileUrl(join(core, "infrastructure/native-run.ts")).href
-    );
     const { evaluateResources } = await import(
       toFileUrl(join(core, "infrastructure/resources.ts")).href
     );
-    const { resolveArtifact } = await import(toFileUrl(join(core, "artifacts/resolve.ts")).href);
-    current = { run: await loadNativeRun(root), evaluateResources, resolveArtifact };
+    const artifacts = await import(toFileUrl(join(core, "artifacts/resolve.ts")).href);
+    if(typeof artifacts.withNativeArtifactBatch === "function") {
+      withBatch=artifacts.withNativeArtifactBatch;
+      batchResources=evaluateResources;
+    } else {
+      const { loadNativeRun } = await import(toFileUrl(join(core, "infrastructure/native-run.ts")).href);
+      current = { run: await loadNativeRun(root,{profiles,outputDirectory:output}), evaluateResources, resolveArtifact:artifacts.resolveArtifact };
+    }
   }
+  let publication:(()=>Promise<void>)|undefined;
+  const collect=async(current:NativeDownloadContext|undefined,defer=false):Promise<number>=>{
   if (
     current &&
     (resolve(current.run.projectRoot) !== resolve(root) ||
-      resolve(current.run.outputDirectory) !== resolve(root, output))
+      resolve(current.run.outputDirectory) !== resolve(root, output)||
+      JSON.stringify(current.run.profiles)!==JSON.stringify(profiles))
   ) {
-    throw diagnostic("DOWNLOAD.REQUEST_INVALID", "Нативный контекст не соответствует текущему проекту и каталогу вывода", {source:root,field:"projectRoot/outputDirectory",related:[{source:current.run.projectRoot},{source:current.run.outputDirectory}]});
+    throw diagnostic("DOWNLOAD.REQUEST_INVALID", "Нативный контекст не соответствует текущему проекту, профилям и каталогу вывода", {source:root,field:"projectRoot/outputDirectory/profiles",related:[{source:current.run.projectRoot},{source:current.run.outputDirectory}]});
   }
   const facts =
     current?.run.documents.flatMap((d) => d.resources ? [d.resources] : []) ??
@@ -197,6 +214,7 @@ export async function finish(
     async modelArtifact(request, source) {
       if (!current?.resolveArtifact) throw diagnostic("DOWNLOAD.CONFIG_INVALID", "Требуется Core с модельными комплектами", {source,id:request.exerciseId,field:"course-model"});
       const artifact = await current.resolveArtifact(current.run, {source,exerciseId:request.exerciseId,kind:request.kind});
+      if (Array.isArray(artifact.files)) return {kind:artifact.kind,files:artifact.files};
       if (artifact.kind === "conditions") {
         if (!Array.isArray(artifact.files)) throw diagnostic("DOWNLOAD.RESOURCE_UNAVAILABLE", "Core не предоставил переносимое условие", {source,id:request.exerciseId,field:"conditions"});
         return {kind:artifact.kind,files:artifact.files};
@@ -241,7 +259,24 @@ export async function finish(
       return files;
     },
     async save(archives) {
+      // Собственные ZIP bytes и receipt facts фиксируются внутри Core callback.
+      // Публикационные проверки/очистка/записи начинаются только после B.
+      archives=archives.map(archive=>({name:archive.name,bytes:new Uint8Array(archive.bytes)}));
+      const artifactRequests=requests.flatMap(request=>(request.artifacts??[]).map(artifact=>({...artifact,source:request.source})));
+      const audienceValues=[...new Set((current?.run.documents ?? []).map(d=>d.course?.view).filter(v=>v==="student" || v==="full"))].sort();
+      const audience=audienceValues.length===1 ? audienceValues[0] : null;
+      const entries=[];
+      for(const archive of archives) {
+        const request=artifactRequests.find(a=>a.exerciseId+"-"+a.kind+".zip"===archive.name);
+        entries.push({name:archive.name,audience,sha256:await sha256(archive.bytes),...(request?{exerciseId:request.exerciseId,kind:request.kind,source:request.source,audience:current?.run.documents.find(d=>d.source===request.source)?.course?.view??null}:{} )});
+      }
+      const receiptText=JSON.stringify({schema:"project-download-artifacts-v1",audience,audiences:audienceValues,profiles,sourceRunHash:current?await sha256(new TextEncoder().encode(JSON.stringify(current.run))):null,archives:entries},null,2)+"\n";
+      const commit=async()=>{
       const receiptPath=child(root,"_generated/project-download/artifacts-receipt.json");
+      // Даже отсутствующий receipt не разрешает запись через linked parent.
+      let receiptParent=dirname(receiptPath);
+      while(!await exists(receiptParent)) receiptParent=dirname(receiptParent);
+      if(resolve(receiptParent)!==resolve(root)) await noSymlinks(root,receiptParent);
       if(await exists(receiptPath)) {
         await noSymlinks(root,receiptPath);
         const previous=JSON.parse(await Deno.readTextFile(receiptPath));
@@ -251,6 +286,9 @@ export async function finish(
       if (!archives.length) return;
       const outputRoot = resolve(root, output);
       const directory = child(outputRoot, "_downloads");
+      if(await exists(outputRoot) && (await Deno.lstat(outputRoot)).isSymlink) {
+        throw diagnostic("DOWNLOAD.PATH_INVALID", "Каталог вывода не должен быть символической ссылкой", {source:outputRoot,field:"output-dir"});
+      }
       await Deno.mkdir(directory, { recursive: true });
       if ((await Deno.lstat(outputRoot)).isSymlink) {
         throw diagnostic("DOWNLOAD.PATH_INVALID", "Каталог вывода не должен быть символической ссылкой", {source:outputRoot,field:"output-dir"});
@@ -279,17 +317,23 @@ export async function finish(
         if(previous?.schema!=="project-download-artifacts-v1") throw diagnostic("DOWNLOAD.OUTPUT_CONFLICT","Чужой файл на пути receipt",{source:receiptPath,field:"receipt"});
         await Deno.remove(receiptPath);
       }
-      const artifactRequests=requests.flatMap(request=>(request.artifacts??[]).map(artifact=>({...artifact,source:request.source})));
-      const audienceValues=[...new Set((current?.run.documents ?? []).map(d=>d.course?.view).filter(v=>v==="student" || v==="full"))].sort();
-      const audience=audienceValues.length===1 ? audienceValues[0] : null;
-      const entries=[];
-      for(const archive of archives) {
-        const request=artifactRequests.find(a=>a.exerciseId+"-"+a.kind+".zip"===archive.name);
-        entries.push({name:archive.name,audience,sha256:await sha256(archive.bytes),...(request?{exerciseId:request.exerciseId,kind:request.kind,source:request.source,audience:current?.run.documents.find(d=>d.source===request.source)?.course?.view??null}:{} )});
-      }
-      await Deno.writeTextFile(receiptPath,JSON.stringify({schema:"project-download-artifacts-v1",audience,audiences:audienceValues,profiles,sourceRunHash:current?await sha256(new TextEncoder().encode(JSON.stringify(current.run))):null,archives:entries},null,2)+"\n",{createNew:true});
+      await Deno.writeTextFile(receiptPath,receiptText,{createNew:true});
+      };
+      if(defer) publication=commit;else await commit();
     },
   });
+  };
+  if(withBatch) {
+    const count=await withBatch(root,{profiles,outputDirectory:output},async batch=>collect({
+      run:batch.run,
+      evaluateResources:batchResources!,
+      resolveArtifact:(_run,request)=>batch.resolveArtifact(request),
+    },true));
+    if(!publication) throw diagnostic("DOWNLOAD.REQUEST_INVALID","Core batch не подготовил публикацию",{source:root,field:"artifacts"});
+    await publication();
+    return count;
+  }
+  return await collect(current);
 }
 
 // @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.

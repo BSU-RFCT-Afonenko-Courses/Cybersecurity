@@ -47,3 +47,36 @@
 `docs/seminar-4/` описывают прежние проверки; их старые пути не заменяют
 актуальные авторские пути этой страницы. Воспроизводимый сценарий
 `docs/seminar-4/check-casbin.py` читает действующий тематический банк.
+
+## Разметка задач и решений
+
+Контракты [учебных элементов](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v8.2.8/spec/learning-elements.md)
+и [видимости](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v8.2.8/spec/visibility.md)
+читаются по закреплённому выпуску Core 8.2.8. В `task/bank/` каждая задача
+имеет итоговую сложность и видимость условия: `difficulty` задаётся задачей
+либо `default-exercise-difficulty`, `statement-visibility` — задачей либо
+`default-exercise-statement-visibility`. Оценка `time` необязательна.
+
+```markdown
+:::: {#exr-example difficulty="introductory"}
+Условие задачи. Видимость `open` наследуется из `bank/_metadata.yml`.
+::::
+
+::: {#sol-example}
+Разбор задачи.
+:::
+```
+
+Связанный `#sol-*` имеет тот же суффикс и находится в том же QMD.
+Вместо него допустима вложенная анонимная `.solution`; атрибут `for`
+у банковского решения не поддерживается. Не добавляйте специальные классы
+к уже распознаваемым `#exr-*` и `#sol-*`. Публичный разбор требует открытого
+условия и `course-role="demonstration"` у задачи. Стадия назначения и настройка
+раскрытия решения не меняют его видимость. Подборки ссылок оформляются
+ролью `reading`, а не решением.
+
+Точечная проверка выбранных Body: `bash CI/check-model.sh /tmp/cybersecurity-model`.
+Для уже собранных целевых страниц банка используйте
+`python3 CI/check-access-control.py site task/_output/student task/_output/full --targeted`.
+Полный режим `site` дополнительно проверяет общие ресурсы, теорию и Reveal
+в собранных корневых сайтах; точечный режим не подтверждает весь сайт.

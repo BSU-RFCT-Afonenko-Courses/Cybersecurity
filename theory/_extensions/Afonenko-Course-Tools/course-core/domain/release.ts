@@ -100,7 +100,8 @@ export function assembleRelease(
     if(assessment.relatedExercise!==undefined && !facts.has(assessment.relatedExercise)) fail("CORE.RELATED_EXERCISE_MISSING","Связанное упражнение отсутствует в текущих декларациях",{source:assessment.source,id:assessment.id,field:"related-exercise",related:[{id:assessment.relatedExercise}]});
     const used=new Set<string>(),slotIds=new Set<string>();
     for (const slot of assessment.slots) {
-      if(Object.keys(slot).some(k=>!["id","selection","candidates","assignment"].includes(k)) || !/^(exr|alt)-[a-z0-9][a-z0-9-]*$/.test(slot.id) || slotIds.has(slot.id) || !Array.isArray(slot.candidates) || (slot.selection==="fixed" ? slot.candidates.length!==1 || slot.id!==slot.candidates[0] : slot.selection!=="random" || !slot.id.startsWith("alt-") || slot.candidates.length<2)) fail("CORE.ASSESSMENT_INVALID","Некорректная позиция",{id:assessment.id,field:"slots"});
+      if(slot.selection==="choice"&&slot.assignment?.requirement!=="required")fail("CORE.ASSESSMENT_INVALID","Самостоятельный выбор требует required",{id:assessment.id,field:"slots"});
+      if(Object.keys(slot).some(k=>!["id","selection","candidates","assignment"].includes(k)) || !/^(exr|alt)-[a-z0-9][a-z0-9-]*$/.test(slot.id) || slotIds.has(slot.id) || !Array.isArray(slot.candidates) || (slot.selection==="fixed" ? slot.candidates.length!==1 || slot.id!==slot.candidates[0] : !["random","choice"].includes(slot.selection) || !slot.id.startsWith("alt-") || slot.candidates.length<2)) fail("CORE.ASSESSMENT_INVALID","Некорректная позиция",{id:assessment.id,field:"slots"});
       slotIds.add(slot.id);
       for(const member of slot.candidates){
       if(used.has(member))fail("CORE.ASSESSMENT_INVALID","Повторный кандидат",{id:assessment.id,field:"slots"});used.add(member);

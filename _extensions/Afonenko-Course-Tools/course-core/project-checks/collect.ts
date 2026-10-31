@@ -55,6 +55,10 @@ export async function collectProjectChecks(root:string,options:{book:string;prof
  for(const fact of collected.result.model.projects??[]){
   if(!fact.check)continue;
   const check=fact.check;
+  const javaRuntime=check.runtime==='java25-junit-v1'||check.runtime==='java25-gradle-junit-v1';
+  const build=check['java-build'];
+  if(check.runtime==='java25-gradle-junit-v1'&&build===undefined)throw diagnostic('CHECKS.JAVA_BUILD_INVALID','Native Gradle runtime требует java-build');
+  if(build!==undefined&&(!build||typeof build!=='object'||Array.isArray(build)||Object.keys(build).length!==3||Object.keys(build).some(k=>!['kind','main-class','artifact'].includes(k))||check.runtime!=='java25-gradle-junit-v1'||check.sourceProfile.mode!=='implementation'||build.kind!=='gradle-jar-v1'||typeof build['main-class']!=='string'||!/^[A-Za-z_$][A-Za-z0-9_$]*(?:\.[A-Za-z_$][A-Za-z0-9_$]*)*$/.test(build['main-class'])||typeof build.artifact!=='string'||!/^[A-Za-z0-9][A-Za-z0-9_-]{0,100}\.jar$/.test(build.artifact)))throw diagnostic('CHECKS.JAVA_BUILD_INVALID','Требуется закрытая Gradle implementation policy');
   const missing:string[]=[];
   let project=resolve(collected.projectRoot,fact.projectRoot);
   try{project=await guarded(collected.projectRoot,fact.projectRoot)}catch(e){if(!(e instanceof Deno.errors.NotFound))throw e;missing.push("projectRoot");}
@@ -66,7 +70,7 @@ export async function collectProjectChecks(root:string,options:{book:string;prof
   const verificationTests=await select("student",((check["verification-tests"]??[]) as string[]).map(p=>p.startsWith("student/")?p.slice(8):p));
   const apiSubset=async (value:ApiPrecheck|undefined,partition:string,available:SourceSelection[],stripJunit=false):Promise<ApiPrecheck|undefined>=>{
    if(!value)return undefined;
-   if(check.runtime!=="java25-junit-v1"||check.sourceProfile.mode!=="implementation"||!value.files.length||!/^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*)*$/.test(value.entry))throw diagnostic("CHECKS.API_INVALID","API precheck требует Java implementation, files и entry");
+   if(!javaRuntime||check.sourceProfile.mode!=="implementation"||!value.files.length||!/^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*)*$/.test(value.entry))throw diagnostic("CHECKS.API_INVALID","API precheck требует Java implementation, files и entry");
    const selected=(await select(partition,value.files.map(p=>p.startsWith(partition+"/")?p.slice(partition.length+1):p))).map(s=>({...s,submissionRelativePath:stripJunit?s.submissionRelativePath.replace(/^junit\//,""):s.submissionRelativePath}));
    if(!selected.length){missing.push(partition+"ApiPrecheck");return {entry:value.entry,files:[]};}
    if(selected.length>=available.length||selected.some(s=>!s.submissionRelativePath.endsWith('.java')||!available.some(a=>a.projectRelativePath===s.projectRelativePath&&a.submissionRelativePath===s.submissionRelativePath)))throw diagnostic("CHECKS.API_SUBSET_INVALID","API precheck должен быть собственным подмножеством выбранных доверенных Java sources");

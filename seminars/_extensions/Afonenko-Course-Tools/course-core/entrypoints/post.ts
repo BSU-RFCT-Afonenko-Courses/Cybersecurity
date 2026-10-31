@@ -1,8 +1,7 @@
 import { runCli } from "./diagnostics.ts";
 import {
   currentNativeOutputs,
-  finishNativeRun,
-  saveNativeRun,
+  withFinishedNativeRun,
 } from "../infrastructure/native-run.ts";
 import { finalizeAssessmentPreview, finalizePublicSolutionWitness } from "./preview.ts";
 import { assembleRelease } from "../domain/release.ts";
@@ -12,7 +11,7 @@ const root = Deno.env.get("QUARTO_PROJECT_DIR") || Deno.cwd();
 // Native hooks can notify without rendered outputs (for example on preview startup).
 // Only a nonempty current public inventory can complete the current bridge run.
 if ((await currentNativeOutputs(root)).length) {
-  const run = await finishNativeRun(root);
+  await withFinishedNativeRun(root,async run=>{
   await finalizePublicSolutionWitness(run);
   await finalizeAssessmentPreview(run);
   if(run.renderAll && run.documents.length && !run.documents.every(doc=>doc.document.exportContext===true)){
@@ -29,8 +28,8 @@ if ((await currentNativeOutputs(root)).length) {
       await Deno.writeTextFile(path,html.replace(/<!--course-exercise-index(?::(.*?))?-->/g,(_marker,request)=>renderIndex(request?JSON.parse(request):{})));
     }
   }
-  await saveNativeRun(run,true);
   console.log(`Курс: ${run.documents.length} текущих native-документов`);
+  });
 }
 
 });

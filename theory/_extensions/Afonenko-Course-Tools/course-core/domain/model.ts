@@ -16,7 +16,7 @@ export interface Assessment {
 }
 import type { AssessmentKind, ExercisePurpose, PedagogicalKind, Difficulty, WorkMode, Requirement, View, Stage, StatementVisibility } from "./vocabulary.ts";
 export type { PedagogicalKind, ExercisePurpose } from "./vocabulary.ts";
-export interface AssessmentSlot { id: string; selection: "fixed" | "random"; candidates: string[]; assignment: Assignment }
+export interface AssessmentSlot { id: string; selection: "fixed" | "random" | "choice"; candidates: string[]; assignment: Assignment }
 export interface Assignment { stage?: Stage; requirement: "required" | "optional"; workMode: WorkMode }
 export interface ExerciseDeclaration { id: string; source: string; difficulty: Difficulty; time?: number; statementVisibility: StatementVisibility; purpose?: ExercisePurpose; hasSolution: boolean; hasPublicSolution: boolean }
 export type AssessmentComposition = Omit<Assessment, "body" | "source" | "extensions">;
@@ -34,11 +34,15 @@ export interface Pedagogy {
 export type Extracted<T> = Omit<T, "body" | "gradingNotes" | "source" | "extensions"> & { bodyJson: string; gradingNotesJson?: string[] };
 export interface TopicFact { source: string; semester?: string; categories: string[] }
 export interface SourceProfile {mode:"implementation"|"student-tests";root:string;include:string[]}
+export interface JavaBuild {kind:"gradle-jar-v1"; "main-class":string; artifact:string}
 export interface AdditionalJavaSources {archive:string; "max-files":number; "max-file-bytes":number; "max-total-bytes":number; "max-archive-bytes":number}
 export interface ApiPrecheck {files:string[];entry:string}
-export interface ResolvedProjectCheck {profile:string; runtime:string; sourceProfile:SourceProfile; "source-profile":string; tests:string[]; "additional-java-sources"?:AdditionalJavaSources; "api-precheck"?:ApiPrecheck; "verification-api-precheck"?:ApiPrecheck; references?:{name:string;root:string;optional:boolean}[]; [key:string]: unknown}
-export interface ProjectFact {exerciseId:string;source:string;projectRoot:string;bankMember:boolean;purpose?:ExercisePurpose;statementVisibility:StatementVisibility;artifactPolicy:{student?:"starter"|"full";full:"full";conditions:boolean};check?:ResolvedProjectCheck}
+export interface PublicCase {id:string;name:string;test:string;input?:string;state?:string;action?:string;expected:string}
+export interface ResolvedProjectCheck {feedback?:{requirement:string;"what-check":string};"public-cases"?:PublicCase[];profile:string; runtime:string; sourceProfile:SourceProfile; "source-profile":string; tests:string[]; "java-build"?:JavaBuild; "additional-java-sources"?:AdditionalJavaSources; "api-precheck"?:ApiPrecheck; "verification-api-precheck"?:ApiPrecheck; references?:{name:string;root:string;optional:boolean}[]; [key:string]: unknown}
+export interface ProjectMaterialization {commonFiles:{source:string;target:string;audience:'student'|'grading'}[];includeGit?:boolean}
+export interface ProjectFact {exerciseId:string;source:string;projectRoot:string;bankMember:boolean;purpose?:ExercisePurpose;statementVisibility:StatementVisibility;artifactPolicy:{student?:"starter"|"full";full:"full";conditions:boolean};check?:ResolvedProjectCheck;materialization?:ProjectMaterialization}
 export interface Fragment {
+  projectMaterializations?: Record<string,ProjectMaterialization>;
   projects?: ProjectFact[]; topic?: TopicFact;
   source: string; course: { id?: string; view?: View };
   declarations?: ExerciseDeclaration[]; rawAssessment?: AssessmentComposition | null;

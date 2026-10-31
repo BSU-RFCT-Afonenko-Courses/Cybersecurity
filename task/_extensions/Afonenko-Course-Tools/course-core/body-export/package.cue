@@ -12,11 +12,12 @@ import (
 }
 #Slot: {
 	id:        string & =~"^[a-z][a-z0-9-]*/[a-z][a-z0-9-]*/(exr|alt)-[a-z0-9][a-z0-9-]*$"
-	selection: "fixed" | "random"
+	selection: "fixed" | "random" | "choice"
 	candidates: [...string & =~"^[a-z][a-z0-9-]*/exr-[a-z0-9][a-z0-9-]*$"] & list.UniqueItems
 	assignment: #Assignment
+	if selection == "choice" {assignment:requirement:"required"}
 	if selection == "fixed" {candidates: list.MinItems(1) & list.MaxItems(1)}
-	if selection == "random" {candidates: list.MinItems(2)}
+	if selection == "random" || selection == "choice" {candidates: list.MinItems(2)}
 }
 #Question: {
 	owner:               string

@@ -8,7 +8,13 @@ local __perfWalk6=__metrics.wrap_walk({id="course-core.filter.walk.6",kind='ast_
 local __perfWalk7=__metrics.wrap_walk({id="course-core.filter.walk.7",kind='ast_walk',scope="fragment"},function(node,filter)return node:walk(filter)end)
 local function __perfFilters(filters)
  for key,value in pairs(filters) do
-  if type(value)=='function' then filters[key]=__metrics.wrap_sync({id="course-core.filter.handler."..tostring(key),kind=key=='Pandoc' and 'phase' or 'function'},value)
+  if type(value)=='function' then local spec={id="course-core.filter.handler."..tostring(key),kind=key=='Pandoc' and 'phase' or 'function'}
+   if os.getenv('COURSE_PERF_MODE') and os.getenv('COURSE_PERF_MODE')~='off' then
+    filters[key]=function(...)
+     spec.document_id=quarto and quarto.doc and quarto.doc.input_file or nil
+     return __metrics.wrap_sync(spec,value)(...)
+    end
+   else filters[key]=__metrics.wrap_sync(spec,value) end
   elseif type(value)=='table' and type(key)=='number' then filters[key]=__perfFilters(value) end
  end
  return filters
@@ -35,7 +41,8 @@ return __perfFilters({{Pandoc = function(doc)
   assert(doc.meta.course.schema == nil, diagnostics.format("CORE.SCHEMA_INVALID", "Поле course.schema не поддерживается; удалите его из YAML: действует единый текущий контракт", {field="course.schema"}))
   assert(doc.meta["course-export-context"] ~= true or quarto.doc.is_format("json"), diagnostics.format("CORE.VISIBILITY_INVALID", "course-export-context требует native JSON export", {field="course-export-context"}))
   local effective=require("./exercise-defaults").normalize(doc)
-  local projectFacts=require("./projects").collect(doc,effective)
+  local boundMaterialization=output.bound_materialization(doc)
+  local projectFacts=require("./projects").collect(doc,effective,boundMaterialization)
   local canonical,domains,rawAssessment = native_document.validate(doc,effective)
   local publicAnswers=answers.validate(doc)
   if rawAssessment then doc.meta["course-assessment-id"]=pandoc.MetaString(rawAssessment.id) end
@@ -104,7 +111,7 @@ return __perfFilters({{Pandoc = function(doc)
   end
   output.write({
     exportContext=doc.meta["course-export-context"]==true or nil,
-    projects=projectFacts, topic=topic,
+    projects=projectFacts, projectMaterializations=boundMaterialization, topic=topic,
     declarations=declarations, rawAssessment=require("./assessment").composition(rawAssessment),
     course = {id = doc.meta.course.id and pandoc.utils.stringify(doc.meta.course.id) or nil,
               view = doc.meta.course.view and pandoc.utils.stringify(doc.meta.course.view) or nil},
