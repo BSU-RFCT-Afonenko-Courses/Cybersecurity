@@ -37,6 +37,14 @@ project:
   - '!seminars/**'
   - '!control-works/**'
   - '!Новые семинары'
+  - '!filters/**'
+  - '!experiments/**'
+  - ./shared/access-control/index.html
+  - ./shared/access-control/widget.js
+  - ./shared/access-control/widget.css
+  - ./shared/access-control/static/**
+  - '!shared/access-control/*.mjs'
+  - '!shared/access-control/*.yml'
   pre-render:
   - _extensions/Afonenko-Course-Tools/course-site/entrypoints/pre.ts
   post-render:
@@ -57,14 +65,14 @@ website:
   title: Основы кибербезопасности
   site-url: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/
   navbar:
+    title: Основы кибербезопасности
+    logo-href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/index.html
     left:
-    - text: Курс
-      href: index.html
     - text: Теория
       href: theory/index.html
     - text: Задания и работы
       href: task/index.html
-    - text: Семинары
+    - text: Слайды
       href: seminars/index.html
   search: true
   page-footer: Афоненко Анатолий

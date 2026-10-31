@@ -1,0 +1,62 @@
+описание: Перенос исходников банка и работ; идентификаторы задач, решений и работ сохранены.
+оформление: Класс answers-expanded и filters/answer-presentation.lua сохраняют раскрытие КЦД и пяти блоков материалов
+  демонстрационной работы. Фильтр меняет только оформление после course-core и course-presentation; правила видимости
+  остаются прежними.
+черновики: drafts/ не входит в оглавления; собственный _quarto.yml исключает все QMD из публикации и из банка задач.
+межпроектный_редирект:
+  исходный_путь: seminars/control-demo.html
+  назначение: task/works/control-demo.html
+переносы:
+  task/fundamentals/educational-portal.qmd: task/bank/fundamentals.qmd
+  task/fundamentals/cia-cases.qmd: task/bank/fundamentals.qmd
+  task/fundamentals/event-or-incident.qmd: task/bank/fundamentals.qmd
+  task/fundamentals/pizza-incident.qmd: task/bank/fundamentals.qmd
+  task/fundamentals/exhibition.qmd: task/bank/fundamentals.qmd
+  task/fundamentals/carsharing.qmd: task/bank/fundamentals.qmd
+  task/legal/system-classes.qmd: task/bank/legal.qmd
+  task/legal/protection-measures.qmd: task/bank/legal.qmd
+  task/legal/information-sharing.qmd: task/bank/legal.qmd
+  task/legal/requirements-audit.qmd: task/bank/legal.qmd
+  task/security-center/roles.qmd: task/bank/security-center.qmd
+  task/standards-risk/document-first.qmd: task/bank/standards-risk.qmd
+  task/standards-risk/requirement-or-standard.qmd: task/bank/standards-risk.qmd
+  task/standards-risk/certificate.qmd: task/bank/standards-risk.qmd
+  task/standards-risk/risk-cost.qmd: task/bank/standards-risk.qmd
+  task/standards-risk/inspection.qmd: task/bank/standards-risk.qmd
+  task/crypto/random.qmd: task/bank/crypto.qmd
+  task/crypto/hash.qmd: task/bank/crypto.qmd
+  task/crypto/cypher/symmetric.qmd: task/bank/crypto.qmd
+  task/crypto/cypher/asymmetric.qmd: task/bank/crypto.qmd
+  task/crypto/sign.qmd: task/bank/crypto.qmd
+  task/crypto/cert.qmd: task/bank/crypto.qmd
+  task/access-control/ident.qmd: task/bank/access-control.qmd
+  task/access-control/authn.qmd: task/bank/access-control.qmd
+  task/access-control/authz.qmd: task/bank/access-control.qmd
+  task/access-control/dac.qmd: task/bank/access-control.qmd
+  task/access-control/mac.qmd: task/bank/access-control.qmd
+  task/access-control/rbac.qmd: task/bank/access-control.qmd
+  task/access-control/session.qmd: task/bank/access-control.qmd
+  task/access-control/grade.qmd: task/bank/access-control.qmd
+  task/access-control/verification.qmd: task/bank/access-control.qmd
+  task/access-control/extensions.qmd: task/bank/access-control.qmd
+  task/access-control/access-control.qmd: task/bank/access-control.qmd
+  task/data-integrity/backup.qmd: task/bank/data-integrity.qmd
+  task/seminar/concepts.qmd: task/works/01-fundamentals.qmd
+  task/seminar/02-structure.qmd: task/works/02-legal.qmd
+  task/seminar/03-standards-risk.qmd: task/works/03-standards-risk.qmd
+  task/seminar/04-access-control.qmd: task/works/04-access-control.qmd
+  task/seminar/01-introduction.qmd: task/works/backup.qmd
+  seminars/control-demo.qmd: task/works/control-demo.qmd
+  seminars/control-demo.qmd#exr-control-demo-service-center: task/bank/fundamentals.qmd#exr-control-demo-service-center
+  seminars/control-demo.qmd#exr-control-demo-document-selection: task/bank/standards-risk.qmd#exr-control-demo-document-selection
+  seminars/control-demo.qmd#exr-control-demo-system-requirements: task/bank/legal.qmd#exr-control-demo-system-requirements
+  seminars/control-demo.qmd#exr-control-demo-security-center: task/bank/security-center.qmd#exr-control-demo-security-center
+  seminars/control-demo.qmd#exr-control-demo-protection-measures: task/bank/legal.qmd#exr-control-demo-protection-measures
+  task/crypto/cert-graph.qmd: task/drafts/crypto/cert-graph.qmd
+  task/crypto/ctf.qmd: task/drafts/crypto/ctf.qmd
+  task/crypto/decrypt.qmd: task/drafts/crypto/decrypt.qmd
+  task/crypto/rng-exploit.qmd: task/drafts/crypto/rng-exploit.qmd
+  task/crypto/rsa-factorization.qmd: task/drafts/crypto/rsa-factorization.qmd
+  task/data-integrity/checksum.qmd: task/drafts/data-integrity/checksum.qmd
+  task/exam/paper.qmd: task/drafts/exam/paper.qmd
+  task/exam/technical.qmd: task/drafts/exam/technical.qmd

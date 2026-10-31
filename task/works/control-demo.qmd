@@ -1,0 +1,20 @@
+---
+pagetitle: Демонстрационный вариант контрольной работы
+description: Задачи для подготовки к контрольной работе по темам семинаров 1–3 с материалами
+  для самостоятельного разбора.
+assessment:
+  id: sec-control-demo
+  kind: seminar
+---
+
+# Демонстрационный вариант контрольной работы {#sec-control-demo}
+
+Задачи для подготовки к контрольной работе по темам семинаров 1–3. Материалы для самостоятельного разбора приведены рядом с условиями в тематическом банке.
+
+::: {.task-items stage="demonstration"}
+1. @exr-control-demo-service-center
+2. @exr-control-demo-document-selection
+3. @exr-control-demo-system-requirements
+4. @exr-control-demo-security-center
+5. @exr-control-demo-protection-measures
+:::

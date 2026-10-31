@@ -20,6 +20,9 @@ book:
   - part: Стандарты, системы защиты и риски
     chapters:
     - standards-risk/requirements-decisions.qmd
+  - part: Управление доступом
+    chapters:
+    - access-control/access-control.qmd
   - part: Криптография
     chapters:
     - crypto/random.qmd

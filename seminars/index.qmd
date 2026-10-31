@@ -1,21 +1,14 @@
 ---
-pagetitle: Каталог семинарских занятий
 format: html
 ---
 
-# Семинарские занятия {#sec-practice}
+# Слайды занятий {#sec-practice}
 
-- @practice:sec-seminar-1 — Занятие 1 – Понятия и КЦД.
-  Работа: @tasks:sec-work-fundamentals-concepts.
-- @practice:sec-seminar-2 — Семинар 2 – Правовые аспекты и формирование требований по защите информации и кибербезопасности.
-  Работа: @tasks:sec-work-legal-requirements.
-- @practice:sec-seminar-3 — Семинар 3 – Применение нормативно-правовых актов.
-  Работа: @tasks:sec-work-standards-risk.
-- [Демонстрационный вариант контрольной работы](control-demo.qmd) —
-  задания и материалы для подготовки по темам семинаров 1–3.
+- @practice:sec-seminar-1 — Основные понятия. Работа: @tasks:sec-work-fundamentals-concepts.
+- @practice:sec-seminar-2 — Правовые основы и организация защиты. Работа: @tasks:sec-work-legal-requirements.
+- @practice:sec-seminar-3 — Применение требований и стандартов. Работа: @tasks:sec-work-standards-risk.
+- @practice:sec-seminar-4 — Управление доступом. Работа: @tasks:sec-work-access-control.
 
-Остальные планы будут добавляться по мере подготовки материалов.
+Подготовка к контрольной находится в каталоге работ: @tasks:sec-control-demo.
 
-Теоретические материалы: @theory:sec-theory.
-Условия лабораторных: @tasks:sec-tasks.
-Навигация курса: @portal:sec-portal.
+Теория: @theory:sec-theory. Задачи и работы: @tasks:sec-tasks. Карта курса: @portal:sec-portal.

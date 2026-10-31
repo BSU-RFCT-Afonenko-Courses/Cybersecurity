@@ -6,7 +6,7 @@ project:
   - 01-introduction.qmd
   - 02-legal-requirements.qmd
   - 03-standards-risk.qmd
-  - control-demo.qmd
+  - 04-access-control.qmd
   output-dir: _output
   resources:
   - ./assets/**
@@ -24,6 +24,7 @@ project:
   - '!**/_output/**'
   - '!**/.quarto/**'
   - '!**/_freeze/**'
+  - control-demo.html
   pre-render:
   - _extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts
   post-render:
@@ -40,6 +41,7 @@ filters:
 - course-core
 - course-presentation
 - reference-catalog
+- ../filters/access-examples.lua
 format:
   revealjs:
     shift-heading-level-by: -1
@@ -57,18 +59,12 @@ website:
     title: Основы кибербезопасности
     logo-href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/index.html
     left:
-    - text: Курс
-      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/index.html
     - text: Теория
       href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/theory/index.html
     - text: Задания и работы
       href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/task/index.html
-    - text: Семинары
-      href: index.html
-    - text: Контрольные
-      menu:
-      - text: Демонстрационный вариант
-        href: control-demo.qmd
+    - text: Слайды
+      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/seminars/index.html
 course-navigation:
   course-url: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/
   links:
@@ -81,12 +77,9 @@ course-navigation:
   - text: Задания и работы
     href: /task/index.html
     scope: course
-  - text: Семинары
-    href: /index.html
-    scope: project
-  - text: Контрольные
-    href: /control-demo.html
-    scope: project
+  - text: Слайды
+    href: /seminars/index.html
+    scope: course
 bibliography: ../references.bib
 lang: ru
 author:
