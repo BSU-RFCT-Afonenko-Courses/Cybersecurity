@@ -20,12 +20,13 @@
 python3 CI/build-visualizations.py
 python3 CI/prepare-visualizations.py theory seminars
 python3 CI/prepare-bank-fragments.py --source task/bank/fundamentals.qmd --id exr-fundamentals-event-or-incident --id exr-fundamentals-cia-cases --output seminars/_prepared/bank-fragments
-quarto render theory/access-control/visualization-pilot.qmd --profile student,pilot --no-clean
-quarto render seminars/visualization-pilot.qmd --profile student,pilot --no-clean
+quarto render theory/access-control/access-control.qmd --profile student --no-clean
+quarto render seminars/04-access-control.qmd --profile student --no-clean
 ```
 
-`pilot` — отдельный профиль проверочных страниц; его не добавляют к обычной сборке курса.
-Для преподавательской пробы замените `student,pilot` на `full,pilot`.
+Для преподавательской пробы замените `student` на `full`. Пилоты используют только
+для изолированной диагностики с отдельным кэшем и сохранением/восстановлением
+обычного состояния сборки; их не запускают поверх обычной сборки курса.
 Подготовка создаёт локальные копии из единственного авторского источника;
 `_prepared` не редактируют и не коммитят. После правки общего исходника повторяют
 подготовку. `_generated` для включений не подходит: Core 8.2.8 исключает его из

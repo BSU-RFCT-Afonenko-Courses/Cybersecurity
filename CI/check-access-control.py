@@ -97,13 +97,23 @@ def check_body(directory):
     print('PASS Body: backup — 1 назначение; семинар 4 — 13 slots, 5 required, 8 optional; Link и решения')
 
 
+def mathml_tex(text):
+    # MathML хранит формулу дважды: presentation и исходную TeX-аннотацию.
+    def replace(match):
+        annotation = re.search(
+            r"<annotation\b[^>]*\bencoding=[\"']application/x-tex[\"'][^>]*>(.*?)</annotation\s*>",
+            match[0], re.I | re.S)
+        return ' ' + annotation[1] + ' ' if annotation else match[0]
+    return re.sub(r'<math\b[^>]*>.*?</math\s*>', replace, text, flags=re.I | re.S)
+
+
 class Solutions(HTMLParser):
     def __init__(self, text):
         super().__init__()
         self.stack = []
         self.active = None
         self.content = {}
-        self.feed(text)
+        self.feed(mathml_tex(text))
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -148,7 +158,7 @@ class PageText(HTMLParser):
     def __init__(self, text):
         super().__init__()
         self.text = []
-        self.feed(text)
+        self.feed(mathml_tex(text))
 
     def handle_data(self, text):
         self.text.append(text)
