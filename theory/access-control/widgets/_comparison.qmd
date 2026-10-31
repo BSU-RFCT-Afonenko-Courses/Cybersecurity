@@ -1,3 +1,0 @@
-```{=html}
-<div class="acx-widget" data-access-model="comparison"><p>Для изменения примера нужен JavaScript. Статическая схема приведена в разделе.</p></div>
-```

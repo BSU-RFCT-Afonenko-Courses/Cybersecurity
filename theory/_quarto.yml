@@ -31,18 +31,17 @@ filters:
 - course-core
 - course-presentation
 - reference-catalog
+- ../filters/access-examples.lua
 book:
   navbar:
     title: Основы кибербезопасности
     logo-href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/index.html
     left:
-    - text: Курс
-      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/index.html
     - text: Теория
-      href: index.html
+      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/theory/index.html
     - text: Задания и работы
       href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/task/index.html
-    - text: Семинары
+    - text: Слайды
       href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/seminars/index.html
   sidebar:
     tools:

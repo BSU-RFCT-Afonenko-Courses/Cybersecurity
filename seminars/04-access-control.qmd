@@ -4,7 +4,6 @@ pagetitle: Семинар 4 — Управление доступом
 
 ## [Семинар 4 — Управление доступом]{.r-fit-text} {#sec-seminar-4}
 
-{{< include ../theory/assets/access-control/examples/_runtime.qmd >}}
 
 Как система решает, кто может выполнить действие над конкретным объектом.
 
@@ -16,7 +15,7 @@ Windows · Linux · Moodle
 
 ### Кто — к чему — какое действие
 
-{{< include ../theory/access-control/figures/_request.qmd >}}
+![Кто — к чему — какое действие](../shared/access-control/static/request.svg){.access-diagram}
 
 Открыть файл и изменить файл — два разных запроса.
 
@@ -26,7 +25,7 @@ Windows · Linux · Moodle
 
 ### Одна модель в трёх системах
 
-{{< include ../theory/access-control/figures/_software.qmd >}}
+![Один запрос в Windows, Linux и Moodle](../shared/access-control/static/software.svg){.access-diagram}
 
 Субъектом обращения может быть процесс, действующий от имени пользователя.
 
@@ -36,7 +35,7 @@ Windows · Linux · Moodle
 
 ### Три разных вопроса
 
-{{< include ../theory/access-control/figures/_procedures.qmd >}}
+![Запись → подтверждение → разрешение](../shared/access-control/static/procedures.svg){.access-diagram}
 
 Успешный вход ещё не разрешает любую операцию.
 
@@ -60,7 +59,7 @@ Windows · Linux · Moodle
 
 ### Аутентификация: чем подтверждаем?
 
-{{< include ../theory/access-control/figures/_factors.qmd >}}
+![Знание · владение · характеристика человека](../shared/access-control/static/factors.svg){.access-diagram}
 
 2FA требует двух разных типов факторов. Два пароля остаются одним типом.
 
@@ -70,7 +69,7 @@ Windows · Linux · Moodle
 
 ### От секрета к криптографическому ответу
 
-{{< include ../theory/access-control/figures/_methods.qmd >}}
+![Пароль → пароль и OTP → passkey](../shared/access-control/static/methods.svg){.access-diagram}
 
 Сравниваем механизм проверки и угрозу, которую он ограничивает.
 
@@ -121,7 +120,7 @@ Windows · Linux · Moodle
 
 ### DAC: права на конкретный объект
 
-{{< include ../theory/access-control/figures/_dac.qmd >}}
+![Права на три файла и полномочие владельца](../shared/access-control/static/dac.svg){.access-diagram}
 
 Лена владеет тремя файлами; Борис исходно читает только памятку.
 
@@ -131,7 +130,9 @@ Windows · Linux · Moodle
 
 ### DAC: выдача права
 
-{{< include ../theory/access-control/widgets/_dac.qmd >}}
+::: {.acx-widget data-access-model="dac"}
+Измените параметры, чтобы проследить решение.
+:::
 
 ::: {.notes}
 Сравните чтение Борисом `answers.txt` до и после выдачи `R`. Показать, что изменяется назначение на конкретный файл. Чтение памятки сохраняется. Возможность Лены менять назначения задана отдельно: право записи содержимого не означает право управлять ACL.
@@ -168,7 +169,7 @@ Windows · Linux · Moodle
 
 ### MAC: три уровня данных
 
-{{< include ../theory/access-control/figures/_mac.qmd >}}
+![Три уровня: процесс Лены с текущей меткой L2](../shared/access-control/static/mac.svg){.access-diagram}
 
 Процесс Лены на L2 читает памятку и черновик; чтение ответов L3 запрещено.
 
@@ -178,7 +179,9 @@ Windows · Linux · Moodle
 
 ### MAC: операции с файлами
 
-{{< include ../theory/access-control/widgets/_mac.qmd >}}
+::: {.acx-widget data-access-model="mac"}
+Измените параметры, чтобы проследить решение.
+:::
 
 ::: {.notes}
 Запись без чтения назначения и обычное редактирование требуют разных проверок. Для процесса Лены L2 сравнить чтение памятки L1, редактирование черновика L2 и размещение в L3 без чтения ответов. Затем отдельно рассмотреть процесс Лены L3, который читает ответы, но не может перенести их в памятку L1. Это независимые опыты, а не переключение вниз процесса, сохранившего закрытые данные. Равные уровни разрешают чтение и запись.
@@ -200,7 +203,7 @@ Windows · Linux · Moodle
 
 ### RBAC: права по обязанностям
 
-{{< include ../theory/access-control/figures/_rbac.qmd >}}
+![Участники, роли и разрешения в одном курсе](../shared/access-control/static/rbac.svg){.access-diagram}
 
 Лена — «Автор»; Борис — «Ассистент». Чтение ответов даёт роль «Рецензент».
 
@@ -210,7 +213,9 @@ Windows · Linux · Moodle
 
 ### RBAC: назначение роли
 
-{{< include ../theory/access-control/widgets/_rbac.qmd >}}
+::: {.acx-widget data-access-model="rbac"}
+Измените параметры, чтобы проследить решение.
+:::
 
 ::: {.notes}
 Сравните чтение ответов до и после назначения Борису «Рецензента». Назначение делает уполномоченный по правилам управления ролями. Роль Автора сама по себе не даёт такого полномочия. Меняем назначение конкретному человеку; общие разрешения Ассистента для других пользователей сохраняются.
@@ -218,7 +223,7 @@ Windows · Linux · Moodle
 
 ### Moodle: роль в контексте
 
-{{< include ../theory/access-control/figures/_moodle.qmd >}}
+![Роль действует в определённом контексте](../shared/access-control/static/moodle.svg){.access-diagram}
 
 `mod/assign:grade` — полномочие оценивать задания в применимом контексте.
 

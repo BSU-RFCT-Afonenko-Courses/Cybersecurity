@@ -2,7 +2,7 @@
 import {readFileSync, writeFileSync, mkdirSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
-const assets = new URL('../theory/assets/access-control/examples/', import.meta.url);
+const assets = new URL('../shared/access-control/', import.meta.url);
 const root = new URL('../', import.meta.url);
 const check = process.argv.includes('--check');
 const read = name => readFileSync(new URL(name, assets), 'utf8');
@@ -58,19 +58,12 @@ if (/^(?:import|export)\b/m.test(combined)) throw new Error('Появилась 
 const bundle = generated + `(() => {\n'use strict';\nif (window.AccessCourseExamples) { window.AccessCourseExamples.init(document); return; }\n` + combined +
   '\nwindow.AccessCourseExamples = {init: initialiseExamples};\n})();\n';
 writeOrCheck(new URL('widget.js', assets), bundle);
-writeOrCheck(new URL('_runtime.qmd', assets), '```{=html}\n<style>\n' + read('widget.css') + '\n</style>\n<script>\n' + bundle + '\n</script>\n```\n');
 const xml = value => String(value).replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
 for (const model of ['dac', 'mac', 'rbac']) {
   const state = model === 'mac' ? {subject: 'lena', processLevel: 2, operation: 'read', overview: true} : {overview: true};
   const svg = renderDiagram(model, state, {width: 1000, idPrefix: `access-static-${model}`});
   writeOrCheck(new URL(`static/${model}.svg`, assets), svg + '\n');
-  writeOrCheck(new URL(`theory/access-control/figures/_${model}.qmd`, root),
-    '```{=html}\n<figure class="acx-static">\n<figcaption>' + xml(example.widget.staticCaptions[model]) + '</figcaption>\n' + svg + '\n</figure>\n```\n');
-}
-for (const model of ['dac', 'mac', 'rbac', 'comparison']) {
-  writeOrCheck(new URL(`theory/access-control/widgets/_${model}.qmd`, root),
-    '```{=html}\n<div class="acx-widget" data-access-model="' + model + '"><p>' + xml(example.widget.fallback) + '</p></div>\n```\n');
 }
 const title = xml(example.widget.pageTitles.comparison);
 writeOrCheck(new URL('index.html', assets), `<!doctype html>\n<html lang="ru">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n<title>${title}</title>\n<link rel="stylesheet" href="widget.css">\n<style>body{max-width:1100px;margin:1.2rem auto;padding:0 1rem;font:16px/1.5 "DejaVu Sans",Arial,sans-serif;color:#183247;background:#fff}h1{font-size:1.5rem}</style>\n</head>\n<body>\n<h1 data-access-page-title>${title}</h1>\n<p>${xml(example.widget.intro)}</p>\n<div data-access-model="comparison"><p>${xml(example.widget.fallback)}</p></div>\n<script>\nconst requestedView = new URLSearchParams(location.search).get('view');\nif (['dac','mac','rbac','comparison'].includes(requestedView)) document.querySelector('[data-access-model]').dataset.accessModel = requestedView;\n</script>\n<script src="widget.js"></script>\n</body>\n</html>\n`);
-console.log(check ? 'Сохранённые картинки и виджеты соответствуют example.yml.' : 'Обновлены три SVG, виджеты и общие включения. Quarto не запускался.');
+console.log(check ? 'Сохранённые картинки и виджеты соответствуют example.yml.' : 'Обновлены три SVG и браузерный скрипт. Quarto не запускался.');

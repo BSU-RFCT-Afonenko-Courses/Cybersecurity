@@ -1,5 +1,0 @@
-::: {#fig-access-rbac}
-
-{{< include figures/_rbac.qmd >}}
-
-:::

@@ -1,5 +1,0 @@
-::: {#fig-access-architecture}
-
-{{< include figures/_request.qmd >}}
-
-:::

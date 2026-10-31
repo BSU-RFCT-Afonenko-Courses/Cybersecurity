@@ -1,0 +1,23 @@
+---
+aliases:
+- /crypto/random.html
+- /crypto/hash.html
+- /crypto/cypher/symmetric.html
+- /crypto/cypher/asymmetric.html
+- /crypto/sign.html
+- /crypto/cert.html
+---
+
+# Криптография {#sec-bank-crypto}
+
+## Генерация случайных чисел {#sec-seminar-crypto-rng}
+
+## Хеширование {#sec-seminar-crypto-hash}
+
+## Симметричное шифрование {#sec-seminar-crypto-cypher-symmetric}
+
+## Ассиметричное шифрование {#sec-work-crypto-cypher-asymmetric}
+
+## Цифровая подпись {#sec-seminar-crypto-sign}
+
+## Сертификат открытого ключа {#sec-seminar-crypto-cert}

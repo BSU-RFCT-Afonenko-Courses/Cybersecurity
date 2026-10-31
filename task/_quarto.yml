@@ -14,6 +14,9 @@ project:
   - '!**/*.qmd'
   - ./assets/**
   - '!materials/**'
+  - '!drafts/**'
+  - '!filters/**'
+  - '!source-map.yml'
   - '!_generated/**'
   - '!_freeze/**'
   - '!.quarto/**'
@@ -32,6 +35,7 @@ profile:
 filters:
 - course-core
 - course-presentation
+- filters/answer-presentation.lua
 - project-download
 - reference-catalog
 book:
@@ -40,13 +44,11 @@ book:
     title: Основы кибербезопасности
     logo-href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/index.html
     left:
-    - text: Курс
-      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/index.html
     - text: Теория
       href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/theory/index.html
     - text: Задания и работы
-      href: index.html
-    - text: Семинары
+      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/task/index.html
+    - text: Слайды
       href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/seminars/index.html
   sidebar:
     tools:

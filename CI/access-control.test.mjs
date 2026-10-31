@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {dacInitial,dacGrant,dacRevoke,dacCan,macDecision,rbacPaths,sessionRequest} from '../theory/assets/access-control/model.mjs';
+import {dacInitial,dacGrant,dacRevoke,dacCan,macDecision,rbacPaths,sessionRequest} from '../docs/drafts/access-control/legacy/model.mjs';
 test('DAC: редактор не приглашает, приглашение даёт только чтение, отзыв без каскада',()=>{
  let s=dacInitial(); assert.equal(dacGrant(s,'Борис','Дима','r').allowed,false); assert.equal(dacGrant(s,'Вера','Дима','w').allowed,false); assert.equal(dacGrant(s,'Вера','Дима','s').allowed,false);
  const g=dacGrant(s,'Вера','Дима','r'); assert.equal(g.allowed,true);s=g.state;assert.equal(dacCan(s,'Дима','r'),true);
@@ -26,14 +26,14 @@ test('Сеанс: обе границы, активность, отзыв и п�
 });
 
 test('Архитектура: успешный вход не обходит авторизацию и исполнение отказа',async()=>{
- const model=await import('../theory/assets/access-control/model.mjs');assert.equal(typeof model.architectureDecision,'function');
+ const model=await import('../docs/drafts/access-control/legacy/model.mjs');assert.equal(typeof model.architectureDecision,'function');
  assert.deepEqual(model.architectureDecision(true,'reader','grades'),{allowed:false,reason:'permission'});
  assert.deepEqual(model.architectureDecision(false,'reviewer','grades'),{allowed:false,reason:'session'});
  assert.deepEqual(model.architectureDecision(true,'reviewer','grades'),{allowed:true,reason:null});
  assert.equal(model.architectureDecision(true,'reader','materials').allowed,true);
 });
 test('Сеанс: полные независимые линии времени без фоновой активности',async()=>{
- const {sessionScenario}=await import('../theory/assets/access-control/model.mjs');
+ const {sessionScenario}=await import('../docs/drafts/access-control/legacy/model.mjs');
  const normal=sessionScenario();assert.deepEqual(normal.map(e=>e.time),[0,6,7,12,21,30]);
  assert.equal(normal[2].last,6);assert.equal(normal.at(-1).reason,'absolute');assert.equal(normal.at(-1).state.last,21);
  assert.equal(sessionScenario('idle').at(-1).reason,'idle');assert.equal(sessionScenario('revoke').at(-1).reason,'revoked');assert.equal(sessionScenario('password').at(-1).allowed,true);

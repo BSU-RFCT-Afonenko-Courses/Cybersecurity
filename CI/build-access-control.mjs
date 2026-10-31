@@ -1,7 +1,7 @@
 // Обычный скрипт для схем: работает и по HTTP, и при открытии через file://.
 import {readFileSync, writeFileSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
-const assets = new URL('../theory/assets/access-control/', import.meta.url);
+const assets = new URL('../docs/drafts/access-control/legacy/', import.meta.url);
 const read = name => readFileSync(new URL(name, assets), 'utf8');
 const model = read('model.mjs').replace(/^export (?=function |const )/gm, '');
 const view = read('view.mjs').replace(/^import \{[^\n]+\} from '\.\/model\.mjs';\r?\n/, '');

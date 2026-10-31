@@ -1,1 +1,0 @@
-# Цифровая подпись {#sec-seminar-crypto-sign}

@@ -1,15 +1,7 @@
-# Печатные варианты контрольной работы
+# Печатная контрольная по основным понятиям и требованиям защиты
 
-Варианты находятся в `variant-1.typ` и `variant-2.typ`. Общие настройки
-оформления вынесены в `styles.typ`, а элементы бланка — в `components.typ`.
+Варианты 1–4 собраны по одной контрольной. Общие стили и элементы бланка находятся в `../common`.
 
-Для сборки обоих PDF из этой папки нужен Typst и установленный шрифт
-Times New Roman:
-
-```bash
-mkdir -p _output
-typst compile variant-1.typ _output/variant-1.pdf
-typst compile variant-2.typ _output/variant-2.pdf
-```
-
+Из этой папки: `typst compile --root .. variant-1.typ _output/variant-1.pdf`.
+Аналогично собираются остальные варианты. Требуется шрифт Times New Roman.
 Каждый вариант рассчитан на двустороннюю печать на одном листе A4.

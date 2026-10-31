@@ -1,5 +1,0 @@
-::: {#fig-access-mac}
-
-{{< include figures/_mac.qmd >}}
-
-:::
