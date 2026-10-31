@@ -126,6 +126,15 @@ rbacDiagram(slideRbac)
 
 {{< include _prepared/bank-fragments/exr-access-short-otp-phishing.qmd >}}
 
+### Дополнительная работа
+
+Необязательные подробные задачи и семинарская работа:
+
+- @tasks:exr-access-control-dac
+- @tasks:exr-access-control-mac
+- @tasks:exr-access-control-combined
+- @tasks:sec-work-access-control
+
 ### Итог
 
 Назовите субъект, объект и операцию; проверьте назначения и ограничения. Минимальные привилегии сохраняют необходимые права только на нужные объекты и срок.
