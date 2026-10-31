@@ -11,6 +11,9 @@ for project in args.projects:
     destination=ROOT/project/'_prepared/visualizations'
     destination.mkdir(parents=True,exist_ok=True)
     for directory in ['common','access-control']:
-        shutil.copytree(ROOT/'shared/visualizations'/directory,destination/directory,dirs_exist_ok=True)
+        if (destination/directory).exists(): shutil.rmtree(destination/directory)
+        shutil.copytree(ROOT/'shared/visualizations'/directory,destination/directory)
     shutil.copyfile(ROOT/'shared/visualizations/_mac-example.qmd',destination/'mac-example.qmd')
+    adapter=destination/'common/runtime.js'
+    adapter.write_text(adapter.read_text().replace('../../../extensions/course-visualizations/_extensions/','../../../_extensions/'))
     print(destination.relative_to(ROOT))

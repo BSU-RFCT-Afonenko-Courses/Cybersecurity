@@ -36,6 +36,7 @@ filters:
 - course-presentation
 - reference-catalog
 - ../filters/access-examples.lua
+- course-visualizations
 book:
   navbar:
     title: Основы кибербезопасности

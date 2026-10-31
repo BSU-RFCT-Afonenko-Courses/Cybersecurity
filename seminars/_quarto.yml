@@ -46,6 +46,7 @@ filters:
 - course-presentation
 - reference-catalog
 - ../filters/access-examples.lua
+- course-visualizations
 format:
   revealjs:
     shift-heading-level-by: -1

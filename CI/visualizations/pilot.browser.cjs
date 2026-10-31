@@ -44,6 +44,7 @@ const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json
    await page.waitForFunction(()=>document.querySelectorAll('.course-viz-stage')[1].dataset.stage==='levels');
    assert.equal(await page.locator('.course-viz-stage').nth(1).locator('[data-explanation]').textContent(),'');
    assert.ok(await page.locator('.course-viz-stage').nth(1).locator('[data-diagram="algorithm"] [data-key="levels"].is-active').count());
+   await page.screenshot({path:path.join(imageDir,`${project}-${view}-without-note.png`),fullPage:project==='theory'});
    for(let i=0;i<2;i++){
     await controls.nth(1).locator('[data-action="next"]').click();
     await page.waitForFunction(index=>document.querySelectorAll('.course-viz-stage')[1].dataset.stage===(index===0?'read-rule':'result'),i);

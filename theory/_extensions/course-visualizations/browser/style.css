@@ -1,0 +1,15 @@
+.course-viz { --cv-accent:#006b8f; font:inherit; text-align:left; }
+.course-viz-controls { display:flex; flex-wrap:wrap; align-items:center; gap:.4rem; margin:.4rem 0; }
+.course-viz button, .course-viz select { font:inherit; font-size:.8em; border:1px solid #64748b; border-radius:.3rem; padding:.2rem .45rem; color:inherit; background:transparent; }
+.course-viz button:disabled { opacity:.4; }
+.course-viz output { min-width:10em; font-size:.8em; text-align:center; }
+.course-viz .course-viz-pair { display:grid; grid-template-columns:1fr 1fr; align-items:start; gap:.6rem; }
+.course-viz [data-diagram] { min-width:0; }
+.course-viz svg { display:block; width:100%; height:auto; max-height:23rem; }
+.course-viz .is-active polygon, .course-viz .is-active ellipse, .course-viz .is-active path { stroke:var(--cv-accent); stroke-width:3; }
+.course-viz .is-active text { fill:var(--cv-accent); font-weight:bold; }
+.course-viz .result-allow { --cv-accent:#08763e; }
+.course-viz .result-deny { --cv-accent:#b42318; }
+.course-viz [data-explanation] { min-height:2.5em; margin:.3rem 0; font-size:.8em; }
+@media (max-width:640px) { .course-viz .course-viz-pair { grid-template-columns:1fr; } }
+.course-viz [data-diagram="model"] .edge:not(.is-active) { opacity:.08; }
