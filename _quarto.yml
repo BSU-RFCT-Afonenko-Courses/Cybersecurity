@@ -5,6 +5,7 @@ project:
   render:
   - index.qmd
   resources:
+  - '!**/*.scss'
   - ./assets/**
   - '!theory/**'
   - '!tasks/**'
@@ -51,7 +52,9 @@ format:
   html:
     html-math-method: mathml
     embed-resources: false
-    theme: cosmo
+    theme:
+      - cosmo
+      - styles/offline-fonts.scss
     toc: false
 lang: ru
 author:

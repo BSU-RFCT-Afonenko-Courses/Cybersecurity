@@ -11,6 +11,7 @@ project:
   - _extensions/Afonenko-Course-Tools/reference-catalog/entrypoints/post.ts
   - ../_extensions/Afonenko-Course-Tools/course-site/entrypoints/collect.ts
   resources:
+  - '!**/*.scss'
   - '!**/*.qmd'
   - ./assets/**
   - '!materials/**'
@@ -65,6 +66,8 @@ format:
   html:
     html-math-method: mathml
     embed-resources: false
-    theme: cosmo
+    theme:
+      - cosmo
+      - styles/offline-fonts.scss
 reference-catalog:
   namespace: tasks
