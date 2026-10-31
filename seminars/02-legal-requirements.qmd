@@ -1,3 +1,7 @@
+---
+css: assets/classroom.css
+---
+
 ## Семинар 2 – Правовые аспекты и требования {#sec-seminar-2}
 
 ### Категория доступа
@@ -8,7 +12,7 @@
 
 ### Вопрос для аудитории {.smaller}
 
-::: {style="font-size:0.8em; columns:2; column-gap:1.5em"}
+::: {.classroom-two-column style="font-size:0.72em"}
 {{< include _prepared/bank-fragments/exr-legal-information-sharing.qmd >}}
 :::
 
@@ -26,7 +30,7 @@
 
 ### Вопрос для аудитории {.smaller}
 
-::: {style="font-size:0.8em; columns:2; column-gap:1.5em"}
+::: {.classroom-two-column style="font-size:0.72em"}
 {{< include _prepared/bank-fragments/exr-legal-protection-measures.qmd >}}
 :::
 
