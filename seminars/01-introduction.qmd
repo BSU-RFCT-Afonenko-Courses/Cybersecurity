@@ -2,34 +2,37 @@
 
 ### Информационная система и активы
 
-@theory:sec-theory-fundamentals-information-system
+Границы системы определяют область рассмотрения. Активы включают данные, программы, оборудование, людей и процессы. Например, портал зависит и от базы оценок, и от сервера, и от порядка выдачи прав.
 
-### Конфиденциальность, целостность и доступность
+::: {.notes}
+Попросите назвать актив и объяснить, почему он важен для работы портала.
+:::
 
-@theory:sec-theory-fundamentals-cia
+### Три свойства
 
-### Угрозы, уязвимости, события и инциденты
+- **Конфиденциальность:** доступ имеют уполномоченные лица.
+- **Целостность:** данные защищены от неправомерного изменения и уничтожения.
+- **Доступность:** уполномоченный пользователь может своевременно выполнить разрешённое действие.
 
-@theory:sec-theory-fundamentals-events-incidents
+Одно событие может затронуть несколько свойств; при анализе уточняем непосредственно нарушенное.
 
-### Подготовительная задача
+### Вопрос для аудитории {.smaller}
 
-@tasks:exr-fundamentals-educational-portal
+{{< include _prepared/bank-fragments/exr-fundamentals-cia-cases.qmd >}}
 
-### Демонстрационная задача
+### Угроза, уязвимость, событие, инцидент
 
-@tasks:exr-fundamentals-cia-cases
+- **Угроза** — возможное неблагоприятное воздействие; **уязвимость** — способствующее ему слабое место.
+- **Событие** — наблюдаемое действие или изменение; **инцидент** связан с нарушением безопасности или его возможностью и требует реагирования.
 
-### Аудиторные задачи
+::: {.notes}
+Само наблюдение ещё не доказывает нарушение: нужны контекст и установленные факты.
+:::
 
-- @tasks:exr-fundamentals-event-or-incident
-- @tasks:exr-fundamentals-pizza-incident
+### Вопрос для аудитории {.smaller}
 
-### Необязательные домашние задания
+{{< include _prepared/bank-fragments/exr-fundamentals-event-or-incident.qmd >}}
 
-- @tasks:exr-fundamentals-exhibition
-- @tasks:exr-fundamentals-carsharing
+### Дополнительная работа
 
-### Семинарская работа
-
-@tasks:sec-work-fundamentals-concepts
+@tasks:exr-fundamentals-educational-portal; @tasks:exr-fundamentals-pizza-incident; @tasks:sec-work-fundamentals-concepts.
