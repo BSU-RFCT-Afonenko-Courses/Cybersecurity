@@ -22,6 +22,6 @@
 //| echo: false
 //| label: fig-random-lcg
 //| fig-cap: "Состояния учебного генератора"
-import {lcgTrainer} from "/_prepared/visualizations/crypto/lesson.js"
-lcgTrainer()
+cryptoLesson = await import(await FileAttachment("/_prepared/visualizations/crypto/lesson.js").url())
+cryptoLesson.lcgTrainer()
 ```

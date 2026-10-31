@@ -26,14 +26,14 @@ course-presentation:
 
 ```{ojs}
 //| echo: false
-viewof macSecond = macControls({initial:1})
+viewof macSecond = macLesson.macControls({initial:1})
 ```
 
 ```{ojs}
 //| echo: false
 //| label: fig-mac-second
 //| fig-cap: "Второй запрос с удалённым пояснением уровней"
-macDiagram(macSecond, {request:"Для этого запроса выбран собственный этап."})
+macLesson.macDiagram(macSecond, {request:"Для этого запроса выбран собственный этап."})
 ```
 
 В @fig-mac-second удаление текста `levels` сохраняет проверку политики.

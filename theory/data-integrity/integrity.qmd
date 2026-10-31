@@ -16,22 +16,22 @@
 //| echo: false
 //| label: fig-integrity-sum-collision
 //| fig-cap: "Коллизия простой суммы"
-import {sumCollision, byteChange, referenceReplacement, xorRecovery} from "/_prepared/visualizations/data-integrity/lesson.js"
-sumCollision()
+integrityLesson = await import(await FileAttachment("/_prepared/visualizations/data-integrity/lesson.js").url())
+integrityLesson.sumCollision()
 ```
 
 ```{ojs}
 //| echo: false
 //| label: fig-integrity-byte-change
 //| fig-cap: "Изменение байта и результат проверки"
-byteChange()
+integrityLesson.byteChange()
 ```
 
 ```{ojs}
 //| echo: false
 //| label: fig-integrity-reference
 //| fig-cap: "Замена файла и эталона"
-referenceReplacement()
+integrityLesson.referenceReplacement()
 ```
 
 ## Полная, инкрементная и дифференциальная копии
@@ -72,7 +72,7 @@ RAID объединяет диски для распределения данн�
 //| echo: false
 //| label: fig-integrity-xor
 //| fig-cap: "Восстановление одного блока по XOR"
-xorRecovery()
+integrityLesson.xorRecovery()
 ```
 
 RAID 1 помогает пережить отказ одного диска, но обычное удаление файла отражается на обоих дисках. Если последняя независимая копия сохранена в воскресенье в 23:00, из неё можно вернуть именно воскресную версию. Изменения после копии без других сохранённых версий восстановить неоткуда. RAID и резервная копия защищают от разных событий.

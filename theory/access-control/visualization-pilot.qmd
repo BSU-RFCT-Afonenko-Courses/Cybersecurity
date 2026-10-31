@@ -23,14 +23,14 @@ course-presentation:
 
 ```{ojs}
 //| echo: false
-viewof macSecond = macControls({initial:1})
+viewof macSecond = macLesson.macControls({initial:1})
 ```
 
 ```{ojs}
 //| echo: false
 //| label: fig-mac-second
 //| fig-cap: "Независимый запрос без пояснения этапа уровней"
-macDiagram(macSecond, {request:"Другой запрос; собственный выбранный этап."})
+macLesson.macDiagram(macSecond, {request:"Другой запрос; собственный выбранный этап."})
 ```
 
 В @fig-mac-second пояснение `levels` отсутствует: этап, подсветка и результат сохраняются.

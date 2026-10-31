@@ -97,15 +97,15 @@ PIN или биометрия могут локально разрешать и�
 
 ```{ojs}
 //| echo: false
-import {dacControls, dacDiagram} from "/_prepared/visualizations/access-control/dac/lesson.js"
-viewof theoryDac = dacControls()
+dacLesson = await import(await FileAttachment("/_prepared/visualizations/access-control/dac/lesson.js").url())
+viewof theoryDac = dacLesson.dacControls()
 ```
 
 ```{ojs}
 //| echo: false
 //| label: fig-theory-dac-decision
 //| fig-cap: "Применение дискреционной политики"
-dacDiagram(theoryDac)
+dacLesson.dacDiagram(theoryDac)
 ```
 
 В динамическом примере сравните чтение и запись Боба, а затем запись Алисы. Право Боба читать не даёт ему права записи; полномочие изменять ACL здесь не моделируется.
@@ -154,15 +154,15 @@ Windows использует **Mandatory Integrity Control, MIC**, совмес�
 
 ```{ojs}
 //| echo: false
-import {rbacControls, rbacDiagram} from "/_prepared/visualizations/access-control/rbac/lesson.js"
-viewof theoryRbac = rbacControls()
+rbacLesson = await import(await FileAttachment("/_prepared/visualizations/access-control/rbac/lesson.js").url())
+viewof theoryRbac = rbacLesson.rbacControls()
 ```
 
 ```{ojs}
 //| echo: false
 //| label: fig-theory-rbac-decision
 //| fig-cap: "Применение ролевой политики"
-rbacDiagram(theoryRbac)
+rbacLesson.rbacDiagram(theoryRbac)
 ```
 
 Сравните проверку работы в курсе А с проверкой и просмотром в курсе Б. В А проверка разрешена ролью `teacher`, в Б роль `student` разрешает просмотр, но не проверку. Назначение роли в одном курсе не распространяется автоматически на другой.

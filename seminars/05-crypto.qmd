@@ -38,8 +38,8 @@ course-presentation:
 //| echo: false
 //| label: fig-slide-lcg
 //| fig-cap: "Состояния учебного генератора"
-import {lcgTrainer} from "/_prepared/visualizations/crypto/lesson.js"
-lcgTrainer()
+cryptoLesson = await import(await FileAttachment("/_prepared/visualizations/crypto/lesson.js").url())
+cryptoLesson.lcgTrainer()
 ```
 
 ### Симметричное шифрование
@@ -74,8 +74,8 @@ lcgTrainer()
 //| echo: false
 //| label: fig-slide-cipher
 //| fig-cap: "Учебные преобразования Цезаря и XOR"
-import {caesarXorTrainer} from "/_prepared/visualizations/crypto/lesson.js"
-caesarXorTrainer()
+
+cryptoLesson.caesarXorTrainer()
 ```
 
 ### Хеширование

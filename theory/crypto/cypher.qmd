@@ -18,6 +18,6 @@
 //| echo: false
 //| label: fig-cipher-trainer
 //| fig-cap: "Учебные преобразования Цезаря и XOR"
-import {caesarXorTrainer} from "/_prepared/visualizations/crypto/lesson.js"
-caesarXorTrainer()
+cryptoLesson = await import(await FileAttachment("/_prepared/visualizations/crypto/lesson.js").url())
+cryptoLesson.caesarXorTrainer()
 ```

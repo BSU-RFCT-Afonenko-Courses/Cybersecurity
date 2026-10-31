@@ -65,8 +65,8 @@ course-presentation:
 //| label: fig-slide-auth-methods
 //| fig-cap: "Способы подтверждения входа"
 //| fig-alt: "Пароль, OTP и passkey и их проверка"
-import {authenticationComparison} from "/_prepared/visualizations/authentication/lesson.js"
-authenticationComparison()
+authenticationLesson = await import(await FileAttachment("/_prepared/visualizations/authentication/lesson.js").url())
+authenticationLesson.authenticationComparison()
 ```
 
 ### Passkey: регистрация {.smaller}
@@ -78,8 +78,8 @@ authenticationComparison()
 //| label: fig-slide-passkey-registration
 //| fig-cap: "Регистрация passkey"
 //| fig-alt: "От запроса сервиса к сохранению открытого ключа"
-import {passkeyRegistration} from "/_prepared/visualizations/authentication/lesson.js"
-passkeyRegistration()
+
+authenticationLesson.passkeyRegistration()
 ```
 
 ### Passkey: вход {.smaller}
@@ -95,8 +95,8 @@ RP проверяет подпись свежего запроса, challenge, R
 //| label: fig-slide-passkey-login
 //| fig-cap: "Вход с passkey"
 //| fig-alt: "От свежего запроса до проверки подписи"
-import {passkeyLogin} from "/_prepared/visualizations/authentication/lesson.js"
-passkeyLogin()
+
+authenticationLesson.passkeyLogin()
 ```
 
 ::: {.notes}
@@ -111,15 +111,15 @@ PIN или биометрия проверяются локально; каса�
 
 ```{ojs}
 //| echo: false
-import {dacControls, dacDiagram} from "/_prepared/visualizations/access-control/dac/lesson.js"
-viewof slideDac = dacControls()
+dacLesson = await import(await FileAttachment("/_prepared/visualizations/access-control/dac/lesson.js").url())
+viewof slideDac = dacLesson.dacControls()
 ```
 
 ```{ojs}
 //| echo: false
 //| label: fig-slide-dac-decision
 //| fig-cap: "Применение дискреционной политики"
-dacDiagram(slideDac)
+dacLesson.dacDiagram(slideDac)
 ```
 
 ### MAC: три уровня
@@ -144,15 +144,15 @@ dacDiagram(slideDac)
 
 ```{ojs}
 //| echo: false
-import {rbacControls, rbacDiagram} from "/_prepared/visualizations/access-control/rbac/lesson.js"
-viewof slideRbac = rbacControls()
+rbacLesson = await import(await FileAttachment("/_prepared/visualizations/access-control/rbac/lesson.js").url())
+viewof slideRbac = rbacLesson.rbacControls()
 ```
 
 ```{ojs}
 //| echo: false
 //| label: fig-slide-rbac-decision
 //| fig-cap: "Применение ролевой политики"
-rbacDiagram(slideRbac)
+rbacLesson.rbacDiagram(slideRbac)
 ```
 
 ### Запасные вопросы

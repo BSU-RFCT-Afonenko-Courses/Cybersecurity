@@ -1,6 +1,6 @@
 ```{ojs}
 //| echo: false
-import {macControls, macDiagram} from "/_prepared/visualizations/access-control/mac/lesson.js"
+macLesson = await import(await FileAttachment("/_prepared/visualizations/access-control/mac/lesson.js").url())
 
 // Авторские пояснения: удаление свойства не удаляет именованный этап.
 macNotes = ({
@@ -10,12 +10,12 @@ macNotes = ({
   "write-rule": "Добавлять без чтения можно на свой и верхние уровни. Поток идёт из процесса в файл.",
   result: "Результат следует из проверки уровней. Обычное редактирование потребовало бы также разрешённого чтения."
 })
-viewof macRequest = macControls()
+viewof macRequest = macLesson.macControls()
 ```
 
 ```{ojs}
 //| echo: false
 //| label: fig-mac-decision
 //| fig-cap: "Применение мандатной политики к одному запросу"
-macDiagram(macRequest, macNotes)
+macLesson.macDiagram(macRequest, macNotes)
 ```

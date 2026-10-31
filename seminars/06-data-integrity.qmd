@@ -29,8 +29,8 @@ course-presentation:
 //| echo: false
 //| label: fig-slide-integrity-reference
 //| fig-cap: "Замена файла и эталона"
-import {sumCollision, byteChange, referenceReplacement, xorRecovery} from "/_prepared/visualizations/data-integrity/lesson.js"
-referenceReplacement()
+integrityLesson = await import(await FileAttachment("/_prepared/visualizations/data-integrity/lesson.js").url())
+integrityLesson.referenceReplacement()
 ```
 
 ### Три схемы на одних изменениях
@@ -93,7 +93,7 @@ referenceReplacement()
 //| echo: false
 //| label: fig-slide-integrity-xor
 //| fig-cap: "Восстановление блока по XOR"
-xorRecovery()
+integrityLesson.xorRecovery()
 ```
 
 ### Вопрос для обсуждения {.smaller}
@@ -106,7 +106,7 @@ xorRecovery()
 //| echo: false
 //| label: fig-slide-integrity-collision
 //| fig-cap: "Коллизия простой суммы"
-sumCollision()
+integrityLesson.sumCollision()
 ```
 
 ### Запас: изменение байта
@@ -115,7 +115,7 @@ sumCollision()
 //| echo: false
 //| label: fig-slide-integrity-byte
 //| fig-cap: "Изменение байта"
-byteChange()
+integrityLesson.byteChange()
 ```
 
 ### Запасные вопросы {.smaller}
