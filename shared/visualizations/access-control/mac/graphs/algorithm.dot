@@ -1,0 +1,18 @@
+digraph policy {
+  graph [rankdir=TB, bgcolor="transparent", pad="0.12", nodesep="0.25", ranksep="0.3", splines=polyline];
+  node [shape=box, style=rounded, fontname="DejaVu Sans", fontsize=12, color="#64748b"];
+  edge [fontname="DejaVu Sans", fontsize=10, color="#94a3b8", arrowsize=0.6];
+  request [id="request",label="Получить запрос"];
+  levels [id="levels",label="Определить уровни"];
+  read [id="read-rule",label="Читать:\nпроцесс ≥ файл?",shape=diamond];
+  write [id="write-rule",label="Добавить:\nпроцесс ≤ файл?",shape=diamond];
+  allow [id="allow",label="Разрешить"];
+  deny [id="deny",label="Отказать"];
+  request -> levels;
+  levels -> read [label="читать"];
+  levels -> write [label="добавить"];
+  read -> allow [label="да"];
+  read -> deny [label="нет"];
+  write -> allow [label="да"];
+  write -> deny [label="нет"];
+}

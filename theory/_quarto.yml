@@ -7,6 +7,10 @@ project:
   - '!materials/**'
   - '!**/*.qmd'
   - '!_generated/**'
+  - ./_prepared/visualizations/**/static/*.svg
+  - '!_prepared/**/*.qmd'
+  - '!_prepared/bank-fragments/**'
+  - '!**/_prepared/bank-fragments/**'
   - '!_freeze/**'
   - '!.quarto/**'
   - '!**/_extensions/**'

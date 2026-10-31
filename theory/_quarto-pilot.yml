@@ -1,0 +1,10 @@
+# Только целевые пробы: обычные профили и навигация не включают пилот.
+book:
+  chapters:
+  - index.qmd
+  - access-control/visualization-pilot.qmd
+filters:
+- course-core
+- course-presentation
+- reference-catalog
+- ../shared/visualizations/common/filter.lua

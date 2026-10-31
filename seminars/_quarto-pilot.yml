@@ -1,0 +1,9 @@
+# Только целевые пробы, без изменения штатного списка слайдов.
+project:
+  render:
+  - visualization-pilot.qmd
+filters:
+- course-core
+- course-presentation
+- reference-catalog
+- ../shared/visualizations/common/filter.lua
