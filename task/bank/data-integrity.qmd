@@ -26,7 +26,7 @@ aliases:
 
 ## Основные вопросы для обсуждения
 
-::: {#exr-data-integrity-trusted-hash course-role="discussion" statement-visibility="open"}
+::: {#exr-data-integrity-trusted-hash course-role="discussion" statement-visibility="open" difficulty="intermediate"}
 ### Доверие к эталону
 
 На сайте лежали файл `F` и его хеш `H(F)`. Атакующий заменил их на `G` и `H(G)`. Проверка совпала. Доказано ли происхождение файла?
@@ -36,7 +36,7 @@ aliases:
 Нет. Совпадение проверено по подменённому эталону. Доверие к эталону нужно установить независимо; коллизию хеша здесь не искали.
 :::
 
-::: {#exr-data-integrity-backup-volume course-role="discussion" statement-visibility="open"}
+::: {#exr-data-integrity-backup-volume course-role="discussion" statement-visibility="open" difficulty="introductory"}
 ### Объём копий
 
 Копируются целые файлы `A = 2`, `B = 3`, `C = 5` МБ постоянного размера; добавлений, удалений, сжатия и дедупликации нет. В воскресенье сделана полная копия. В понедельник изменён A, во вторник B, в среду снова A; ежедневно после правки создаётся копия. Каков объём создаваемой в среду полной, инкрементной и дифференциальной копии?
@@ -46,7 +46,7 @@ aliases:
 Соответственно 10, 2 и 5 МБ. Инкремент содержит A после предыдущей копии, дифференциальная — актуальные A и B после воскресной полной. Повторную правку A дважды не считают. Это объёмы копий среды, а не суммарного хранилища.
 :::
 
-::: {#exr-data-integrity-mirror-copy course-role="discussion" statement-visibility="open"}
+::: {#exr-data-integrity-mirror-copy course-role="discussion" statement-visibility="open" difficulty="intermediate"}
 ### Зеркало и копия
 
 Два диска работают в RAID 1, есть отдельная исправная независимая резервная копия. В понедельник в 10:00 сотрудник удалил файл, и удаление отразилось на обоих дисках. Последняя копия воскресенья 23:00 содержит файл; после копии его изменяли. Других копий, корзины и снимков нет. Один администратор предлагает второй диск, другой — резервную копию. Сравните решения, назовите доступную версию и событие, от которого помогает зеркало.
@@ -64,7 +64,7 @@ aliases:
 
 ## Запасные вопросы
 
-::: {#exr-data-integrity-sum course-role="discussion" statement-visibility="open"}
+::: {#exr-data-integrity-sum course-role="discussion" statement-visibility="open" difficulty="introductory"}
 ### Простая сумма
 
 Найдите суммы байтов без переполнения для `[10,20,30]`, `[10,21,30]`, `[20,10,30]`. Какие массивы сумма не различает?
@@ -73,7 +73,7 @@ aliases:
 Суммы равны 60, 61 и 60. Первый и третий массивы различны, но сумма совпадает. Это простая сумма, а не криптографический хеш.
 :::
 
-::: {#exr-data-integrity-backup-chain course-role="discussion" statement-visibility="open"}
+::: {#exr-data-integrity-backup-chain course-role="discussion" statement-visibility="open" difficulty="introductory"}
 ### Цепочка восстановления
 
 Копируются целые файлы только перезаписью. Полная копия воскресенья содержит A, B, C. В понедельник меняли только A, во вторник B, в среду C; ежедневно создаётся копия выбранного типа. Что нужно для восстановления состояния среды в инкрементной и дифференциальной схеме?
@@ -82,7 +82,7 @@ aliases:
 Для инкрементной цепочки — полная и все три инкремента по порядку; для дифференциальной — полная и дифференциальная среды. Другие форматы здесь не предполагаются.
 :::
 
-::: {#exr-data-integrity-raid-capacity course-role="discussion" statement-visibility="open"}
+::: {#exr-data-integrity-raid-capacity course-role="discussion" statement-visibility="open" difficulty="introductory"}
 ### Ёмкость RAID
 
 Отдельные массивы из дисков по 2 ТБ: RAID 0 — три диска, RAID 1 — два, RAID 5 — три. Служебными расходами пренебречь; остальные диски и метаданные исправны. Какова полезная ёмкость каждого массива и переживёт ли он один полный отказ диска?
@@ -91,7 +91,7 @@ aliases:
 Соответственно 6, 2 и 4 ТБ. Один отказ выдерживают RAID 1 и RAID 5; RAID 0 не обеспечивает чтение всего набора.
 :::
 
-::: {#exr-data-integrity-mirror-history course-role="discussion" statement-visibility="open"}
+::: {#exr-data-integrity-mirror-history course-role="discussion" statement-visibility="open" difficulty="introductory"}
 ### Зеркало и история
 
 Штатное удаление файла отразилось на обоих дисках RAID 1. Других копий, корзины и снимков нет. Можно ли средствами одного зеркала вернуть вчерашнюю версию?
@@ -100,7 +100,7 @@ aliases:
 Нет: зеркало отражает текущее состояние, а история требует отдельно сохранённой версии. Восстановление секторов условием не предусмотрено.
 :::
 
-::: {#exr-data-integrity-xor course-role="discussion" statement-visibility="open"}
+::: {#exr-data-integrity-xor course-role="discussion" statement-visibility="open" difficulty="intermediate"}
 ### Восстановление XOR
 
 `P = A XOR B`, `A = 1010`, `P = 0110`. Найдите B. Хватит ли одного P при потере обоих блоков данных?

@@ -26,7 +26,7 @@ aliases:
 
 Первые четыре вопроса составляют основной набор; остальные — запас.
 
-:::: {#exr-crypto-short-lcg course-role="discussion" statement-visibility="open"}
+:::: {#exr-crypto-short-lcg course-role="discussion" statement-visibility="open" difficulty="introductory"}
 ### Состояния генератора при повторном запуске
 
 Генератор задан формулой `x′ = (5x + 1) mod 8`, `x0 = 2`. Найдите три следующих состояния и результат повторного запуска с тем же `x0`.
@@ -36,7 +36,7 @@ aliases:
 `3, 0, 1`; повторный запуск даст ту же последовательность. Это учебный детерминированный генератор, а не средство для секретных ключей.
 :::
 
-:::: {#exr-crypto-short-caesar course-role="discussion" statement-visibility="open"}
+:::: {#exr-crypto-short-caesar course-role="discussion" statement-visibility="open" difficulty="introductory"}
 ### Сдвиги шифра Цезаря
 
 В шифре Цезаря алфавит `A`–`Z`, сдвиг 3 (`A → D`). Зашифруйте `ZOO`, расшифруйте `GRJ`. Сколько сдвигов с учётом нулевого?
@@ -46,7 +46,7 @@ aliases:
 `CRR`, `DOG`; 26 сдвигов. Малое пространство ключей позволяет перебрать их. Вывод о стойкости современных шифров отсюда не следует.
 :::
 
-:::: {#exr-crypto-short-xor course-role="discussion" statement-visibility="open"}
+:::: {#exr-crypto-short-xor course-role="discussion" statement-visibility="open" difficulty="introductory"}
 ### Восстановление сообщения с помощью XOR
 
 Пусть `C = M XOR K`, `C = 110110`, `K = 011011`. Найдите `M`.
@@ -56,7 +56,7 @@ aliases:
 `M = 101101`: повторный XOR с тем же ключом отменяет первый. Обратимость сама по себе не устанавливает секретность.
 :::
 
-:::: {#exr-crypto-short-salt course-role="discussion" statement-visibility="open"}
+:::: {#exr-crypto-short-salt course-role="discussion" statement-visibility="open" difficulty="intermediate"}
 ### Соль и перебор одинаковых паролей
 
 Два пользователя выбрали `123456`; для каждого создана отдельная случайная соль. Что меняется для атакующего при переборе украденной базы? Стал ли пароль сильным?
@@ -66,7 +66,7 @@ aliases:
 Для разных солей вычисления приходится выполнять отдельно; заранее вычисленные таблицы хуже переиспользуются. Пароль остаётся слабым. Соль не обязана быть секретной; алгоритм и стоимость проверки тоже важны.
 :::
 
-:::: {#exr-crypto-short-coin course-role="discussion" statement-visibility="open"}
+:::: {#exr-crypto-short-coin course-role="discussion" statement-visibility="open" difficulty="intermediate"}
 ### Вероятности двух последовательностей
 
 Честную монету бросают восемь раз независимо. Какая точная строка вероятнее: `01010101` или `00110110`? Доказывает ли её вид случайность?
@@ -76,7 +76,7 @@ aliases:
 Обе имеют вероятность `1/256`. Внешний вид одной строки не доказывает свойств процесса. Сравниваются две точные строки, а не классы строк.
 :::
 
-:::: {#exr-crypto-short-purpose course-role="discussion" statement-visibility="open"}
+:::: {#exr-crypto-short-purpose course-role="discussion" statement-visibility="open" difficulty="introductory"}
 ### Выбор криптографического механизма
 
 Нужно скрыть сообщение, проверить целостность файла по доверенному эталону и проверить пароль. Какой механизм подходит для каждой задачи?
