@@ -8,6 +8,7 @@ project:
   - '!**/*.qmd'
   - '!_generated/**'
   - ./_prepared/visualizations/**/static/*.svg
+  - ./_prepared/visualizations/**/*.js
   - '!_prepared/**/*.qmd'
   - '!_prepared/bank-fragments/**'
   - '!**/_prepared/bank-fragments/**'
@@ -57,9 +58,10 @@ book:
   title: Теория
 format:
   html:
+    embed-resources: false
     theme: cosmo
     html-math-method:
-      method: mathjax
+      method: mathml
 lang: ru
 author:
 - Афоненко Анатолий

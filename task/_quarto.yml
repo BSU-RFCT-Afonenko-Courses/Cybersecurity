@@ -63,6 +63,8 @@ lang: ru
 bibliography: ../references.bib
 format:
   html:
+    html-math-method: mathml
+    embed-resources: false
     theme: cosmo
 reference-catalog:
   namespace: tasks

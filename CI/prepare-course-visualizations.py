@@ -4,6 +4,7 @@ from pathlib import Path
 import importlib.util
 import re
 import subprocess
+from bank_requests import group_requests
 ROOT = Path(__file__).resolve().parents[1]
 PROJECT = Path.cwd().name
 if PROJECT not in ('theory', 'seminars'):
@@ -16,8 +17,5 @@ spec.loader.exec_module(bank)
 needed = set()
 for document in (ROOT/PROJECT).glob('*.qmd'):
     needed.update(re.findall(r'include\s+_prepared/bank-fragments/(exr-[\w-]+)\.qmd', document.read_text()))
-for identifier in sorted(needed):
-    sources = [p for p in (ROOT/'task/bank').glob('*.qmd') if re.search(r'\{#'+re.escape(identifier)+r'(?:\s|\})', p.read_text())]
-    if len(sources) != 1:
-        raise ValueError(f'Ожидался один канонический источник {identifier}: {sources}')
-    bank.prepare(sources[0], [identifier], ROOT/PROJECT/'_prepared/bank-fragments')
+for source, identifiers in group_requests(needed, (ROOT/'task/bank').glob('*.qmd')).items():
+    bank.prepare(source, identifiers, ROOT/PROJECT/'_prepared/bank-fragments')

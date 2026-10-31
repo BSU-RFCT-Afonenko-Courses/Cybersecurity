@@ -1,19 +1,21 @@
 digraph G {
- graph [rankdir=LR, bgcolor="transparent", pad="0.2", splines=polyline];
- node [shape=box, style="rounded,filled", fillcolor="#eef4fa", fontname="DejaVu Sans", fontsize=12];
- edge [fontname="DejaVu Sans", fontsize=10];
+ graph [rankdir=TB, ranksep=0.35, nodesep=0.3, bgcolor="transparent", pad="0.2", splines=polyline];
+ node [shape=box, style="rounded,filled", fillcolor="#eef4fa", fontname="DejaVu Sans", fontsize=16];
+ edge [fontname="DejaVu Sans", fontsize=11];
  "subject" [id="subject", label="Процесс Анны"];
  "context" [id="context", label="Контекст: курс А или Б"];
  "teacher" [id="teacher", label="Преподаватель в А"];
  "student" [id="student", label="Студент в Б"];
- "permission" [id="permission", label="Преподаватель: просмотр, проверка\nСтудент: просмотр"];
+ "permission-teacher" [id="permission-teacher", label="Просмотр и проверка"];
+ "permission-student" [id="permission-student", label="Просмотр"];
  "monitor" [id="monitor", label="Монитор доступа"];
  "object" [id="object", label="Работа в выбранном курсе"];
  "subject" -> "context" [id="request-flow", label="запрос"];
- "context" -> "teacher" [label="назначение в А"];
- "context" -> "student" [label="назначение в Б"];
- "teacher" -> "permission" [label="права роли"];
- "student" -> "permission" [label="права роли"];
- "permission" -> "monitor" [id="policy-flow", label="проверка"];
+ "context" -> "teacher" [id="assignment-A-teacher", label="назначение в А"];
+ "context" -> "student" [id="assignment-B-student", label="назначение в Б"];
+ "teacher" -> "permission-teacher" [id="role-permission-teacher", label="права роли"];
+ "student" -> "permission-student" [id="role-permission-student", label="права роли"];
+ "permission-teacher" -> "monitor" [id="policy-teacher", label="проверка"];
+ "permission-student" -> "monitor" [id="policy-student", label="проверка"];
  "monitor" -> "object" [id="access-flow", label="доступ"];
 }

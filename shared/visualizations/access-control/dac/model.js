@@ -12,6 +12,6 @@ export function dacTrace({subject,operation,acl={alice:['read','write'],bob:['re
  {name:'request',label:'Запрос',model:[subjectKey,'object','monitor','request-flow-'+subject],algorithm:['request']},
  {name:'acl',label:'Права субъекта',model:[subjectKey,'acl','owner'],algorithm:['acl']},
  {name:'operation',label:'Запрошенная операция',model:['acl','monitor','policy-flow'],algorithm:['operation']},
- {name:'result',label:result==='allow'?'Разрешить':'Отказать',model:[subjectKey,'request-flow-'+subject,'monitor','object','access-flow'],algorithm:[result],result}
+ {name:'result',label:result==='allow'?'Разрешить':'Отказать',model:[subjectKey,'request-flow-'+subject,'monitor',...(result==='allow'?['object','access-flow']:[])],algorithm:[result],result}
  ];
 }

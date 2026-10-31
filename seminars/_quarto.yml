@@ -11,12 +11,14 @@ project:
   - 06-data-integrity.qmd
   output-dir: _output
   resources:
+  - control-demo.html
   - ./assets/**
   - '!materials/**'
   - '!**/*.qmd'
   - '!**/_*.qmd'
   - '!_generated/**'
   - ./_prepared/visualizations/**/static/*.svg
+  - ./_prepared/visualizations/**/*.js
   - '!_prepared/**/*.qmd'
   - '!_prepared/bank-fragments/**'
   - '!**/_prepared/bank-fragments/**'
@@ -51,6 +53,8 @@ filters:
 - course-visualizations
 format:
   revealjs:
+    html-math-method: mathml
+    embed-resources: false
     shift-heading-level-by: -1
     slide-level: 2
     navigation-mode: linear

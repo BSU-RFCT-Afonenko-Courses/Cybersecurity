@@ -7,11 +7,13 @@ export const rbacQueries=[
 export function rbacTrace({subject,context,operation,assignments={anna:{A:['teacher'],B:['student']}},permissions={teacher:['view','grade'],student:['view']}}) {
  if(subject!=='anna'||!['A','B'].includes(context)||!['view','grade'].includes(operation)) throw Error('Неизвестный субъект, контекст или операция');
  const roles=assignments[subject]?.[context]||[];
+ const assignmentsKeys=roles.map(role=>`assignment-${context}-${role}`);
+ const permissionKeys=roles.flatMap(role=>[`permission-${role}`,`role-permission-${role}`]);
  const result=roles.some(role=>(permissions[role]||[]).includes(operation))?'allow':'deny';
  return [
  {name:'request',label:'Запрос в контексте',model:['subject','context','object','request-flow'],algorithm:['request']},
- {name:'roles',label:'Назначенные роли',model:['subject','context','teacher','student'],algorithm:['roles']},
- {name:'permission',label:'Разрешение роли',model:['teacher','student','permission','monitor','policy-flow'],algorithm:['permission']},
- {name:'result',label:result==='allow'?'Разрешить':'Отказать',model:['monitor','object','access-flow'],algorithm:[result],result}
+ {name:'roles',label:'Назначенные роли',model:['subject','context',...roles,...assignmentsKeys],algorithm:['roles']},
+ {name:'permission',label:'Разрешение роли',model:['context',...roles,...assignmentsKeys,...permissionKeys,'monitor',...roles.map(role=>'policy-'+role)],algorithm:['permission']},
+ {name:'result',label:result==='allow'?'Разрешить':'Отказать',model:['subject','context',...roles,...assignmentsKeys,'monitor',...(result==='allow'?['object','access-flow']:[])],algorithm:[result],result}
  ];
 }

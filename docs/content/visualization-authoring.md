@@ -60,14 +60,14 @@ quarto render seminars/visualization-pilot.qmd --profile student,pilot --no-clea
 ````markdown
 ```{ojs}
 //| echo: false
-viewof macSecond = macControls({initial:1})
+viewof macSecond = macLesson.macControls({initial:1})
 ```
 
 ```{ojs}
 //| echo: false
 //| label: fig-mac-second
 //| fig-cap: "Второй запрос мандатной модели"
-macDiagram(macSecond, macNotes)
+macLesson.macDiagram(macSecond, macNotes)
 ```
 ````
 
@@ -76,19 +76,19 @@ macDiagram(macSecond, macNotes)
 ````markdown
 ```{ojs}
 //| echo: false
-import {macControls, macDiagram} from "/_prepared/visualizations/access-control/mac/lesson.js"
-viewof ownMacRequest = macControls()
+macLesson = await import(await FileAttachment("/_prepared/visualizations/access-control/mac/lesson.js").url())
+viewof ownMacRequest = macLesson.macControls()
 ```
 
 ```{ojs}
 //| echo: false
 //| label: fig-own-mac
 //| fig-cap: "Проверка одного запроса"
-macDiagram(ownMacRequest, {request:"Один запрос, одна политика"})
+macLesson.macDiagram(ownMacRequest, {request:"Один запрос, одна политика"})
 ```
 ````
 
-Проектные пути `/...` одинаковы во вложенной теории и корневых слайдах.
+Проектные пути `FileAttachment("/...")` одинаковы во вложенной теории и корневых слайдах.
 Входной модуль — обычный ES-модуль `.js`. Его imports разрешаются относительно
 файла, а SVG загружаются через `new URL(..., import.meta.url)`. Не заменяйте его
 на root-relative `.ojs`: в Quarto 1.11.6 такой импорт ломается у корневого документа
@@ -198,7 +198,9 @@ Core удаляет закрытый разбор из student. `answers: expand
 `extensions/course-visualizations/_extensions/course-visualizations/`.
 Это готовый локальный дистрибутив для `quarto add`, а не изменение Course-Tools.
 Совместимый вход `shared/visualizations/common/runtime.js` только переэкспортирует
-технические функции; подготовка меняет путь на локальную установку проекта.
+технические функции. Подготовка побайтно копирует runtime установленного авторского
+расширения в `_prepared/visualizations/common/course-runtime.js` и направляет адаптер
+на эту публичную копию. Полный `_extensions` в публикацию не включается.
 Предметные файлы, DOT и тексты не входят в пакет. Фильтр доставляет CSS и статические
 SVG, OJS компилируется штатно до Lua.
 
@@ -266,3 +268,29 @@ LCG ограничен небольшими точными целыми; Цез�
 `node CI/visualizations/measure-pages.browser.cjs seminars/_output/student 04-access-control.html 05-crypto.html 06-data-integrity.html`.
 Он отдельно записывает тела HTTP, локальную оценку gzip и память вкладки;
 время относится к местному HTTP-серверу, внешние MathJax/шрифты учитываются отдельно.
+
+
+## Автономная доставка OJS и математики
+
+В Quarto 1.11.6 статическое OJS `import {name} from "..."` создаёт скрытый
+Markdown-блок импорта. Его стандартная библиотека пытается загрузить `marked`
+с CDN даже при `echo: false`. Поэтому авторская форма выше использует обычное
+выражение JavaScript `await import(await FileAttachment("/...").url())` и затем
+обращение к функции через объект модуля. Это штатные OJS/JS и FileAttachment;
+runtime Quarto и установленные пакеты не модифицируются. Объект модуля объявляют
+один раз на документ; последующие ячейки вызывают его функции.
+
+`embed-resources: false` сохраняет настоящий URL ES-модуля для относительных
+импортов и `new URL(..., import.meta.url)`. Все публичные `.js` и статические SVG
+из `_prepared/visualizations` явно перечислены масками project resources.
+QMD, DOT и банковские фрагменты по-прежнему не публикуются. Проверка
+`node CI/visualizations/prepared.browser.cjs` разрешает серверу отдавать только
+материализованные публичные компоненты; доступ к `shared` и `_extensions` исключён.
+Копия runtime должна побайтно совпадать с установленным авторским расширением.
+
+Для HTML и Reveal выбран штатный `html-math-method: mathml`: формулы выводит
+браузер без MathJax CDN. Это поддержанный [параметр Quarto](https://quarto.org/docs/reference/formats/html.html).
+Автономность проверяется через HTTP готового output с запретом внешних запросов,
+а не открытием `file://` или доступом к исходникам. Изолированная native-проба
+четырёх композиций целостности и формулы MathML прошла; финальная приёмка проверяет
+настоящие страницы и чистую доставку всех транзитивных ресурсов.

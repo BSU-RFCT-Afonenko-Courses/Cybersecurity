@@ -49,6 +49,8 @@ project:
     watch-inputs: false
 format:
   html:
+    html-math-method: mathml
+    embed-resources: false
     theme: cosmo
     toc: false
 lang: ru

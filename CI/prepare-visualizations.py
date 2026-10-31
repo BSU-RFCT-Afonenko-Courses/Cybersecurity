@@ -15,5 +15,10 @@ for project in args.projects:
         shutil.copytree(ROOT/'shared/visualizations'/directory,destination/directory)
     shutil.copyfile(ROOT/'shared/visualizations/_mac-example.qmd',destination/'mac-example.qmd')
     adapter=destination/'common/runtime.js'
-    adapter.write_text(adapter.read_text().replace('../../../extensions/course-visualizations/_extensions/','../../../_extensions/'))
+    installed_runtime=ROOT/project/'_extensions/course-visualizations/browser/runtime.js'
+    public_runtime=destination/'common/course-runtime.js'
+    shutil.copyfile(installed_runtime,public_runtime)
+    if public_runtime.read_bytes()!=installed_runtime.read_bytes():
+        raise ValueError('Публичная копия runtime отличается от установленного расширения')
+    adapter.write_text(adapter.read_text().replace('../../../extensions/course-visualizations/_extensions/course-visualizations/browser/runtime.js','./course-runtime.js'))
     print(destination.relative_to(ROOT))

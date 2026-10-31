@@ -1,7 +1,7 @@
 digraph G {
- graph [rankdir=LR, bgcolor="transparent", pad="0.2", splines=polyline];
- node [shape=box, style="rounded,filled", fillcolor="#eef4fa", fontname="DejaVu Sans", fontsize=12];
- edge [fontname="DejaVu Sans", fontsize=10];
+ graph [rankdir=TB, ranksep=0.35, nodesep=0.3, bgcolor="transparent", pad="0.2", splines=polyline];
+ node [shape=box, style="rounded,filled", fillcolor="#eef4fa", fontname="DejaVu Sans", fontsize=16];
+ edge [fontname="DejaVu Sans", fontsize=11];
  "request" [id="request", label="Субъект, объект, операция"];
  "roles" [id="roles", label="Найти роли в данном контексте"];
  "permission" [id="permission", label="Есть разрешение на эту операцию?"];
