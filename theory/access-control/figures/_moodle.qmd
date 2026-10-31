@@ -1,0 +1,25 @@
+```{=html}
+<style>
+.acv-figure{box-sizing:border-box;max-width:100%;min-width:0;margin:1rem 0;color:#183247;background:#fff;break-inside:avoid}
+.acv-figure .acv-caption{margin:0 0 .5rem;font-weight:650;font-size:1.05em;line-height:1.25;text-align:left;color:#183247}
+.acv-figure .acv-scroll{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;border:1px solid #d7e2ea;border-radius:12px;background:#fff}
+.acv-figure .acv-scroll:focus-visible{outline:3px solid #235eaa;outline-offset:3px}
+.acv-figure svg{display:block;width:100%;min-width:650px;height:auto;max-height:400px;background:#fff}
+.acv-figure svg text{font-family:DejaVu Sans,Arial,sans-serif}
+.reveal .acv-figure{margin:.4rem 0}
+.reveal .acv-figure .acv-caption{font-size:.7em}
+@media print{.acv-figure{margin:.7rem 0;break-inside:avoid}.acv-figure .acv-scroll{overflow:visible;border-color:#bacbd8}.acv-figure svg{min-width:0;max-height:none;width:100%}}
+</style>
+<figure class="acv-figure acv-moodle">
+<figcaption class="acv-caption">Роль действует в определённом контексте</figcaption>
+<div class="acv-scroll" role="region" aria-label="Схема с горизонтальной прокруткой: Роль действует в определённом контексте" tabindex="0">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 365" width="1000" height="365" role="img" aria-label="Роль действует в определённом контексте">
+<desc>Пример настройки Moodle: Лена назначена Преподавателем в курсе А и Студентом в курсе Б. В курсе А роль разрешает mod/assign:grade, в курсе Б показанная роль этого разрешения не имеет. Назначение в контексте курса А не переносится автоматически в курс Б.</desc>
+<rect width="1000" height="365" fill="white"/>
+<g font-family="DejaVu Sans,Arial,sans-serif" fill="#183247">
+<rect x="20" y="15" width="460" height="282" rx="14" fill="#eef5ff" stroke="#235eaa" stroke-width="2"/><rect x="520" y="15" width="460" height="282" rx="14" fill="#eaf8f6" stroke="#087e83" stroke-width="2"/><text x="250" y="54" text-anchor="middle" font-size="27" font-weight="650" fill="#235eaa">Курс А · контекст</text><text x="750" y="54" text-anchor="middle" font-size="27" font-weight="650" fill="#087e83">Курс Б · контекст</text><rect x="40" y="85" width="115" height="66" rx="14" fill="white" stroke="#235eaa" stroke-width="2"/><text x="97.5" y="128.0" text-anchor="middle" font-size="25" font-weight="650" fill="#235eaa">Лена</text><rect x="205" y="85" width="250" height="66" rx="14" fill="white" stroke="#235eaa" stroke-width="2"/><text x="330.0" y="128.0" text-anchor="middle" font-size="25" font-weight="650" fill="#235eaa">Преподаватель</text><path d="M164,118 L181.0,118.0" fill="none" stroke="#235eaa" stroke-width="5" stroke-linecap="round"/><polygon points="193,118 181.0,124.0 181.0,112.0" fill="#235eaa"/><path d="M330,165 L330.0,179.0" fill="none" stroke="#235eaa" stroke-width="5" stroke-linecap="round"/><polygon points="330,191 324.0,179.0 336.0,179.0" fill="#235eaa"/><rect x="45" y="205" width="410" height="70" rx="14" fill="white" stroke="#235eaa" stroke-width="2"/><text x="250.0" y="235.5" text-anchor="middle" font-size="25" font-weight="650" fill="#235eaa">mod/assign:grade</text><text x="250.0" y="266.5" text-anchor="middle" font-size="22" font-weight="400" fill="#183247">оценивание разрешено</text><rect x="540" y="85" width="115" height="66" rx="14" fill="white" stroke="#087e83" stroke-width="2"/><text x="597.5" y="128.0" text-anchor="middle" font-size="25" font-weight="650" fill="#087e83">Лена</text><rect x="705" y="85" width="250" height="66" rx="14" fill="white" stroke="#087e83" stroke-width="2"/><text x="830.0" y="128.0" text-anchor="middle" font-size="25" font-weight="650" fill="#087e83">Студент</text><path d="M664,118 L681.0,118.0" fill="none" stroke="#087e83" stroke-width="5" stroke-linecap="round"/><polygon points="693,118 681.0,124.0 681.0,112.0" fill="#087e83"/><path d="M830,165 L830,190" fill="none" stroke="#a86508" stroke-width="4" stroke-dasharray="10 8"/><path d="M823,177 L837,191" fill="none" stroke="#a86508" stroke-width="4"/><path d="M837,177 L823,191" fill="none" stroke="#a86508" stroke-width="4"/><rect x="545" y="205" width="410" height="70" rx="14" fill="white" stroke="#a86508" stroke-width="2"/><text x="750.0" y="235.5" text-anchor="middle" font-size="25" font-weight="650" fill="#a86508">mod/assign:grade</text><text x="750.0" y="266.5" text-anchor="middle" font-size="22" font-weight="400" fill="#183247">у роли нет разрешения</text><text x="500" y="340" text-anchor="middle" font-size="23" font-weight="500" fill="#183247">Пример настройки: право курса А не переносится в курс Б</text>
+</g>
+</svg>
+</div>
+</figure>
+```

@@ -16,6 +16,7 @@ _freeze/
 *.tex
 
 *.html
+!/theory/assets/access-control/*.html
 /_*.local
 
 # Результаты нативных проектов общего шаблона.

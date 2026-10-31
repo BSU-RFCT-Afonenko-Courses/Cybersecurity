@@ -15,4 +15,6 @@
 - @sec-theory-crypto-key-gen — получение криптографических ключей.
 - @sec-theory-crypto-cypher — симметричное и асимметричное шифрование.
 
+- @sec-theory-access-control — управление доступом.
+
 Практическое применение: @tasks:sec-tasks.

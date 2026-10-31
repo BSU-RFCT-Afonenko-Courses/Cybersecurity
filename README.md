@@ -6,7 +6,8 @@
 папкам `theory`, `task`, `seminars`. Устойчивый `course.id: cybersecurity`
 объявлен один раз в корневом `_quarto.yml`.
 
-Требуются Quarto **не ниже 1.11.5**, CUE **0.17.1** и Python 3 для проверок.
+Требуются Quarto **не ниже 1.11.5**, CUE **0.17.1**, Python 3 и Node.js
+с поддержкой встроенного модуля `node:test` для проверок.
 Установка выполняется штатным `quarto add` через `CI/install-extensions.sh`:
 
 | Инструмент | Выпуск | Проекты |
