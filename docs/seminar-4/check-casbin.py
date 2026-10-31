@@ -2,7 +2,7 @@ import sys,re,itertools,json,importlib.metadata
 from pathlib import Path
 import casbin
 root=Path(__file__).resolve().parents[2]
-source=(root/'task/access-control/extensions.qmd').read_text()
+source=(root/'task/bank/access-control.qmd').read_text()
 model_text=re.search(r'```ini\n(.*?)```',source,re.S).group(1)
 policy_text=re.search(r'```csv\n(.*?)```',source,re.S).group(1)
 lines=[line.strip() for line in policy_text.splitlines() if line.strip()]
