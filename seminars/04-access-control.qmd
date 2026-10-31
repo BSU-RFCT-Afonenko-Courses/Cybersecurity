@@ -16,7 +16,9 @@ course-presentation:
 
 Субъект: процесс редактора Лены → объект: файл → операция: запись.
 
-Политика определяет разрешения; механизм проверяет запрос и исполняет отказ до изменения файла. Скрытая кнопка не заменяет проверку сервером.
+Политика определяет разрешения; монитор проверяет запрос и останавливает запрещённое действие.
+
+![Общая модель запроса](_prepared/visualizations/access-control/static/overview.svg){#fig-slide-access-overview fig-alt="Субъект обращается к объекту через монитор, который применяет политику" width="70%"}
 
 ::: {.notes}
 Попросите заменить запись чтением и объяснить, почему результат может измениться.
@@ -54,13 +56,48 @@ course-presentation:
 - OTP ограничивает повтор принятого кода, но ещё не использованный код можно переслать.
 - Passkey отвечает на свежий запрос с привязкой к RP и origin; закрытый ключ сайту не передаётся.
 
-### Passkey: регистрация и вход
+### Сравнение способов входа {.smaller}
 
-**Регистрация:** сервис связывает открытый ключ и идентификатор средства с записью после проверки основания привязки.
+Пароль повторяем; OTP ограничен временем и использованием; passkey связывает ответ с сервисом.
 
-**Вход:** средство подписывает свежий запрос; сервер проверяет подпись, challenge, RP ID, origin и требуемые флаги.
+```{ojs}
+//| echo: false
+//| label: fig-slide-auth-methods
+//| fig-cap: "Способы подтверждения входа"
+//| fig-alt: "Пароль, OTP и passkey и их проверка"
+import {authenticationComparison} from "/_prepared/visualizations/authentication/lesson.js"
+authenticationComparison()
+```
 
+### Passkey: регистрация {.smaller}
+
+После доверенной привязки RP сохраняет идентификатор и открытый ключ; закрытый ключ сайту не передаётся.
+
+```{ojs}
+//| echo: false
+//| label: fig-slide-passkey-registration
+//| fig-cap: "Регистрация passkey"
+//| fig-alt: "От запроса сервиса к сохранению открытого ключа"
+import {passkeyRegistration} from "/_prepared/visualizations/authentication/lesson.js"
+passkeyRegistration()
+```
+
+### Passkey: вход {.smaller}
+
+RP проверяет подпись свежего запроса, challenge, RP ID, origin и требуемые флаги.
+
+```{ojs}
+//| echo: false
+//| label: fig-slide-passkey-login
+//| fig-cap: "Вход с passkey"
+//| fig-alt: "От свежего запроса до проверки подписи"
+import {passkeyLogin} from "/_prepared/visualizations/authentication/lesson.js"
+passkeyLogin()
+```
+
+::: {.notes}
 PIN или биометрия проверяются локально; касание означает присутствие, а не обязательно проверку пользователя. Синхронизируемый passkey может находиться на нескольких устройствах.
+:::
 
 ### DAC: права на объект
 
