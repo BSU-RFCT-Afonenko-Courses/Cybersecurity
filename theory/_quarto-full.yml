@@ -20,12 +20,19 @@ book:
   - part: Стандарты, системы защиты и риски
     chapters:
     - standards-risk/requirements-decisions.qmd
-  - part: Управление доступом
+  - part: Идентификация и управление доступом
     chapters:
     - access-control/access-control.qmd
-  - part: Криптография
+  - part: Случайность и криптография
     chapters:
     - crypto/random.qmd
     - crypto/hash.qmd
+    - crypto/password-storage.qmd
     - crypto/key-gen.qmd
     - crypto/cypher.qmd
+  - part: Целостность и резервное копирование
+    chapters:
+    - data-integrity/integrity.qmd
+  - part: Подпись и доверие
+    chapters:
+    - crypto/public-key-outline.qmd

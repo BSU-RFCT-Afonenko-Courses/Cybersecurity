@@ -1,0 +1,12 @@
+digraph G {
+ graph [rankdir=LR, bgcolor="transparent", pad="0.2", splines=polyline];
+ node [shape=box, style="rounded,filled", fillcolor="#eef4fa", fontname="DejaVu Sans", fontsize=12];
+ edge [fontname="DejaVu Sans", fontsize=10];
+ "n0" [id="n0", label="Источник случайности"];
+ "n1" [id="n1", label="Начальное состояние (seed)"];
+ "n2" [id="n2", label="Детерминированный генератор"];
+ "n3" [id="n3", label="Последовательность выходов"];
+ "n0" -> "n1" [label=""];
+ "n1" -> "n2" [label=""];
+ "n2" -> "n3" [label=""];
+}

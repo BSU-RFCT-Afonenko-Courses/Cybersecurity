@@ -1,0 +1,12 @@
+digraph G {
+ graph [rankdir=LR, bgcolor="transparent", pad="0.2", splines=polyline];
+ node [shape=box, style="rounded,filled", fillcolor="#eef4fa", fontname="DejaVu Sans", fontsize=12];
+ edge [fontname="DejaVu Sans", fontsize=10];
+ "n0" [id="n0", label="Пароль\nповторно используемый секрет"];
+ "n1" [id="n1", label="OTP\nкороткий одноразовый код"];
+ "n2" [id="n2", label="Passkey\nответ на свежий challenge"];
+ "n3" [id="n3", label="RP проверяет парольную функцию\nOTP можно переслать до использования\nPasskey связан с RP ID и origin"];
+ "n0" -> "n3" [label="проверка"];
+ "n1" -> "n3" [label="проверка"];
+ "n2" -> "n3" [label="проверка"];
+}

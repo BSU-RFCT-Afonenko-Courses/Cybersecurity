@@ -9,6 +9,9 @@ format: html
 - @practice:sec-seminar-3 — Применение требований и стандартов. Работа: @tasks:sec-work-standards-risk.
 - @practice:sec-seminar-4 — Управление доступом. Работа: @tasks:sec-work-access-control.
 
+- @practice:sec-seminar-5 — Случайность и криптография. Задачи: @tasks:sec-bank-crypto.
+- @practice:sec-seminar-6 — Целостность и копии. Работа: @tasks:sec-work-data-integrity-backup.
+
 Подготовка к контрольной находится в каталоге работ: @tasks:sec-control-demo.
 
 Теория: @theory:sec-theory. Задачи и работы: @tasks:sec-tasks. Карта курса: @portal:sec-portal.

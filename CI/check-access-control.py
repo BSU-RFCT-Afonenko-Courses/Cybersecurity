@@ -31,6 +31,13 @@ def assigned_ids():
     return re.findall(r'^\d+\. @(exr-[\w-]+)\s*$', source, re.M)
 
 
+def validate_solution_inventory(sources):
+    expected = {"sol-" + qid[4:] for qid in assigned_ids()}
+    require(len(expected) == 13, "Назначенная работа должна сохранять 13 решений")
+    require(expected.issubset(sources),
+            f"В банке отсутствуют назначенные решения: {sorted(expected - set(sources))}")
+
+
 def check_link(package, name):
     question = next((q for q in package['questions']
                      if q['id'] == 'exr-access-control-verification'), None)
@@ -162,7 +169,8 @@ def check_site(student, full, targeted=False):
             require(len(words) >= 12, f'{sid}: короткий исходник решения')
             source_solutions[sid] = {' '.join(words[i:i + 12])
                                      for i in range(len(words) - 11)}
-    require(len(sources) == 13, f'Исходники: ожидалось 13 sol-ID, получено {len(sources)}')
+    validate_solution_inventory(sources)
+    # Дальнейший скан проверяет каждый найденный ключ, включая новые вопросы банка.
     open_sources = []
     for source in ROOT.rglob('*.qmd'):
         relative = source.relative_to(ROOT)

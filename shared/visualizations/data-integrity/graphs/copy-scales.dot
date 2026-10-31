@@ -1,0 +1,26 @@
+digraph G {
+graph [rankdir=LR,bgcolor="transparent",nodesep=0.35,ranksep=0.4];
+node [shape=box,style="rounded,filled",fillcolor="#eef4fa",fontname="DejaVu Sans",fontsize=16];
+edge [fontname="DejaVu Sans",fontsize=12];
+n0 [id="n0",label="Полная · Вс\nначальная полная\nA, B, C: 10 МБ"];
+n1 [id="n1",label="Полная · Пн\nправка A\nA, B, C: 10 МБ"];
+n2 [id="n2",label="Полная · Вт\nправка B\nA, B, C: 10 МБ"];
+n3 [id="n3",label="Полная · Ср\nправка A\nA, B, C: 10 МБ"];
+n0 -> n1 [label="время →"];
+n1 -> n2 [label="время →"];
+n2 -> n3 [label="время →"];
+n4 [id="n4",label="Инкрементная · Вс\nначальная полная\nA, B, C: 10 МБ"];
+n5 [id="n5",label="Инкрементная · Пн\nправка A\nA: 2 МБ"];
+n6 [id="n6",label="Инкрементная · Вт\nправка B\nB: 3 МБ"];
+n7 [id="n7",label="Инкрементная · Ср\nправка A\nA: 2 МБ"];
+n4 -> n5 [label="время →"];
+n5 -> n6 [label="время →"];
+n6 -> n7 [label="время →"];
+n8 [id="n8",label="Дифференциальная · Вс\nначальная полная\nA, B, C: 10 МБ"];
+n9 [id="n9",label="Дифференциальная · Пн\nправка A\nA: 2 МБ"];
+n10 [id="n10",label="Дифференциальная · Вт\nправка B\nA, B: 5 МБ"];
+n11 [id="n11",label="Дифференциальная · Ср\nправка A\nA, B: 5 МБ"];
+n8 -> n9 [label="время →"];
+n9 -> n10 [label="время →"];
+n10 -> n11 [label="время →"];
+}

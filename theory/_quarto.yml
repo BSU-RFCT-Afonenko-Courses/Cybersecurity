@@ -21,6 +21,7 @@ project:
   - '!**/.quarto/**'
   - '!**/_freeze/**'
   pre-render:
+  - python3 ../CI/prepare-course-visualizations.py
   - _extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts
   post-render:
   - _extensions/Afonenko-Course-Tools/course-core/entrypoints/post.ts

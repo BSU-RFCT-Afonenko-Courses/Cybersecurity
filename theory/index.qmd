@@ -13,8 +13,11 @@
 - @sec-theory-crypto-random — генераторы случайных чисел и энтропия.
 - @sec-theory-crypto-hash — хеширование и криптографические хеш-функции.
 - @sec-theory-crypto-key-gen — получение криптографических ключей.
-- @sec-theory-crypto-cypher — симметричное и асимметричное шифрование.
+- @sec-theory-crypto-cypher — симметричное шифрование.
 
-- @sec-theory-access-control — управление доступом.
+- @sec-theory-access-control — идентификация, аутентификация и управление доступом.
+- @sec-theory-password-storage — хранение паролей.
+- @sec-theory-data-integrity — контроль целостности, копии и RAID.
+- Подпись и доверие — заголовки будущего раздела.
 
 Практическое применение: @tasks:sec-tasks.

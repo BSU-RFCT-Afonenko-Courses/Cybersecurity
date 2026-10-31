@@ -39,12 +39,8 @@ project:
   - '!Новые семинары'
   - '!filters/**'
   - '!experiments/**'
-  - ./shared/access-control/index.html
-  - ./shared/access-control/widget.js
-  - ./shared/access-control/widget.css
-  - ./shared/access-control/static/**
-  - '!shared/access-control/*.mjs'
-  - '!shared/access-control/*.yml'
+  - '!shared/**'
+  - '!extensions/**'
   pre-render:
   - _extensions/Afonenko-Course-Tools/course-site/entrypoints/pre.ts
   post-render:

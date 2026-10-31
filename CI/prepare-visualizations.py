@@ -10,7 +10,7 @@ args=parser.parse_args()
 for project in args.projects:
     destination=ROOT/project/'_prepared/visualizations'
     destination.mkdir(parents=True,exist_ok=True)
-    for directory in ['common','access-control']:
+    for directory in ['common','access-control','authentication','crypto','data-integrity']:
         if (destination/directory).exists(): shutil.rmtree(destination/directory)
         shutil.copytree(ROOT/'shared/visualizations'/directory,destination/directory)
     shutil.copyfile(ROOT/'shared/visualizations/_mac-example.qmd',destination/'mac-example.qmd')

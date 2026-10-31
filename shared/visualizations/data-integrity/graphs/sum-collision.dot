@@ -1,0 +1,12 @@
+digraph G {
+ graph [rankdir=LR, bgcolor="transparent", pad="0.2", splines=polyline];
+ node [shape=box, style="rounded,filled", fillcolor="#eef4fa", fontname="DejaVu Sans", fontsize=12];
+ edge [fontname="DejaVu Sans", fontsize=10];
+ "n0" [id="n0", label="До: [10, 20]\nсумма = 30"];
+ "n1" [id="n1", label="Правка: +1 и −1"];
+ "n2" [id="n2", label="После: [11, 19]\nсумма = 30"];
+ "n3" [id="n3", label="Данные различны\nконтрольная сумма совпала"];
+ "n0" -> "n1" [label=""];
+ "n1" -> "n2" [label=""];
+ "n2" -> "n3" [label=""];
+}

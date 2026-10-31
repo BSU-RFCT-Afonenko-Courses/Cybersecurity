@@ -32,6 +32,11 @@ jobs:
     - uses: cue-lang/setup-cue@b0e30e540a2dae47304ebf16586a5b2db023b61c
       with:
         version: v0.17.1
+    - name: Зависимости визуализаций
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y graphviz nodejs
+        python3 -m pip install -r CI/requirements-visualizations.txt
     - name: Runtime versions
       run: |
         quarto --version

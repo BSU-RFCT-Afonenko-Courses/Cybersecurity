@@ -220,3 +220,49 @@ Quarto 1.11.6 предупреждает `OJS block count mismatch` для inclu
 проверяют готовый результат. В пилотном Reveal длинное каноническое условие помещено
 во внешний Div с `style="font-size:0.8em"`: условие не сокращается, штатная семантика
 Core/Presentation сохраняется. Для основного показа предпочтительны короткие вопросы.
+
+
+## Включённые компоненты тем 4–6
+
+Перед обычным рендером theory и seminars автоматически запускается
+`CI/prepare-course-visualizations.py`: DOT преобразуются в SVG, публичные модули
+копируются в `_prepared`, фактически включённые `exr-*` заново выбираются из
+канонического банка до инвентаризации Core. Отсутствующий или неоднозначный ID
+останавливает подготовку. Ручные команды выше остаются полезны для проверки.
+Для подготовки нужны Python 3, Node.js, `quarto pandoc`, Graphviz (`dot`) и
+`python3 -m pip install -r CI/requirements-visualizations.txt`.
+В CI Node.js, Graphviz и PyYAML устанавливаются явно. Браузеру эти зависимости не нужны.
+
+Все пути импорта начинаются с `/_prepared/visualizations/`:
+
+| Модуль | Именованные экспорты |
+| --- | --- |
+| `access-control/dac/lesson.js` | `dacControls(options)`, `dacDiagram(selected, notes)` |
+| `access-control/rbac/lesson.js` | `rbacControls(options)`, `rbacDiagram(selected, notes)` |
+| `authentication/lesson.js` | `authenticationComparison()`, `passkeyRegistration()`, `passkeyLogin()` |
+| `crypto/lesson.js` | `lcgTrainer()`, `caesarXorTrainer()`, `seedDiagram()`, `symmetricDiagram()`, `hashDiagram()` |
+| `data-integrity/lesson.js` | `sumHashComparison()`, `copyScales()`, `raidComparison()`, `sumCollision()`, `byteChange()`, `referenceReplacement()`, `xorRecovery()` |
+
+DAC и RBAC подключаются так же, как MAC: отдельный `viewof` Controls,
+затем Diagram в ячейке с подписью Quarto. Остальные функции возвращают готовый
+учебный компонент; асинхронный результат OJS отображает штатно. Тренажёры
+не отправляют ответы, не сохраняют оценок и не заменяют банковские упражнения.
+LCG ограничен небольшими точными целыми; Цезарь преобразует A–Z, XOR — байты UTF-8.
+
+Обзор DAC/RBAC находится в `access-control/{dac,rbac}/static/overview.svg`;
+общая схема запроса — `access-control/static/overview.svg`. Вход использует
+`authentication/static/{comparison,registration,login}.svg`; криптография —
+`crypto/static/{lcg,caesar-xor,seed,symmetric,hash}.svg`; целостность —
+`data-integrity/static/{sum-hash,copy-scales,raid,sum-collision,byte-change,reference-replacement,xor-recovery}.svg`.
+Обычные SVG и интерактивный просмотр читают один и тот же подготовленный DOT-рисунок.
+Проверяемая предметная логика экспортирована из соответствующих `model.js`.
+
+Точечные проверки: `node --test CI/visualizations/integration.test.mjs CI/visualizations/mac.test.mjs`,
+`python3 CI/visualizations/access-inventory.test.py`, браузерные
+`CI/visualizations/integration.browser.cjs` и `runtime.browser.cjs`.
+Для локальных браузерных проб используется установленный Playwright и Chromium;
+путь `PLAYWRIGHT_MODULE`/`CHROMIUM_PATH` можно передать измерителю готовых страниц.
+После целевого рендера измеритель запускается без новой сборки:
+`node CI/visualizations/measure-pages.browser.cjs seminars/_output/student 04-access-control.html 05-crypto.html 06-data-integrity.html`.
+Он отдельно записывает тела HTTP, локальную оценку gzip и память вкладки;
+время относится к местному HTTP-серверу, внешние MathJax/шрифты учитываются отдельно.

@@ -1,0 +1,178 @@
+{
+  "checks": {
+    "independent": true,
+    "deletion": true,
+    "selected": true,
+    "subject": true,
+    "trainer": true,
+    "inverse": true,
+    "unique": true,
+    "stages": true,
+    "svgCount": 21
+  },
+  "measurement": {
+    "scope": "Компонентная проба из авторских ES-модулей; это не HTTP готовых целевых страниц",
+    "httpBodyBytes": 105040,
+    "gzipEstimateBytes": 33198,
+    "gzipExplanation": "Локальный расчёт gzip, сервер передавал несжатые тела",
+    "initialHeap": {
+      "usedSize": 1010092,
+      "totalSize": 1572864,
+      "embedderHeapUsedSize": 1504872,
+      "backingStorageSize": 6
+    },
+    "finalHeap": {
+      "usedSize": 2064836,
+      "totalSize": 4718592,
+      "embedderHeapUsedSize": 8132112,
+      "backingStorageSize": 154387
+    },
+    "responses": [
+      {
+        "path": "CI/visualizations/integration.test.mjs",
+        "bodyBytes": 2780,
+        "gzipBytes": 1146
+      },
+      {
+        "path": "shared/visualizations/access-control/dac/lesson.js",
+        "bodyBytes": 602,
+        "gzipBytes": 394
+      },
+      {
+        "path": "shared/visualizations/access-control/dac/model.js",
+        "bodyBytes": 1298,
+        "gzipBytes": 630
+      },
+      {
+        "path": "shared/visualizations/common/runtime.js",
+        "bodyBytes": 308,
+        "gzipBytes": 244
+      },
+      {
+        "path": "extensions/course-visualizations/_extensions/course-visualizations/browser/runtime.js",
+        "bodyBytes": 5290,
+        "gzipBytes": 2177
+      },
+      {
+        "path": "shared/visualizations/access-control/dac/static/model.svg",
+        "bodyBytes": 6656,
+        "gzipBytes": 1702
+      },
+      {
+        "path": "shared/visualizations/access-control/dac/static/algorithm.svg",
+        "bodyBytes": 4539,
+        "gzipBytes": 1385
+      },
+      {
+        "path": "shared/visualizations/access-control/rbac/lesson.js",
+        "bodyBytes": 608,
+        "gzipBytes": 394
+      },
+      {
+        "path": "shared/visualizations/access-control/rbac/model.js",
+        "bodyBytes": 1563,
+        "gzipBytes": 733
+      },
+      {
+        "path": "shared/visualizations/access-control/rbac/static/model.svg",
+        "bodyBytes": 7443,
+        "gzipBytes": 1963
+      },
+      {
+        "path": "shared/visualizations/access-control/rbac/static/algorithm.svg",
+        "bodyBytes": 4572,
+        "gzipBytes": 1401
+      },
+      {
+        "path": "shared/visualizations/crypto/lesson.js",
+        "bodyBytes": 4313,
+        "gzipBytes": 1682
+      },
+      {
+        "path": "shared/visualizations/crypto/model.js",
+        "bodyBytes": 872,
+        "gzipBytes": 555
+      },
+      {
+        "path": "shared/visualizations/common/diagram.js",
+        "bodyBytes": 1386,
+        "gzipBytes": 789
+      },
+      {
+        "path": "shared/visualizations/authentication/lesson.js",
+        "bodyBytes": 362,
+        "gzipBytes": 177
+      },
+      {
+        "path": "shared/visualizations/data-integrity/lesson.js",
+        "bodyBytes": 766,
+        "gzipBytes": 244
+      },
+      {
+        "path": "shared/visualizations/authentication/static/comparison.svg",
+        "bodyBytes": 4703,
+        "gzipBytes": 1410
+      },
+      {
+        "path": "shared/visualizations/authentication/static/registration.svg",
+        "bodyBytes": 4130,
+        "gzipBytes": 1307
+      },
+      {
+        "path": "shared/visualizations/authentication/static/login.svg",
+        "bodyBytes": 4318,
+        "gzipBytes": 1337
+      },
+      {
+        "path": "shared/visualizations/crypto/static/seed.svg",
+        "bodyBytes": 3298,
+        "gzipBytes": 1159
+      },
+      {
+        "path": "shared/visualizations/crypto/static/symmetric.svg",
+        "bodyBytes": 4559,
+        "gzipBytes": 1306
+      },
+      {
+        "path": "shared/visualizations/crypto/static/hash.svg",
+        "bodyBytes": 2891,
+        "gzipBytes": 1069
+      },
+      {
+        "path": "shared/visualizations/data-integrity/static/sum-hash.svg",
+        "bodyBytes": 4240,
+        "gzipBytes": 1412
+      },
+      {
+        "path": "shared/visualizations/data-integrity/static/copy-scales.svg",
+        "bodyBytes": 14185,
+        "gzipBytes": 2409
+      },
+      {
+        "path": "shared/visualizations/data-integrity/static/raid.svg",
+        "bodyBytes": 4419,
+        "gzipBytes": 1374
+      },
+      {
+        "path": "shared/visualizations/data-integrity/static/sum-collision.svg",
+        "bodyBytes": 3823,
+        "gzipBytes": 1195
+      },
+      {
+        "path": "shared/visualizations/data-integrity/static/byte-change.svg",
+        "bodyBytes": 3655,
+        "gzipBytes": 1181
+      },
+      {
+        "path": "shared/visualizations/data-integrity/static/reference-replacement.svg",
+        "bodyBytes": 3790,
+        "gzipBytes": 1237
+      },
+      {
+        "path": "shared/visualizations/data-integrity/static/xor-recovery.svg",
+        "bodyBytes": 3671,
+        "gzipBytes": 1186
+      }
+    ]
+  }
+}

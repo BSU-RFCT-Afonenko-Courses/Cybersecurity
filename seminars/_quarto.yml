@@ -7,6 +7,8 @@ project:
   - 02-legal-requirements.qmd
   - 03-standards-risk.qmd
   - 04-access-control.qmd
+  - 05-crypto.qmd
+  - 06-data-integrity.qmd
   output-dir: _output
   resources:
   - ./assets/**
@@ -28,8 +30,8 @@ project:
   - '!**/_output/**'
   - '!**/.quarto/**'
   - '!**/_freeze/**'
-  - control-demo.html
   pre-render:
+  - python3 ../CI/prepare-course-visualizations.py
   - _extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts
   post-render:
   - _extensions/Afonenko-Course-Tools/course-core/entrypoints/post.ts

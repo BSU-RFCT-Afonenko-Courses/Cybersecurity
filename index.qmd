@@ -17,8 +17,9 @@ toc: false
 | Организация защиты и ЦКБ | @theory:sec-theory-security-center-organization · @theory:sec-theory-security-center-workflow | @tasks:sec-bank-security-center | @tasks:sec-work-legal-requirements · @practice:sec-seminar-2 |
 | Требования, стандарты и риски | @theory:sec-theory-standards-risk-requirements-decisions | @tasks:sec-bank-standards-risk | @tasks:sec-work-standards-risk · @practice:sec-seminar-3 |
 | Управление доступом | @theory:sec-theory-access-control | @tasks:sec-bank-access-control | @tasks:sec-work-access-control · @practice:sec-seminar-4 |
-| Криптография | @theory:sec-theory-crypto-random · @theory:sec-theory-crypto-hash · @theory:sec-theory-crypto-cypher | @tasks:sec-bank-crypto | Материалы развиваются |
-| Целостность данных | Материалы готовятся | @tasks:sec-bank-data-integrity | @tasks:sec-work-data-integrity-backup |
+| Случайность и криптография | @theory:sec-theory-crypto-random · @theory:sec-theory-crypto-hash · @theory:sec-theory-crypto-cypher | @tasks:sec-bank-crypto | @practice:sec-seminar-5 |
+| Целостность и резервное копирование | @theory:sec-theory-data-integrity | @tasks:sec-bank-data-integrity | @tasks:sec-work-data-integrity-backup · @practice:sec-seminar-6 |
+| Подпись и доверие | План будущего раздела | Материалы готовятся | Материалы готовятся |
 
 : Темы курса {#tbl-course-plan .course-plan .striped .hover .responsive}
 
