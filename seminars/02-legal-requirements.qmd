@@ -8,7 +8,9 @@
 
 ### Вопрос для аудитории {.smaller}
 
+::: {style="font-size:0.8em; columns:2; column-gap:1.5em"}
 {{< include _prepared/bank-fragments/exr-legal-information-sharing.qmd >}}
+:::
 
 ### Класс системы и меры защиты
 
@@ -24,7 +26,9 @@
 
 ### Вопрос для аудитории {.smaller}
 
+::: {style="font-size:0.8em; columns:2; column-gap:1.5em"}
 {{< include _prepared/bank-fragments/exr-legal-protection-measures.qmd >}}
+:::
 
 ### Работа центра кибербезопасности
 

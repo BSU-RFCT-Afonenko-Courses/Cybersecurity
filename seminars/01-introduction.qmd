@@ -31,7 +31,9 @@
 
 ### Вопрос для аудитории {.smaller}
 
+::: {style="font-size:0.8em"}
 {{< include _prepared/bank-fragments/exr-fundamentals-event-or-incident.qmd >}}
+:::
 
 ### Дополнительная работа
 

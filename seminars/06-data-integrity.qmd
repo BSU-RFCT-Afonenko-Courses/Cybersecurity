@@ -1,3 +1,12 @@
+---
+exercise-bank: true
+default-exercise-target: manual
+default-exercise-course-role: independent-study
+default-exercise-statement-visibility: open
+course-presentation:
+  answers: auto
+---
+
 ## Занятие 6 – Целостность и копии {#sec-seminar-6}
 
 ### Что показывает проверка
@@ -5,12 +14,16 @@
 Простая сумма обнаруживает некоторые изменения, но `[10,20,30]` и `[20,10,30]` дают 60. Криптографический хеш сравнивают с **доверенным эталоном**. Совпадение с подменённым эталоном не доказывает происхождение файла.
 
 
+### Сравнение контрольных значений
+
 ![Сумма и хеш](_prepared/visualizations/data-integrity/static/sum-hash.svg){#fig-slide-integrity-sum-hash fig-alt="Сравнение контрольных значений"}
 
 ### Вопрос для аудитории
 
 {{< include _prepared/bank-fragments/exr-data-integrity-trusted-hash.qmd >}}
 
+
+### Замена файла и эталона
 
 ```{ojs}
 //| echo: false
@@ -39,6 +52,8 @@ referenceReplacement()
 {{< include _prepared/bank-fragments/exr-data-integrity-backup-volume.qmd >}}
 
 
+### Сравнение объёма копий
+
 ![Объём копий](_prepared/visualizations/data-integrity/static/copy-scales.svg){#fig-slide-integrity-copy-scales fig-alt="Сравнение трёх схем копирования"}
 
 ### Восстановление копии
@@ -61,6 +76,8 @@ referenceReplacement()
 Предполагаются исправные остальные диски и метаданные; служебными расходами пренебрегаем.
 
 
+### Размещение данных в RAID
+
 ![Данные и чётность в RAID](_prepared/visualizations/data-integrity/static/raid.svg){#fig-slide-integrity-raid fig-alt="Размещение блоков по дискам"}
 
 ### Восстановление XOR
@@ -69,6 +86,8 @@ referenceReplacement()
 
 Из одного P нельзя однозначно вернуть оба отсутствующих блока: `0000 XOR 0110 = 0110` и `1010 XOR 1100 = 0110`.
 
+
+### Иллюстрация восстановления XOR
 
 ```{ojs}
 //| echo: false
