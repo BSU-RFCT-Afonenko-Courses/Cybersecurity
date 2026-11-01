@@ -1,9 +1,0 @@
-project:
-  type: default
-  render:
-  - "!**/*.qmd"
-  resources:
-  - "!**"
-draft: true
-search: false
-lang: ru

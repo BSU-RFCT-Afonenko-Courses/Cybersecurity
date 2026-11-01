@@ -2,14 +2,14 @@ export function lcgSequence(seed,a,c,m,count) {
  if(![seed,a,c,m,count].every(Number.isSafeInteger)||m<1||m>65536||count<0||count>100||seed<0||seed>=m||a<0||a>65536||c<0||c>65536) throw Error('Целые параметры: 0 ≤ seed < m ≤ 65536, 0 ≤ a,c ≤ 65536, 0 ≤ число шагов ≤ 100');
  const values=[];let state=seed;for(let i=0;i<count;i++){state=(a*state+c)%m;values.push(state);}return values;
 }
-export function caesar(text,shift,alphabet='auto') {
+export function caesar(text,shift,alphabet) {
  if(!Number.isSafeInteger(shift)) throw Error('Сдвиг должен быть целым безопасным числом');
  const latin='ABCDEFGHIJKLMNOPQRSTUVWXYZ', russian='АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
- if(!['auto','ru','latin','en'].includes(alphabet)) throw Error('Выберите русский или латинский алфавит');
- const alphabets=alphabet==='auto'?[latin,russian]:[alphabet==='ru'?russian:latin];
+ if(!['ru','latin'].includes(alphabet)) throw Error('Выберите русский или латинский алфавит');
+ const letters=alphabet==='ru'?russian:latin;
  return Array.from(String(text),ch=>{
   const upper=ch.toUpperCase();
-  for(const letters of alphabets){const i=letters.indexOf(upper);if(i!==-1){const n=letters.length,k=((shift%n)+n)%n,result=letters[(i+k)%n];return ch===upper?result:result.toLowerCase();}}
+  const i=letters.indexOf(upper);if(i!==-1){const n=letters.length,k=((shift%n)+n)%n,result=letters[(i+k)%n];return ch===upper?result:result.toLowerCase();}
   return ch;
  }).join('');
 }

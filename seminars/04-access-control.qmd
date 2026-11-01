@@ -40,7 +40,7 @@ course-presentation:
 
 Лена заявляет запись `lena`, подтверждает вход и отправляет работу в курс А.
 
-![Три процедуры на портале](_prepared/visualizations/access-control/legacy/static/procedures.svg){#fig-slide-access-procedures fig-alt="Запись Лены, подтверждение входа и разрешение отправить работу" width="85%"}
+![Три процедуры на портале](_prepared/visualizations/access-control/static/procedures.svg){#fig-slide-access-procedures fig-alt="Запись Лены, подтверждение входа и разрешение отправить работу" width="85%"}
 
 ### Факторы аутентификации
 

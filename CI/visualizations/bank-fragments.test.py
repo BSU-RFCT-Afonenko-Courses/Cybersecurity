@@ -12,7 +12,7 @@ def div(id, text='', attrs=(), children=()):
 
 class Fragments(unittest.TestCase):
     def test_only_requested_statement_and_its_solution_without_page_metadata(self):
-        ast={'meta':{'aliases':'НЕ_ПЕРЕНОСИТЬ'},'blocks':[div('exr-other','ДРУГАЯ_ЗАДАЧА'),div('exr-chosen','КАНОНИЧЕСКИЙ_ТЕКСТ'),div('sol-chosen','КЛЮЧ'),div('sol-other','ЧУЖОЙ_КЛЮЧ')]}
+        ast={'meta':{'pagetitle':'НЕ_ПЕРЕНОСИТЬ'},'blocks':[div('exr-other','ДРУГАЯ_ЗАДАЧА'),div('exr-chosen','КАНОНИЧЕСКИЙ_ТЕКСТ'),div('sol-chosen','КЛЮЧ'),div('sol-other','ЧУЖОЙ_КЛЮЧ')]}
         selected=fragments.select_blocks(ast,['exr-chosen'])
         self.assertEqual(['exr-chosen','sol-chosen'],[b['c'][0][0] for b in selected])
         self.assertEqual(ast['blocks'][1:3],selected)

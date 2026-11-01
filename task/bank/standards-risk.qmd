@@ -159,7 +159,7 @@
 
 ::::
 
-::: {#sol-control-demo-document-selection .answers-expanded}
+::: {course-role="reading" for="exr-control-demo-document-selection"}
 
 **Материалы для решения**
 

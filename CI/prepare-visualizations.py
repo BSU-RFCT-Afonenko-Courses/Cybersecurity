@@ -13,11 +13,6 @@ for project in args.projects:
     for directory in ['common','access-control','authentication','crypto','data-integrity']:
         if (destination/directory).exists(): shutil.rmtree(destination/directory)
         shutil.copytree(ROOT/'shared/visualizations'/directory,destination/directory)
-    # Только три используемые публичные схемы, без старой галереи и её runtime.
-    legacy=destination/'access-control/legacy/static'
-    legacy.mkdir(parents=True,exist_ok=True)
-    for filename in ['software.svg','procedures.svg','moodle.svg']:
-        shutil.copyfile(ROOT/'shared/access-control/static'/filename,legacy/filename)
     shutil.copyfile(ROOT/'shared/visualizations/_mac-example.qmd',destination/'mac-example.qmd')
     adapter=destination/'common/runtime.js'
     installed_runtime=ROOT/project/'_extensions/course-visualizations/browser/runtime.js'

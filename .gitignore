@@ -16,9 +16,6 @@ _freeze/
 *.tex
 
 *.html
-!/shared/access-control/index.html
-!/seminars/control-demo.html
-!/docs/drafts/access-control/legacy/*.html
 /_*.local
 
 # Результаты нативных проектов общего шаблона.

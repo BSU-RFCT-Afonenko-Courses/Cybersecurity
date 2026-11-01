@@ -50,16 +50,6 @@ export function prepareSVG(source, keys = [], result) {
   return document.importNode(svg,true);
 }
 
-export function serializeSVG(svg) {
-  const clone = svg.cloneNode(true); clone.setAttribute('xmlns','http://www.w3.org/2000/svg');
-  const originals = [svg,...svg.querySelectorAll('*')], copies = [clone,...clone.querySelectorAll('*')];
-  originals.forEach((node,i) => {
-    const css = getComputedStyle(node);
-    for (const key of ['fill','stroke','stroke-width','font-family','font-size','font-weight','opacity','display']) copies[i].style.setProperty(key,css.getPropertyValue(key));
-  });
-  return new XMLSerializer().serializeToString(clone);
-}
-
 export function renderStage({selected, model, algorithm, notes = {}}) {
   const {stage} = selected;
   const view = document.createElement('div'); view.className = 'course-viz course-viz-stage';

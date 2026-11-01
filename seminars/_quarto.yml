@@ -12,7 +12,6 @@ project:
   - 07-signature-trust.qmd
   output-dir: _output
   resources:
-  - control-demo.html
   - ./assets/**
   - '!materials/**'
   - '!**/*.qmd'
@@ -49,7 +48,6 @@ filters:
 - course-core
 - course-presentation
 - reference-catalog
-- ../filters/access-examples.lua
 - course-visualizations
 format:
   revealjs:

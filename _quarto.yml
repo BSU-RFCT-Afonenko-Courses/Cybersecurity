@@ -8,10 +8,6 @@ project:
   - '!**/*.scss'
   - ./assets/**
   - '!theory/**'
-  - '!tasks/**'
-  - '!lectures/**'
-  - '!practice/**'
-  - '!handbook/**'
   - '!_extensions/**'
   - '!_generated/**'
   - '!_site*/**'
@@ -37,9 +33,6 @@ project:
   - '!task/**'
   - '!seminars/**'
   - '!control-works/**'
-  - '!Новые семинары'
-  - '!filters/**'
-  - '!experiments/**'
   - '!shared/**'
   - '!extensions/**'
   pre-render:

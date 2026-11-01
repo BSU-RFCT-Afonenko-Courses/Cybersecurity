@@ -15,9 +15,6 @@ project:
   - '!**/*.qmd'
   - ./assets/**
   - '!materials/**'
-  - '!drafts/**'
-  - '!filters/**'
-  - '!source-map.yml'
   - '!_generated/**'
   - '!_freeze/**'
   - '!.quarto/**'
@@ -36,7 +33,6 @@ profile:
 filters:
 - course-core
 - course-presentation
-- filters/answer-presentation.lua
 - project-download
 - reference-catalog
 book:

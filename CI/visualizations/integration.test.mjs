@@ -30,7 +30,9 @@ test('RBAC проверяет общие роли в курсе А и сохра
 test('LCG вычисляет полный следующий выход; Цезарь и XOR обратимы', async () => {
  const {lcgSequence,caesar,xorBytes}=await load('crypto/model.js');
  assert.deepEqual(lcgSequence(3,5,1,16,4),[0,1,6,15]);
- assert.equal(caesar(caesar('ABC XYZ',3),-3),'ABC XYZ');
+ assert.equal(caesar(caesar('ABC XYZ',3,'latin'),-3,'latin'),'ABC XYZ');
+ assert.equal(caesar(caesar('Ёж, мир! ABC',3,'ru'),-3,'ru'),'Ёж, мир! ABC');
+ assert.throws(()=>caesar('ABC',3),/алфавит/);
  assert.deepEqual(xorBytes(xorBytes([65,66,255],42),42),[65,66,255]);
  assert.throws(()=>lcgSequence(1,5,1,0,3)); assert.throws(()=>xorBytes([256],42));
 });

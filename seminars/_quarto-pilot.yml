@@ -1,4 +1,0 @@
-# Только целевые пробы, без изменения штатного списка слайдов.
-project:
-  render:
-  - visualization-pilot.qmd

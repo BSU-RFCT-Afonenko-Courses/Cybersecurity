@@ -97,8 +97,6 @@ http {{
     root {quoted(portal)};
     index index.html;
     add_header Cache-Control "no-store";
-    location = /portal {{ return 302 /; }}
-    location /portal/ {{ rewrite ^/portal/(.*)$ /$1 redirect; }}
 {locations}
     location / {{ try_files $uri $uri/ =404; }}
   }}

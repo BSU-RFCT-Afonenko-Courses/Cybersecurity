@@ -7,7 +7,7 @@ end
 return {{
   Meta = function(meta)
     if quarto.doc.is_format('html') then
-      quarto.doc.add_html_dependency({name='course-visualizations',version='0.1.0',stylesheets={base .. '/browser/style.css'}})
+      quarto.doc.add_html_dependency({name='course-visualizations',version='0.2.0',stylesheets={base .. '/browser/style.css'}})
     end
     return meta
   end,

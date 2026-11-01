@@ -41,7 +41,7 @@ def prepare(source, identifiers, output):
     data = subprocess.run(['quarto','pandoc',str(source),'--from','markdown','--to','json'],check=True,capture_output=True,text=True)
     ast = json.loads(data.stdout)
     metadata = yaml.safe_load((source.parent/'_metadata.yml').read_text()) or {}
-    # Только семантические defaults; aliases и прочие метаданные страницы не копируются.
+    # Переносятся только семантические defaults; метаданные страницы не копируются.
     defaults = {key[17:]:str(value) for key,value in metadata.items() if key.startswith('default-exercise-')}
     for key,value in ast['meta'].items():
         if key.startswith('default-exercise-'):

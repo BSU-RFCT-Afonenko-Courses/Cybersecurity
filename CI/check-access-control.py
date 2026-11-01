@@ -2,6 +2,7 @@
 from pathlib import Path
 from html.parser import HTMLParser
 import argparse
+import base64
 import json
 import re
 
@@ -9,6 +10,9 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 LINK = ('https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/'
         'task/bank/access-control.html#exr-access-control-rbac')
+SOLUTION_BLOCKS = re.compile(
+    r'^(:{3,})[ \t]+\{#(?P<identifier>sol-[\w-]+)(?:[ \t]+[^}\n]*)?\}[ \t]*\n'
+    r'(?P<body>.*?)^\1[ \t]*$', re.M | re.S)
 
 
 def require(condition, message):
@@ -164,14 +168,89 @@ class PageText(HTMLParser):
         self.text.append(text)
 
 
+class OJSModules(HTMLParser):
+    def __init__(self, text):
+        super().__init__()
+        self.contents = []
+        self.chunks = None
+        self.feed(text)
+
+    def handle_starttag(self, tag, attrs):
+        if tag == 'script' and dict(attrs).get('type') == 'ojs-module-contents':
+            self.chunks = []
+
+    def handle_endtag(self, tag):
+        if tag == 'script' and self.chunks is not None:
+            encoded = ''.join(''.join(self.chunks).split())
+            payload = json.loads(base64.b64decode(encoded, validate=True))
+            require(isinstance(payload, dict) and isinstance(payload.get('contents'), list),
+                    'Некорректное содержимое модуля OJS')
+            self.contents.append(payload)
+            self.chunks = None
+
+    def handle_data(self, text):
+        if self.chunks is not None:
+            self.chunks.append(text)
+
+
+def ojs_sources(text):
+    return [node['source'] for payload in OJSModules(text).contents
+            for node in nodes(payload) if isinstance(node.get('source'), str)]
+
+
+def check_visualizations(site, project, relative_page):
+    project_output = site / project
+    resources = project_output / '_prepared/visualizations'
+    source_root = ROOT / 'shared/visualizations'
+    expected = {}
+    for source in source_root.rglob('*'):
+        if not source.is_file() or source.suffix not in {'.js', '.svg'}:
+            continue
+        relative = source.relative_to(source_root)
+        content = source.read_bytes()
+        if relative == Path('common/runtime.js'):
+            content = content.replace(
+                b'../../../extensions/course-visualizations/_extensions/course-visualizations/browser/runtime.js',
+                b'./course-runtime.js')
+        expected[relative] = content
+    runtime = ROOT / project / '_extensions/course-visualizations/browser/runtime.js'
+    expected[Path('common/course-runtime.js')] = runtime.read_bytes()
+    require(bool(expected), 'Не найдены исходные ресурсы визуализаций')
+    for relative, content in expected.items():
+        published = resources / relative
+        require(published.is_file() and published.read_bytes() == content,
+                f'{site.name}/{project}: изменён или потерян ресурс визуализации {relative}')
+    actual = {file.relative_to(resources) for file in resources.rglob('*') if file.is_file()}
+    require(actual == set(expected),
+            f'{site.name}/{project}: лишние ресурсы визуализаций {sorted(actual - set(expected))}')
+    require(not (site / 'shared/access-control').exists(),
+            f'{site.name}: опубликована удалённая галерея доступа')
+
+    page = project_output / relative_page
+    text = page.read_text()
+    cells = '\n'.join(ojs_sources(text))
+    require('quarto-ojs-runtime.js' in text and bool(cells),
+            f'{project}/{relative_page}: нет скомпилированных ячеек OJS')
+    attachments = set(re.findall(r"FileAttachment\([\"']([^\"']+)[\"']\)", cells))
+    for model in ('dac', 'mac', 'rbac'):
+        require(f'/_prepared/visualizations/access-control/{model}/lesson.js' in attachments,
+                f'{project}/{relative_page}: нет импорта действующей модели {model}')
+        require(f'course-viz-access-control-{model}-static-overview.svg' in text,
+                f'{project}/{relative_page}: нет статической схемы {model}')
+    require('course-viz-access-control-static-procedures.svg' in text,
+            f'{project}/{relative_page}: нет схемы процедур доступа')
+    if project == 'seminars':
+        require('class="reveal"' in text, f'{project}/{relative_page}: нет презентации Reveal')
+
+
 def check_site(student, full, targeted=False):
     def output(site, relative):
         return site / relative if (site / "task").is_dir() else site / relative.relative_to("task")
     sources = {}
     source_solutions = {}
-    solution_pattern = r'^::: \{#(sol-[\w-]+)\}\n(.*?)^:::\s*$'
     for source in [ROOT / 'task/bank/access-control.qmd']:
-        for sid, body in re.findall(solution_pattern, source.read_text(), re.M | re.S):
+        for solution in SOLUTION_BLOCKS.finditer(source.read_text()):
+            sid, body = solution.group('identifier', 'body')
             require(sid not in sources, f'Повторный исходный ID {sid}')
             sources[sid] = source
             body = re.sub(r'^`{3,}[^\n]*$', '', body, flags=re.M)
@@ -186,7 +265,7 @@ def check_site(student, full, targeted=False):
         relative = source.relative_to(ROOT)
         if any(part.startswith(('_', '.')) for part in relative.parts):
             continue
-        open_sources.append(norm(re.sub(solution_pattern, '', source.read_text(), flags=re.M | re.S)))
+        open_sources.append(norm(SOLUTION_BLOCKS.sub('', source.read_text())))
     open_text = '\n'.join(open_sources)
     search = list(student.rglob('search.json'))
     require(bool(search), 'Нет student search.json')
@@ -219,6 +298,7 @@ def check_site(student, full, targeted=False):
             require(not re.search(r'<[^>]+\bid=[\"\']quarto-embedded-source', decoded),
                     f'{relative}: встроенный исходник в student HTML')
             representations.append(' '.join(PageText(decoded).text))
+            representations.extend(ojs_sources(decoded))
         if file.suffix == '.json':
             representations.append(' '.join(text_values(json.loads(decoded))))
         for representation in representations:
@@ -250,24 +330,10 @@ def check_site(student, full, targeted=False):
                         f'{site.name}/{relative}: Body/закрытое поле JSON')
         if targeted:
             continue
-        for source in (ROOT / 'shared/access-control').rglob('*'):
-            if not source.is_file() or source.suffix in {'.mjs', '.yml'}:
-                continue
-            target = site / source.relative_to(ROOT)
-            require(target.is_file() and target.read_bytes() == source.read_bytes(),
-                    f'{site.name}: изменён/потерян общий ресурс {source.name}')
-        page = site / 'theory/access-control/access-control.html'
-        text = page.read_text()
-        for name in ('dac', 'mac', 'rbac'):
-            require(f'course-access-{name}.svg' in text,
-                    f'{page.name}: потеряна статическая схема {name}')
-        require('course-access-examples' in text and text.count('acx-widget') >= 3,
-                f'{page.name}: потеряны интерактивные примеры')
-        slides = site / 'seminars/04-access-control.html'
-        require(slides.is_file() and 'class="reveal"' in slides.read_text(),
-                f'{site.name}: нет Reveal семинара 4')
-    print('PASS site: 13 решений только в full; student HTML/search/resources'
-          + ('; целевой банк' if targeted else '; shared, схемы и Reveal'))
+        check_visualizations(site, 'theory', Path('access-control/access-control.html'))
+        check_visualizations(site, 'seminars', Path('04-access-control.html'))
+    print(f'Проверено: {len(sources)} решений только в full; публичные HTML, поиск и ресурсы'
+          + ('; целевой банк' if targeted else '; действующие OJS, SVG и Reveal'))
 
 
 def main():

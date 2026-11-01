@@ -134,7 +134,7 @@
 
 ::::
 
-::: {#sol-control-demo-security-center .answers-expanded}
+::: {course-role="reading" for="exr-control-demo-security-center"}
 
 **Материалы для решения**
 

@@ -75,7 +75,7 @@
 
 ::::
 
-::: {#sol-fundamentals-cia-cases .answers-expanded}
+::: {#sol-fundamentals-cia-cases}
 
 **Ключ**
 
@@ -335,7 +335,7 @@
 
 ::::
 
-::: {#sol-control-demo-service-center .answers-expanded}
+::: {course-role="reading" for="exr-control-demo-service-center"}
 
 **Материалы для решения**
 

@@ -306,7 +306,7 @@
 
 ::::
 
-::: {#sol-control-demo-system-requirements .answers-expanded}
+::: {course-role="reading" for="exr-control-demo-system-requirements"}
 
 **Материалы для решения**
 
@@ -343,7 +343,7 @@
 
 ::::
 
-::: {#sol-control-demo-protection-measures .answers-expanded}
+::: {course-role="reading" for="exr-control-demo-protection-measures"}
 
 **Материалы для решения**
 

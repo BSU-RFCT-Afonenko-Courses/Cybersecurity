@@ -9,7 +9,8 @@ test('MAC: все 18 сочетаний уровней и операций вы�
       assert.equal(trace.at(-1).result, (operation === 'read' ? subject >= object : subject <= object) ? 'allow' : 'deny');
       assert.deepEqual(trace.map(s => s.name), ['request', 'levels', operation + '-rule', 'result']);
       assert.equal(trace[2].algorithm[0], operation + '-rule');
-      assert.ok(trace[2].model.includes('file-' + object));
+      assert.ok(trace[2].model.includes('person-lena'));
+      assert.ok(trace[2].model.includes('file-' + {1:'handout',2:'draft',3:'answers'}[object]));
     }
   }
 });

@@ -91,12 +91,12 @@
 <text xml:space="preserve" text-anchor="middle" x="635" y="-520.77" font-family="DejaVu Sans" font-size="18.00" fill="#203b50">Файлы</text>
 </g>
 <!-- person-lena -->
-<g id="process"><g id="person-lena" class="node">
+<g id="person-lena" class="node">
 <title>person-lena</title>
 <ellipse fill="white" stroke="#3469b3" stroke-width="1.6" cx="205" cy="-290" rx="43" ry="43"/>
 <text xml:space="preserve" text-anchor="middle" x="205" y="-283" font-family="DejaVu Sans" font-size="20.00" fill="#203b50">Лена</text>
 </g>
-</g><!-- person-level-lena -->
+<!-- person-level-lena -->
 <g id="person-level-lena" class="node">
 <title>person-level-lena</title>
 <text xml:space="preserve" text-anchor="middle" x="205" y="-262.9" font-family="DejaVu Sans" font-size="13.00" fill="#203b50">процесс · L2</text>
@@ -113,40 +113,40 @@
 <text xml:space="preserve" text-anchor="middle" x="205" y="-407.9" font-family="DejaVu Sans" font-size="13.00" fill="#203b50">процесс · L3</text>
 </g>
 <!-- file-handout -->
-<g id="file-1"><g id="file-handout" class="node">
+<g id="file-handout" class="node">
 <title>file-handout</title>
 <polygon fill="white" stroke="#a4b7c8" stroke-width="1.6" points="724,-182 540,-182 540,-108 730,-108 730,-176 724,-182"/>
 <polyline fill="none" stroke="#a4b7c8" stroke-width="1.6" points="724,-182 724,-176"/>
 <polyline fill="none" stroke="#a4b7c8" stroke-width="1.6" points="730,-176 724,-176"/>
 <text xml:space="preserve" text-anchor="middle" x="635" y="-138" font-family="DejaVu Sans" font-size="20.00" fill="#203b50">Материалы</text>
 </g>
-</g><!-- file-level-handout -->
+<!-- file-level-handout -->
 <g id="file-level-handout" class="node">
 <title>file-level-handout</title>
 <text xml:space="preserve" text-anchor="middle" x="635" y="-119.33" font-family="DejaVu Sans" font-size="14.00" fill="#203b50">файл · L1</text>
 </g>
 <!-- file-draft -->
-<g id="file-2"><g id="file-draft" class="node">
+<g id="file-draft" class="node">
 <title>file-draft</title>
 <polygon fill="white" stroke="#a4b7c8" stroke-width="1.6" points="724,-327 540,-327 540,-253 730,-253 730,-321 724,-327"/>
 <polyline fill="none" stroke="#a4b7c8" stroke-width="1.6" points="724,-327 724,-321"/>
 <polyline fill="none" stroke="#a4b7c8" stroke-width="1.6" points="730,-321 724,-321"/>
 <text xml:space="preserve" text-anchor="middle" x="635" y="-283" font-family="DejaVu Sans" font-size="20.00" fill="#203b50">Черновик</text>
 </g>
-</g><!-- file-level-draft -->
+<!-- file-level-draft -->
 <g id="file-level-draft" class="node">
 <title>file-level-draft</title>
 <text xml:space="preserve" text-anchor="middle" x="635" y="-264.32" font-family="DejaVu Sans" font-size="14.00" fill="#203b50">файл · L2</text>
 </g>
 <!-- file-answers -->
-<g id="file-3"><g id="file-answers" class="node">
+<g id="file-answers" class="node">
 <title>file-answers</title>
 <polygon fill="white" stroke="#a4b7c8" stroke-width="1.6" points="724,-472 540,-472 540,-398 730,-398 730,-466 724,-472"/>
 <polyline fill="none" stroke="#a4b7c8" stroke-width="1.6" points="724,-472 724,-466"/>
 <polyline fill="none" stroke="#a4b7c8" stroke-width="1.6" points="730,-466 724,-466"/>
 <text xml:space="preserve" text-anchor="middle" x="635" y="-428" font-family="DejaVu Sans" font-size="20.00" fill="#203b50">Ответы</text>
 </g>
-</g><!-- file-level-answers -->
+<!-- file-level-answers -->
 <g id="file-level-answers" class="node">
 <title>file-level-answers</title>
 <text xml:space="preserve" text-anchor="middle" x="635" y="-409.32" font-family="DejaVu Sans" font-size="14.00" fill="#203b50">файл · L3</text>
