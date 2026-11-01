@@ -9,6 +9,8 @@ course-presentation:
 
 ## Занятие 6 – Целостность и копии {#sec-seminar-6}
 
+## Проверка целостности {#sec-seminar-6-integrity}
+
 ### Что показывает проверка
 
 Простая сумма обнаруживает некоторые изменения, но `[10,20,30]` и `[20,10,30]` дают 60. Криптографический хеш сравнивают с **доверенным эталоном**. Совпадение с подменённым эталоном не доказывает происхождение файла.
@@ -32,6 +34,8 @@ course-presentation:
 integrityLesson = await import(await FileAttachment("/_prepared/visualizations/data-integrity/lesson.js").url())
 integrityLesson.referenceReplacement()
 ```
+
+## Резервное копирование и восстановление {#sec-seminar-6-backups}
 
 ### Три схемы на одних изменениях
 
@@ -64,6 +68,8 @@ integrityLesson.referenceReplacement()
 - дифференциальная схема: воскресная полная и копия среды.
 
 Копию хранят независимо и проверяют восстановлением.
+
+## Массивы дисков и восстановление {#sec-seminar-6-raid}
 
 ### RAID 0, 1 и 5
 
@@ -99,6 +105,8 @@ integrityLesson.xorRecovery()
 ### Вопрос для обсуждения {.smaller}
 
 {{< include _prepared/bank-fragments/exr-data-integrity-mirror-copy.qmd >}}
+
+## Дополнительные материалы {#sec-seminar-6-additional}
 
 ### Запас: простая сумма
 

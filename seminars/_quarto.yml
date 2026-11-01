@@ -9,6 +9,7 @@ project:
   - 04-access-control.qmd
   - 05-crypto.qmd
   - 06-data-integrity.qmd
+  - 07-signature-trust.qmd
   output-dir: _output
   resources:
   - control-demo.html
