@@ -8,3 +8,4 @@ for scope in . theory task seminars; do
 done
 quarto add Afonenko-Course-Tools/quarto-project-publish@v5.1.4 --no-prompt
 (cd task; quarto add Afonenko-Course-Tools/quarto-project-download@v3.2.2 --no-prompt)
+bash CI/install-course-brand.sh

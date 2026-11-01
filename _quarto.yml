@@ -67,7 +67,6 @@ website:
   site-url: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/
   search: true
   page-footer: Афоненко Анатолий
-  favicon: assets/cover.png
 filters:
 - course-core
 - course-presentation

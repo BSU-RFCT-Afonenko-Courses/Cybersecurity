@@ -1,0 +1,18 @@
+meta:
+  name: Основы кибербезопасности
+logo:
+  images:
+    course:
+      path: assets/cyber-kotost.svg
+      alt: Кибер котость — логотип курса «Основы кибербезопасности»
+    course-icon:
+      path: assets/cyber-kotost-small.svg
+      alt: Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой
+  small: course-icon
+  medium: course
+  large: course
+defaults:
+  quarto:
+    format:
+      revealjs:
+        logo: medium

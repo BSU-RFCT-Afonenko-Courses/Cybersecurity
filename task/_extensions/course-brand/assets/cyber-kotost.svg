@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="kotost-title kotost-desc">
+  <title id="kotost-title">Кибер котость с защищённой вкладкой</title>
+  <desc id="kotost-desc">Очень пухлый пятнистый кот с одинаковыми острыми ушами и усами держит окно браузера с закрытым замком.</desc>
+  <path d="M40 43 38 12Q38 8 43 11L66 29Q80 25 94 29L117 11Q122 8 122 12L120 43C142 56 151 72 151 92C151 120 119 135 80 135C41 135 9 120 9 92C9 72 18 56 40 43Z" fill="#FFFFFF" stroke="#0A3470" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M45 23 46 39 58 32ZM115 23 114 39 102 32Z" fill="#144E9D"/>
+  <path d="M72 32Q80 30 88 32L85 43Q80 47 75 43Z" fill="#144E9D"/>
+  <ellipse cx="61" cy="57" rx="9" ry="11" fill="#0A3470"/>
+  <ellipse cx="99" cy="57" rx="9" ry="11" fill="#0A3470"/>
+  <path d="M57 53a3 3 0 1 0 6 0 3 3 0 1 0-6 0ZM95 53a3 3 0 1 0 6 0 3 3 0 1 0-6 0Z" fill="#FFFFFF"/>
+  <path d="M41 73h7m64 0h7" fill="none" stroke="#7BB8BF" stroke-width="6" stroke-linecap="round"/>
+  <path d="M22 65 38 70M19 79 37 77M138 65 122 70M141 79 123 77" fill="none" stroke="#0A3470" stroke-width="4" stroke-linecap="round"/>
+  <path d="M74 73Q80 69 86 73L80 79Z" fill="#0A3470"/>
+  <path d="M80 78v4m0 0q-6 6-12-1m12 1q6 6 12-1" fill="none" stroke="#0A3470" stroke-width="3" stroke-linecap="round"/>
+  <rect x="21" y="91" width="118" height="62" rx="12" fill="#144E9D" stroke="#0A3470" stroke-width="5"/>
+  <path d="M24 103h112" stroke="#FFFFFF" stroke-width="4"/>
+  <path d="M32 97h5m7 0h5m7 0h5" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M70 130v-7a10 10 0 0 1 20 0v7" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+  <rect x="64" y="127" width="32" height="21" rx="5" fill="#FFFFFF"/>
+  <path d="M78 135h4v7h-4Z" fill="#0A3470"/>
+  <path d="M28 85q-10 0-10 10t10 10h7q9-1 9-11t-9-9Z" fill="#FFFFFF" stroke="#0A3470" stroke-width="4.5"/>
+  <path d="M132 85q10 0 10 10t-10 10h-7q-9-1-9-11t9-9Z" fill="#FFFFFF" stroke="#0A3470" stroke-width="4.5"/>
+</svg>
