@@ -1,14 +1,3 @@
----
-aliases:
-- /fundamentals/educational-portal.html
-- /fundamentals/cia-cases.html
-- /fundamentals/event-or-incident.html
-- /fundamentals/pizza-incident.html
-- /fundamentals/exhibition.html
-- /fundamentals/carsharing.html
-
----
-
 # Основные понятия {#sec-bank-fundamentals}
 
 ## Понятия и свойства безопасности {#sec-bank-fundamentals-concepts}

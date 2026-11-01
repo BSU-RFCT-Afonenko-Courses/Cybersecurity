@@ -1,16 +1,4 @@
 ---
-aliases:
-- /access-control/ident.html
-- /access-control/authn.html
-- /access-control/authz.html
-- /access-control/dac.html
-- /access-control/mac.html
-- /access-control/rbac.html
-- /access-control/session.html
-- /access-control/grade.html
-- /access-control/verification.html
-- /access-control/extensions.html
-- /access-control/access-control.html
 format:
   html:
     css: ../assets/access-control/page.css

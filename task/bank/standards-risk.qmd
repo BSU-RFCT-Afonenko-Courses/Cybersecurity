@@ -1,12 +1,3 @@
----
-aliases:
-- /standards-risk/document-first.html
-- /standards-risk/requirement-or-standard.html
-- /standards-risk/certificate.html
-- /standards-risk/risk-cost.html
-- /standards-risk/inspection.html
----
-
 # Стандарты, системы защиты и риски {#sec-bank-standards-risk}
 
 ## Выбор и применение требований {#sec-bank-standards-risk-requirements}

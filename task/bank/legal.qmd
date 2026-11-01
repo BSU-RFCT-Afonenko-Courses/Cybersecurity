@@ -1,11 +1,3 @@
----
-aliases:
-- /legal/system-classes.html
-- /legal/protection-measures.html
-- /legal/information-sharing.html
-- /legal/requirements-audit.html
----
-
 # Правовые основы {#sec-bank-legal}
 
 ## Классификация информации и меры защиты {#sec-bank-legal-classification}

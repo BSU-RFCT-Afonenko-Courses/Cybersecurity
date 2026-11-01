@@ -5,8 +5,6 @@ format:
 assessment:
   id: sec-work-access-control
   kind: seminar
-aliases:
-- /seminar/04-access-control.html
 ---
 
 # Семинар 4 — Управление доступом {#sec-work-access-control}

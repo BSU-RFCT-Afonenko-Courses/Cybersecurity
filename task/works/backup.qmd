@@ -2,8 +2,6 @@
 assessment:
   id: sec-work-data-integrity-backup
   kind: lab
-aliases:
-- /seminar/01-introduction.html
 ---
 
 # Введение в кибербезопасность {#sec-work-data-integrity-backup}

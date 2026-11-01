@@ -2,8 +2,6 @@
 assessment:
   id: sec-work-legal-requirements
   kind: seminar
-aliases:
-- /seminar/02-structure.html
 ---
 
 # Структура обеспечения кибербезопасности в РБ {#sec-work-legal-requirements}

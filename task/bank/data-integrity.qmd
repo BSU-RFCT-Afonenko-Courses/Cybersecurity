@@ -1,8 +1,3 @@
----
-aliases:
-- /data-integrity/backup.html
----
-
 # Целостность данных {#sec-bank-data-integrity}
 
 ::: {#exr-data-integrity-backup course-role="independent-study" difficulty="intermediate" time="90"}

@@ -2,8 +2,6 @@
 assessment:
   id: sec-work-standards-risk
   kind: seminar
-aliases:
-- /seminar/03-standards-risk.html
 ---
 
 # Семинар 3 – Применение нормативно-правовых актов {#sec-work-standards-risk}

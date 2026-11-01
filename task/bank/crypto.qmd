@@ -1,13 +1,3 @@
----
-aliases:
-- /crypto/random.html
-- /crypto/hash.html
-- /crypto/cypher/symmetric.html
-- /crypto/cypher/asymmetric.html
-- /crypto/sign.html
-- /crypto/cert.html
----
-
 # Криптография {#sec-bank-crypto}
 
 ## Криптографические механизмы {#sec-bank-crypto-mechanisms}

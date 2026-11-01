@@ -2,8 +2,6 @@
 assessment:
   id: sec-work-fundamentals-concepts
   kind: seminar
-aliases:
-- /seminar/concepts.html
 ---
 
 # Занятие 1 – Понятия и КЦД {#sec-work-fundamentals-concepts}
