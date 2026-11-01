@@ -16,16 +16,29 @@ const root=path.resolve(__dirname,'../..');
  ca.querySelector('[data-action="next"]').click();
  const independent=ca.value.index===1&&cb.value.index===0&&cr.value.index===0;
  const first=await a.dacDiagram(ca.value,{acl:'Права'}),second=await a.dacDiagram(ca.value,{});document.body.append(first,second,await b.rbacDiagram(cr.value));
- const deletion=first.dataset.stage===second.dataset.stage&&second.querySelector('[data-explanation]').textContent==='';
+ const deletion=first.dataset.stage===second.dataset.stage&&first.querySelector('[data-explanation]').textContent==='Права'&&second.querySelector('[data-explanation]').textContent===ca.value.stage.explanation;
  const selected=first.querySelectorAll('.is-active').length>0;
- const bobTrace=(await import('/shared/visualizations/access-control/dac/model.js')).dacTrace({subject:'bob',operation:'write'});
- const denied=await a.dacDiagram({stage:bobTrace.at(-1)});document.body.append(denied);
- const deniedFlow=!denied.querySelector('[data-key="access-flow"]').classList.contains('is-active')&&denied.querySelector('[data-key="subject-bob"]').classList.contains('is-active')&&denied.querySelector('[data-diagram="algorithm"] [data-key="deny"]').classList.contains('is-active');
+ const dacModel=await import('/shared/visualizations/access-control/dac/model.js');
+ const deniedQuery={subject:'boris',operation:'write'},borisTrace=dacModel.dacTrace(deniedQuery);
+ const denied=await a.dacDiagram({query:deniedQuery,trace:borisTrace,index:borisTrace.length-1,stage:borisTrace.at(-1)});document.body.append(denied);
+ const deniedFlow=['subject-boris','matrix-boris','acl-boris'].every(key=>denied.querySelector(`[data-key="${key}"]`).classList.contains('is-active'))&&denied.querySelector('[data-diagram="algorithm"] [data-key="deny"]').classList.contains('is-active')&&!denied.querySelector('[data-diagram="algorithm"] [data-key="allow"]').classList.contains('is-active');
  const rb=(await import('/shared/visualizations/access-control/rbac/model.js')).rbacTrace;let roleContext=true;
- for(const [context,active,inactive] of [['A','teacher','student'],['B','student','teacher']]){const trace=rb({subject:'anna',context,operation:'grade'});for(const name of ['roles','permission']){const stage=trace.find(s=>s.name===name);const rendered=await b.rbacDiagram({stage});document.body.append(rendered);roleContext=roleContext&&rendered.querySelector(`[data-key="${active}"]`).classList.contains('is-active')&&!rendered.querySelector(`[data-key="${inactive}"]`).classList.contains('is-active')&&rendered.querySelector(`[data-key="assignment-${context}-${active}"]`).classList.contains('is-active');}}
+ for(const [subject,operation,active,inactive,result] of [['boris','grade','teacher','student','allow'],['lena','grade','student','teacher','deny'],['lena','submit','student','teacher','allow']]){
+  const query={subject,context:'A',operation},trace=rb(query);
+  roleContext=roleContext&&trace.at(-1).result===result;
+  for(const name of ['roles','permission']){
+   const index=trace.findIndex(s=>s.name===name),stage=trace[index],rendered=await b.rbacDiagram({query,trace,index,stage});document.body.append(rendered);
+   roleContext=roleContext&&rendered.querySelector(`[data-key="${active}"]`).classList.contains('is-active')&&!rendered.querySelector(`[data-key="${inactive}"]`).classList.contains('is-active')&&rendered.querySelector(`[data-key="assignment-${subject}-${active}"]`).classList.contains('is-active');
+   if(name==='permission'){
+    roleContext=roleContext&&rendered.querySelector(`[data-key="permission-${operation}"]`).classList.contains('is-active');
+    const edge=rendered.querySelector(`[data-key="grant-${active}-${operation}"]`);
+    roleContext=roleContext&&(result==='allow'?edge?.classList.contains('is-active'):!edge?.classList.contains('is-active'));
+   }
+  }
+ }
  ca.querySelector('[data-query]').value='2';ca.querySelector('[data-query]').dispatchEvent(new Event('change'));
- const alice=await a.dacDiagram(ca.value);document.body.append(alice);
- const subject=alice.querySelector('[data-key="subject-alice"]').classList.contains('is-active')&&!alice.querySelector('[data-key="subject-bob"]').classList.contains('is-active')&&ca.value.trace.at(-1).result==='allow';
+ const anna=await a.dacDiagram(ca.value);document.body.append(anna);
+ const subject=anna.querySelector('[data-key="subject-anna"]').classList.contains('is-active')&&!anna.querySelector('[data-key="subject-boris"]').classList.contains('is-active')&&ca.value.trace.at(-1).result==='allow';
  const crypto=await import('/shared/visualizations/crypto/lesson.js');const lcg=crypto.lcgTrainer(),lcg2=crypto.lcgTrainer(),cx=crypto.caesarXorTrainer();document.body.append(lcg,lcg2,cx);
  const answer=lcg.querySelectorAll('input')[4];answer.value='0';[...lcg.querySelectorAll('button')].find(b=>b.textContent==='Проверить').click();
  const trainer=lcg.querySelector('output').textContent.startsWith('Верно')&&lcg2.querySelector('output').textContent==='';

@@ -52,10 +52,7 @@ const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json
    assert.equal(await page.locator('.course-viz-stage').nth(1).getAttribute('data-result'),'deny');
    const ids=await page.locator('.course-viz svg [id]').evaluateAll(nodes=>nodes.map(n=>n.id));
    assert.equal(new Set(ids).size,ids.length);
-   const downloadPromise=page.waitForEvent('download');
-   await page.locator('.course-viz-stage').nth(1).locator('button').first().click();
-   const download=await downloadPromise;const exportPath=path.join(imageDir,`${project}-${view}-export.svg`);await download.saveAs(exportPath);
-   assert.match(fs.readFileSync(exportPath,'utf8'),/xmlns="http:\/\/www.w3.org\/2000\/svg"/);
+   assert.equal(await page.getByRole('button',{name:/Сохранить SVG/}).count(),0);
    assert.equal(await page.locator('#fig-mac-decision figcaption').textContent(),caption,'подпись Quarto сохраняется');
    assert.equal(await page.locator('.quarto-unresolved-ref').count(),0);
    const overview=page.locator('#fig-mac-overview img, img#fig-mac-overview');

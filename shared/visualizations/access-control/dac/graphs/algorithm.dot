@@ -1,14 +1,8 @@
-digraph G {
- graph [rankdir=TB, ranksep=0.35, nodesep=0.3, bgcolor="transparent", pad="0.2", splines=polyline];
- node [shape=box, style="rounded,filled", fillcolor="#eef4fa", fontname="DejaVu Sans", fontsize=16];
- edge [fontname="DejaVu Sans", fontsize=11];
- "request" [id="request", label="Субъект, объект, операция"];
- "acl" [id="acl", label="Найти права субъекта в ACL"];
- "operation" [id="operation", label="Есть разрешение на эту операцию?"];
- "allow" [id="allow", label="Разрешить"];
- "deny" [id="deny", label="Отказать"];
- "request" -> "acl" [label=""];
- "acl" -> "operation" [label=""];
- "operation" -> "allow" [label="да"];
- "operation" -> "deny" [label="нет"];
+digraph policy { graph [rankdir=TB,bgcolor="transparent",pad="0.15",ranksep="0.5"]; node [shape=box,style="rounded,filled",fillcolor="white",fontname="DejaVu Sans",fontsize=18,color="#a4b7c8",fontcolor="#203b50"]; edge [fontname="DejaVu Sans",fontsize=15,color="#a4b7c8"];
+request [id="request",label="Запрос к черновику"];
+acl [id="acl",label="ACL выбранного объекта"];
+operation [id="operation",label="Есть запрошенное право?",shape=box];
+allow [id="allow",label="Разрешить"];deny [id="deny",label="Отказать"];
+request -> acl -> operation;
+operation -> allow [label="да"];operation -> deny [label="нет"];
 }

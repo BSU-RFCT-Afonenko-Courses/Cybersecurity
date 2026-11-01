@@ -1,5 +1,6 @@
 import {dacTrace,dacQueries} from './model.js';
-import {createControls,renderStage} from '../../common/runtime.js';
-const assets=Promise.all(['model','algorithm'].map(async name=>{const response=await fetch(new URL(`./static/${name}.svg`,import.meta.url));if(!response.ok)throw Error('Не удалось загрузить схему');return response.text();}));
+import {createControls} from '../../common/runtime.js';
+import {assets,display,key} from '../display.js';
+const source=assets(import.meta.url);
 export function dacControls(options={}){return createControls(dacTrace,dacQueries,options);}
-export async function dacDiagram(selected,notes={}){const [model,algorithm]=await assets;return renderStage({selected,notes,model,algorithm});}
+export async function dacDiagram(selected,notes={}){const [model,algorithm]=await source;return display(selected,model,algorithm,notes,(svg,{query,index})=>{if(query.grant&&index>=1){key(svg,'matrix-boris').querySelector('text').textContent='r, w';key(svg,'acl-boris').querySelector('text').textContent='Борис: r, w';}});}

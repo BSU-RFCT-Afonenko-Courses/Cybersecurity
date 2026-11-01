@@ -1,17 +1,19 @@
-// Учебная ACL: владелец alice, bob читает; дополнительных полномочий нет.
-export const dacQueries = [
- {subject:'bob',operation:'read',label:'Боб: читать файл'},
- {subject:'bob',operation:'write',label:'Боб: изменить файл'},
- {subject:'alice',operation:'write',label:'Алиса: изменить файл'}
+// Источник примера: матрица Анны, Бориса и Веры; владелец черновика — Анна.
+export const dacQueries=[
+ {subject:'boris',operation:'read',label:'Борис: читать черновик'},
+ {subject:'boris',operation:'write',label:'Борис: изменить черновик'},
+ {subject:'anna',operation:'write',label:'Анна: изменить черновик'},
+ {subject:'vera',operation:'read',label:'Вера: читать черновик'},
+ {subject:'boris',operation:'write',grant:true,label:'Анна выдала Борису w: изменить черновик'}
 ];
-export function dacTrace({subject,operation,acl={alice:['read','write'],bob:['read']}}) {
- if (!['alice','bob'].includes(subject)||!['read','write'].includes(operation)) throw Error('Неизвестный субъект или операция');
- const result=(acl[subject]||[]).includes(operation)?'allow':'deny';
- const subjectKey='subject-'+subject;
+export function dacTrace({subject,operation,grant=false,acl={anna:['read','write'],boris:['read'],vera:[]}}){
+ if(!['anna','boris','vera'].includes(subject)||!['read','write'].includes(operation))throw Error('Неизвестный субъект или операция');
+ const rights=[...(acl[subject]||[])];if(grant&&subject==='boris')rights.push('write');
+ const result=rights.includes(operation)?'allow':'deny',entity=[`subject-${subject}`,`matrix-${subject}`];
  return [
- {name:'request',label:'Запрос',model:[subjectKey,'object','monitor','request-flow-'+subject],algorithm:['request']},
- {name:'acl',label:'Права субъекта',model:[subjectKey,'acl','owner'],algorithm:['acl']},
- {name:'operation',label:'Запрошенная операция',model:['acl','monitor','policy-flow'],algorithm:['operation']},
- {name:'result',label:result==='allow'?'Разрешить':'Отказать',model:[subjectKey,'request-flow-'+subject,'monitor',...(result==='allow'?['object','access-flow']:[])],algorithm:[result],result}
+ {name:'request',label:'Запрос к черновику',model:[...entity,'matrix-column'],algorithm:['request'],explanation:'Выбираем субъект, объект «Черновик» и одну операцию.'},
+ {name:'acl',label:grant?'Владелец меняет ACL':'ACL черновика',model:[...entity,'acl',`acl-${subject}`,...(grant?['owner','owner-label']:[])],algorithm:['acl'],explanation:grant?'Анна как владелец добавила Борису запись w в ACL черновика.':'Столбец черновика задаёт ACL этого объекта. Право записи содержимого не даёт права менять ACL.'},
+ {name:'operation',label:'Проверка операции',model:[...entity,`acl-${subject}`],algorithm:['operation'],explanation:`Проверяем, выдано ли ${operation==='read'?'чтение r':'изменение w'} выбранному субъекту.`},
+ {name:'result',label:result==='allow'?'Разрешить':'Отказать',model:[...entity,`acl-${subject}`],algorithm:[result],result,explanation:result==='allow'?'В ACL черновика найдено запрошенное право.':'Запрошенного права в ACL черновика нет.'}
  ];
 }
