@@ -533,10 +533,27 @@ export async function post(root = Deno.cwd()): Promise<void> {
       await Deno.writeTextFile(join(run,"conditions-finalization.json"),JSON.stringify(staged.map(({bytes,...facts})=>facts),null,2));
     }
   }
-  await addressNavigation(
-    ws.output, outputs, true,
-    ws.config["course-navigation"]?.["course-url"] || ws.config.website?.["site-url"],
-  );
+  if (ws.config["course-navigation"]?.enabled === true) {
+    const { composeNavigation } = await module("course-navigation", "composition.ts");
+    await composeNavigation({
+      stage: ws.output,
+      outputs,
+      title: ws.config.website?.title || "Курс",
+      members: [
+        { id: "root", mount: "", title: ws.config.website?.title || "Курс" },
+        ...records.map(({ project, config }: any) => ({
+          id: project.id,
+          mount: project.mount,
+          title: config.book?.title || config.website?.title || project.mount,
+        })),
+      ],
+    });
+  } else {
+    await addressNavigation(
+      ws.output, outputs, true,
+      ws.config["course-navigation"]?.["course-url"] || ws.config.website?.["site-url"],
+    );
+  }
   await Deno.writeTextFile(
     join(run, "composition.json"),
     JSON.stringify({

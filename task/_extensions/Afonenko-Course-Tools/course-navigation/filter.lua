@@ -14,8 +14,13 @@ local function local_path(value,field)
  return value
 end
 local function transform(doc)
- if not quarto.format.is_format('revealjs') then return doc end
  local cfg=doc.meta['course-navigation'] or {}
+ if not quarto.format.is_format('revealjs') then
+  if quarto.format.is_format('html') and cfg.enabled==true then
+   quarto.doc.add_html_dependency({name='course-navigation-header',stylesheets={'html/header.css'}})
+  end
+  return doc
+ end
  local input=quarto.doc.input_file
  if not pandoc.path.is_relative(input) then input=pandoc.path.make_relative(input,quarto.project.directory) end
  input=input:gsub('\\','/')

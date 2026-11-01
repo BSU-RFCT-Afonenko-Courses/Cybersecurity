@@ -5,12 +5,9 @@ toc: false
 
 # Основы кибербезопасности {#sec-portal}
 
-Материалы ознакомительного курса: основные понятия, организация защиты, криптография,
-управление доступом и целостность данных. Выберите тему, затем теорию, задачи или занятие.
-
 ## Карта курса {#sec-course-plan}
 
-| Тема | Теория | Задачи | Занятие и слайды |
+| Тема | Теория | Задачи | Семинар |
 | --- | --- | --- | --- |
 | Основные понятия | @theory:sec-theory-fundamentals-concepts | @tasks:sec-bank-fundamentals | @tasks:sec-work-fundamentals-concepts · @practice:sec-seminar-1 |
 | Правовые основы | @theory:sec-theory-legal-information-access · @theory:sec-theory-legal-system-classes · @theory:sec-theory-legal-protection-measures | @tasks:sec-bank-legal | @tasks:sec-work-legal-requirements · @practice:sec-seminar-2 |
@@ -22,9 +19,3 @@ toc: false
 | Подпись и доверие | План будущего раздела | Материалы готовятся | Материалы готовятся |
 
 : Темы курса {#tbl-course-plan .course-plan .striped .hover .responsive}
-
-## Работы и подготовка
-
-Полный банк и каталог занятий: @tasks:sec-tasks.
-Подготовка к контрольной: @tasks:sec-control-demo.
-Слайды: @practice:sec-practice.

@@ -19,5 +19,3 @@
 - @sec-theory-password-storage — хранение паролей.
 - @sec-theory-data-integrity — контроль целостности, копии и RAID.
 - Подпись и доверие — заголовки будущего раздела.
-
-Практическое применение: @tasks:sec-tasks.

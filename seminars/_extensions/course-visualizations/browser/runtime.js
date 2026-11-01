@@ -59,11 +59,6 @@ export function serializeSVG(svg) {
   });
   return new XMLSerializer().serializeToString(clone);
 }
-function saveSVG(svg,name) {
-  const url = URL.createObjectURL(new Blob([serializeSVG(svg)],{type:'image/svg+xml'}));
-  const link = document.createElement('a'); link.href = url; link.download = name; link.click();
-  setTimeout(() => URL.revokeObjectURL(url),1000);
-}
 
 export function renderStage({selected, model, algorithm, notes = {}}) {
   const {stage} = selected;
@@ -73,9 +68,7 @@ export function renderStage({selected, model, algorithm, notes = {}}) {
   for (const [kind,source,keys,title] of [['model',model,stage.model,'Модель'], ['algorithm',algorithm,stage.algorithm,'Алгоритм']]) {
     const column = document.createElement('div'); column.dataset.diagram = kind; column.dataset.stage = stage.name;
     const svg = prepareSVG(source,keys,stage.result); svg.setAttribute('role','img'); svg.setAttribute('aria-label',`${title}: ${stage.label}`);
-    const button = document.createElement('button'); button.type = 'button'; button.textContent = `Сохранить SVG: ${title.toLowerCase()}`;
-    button.addEventListener('click', () => saveSVG(svg,`${kind}-${stage.name}.svg`));
-    column.append(svg,button); pair.append(column);
+    column.append(svg); pair.append(column);
   }
   const explanation = document.createElement('p'); explanation.dataset.explanation = ''; explanation.dataset.stage = stage.name;
   explanation.setAttribute('aria-live','polite'); explanation.textContent = notes[stage.name] || '';

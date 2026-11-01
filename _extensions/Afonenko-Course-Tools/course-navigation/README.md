@@ -118,3 +118,28 @@ node --test tests/navigation-model.cjs # из корня репозитория
 Native `repo-url`, `repo-branch`, `repo-subdir`, `repo-actions` и `issue-url`
 используются для эквивалентных действий Reveal; HTML сохраняет native actions.
 Полный контракт и пример: [Navigation](../../docs/navigation.md).
+
+## Общая шапка HTML
+
+Фильтр расширения оформляет штатную navbar Quarto одинаково в `website` и `book`.
+Для самостоятельного проекта достаточно включить navbar в нативной конфигурации
+Quarto и подключить фильтр:
+
+```yaml
+filters: [course-navigation]
+course-navigation:
+  enabled: true
+```
+
+Фильтр добавляет `html/header.css` как HTML-зависимость Quarto. Фон, шрифт,
+активные ссылки, значки поиска и мобильного меню принадлежат расширению;
+тема содержимого страницы не меняется. Bootstrap продолжает управлять раскрытием
+меню, Quarto — поиском. Наличие поиска определяется нативными настройками Quarto.
+При `enabled: false` ресурс шапки не подключается; в Reveal используется прежний
+плагин презентаций.
+
+Оформление курса можно задать общими CSS-переменными `--course-nav-background`,
+`--course-nav-foreground`, `--course-nav-primary`, `--course-nav-font`.
+Те же переменные использует навигация Reveal. Фильтр не требует Course Core
+или Course Site. Для общего списка ссылок составного курса отдельно используется
+композиция Course Site из `subprojects`.

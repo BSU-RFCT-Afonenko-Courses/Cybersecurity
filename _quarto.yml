@@ -53,8 +53,8 @@ format:
     html-math-method: mathml
     embed-resources: false
     theme:
-      - cosmo
-      - styles/offline-fonts.scss
+    - cosmo
+    - styles/offline-fonts.scss
     toc: false
 lang: ru
 author:
@@ -65,16 +65,6 @@ course:
 website:
   title: Основы кибербезопасности
   site-url: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/
-  navbar:
-    title: Основы кибербезопасности
-    logo-href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/index.html
-    left:
-    - text: Теория
-      href: theory/index.html
-    - text: Задания и работы
-      href: task/index.html
-    - text: Слайды
-      href: seminars/index.html
   search: true
   page-footer: Афоненко Анатолий
   favicon: assets/cover.png
@@ -95,3 +85,5 @@ subprojects:
 - theory
 - task
 - seminars
+metadata-files:
+- _navigation.yml

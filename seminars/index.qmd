@@ -4,14 +4,12 @@ format: html
 
 # Слайды занятий {#sec-practice}
 
-- @practice:sec-seminar-1 — Основные понятия. Работа: @tasks:sec-work-fundamentals-concepts.
-- @practice:sec-seminar-2 — Правовые основы и организация защиты. Работа: @tasks:sec-work-legal-requirements.
-- @practice:sec-seminar-3 — Применение требований и стандартов. Работа: @tasks:sec-work-standards-risk.
+- @practice:sec-seminar-1 — Основные понятия.
+- @practice:sec-seminar-2 — Правовые основы и организация защиты.
+- @practice:sec-seminar-3 — Применение требований и стандартов.
 - @practice:sec-seminar-4 — Управление доступом. Работа: @tasks:sec-work-access-control.
 
-- @practice:sec-seminar-5 — Случайность и криптография. Задачи: @tasks:sec-bank-crypto.
-- @practice:sec-seminar-6 — Целостность и копии. Работа: @tasks:sec-work-data-integrity-backup.
+- @practice:sec-seminar-5 — Случайность и криптография.
+- @practice:sec-seminar-6 — Целостность и копии.
 
 Подготовка к контрольной находится в каталоге работ: @tasks:sec-control-demo.
-
-Теория: @theory:sec-theory. Задачи и работы: @tasks:sec-tasks. Карта курса: @portal:sec-portal.

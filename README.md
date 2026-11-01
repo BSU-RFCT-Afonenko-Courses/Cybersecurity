@@ -31,8 +31,14 @@ OCI-образов из GHCR ещё ожидаются. Публикация р�
 bash CI/install-extensions.sh
 quarto render --profile student
 quarto render --profile full
-quarto preview --profile student --no-watch-inputs
+python3 -m http.server 8000 --bind 127.0.0.1 --directory _site-student
 ```
+
+Последняя команда показывает уже собранный сайт: откройте
+<http://127.0.0.1:8000/> — сервер отдаст `index.html` автоматически.
+Браузер открывается вручную; остановка сервера — `Ctrl+C`. Для другой сборки
+замените `_site-student` на её готовый выходной каталог, например `_output`.
+Сервер не запускает Quarto и не зависит от версий расширений.
 
 В каждом самостоятельном проекте включён штатный `fail-if-warnings: true`.
 Сборка учитывает фактический код завершения Quarto; строка `WARN` в исходном

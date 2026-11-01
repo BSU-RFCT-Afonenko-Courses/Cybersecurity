@@ -40,22 +40,7 @@ filters:
 - project-download
 - reference-catalog
 book:
-  title: Задания и работы — Основы кибербезопасности
-  navbar:
-    title: Основы кибербезопасности
-    logo-href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/index.html
-    left:
-    - text: Теория
-      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/theory/index.html
-    - text: Задания и работы
-      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/task/index.html
-    - text: Слайды
-      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/seminars/index.html
-  sidebar:
-    tools:
-    - icon: house
-      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/index.html#sec-portal
-      text: Навигация курса
+  title: Задания
 author:
 - Афоненко Анатолий
 - Войтович Елизавета
@@ -67,7 +52,9 @@ format:
     html-math-method: mathml
     embed-resources: false
     theme:
-      - cosmo
-      - styles/offline-fonts.scss
+    - cosmo
+    - styles/offline-fonts.scss
 reference-catalog:
   namespace: tasks
+metadata-files:
+- ../_navigation.yml
