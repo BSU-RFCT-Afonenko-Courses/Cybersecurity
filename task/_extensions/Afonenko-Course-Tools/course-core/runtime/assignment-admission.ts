@@ -3,7 +3,14 @@ import {
   assignmentChild,
   withAssignmentExecution,
 } from "./assignment-execution.ts";
-import { dirname, fromFileUrl, join, relative, resolve } from "stdlib/path";
+import {
+  basename,
+  dirname,
+  fromFileUrl,
+  join,
+  relative,
+  resolve,
+} from "stdlib/path";
 import { fail } from "../contracts/project.ts";
 import { assertSources, hash, signature, snapshot } from "./source-snapshot.ts";
 import type { SourceSnapshotState } from "./source-snapshot.ts";
@@ -117,6 +124,31 @@ export function assignmentProfile(
   const handle = runtimeAuthorities.get(witness);
   if (!handle) invalid("Runtime authority не открыта/не связана");
   return authorityProfile(handle, witness.profile, root);
+}
+/** Кандидат owner из bound input/source; authorityProfile независимо проверяет root/id. */
+export function nativeAssignmentOwner(
+  input: string,
+  source: unknown,
+  capture: unknown,
+  operation: string,
+) {
+  if (
+    typeof input !== "string" || !input.startsWith("/") ||
+    input.includes("\0") || resolve(input) !== input ||
+    typeof source !== "string" || !source || source.startsWith("/") ||
+    source.includes("\\") || source.includes("\0") ||
+    source.split("/").some((part) => !part || part === "." || part === "..") ||
+    !input.endsWith("/" + source)
+  ) invalid("Native input/source owner binding отличается");
+  const root = input.slice(0, -source.length - 1) || "/";
+  if (
+    typeof capture !== "string" || !capture.startsWith("/") ||
+    capture.includes("\0") || resolve(capture) !== capture ||
+    dirname(capture) !==
+      join(root, "_generated/course-spec/native-ts", operation) ||
+    !/^(0|[1-9][0-9]*)$/.test(basename(capture))
+  ) invalid("Native capture/owner/operation binding отличается");
+  return root;
 }
 export async function nativeAssignmentProfile(
   id: string,
@@ -361,7 +393,8 @@ export async function prepareAssignment(
     new TextDecoder("utf-8", { fatal: true }).decode(inspected.stdout),
   );
   if (
-    owner.dir !== reservation.root || !SupportedQuartoVersionSchema.safeParse(owner.quarto?.version).success ||
+    owner.dir !== reservation.root ||
+    !SupportedQuartoVersionSchema.safeParse(owner.quarto?.version).success ||
     owner.config?.["course-core-runtime"] !== "native-ts" ||
     owner.config?.["course-core-projection"] !== "author" ||
     !Array.isArray(owner.files?.input) || !Array.isArray(owner.engines) ||

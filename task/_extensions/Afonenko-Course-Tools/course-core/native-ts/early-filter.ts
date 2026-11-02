@@ -1,5 +1,8 @@
 import { collectNativeProjectFacts } from "../document/project-capture.ts";
-import { nativeAssignmentProfile } from "../runtime/assignment-admission.ts";
+import {
+  nativeAssignmentOwner,
+  nativeAssignmentProfile,
+} from "../runtime/assignment-admission.ts";
 import { qualifyAssignmentProducer } from "../document/assignment-producer.ts";
 import { normalizeDocument } from "../public.ts";
 import { decodeDocumentContext } from "../document/contracts.ts";
@@ -59,14 +62,20 @@ if (JSON.stringify(nativeContext) !== JSON.stringify(context)) {
   fail("DOCUMENT_BINDING", "Native context не соответствует request");
 }
 delete ast.meta["course-core-ts-context"];
-let authorityCost;
+let authorityCost, assignmentOwner: string | undefined;
 if (request.assignment) {
   const native = await nativeAssignmentProfile(
     request.assignment.producerProfile,
-    Deno.cwd(),
+    nativeAssignmentOwner(
+      context.input,
+      request.assignment.source,
+      request.capture,
+      context.operation,
+    ),
     request.assignment.authority,
   );
   const profile = native.profile;
+  assignmentOwner = profile.root;
   authorityCost = native.cost;
   const evidence = ast.meta["course-core-producer-evidence"];
   if (evidence?.t !== "MetaString") {
@@ -93,7 +102,7 @@ try {
   throw error;
 }
 if (request.assignment) {
-  const facts = collectNativeProjectFacts(early, Deno.cwd());
+  const facts = collectNativeProjectFacts(early, assignmentOwner!);
   try {
     await Deno.writeTextFile(
       request.capture + ".project-facts.json",

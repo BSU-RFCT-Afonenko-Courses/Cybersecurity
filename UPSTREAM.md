@@ -6,13 +6,13 @@
 
 | Пакеты | Выпуск | Коммит исходников выпуска | Проекты |
 | --- | --- | --- | --- |
-| Core / Presentation / Navigation / Theme | `v9.3.0` | `55eeb3894d58eff4f7d63f9079b088a2d4568c78` | Все четыре |
+| Core / Presentation / Navigation / Theme | `v9.3.1` | `ecf48a891f5edddce7e512ab9741f88ff50c8501` | Все четыре |
 | Publisher / Site | `v6.0.1` | `e8b345cec235c2c8438c479892f6bca2a4ce3ee7` | Корень |
 | Reference Catalog | `v3.2.0` | `798f8c0d9f87fd5dcfe9ee85b79df57e647d2f3c` | Все четыре |
 | Download | `v3.5.0` | `c81df7364dd1fbbd07a0e54d67714b3d66f9695e` | `task` |
 
 Контракты читаются по этим выпускам:
-[Core](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v9.3.0/spec/index.md),
+[Core](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v9.3.1/spec/index.md),
 [Publisher](https://github.com/Afonenko-Course-Tools/quarto-project-publish/blob/v6.0.1/spec/index.md),
 [Reference Catalog](https://github.com/Afonenko-Course-Tools/quarto-reference-catalog/blob/v3.2.0/spec/index.md),
 [Download](https://github.com/Afonenko-Course-Tools/quarto-project-download/blob/v3.5.0/spec/index.md).
