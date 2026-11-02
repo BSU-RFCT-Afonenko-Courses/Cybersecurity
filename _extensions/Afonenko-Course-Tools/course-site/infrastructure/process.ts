@@ -3,6 +3,52 @@ const __metrics=__createMetrics("course-site");
 export function executable(): string {
   return Deno.env.get("QUARTO") || "quarto";
 }
+async function liveOutput(command: Deno.Command): Promise<Deno.CommandOutput> {
+  const child = command.spawn();
+  const chunks: Uint8Array[][] = [[], []];
+  let forwardingError: unknown;
+  const pump = async (
+    stream: ReadableStream<Uint8Array>,
+    destination: { write(data: Uint8Array): Promise<number> },
+    captured: Uint8Array[],
+  ) => {
+    try {
+      for await (const chunk of stream) {
+        captured.push(chunk);
+        if (forwardingError !== undefined) continue;
+        try {
+          let offset = 0;
+          while (offset < chunk.length) {
+            const written = await destination.write(chunk.subarray(offset));
+            if (written <= 0) throw new Error("course-site: поток вывода закрыт");
+            offset += written;
+          }
+        } catch (error) {
+          // Сначала дочитываем оба pipe и дожидаемся child: ошибка sink не оставляет его зависшим.
+          forwardingError = error;
+        }
+      }
+    } catch (error) {
+      try { child.kill("SIGTERM"); } catch { /* child уже мог завершиться */ }
+      throw error;
+    }
+  };
+  const results = await Promise.allSettled([
+    pump(child.stdout, Deno.stdout, chunks[0]),
+    pump(child.stderr, Deno.stderr, chunks[1]),
+    child.status,
+  ]);
+  for (const result of results) if (result.status === "rejected") throw result.reason;
+  if (forwardingError !== undefined) throw forwardingError;
+  const status = (results[2] as PromiseFulfilledResult<Deno.CommandStatus>).value;
+  const concatenate = (parts: Uint8Array[]) => {
+    const value = new Uint8Array(parts.reduce((size, part) => size + part.length, 0));
+    let offset = 0;
+    for (const part of parts) { value.set(part, offset); offset += part.length; }
+    return value;
+  };
+  return { ...status, stdout: concatenate(chunks[0]), stderr: concatenate(chunks[1]) };
+}
 export async function quarto(
   args: string[],
   cwd: string,
@@ -14,14 +60,15 @@ export async function quarto(
   try {
     const childEnv = __metrics.childEnv(env);
     const observed = childEnv !== env;
-    result = await new Deno.Command(tool, {
+    const command = new Deno.Command(tool, {
       args,
       cwd,
       env: observed ? __metrics.childEnv({ ...Deno.env.toObject(), ...env }) : childEnv,
       clearEnv: observed,
       stdout: "piped",
       stderr: "piped",
-    }).output();
+    });
+    result = forward ? await liveOutput(command) : await command.output();
   } catch (cause) {
     if (!Object.values(Deno.errors).some((kind) => cause instanceof kind)) {
       throw cause;
@@ -43,10 +90,6 @@ export async function quarto(
   }
   const out = new TextDecoder().decode(result.stdout),
     err = new TextDecoder().decode(result.stderr);
-  if (forward) {
-    await Deno.stdout.write(result.stdout);
-    await Deno.stderr.write(result.stderr);
-  }
   if (!result.success) {
     const error = new Error(
       `course-site: Quarto ${

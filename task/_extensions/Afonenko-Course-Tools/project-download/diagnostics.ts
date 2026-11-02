@@ -5,6 +5,28 @@ export interface DiagnosticContext {
   related?: { source?: string; id?: string; field?: string }[];
   hint?: string;
 }
+/** Progress project scripts идёт только в stderr и не требует новых env permissions. */
+export function reportProgress(message: string): boolean {
+  try {
+    if (Deno.env.get("QUARTO_PROJECT_SCRIPT_QUIET") === "1") return false;
+  } catch {
+    return false;
+  }
+  console.error(`project-download: ${message}`);
+  return true;
+}
+export async function progress<T>(stage: string, action: () => Promise<T>): Promise<T> {
+  if (!reportProgress(`${stage} — начало`)) return await action();
+  const started = performance.now();
+  try {
+    const value = await action();
+    console.error(`project-download: ${stage} — готово (${((performance.now() - started) / 1000).toFixed(1)} с)`);
+    return value;
+  } catch (error) {
+    console.error(`project-download: ${stage} — ошибка (${((performance.now() - started) / 1000).toFixed(1)} с)`);
+    throw error;
+  }
+}
 export function diagnostic(
   code: string,
   message: string,

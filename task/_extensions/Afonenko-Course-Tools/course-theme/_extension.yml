@@ -1,0 +1,10 @@
+title: Общая тема курса
+author: Анатолий Афоненко
+version: 1.0.0
+quarto-required: ">=1.11.5"
+contributes:
+  formats:
+    html:
+      theme:
+        - cosmo
+        - theme.scss

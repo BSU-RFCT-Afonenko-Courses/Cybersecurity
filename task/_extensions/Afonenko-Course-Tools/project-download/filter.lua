@@ -1,74 +1,69 @@
-local __metrics=require("./observability/bridge").create_metrics("project-download",1)
-local __perfWalk1=__metrics.wrap_walk({id="project-download.filter.walk.1",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
-local __perfWalk2=__metrics.wrap_walk({id="project-download.filter.walk.2",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
-local function __perfFilters(filters)
- for key,value in pairs(filters) do
-  if type(value)=='function' then filters[key]=__metrics.wrap_sync({id="project-download.filter.handler."..tostring(key),kind=key=='Pandoc' and 'phase' or 'function'},value)
-  elseif type(value)=='table' and type(key)=='number' then filters[key]=__perfFilters(value) end
+-- Extended native AST остаётся в Lua. В TS передаётся только один малый batch.
+local dir=pandoc.path.directory(debug.getinfo(1,'S').source:gsub('^@',''))
+local transport=dofile(pandoc.path.join({dir,'request-transport.lua'}))
+local metrics=require('./observability/bridge').create_metrics('project-download',1)
+local walk=metrics.wrap_walk({id='project-download.filter.walk',kind='ast_walk',scope='full-document'},function(node,filter)return node:walk(filter)end)
+local function fail(message)assert(false,'DOWNLOAD.REQUEST_INVALID: '..message..'\nфайл: '..tostring(quarto.doc.input_file or ''))end
+local function plain(value)
+ if type(value)=='boolean' or type(value)=='number' or type(value)=='string' then return value end
+ local kind=pandoc.utils.type(value)
+ if kind=='Inlines' or kind=='MetaInlines' or kind=='Blocks' or kind=='MetaBlocks' then return pandoc.utils.stringify(value) end
+ local result={};for key,child in pairs(value or {}) do result[key]=plain(child) end;return result
+end
+return {{Pandoc=function(doc)
+ local context=transport.context();local calls=transport.drain(context.key)
+ local root=quarto.project.directory
+ local exercises,visible,seen={},{},{}
+ local nextOrdinal=#calls
+ doc=walk(doc,{Div=function(div)if div.identifier~='' then exercises[div.identifier]=plain(div.attributes) end end,
+ Span=function(span)
+  if span.classes:includes('project-download-raw-request') then
+   local raw=span.attributes['data-project-download-ordinal'];local ordinal=tonumber(raw)
+   if not ordinal or ordinal%1~=0 or ordinal<0 or tostring(ordinal)~=raw or not calls[ordinal+1] or seen[ordinal] then fail('Чужой или повторный native ordinal') end
+   seen[ordinal]=true;local call=calls[ordinal+1];call.inline=true;visible[#visible+1]=call
+  elseif span.classes:includes('project-download-request') then
+   local positional,named=pandoc.List({span.attributes.resource}),pandoc.List()
+   for key,value in pairs(span.attributes) do
+    if key=='kind' then named:insert({key=key,value=value}) elseif key~='resource' then fail('Чужой literal request attribute') end
+   end
+   named:insert({key='text',value=pandoc.utils.stringify(span.content)})
+   local call={ordinal=nextOrdinal,positional=positional,named=named,inline=true};nextOrdinal=nextOrdinal+1
+   span.attributes['data-project-download-ordinal']=tostring(call.ordinal);visible[#visible+1]=call;return span
+  end
+ end})
+ local requests=pandoc.List();for _,call in ipairs(visible) do requests:insert(call) end
+ for _,call in ipairs(calls) do if not call.inline then requests:insert(call) end end
+ local native=pandoc.utils.stringify(doc.meta['course-core-runtime'] or '')=='native-ts'
+ local processed=doc.meta['course-core-processed']==true
+ local request={source=context.source,resources=pandoc.List(),configuration=plain(doc.meta['project-download']),native=native}
+ if processed then request.courseProcessed=true end
+ local decisions={}
+ if #requests>0 then
+  local batch={source=context.source,native=native,courseProcessed=processed,configuration=plain(doc.meta['project-download']),exercises=exercises,artifactContext=plain(doc.meta['course-artifact-context']),requests=requests}
+  if doc.meta['project-download']==nil then batch.configuration=nil end
+  if doc.meta.course and doc.meta.course.view then batch.view=pandoc.utils.stringify(doc.meta.course.view) end
+  local carrier=pandoc.Pandoc({}, {['project-download-native-batch']=pandoc.MetaString(pandoc.json.encode(batch))})
+  local result=pandoc.utils.run_json_filter(carrier,pandoc.path.join({dir,'native-ts/late-filter.sh'}),{FORMAT})
+  local encoded=result.meta['project-download-native-result']
+  if not encoded then fail('Отсутствует native Download result') end
+  local resolved=pandoc.json.decode(pandoc.utils.stringify(encoded))
+  if resolved.source~=context.source or type(resolved.links)~='table' or type(resolved.request)~='table' or resolved.request.source~=context.source or #resolved.links~=#visible then fail('Чужой или неполный Download result') end
+  for _,link in ipairs(resolved.links) do
+   if type(link.ordinal)~='number' or decisions[link.ordinal] or type(link.href)~='string' or type(link.text)~='string' then fail('Повреждённый Download result ordinal') end
+   decisions[link.ordinal]=link
+  end
+  for _,call in ipairs(visible) do if not decisions[call.ordinal] then fail('Пропущен Download result ordinal') end end
+  request=resolved.request
+  doc=walk(doc,{Span=function(span)
+   if not (span.classes:includes('project-download-request') or span.classes:includes('project-download-raw-request')) then return end
+   local ordinal=tonumber(span.attributes['data-project-download-ordinal']);local link=decisions[ordinal]
+   if not link then fail('Нет решения для native request') end
+   decisions[ordinal]=nil
+   return pandoc.Link({pandoc.Str(link.text)},link.href,'',pandoc.Attr('',{'project-download'},{download=''}))
+  end})
+  for _ in pairs(decisions) do fail('Неиспользованный Download result') end
  end
- return filters
-end
-local function fail(code, message, id, field)
-  local context = "\nфайл: " .. tostring(quarto.doc.input_file or "")
-  if id then context = context .. ", ID: " .. id end
-  if field then context = context .. ", поле: " .. field end
-  assert(false, code .. ": " .. message .. context)
-end
-return __perfFilters({{Pandoc = function(doc)
-  local root = quarto.project.directory
-  if not root then fail("DOWNLOAD.CONFIG_INVALID", "project-download требует проект Quarto", nil, "project") end
-  local input = quarto.doc.input_file
-  if pandoc.path.is_relative(input) then input = pandoc.path.join({root, input}) end
-  local source = pandoc.path.make_relative(input, root)
-  local requests, artifacts, seen = pandoc.List(), pandoc.List(), {}
-  local config = doc.meta["project-download"]
-  local _, depth = source:gsub("[/\\]", "")
-  local exercises = {}
-  __perfWalk1(doc,{Div = function(div)
-    if div.identifier:match("^exr%-") then exercises[div.identifier] = div.attributes end
-  end})
-  local view = doc.meta.course and doc.meta.course.view and pandoc.utils.stringify(doc.meta.course.view) or "student"
-  local captions = {starter="Скачать заготовку", full="Скачать полный проект", conditions="Скачать условие"}
-  doc = __perfWalk2(doc,{Span = function(span)
-    if not span.classes:includes("project-download-request") then return end
-    local id = span.attributes.resource
-    if not config then fail("DOWNLOAD.CONFIG_INVALID", "Для project-download требуется явная конфигурация ресурсов", id, "project-download") end
-    local declared = config.resources and config.resources[id]
-    local context = doc.meta["course-artifact-context"] and doc.meta["course-artifact-context"][id]
-    local model = config["course-model"] == true and id:match("^exr%-") and (context or exercises[id])
-    if not (declared or (config["course-model"] == true and id:match("^exr%-"))) then fail("DOWNLOAD.RESOURCE_UNAVAILABLE", "Не объявлен ресурс project-download: " .. id, id, "resources") end
-    local kind, name
-    if declared and not model then
-      if span.attributes.kind then fail("DOWNLOAD.REQUEST_INVALID", "kind доступен только модельному упражнению", id, "kind") end
-      name = id
-    else
-      local exercise = exercises[id]
-      if context then
-        exercise = {["course-role"]=(context.purpose and pandoc.utils.stringify(context.purpose) or ""), ["statement-visibility"]=(context.statementVisibility and pandoc.utils.stringify(context.statementVisibility) or "")}
-      end
-      if not exercise then fail("DOWNLOAD.RESOURCE_UNAVAILABLE", "Нет видимого упражнения в текущем документе", id, "exerciseId") end
-      kind = span.attributes.kind
-      if not kind then
-        local demo = exercise["course-role"] == "demonstration" and exercise["statement-visibility"] == "open"
-        kind = (view == "full" or demo) and "full" or "starter"
-      end
-      name = id .. "-" .. kind
-    end
-    local identity = kind and ("artifact:" .. id .. ":" .. kind) or ("resource:" .. id)
-    if not seen[identity] then
-      if kind then artifacts:insert({exerciseId=id,kind=kind}) else requests:insert(id) end
-      seen[identity] = true
-    end
-    local content = span.content
-    if pandoc.utils.stringify(content):match("^%s*$") then content = {pandoc.Str(kind and captions[kind] or "Скачать материалы")} end
-    return pandoc.Link(content, string.rep("../", depth) .. "_downloads/" .. name .. ".zip", "", pandoc.Attr("", {"project-download"}, {download = ""}))
-  end})
-  local directory = root .. "/_generated/project-download/requests"
-  pandoc.system.make_directory(directory, true)
-  local file = assert(io.open(directory .. "/" .. pandoc.utils.sha1(source) .. ".json", "w"))
-  local request = {source=source, resources=requests}
-  if #artifacts > 0 then request.artifacts = artifacts end
-  if doc.meta["course-core-processed"] == true then request.courseProcessed = true end
-  file:write(pandoc.json.encode(request)); file:close()
-  return doc
-end}})
+ local directory=root..'/_generated/project-download/requests';pandoc.system.make_directory(directory,true)
+ local file=assert(io.open(directory..'/'..pandoc.utils.sha1(context.source)..'.json','w'));file:write(pandoc.json.encode(request));file:close()
+ return doc
+end}}

@@ -1,5 +1,4 @@
 {
   "name": "course-core",
-  "rules": "spec/core.cue",
   "extension": "."
 }

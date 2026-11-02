@@ -19,6 +19,18 @@ function M.uses(doc)
   end
   __perfWalk1(doc,{Image=add,Link=add,RawBlock=raw,RawInline=raw});return result
 end
+-- Служебный cache не является предметным ресурсом даже при прямой ссылке.
+local function tool_cache(root,source)
+  local name=pandoc.path.make_relative(source,root):gsub('\\','/')
+  if name=='..' or name:match('^%.%./') or pandoc.path.is_absolute(name) then return false end
+  if ('/'..name..'/'):find('/.cache/codex-tools/',1,true) then return true end
+  local configured=os.getenv('XDG_CACHE_HOME')
+  if not configured or not pandoc.path.is_absolute(configured) then return false end
+  configured=pandoc.path.normalize(configured)
+  local local_cache=pandoc.path.make_relative(configured,root)
+  if local_cache=='.' or local_cache=='..' or local_cache:match('^%.%./') or pandoc.path.is_absolute(local_cache) then return false end
+  return source==configured or source:sub(1,#configured+1)==configured..'/'
+end
 function M.facts(raw,public,canonical)
   local root=quarto.project.directory
   local rawProjectRoots,seenProjects=pandoc.List(),{}
@@ -43,7 +55,7 @@ function M.facts(raw,public,canonical)
     local decoded=uri:gsub('%%(%x%x)',function(h) return string.char(tonumber(h,16)) end)
     local source=decoded:sub(1,1)=='/' and pandoc.path.join({root,decoded:sub(2)}) or pandoc.path.join({pandoc.path.directory(input),decoded})
     source=pandoc.path.normalize(source)
-    local file=io.open(source,'rb')
+    local file=not tool_cache(root,source) and io.open(source,'rb')
     if file then
       local bytes=file:read('*a');file:close()
       if bytes then

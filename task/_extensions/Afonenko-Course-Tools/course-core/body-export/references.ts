@@ -1,7 +1,7 @@
-import {createMetrics as __createMetrics} from "../observability/bridge.ts";
-const __metrics=__createMetrics("course-core");
+import { createMetrics as __createMetrics } from "../observability/bridge.ts";
+const __metrics = __createMetrics("course-core");
 import { dirname, resolve } from "stdlib/path";
-import { command, quartoExecutable } from "../infrastructure/process.ts";
+import { commandInput, quartoExecutable } from "../infrastructure/process.ts";
 import { diagnostic, type DiagnosticContext } from "../domain/diagnostics.ts";
 
 /** Resolve only a partitioned public fragment with the native bibliography engine.
@@ -37,7 +37,7 @@ export async function resolveReferences(
   });
   let resolved = blocks;
   if (citations.size) {
-    const cwd = effectiveBase ?? dirname(resolve(root, context.source!));
+    const sourceBase = effectiveBase ?? dirname(resolve(root, context.source!));
     if (reservedEntry) {
       throw diagnostic(
         "BODY.BIBLIOGRAPHY_COLLISION",
@@ -70,76 +70,64 @@ export async function resolveReferences(
         );
       }
     });
-    const file = await Deno.makeTempFile({
-      dir: cwd,
-      prefix: ".course-citations-",
-      suffix: ".json",
-    });
-    try {
-      await Deno.writeTextFile(
-        file,
+    const args = [
+      "pandoc",
+      "--from=json",
+      "--to=json",
+      "--citeproc",
+      "--resource-path=" + sourceBase,
+    ];
+    const witness = JSON.parse(
+      await commandInput(
+        quartoExecutable(),
+        args,
+        root,
         JSON.stringify({
           "pandoc-api-version": document["pandoc-api-version"],
           meta,
           blocks: [{ t: "Para", c: citationNodes }],
         }),
-      );
-      const witness = JSON.parse(
-        await command(quartoExecutable(), [
-          "pandoc",
-          file,
-          "--from=json",
-          "--to=json",
-          "--citeproc",
-        ], cwd),
-      );
-      const entries = new Set<string>();
-      walk(witness.blocks, (n) => {
-        if (n.t === "Div" && n.c[0][1].includes("csl-entry")) {
-          entries.add(n.c[0][0]);
-        }
-      });
-      if ([...citations].some((id) => !entries.has("ref-" + id))) {
-        throw diagnostic(
-          "BODY.CITATION_UNRESOLVED",
-          "Native citeproc не создал библиографическую запись",
-          context,
-        );
+      ),
+    );
+    const entries = new Set<string>();
+    walk(witness.blocks, (n) => {
+      if (n.t === "Div" && n.c[0][1].includes("csl-entry")) {
+        entries.add(n.c[0][0]);
       }
-      // This witness contains no authored bibliography nodes. A successful
-      // warning-only unknown citation cannot borrow a forged csl-entry.
-      await Deno.writeTextFile(
-        file,
+    });
+    if ([...citations].some((id) => !entries.has("ref-" + id))) {
+      throw diagnostic(
+        "BODY.CITATION_UNRESOLVED",
+        "Native citeproc не создал библиографическую запись",
+        context,
+      );
+    }
+    // This witness contains no authored bibliography nodes. A successful
+    // warning-only unknown citation cannot borrow a forged csl-entry.
+    const output = JSON.parse(
+      await commandInput(
+        quartoExecutable(),
+        args,
+        root,
         JSON.stringify({
           "pandoc-api-version": document["pandoc-api-version"],
           meta,
           blocks,
         }),
-      );
-      const output = JSON.parse(
-        await command(quartoExecutable(), [
-          "pandoc",
-          file,
-          "--from=json",
-          "--to=json",
-          "--citeproc",
-        ], cwd),
-      );
-      function translate(v: any): any {
-        if (Array.isArray(v)) {
-          return v.flatMap((n) =>
-            n?.t === "Cite" ? translate(n.c[1]) : [translate(n)]
-          );
-        }
-        if (!v || typeof v !== "object") return v;
-        return Object.fromEntries(
-          Object.entries(v).map(([k, n]) => [k, translate(n)]),
+      ),
+    );
+    function translate(v: any): any {
+      if (Array.isArray(v)) {
+        return v.flatMap((n) =>
+          n?.t === "Cite" ? translate(n.c[1]) : [translate(n)]
         );
       }
-      resolved = translate(output.blocks);
-    } finally {
-      await Deno.remove(file);
+      if (!v || typeof v !== "object") return v;
+      return Object.fromEntries(
+        Object.entries(v).map(([k, n]) => [k, translate(n)]),
+      );
     }
+    resolved = translate(output.blocks);
   }
   return resolved;
 }
@@ -213,6 +201,12 @@ export function assertReferenceTargets(
 }
 
 // @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
-resolveReferences=__metrics.wrapAsync({id:"course-core.body-export.references.resolveReferences",kind:"phase"},resolveReferences);
+resolveReferences = __metrics.wrapAsync({
+  id: "course-core.body-export.references.resolveReferences",
+  kind: "phase",
+}, resolveReferences);
 // @ts-expect-error JS допускает замену function binding; сигнатура публичного API сохраняется.
-assertReferenceTargets=__metrics.wrapSync({id:"course-core.body-export.references.assertReferenceTargets",kind:"phase"},assertReferenceTargets);
+assertReferenceTargets = __metrics.wrapSync({
+  id: "course-core.body-export.references.assertReferenceTargets",
+  kind: "phase",
+}, assertReferenceTargets);

@@ -109,15 +109,15 @@ body[data-course-mode="lecture"] .course-nav-course-title,
 body[data-course-mode="lecture"] .course-nav-eyebrow { display: none; }
 .course-nav-permanent-link[aria-current="page"] { background: var(--course-nav-active, #e9eef5); font-weight: 700; }
 @media screen and (max-width: 899px) {
-  body.course-navigation-active[data-course-mode="lecture"] { --course-audience-topics: 120px; }
-  body.course-navigation-active[data-course-mode="lecture"] .course-nav-sidebar {
+  body.course-navigation-active:not(.course-navigation-no-sidebar)[data-course-mode="lecture"] { --course-audience-topics: 120px; }
+  body.course-navigation-active:not(.course-navigation-no-sidebar)[data-course-mode="lecture"] .course-nav-sidebar {
     display: block; inset: 0 0 auto; width: 100%; height: var(--course-audience-topics);
     padding: 8px 110px 8px 8px; border-right: 0; border-bottom: 1px solid var(--course-nav-border, #d5dae0);
   }
   body[data-course-mode="lecture"] .course-nav-sidebar .course-nav-topics { display: flex; height: 100%; gap: 6px; overflow-x: auto; }
   body[data-course-mode="lecture"] .course-nav-sidebar .course-nav-topics li { flex: 0 0 160px; margin: 0; }
   body[data-course-mode="lecture"] .course-nav-sidebar .course-nav-topic { padding: 8px; min-height: 44px; }
-  body.course-navigation-active[data-course-mode="lecture"] > .reveal {
+  body.course-navigation-active:not(.course-navigation-no-sidebar)[data-course-mode="lecture"] > .reveal {
     left: 0; top: var(--course-audience-topics); width: 100%; height: calc(100% - var(--course-audience-topics));
   }
 }

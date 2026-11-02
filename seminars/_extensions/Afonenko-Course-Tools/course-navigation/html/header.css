@@ -1,12 +1,12 @@
-/* Общая шапка HTML: тема страницы не определяет оформление навигации.
-   Переменные --course-nav-* можно задать в теме курса; Reveal использует их же. */
+/* Navigation определяет структуру шапки; тема задаёт палитру и шрифт
+   через --course-nav-*. Без общей темы используются переменные Bootstrap. */
 #quarto-header .navbar {
-  --bs-navbar-color: var(--course-nav-foreground, #545555);
-  --bs-navbar-hover-color: var(--course-nav-primary, #1f4eb6);
-  --bs-navbar-active-color: var(--course-nav-primary, #1f4eb6);
-  --bs-navbar-brand-color: var(--course-nav-foreground, #545555);
-  --bs-navbar-brand-hover-color: var(--course-nav-primary, #1f4eb6);
-  background-color: var(--course-nav-background, #f8f9fa);
+  --bs-navbar-color: var(--course-nav-foreground, var(--bs-body-color));
+  --bs-navbar-hover-color: var(--course-nav-primary, var(--bs-link-color));
+  --bs-navbar-active-color: var(--course-nav-primary, var(--bs-link-color));
+  --bs-navbar-brand-color: var(--course-nav-foreground, var(--bs-body-color));
+  --bs-navbar-brand-hover-color: var(--course-nav-primary, var(--bs-link-color));
+  background-color: var(--course-nav-background, var(--bs-tertiary-bg));
   color: var(--bs-navbar-color);
   font-family: var(--course-nav-font, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
   font-size: 17px;

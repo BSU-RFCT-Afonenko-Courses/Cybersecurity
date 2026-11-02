@@ -145,16 +145,34 @@ export async function cleanOutput(
   }
   try {
     for (const file of await files(output)) {
+      const protectedPath = file.split(/[\\/]/).some((p) =>
+        [".git", ".quarto", "_freeze", "_extensions"].includes(p)
+      );
+      let recoverableMarkdown = false;
+      if (!protectedPath && /\.md$/i.test(file) && !copiedResources.has(file)) {
+        const source = resolve(root, relative(output, file));
+        if (inside(root, source) && !inside(output, source)) {
+          await safePath(root, source);
+          try {
+            if ((await Deno.lstat(source)).isFile) {
+              const original = await Deno.readFile(source);
+              const copied = await Deno.readFile(file);
+              recoverableMarkdown = original.length === copied.length &&
+                original.every((byte, index) => byte === copied[index]);
+            }
+          } catch (error) {
+            if (!(error instanceof Deno.errors.NotFound)) throw error;
+          }
+        }
+      }
       if (
         (/\.(qmd|md|ipynb|Rmd|ya?ml)$/i.test(file) &&
-          !copiedResources.has(file) &&
+          !copiedResources.has(file) && !recoverableMarkdown &&
           !/(?:^|\/)(?:site_)?libs\/revealjs\/plugin\/[A-Za-z0-9._-]+\/plugin\.yml$/
             .test(
               relative(output, file).replaceAll("\\", "/"),
             )) ||
-        file.split(/[\\/]/).some((p) =>
-          [".git", ".quarto", "_freeze", "_extensions"].includes(p)
-        )
+        protectedPath
       ) {
         throw diagnostic(
           "SITE.OUTPUT_OVERLAP",

@@ -7,6 +7,7 @@
   let expandedForPrint = [];
   const parameters = new URLSearchParams(window.location.search);
   const printPdf = parameters.has('print-pdf');
+  const initialHash = location.hash;
   let mode = parameters.get('course-mode') === 'lecture' ? 'lecture' : 'study';
   let reveal, modeButton, notesBeforePrint, printing = false;
 
@@ -99,7 +100,7 @@
     }
     setMode(mode);
     reveal.on('slidechanged', normalizeNotes);
-    window.CourseDisclosure?.expose(document.getElementById(decodeURIComponent(location.hash.replace(/^#\/?/, ''))));
+    window.CourseDisclosure?.expose(document.getElementById(decodeURIComponent(initialHash.replace(/^#\/?/, ''))));
   }
 
   function labelTabPanels() {

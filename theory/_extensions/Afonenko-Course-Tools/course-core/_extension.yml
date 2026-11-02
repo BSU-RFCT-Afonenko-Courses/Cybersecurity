@@ -1,9 +1,11 @@
 title: Ядро учебного курса
-version: 8.2.8
+version: 9.3.0
 quarto-required: ">=1.11.5"
 contributes:
   filters:
     - at: pre-ast
-      path: filter.lua
+      path: runtime-filter.lua
     - at: post-quarto
-      path: deferred-assignments.lua
+      path: native-ts/late-kind.lua
+    - at: post-render
+      path: native-ts/late-filter.lua
