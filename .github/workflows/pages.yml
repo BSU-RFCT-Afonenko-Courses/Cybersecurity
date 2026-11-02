@@ -3,6 +3,7 @@ on:
   pull_request:
     branches:
     - master
+    - codex/technical-materials-integration
   push:
     branches:
     - master
@@ -21,6 +22,7 @@ jobs:
       fail-fast: false
       matrix:
         quarto:
+        - 1.11.5
         - 1.11.6
     steps:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
@@ -29,9 +31,6 @@ jobs:
     - uses: quarto-dev/quarto-actions/setup@8a96df13519ee81fd526f2dfca5962811136661b
       with:
         version: ${{ matrix.quarto }}
-    - uses: cue-lang/setup-cue@b0e30e540a2dae47304ebf16586a5b2db023b61c
-      with:
-        version: v0.17.1
     - name: Зависимости визуализаций
       run: |
         sudo apt-get update
@@ -40,18 +39,21 @@ jobs:
     - name: Runtime versions
       run: |
         quarto --version
-        cue version
         python3 --version
     - name: Подготовить каталог кэша
       run: echo "XDG_CACHE_HOME=$RUNNER_TEMP/quarto-cache-${{ matrix.quarto }}" >> "$GITHUB_ENV"
     - name: Render student
       run: bash CI/render.sh student
-    - name: Проверить состав проектов и выбранные Body
-      run: bash CI/check-model.sh "$RUNNER_TEMP/cybersecurity-model"
+    - name: Проверить нативную модель student
+      run: bash CI/check-model.sh student
     - name: Render full
       run: bash CI/render.sh full
+    - name: Проверить нативную модель full
+      run: bash CI/check-model.sh full
     - name: Render student after full
       run: bash CI/render.sh student
+    - name: Проверить нативную модель после full
+      run: bash CI/check-model.sh student
     - name: Validate rendered pages and local links
       run: python3 CI/site.py _site-student _site-full
     - name: Проверить отделение решений семинара 4
@@ -61,7 +63,7 @@ jobs:
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
       with:
         name: ci-logs-quarto-${{ matrix.quarto }}
-        path: ci-logs/
+        path: _generated/ci-logs/
         if-no-files-found: ignore
     - name: Upload student site
       if: vars.COURSE_PUBLISH_PAGES == 'true' && matrix.quarto == '1.11.6' && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

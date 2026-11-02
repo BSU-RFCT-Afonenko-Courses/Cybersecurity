@@ -31,7 +31,7 @@ assessment:
 
 ## Необязательные домашние задания
 
-::: {.task-items stage="homework" requirement="optional"}
-1. @exr-fundamentals-exhibition
-2. @exr-fundamentals-carsharing
+::: {.task-items stage="homework"}
+1. [@exr-fundamentals-exhibition]{requirement="optional"}
+2. [@exr-fundamentals-carsharing]{requirement="optional"}
 :::

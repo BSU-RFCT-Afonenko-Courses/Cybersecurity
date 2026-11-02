@@ -1,5 +1,7 @@
 ---
-format: html
+format:
+  html:
+    theme: [cosmo, _extensions/Afonenko-Course-Tools/course-theme/theme.scss]
 ---
 
 # Слайды занятий {#sec-practice}

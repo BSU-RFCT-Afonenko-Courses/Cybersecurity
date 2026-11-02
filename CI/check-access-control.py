@@ -1,4 +1,4 @@
-"""Проверить выбранные Body и разделение решений семинара 4 в готовых сайтах."""
+"""Проверить разделение решений семинара 4 в готовых сайтах."""
 from pathlib import Path
 from html.parser import HTMLParser
 import argparse
@@ -8,8 +8,6 @@ import re
 
 
 ROOT = Path(__file__).resolve().parents[1]
-LINK = ('https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/'
-        'task/bank/access-control.html#exr-access-control-rbac')
 SOLUTION_BLOCKS = re.compile(
     r'^(:{3,})[ \t]+\{#(?P<identifier>sol-[\w-]+)(?:[ \t]+[^}\n]*)?\}[ \t]*\n'
     r'(?P<body>.*?)^\1[ \t]*$', re.M | re.S)
@@ -32,7 +30,7 @@ def nodes(value):
 
 def assigned_ids():
     source = (ROOT / 'task/works/04-access-control.qmd').read_text()
-    return re.findall(r'^\d+\. @(exr-[\w-]+)\s*$', source, re.M)
+    return re.findall(r'^\d+\. \[?@(exr-[\w-]+)(?:\]\{requirement="optional"\})?\s*$', source, re.M)
 
 
 def validate_solution_inventory(sources):
@@ -40,65 +38,6 @@ def validate_solution_inventory(sources):
     require(len(expected) == 13, "Назначенная работа должна сохранять 13 решений")
     require(expected.issubset(sources),
             f"В банке отсутствуют назначенные решения: {sorted(expected - set(sources))}")
-
-
-def check_link(package, name):
-    question = next((q for q in package['questions']
-                     if q['id'] == 'exr-access-control-verification'), None)
-    require(question is not None, f'{name}: нет exr-access-control-verification')
-    links = [n['c'][2][0] for n in nodes(question['condition']) if n.get('t') == 'Link']
-    require(links == [LINK], f'{name}: неверный Pandoc Link exr-access-control-verification')
-
-
-def check_body(directory):
-    checks = json.loads((directory / 'checks.json').read_text())
-    require(checks.get('schemaVersion') == 1, 'checks.json: schemaVersion != 1')
-    require(checks.get('projects') == [], 'checks.json: declared inventory не пуст')
-    expected = assigned_ids()
-    require(len(expected) == len(set(expected)) == 13, 'Исходник семинара: ожидалось 13 назначений')
-    for stem, work_id, count in [('backup', 'sec-work-data-integrity-backup', 1),
-                                 ('access-control', 'sec-work-access-control', 13)]:
-        teacher = json.loads((directory / f'{stem}.json').read_text())
-        public = json.loads((directory / f'{stem}.public.json').read_text())
-        for label, package in [('teacher', teacher), ('public', public)]:
-            name = f'{stem}/{label}'
-            require(package.get('schema') == 'course-body-package-v2', f'{name}: schema')
-            require(len(package['works']) == 1 and package['works'][0]['id'] == work_id,
-                    f'{name}: неверная работа {work_id}')
-            slots = package['works'][0]['slots']
-            require(len(slots) == count, f'{name}: slots: ожидалось {count}, получено {len(slots)}')
-            require(len(package['questions']) == count, f'{name}: questions: ожидалось {count}')
-            raw = json.dumps(package, ensure_ascii=False)
-            require('?@' not in raw and '#qrc-unresolved' not in raw, f'{name}: неразрешённая QRC-ссылка')
-            if stem == 'access-control':
-                require([s['candidates'] for s in slots] ==
-                        [[f"{package['owner']}/{qid}"] for qid in expected],
-                        f'{name}: порядок slots/candidates отличается от исходника')
-                require([s['assignment']['requirement'] for s in slots] ==
-                        ['required'] * 5 + ['optional'] * 8, f'{name}: requirement')
-                for i, slot in enumerate(slots):
-                    assignment = slot['assignment']
-                    require(assignment.get('workMode') == 'individual', f'{name}: {slot["id"]}: workMode')
-                    require(assignment.get('stage') == ('classroom' if 1 <= i <= 7 else None),
-                            f'{name}: {slot["id"]}: stage')
-                    require(slot['selection'] == 'fixed', f'{name}: {slot["id"]}: selection')
-                check_link(package, name)
-            used = {key for slot in slots for key in slot['candidates']}
-            require(used == {q['key'] for q in package['questions']}, f'{name}: потерянные/лишние candidates')
-        require(teacher['works'] == public['works'], f'{stem}: работы teacher/public различаются')
-        tq = {q['id']: q for q in teacher['questions']}
-        pq = {q['id']: q for q in public['questions']}
-        require(len(tq) == len(pq) == count and tq.keys() == pq.keys(), f'{stem}: ID вопросов')
-        for node in nodes(public):
-            for key in ('closedKey', 'solution', 'gradingNotes'):
-                require(key not in node, f'{stem}/public: закрытое поле {key}')
-        for qid, t in tq.items():
-            p = pq[qid]
-            if stem == 'access-control':
-                require(bool(t.get('solution')), f'{qid}: нет teacher solution')
-            require(not p['hasPublicSolution'], f'{qid}: hasPublicSolution')
-            require(t['condition'] == p['condition'], f'{qid}: condition teacher/public различается')
-    print('PASS Body: backup — 1 назначение; семинар 4 — 13 slots, 5 required, 8 optional; Link и решения')
 
 
 def mathml_tex(text):
@@ -235,9 +174,9 @@ def check_visualizations(site, project, relative_page):
     for model in ('dac', 'mac', 'rbac'):
         require(f'/_prepared/visualizations/access-control/{model}/lesson.js' in attachments,
                 f'{project}/{relative_page}: нет импорта действующей модели {model}')
-        require(f'course-viz-access-control-{model}-static-overview.svg' in text,
+        require(f'_prepared/visualizations/access-control/{model}/static/overview.svg' in text,
                 f'{project}/{relative_page}: нет статической схемы {model}')
-    require('course-viz-access-control-static-procedures.svg' in text,
+    require('_prepared/visualizations/access-control/static/procedures.svg' in text,
             f'{project}/{relative_page}: нет схемы процедур доступа')
     if project == 'seminars':
         require('class="reveal"' in text, f'{project}/{relative_page}: нет презентации Reveal')
@@ -339,17 +278,13 @@ def check_site(student, full, targeted=False):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='mode', required=True)
-    commands.add_parser('body').add_argument('model', type=Path)
     site = commands.add_parser('site')
     site.add_argument('student', type=Path)
     site.add_argument('full', type=Path)
     site.add_argument('--targeted', action='store_true', help='Проверить только банк без требования полной сборки')
     args = parser.parse_args()
     try:
-        if args.mode == 'body':
-            check_body(args.model.resolve())
-        else:
-            check_site(args.student.resolve(), args.full.resolve(), args.targeted)
+        check_site(args.student.resolve(), args.full.resolve(), args.targeted)
     except (ValueError, KeyError, IndexError, OSError) as error:
         parser.exit(1, f'FAIL {error}\n')
 

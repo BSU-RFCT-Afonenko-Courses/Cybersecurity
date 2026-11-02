@@ -153,8 +153,8 @@ Core определяет видимость условий и решений. �
 В проектах используются `embed-resources: false` и `html-math-method: mathml`.
 Публичные `.js` и SVG из `_prepared/visualizations/` включены в ресурсы явно;
 подготовленные QMD и банковские фрагменты исключены.
-Фильтр расширения переносит статические SVG через Pandoc media bag
-и подключает стили. OJS компилирует сам Quarto.
+Quarto доставляет статические SVG как обычные ресурсы из `_prepared/visualizations/`.
+Фильтр авторского расширения подключает стили; OJS компилирует сам Quarto.
 
 Runtime установленного авторского расширения копируется в
 `_prepared/visualizations/common/course-runtime.js`;

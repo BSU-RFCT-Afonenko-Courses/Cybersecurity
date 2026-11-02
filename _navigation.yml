@@ -1,9 +1,0 @@
-# Состав, порядок, названия и адреса берутся из subprojects и нативных страниц Quarto.
-filters:
-  - course-navigation
-course-navigation:
-  enabled: true
-website:
-  navbar: {}
-book:
-  navbar: {}

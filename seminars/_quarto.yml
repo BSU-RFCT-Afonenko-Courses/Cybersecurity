@@ -34,11 +34,13 @@ project:
   - '!**/_freeze/**'
   pre-render:
   - python3 ../CI/prepare-course-visualizations.py
+  - python3 ../CI/cleanup-quarto-mediabag.py
   - _extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts
   post-render:
-  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/post.ts
+  - python3 ../CI/cleanup-quarto-mediabag.py
   - _extensions/Afonenko-Course-Tools/reference-catalog/entrypoints/post.ts
   - ../_extensions/Afonenko-Course-Tools/course-site/entrypoints/collect.ts
+  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/post.ts
 profile:
   default: student
   group:
@@ -48,6 +50,7 @@ filters:
 - course-core
 - course-presentation
 - reference-catalog
+- course-navigation
 - course-visualizations
 format:
   revealjs:
@@ -63,8 +66,10 @@ format:
     - course-navigation
     pdf-separate-fragments: false
 website:
+  navbar: {}
   title: Семинары — Основы кибербезопасности
 course-navigation:
+  enabled: true
   course-url: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/
 bibliography: ../references.bib
 lang: ru
@@ -73,5 +78,3 @@ author:
 - Войтович Елизавета
 reference-catalog:
   namespace: practice
-metadata-files:
-- ../_navigation.yml

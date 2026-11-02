@@ -9,15 +9,15 @@ case "$profile" in
 esac
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$repo/.quarto/cache}"
 mkdir -p "$XDG_CACHE_HOME"
-mkdir -p ci-logs
-log=$(mktemp "ci-logs/render-${profile}-XXXXXX.log")
-export COURSE_BUILD_TRACE="$repo/ci-logs/subprojects.jsonl"
+mkdir -p _generated/ci-logs
+log=$(mktemp "_generated/ci-logs/render-${profile}-XXXXXX.log")
+export COURSE_BUILD_TRACE="$repo/_generated/ci-logs/subprojects.jsonl"
 echo "Сборка профиля $profile; журнал: $log"
 if quarto render . --profile "$profile" --log-level debug 2>&1 | tee "$log"; then
   echo "Профиль $profile собран"
 else
   status=$?
-  message="Сборка Quarto для профиля $profile завершилась с кодом $status. См. $log и ci-logs/subprojects.jsonl."
+  message="Сборка Quarto для профиля $profile завершилась с кодом $status. См. $log и _generated/ci-logs/subprojects.jsonl."
   echo "$message" >&2
   if [[ ${GITHUB_ACTIONS:-} == true ]]; then
     echo "::error title=Ошибка сборки курса::$message"

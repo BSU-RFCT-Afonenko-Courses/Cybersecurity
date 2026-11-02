@@ -6,6 +6,10 @@ import re
 import subprocess
 from bank_requests import group_requests
 ROOT = Path(__file__).resolve().parents[1]
+if Path.cwd().resolve() == ROOT:
+    for project in ('theory', 'seminars'):
+        subprocess.run(['python3', str(Path(__file__).resolve())], cwd=ROOT/project, check=True)
+    raise SystemExit(0)
 PROJECT = Path.cwd().name
 if PROJECT not in ('theory', 'seminars'):
     raise SystemExit('Подготовка запускается из theory или seminars')

@@ -24,11 +24,13 @@ project:
   - '!**/_freeze/**'
   pre-render:
   - python3 ../CI/prepare-course-visualizations.py
+  - python3 ../CI/cleanup-quarto-mediabag.py
   - _extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts
   post-render:
-  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/post.ts
+  - python3 ../CI/cleanup-quarto-mediabag.py
   - _extensions/Afonenko-Course-Tools/reference-catalog/entrypoints/post.ts
   - ../_extensions/Afonenko-Course-Tools/course-site/entrypoints/collect.ts
+  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/post.ts
 profile:
   default: student
   group:
@@ -38,15 +40,15 @@ filters:
 - course-core
 - course-presentation
 - reference-catalog
+- course-navigation
 - course-visualizations
 book:
+  navbar: {}
   title: Теория
 format:
   html:
+    theme: [cosmo, _extensions/Afonenko-Course-Tools/course-theme/theme.scss]
     embed-resources: false
-    theme:
-    - cosmo
-    - styles/offline-fonts.scss
     html-math-method:
       method: mathml
 lang: ru
@@ -56,5 +58,5 @@ author:
 bibliography: ../references.bib
 reference-catalog:
   namespace: theory
-metadata-files:
-- ../_navigation.yml
+course-navigation:
+  enabled: true

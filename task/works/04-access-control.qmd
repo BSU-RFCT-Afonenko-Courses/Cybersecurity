@@ -36,22 +36,22 @@ assessment:
 
 В зависимости от темпа занятия преподаватель выбирает одну или несколько ситуаций о разделении обязанностей, сеансе и проверке ремонта. Выполнить весь банк за одно занятие не требуется.
 
-::: {.task-items stage="classroom" requirement="optional"}
-1. @exr-access-control-grade
-2. @exr-access-control-session
-3. @exr-access-control-verification
+::: {.task-items stage="classroom"}
+1. [@exr-access-control-grade]{requirement="optional"}
+2. [@exr-access-control-session]{requirement="optional"}
+3. [@exr-access-control-verification]{requirement="optional"}
 :::
 
 ## Самостоятельная работа
 
 Для закрепления доступны одноразовые подтверждения, восстановление и более сложные правила доступа. Конкретный набор определяет преподаватель. Большой вариант Casbin выбирается вместо части коротких дополнительных задач, а не добавляется к ним как обязательный проект.
 
-::: {.task-items requirement="optional"}
-1. @exr-access-control-otp
-2. @exr-access-control-recovery
-3. @exr-access-control-categories
-4. @exr-access-control-delegation
-5. @exr-access-control-casbin
+::: {.task-items}
+1. [@exr-access-control-otp]{requirement="optional"}
+2. [@exr-access-control-recovery]{requirement="optional"}
+3. [@exr-access-control-categories]{requirement="optional"}
+4. [@exr-access-control-delegation]{requirement="optional"}
+5. [@exr-access-control-casbin]{requirement="optional"}
 :::
 
 Ответы оформляются в принятой на семинаре форме. Для проверки решения достаточно ясно связать запрос, результат и применённое правило; при исправлении прав покажите также сохранение законных действий.

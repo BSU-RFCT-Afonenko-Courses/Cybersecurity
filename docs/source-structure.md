@@ -107,4 +107,4 @@ assessment:
 
 Исходники, подготовленные QMD, закрытые решения и Body-пакеты не публикуются
 как ресурсы. Правила видимости и экспорта задаёт установленный
-[Course Core](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v8.2.8/spec/learning-elements.md).
+[Course Core](https://github.com/Afonenko-Course-Tools/quarto-course/blob/v9.3.0/spec/learning-elements.md).

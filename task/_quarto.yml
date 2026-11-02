@@ -6,10 +6,10 @@ project:
   - _extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts
   - _extensions/Afonenko-Course-Tools/project-download/entrypoints/pre.ts
   post-render:
-  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/post.ts
-  - _extensions/Afonenko-Course-Tools/project-download/entrypoints/post.ts
   - _extensions/Afonenko-Course-Tools/reference-catalog/entrypoints/post.ts
   - ../_extensions/Afonenko-Course-Tools/course-site/entrypoints/collect.ts
+  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/post.ts
+  - _extensions/Afonenko-Course-Tools/project-download/entrypoints/post.ts
   resources:
   - '!**/*.scss'
   - '!**/*.qmd'
@@ -35,7 +35,9 @@ filters:
 - course-presentation
 - project-download
 - reference-catalog
+- course-navigation
 book:
+  navbar: {}
   title: Задания
 author:
 - Афоненко Анатолий
@@ -45,12 +47,10 @@ lang: ru
 bibliography: ../references.bib
 format:
   html:
+    theme: [cosmo, _extensions/Afonenko-Course-Tools/course-theme/theme.scss]
     html-math-method: mathml
     embed-resources: false
-    theme:
-    - cosmo
-    - styles/offline-fonts.scss
 reference-catalog:
   namespace: tasks
-metadata-files:
-- ../_navigation.yml
+course-navigation:
+  enabled: true
