@@ -1,0 +1,12 @@
+```{ojs}
+//| echo: false
+//| output: false
+xorRecoveryLesson = await import(await FileAttachment("/_prepared/visualizations/data-integrity/lesson.js").url())
+```
+
+```{ojs}
+//| echo: false
+//| label: fig-integrity-xor
+//| fig-cap: "Восстановление блока по XOR"
+xorRecoveryLesson.xorRecovery()
+```

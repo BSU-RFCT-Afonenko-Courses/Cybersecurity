@@ -17,22 +17,22 @@ book:
     chapters:
     - security-center/organization.qmd
     - security-center/workflow.qmd
-  - part: Стандарты, системы защиты и риски
+  - part: Требования к защите
     chapters:
     - standards-risk/requirements-decisions.qmd
-  - part: Идентификация и управление доступом
+  - part: Управление доступом
     chapters:
     - access-control/access-control.qmd
-  - part: Случайность и криптография
+  - part: Криптография
     chapters:
     - crypto/random.qmd
     - crypto/hash.qmd
-    - crypto/password-storage.qmd
     - crypto/key-gen.qmd
     - crypto/cypher.qmd
-  - part: Целостность и резервное копирование
+    - crypto/password-storage.qmd
+  - part: Сохранность данных
     chapters:
     - data-integrity/integrity.qmd
-  - part: Подпись и доверие
+  - part: Цифровая подпись
     chapters:
     - crypto/public-key-outline.qmd

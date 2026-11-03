@@ -4,7 +4,7 @@ assessment:
   kind: seminar
 ---
 
-# Занятие 1 – Понятия и КЦД {#sec-work-fundamentals-concepts}
+# Занятие 1 – Информационная безопасность {#sec-work-fundamentals-concepts}
 
 ::: {.assessment-preview}
 @theory:sec-theory-fundamentals-concepts

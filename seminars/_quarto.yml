@@ -67,7 +67,8 @@ format:
     - course-navigation
     pdf-separate-fragments: false
 website:
-  navbar: {}
+  navbar:
+    title: false
   title: Семинары — Основы кибербезопасности
 course-navigation:
   enabled: true

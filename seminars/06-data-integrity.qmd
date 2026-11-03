@@ -7,7 +7,7 @@ course-presentation:
   answers: auto
 ---
 
-## Занятие 6 – Целостность и копии {#sec-seminar-6}
+## Занятие 6 – Сохранность данных {#sec-seminar-6}
 
 ## Проверка целостности {#sec-seminar-6-integrity}
 
@@ -25,21 +25,15 @@ course-presentation:
 {{< include _prepared/bank-fragments/exr-data-integrity-trusted-hash.qmd >}}
 
 
-### Замена файла и эталона
+### Подмена эталона
 
-```{ojs}
-//| echo: false
-//| label: fig-slide-integrity-reference
-//| fig-cap: "Замена файла и эталона"
-integrityLesson = await import(await FileAttachment("/_prepared/visualizations/data-integrity/lesson.js").url())
-integrityLesson.referenceReplacement()
-```
+{{< include _prepared/visualizations/fragments/reference-replacement.qmd >}}
 
-## Резервное копирование и восстановление {#sec-seminar-6-backups}
+## Резервное копирование {#sec-seminar-6-backups}
 
 ### Три схемы на одних изменениях
 
-Целые файлы A = 2, B = 3, C = 5 МБ; воскресенье — полная копия, затем изменяются A, B и снова A. Копируем ежедневно после правки.
+Целые файлы $A = 2$, $B = 3$, $C = 5$ МБ; воскресенье — полная копия, затем изменяются A, B и снова A. Копируем ежедневно после правки.
 
 | День | Полная | Инкрементная | Дифференциальная |
 |---|---|---|---|
@@ -69,9 +63,9 @@ integrityLesson.referenceReplacement()
 
 Копию хранят независимо и проверяют восстановлением.
 
-## Массивы дисков и восстановление {#sec-seminar-6-raid}
+## Восстановление в массивах дисков {#sec-seminar-6-raid}
 
-### RAID 0, 1 и 5
+### Уровни RAID
 
 | Массив | Принцип | Диски по 2 ТБ | Полезно | Один отказ |
 |---|---|---:|---:|---|
@@ -88,19 +82,14 @@ integrityLesson.referenceReplacement()
 
 ### Восстановление XOR
 
-`P = A XOR B`, `A = 1010`, `P = 0110` → `B = A XOR P = 1100`.
+$P = A \oplus B$, $A = \mathtt{1010}$, $P = \mathtt{0110}$ → $B = A \oplus P = \mathtt{1100}$.
 
-Из одного P нельзя однозначно вернуть оба отсутствующих блока: `0000 XOR 0110 = 0110` и `1010 XOR 1100 = 0110`.
+Из одного $P$ нельзя однозначно вернуть оба отсутствующих блока: $\mathtt{0000} \oplus \mathtt{0110} = \mathtt{0110}$ и $\mathtt{1010} \oplus \mathtt{1100} = \mathtt{0110}$.
 
 
 ### Иллюстрация восстановления XOR
 
-```{ojs}
-//| echo: false
-//| label: fig-slide-integrity-xor
-//| fig-cap: "Восстановление блока по XOR"
-integrityLesson.xorRecovery()
-```
+{{< include _prepared/visualizations/fragments/xor-recovery.qmd >}}
 
 ### Вопрос для обсуждения {.smaller}
 
@@ -110,21 +99,11 @@ integrityLesson.xorRecovery()
 
 ### Запас: простая сумма
 
-```{ojs}
-//| echo: false
-//| label: fig-slide-integrity-collision
-//| fig-cap: "Коллизия простой суммы"
-integrityLesson.sumCollision()
-```
+{{< include _prepared/visualizations/fragments/sum-collision.qmd >}}
 
 ### Запас: изменение байта
 
-```{ojs}
-//| echo: false
-//| label: fig-slide-integrity-byte
-//| fig-cap: "Изменение байта"
-integrityLesson.byteChange()
-```
+{{< include _prepared/visualizations/fragments/byte-change.qmd >}}
 
 ### Запасные вопросы {.smaller}
 

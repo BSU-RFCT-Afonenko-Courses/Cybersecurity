@@ -43,7 +43,8 @@ filters:
 - course-navigation
 - course-visualizations
 book:
-  navbar: {}
+  navbar:
+    title: false
   title: Теория
 format:
   html:

@@ -1,0 +1,13 @@
+```{ojs}
+//| echo: false
+//| output: false
+lcgTrainerLocalPlot = await import(await FileAttachment("/_prepared/visualizations/vendor/plot.js").url())
+lcgTrainerLesson = await import(await FileAttachment("/_prepared/visualizations/crypto/lesson.js").url())
+```
+
+```{ojs}
+//| echo: false
+//| label: fig-random-lcg
+//| fig-cap: "Линейный конгруэнтный генератор"
+lcgTrainerLesson.lcgTrainer({Plot: lcgTrainerLocalPlot})
+```

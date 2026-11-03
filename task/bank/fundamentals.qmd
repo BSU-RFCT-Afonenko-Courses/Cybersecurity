@@ -1,6 +1,6 @@
 # Основные понятия {#sec-bank-fundamentals}
 
-## Понятия и свойства безопасности {#sec-bank-fundamentals-concepts}
+## Свойства безопасности {#sec-bank-fundamentals-concepts}
 
 :::: {#exr-fundamentals-educational-portal difficulty="introductory"}
 ### Что произошло с образовательным порталом?
@@ -125,7 +125,7 @@
 Главная ловушка — пункт 5. Большое количество подозрительных событий ещё не доказывает, что нарушение безопасности уже произошло.
 :::
 
-## Анализ ситуаций и инцидентов {#sec-bank-fundamentals-analysis}
+## Анализ инцидентов {#sec-bank-fundamentals-analysis}
 
 :::: {#exr-fundamentals-pizza-incident difficulty="introductory"}
 ### Что случилось с пиццей?

@@ -13,7 +13,7 @@ export function macTrace(query){
  const entity=['person-lena',`file-${file}`],levels=[...entity,`level-${subject}`,`level-${object}`,`person-level-lena`,`file-level-${file}`],flow=`${operation}-lena-${file}`;
  const make=(name,label,model,algorithm,explanation,extra={})=>({name,label,model,algorithm,explanation,...extra});
  return [
- make('request','Запрос',entity,['request'],'Одна операция над одним файлом; стрелка потока появится при проверке.'),
+ make('request','Запрос',entity,['request'],`Процесс L${subject}: ${operation==='read'?'чтение файла':'запись в файл'} «${{1:'Материалы',2:'Черновик',3:'Ответы'}[object]}» уровня L${object}.`),
  make('levels','Метки процесса и файла',levels,['levels'],`У процесса L${subject}, у файла L${object}. Метки задаёт политика.`),
  make(`${operation}-rule`,operation==='read'?'Не читать выше':'Не писать ниже',[...levels,flow],[`${operation}-rule`],operation==='read'?`Чтение переносит данные из файла в процесс: ${subject} ≥ ${object}?`:`Запись переносит данные из процесса в файл: ${subject} ≤ ${object}?`),
  make('result',result==='allow'?'Разрешить':'Отказать',[...entity,flow],[result],result==='allow'?'Обязательное правило разрешает этот поток данных.':'Поток остановлен на границе уровней.',{result})

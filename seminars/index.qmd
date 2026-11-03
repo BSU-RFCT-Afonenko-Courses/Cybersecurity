@@ -6,13 +6,13 @@ format:
 
 # Слайды занятий {#sec-practice}
 
-- @practice:sec-seminar-1 — Основные понятия.
-- @practice:sec-seminar-2 — Правовые основы и организация защиты.
-- @practice:sec-seminar-3 — Применение требований и стандартов.
+- @practice:sec-seminar-1 — Информационная безопасность.
+- @practice:sec-seminar-2 — Правовые основы защиты.
+- @practice:sec-seminar-3 — Требования к защите.
 - @practice:sec-seminar-4 — Управление доступом. Работа: @tasks:sec-work-access-control.
 
-- @practice:sec-seminar-5 — Случайность и криптография.
-- @practice:sec-seminar-6 — Целостность и копии.
-- @practice:sec-seminar-7 — Подпись и доверие к ключу.
+- @practice:sec-seminar-5 — Криптография.
+- @practice:sec-seminar-6 — Сохранность данных.
+- @practice:sec-seminar-7 — Цифровая подпись.
 
 Подготовка к контрольной находится в каталоге работ: @tasks:sec-control-demo.

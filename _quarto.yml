@@ -55,7 +55,8 @@ author:
 course:
   id: cybersecurity
 website:
-  navbar: {}
+  navbar:
+    title: false
   title: Основы кибербезопасности
   site-url: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/
   search: true

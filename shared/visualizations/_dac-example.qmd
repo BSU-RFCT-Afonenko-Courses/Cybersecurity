@@ -1,0 +1,13 @@
+```{ojs}
+//| echo: false
+dacLesson = await import(await FileAttachment("/_prepared/visualizations/access-control/dac/lesson.js").url())
+viewof dacRequest = dacLesson.dacControls()
+```
+
+```{ojs}
+//| echo: false
+//| label: fig-dac-decision
+//| fig-cap: "Применение дискреционной политики"
+//| fig-alt: "Выбранное назначение в матрице и ACL подсвечивается вместе с этапом проверки запроса"
+dacLesson.dacDiagram(dacRequest)
+```

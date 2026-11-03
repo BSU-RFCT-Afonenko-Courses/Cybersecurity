@@ -1,15 +1,6 @@
 ```{ojs}
 //| echo: false
 macLesson = await import(await FileAttachment("/_prepared/visualizations/access-control/mac/lesson.js").url())
-
-// Авторские пояснения: удаление свойства не удаляет именованный этап.
-macNotes = ({
-  request: "Одна операция над одним файлом. Успешный вход уже выполнен и не даёт новых прав.",
-  levels: "У процесса L2; метку файла определяет политика. В учебной модели ровно три уровня.",
-  "read-rule": "Читать можно свой и нижние уровни. Стрелка чтения идёт из файла в процесс.",
-  "write-rule": "Добавлять без чтения можно на свой и верхние уровни. Поток идёт из процесса в файл.",
-  result: "Результат следует из проверки уровней. Обычное редактирование потребовало бы также разрешённого чтения."
-})
 viewof macRequest = macLesson.macControls()
 ```
 
@@ -17,5 +8,6 @@ viewof macRequest = macLesson.macControls()
 //| echo: false
 //| label: fig-mac-decision
 //| fig-cap: "Применение мандатной политики к одному запросу"
-macLesson.macDiagram(macRequest, macNotes)
+//| fig-alt: "Подсвечены процесс, файл и правило чтения или записи для выбранного запроса"
+macLesson.macDiagram(macRequest)
 ```

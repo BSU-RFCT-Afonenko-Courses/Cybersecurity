@@ -1,0 +1,12 @@
+```{ojs}
+//| echo: false
+//| output: false
+byteChangeLesson = await import(await FileAttachment("/_prepared/visualizations/data-integrity/lesson.js").url())
+```
+
+```{ojs}
+//| echo: false
+//| label: fig-integrity-byte-change
+//| fig-cap: "Проверка изменения байта"
+byteChangeLesson.byteChange()
+```

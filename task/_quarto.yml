@@ -37,7 +37,8 @@ filters:
 - reference-catalog
 - course-navigation
 book:
-  navbar: {}
+  navbar:
+    title: false
   title: Задания
 author:
 - Афоненко Анатолий

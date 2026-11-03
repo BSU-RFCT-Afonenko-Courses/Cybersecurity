@@ -1,0 +1,12 @@
+```{ojs}
+//| echo: false
+//| output: false
+xorTrainerLesson = await import(await FileAttachment("/_prepared/visualizations/crypto/lesson.js").url())
+```
+
+```{ojs}
+//| echo: false
+//| label: fig-cypher-xor
+//| fig-cap: "Побитовое сложение XOR"
+xorTrainerLesson.xorTrainer()
+```

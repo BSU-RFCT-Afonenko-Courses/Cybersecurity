@@ -33,9 +33,17 @@ HTML использует Cosmo и `theme.scss` из Course Theme 1.0.0; про�
 - `_extensions/course-brand`, версия `1.0.0`: единый логотип и декларация бренда.
   Корневой каталог служит источником копий в подпроектах;
   обновление — `bash CI/install-course-brand.sh`.
-- `extensions/course-visualizations`, версия `0.3.0`: управление этапами,
+- `extensions/course-visualizations`, версия `0.3.5`: управление этапами,
   SVG и стили интерактивных рисунков. Устанавливается целиком в `theory` и `seminars`;
   [руководство пакета](extensions/course-visualizations/README.md).
 
 Локальная сборка проверяется системным Quarto 1.11.6.
 Минимальная поддерживаемая версия 1.11.5 проверяется отдельной задачей CI.
+
+## Библиотека графиков
+
+В `shared/visualizations/vendor/plot.js` закреплена Observable Plot `0.6.17`
+с включёнными зависимостями. Пакет загружается локально только примерами LCG.
+Исходный [проект Observable Plot](https://github.com/observablehq/plot)
+публикуется по лицензии ISC; полные лицензии включённых компонентов находятся
+рядом с файлом и в начале публикуемого модуля.

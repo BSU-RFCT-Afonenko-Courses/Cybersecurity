@@ -2,39 +2,93 @@ const encoder=new TextEncoder();
 const hex=bytes=>Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
 const bits=bytes=>Array.from(bytes,b=>b.toString(2).padStart(8,'0')).join('');
 async function digest(text){if(!globalThis.crypto?.subtle)throw Error('В этой среде Web Crypto недоступен. Для вычисления SHA-256 откройте страницу по HTTPS или на localhost.');return new Uint8Array(await crypto.subtle.digest('SHA-256',encoder.encode(text)));}
-function output(){const el=document.createElement('output');el.setAttribute('aria-live','polite');el.style.cssText='display:block;overflow-wrap:anywhere;white-space:pre-wrap';return el;}
 
 export function hashBitExperiment() {
- const view=document.createElement('div');view.className='course-viz';
- const fields=document.createElement('div');fields.style.cssText='display:flex;flex-wrap:wrap;gap:.8rem';view.append(fields);
- const inputs=[];for(const [name,value]of [['Первый текст','abc'],['Второй текст','abb']]){const label=document.createElement('label'),input=document.createElement('input');label.textContent=name+' ';input.type='text';input.value=value;input.style.cssText='max-width:100%;width:12rem';label.append(input);fields.append(label);inputs.push(input);}
- const result=output(),grid=document.createElement('div');grid.style.cssText='display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:2px;max-width:420px;margin:.8rem 0';grid.setAttribute('role','img');
- const note=document.createElement('p');note.textContent='Сетка 16 × 16: слева направо, от старшего бита первого байта. Оранжевые клетки — изменившиеся биты. Для abc/abb меняется 1 входной и 124 выходных бита; для других текстов число входных изменений подсчитывается заново. Лавинный эффект сам по себе не доказывает криптостойкость.';
+ const view=document.createElement('div');
+ view.className='course-viz course-viz-hash-bits';
+ const element=(tag,text,className)=>{
+  const node=document.createElement(tag);
+  if(text!==undefined)node.textContent=text;
+  if(className)node.className=className;
+  return node;
+ };
+ const controls=element('div',undefined,'course-viz-hash-bits-controls');
+ const presetLabel=element('label','Пример '),preset=element('select');
+ for(const [value,label]of [['change','Один входной бит: abc → abb'],['collision','Коллизия Java: Aa и BB'],['custom','Свой текст']]){
+  const option=element('option',label);option.value=value;preset.append(option);
+ }
+ presetLabel.append(preset);controls.append(presetLabel);
+ const fields=element('div',undefined,'course-viz-hash-bits-inputs');
+ const inputs=[];
+ for(const [name,value]of [['До','abc'],['После','abb']]){
+  const label=element('label',name),input=element('input');
+  input.type='text';input.value=value;input.spellcheck=false;
+  label.append(input);fields.append(label);inputs.push(input);
+ }
+ const legend=element('div',undefined,'course-viz-hash-bits-legend');
+ for(const [className,label]of [['zero','0'],['one','1'],['changed','Изменившийся бит']]){
+  const item=element('span'),mark=element('i',undefined,`course-viz-hash-bits-mark ${className}`);
+  mark.setAttribute('aria-hidden','true');item.append(mark,document.createTextNode(label));legend.append(item);
+ }
+ const status=element('output',undefined,'course-viz-hash-bits-status');
+ status.setAttribute('aria-live','polite');status.setAttribute('aria-atomic','true');
+ const results=element('div',undefined,'course-viz-hash-bits-results');
+ function javaHash(text){
+  let hash=0;
+  // Java String.hashCode обрабатывает 16-битные элементы UTF-16, включая обе половины суррогатной пары.
+  for(let i=0;i<text.length;i++)hash=(Math.imul(31,hash)+text.charCodeAt(i))|0;
+  return new Uint8Array([hash>>>24,(hash>>>16)&255,(hash>>>8)&255,hash&255]);
+ }
+ function algorithm(name,values){
+  const rows=values.map(bits),count=Array.from(rows[0]).reduce((sum,bit,i)=>sum+Number(bit!==rows[1][i]),0);
+  const group=element('section',undefined,'course-viz-hash-bits-algorithm');
+  const heading=element('div',undefined,'course-viz-hash-bits-heading');
+  heading.append(element('h3',name),element('span',`Изменилось ${count} из ${rows[0].length} битов`,'course-viz-hash-bits-count'));
+  group.append(heading);
+  for(const [rowIndex,label]of ['До','После'].entries()){
+   const row=element('div',undefined,'course-viz-hash-bits-row');
+   row.append(element('div',label,'course-viz-hash-bits-row-label'));
+   const grid=element('div',undefined,'course-viz-hash-bits-grid');
+   grid.setAttribute('role','img');
+   grid.setAttribute('aria-label',`${name}, ${label.toLowerCase()}: ${rows[rowIndex].length} битов.${rowIndex===1?` Изменилось ${count}.`:''} Полное значение доступно в числовом представлении.`);
+   for(let i=0;i<rows[rowIndex].length;i++){
+    const bit=rows[rowIndex][i],changed=rowIndex===1&&bit!==rows[0][i];
+    const cell=element('span',undefined,`course-viz-hash-bits-bit${bit==='1'?' one':''}${changed?' changed':''}`);
+    cell.title=changed?`Бит ${i+1}: ${rows[0][i]} → ${bit}`:`Бит ${i+1}: ${bit}`;
+    cell.setAttribute('aria-hidden','true');grid.append(cell);
+   }
+   row.append(grid);group.append(row);
+  }
+  const details=element('details');
+  details.append(element('summary','Числовое представление (hex)'),element('pre',`До:    ${hex(values[0])}\nПосле: ${hex(values[1])}`));
+  group.append(details);
+  return {group,count,total:rows[0].length};
+ }
  let revision=0;
- async function update(){const token=++revision;grid.replaceChildren();result.textContent='Вычисление SHA-256…';try{const text=inputs.map(i=>i.value),bytes=text.map(s=>encoder.encode(s)),inputBits=bytes.map(bits);let changed=0;const xor=[];for(let i=0;i<Math.max(...bytes.map(b=>b.length));i++){if(i>=bytes[0].length||i>=bytes[1].length)xor.push('нет пары');else{const x=bytes[0][i]^bytes[1][i];xor.push(x.toString(2).padStart(8,'0'));changed+=bits([x]).split('1').length-1;}}
- const hashes=await Promise.all(text.map(digest));if(token!==revision)return;const hb=hashes.map(bits);let count=0;for(let i=0;i<256;i++){const diff=hb[0][i]!==hb[1][i];count+=Number(diff);const cell=document.createElement('span');cell.textContent=hb[1][i];cell.title=`Бит ${i+1}: ${hb[0][i]} → ${hb[1][i]}`;cell.style.cssText=`text-align:center;font:11px monospace;aspect-ratio:1;display:grid;place-items:center;background:${diff?'#f5ba72':'#dce7ef'};color:#17212b`;grid.append(cell);}grid.setAttribute('aria-label',`256 выходных битов. Изменилось ${count}.`);
- result.textContent=`UTF-8, первый вход (${bytes[0].length} байт): ${inputBits[0]||'пусто'}\nUTF-8, второй вход (${bytes[1].length} байт): ${inputBits[1]||'пусто'}\nXOR входных байтов: ${xor.join(' ')||'пусто'}\n${bytes[0].length===bytes[1].length?`Различаются ${changed} входных битов.`:`Длины различаются; в совпадающих позициях изменено ${changed} битов, непарные байты отмечены отдельно.`}\nSHA-256 первого: ${hex(hashes[0])}\nSHA-256 второго: ${hex(hashes[1])}\nИзменились ${count} из 256 выходных битов.`;
- }catch(e){if(token===revision)result.textContent=e.message;}}
- const button=document.createElement('button');button.type='button';button.textContent='Вычислить';button.onclick=update;for(const input of inputs)input.addEventListener('input',()=>{revision++;grid.replaceChildren();result.textContent='Вход изменён. Нажмите «Вычислить».';});view.append(button,result,grid,note);update();return view;
-}
-
-export function truncatedHashCollision() {
- const view=document.createElement('div');view.className='course-viz';
- const intro=document.createElement('p');intro.textContent='Ищем коллизию функции H₁₂: первые 12 бит SHA-256, то есть три hex-знака. По порядку вычисляем UTF-8 строки «Файл 0», «Файл 1», … . Полные дайджесты сохраняются для сравнения.';
- const fixed=document.createElement('p');fixed.style.overflowWrap='anywhere';fixed.textContent='Контроль даже без запуска: на 47-м вычислении «Файл 16» и «Файл 46» имеют префикс 2a5. Полные SHA-256 различны:\nФайл 16: 2a5cc51b0a427b54b5e3c069e86df4e8df17a4b021e1bd636710af839b789c7d; Файл 46: 2a5948ed5cf742c52a67e0d7b73e904a55362f778391ed67f6d163014b099a68.';
- const result=output(),button=document.createElement('button');button.type='button';button.textContent='Найти первое совпадение';button.onclick=async()=>{button.disabled=true;const seen=new Map();try{for(let i=0;i<=4096;i++){const name=`Файл ${i}`,full=hex(await digest(name)),prefix=full.slice(0,3);result.textContent=`Вычислено: ${i+1}. Последний вход: ${name}; первые 12 бит: ${prefix}.`;if(seen.has(prefix)){const first=seen.get(prefix);result.textContent=`Вычислено: ${i+1}.\n${first.name}: ${first.full}\n${name}: ${full}\nОбщие первые 12 бит: ${prefix}. Это коллизия H₁₂; полные SHA-256 различаются.`;break;}seen.set(prefix,{name,full});if(i%16===0)await new Promise(resolve=>setTimeout(resolve,0));}}catch(e){result.textContent=e.message;}finally{button.disabled=false;}};
- view.append(intro,button,result,fixed);return view;
-}
-
-export function fileHashExperiment() {
- const view=document.createElement('div');view.className='course-viz';
- const original='Учебный файл для проверки SHA-256.\nВерсия: исходная.\n',modified='Учебный файл для проверки SHA-256.\nВерсия: изменённая.\n';
- const intro=document.createElement('p');intro.textContent='Скачиваемый учебный файл — открытый текст UTF-8 без скрытых данных. Вычисленный хеш относится к текущим байтам файла. Эталон показан отдельно: эта страница моделирует его публикацию, а не подтверждает личность издателя. Хеш не является подписью.';
- const link=document.createElement('a');link.textContent='Скачать учебный файл UTF-8';link.download='uchebnyj-fajl.txt';
- const content=document.createElement('pre');content.style.cssText='white-space:pre-wrap;overflow-wrap:anywhere';const result=output(),controls=document.createElement('div');controls.style.cssText='display:flex;flex-wrap:wrap;gap:.5rem';
- let text=original,reference=null,origin='Эталон исходного файла на этой странице.',revision=0;
- const buttons=[];
- async function render(){const token=++revision;const oldUrl=link.getAttribute('href');link.href=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));if(oldUrl)URL.revokeObjectURL(oldUrl);content.textContent=text;result.textContent='Вычисление SHA-256…';try{const computed=hex(await digest(text));if(token!==revision)return;if(reference===null)reference=hex(await digest(original));if(token!==revision)return;result.textContent=`Вычисленный SHA-256 файла:\n${computed}\nОпубликованный эталон:\n${reference}\n${computed===reference?'Хеши совпадают.':'Хеши НЕ совпадают.'}\nПроисхождение эталона: ${origin}\n${origin.startsWith('Заменён')?'Совпадение после замены обоих значений не доказывает подлинность файла.':'Совпадение устанавливает соответствие этому эталону; доверие к его источнику проверяется отдельно.'}`;}catch(e){if(token===revision)result.textContent=e.message;}}
- for(const [label,action]of [['Изменить файл',async()=>{text=modified;await render();}],['Заменить также эталон',async()=>{reference=hex(await digest(text));origin='Заменён вместе с текущим файлом в этом опыте.';await render();}],['Сброс',async()=>{text=original;reference=null;origin='Эталон исходного файла на этой странице.';await render();}]]){const b=document.createElement('button');b.type='button';b.textContent=label;b.onclick=async()=>{buttons.forEach(x=>x.disabled=true);try{await action();}catch(e){result.textContent=e.message;}finally{buttons.forEach(x=>x.disabled=false);}};buttons.push(b);controls.append(b);}
- view.append(intro,link,content,controls,result);buttons.forEach(b=>b.disabled=true);render().finally(()=>buttons.forEach(b=>b.disabled=false));return view;
+ async function update(){
+  const token=++revision,text=inputs.map(input=>input.value);
+  results.replaceChildren();results.setAttribute('aria-busy','true');
+  results.textContent='Вычисление SHA-256…';status.textContent='Вычисление SHA-256…';
+  try{
+   const hashes=await Promise.all(text.map(digest));
+   if(token!==revision)return;
+   const java=algorithm('Java String.hashCode · 32 бита',text.map(javaHash));
+   const sha=algorithm('SHA-256 · 256 битов',hashes);
+   results.replaceChildren(java.group,sha.group);
+   status.textContent=`Изменившихся битов: Java — ${java.count} из ${java.total}; SHA-256 — ${sha.count} из ${sha.total}.`;
+  }catch(error){
+   if(token!==revision)return;
+   results.textContent=error.message;status.textContent=error.message;
+  }finally{
+   if(token===revision)results.setAttribute('aria-busy','false');
+  }
+ }
+ preset.addEventListener('change',()=>{
+  const values={change:['abc','abb'],collision:['Aa','BB']}[preset.value];
+  if(!values)return;
+  inputs.forEach((input,i)=>{input.value=values[i];});update();
+ });
+ for(const input of inputs)input.addEventListener('input',()=>{preset.value='custom';update();});
+ view.append(controls,fields,legend,status,results);
+ update();return view;
 }

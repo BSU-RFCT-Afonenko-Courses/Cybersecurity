@@ -9,13 +9,13 @@ toc: false
 
 | Тема | Теория | Семинар |
 | --- | --- | --- |
-| Основные понятия | @theory:sec-theory-fundamentals-concepts | @tasks:sec-work-fundamentals-concepts · @practice:sec-seminar-1 |
+| Информационная безопасность | @theory:sec-theory-fundamentals-concepts | @tasks:sec-work-fundamentals-concepts · @practice:sec-seminar-1 |
 | Правовые основы | @theory:sec-theory-legal-information-access · @theory:sec-theory-legal-system-classes · @theory:sec-theory-legal-protection-measures | @tasks:sec-work-legal-requirements · @practice:sec-seminar-2 |
-| Организация защиты и ЦКБ | @theory:sec-theory-security-center-organization · @theory:sec-theory-security-center-workflow | @tasks:sec-work-legal-requirements · @practice:sec-seminar-2 |
-| Требования, стандарты и риски | @theory:sec-theory-standards-risk-requirements-decisions | @tasks:sec-work-standards-risk · @practice:sec-seminar-3 |
+| Организация защиты | @theory:sec-theory-security-center-organization · @theory:sec-theory-security-center-workflow | @tasks:sec-work-legal-requirements · @practice:sec-seminar-2 |
+| Требования к защите | @theory:sec-theory-standards-risk-requirements-decisions | @tasks:sec-work-standards-risk · @practice:sec-seminar-3 |
 | Управление доступом | @theory:sec-theory-access-control | @tasks:sec-work-access-control · @practice:sec-seminar-4 |
-| Случайность и криптография | @theory:sec-theory-crypto-random · @theory:sec-theory-crypto-hash · @theory:sec-theory-crypto-cypher | @practice:sec-seminar-5 |
-| Целостность и резервное копирование | @theory:sec-theory-data-integrity | @tasks:sec-work-data-integrity-backup · @practice:sec-seminar-6 |
-| Подпись и доверие | План будущего раздела | Материалы готовятся |
+| Криптография | @theory:sec-theory-crypto-random · @theory:sec-theory-crypto-hash · @theory:sec-theory-crypto-cypher | @practice:sec-seminar-5 |
+| Сохранность данных | @theory:sec-theory-data-integrity | @tasks:sec-work-data-integrity-backup · @practice:sec-seminar-6 |
+| Цифровая подпись | @theory:sec-theory-public-key | @practice:sec-seminar-7 |
 
 : Темы курса {#tbl-course-plan .course-plan .striped .hover .responsive}

@@ -10,10 +10,14 @@ args=parser.parse_args()
 for project in args.projects:
     destination=ROOT/project/'_prepared/visualizations'
     destination.mkdir(parents=True,exist_ok=True)
-    for directory in ['common','access-control','authentication','crypto','data-integrity']:
-        if (destination/directory).exists(): shutil.rmtree(destination/directory)
-        shutil.copytree(ROOT/'shared/visualizations'/directory,destination/directory)
-    shutil.copyfile(ROOT/'shared/visualizations/_mac-example.qmd',destination/'mac-example.qmd')
+    source_root=ROOT/'shared/visualizations'
+    for source in sorted(source_root.iterdir()):
+        if source.is_dir():
+            target=destination/source.name
+            if target.exists(): shutil.rmtree(target)
+            shutil.copytree(source,target)
+        elif source.suffix=='.qmd' and source.name.startswith('_'):
+            shutil.copyfile(source,destination/source.name[1:])
     adapter=destination/'common/runtime.js'
     installed_runtime=ROOT/project/'_extensions/course-visualizations/browser/runtime.js'
     public_runtime=destination/'common/course-runtime.js'
