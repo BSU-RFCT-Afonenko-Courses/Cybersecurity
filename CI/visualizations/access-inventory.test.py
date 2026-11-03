@@ -1,7 +1,8 @@
-"""Проверки охватывают действующий банк и исходники скомпилированных ячеек OJS."""
+"""Изолированные проверки извлечения решений, видимости и модулей OJS."""
 import base64
 import importlib.util
 import json
+import tempfile
 from pathlib import Path
 import unittest
 
@@ -12,14 +13,56 @@ spec.loader.exec_module(check)
 
 
 class Inventory(unittest.TestCase):
-    def test_current_bank_and_missing_assigned_solution(self):
-        assigned = {'sol-'+qid[4:] for qid in check.assigned_ids()}
-        bank = (ROOT/'task/bank/access-control.qmd').read_text()
-        solutions = {block.group('identifier') for block in check.SOLUTION_BLOCKS.finditer(bank)}
-        self.assertTrue(solutions - assigned)
-        check.validate_solution_inventory(solutions)
-        with self.assertRaises(ValueError):
-            check.validate_solution_inventory(solutions - {next(iter(assigned))})
+    def test_public_solutions_follow_declarations_and_defaults(self):
+        source = '\n'.join([
+            ':::: {#exr-visible course-role="demonstration" statement-visibility="open"}',
+            'Условие', '::::',
+            ':::: {#exr-discussion course-role="discussion" statement-visibility="open"}',
+            'Условие', '::::',
+            ':::: {#exr-restricted course-role="demonstration" statement-visibility="restricted"}',
+            'Условие', '::::',
+            ':::: {#exr-inherited}', 'Условие', '::::',
+        ])
+        defaults = {'course-role': 'demonstration', 'statement-visibility': 'open'}
+        self.assertEqual(check.public_solution_ids(source, defaults),
+                         {'sol-visible', 'sol-inherited'})
+        self.assertEqual(check.public_solution_ids(source), {'sol-visible'})
+        self.assertEqual(check.public_solution_ids(''), set())
+
+    def test_short_solution_fingerprints_do_not_require_a_minimum_length(self):
+        self.assertEqual(check.solution_fingerprints('Короткий ответ.'), {'короткий ответ'})
+        self.assertEqual(check.solution_fingerprints(''), set())
+
+    def test_existing_keys_are_audited_without_assignments_and_public_demo_is_allowed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            bank = root / 'task/bank'
+            bank.mkdir(parents=True)
+            (bank / '_metadata.yml').write_text('default-exercise-statement-visibility: open\n')
+            (bank / 'example.qmd').write_text('\n'.join([
+                ':::: {#exr-private course-role="discussion"}', 'Условие', '::::',
+                '::: {#sol-private}', 'Секретная формула.', ':::',
+                ':::: {#exr-public course-role="demonstration"}', 'Условие', '::::',
+                '::: {#sol-public}', 'Публичный разбор.', ':::',
+            ]))
+            student, full = root / 'student', root / 'full'
+            for output in (student, full):
+                (output / 'bank').mkdir(parents=True)
+                (output / 'search.json').write_text('[]')
+            public_html = '<div id="sol-public">Публичный разбор.</div>'
+            (student / 'bank/example.html').write_text(public_html)
+            (full / 'bank/example.html').write_text(
+                public_html + '<div id="sol-private">Секретная формула.</div>')
+            previous_root = check.ROOT
+            try:
+                check.ROOT = root
+                check.check_site(student, full, targeted=True)
+                for leak in ('Секретная формула.', 'sol-private'):
+                    (student / 'search.json').write_text(json.dumps([leak]))
+                    with self.subTest(leak=leak), self.assertRaises(ValueError):
+                        check.check_site(student, full, targeted=True)
+            finally:
+                check.ROOT = previous_root
 
     def test_solution_attributes_and_fence_depth_do_not_hide_the_key(self):
         source = ':::: {#sol-example .solution}\nЗакрытый разбор.\n::::\n'

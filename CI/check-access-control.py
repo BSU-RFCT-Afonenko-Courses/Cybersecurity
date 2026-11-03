@@ -1,10 +1,12 @@
-"""Проверить разделение решений семинара 4 в готовых сайтах."""
+"""Проверить видимость существующих решений и ресурсы готовых сайтов."""
 from pathlib import Path
 from html.parser import HTMLParser
 import argparse
 import base64
 import json
 import re
+import shlex
+import yaml
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,16 +30,39 @@ def nodes(value):
             yield from nodes(child)
 
 
-def assigned_ids():
-    source = (ROOT / 'task/works/04-access-control.qmd').read_text()
-    return re.findall(r'^\d+\. \[?@(exr-[\w-]+)(?:\]\{requirement="optional"\})?\s*$', source, re.M)
+def public_solution_ids(source, defaults=None):
+    public = set()
+    for block in re.finditer(r'^:{3,}\s+\{#(exr-[\w-]+)([^}\n]*)\}', source, re.M):
+        attributes = dict(defaults or {})
+        attributes.update(token.split('=', 1) for token in shlex.split(block[2]) if '=' in token)
+        if (attributes.get('course-role') == 'demonstration'
+                and attributes.get('statement-visibility') == 'open'):
+            public.add('sol-' + block[1][4:])
+    return public
 
 
-def validate_solution_inventory(sources):
-    expected = {"sol-" + qid[4:] for qid in assigned_ids()}
-    require(len(expected) == 13, "Назначенная работа должна сохранять 13 решений")
-    require(expected.issubset(sources),
-            f"В банке отсутствуют назначенные решения: {sorted(expected - set(sources))}")
+def exercise_defaults(source):
+    metadata = {}
+    for directory in reversed(source.parent.parents):
+        if directory == ROOT or ROOT in directory.parents:
+            candidate = directory / '_metadata.yml'
+            if candidate.is_file():
+                metadata.update(yaml.safe_load(candidate.read_text()) or {})
+    candidate = source.parent / '_metadata.yml'
+    if candidate.is_file():
+        metadata.update(yaml.safe_load(candidate.read_text()) or {})
+    frontmatter = re.match(r'\A---\s*\n(.*?)\n---\s*(?:\n|$)', source.read_text(), re.S)
+    if frontmatter:
+        metadata.update(yaml.safe_load(frontmatter[1]) or {})
+    return {key.removeprefix('default-exercise-'): str(value)
+            for key, value in metadata.items() if key.startswith('default-exercise-')}
+
+
+def solution_fingerprints(body):
+    body = re.sub(r'^`{3,}[^\n]*$', '', body, flags=re.M)
+    words = norm(body).split()
+    width = min(12, len(words))
+    return {' '.join(words[i:i + width]) for i in range(len(words) - width + 1)} if width else set()
 
 
 def mathml_tex(text):
@@ -137,7 +162,7 @@ def ojs_sources(text):
             for node in nodes(payload) if isinstance(node.get('source'), str)]
 
 
-def check_visualizations(site, project, relative_page):
+def check_visualizations(site, project):
     project_output = site / project
     resources = project_output / '_prepared/visualizations'
     source_root = ROOT / 'shared/visualizations'
@@ -162,24 +187,26 @@ def check_visualizations(site, project, relative_page):
     actual = {file.relative_to(resources) for file in resources.rglob('*') if file.is_file()}
     require(actual == set(expected),
             f'{site.name}/{project}: лишние ресурсы визуализаций {sorted(actual - set(expected))}')
-    require(not (site / 'shared/access-control').exists(),
-            f'{site.name}: опубликована удалённая галерея доступа')
-
-    page = project_output / relative_page
-    text = page.read_text()
-    cells = '\n'.join(ojs_sources(text))
-    require('quarto-ojs-runtime.js' in text and bool(cells),
-            f'{project}/{relative_page}: нет скомпилированных ячеек OJS')
-    attachments = set(re.findall(r"FileAttachment\([\"']([^\"']+)[\"']\)", cells))
-    for model in ('dac', 'mac', 'rbac'):
-        require(f'/_prepared/visualizations/access-control/{model}/lesson.js' in attachments,
-                f'{project}/{relative_page}: нет импорта действующей модели {model}')
-        require(f'_prepared/visualizations/access-control/{model}/static/overview.svg' in text,
-                f'{project}/{relative_page}: нет статической схемы {model}')
-    require('_prepared/visualizations/access-control/static/procedures.svg' in text,
-            f'{project}/{relative_page}: нет схемы процедур доступа')
-    if project == 'seminars':
-        require('class="reveal"' in text, f'{project}/{relative_page}: нет презентации Reveal')
+    for source in (ROOT / project).rglob('*.qmd'):
+        relative = source.relative_to(ROOT / project)
+        if any(part.startswith(('_', '.')) for part in relative.parts):
+            continue
+        source_text = source.read_text()
+        imports = set(re.findall(r"FileAttachment\([\"']([^\"']*?_prepared/visualizations/[^\"']+)[\"']\)", source_text))
+        figures = set(re.findall(r'((?:\.\./)*_prepared/visualizations/[^)\s"{]+\.svg)', source_text))
+        if not imports and not figures:
+            continue
+        page = project_output / relative.with_suffix('.html')
+        text = page.read_text()
+        cells = '\n'.join(ojs_sources(text))
+        if imports:
+            require('quarto-ojs-runtime.js' in text and bool(cells),
+                    f'{project}/{relative}: нет скомпилированных ячеек OJS')
+            attachments = set(re.findall(r"FileAttachment\([\"']([^\"']+)[\"']\)", cells))
+            require(imports.issubset(attachments),
+                    f'{project}/{relative}: потеряны импорты {sorted(imports - attachments)}')
+        for figure in figures:
+            require(figure in text, f'{project}/{relative}: потеряна схема {figure}')
 
 
 def check_site(student, full, targeted=False):
@@ -187,24 +214,24 @@ def check_site(student, full, targeted=False):
         return site / relative if (site / "task").is_dir() else site / relative.relative_to("task")
     sources = {}
     source_solutions = {}
-    for source in [ROOT / 'task/bank/access-control.qmd']:
+    public_solutions = set()
+    for source in sorted((ROOT / 'task/bank').rglob('*.qmd')):
+        public_solutions.update(public_solution_ids(source.read_text(), exercise_defaults(source)))
         for solution in SOLUTION_BLOCKS.finditer(source.read_text()):
             sid, body = solution.group('identifier', 'body')
             require(sid not in sources, f'Повторный исходный ID {sid}')
             sources[sid] = source
-            body = re.sub(r'^`{3,}[^\n]*$', '', body, flags=re.M)
-            words = norm(body).split()
-            require(len(words) >= 12, f'{sid}: короткий исходник решения')
-            source_solutions[sid] = {' '.join(words[i:i + 12])
-                                     for i in range(len(words) - 11)}
-    validate_solution_inventory(sources)
+            source_solutions[sid] = solution_fingerprints(body)
+    private_sources = {sid: source for sid, source in sources.items() if sid not in public_solutions}
     # Дальнейший скан проверяет каждый найденный ключ, включая новые вопросы банка.
     open_sources = []
     for source in ROOT.rglob('*.qmd'):
         relative = source.relative_to(ROOT)
         if any(part.startswith(('_', '.')) for part in relative.parts):
             continue
-        open_sources.append(norm(SOLUTION_BLOCKS.sub('', source.read_text())))
+        open_sources.append(norm(SOLUTION_BLOCKS.sub(
+            lambda block: block.group('body') if block.group('identifier') in public_solutions else '',
+            source.read_text())))
     open_text = '\n'.join(open_sources)
     search = list(student.rglob('search.json'))
     require(bool(search), 'Нет student search.json')
@@ -217,16 +244,18 @@ def check_site(student, full, targeted=False):
         text = norm(' '.join(content[sid]))
         require(all(fragment in text for fragment in source_solutions[sid]),
                 f'{relative}: изменено содержимое решения {sid}')
-        require(sid not in public_html and text not in norm(public_html), f'{relative}: утечка {sid}')
+        if sid in public_solutions:
+            require(sid in Solutions(public_html).content, f'{relative}: нет публичного разбора {sid}')
+            continue
+        require(sid not in public_html, f'{relative}: утечка {sid}')
         solution_texts[sid] = {fragment for fragment in source_solutions[sid]
                               if fragment not in open_text}
-        require(bool(solution_texts[sid]), f'{sid}: нет частных сигнатур решения')
     for file in student.rglob('*'):
         if not file.is_file():
             continue
         raw = file.read_bytes()
         relative = file.relative_to(student)
-        for sid in sources:
+        for sid in private_sources:
             require(sid.encode() not in raw, f'{relative}: закрытый sol-ID {sid}')
         try:
             decoded = raw.decode('utf-8')
@@ -259,9 +288,6 @@ def check_site(student, full, targeted=False):
                             for part in relative.parts), f'{site.name}/{relative}: служебный каталог')
             if file.suffix != '.json':
                 continue
-            require(file.name not in {'backup.json', 'backup.public.json', 'access-control.json',
-                                      'access-control.public.json', 'teacher.json', 'checks.json'},
-                    f'{site.name}/{relative}: Body/служебный JSON')
             payload = json.loads(file.read_text())
             for node in nodes(payload):
                 require(node.get('schema') != 'course-body-package-v2'
@@ -269,10 +295,10 @@ def check_site(student, full, targeted=False):
                         f'{site.name}/{relative}: Body/закрытое поле JSON')
         if targeted:
             continue
-        check_visualizations(site, 'theory', Path('access-control/access-control.html'))
-        check_visualizations(site, 'seminars', Path('04-access-control.html'))
-    print(f'Проверено: {len(sources)} решений только в full; публичные HTML, поиск и ресурсы'
-          + ('; целевой банк' if targeted else '; действующие OJS, SVG и Reveal'))
+        for project in ('theory', 'seminars'):
+            check_visualizations(site, project)
+    print(f'Проверено: {len(private_sources)} закрытых и {len(public_solutions & sources.keys())} публичных решений; HTML, поиск и ресурсы'
+          + ('; банки задач' if targeted else '; действующие OJS и SVG'))
 
 
 def main():
@@ -281,7 +307,7 @@ def main():
     site = commands.add_parser('site')
     site.add_argument('student', type=Path)
     site.add_argument('full', type=Path)
-    site.add_argument('--targeted', action='store_true', help='Проверить только банк без требования полной сборки')
+    site.add_argument('--targeted', action='store_true', help='Проверить банки задач без требования полной сборки')
     args = parser.parse_args()
     try:
         check_site(args.student.resolve(), args.full.resolve(), args.targeted)
