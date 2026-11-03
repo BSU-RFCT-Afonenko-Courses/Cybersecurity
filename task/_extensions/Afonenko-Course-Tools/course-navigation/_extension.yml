@@ -1,6 +1,6 @@
 title: Навигация по презентации
 author: Анатолий Афоненко
-version: 9.3.1
+version: 9.3.2
 quarto-required: ">=1.11.5"
 contributes:
   filters:

@@ -4,7 +4,7 @@ import { decode } from "./contracts.ts";
 import type { EarlyDocument } from "./contracts.ts";
 import {
   NativeProjectFactsCaptureSchema,
-  NativeProjectMaterializationInputSchema,
+  nativeProjectMaterializationInputSchema,
 } from "./project-facts.ts";
 /** Pure data projection того же preprojection EarlyDocument; нет resolver/IO/PL normalization. */
 export function collectNativeProjectFacts(early: EarlyDocument, root: string) {
@@ -18,7 +18,7 @@ export function collectNativeProjectFacts(early: EarlyDocument, root: string) {
   }
   const raw = early.release.nativeMetadata.projectMaterialization;
   const materializations = raw === undefined ? {} : decode(
-    NativeProjectMaterializationInputSchema,
+    nativeProjectMaterializationInputSchema(source),
     raw,
     "CORE.PROJECT_MATERIALIZATION_INVALID",
     source,

@@ -839,6 +839,7 @@ export type NativeOperationProjectContextBatch<
       { ownerMetadata: Record<string, any>; contexts: readonly C[] }
     >[];
     metrics: NativeOperationProjectContextMetrics;
+    checkpoint(): Promise<void>;
   }
 >;
 /** Core-internal adapter. The caller is the live operation closure, never a public provider. */
@@ -894,7 +895,9 @@ export function operationProjectContextReuse(source: {
     C extends ProjectContextView = ProjectContext,
   >(
     requests: readonly ProjectContextRequest[],
-    use: (batch: NativeOperationProjectContextBatch<C>) => Promise<T>,
+    use: (
+      batch: Omit<NativeOperationProjectContextBatch<C>, "checkpoint">,
+    ) => Promise<T>,
     contractsOnly = false,
   ): Promise<T> {
     if (running) {
@@ -1364,15 +1367,18 @@ export function operationProjectContextReuse(source: {
           return context;
         })),
       }));
-      const batch: NativeOperationProjectContextBatch<C> = Object.freeze({
-        // C выбирается только общей private operation closure вместе со strategy.
-        groups: freeze(groups) as unknown as NativeOperationProjectContextBatch<
-          C
-        >["groups"],
-        get metrics() {
-          return Object.freeze({ ...metrics });
-        },
-      });
+      const batch: Omit<NativeOperationProjectContextBatch<C>, "checkpoint"> =
+        Object.freeze({
+          // C выбирается только общей private operation closure вместе со strategy.
+          groups: freeze(
+            groups,
+          ) as unknown as NativeOperationProjectContextBatch<
+            C
+          >["groups"],
+          get metrics() {
+            return Object.freeze({ ...metrics });
+          },
+        });
       if (!inputs.length) {
         const result = await use(batch);
         await source.guard([]);

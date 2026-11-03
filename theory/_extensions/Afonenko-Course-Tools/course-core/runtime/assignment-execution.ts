@@ -44,6 +44,17 @@ export function withAssignmentExecution<T>(
 ) {
   return enter({ profile, beforeChild }, use);
 }
+/** Вложенная граница batch; наследует profile/token/probes и истекает отдельно. */
+export function withAssignmentBeforeChild<T>(
+  beforeChild: () => Promise<void>,
+  use: () => Promise<T>,
+  life: { active: boolean },
+) {
+  const state = execution();
+  return state
+    ? enter({ ...state, beforeChild, lives: [...state.lives, life] }, use)
+    : use();
+}
 /** Internal Core lifecycle only: the reservation created this exact token. */
 export function withAssignmentCaptureChild<T>(
   token: string,

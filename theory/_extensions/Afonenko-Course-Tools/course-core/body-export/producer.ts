@@ -31,6 +31,34 @@ function titleTargets(value: any): Node[] {
 const solution = (n: Node) =>
   n.t === "Div" &&
   (classes(n).includes("solution") || attr(n)?.[0]?.startsWith("sol-"));
+/** Quarto 1.11.5 HTML markdown pipelines transport navigation/social metadata
+ * through these two hidden envelopes. They are not authored public body blocks.
+ * Match the pinned writer's whole holder shape; ordinary hidden content stays. */
+function quartoMarkdownEnvelope(node: Node): boolean {
+  const outer = attr(node);
+  if (
+    node.t !== "Div" ||
+    !["quarto-navigation-envelope", "quarto-meta-markdown"].includes(
+      outer?.[0],
+    ) ||
+    outer[1]?.length !== 1 || outer[1][0] !== "hidden" ||
+    outer[2]?.length !== 0 ||
+    !Array.isArray(node.c?.[1])
+  ) return false;
+  const holder = (value: Node) => {
+    const a = attr(value);
+    return ["Span", "Div"].includes(value?.t) && a?.[0] === "" &&
+      a[1]?.length === 2 && a[1].includes("hidden") &&
+      a[1].includes("quarto-markdown-envelope-contents") &&
+      a[2]?.length === 1 && a[2][0][0] === "render-id" &&
+      typeof a[2][0][1] === "string" && a[2][0][1].length > 0 &&
+      Array.isArray(value.c?.[1]);
+  };
+  return node.c[1].every((block: Node) =>
+    block?.t === "Div" ? holder(block) : ["Para", "Plain"].includes(block?.t) &&
+      block.c?.length === 1 && holder(block.c[0])
+  );
+}
 const omitted = Symbol("omitted");
 function partition(value: any, banks: Node[], solutions: Node[]): any {
   if (Array.isArray(value)) {
@@ -39,6 +67,7 @@ function partition(value: any, banks: Node[], solutions: Node[]): any {
     );
   }
   if (!value || typeof value !== "object") return value;
+  if (quartoMarkdownEnvelope(value)) return omitted;
   // Contextual Download links depend on the rendered page/audience. A full ZIP
   // must never become a public question resource, even when it exists on disk.
   if (
@@ -183,7 +212,10 @@ export async function assertBodyPackage(pkg: BodyPackage, root: string) {
   const parsed = BodyPackageSchema.safeParse(pkg);
   if (!parsed.success) {
     const issue = parsed.error.issues[0];
-    throw diagnostic("BODY.PACKAGE_INVALID", issue.message, {source: root, field: issue.path.join(".")}, parsed.error);
+    throw diagnostic("BODY.PACKAGE_INVALID", issue.message, {
+      source: root,
+      field: issue.path.join("."),
+    }, parsed.error);
   }
 }
 

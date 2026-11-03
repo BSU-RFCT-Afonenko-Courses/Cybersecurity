@@ -2,6 +2,7 @@
 // @deno-types="../vendor/zod/v4/index.d.ts"
 import { z } from "../vendor/zod/v4/index.js";
 import { DocumentContextSchema } from "./contracts.ts";
+import { posix } from "node:path";
 export const NativeProjectMaterializationSchema = z.strictObject({
   commonFiles: z.array(
     z.strictObject({
@@ -48,21 +49,37 @@ export const NativeProjectMaterializationSchema = z.strictObject({
     targets.add(file.target);
   }
 });
-const materializationEntryInput = z.strictObject({
-  "common-files": NativeProjectMaterializationSchema.shape.commonFiles,
-  "include-git": NativeProjectMaterializationSchema.shape.includeGit,
-}).transform((value) => ({
-  commonFiles: value["common-files"],
-  ...(value["include-git"] !== undefined
-    ? { includeGit: value["include-git"] }
-    : {}),
-})).pipe(NativeProjectMaterializationSchema);
-export const NativeProjectMaterializationInputSchema = z.strictObject({
-  projects: z.record(
-    z.string().regex(/^exr-[a-z0-9][a-z0-9-]*$/),
-    materializationEntryInput,
-  ),
-});
+const materializationEntryInput = (source?: string) =>
+  z.strictObject({
+    "common-files": z.array(
+      NativeProjectMaterializationSchema.shape.commonFiles.element.extend({
+        source: z.string().min(1),
+      }),
+    ),
+    "include-git": NativeProjectMaterializationSchema.shape.includeGit,
+  }).transform((value) => ({
+    commonFiles: value["common-files"].map((file) => ({
+      ...file,
+      source: source === undefined ? file.source : posix.normalize(
+        file.source.startsWith("/")
+          ? file.source.slice(1)
+          : posix.join(posix.dirname(source), file.source),
+      ),
+    })),
+    ...(value["include-git"] !== undefined
+      ? { includeGit: value["include-git"] }
+      : {}),
+  })).pipe(NativeProjectMaterializationSchema);
+/** Native metadata: /path — от owner, остальные пути — от QMD; затем строгий canon. */
+export const nativeProjectMaterializationInputSchema = (source?: string) =>
+  z.strictObject({
+    projects: z.record(
+      z.string().regex(/^exr-[a-z0-9][a-z0-9-]*$/),
+      materializationEntryInput(source),
+    ),
+  });
+export const NativeProjectMaterializationInputSchema =
+  nativeProjectMaterializationInputSchema();
 export const NativeProjectFactSchema = z.strictObject({
   exerciseId: z.string().regex(/^exr-/),
   source: z.string().min(1),

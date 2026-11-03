@@ -1,4 +1,4 @@
-import { dirname, resolve } from "stdlib/path";
+import { dirname, relative, resolve } from "stdlib/path";
 import { fail } from "../contracts/project.ts";
 /** Данные оформления private assignment HTML, не разрешение читать CSS. */
 type PresentationContext = {
@@ -6,6 +6,7 @@ type PresentationContext = {
   outputDirectory: string;
   xdg: string;
   format: string;
+  outputs?: ReadonlySet<string>;
 };
 function presentationStylesheet(
   row: any,
@@ -73,6 +74,28 @@ function presentationStylesheet(
     /^quarto-session-temp[a-f0-9]+\/(?:sass\/)?[a-zA-Z0-9_-][a-zA-Z0-9._-]*\.css$/
       .test(path.slice(scratch.length));
 }
+/** Native book navigation references existing output names; не разрешение читать HTML. */
+function paginationOutput(row: any, link: any, context?: PresentationContext) {
+  if (
+    !context || context.format !== "html" ||
+    !context.root.startsWith("/") || resolve(context.root) !== context.root ||
+    !context.outputDirectory.startsWith(context.root + "/_generated/") ||
+    resolve(context.outputDirectory) !== context.outputDirectory ||
+    row.content.name !== "website-pagination" ||
+    Object.keys(row.content).sort().join(",") !== "links,name" ||
+    !link || typeof link !== "object" || Array.isArray(link) ||
+    Object.keys(link).sort().join(",") !== "href,rel" ||
+    !["next", "prev"].includes(link.rel) || typeof link.href !== "string" ||
+    !link.href.startsWith("/") || link.href.startsWith("//") ||
+    /[\\\0?#%]/.test(link.href)
+  ) return false;
+  const target = resolve(context.outputDirectory, "." + link.href);
+  return target.startsWith(context.outputDirectory + "/") &&
+    target.endsWith(".html") &&
+    link.href ===
+      "/" + relative(context.outputDirectory, target).replaceAll("\\", "/") &&
+    context.outputs?.has(target) === true;
+}
 /** Quarto JSONL contains declared data/resources, not a loaded-module trace. */
 export function assertAssignmentDeclarations(
   rows: unknown,
@@ -129,7 +152,10 @@ export function assertAssignmentDeclarations(
       if (c.links !== undefined && !Array.isArray(c.links)) {
         invalid("Повреждённый HTML dependency links");
       }
-      for (const link of c.links ?? []) path(link?.href);
+      for (const link of c.links ?? []) {
+        if (paginationOutput(row, link, presentation)) continue;
+        path(link?.href);
+      }
     } else if (!["text", "usepackage"].includes(row.type)) {
       invalid("Неизвестный native declaration type " + row.type);
     }

@@ -39,6 +39,7 @@ import type {
 } from "./assignment-delivery.ts";
 import {
   runAssignmentCaptureChild,
+  withAssignmentBeforeChild,
   withAssignmentContractProbe,
   withAssignmentExecution,
 } from "./assignment-execution.ts";
@@ -1449,6 +1450,7 @@ async function finishNativeOperationInternal(
     resources: z.output<typeof completeSchema>["resources"] = [],
     outputRows: z.output<typeof rowSchema>[] = [];
   const additions: string[] = [];
+  const declaredOutputs = new Set(outputs);
   const indexTopics = new Map<string, Record<string, unknown>>();
   const indexPages = new Map<string, string>();
   const releaseDocuments: z.output<typeof completeSchema>["releaseDocuments"] =
@@ -1525,6 +1527,7 @@ async function finishNativeOperationInternal(
             assignmentProfile(state.assignment.runtime, root).native.environment
               .XDG_CACHE_HOME,
           format: early.context.format,
+          outputs: declaredOutputs,
         },
       );
       state.metrics.nativeMetadataBytes +=
@@ -2222,10 +2225,26 @@ export async function withCurrentNativeOperation<T>(
     !index.rows.has(path)
   );
   let live = true;
+  const callbackLife = { active: true };
+  const callbackGuard = () => {
+    if (!callbackLife.active) {
+      projectBatches.failed = true;
+      fail("OPERATION_EXPIRED", "User callback native операции завершён");
+    }
+  };
   const invocationEnvironment = JSON.stringify(
       Object.entries(Deno.env.toObject()).sort(),
     ),
     invocationCwd = Deno.cwd();
+  const hostGuard = () => {
+    if (!live) fail("OPERATION_EXPIRED", "Callback native операции завершён");
+    if (projectBatches.failed) fail("OPERATION_INCOMPLETE", "A1 batch failed");
+    if (
+      Deno.cwd() !== invocationCwd ||
+      JSON.stringify(Object.entries(Deno.env.toObject()).sort()) !==
+        invocationEnvironment
+    ) fail("OPERATION_CHANGED", "Environment/cwd изменились внутри callback");
+  };
   const guard = async (
     full = false,
     selectedResources?: readonly string[],
@@ -2237,11 +2256,7 @@ export async function withCurrentNativeOperation<T>(
     // В static owner callback неизменность исходников утверждена владельцем.
     // Полные entry/exit/явные fences проходят ниже; getters проверяют жизнь.
     if (!full && complete.state.sourcePolicy === "static") return;
-    if (
-      Deno.cwd() !== invocationCwd ||
-      JSON.stringify(Object.entries(Deno.env.toObject()).sort()) !==
-        invocationEnvironment
-    ) fail("OPERATION_CHANGED", "Environment/cwd изменились внутри callback");
+    hostGuard();
     if (
       signature(await Deno.lstat(pointer(expectation.root))) !==
         pointerSignature
@@ -2318,13 +2333,38 @@ export async function withCurrentNativeOperation<T>(
     guard,
     metrics,
     projectBatches,
+    hostGuard,
+    callbackGuard,
   );
+  const beforeOperationChild = async () => {
+    callbackGuard();
+    await guard();
+    await assertSources(complete.state);
+    callbackGuard();
+  };
   const run = async () => {
-    const result = await use(operation);
+    const result = await withAssignmentBeforeChild(
+      beforeOperationChild,
+      async () => {
+        try {
+          return await use(operation);
+        } finally {
+          callbackLife.active = false;
+        }
+      },
+      callbackLife,
+    );
     if (projectBatches.active || projectBatches.failed) {
       fail("OPERATION_INCOMPLETE", "A1 batch failed/not awaited");
     }
     await guard(true);
+    hostGuard();
+    if (projectBatches.active || projectBatches.failed) {
+      fail(
+        "OPERATION_INCOMPLETE",
+        "A1 batch failed/not awaited after outer fence",
+      );
+    }
     return result;
   };
   try {
@@ -2336,13 +2376,11 @@ export async function withCurrentNativeOperation<T>(
           complete.state.root,
         ),
         run,
-        async () => {
-          await guard();
-          await assertSources(complete.state);
-        },
+        beforeOperationChild,
       )
       : await run();
   } finally {
+    callbackLife.active = false;
     live = false;
   }
 }
@@ -2359,6 +2397,8 @@ function publicOperation(
     & Omit<z.output<typeof NativeOperationMetricsSchema>, "sourceHashBytes">
     & { sourceHashBytes?: number },
   projectBatches: { active: number; failed: boolean },
+  hostGuard: () => void,
+  callbackGuard: () => void,
 ) {
   const documents = new Map(
     complete.documents.map((d) => [d.context.input, immutable(d)]),
@@ -2522,13 +2562,45 @@ function publicOperation(
     use: (batch: NativeOperationProjectContextBatch<C>) => Promise<T>,
     contractsOnly = false,
   ): Promise<T> {
+    callbackGuard();
     syncGuard();
     if (projectBatches.active || projectBatches.failed) {
       projectBatches.failed = true;
       fail("CONTEXT_REQUEST", "Active/failed operation A1 batch");
     }
     projectBatches.active++;
+    const childLife = { active: true };
+    let callbackLive = false;
+    const checkpoint = async (insideCallback = true) => {
+      try {
+        callbackGuard();
+        syncGuard();
+        if (!childLife.active || (insideCallback && !callbackLive)) {
+          fail(
+            "OPERATION_EXPIRED",
+            "Checkpoint принадлежит завершённой A1 batch",
+          );
+        }
+        hostGuard();
+        if (complete.state.sourcePolicy !== "static") {
+          await guard(false);
+          callbackGuard();
+          syncGuard();
+          if (!childLife.active || (insideCallback && !callbackLive)) {
+            fail(
+              "OPERATION_EXPIRED",
+              "Checkpoint завершился после callback A1 batch",
+            );
+          }
+          hostGuard();
+        }
+      } catch (error) {
+        projectBatches.failed = true;
+        throw error;
+      }
+    };
     try {
+      if (complete.state.sourcePolicy === "static") await guard(true);
       if (typeof use !== "function") {
         fail("CONTEXT_REQUEST", "A1 callback required");
       }
@@ -2694,11 +2766,45 @@ function publicOperation(
           return bytes;
         },
       });
-      return await reuse<T, C>(requests, use, contractsOnly);
+      const acquire = () =>
+        reuse!<T, C>(requests, async (batch) => {
+          callbackLive = true;
+          try {
+            return await use(Object.freeze({
+              groups: batch.groups,
+              get metrics() {
+                return batch.metrics;
+              },
+              checkpoint: () => checkpoint(),
+            }));
+          } finally {
+            callbackLive = false;
+            childLife.active = false;
+          }
+        }, contractsOnly);
+      const result = complete.state.sourcePolicy === "static"
+        ? await withAssignmentBeforeChild(
+          () => checkpoint(false),
+          acquire,
+          childLife,
+        )
+        : await acquire();
+      if (complete.state.sourcePolicy === "static") await guard(true);
+      syncGuard();
+      hostGuard();
+      if (projectBatches.active !== 1 || projectBatches.failed) {
+        fail(
+          "OPERATION_INCOMPLETE",
+          "A1 batch failed/not active after closing fence",
+        );
+      }
+      return result;
     } catch (e) {
       projectBatches.failed = true;
       throw e;
     } finally {
+      callbackLive = false;
+      childLife.active = false;
       acceptedContractProjects = undefined;
       projectBatches.active--;
     }
