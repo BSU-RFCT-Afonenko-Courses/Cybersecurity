@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<link href="site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-35fc0813589bbfbfa0b8ec974497eeb2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/quarto-contrib/course-presentation-0.1.0/disclosure.js" data-course-runtime-asset="disclosure.js" data-course-runtime-provider="course-presentation"></script>
+<script src="site_libs/quarto-contrib/course-presentation-0.1.0/presentation.js" data-course-runtime-asset="presentation.js" data-course-runtime-provider="course-presentation"></script>
+<link href="site_libs/quarto-contrib/course-presentation-0.1.0/presentation.css" rel="stylesheet" data-course-runtime-asset="presentation.css" data-course-runtime-provider="course-presentation">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.0/style.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.11.6">
+
+  <meta name="author" content="Афоненко Анатолий">
+  <meta name="author" content="Войтович Елизавета">
+  <title>Семинары — Основы кибербезопасности – Семинар 4 — Управление доступом</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-dbf0164c62bdeac38ace71748d6f15e7.css">
+  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/course-navigation/navigation.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+  <link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script id="course-navigation-context" type="application/json">{"links":[{"id":"root","text":"Курс","href":"../","scope":"course","path":"index.html","current":false},{"id":"subproject-theory","text":"Теория","href":"../theory/","scope":"course","path":"theory/index.html","current":false},{"id":"subproject-task","text":"Задания","href":"../task/","scope":"course","path":"task/index.html","current":false},{"id":"subproject-seminars","text":"Слайды занятий","href":"./","scope":"course","path":"seminars/index.html","current":true}]}</script>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="sec-seminar-4" class="title-slide slide level1 center">
+<h1>Семинар 4 — Управление доступом</h1>
+<p>Кто выполняет какое действие над каким объектом?</p>
+</section>
+
+<section>
+<section id="sec-seminar-4-access-decision" class="title-slide slide level1 center">
+<h1>Запрос и решение о доступе</h1>
+
+</section>
+<section id="запрос-и-политика" class="slide level2">
+<h2>Запрос и политика</h2>
+<p>Субъект: процесс редактора Лены → объект: файл → операция: запись.</p>
+<p>Политика определяет разрешения; монитор проверяет запрос и останавливает запрещённое действие.</p>
+
+<img data-src="_prepared/visualizations/access-control/static/overview.svg" style="width:70.0%" alt="Субъект обращается к объекту через монитор, который применяет политику" class="r-stretch quarto-figure-center" id="fig-slide-access-overview"><p class="caption">
+Рисунок&nbsp;1: Общая модель запроса
+</p><aside class="notes">
+<p>Попросите заменить запись чтением и сравнить решения для двух запросов.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="вопрос-для-аудитории" class="slide level2 smaller">
+<h2>Вопрос для аудитории</h2>
+<!-- Создано CI/prepare-bank-fragments.py из task/bank/access-control.qmd; не редактировать. -->
+<div id="exr-access-short-editor" class="course-block course-role-discussion theorem exercise" target="manual" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 1 (Запрос редактора на запись)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
+</div>
+<p>Анна открыла файл в редакторе. Процесс редактора работает с её полномочиями, а список доступа к файлу разрешает ей только чтение. Других разрешений нет. Редактор отправляет запрос на сохранение изменений.</p>
+<ol type="1">
+<li>Назовите субъект, объект и операцию этого запроса. Какое правило определяет ответ системы?</li>
+<li>Какой компонент должен проверить запрос и каким будет решение?</li>
+<li>Разработчик скрыл кнопку «Сохранить». Какие проверки нужны, если процесс отправит тот же запрос другим способом?</li>
+</ol>
+</div>
+</section></section>
+<section>
+<section id="sec-seminar-4-authentication" class="title-slide slide level1 center">
+<h1>Идентификация и аутентификация</h1>
+
+</section>
+<section id="три-процедуры" class="slide level2">
+<h2>Три процедуры</h2>
+<ol type="1">
+<li>Идентификация выбирает запись по предъявленному имени.</li>
+<li>Аутентификация проверяет подтверждение для записи.</li>
+<li>Авторизация решает, можно ли выполнить действие над объектом.</li>
+</ol>
+<p>Лена заявляет запись <code>lena</code>, подтверждает вход и отправляет работу в курс А.</p>
+
+<img data-src="_prepared/visualizations/access-control/static/procedures.svg" style="width:85.0%" alt="Запись Лены, подтверждение входа и разрешение отправить работу" class="r-stretch quarto-figure-center" id="fig-slide-access-procedures"><p class="caption">
+Рисунок&nbsp;2: Три процедуры на портале
+</p></section>
+<section id="вход-и-обращение-к-ресурсу" class="slide level2 smaller">
+<h2>Вход и обращение к ресурсу</h2>
+<div id="exr-slide-access-entry" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 2</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
+</div>
+<p>Лена вводит имя <code>lena</code> в браузере. Портал находит её учётную запись. Лена подтверждает вход в зарегистрированном приложении, и портал создаёт сеанс. С этим сеансом чтение банка курса А разрешено, изменение ведомости курса Б запрещено.</p>
+<ol type="1">
+<li>На каких шагах выполняются идентификация, аутентификация и авторизация?</li>
+<li>Какие действия выполняют браузер, приложение и сервер портала?</li>
+<li>Чьи полномочия и для какого действия должен проверить сервер перед изменением ведомости? Как он обработает прямой запрос, если кнопка скрыта в браузере?</li>
+</ol>
+</div>
+</section>
+<section id="факторы-аутентификации" class="slide level2">
+<h2>Факторы аутентификации</h2>
+<ul>
+<li><strong>Знание:</strong> пароль или PIN — секрет, который человек знает.</li>
+<li><strong>Владение:</strong> приложение или ключ — средство, создающее подтверждение.</li>
+<li><strong>Свойство человека:</strong> отпечаток или лицо — измерение, сравниваемое с эталоном.</li>
+</ul>
+</section>
+<section id="два-этапа-и-два-фактора" class="slide level2">
+<h2>Два этапа и два фактора</h2>
+<p><strong>Двухэтапная аутентификация:</strong> для входа нужно последовательно пройти две обязательные проверки.</p>
+<p><strong>Двухфакторная аутентификация:</strong> проверки используют два разных вида факторов.</p>
+<p>При разборе входа отдельно назовите порядок проверок и виды факторов, которые они используют.</p>
+</section>
+<section id="вопрос-две-проверки" class="slide level2 smaller">
+<h2>Вопрос: две проверки</h2>
+<!-- Создано CI/prepare-bank-fragments.py из task/bank/access-control.qmd; не редактировать. -->
+<div id="exr-access-short-two-step" class="course-block course-role-discussion theorem exercise" target="manual" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 3 (Две проверки при входе)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
+</div>
+<p>Портал сначала проверяет пароль, затем просит ввести отдельное секретное слово. Оба значения пользователь помнит, и для входа обязательны обе проверки.</p>
+<ol type="1">
+<li>Сколько этапов проверки проходит пользователь? К каким факторам относятся пароль и секретное слово?</li>
+<li>Какие сведения понадобятся постороннему для входа, если пароль ему уже известен?</li>
+<li>Вместо секретного слова портал начинает требовать код зарегистрированного приложения TOTP. Как изменится набор факторов?</li>
+</ol>
+</div>
+</section>
+<section id="totp-ключ-код-и-фактор" class="slide level2">
+<h2>TOTP: ключ, код и фактор</h2>
+<ol type="1">
+<li>При настройке портал и приложение получают общий секрет <code>K</code>.</li>
+<li>Приложение и сервер вычисляют код из <code>K</code> и номера временного шага.</li>
+<li>Лена получает код в приложении и вводит на портале.</li>
+</ol>
+<p><strong>Владение</strong> — возможность использовать зарегистрированное средство с <code>K</code>. Пользователь не обязан помнить ключ.</p>
+<p>Копия <code>K</code> создаёт те же коды: сервер не различит исходное средство и клон.</p>
+<aside class="notes">
+<p>При копировании K атакующий вычисляет тот же код. Локальный PIN имеет значение как фактор активации только при обязательной и действенной защите применения секрета.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="вопрос-для-аудитории-1" class="slide level2 smaller">
+<h2>Вопрос для аудитории</h2>
+<!-- Создано CI/prepare-bank-fragments.py из task/bank/access-control.qmd; не редактировать. -->
+<div id="exr-access-short-totp-factor" class="course-block course-role-discussion theorem exercise" target="manual" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 4 (Пароль и код приложения)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
+</div>
+<p>Портал сначала проверяет пароль пользователя, затем код TOTP. Код создаёт зарегистрированное приложение, которое хранит секрет <code>K</code> и показывает код без локальной проверки PIN или биометрии. Для входа нужны обе проверки.</p>
+<ol type="1">
+<li>Какие факторы используются в этой процедуре? Какому этапу соответствует каждый из них?</li>
+<li>Достаточно ли украденного пароля для входа? Чем ещё должен воспользоваться посторонний?</li>
+<li>Как связаны сохранённый секрет <code>K</code> и вычисленный из него код? К какому фактору они относятся? Как копирование <code>K</code> на другой телефон повлияет на возможность пройти проверку?</li>
+</ol>
+</div>
+</section>
+<section id="пароль-otp-passkey" class="slide level2">
+<h2>Пароль, OTP, passkey</h2>
+<ul>
+<li>Пароль — повторяемый секрет, который можно передать поддельному сайту.</li>
+<li>OTP ограничивает повтор принятого кода, но ещё не использованный код можно переслать.</li>
+<li>Passkey отвечает на свежий запрос с привязкой к сервису и адресу сайта; закрытый ключ сайту не передаётся.</li>
+</ul>
+</section>
+<section id="что-хранится-и-передаётся" class="slide level2 smaller">
+<h2>Что хранится и передаётся</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Способ</th>
+<th>У пользователя</th>
+<th>На сервере</th>
+<th>При входе</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Пароль</td>
+<td>Сам пароль</td>
+<td>Проверочное значение</td>
+<td>Пароль</td>
+</tr>
+<tr class="even">
+<td>TOTP</td>
+<td>Секрет <code>K</code> в приложении</td>
+<td>Копия <code>K</code></td>
+<td>Код временного шага</td>
+</tr>
+<tr class="odd">
+<td>Passkey</td>
+<td>Закрытый ключ</td>
+<td>Открытый ключ</td>
+<td>Подписанный ответ на свежий запрос</td>
+</tr>
+</tbody>
+</table>
+<p>Все обращения к порталу выполняются по защищённому соединению.</p>
+</section>
+<section id="passkey-регистрация" class="slide level2 smaller">
+<h2>Passkey: регистрация</h2>
+<ol type="1">
+<li>Лена входит в свою запись и выбирает добавление passkey.</li>
+<li>Браузер обращается к выбранному средству: устройству или аппаратному ключу.</li>
+<li>Средство создаёт пару ключей для портала.</li>
+<li>Портал связывает <strong>открытый ключ</strong> с записью Лены; <strong>закрытым</strong> управляет средство.</li>
+</ol>
+<p>Создание ключа требует доверенной привязки к записи. Ключ может быть привязан к устройству или синхронизироваться между устройствами.</p>
+</section>
+<section id="passkey-вход" class="slide level2 smaller">
+<h2>Passkey: вход</h2>
+<ol type="1">
+<li>Портал выдаёт свежий случайный запрос — <strong>challenge</strong>.</li>
+<li>Лена разрешает использование ключа, например локальным PIN.</li>
+<li>Средство подписывает ответ, связанный с запросом и порталом.</li>
+<li>Портал проверяет ответ сохранённым открытым ключом.</li>
+</ol>
+<p>Старый ответ не подходит к новому запросу. Закрытый ключ, PIN и биометрический образец сайту не передаются.</p>
+<p>Протокол связывает подтверждение с сервисом и адресом сайта, что препятствует его получению через поддельный сайт.</p>
+<aside class="notes">
+<p>PIN или биометрия проверяются локально; касание означает присутствие, а не обязательно проверку пользователя. Синхронизируемый passkey может находиться на нескольких устройствах.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="sec-seminar-4-access-models" class="title-slide slide level1 center">
+<h1>Модели управления доступом</h1>
+
+</section>
+<section id="dac-права-на-объект" class="slide level2">
+<h2>DAC: права на объект</h2>
+<p>Анна управляет правами на черновик; Борису выдано чтение. Право писать в файл и право менять ACL различаются.</p>
+
+<img data-src="_prepared/visualizations/access-control/dac/static/overview.svg" style="width:85.0%" alt="Владелец Анна управляет ACL черновика; Борису разрешено чтение, Вере доступ не предоставлен" class="r-stretch quarto-figure-center" id="fig-slide-dac"><p class="caption">
+Рисунок&nbsp;3: Матрица и ACL черновика
+</p></section>
+<section id="dac-составьте-матрицу" class="slide level2 smaller">
+<h2>DAC: составьте матрицу</h2>
+<div id="exr-slide-access-dac-matrix" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 5</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
+</div>
+<p>Анна владеет черновиком и материалами. Она может читать и изменять оба файла, назначать и отзывать права на них. Борис читает и изменяет черновик, материалы только читает. Вера читает материалы, доступа к черновику у неё нет. Остальные действия запрещены.</p>
+<ol type="1">
+<li>Составьте матрицу прав чтения и записи: строки — участники, столбцы — файлы, <code>r</code> — чтение, <code>w</code> — запись.</li>
+<li>Анна разрешила Вере читать черновик. Как изменятся матрица и ACL черновика?</li>
+</ol>
+</div>
+</section>
+<section id="dac-применение-политики" class="slide level2 smaller">
+<h2>DAC: применение политики</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="151" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 150;"><span id="cb1-151"><a aria-label="151"></a>dacLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/access-control/dac/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span>
+<span id="cb1-152"><a aria-label="152"></a>viewof slideDac <span class="op">=</span> dacLesson<span class="op">.</span><span class="fu">dacControls</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="158" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 157;"><span id="cb2-158"><a aria-label="158"></a>dacLesson<span class="op">.</span><span class="fu">dacDiagram</span>(slideDac)</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fig-slide-dac-decision" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-slide-dac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="ojs-cell-2" data-nodetype="expression">
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-dac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;4: Применение дискреционной политики
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="mac-три-уровня" class="slide level2">
+<h2>MAC: три уровня</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mn>1</mn></msub><mo>&lt;</mo><msub><mi>L</mi><mn>2</mn></msub><mo>&lt;</mo><msub><mi>L</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">L_1 &lt; L_2 &lt; L_3</annotation></semantics></math></p>
+<p><strong>Чтение:</strong> свой уровень и ниже.</p>
+<p><strong>Запись без чтения:</strong> свой уровень и выше.</p>
+<p><strong>Редактирование:</strong> обе проверки.</p>
+</div><div class="column" style="width:70%;">
+<div id="fig-slide-mac" class="quarto-float quarto-figure quarto-figure-center" alt="Процесс Лены L2 читает материалы L1 и может записывать данные в ответы L3 без чтения">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-slide-mac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="_prepared/visualizations/access-control/mac/static/overview.svg" style="width:100.0%" alt="Процесс Лены L2 читает материалы L1 и может записывать данные в ответы L3 без чтения">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-mac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;5: Три уровня мандатной модели
+</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="mac-применение-политики" class="slide level2 smaller">
+<h2>MAC: применение политики</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="213" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 212;"><span id="cb3-213"><a aria-label="213"></a>macLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/access-control/mac/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span>
+<span id="cb3-214"><a aria-label="214"></a></span>
+<span id="cb3-215"><a aria-label="215"></a><span class="co">// Авторские пояснения: удаление свойства не удаляет именованный этап.</span></span>
+<span id="cb3-216"><a aria-label="216"></a>macNotes <span class="op">=</span> ({</span>
+<span id="cb3-217"><a aria-label="217"></a>  <span class="dt">request</span><span class="op">:</span> <span class="st">"Одна операция над одним файлом. Успешный вход уже выполнен и не даёт новых прав."</span><span class="op">,</span></span>
+<span id="cb3-218"><a aria-label="218"></a>  <span class="dt">levels</span><span class="op">:</span> <span class="st">"У процесса L2; метку файла определяет политика. В учебной модели ровно три уровня."</span><span class="op">,</span></span>
+<span id="cb3-219"><a aria-label="219"></a>  <span class="st">"read-rule"</span><span class="op">:</span> <span class="st">"Читать можно свой и нижние уровни. Стрелка чтения идёт из файла в процесс."</span><span class="op">,</span></span>
+<span id="cb3-220"><a aria-label="220"></a>  <span class="st">"write-rule"</span><span class="op">:</span> <span class="st">"Добавлять без чтения можно на свой и верхние уровни. Поток идёт из процесса в файл."</span><span class="op">,</span></span>
+<span id="cb3-221"><a aria-label="221"></a>  <span class="dt">result</span><span class="op">:</span> <span class="st">"Результат следует из проверки уровней. Обычное редактирование потребовало бы также разрешённого чтения."</span></span>
+<span id="cb3-222"><a aria-label="222"></a>})</span>
+<span id="cb3-223"><a aria-label="223"></a>viewof macRequest <span class="op">=</span> macLesson<span class="op">.</span><span class="fu">macControls</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="220" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 219;"><span id="cb4-220"><a aria-label="220"></a>macLesson<span class="op">.</span><span class="fu">macDiagram</span>(macRequest<span class="op">,</span> macNotes)</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fig-mac-decision" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-mac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;6: Применение мандатной политики к одному запросу
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="rbac-права-по-обязанностям" class="slide level2">
+<h2>RBAC: права по обязанностям</h2>
+<p>Пользователь → назначенная роль → разрешение. Все назначения действуют в курсе А.</p>
+
+<img data-src="_prepared/visualizations/access-control/rbac/static/overview.svg" style="width:95.0%" alt="Лена и Илья — студенты, Борис — преподаватель; у ролей разные разрешения в курсе А" class="r-stretch quarto-figure-center" id="fig-slide-rbac"><p class="caption">
+Рисунок&nbsp;7: Пользователи, роли и разрешения
+</p></section>
+<section id="rbac-постройте-роли" class="slide level2 smaller">
+<h2>RBAC: постройте роли</h2>
+<div id="exr-slide-access-role-matrix" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="intermediate">
+<p><span class="theorem-title"><strong>Упражнение 6</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Средний</span>
+</div>
+<p>В курсе нужны следующие права; остальные действия запрещены.</p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Участник</th>
+<th style="text-align: center;">Читать материалы</th>
+<th style="text-align: center;">Проверять работы</th>
+<th style="text-align: center;">Менять оценки</th>
+<th style="text-align: center;">Читать журнал</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Лена</td>
+<td style="text-align: center;">Да</td>
+<td style="text-align: center;">Да</td>
+<td style="text-align: center;">Да</td>
+<td style="text-align: center;">Нет</td>
+</tr>
+<tr class="even">
+<td>Борис</td>
+<td style="text-align: center;">Да</td>
+<td style="text-align: center;">Да</td>
+<td style="text-align: center;">Да</td>
+<td style="text-align: center;">Нет</td>
+</tr>
+<tr class="odd">
+<td>Илья</td>
+<td style="text-align: center;">Да</td>
+<td style="text-align: center;">Нет</td>
+<td style="text-align: center;">Нет</td>
+<td style="text-align: center;">Нет</td>
+</tr>
+<tr class="even">
+<td>Вера</td>
+<td style="text-align: center;">Да</td>
+<td style="text-align: center;">Нет</td>
+<td style="text-align: center;">Нет</td>
+<td style="text-align: center;">Да</td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li>Предложите роли и назначения, которые дают эти права.</li>
+<li>Лена переходит к чтению материалов и журнала. Как изменить её назначения? Назовите разрешённый и запрещённый запрос для проверки результата.</li>
+</ol>
+</div>
+</section>
+<section id="rbac-применение-политики" class="slide level2 smaller">
+<h2>RBAC: применение политики</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a aria-label="1"></a>rbacLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/access-control/rbac/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span>
+<span id="cb5-2"><a aria-label="2"></a>viewof slideRbac <span class="op">=</span> rbacLesson<span class="op">.</span><span class="fu">rbacControls</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="2" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1;"><span id="cb6-2"><a aria-label="2"></a>rbacLesson<span class="op">.</span><span class="fu">rbacDiagram</span>(slideRbac)</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fig-slide-rbac-decision" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-slide-rbac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-rbac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;8: Применение ролевой политики
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="совместное-применение-политик" class="slide level2 smaller">
+<h2>Совместное применение политик</h2>
+<div id="exr-slide-access-combined" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 7</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
+</div>
+<p>Чтение разрешено через роль или личное разрешение в ACL. Обязательная политика дополнительно запрещает читать материал выше текущего уровня процесса. Уровень 2 выше уровня 1.</p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Запрос</th>
+<th style="text-align: center;">Через роль</th>
+<th style="text-align: center;">Через ACL</th>
+<th style="text-align: center;">Уровень процесса</th>
+<th style="text-align: center;">Уровень материала</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>А</td>
+<td style="text-align: center;">Да</td>
+<td style="text-align: center;">Нет</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td>Б</td>
+<td style="text-align: center;">Нет</td>
+<td style="text-align: center;">Да</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td>В</td>
+<td style="text-align: center;">Да</td>
+<td style="text-align: center;">Да</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li>Определите решение для каждого запроса и объясните порядок проверок словами.</li>
+<li>Для запроса В отозвали роль. Изменится ли решение? Какие права нужно отозвать, чтобы закрыть доступ?</li>
+</ol>
+</div>
+</section></section>
+<section>
+<section id="sec-seminar-4-additional" class="title-slide slide level1 center">
+<h1>Практическая работа и итог</h1>
+
+</section>
+<section id="задачи-семинара" class="slide level2">
+<h2>Задачи семинара</h2>
+<p>Продолжите разбор входа, моделей доступа и изменения полномочий:</p>
+<ul>
+<li><a data-qrc-custom="false" data-qrc-ref="tasks:exr-access-control-request" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-request">задача&nbsp;<span>7.1</span></a></li>
+<li><a data-qrc-custom="false" data-qrc-ref="tasks:exr-access-control-dac" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-dac">задача&nbsp;<span>7.3</span></a></li>
+<li><a data-qrc-custom="false" data-qrc-ref="tasks:exr-access-control-mac" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-mac">задача&nbsp;<span>7.4</span></a></li>
+<li><a data-qrc-custom="false" data-qrc-ref="tasks:exr-access-control-rbac" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-rbac">задача&nbsp;<span>7.5</span></a></li>
+<li><a data-qrc-custom="false" data-qrc-ref="tasks:exr-access-control-combined" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-combined">задача&nbsp;<span>7.2</span></a></li>
+</ul>
+<p>Назначения и дополнительная задача: <a data-qrc-custom="false" data-qrc-ref="tasks:sec-work-access-control" data-qrc-style="default" class="qrc-link" href="../task/works/04-access-control.html#sec-work-access-control"><span>Глава 12</span></a>.</p>
+</section>
+<section id="итог" class="slide level2">
+<h2>Итог</h2>
+<p>Назовите субъект, объект и операцию; проверьте назначения и ограничения. Минимальные привилегии сохраняют необходимые права только на нужные объекты и срок.</p>
+<aside class="notes">
+<p>Обсудите независимые пути получения права: отзыв одного назначения не всегда закрывает другой путь.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost.svg" alt="Кибер котость — логотип курса «Основы кибербезопасности»" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="site_libs/revealjs/plugin/course-navigation/model.js"></script>
+  <script src="site_libs/revealjs/plugin/course-navigation/ui.js"></script>
+  <script src="site_libs/revealjs/plugin/course-navigation/plugin.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'scrollActivationWidth': 0,
+'courseNav': {"sidebar":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, CourseNavigation, QuartoSupport,
+
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script type="ojs-module-contents">
+    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImRhY0xlc3NvbiA9IGF3YWl0IGltcG9ydChhd2FpdCBGaWxlQXR0YWNobWVudChcIi9fcHJlcGFyZWQvdmlzdWFsaXphdGlvbnMvYWNjZXNzLWNvbnRyb2wvZGFjL2xlc3Nvbi5qc1wiKS51cmwoKSlcbnZpZXdvZiBzbGlkZURhYyA9IGRhY0xlc3Nvbi5kYWNDb250cm9scygpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJkYWNMZXNzb24uZGFjRGlhZ3JhbShzbGlkZURhYylcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im1hY0xlc3NvbiA9IGF3YWl0IGltcG9ydChhd2FpdCBGaWxlQXR0YWNobWVudChcIi9fcHJlcGFyZWQvdmlzdWFsaXphdGlvbnMvYWNjZXNzLWNvbnRyb2wvbWFjL2xlc3Nvbi5qc1wiKS51cmwoKSlcblxuLy8g0JDQstGC0L7RgNGB0LrQuNC1INC/0L7Rj9GB0L3QtdC90LjRjzog0YPQtNCw0LvQtdC90LjQtSDRgdCy0L7QudGB0YLQstCwINC90LUg0YPQtNCw0LvRj9C10YIg0LjQvNC10L3QvtCy0LDQvdC90YvQuSDRjdGC0LDQvy5cbm1hY05vdGVzID0gKHtcbiAgcmVxdWVzdDogXCLQntC00L3QsCDQvtC/0LXRgNCw0YbQuNGPINC90LDQtCDQvtC00L3QuNC8INGE0LDQudC70L7QvC4g0KPRgdC/0LXRiNC90YvQuSDQstGF0L7QtCDRg9C20LUg0LLRi9C/0L7Qu9C90LXQvSDQuCDQvdC1INC00LDRkdGCINC90L7QstGL0YUg0L/RgNCw0LIuXCIsXG4gIGxldmVsczogXCLQoyDQv9GA0L7RhtC10YHRgdCwIEwyOyDQvNC10YLQutGDINGE0LDQudC70LAg0L7Qv9GA0LXQtNC10LvRj9C10YIg0L/QvtC70LjRgtC40LrQsC4g0JIg0YPRh9C10LHQvdC+0Lkg0LzQvtC00LXQu9C4INGA0L7QstC90L4g0YLRgNC4INGD0YDQvtCy0L3Rjy5cIixcbiAgXCJyZWFkLXJ1bGVcIjogXCLQp9C40YLQsNGC0Ywg0LzQvtC20L3QviDRgdCy0L7QuSDQuCDQvdC40LbQvdC40LUg0YPRgNC+0LLQvdC4LiDQodGC0YDQtdC70LrQsCDRh9GC0LXQvdC40Y8g0LjQtNGR0YIg0LjQtyDRhNCw0LnQu9CwINCyINC/0YDQvtGG0LXRgdGBLlwiLFxuICBcIndyaXRlLXJ1bGVcIjogXCLQlNC+0LHQsNCy0LvRj9GC0Ywg0LHQtdC3INGH0YLQtdC90LjRjyDQvNC+0LbQvdC+INC90LAg0YHQstC+0Lkg0Lgg0LLQtdGA0YXQvdC40LUg0YPRgNC+0LLQvdC4LiDQn9C+0YLQvtC6INC40LTRkdGCINC40Lcg0L/RgNC+0YbQtdGB0YHQsCDQsiDRhNCw0LnQuy5cIixcbiAgcmVzdWx0OiBcItCg0LXQt9GD0LvRjNGC0LDRgiDRgdC70LXQtNGD0LXRgiDQuNC3INC/0YDQvtCy0LXRgNC60Lgg0YPRgNC+0LLQvdC10LkuINCe0LHRi9GH0L3QvtC1INGA0LXQtNCw0LrRgtC40YDQvtCy0LDQvdC40LUg0L/QvtGC0YDQtdCx0L7QstCw0LvQviDQsdGLINGC0LDQutC20LUg0YDQsNC30YDQtdGI0ZHQvdC90L7Qs9C+INGH0YLQtdC90LjRjy5cIlxufSlcbnZpZXdvZiBtYWNSZXF1ZXN0ID0gbWFjTGVzc29uLm1hY0NvbnRyb2xzKClcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im1hY0xlc3Nvbi5tYWNEaWFncmFtKG1hY1JlcXVlc3QsIG1hY05vdGVzKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoicmJhY0xlc3NvbiA9IGF3YWl0IGltcG9ydChhd2FpdCBGaWxlQXR0YWNobWVudChcIi9fcHJlcGFyZWQvdmlzdWFsaXphdGlvbnMvYWNjZXNzLWNvbnRyb2wvcmJhYy9sZXNzb24uanNcIikudXJsKCkpXG52aWV3b2Ygc2xpZGVSYmFjID0gcmJhY0xlc3Nvbi5yYmFjQ29udHJvbHMoKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC02IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoicmJhY0xlc3Nvbi5yYmFjRGlhZ3JhbShzbGlkZVJiYWMpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3NsaWRlRGFjJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ21hY1JlcXVlc3QnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnc2xpZGVSYmFjJykifV19
+    </script>
+    <script type="module">
+    if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+    window._ojs.paths.runtimeToDoc = "../..";
+    window._ojs.paths.runtimeToRoot = "../..";
+    window._ojs.paths.docToRoot = "";
+    window._ojs.selfContained = false;
+    window._ojs.runtime.interpretFromScriptTags();
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Скопировано");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Скопировано");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+
+<script data-qrc-navigation>// Опубликованные цели сохраняют штатные ID Quarto. Обработчик раскрывает
+// существующее представление документа, не вводя учебных ролей и новых ID.
+(() => {
+  if (new URL(location.href).searchParams.has("print-pdf")) return;
+  let navigation = 0;
+
+  function hashId(url) {
+    try { return decodeURIComponent(url.hash.replace(/^#\/?/, "")); }
+    catch { return ""; } // Некорректный фрагмент внешней ссылки не должен нарушать работу страницы.
+  }
+
+  function ancestors(target) {
+    const nodes = [];
+    for (let node = target; node; node = node.parentElement) nodes.push(node);
+    return nodes.reverse();
+  }
+
+  function openDisclosures(nodes, scroll) {
+    for (const node of nodes) {
+      if (node.matches("details")) node.open = true;
+      if (!node.matches(".collapse:not(.show)")) continue;
+
+      // Bootstrap управляет анимацией и состоянием переключателя.
+      // В темах без Bootstrap блок раскрывается напрямую; details работает штатно.
+      const Collapse = window.bootstrap?.Collapse;
+      if (Collapse) {
+        node.addEventListener("shown.bs.collapse", scroll, { once: true });
+        Collapse.getOrCreateInstance(node, { toggle: false }).show();
+      } else {
+        node.classList.add("show");
+        if (!node.id) continue;
+        for (const trigger of document.querySelectorAll("[aria-controls]")) {
+          if (!trigger.getAttribute("aria-controls").split(/\s+/).includes(node.id)) continue;
+          trigger.setAttribute("aria-expanded", "true");
+          trigger.classList.remove("collapsed");
+        }
+      }
+    }
+  }
+
+  function revealTarget(id) {
+    const target = id && document.getElementById(id);
+    if (!target) return;
+    const current = ++navigation;
+    const scroll = () => requestAnimationFrame(() => {
+      // Завершение анимации не должно возвращать прокрутку после нового перехода.
+      if (current === navigation) target.scrollIntoView({ block: "nearest" });
+    });
+    const nodes = ancestors(target);
+    const section = target.closest("section.slide");
+    const reveal = window.Reveal;
+    if (section && target !== section && reveal?.isReady()) {
+      const position = reveal.getIndices(section);
+      reveal.slide(position.h, position.v);
+      // У вложенных фрагментов могут различаться индексы. Показываем
+      // все фрагменты вокруг цели; нулевой индекс также допустим.
+      const indices = nodes.filter(node => node.matches(".fragment[data-fragment-index]"))
+        .map(node => Number(node.getAttribute("data-fragment-index")))
+        .filter(Number.isFinite);
+      if (indices.length) reveal.navigateFragment(Math.max(...indices));
+    }
+    openDisclosures(nodes, scroll);
+    scroll();
+  }
+
+  function initialTarget() {
+    const url = new URL(location.href);
+    revealTarget(url.searchParams.get("qrc-target") || hashId(url));
+  }
+
+  function ready() {
+    if (window.Reveal && !window.Reveal.isReady()) window.Reveal.on("ready", initialTarget);
+    else initialTarget();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", ready, { once: true });
+  else ready();
+
+  // qrc-target обрабатывается только при входе на страницу. Повторное применение
+  // при смене фрагмента URL возвращало бы преподавателя к цели после перехода вперёд.
+  window.addEventListener("hashchange", () => revealTarget(hashId(new URL(location.href))));
+  document.addEventListener("click", event => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.defaultPrevented) return;
+    const link = event.target.closest?.("a[href]");
+    if (!link || link.hasAttribute("download") || (link.target && link.target !== "_self")) return;
+    const url = new URL(link.href, location.href);
+    if (url.origin !== location.origin || url.pathname !== location.pathname || url.search !== location.search) return;
+    // Повторный переход по тому же фрагменту URL не вызывает hashchange.
+    // Раскрываем цель после штатной навигации и обработчика Revealjs.
+    queueMicrotask(() => revealTarget(hashId(url)));
+  }, true);
+})();
+</script>
+</body></html>

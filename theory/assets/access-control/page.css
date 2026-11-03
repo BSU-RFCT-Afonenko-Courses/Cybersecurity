@@ -1,0 +1,15 @@
+/* Только глава управления доступом: формула остаётся доступной целиком. */
+main mjx-container[display="true"] {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+/* Широкая таблица прокручивается внутри страницы, сохраняя столбцы. */
+@media screen and (max-width: 700px) {
+  main :not(.ac-table) > table.table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}

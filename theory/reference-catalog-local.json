@@ -9,10 +9,360 @@
       "id": "exm-random-output",
       "page": "crypto/random.html",
       "fragment": "exm-random-output",
-      "labelHtml": "Пример&nbsp;<span>9.1</span>",
+      "labelHtml": "Пример&nbsp;<span>10.1</span>",
+      "numberHtml": "<span>10.1</span>",
+      "label": "Пример 10.1",
+      "number": "10.1"
+    },
+    "theory:fig-access-architecture": {
+      "namespace": "theory",
+      "id": "fig-access-architecture",
+      "page": "access-control/access-control.html",
+      "fragment": "fig-access-architecture",
+      "labelHtml": "Рисунок&nbsp;<span>9.1</span>",
       "numberHtml": "<span>9.1</span>",
-      "label": "Пример 9.1",
+      "label": "Рисунок 9.1",
       "number": "9.1"
+    },
+    "theory:fig-access-dac": {
+      "namespace": "theory",
+      "id": "fig-access-dac",
+      "page": "access-control/access-control.html",
+      "fragment": "fig-access-dac",
+      "labelHtml": "Рисунок&nbsp;<span>9.3</span>",
+      "numberHtml": "<span>9.3</span>",
+      "label": "Рисунок 9.3",
+      "number": "9.3"
+    },
+    "theory:fig-access-mac": {
+      "namespace": "theory",
+      "id": "fig-access-mac",
+      "page": "access-control/access-control.html",
+      "fragment": "fig-access-mac",
+      "labelHtml": "Рисунок&nbsp;<span>9.5</span>",
+      "numberHtml": "<span>9.5</span>",
+      "label": "Рисунок 9.5",
+      "number": "9.5"
+    },
+    "theory:fig-access-procedures": {
+      "namespace": "theory",
+      "id": "fig-access-procedures",
+      "page": "access-control/access-control.html",
+      "fragment": "fig-access-procedures",
+      "labelHtml": "Рисунок&nbsp;<span>9.2</span>",
+      "numberHtml": "<span>9.2</span>",
+      "label": "Рисунок 9.2",
+      "number": "9.2"
+    },
+    "theory:fig-access-rbac": {
+      "namespace": "theory",
+      "id": "fig-access-rbac",
+      "page": "access-control/access-control.html",
+      "fragment": "fig-access-rbac",
+      "labelHtml": "Рисунок&nbsp;<span>9.7</span>",
+      "numberHtml": "<span>9.7</span>",
+      "label": "Рисунок 9.7",
+      "number": "9.7"
+    },
+    "theory:fig-cypher-caesar": {
+      "namespace": "theory",
+      "id": "fig-cypher-caesar",
+      "page": "crypto/cypher.html",
+      "fragment": "fig-cypher-caesar",
+      "labelHtml": "Рисунок&nbsp;<span>14.1</span>",
+      "numberHtml": "<span>14.1</span>",
+      "label": "Рисунок 14.1",
+      "number": "14.1"
+    },
+    "theory:fig-cypher-caesar-1": {
+      "namespace": "theory",
+      "id": "fig-cypher-caesar-1",
+      "page": "crypto/cypher.html",
+      "fragment": "fig-cypher-caesar-1",
+      "labelHtml": "Рисунок&nbsp;<span>14.1 (a)</span>",
+      "numberHtml": "<span>14.1 (a)</span>",
+      "label": "Рисунок 14.1 (a)",
+      "number": "14.1 (a)"
+    },
+    "theory:fig-cypher-caesar-2": {
+      "namespace": "theory",
+      "id": "fig-cypher-caesar-2",
+      "page": "crypto/cypher.html",
+      "fragment": "fig-cypher-caesar-2",
+      "labelHtml": "Рисунок&nbsp;<span>14.1 (b)</span>",
+      "numberHtml": "<span>14.1 (b)</span>",
+      "label": "Рисунок 14.1 (b)",
+      "number": "14.1 (b)"
+    },
+    "theory:fig-cypher-xor": {
+      "namespace": "theory",
+      "id": "fig-cypher-xor",
+      "page": "crypto/cypher.html",
+      "fragment": "fig-cypher-xor",
+      "labelHtml": "Рисунок&nbsp;<span>14.2</span>",
+      "numberHtml": "<span>14.2</span>",
+      "label": "Рисунок 14.2",
+      "number": "14.2"
+    },
+    "theory:fig-hash-bit-change": {
+      "namespace": "theory",
+      "id": "fig-hash-bit-change",
+      "page": "crypto/hash.html",
+      "fragment": "fig-hash-bit-change",
+      "labelHtml": "Рисунок&nbsp;<span>11.2</span>",
+      "numberHtml": "<span>11.2</span>",
+      "label": "Рисунок 11.2",
+      "number": "11.2"
+    },
+    "theory:fig-hash-bit-change-1": {
+      "namespace": "theory",
+      "id": "fig-hash-bit-change-1",
+      "page": "crypto/hash.html",
+      "fragment": "fig-hash-bit-change-1",
+      "labelHtml": "Рисунок&nbsp;<span>11.2 (a)</span>",
+      "numberHtml": "<span>11.2 (a)</span>",
+      "label": "Рисунок 11.2 (a)",
+      "number": "11.2 (a)"
+    },
+    "theory:fig-hash-bit-change-2": {
+      "namespace": "theory",
+      "id": "fig-hash-bit-change-2",
+      "page": "crypto/hash.html",
+      "fragment": "fig-hash-bit-change-2",
+      "labelHtml": "Рисунок&nbsp;<span>11.2 (b)</span>",
+      "numberHtml": "<span>11.2 (b)</span>",
+      "label": "Рисунок 11.2 (b)",
+      "number": "11.2 (b)"
+    },
+    "theory:fig-hash-download": {
+      "namespace": "theory",
+      "id": "fig-hash-download",
+      "page": "crypto/hash.html",
+      "fragment": "fig-hash-download",
+      "labelHtml": "Рисунок&nbsp;<span>11.4</span>",
+      "numberHtml": "<span>11.4</span>",
+      "label": "Рисунок 11.4",
+      "number": "11.4"
+    },
+    "theory:fig-hash-process": {
+      "namespace": "theory",
+      "id": "fig-hash-process",
+      "page": "crypto/hash.html",
+      "fragment": "fig-hash-process",
+      "labelHtml": "Рисунок&nbsp;<span>11.1</span>",
+      "numberHtml": "<span>11.1</span>",
+      "label": "Рисунок 11.1",
+      "number": "11.1"
+    },
+    "theory:fig-hash-truncated-collision": {
+      "namespace": "theory",
+      "id": "fig-hash-truncated-collision",
+      "page": "crypto/hash.html",
+      "fragment": "fig-hash-truncated-collision",
+      "labelHtml": "Рисунок&nbsp;<span>11.3</span>",
+      "numberHtml": "<span>11.3</span>",
+      "label": "Рисунок 11.3",
+      "number": "11.3"
+    },
+    "theory:fig-integrity-byte-change": {
+      "namespace": "theory",
+      "id": "fig-integrity-byte-change",
+      "page": "data-integrity/integrity.html",
+      "fragment": "fig-integrity-byte-change",
+      "labelHtml": "Рисунок&nbsp;<span>15.3</span>",
+      "numberHtml": "<span>15.3</span>",
+      "label": "Рисунок 15.3",
+      "number": "15.3"
+    },
+    "theory:fig-integrity-copy-scales": {
+      "namespace": "theory",
+      "id": "fig-integrity-copy-scales",
+      "page": "data-integrity/integrity.html",
+      "fragment": "fig-integrity-copy-scales",
+      "labelHtml": "Рисунок&nbsp;<span>15.5</span>",
+      "numberHtml": "<span>15.5</span>",
+      "label": "Рисунок 15.5",
+      "number": "15.5"
+    },
+    "theory:fig-integrity-raid": {
+      "namespace": "theory",
+      "id": "fig-integrity-raid",
+      "page": "data-integrity/integrity.html",
+      "fragment": "fig-integrity-raid",
+      "labelHtml": "Рисунок&nbsp;<span>15.6</span>",
+      "numberHtml": "<span>15.6</span>",
+      "label": "Рисунок 15.6",
+      "number": "15.6"
+    },
+    "theory:fig-integrity-reference": {
+      "namespace": "theory",
+      "id": "fig-integrity-reference",
+      "page": "data-integrity/integrity.html",
+      "fragment": "fig-integrity-reference",
+      "labelHtml": "Рисунок&nbsp;<span>15.4</span>",
+      "numberHtml": "<span>15.4</span>",
+      "label": "Рисунок 15.4",
+      "number": "15.4"
+    },
+    "theory:fig-integrity-sum-collision": {
+      "namespace": "theory",
+      "id": "fig-integrity-sum-collision",
+      "page": "data-integrity/integrity.html",
+      "fragment": "fig-integrity-sum-collision",
+      "labelHtml": "Рисунок&nbsp;<span>15.2</span>",
+      "numberHtml": "<span>15.2</span>",
+      "label": "Рисунок 15.2",
+      "number": "15.2"
+    },
+    "theory:fig-integrity-sum-collision-1": {
+      "namespace": "theory",
+      "id": "fig-integrity-sum-collision-1",
+      "page": "data-integrity/integrity.html",
+      "fragment": "fig-integrity-sum-collision-1",
+      "labelHtml": "Рисунок&nbsp;<span>15.2 (a)</span>",
+      "numberHtml": "<span>15.2 (a)</span>",
+      "label": "Рисунок 15.2 (a)",
+      "number": "15.2 (a)"
+    },
+    "theory:fig-integrity-sum-collision-2": {
+      "namespace": "theory",
+      "id": "fig-integrity-sum-collision-2",
+      "page": "data-integrity/integrity.html",
+      "fragment": "fig-integrity-sum-collision-2",
+      "labelHtml": "Рисунок&nbsp;<span>15.2 (b)</span>",
+      "numberHtml": "<span>15.2 (b)</span>",
+      "label": "Рисунок 15.2 (b)",
+      "number": "15.2 (b)"
+    },
+    "theory:fig-integrity-sum-hash": {
+      "namespace": "theory",
+      "id": "fig-integrity-sum-hash",
+      "page": "data-integrity/integrity.html",
+      "fragment": "fig-integrity-sum-hash",
+      "labelHtml": "Рисунок&nbsp;<span>15.1</span>",
+      "numberHtml": "<span>15.1</span>",
+      "label": "Рисунок 15.1",
+      "number": "15.1"
+    },
+    "theory:fig-integrity-xor": {
+      "namespace": "theory",
+      "id": "fig-integrity-xor",
+      "page": "data-integrity/integrity.html",
+      "fragment": "fig-integrity-xor",
+      "labelHtml": "Рисунок&nbsp;<span>15.7</span>",
+      "numberHtml": "<span>15.7</span>",
+      "label": "Рисунок 15.7",
+      "number": "15.7"
+    },
+    "theory:fig-mac-decision": {
+      "namespace": "theory",
+      "id": "fig-mac-decision",
+      "page": "access-control/access-control.html",
+      "fragment": "fig-mac-decision",
+      "labelHtml": "Рисунок&nbsp;<span>9.6</span>",
+      "numberHtml": "<span>9.6</span>",
+      "label": "Рисунок 9.6",
+      "number": "9.6"
+    },
+    "theory:fig-password-pbkdf2": {
+      "namespace": "theory",
+      "id": "fig-password-pbkdf2",
+      "page": "crypto/password-storage.html",
+      "fragment": "fig-password-pbkdf2",
+      "labelHtml": "Рисунок&nbsp;<span>12.1</span>",
+      "numberHtml": "<span>12.1</span>",
+      "label": "Рисунок 12.1",
+      "number": "12.1"
+    },
+    "theory:fig-password-pbkdf2-1": {
+      "namespace": "theory",
+      "id": "fig-password-pbkdf2-1",
+      "page": "crypto/password-storage.html",
+      "fragment": "fig-password-pbkdf2-1",
+      "labelHtml": "Рисунок&nbsp;<span>12.1 (a)</span>",
+      "numberHtml": "<span>12.1 (a)</span>",
+      "label": "Рисунок 12.1 (a)",
+      "number": "12.1 (a)"
+    },
+    "theory:fig-password-pbkdf2-2": {
+      "namespace": "theory",
+      "id": "fig-password-pbkdf2-2",
+      "page": "crypto/password-storage.html",
+      "fragment": "fig-password-pbkdf2-2",
+      "labelHtml": "Рисунок&nbsp;<span>12.1 (b)</span>",
+      "numberHtml": "<span>12.1 (b)</span>",
+      "label": "Рисунок 12.1 (b)",
+      "number": "12.1 (b)"
+    },
+    "theory:fig-password-search": {
+      "namespace": "theory",
+      "id": "fig-password-search",
+      "page": "crypto/password-storage.html",
+      "fragment": "fig-password-search",
+      "labelHtml": "Рисунок&nbsp;<span>12.2</span>",
+      "numberHtml": "<span>12.2</span>",
+      "label": "Рисунок 12.2",
+      "number": "12.2"
+    },
+    "theory:fig-random-lcg": {
+      "namespace": "theory",
+      "id": "fig-random-lcg",
+      "page": "crypto/random.html",
+      "fragment": "fig-random-lcg",
+      "labelHtml": "Рисунок&nbsp;<span>10.2</span>",
+      "numberHtml": "<span>10.2</span>",
+      "label": "Рисунок 10.2",
+      "number": "10.2"
+    },
+    "theory:fig-random-lcg-1": {
+      "namespace": "theory",
+      "id": "fig-random-lcg-1",
+      "page": "crypto/random.html",
+      "fragment": "fig-random-lcg-1",
+      "labelHtml": "Рисунок&nbsp;<span>10.2 (a)</span>",
+      "numberHtml": "<span>10.2 (a)</span>",
+      "label": "Рисунок 10.2 (a)",
+      "number": "10.2 (a)"
+    },
+    "theory:fig-random-lcg-2": {
+      "namespace": "theory",
+      "id": "fig-random-lcg-2",
+      "page": "crypto/random.html",
+      "fragment": "fig-random-lcg-2",
+      "labelHtml": "Рисунок&nbsp;<span>10.2 (b)</span>",
+      "numberHtml": "<span>10.2 (b)</span>",
+      "label": "Рисунок 10.2 (b)",
+      "number": "10.2 (b)"
+    },
+    "theory:fig-random-lcg-overview": {
+      "namespace": "theory",
+      "id": "fig-random-lcg-overview",
+      "page": "crypto/random.html",
+      "fragment": "fig-random-lcg-overview",
+      "labelHtml": "Рисунок&nbsp;<span>10.1</span>",
+      "numberHtml": "<span>10.1</span>",
+      "label": "Рисунок 10.1",
+      "number": "10.1"
+    },
+    "theory:fig-random-public-chain": {
+      "namespace": "theory",
+      "id": "fig-random-public-chain",
+      "page": "crypto/random.html",
+      "fragment": "fig-random-public-chain",
+      "labelHtml": "Рисунок&nbsp;<span>10.3</span>",
+      "numberHtml": "<span>10.3</span>",
+      "label": "Рисунок 10.3",
+      "number": "10.3"
+    },
+    "theory:fig-random-seed": {
+      "namespace": "theory",
+      "id": "fig-random-seed",
+      "page": "crypto/random.html",
+      "fragment": "fig-random-seed",
+      "labelHtml": "Рисунок&nbsp;<span>10.4</span>",
+      "numberHtml": "<span>10.4</span>",
+      "label": "Рисунок 10.4",
+      "number": "10.4"
     },
     "theory:fig-security-center-incident-alert": {
       "namespace": "theory",
@@ -64,6 +414,26 @@
       "label": "Рисунок 8.1",
       "number": "8.1"
     },
+    "theory:fig-theory-dac-decision": {
+      "namespace": "theory",
+      "id": "fig-theory-dac-decision",
+      "page": "access-control/access-control.html",
+      "fragment": "fig-theory-dac-decision",
+      "labelHtml": "Рисунок&nbsp;<span>9.4</span>",
+      "numberHtml": "<span>9.4</span>",
+      "label": "Рисунок 9.4",
+      "number": "9.4"
+    },
+    "theory:fig-theory-rbac-decision": {
+      "namespace": "theory",
+      "id": "fig-theory-rbac-decision",
+      "page": "access-control/access-control.html",
+      "fragment": "fig-theory-rbac-decision",
+      "labelHtml": "Рисунок&nbsp;<span>9.8</span>",
+      "numberHtml": "<span>9.8</span>",
+      "label": "Рисунок 9.8",
+      "number": "9.8"
+    },
     "theory:sec-random-concepts": {
       "namespace": "theory",
       "id": "sec-random-concepts",
@@ -85,6 +455,105 @@
       "label": "Теория",
       "number": "",
       "title": "Теория"
+    },
+    "theory:sec-theory-access-authentication": {
+      "namespace": "theory",
+      "id": "sec-theory-access-authentication",
+      "page": "access-control/access-control.html",
+      "fragment": "sec-theory-access-authentication",
+      "labelHtml": "Аутентификация",
+      "numberHtml": "",
+      "label": "Аутентификация",
+      "number": "",
+      "title": "Аутентификация"
+    },
+    "theory:sec-theory-access-authorization": {
+      "namespace": "theory",
+      "id": "sec-theory-access-authorization",
+      "page": "access-control/access-control.html",
+      "fragment": "sec-theory-access-authorization",
+      "labelHtml": "Авторизация конкретного запроса",
+      "numberHtml": "",
+      "label": "Авторизация конкретного запроса",
+      "number": "",
+      "title": "Авторизация конкретного запроса"
+    },
+    "theory:sec-theory-access-control": {
+      "namespace": "theory",
+      "id": "sec-theory-access-control",
+      "page": "access-control/access-control.html",
+      "fragment": "sec-theory-access-control",
+      "labelHtml": "<span>Глава 9</span>",
+      "numberHtml": "<span>9</span>",
+      "label": "Глава 9",
+      "number": "9",
+      "title": "Управление доступом"
+    },
+    "theory:sec-theory-access-dac": {
+      "namespace": "theory",
+      "id": "sec-theory-access-dac",
+      "page": "access-control/access-control.html",
+      "fragment": "sec-theory-access-dac",
+      "labelHtml": "Дискреционное управление доступом",
+      "numberHtml": "",
+      "label": "Дискреционное управление доступом",
+      "number": "",
+      "title": "Дискреционное управление доступом"
+    },
+    "theory:sec-theory-access-factors": {
+      "namespace": "theory",
+      "id": "sec-theory-access-factors",
+      "page": "access-control/access-control.html",
+      "fragment": "sec-theory-access-factors",
+      "labelHtml": "Факторы аутентификации",
+      "numberHtml": "",
+      "label": "Факторы аутентификации",
+      "number": "",
+      "title": "Факторы аутентификации"
+    },
+    "theory:sec-theory-access-identification": {
+      "namespace": "theory",
+      "id": "sec-theory-access-identification",
+      "page": "access-control/access-control.html",
+      "fragment": "sec-theory-access-identification",
+      "labelHtml": "Идентификация",
+      "numberHtml": "",
+      "label": "Идентификация",
+      "number": "",
+      "title": "Идентификация"
+    },
+    "theory:sec-theory-access-mac": {
+      "namespace": "theory",
+      "id": "sec-theory-access-mac",
+      "page": "access-control/access-control.html",
+      "fragment": "sec-theory-access-mac",
+      "labelHtml": "Мандатное управление доступом",
+      "numberHtml": "",
+      "label": "Мандатное управление доступом",
+      "number": "",
+      "title": "Мандатное управление доступом"
+    },
+    "theory:sec-theory-access-policy": {
+      "namespace": "theory",
+      "id": "sec-theory-access-policy",
+      "page": "access-control/access-control.html",
+      "fragment": "sec-theory-access-policy",
+      "labelHtml": "Процедура получения доступа к ресурсу",
+      "numberHtml": "",
+      "label": "Процедура получения доступа к ресурсу",
+      "number": "",
+      "title": "Процедура получения доступа к ресурсу"
+    },
+    "theory:sec-theory-access-rbac": {
+      "namespace": "theory",
+      "id": "sec-theory-access-rbac",
+      "page": "access-control/access-control.html",
+      "fragment": "sec-theory-access-rbac",
+      "labelHtml": "Ролевое управление доступом",
+      "numberHtml": "",
+      "label": "Ролевое управление доступом",
+      "number": "",
+      "title": "Ролевое управление доступом"
     },
     "theory:sec-theory-crypto-cypher": {
       "namespace": "theory",
@@ -124,11 +593,22 @@
       "id": "sec-theory-crypto-random",
       "page": "crypto/random.html",
       "fragment": "sec-theory-crypto-random",
-      "labelHtml": "<span>Глава 9</span>",
-      "numberHtml": "<span>9</span>",
-      "label": "Глава 9",
-      "number": "9",
+      "labelHtml": "<span>Глава 10</span>",
+      "numberHtml": "<span>10</span>",
+      "label": "Глава 10",
+      "number": "10",
       "title": "Генераторы случайных чисел"
+    },
+    "theory:sec-theory-data-integrity": {
+      "namespace": "theory",
+      "id": "sec-theory-data-integrity",
+      "page": "data-integrity/integrity.html",
+      "fragment": "sec-theory-data-integrity",
+      "labelHtml": "<span>Глава 15</span>",
+      "numberHtml": "<span>15</span>",
+      "label": "Глава 15",
+      "number": "15",
+      "title": "Целостность данных"
     },
     "theory:sec-theory-fundamentals-cia": {
       "namespace": "theory",
@@ -206,6 +686,17 @@
       "label": "Глава 4",
       "number": "4",
       "title": "Классы информационных систем"
+    },
+    "theory:sec-theory-password-storage": {
+      "namespace": "theory",
+      "id": "sec-theory-password-storage",
+      "page": "crypto/password-storage.html",
+      "fragment": "sec-theory-password-storage",
+      "labelHtml": "<span>Глава 12</span>",
+      "numberHtml": "<span>12</span>",
+      "label": "Глава 12",
+      "number": "12",
+      "title": "Хранение паролей"
     },
     "theory:sec-theory-security-center-organization": {
       "namespace": "theory",

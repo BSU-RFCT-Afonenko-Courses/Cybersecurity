@@ -98,3 +98,26 @@ html.print-pdf body.course-navigation-active .reveal, body.course-navigation-pri
 .course-nav-permanent-link { display: flex; align-items: center; min-height: 44px; padding: 10px 9px; border-radius: 5px; color: inherit; overflow-wrap: anywhere; text-decoration: none; }
 .course-nav-permanent-link:hover { background: var(--course-nav-hover, #f1f3f5); }
 .course-nav-permanent-link:focus-visible { outline: 3px solid var(--course-nav-primary, #2963a3); outline-offset: 2px; }
+
+
+/* В аудитории остаются разделы; текущий режим задаёт Presentation. */
+body.course-navigation-active[data-course-mode="lecture"] { --course-nav-footer: 0px; }
+body[data-course-mode="lecture"] .reveal .slide-menu-button,
+body[data-course-mode="lecture"] .course-nav-footer,
+body[data-course-mode="lecture"] .course-nav-permanent,
+body[data-course-mode="lecture"] .course-nav-course-title,
+body[data-course-mode="lecture"] .course-nav-eyebrow { display: none; }
+.course-nav-permanent-link[aria-current="page"] { background: var(--course-nav-active, #e9eef5); font-weight: 700; }
+@media screen and (max-width: 899px) {
+  body.course-navigation-active:not(.course-navigation-no-sidebar)[data-course-mode="lecture"] { --course-audience-topics: 120px; }
+  body.course-navigation-active:not(.course-navigation-no-sidebar)[data-course-mode="lecture"] .course-nav-sidebar {
+    display: block; inset: 0 0 auto; width: 100%; height: var(--course-audience-topics);
+    padding: 8px 110px 8px 8px; border-right: 0; border-bottom: 1px solid var(--course-nav-border, #d5dae0);
+  }
+  body[data-course-mode="lecture"] .course-nav-sidebar .course-nav-topics { display: flex; height: 100%; gap: 6px; overflow-x: auto; }
+  body[data-course-mode="lecture"] .course-nav-sidebar .course-nav-topics li { flex: 0 0 160px; margin: 0; }
+  body[data-course-mode="lecture"] .course-nav-sidebar .course-nav-topic { padding: 8px; min-height: 44px; }
+  body.course-navigation-active:not(.course-navigation-no-sidebar)[data-course-mode="lecture"] > .reveal {
+    left: 0; top: var(--course-audience-topics); width: 100%; height: calc(100% - var(--course-audience-topics));
+  }
+}
