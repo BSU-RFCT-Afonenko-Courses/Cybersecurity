@@ -1,3 +1,7 @@
+$$
+x_{n+1} = (a x_n + c) \bmod 16,\qquad a,c \in \{0,\ldots,7\}.
+$$
+
 ```{ojs}
 //| echo: false
 //| output: false

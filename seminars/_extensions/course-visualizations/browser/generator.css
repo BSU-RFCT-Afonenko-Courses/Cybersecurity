@@ -9,7 +9,6 @@
 }
 .course-viz-lcg-selection * { box-sizing:border-box; }
 .course-viz-lcg-selection p { margin:0; }
-.course-viz-lcg-selection .cv-lcg-known { display:flex; flex-wrap:wrap; gap:.25em 1.5em; }
 .course-viz-lcg-selection .cv-lcg-observations { margin:1em 0; }
 .course-viz-lcg-selection .cv-lcg-label { margin-bottom:.35em; font-weight:600; }
 .course-viz-lcg-selection .cv-lcg-sequence { display:flex; align-items:center; gap:.5em; }

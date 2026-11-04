@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" class="symmetric-key" viewBox="0 0 380 254" width="380" height="254" role="img" aria-labelledby="symmetric-key-desc">
-  <desc id="symmetric-key-desc">В верхней строке сообщение преобразуется в шифротекст, в нижней шифротекст преобразуется обратно в сообщение. Один секретный ключ поступает в оба преобразования.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" class="symmetric-key" viewBox="0 0 500 254" width="500" height="254" role="img" aria-labelledby="symmetric-key-desc">
+  <desc id="symmetric-key-desc">Прямоугольники обозначают данные, овалы — шифрование и расшифрование. Один секретный ключ поступает в обе операции.</desc>
   <defs><marker id="sk-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 1 1 L 9 5 L 1 9 Z" fill="#396078"/></marker></defs>
   <style>
     .symmetric-key { color:#203246; font-family:system-ui,sans-serif; }
@@ -7,31 +7,30 @@
     .symmetric-key .sk-node rect { width:120px; height:74px; fill:#eef2f6; stroke:#afbdca; stroke-width:1.5; }
     .symmetric-key .sk-label { font-size:17.5px; }
     .symmetric-key:not(.has-values):not(.is-wide) .sk-label { transform:translateY(18px); }
-    .symmetric-key:not(.has-values):not(.is-wide) .sk-encrypt .sk-label, .symmetric-key:not(.has-values):not(.is-wide) .sk-decrypt .sk-label { transform:none; }
     .symmetric-key:not(.has-values) .sk-key-label { transform:translateY(6px); }
-    .symmetric-key .sk-encrypt rect, .symmetric-key .sk-decrypt rect { display:none; }
-    .symmetric-key .sk-encrypt .sk-value, .symmetric-key .sk-decrypt .sk-value { transform:translate(0,19px); }
+    .symmetric-key .sk-node ellipse { cx:60px; cy:37px; rx:60px; ry:37px; fill:#fff5df; stroke:#987326; stroke-width:1.5; }
     .symmetric-key .sk-node.is-current .sk-label { fill:#006b8f; font-weight:600; }
     .symmetric-key .sk-value { font-size:18px; font-weight:600; }
     .symmetric-key .sk-line { fill:none; stroke:#396078; stroke-width:2; }
     .symmetric-key .sk-key-line { fill:none; stroke:#396078; stroke-width:2; }
     .symmetric-key .sk-key-label { font-size:18px; }
-    .symmetric-key .sk-node.is-current rect { fill:#d4eaf4; stroke:#006b8f; stroke-width:3; }
+    .symmetric-key .sk-node.is-current rect, .symmetric-key .sk-node.is-current ellipse { fill:#d4eaf4; stroke:#006b8f; stroke-width:3; }
     .symmetric-key .sk-line.is-complete { stroke:#006b8f; stroke-width:3; }
     .symmetric-key .sk-wide-lines, .symmetric-key .sk-medium-lines { display:none; }
     .symmetric-key .sk-label-full { display:none; }
     .symmetric-key .sk-message { transform:translate(0px,8px); }
-    .symmetric-key .sk-encrypt { transform:translate(130px,8px); }
-    .symmetric-key .sk-cipher { transform:translate(260px,8px); }
+    .symmetric-key .sk-encrypt { transform:translate(190px,8px); }
+    .symmetric-key .sk-cipher { transform:translate(380px,8px); }
     .symmetric-key .sk-cipher-copy { transform:translate(0px,172px); }
-    .symmetric-key .sk-decrypt { transform:translate(130px,172px); }
-    .symmetric-key .sk-restored { transform:translate(260px,172px); }
-    .symmetric-key .sk-key { transform:translate(145px,90px); }
+    .symmetric-key .sk-decrypt { transform:translate(190px,172px); }
+    .symmetric-key .sk-restored { transform:translate(380px,172px); }
+    .symmetric-key .sk-key { transform:translate(205px,90px); }
     .symmetric-key.is-medium .sk-label-short, .symmetric-key.is-wide .sk-label-short { display:none; }
     .symmetric-key.is-medium .sk-label-full, .symmetric-key.is-wide .sk-label-full { display:inline; }
     .symmetric-key.is-medium .sk-narrow-lines { display:none; }
     .symmetric-key.is-medium .sk-medium-lines { display:inline; }
     .symmetric-key.is-medium .sk-node rect { display:inline; width:200px; }
+    .symmetric-key.is-medium .sk-node ellipse { cx:100px; rx:100px; }
     .symmetric-key.is-medium .sk-node text { transform:translate(40px,0); }
     .symmetric-key.is-medium .sk-label { font-size:20px; }
     .symmetric-key.is-medium .sk-value { font-size:24px; }
@@ -43,6 +42,7 @@
     .symmetric-key.is-wide .sk-wide-lines { display:inline; }
     .symmetric-key.is-wide .sk-narrow-lines, .symmetric-key.is-wide .sk-medium-lines, .symmetric-key.is-wide .sk-cipher-copy { display:none; }
     .symmetric-key.is-wide .sk-node rect { display:inline; width:254px; height:64px; }
+    .symmetric-key.is-wide .sk-node ellipse { cx:127px; cy:32px; rx:127px; ry:32px; }
     .symmetric-key.is-wide .sk-node text { transform:translate(67px,0); }
     .symmetric-key.is-wide .sk-label { font-size:20px; }
     .symmetric-key.is-wide .sk-value { font-size:24px; }
@@ -57,11 +57,11 @@
     .symmetric-key.is-static-wide .sk-node text { transform:translate(67px,17px); }
   </style>
   <g class="sk-narrow-lines" aria-hidden="true">
-    <path class="sk-line" data-edge="0" d="M 121 45 H 184" marker-end="url(#sk-arrow)"/>
-    <path class="sk-line" data-edge="1" d="M 196 45 H 252" marker-end="url(#sk-arrow)"/>
-    <path class="sk-line" data-edge="2" d="M 121 209 H 184" marker-end="url(#sk-arrow)"/>
-    <path class="sk-line" data-edge="3" d="M 196 209 H 252" marker-end="url(#sk-arrow)"/>
-    <path class="sk-line" d="M 190 95 V 84" marker-end="url(#sk-arrow)"/><path class="sk-line" d="M 190 147 V 164" marker-end="url(#sk-arrow)"/>
+    <path class="sk-line" data-edge="0" d="M 121 45 H 182" marker-end="url(#sk-arrow)"/>
+    <path class="sk-line" data-edge="1" d="M 311 45 H 372" marker-end="url(#sk-arrow)"/>
+    <path class="sk-line" data-edge="2" d="M 121 209 H 182" marker-end="url(#sk-arrow)"/>
+    <path class="sk-line" data-edge="3" d="M 311 209 H 372" marker-end="url(#sk-arrow)"/>
+    <path class="sk-line" d="M 250 95 V 84" marker-end="url(#sk-arrow)"/><path class="sk-line" d="M 250 147 V 164" marker-end="url(#sk-arrow)"/>
   </g>
   <g class="sk-medium-lines" aria-hidden="true">
     <path class="sk-line" data-edge="0" d="M 201 45 H 232" marker-end="url(#sk-arrow)"/>
@@ -80,10 +80,10 @@
     <path class="sk-line" d="M 1027 108 V 162" marker-end="url(#sk-arrow)"/>
   </g>
   <g class="sk-node sk-message" data-key="message"><rect width="120" height="74" rx="5"/><text class="sk-label" x="60" y="23">Сообщение</text><text class="sk-value" x="60" y="49" data-slot="message"></text></g>
-  <g class="sk-node sk-encrypt" data-key="encrypt"><rect width="120" height="74" rx="5"/><text class="sk-label" x="60" y="23">Шифрование</text><text class="sk-value" x="60" y="49" data-slot="encrypt"></text></g>
+  <g class="sk-node sk-encrypt" data-key="encrypt"><ellipse cx="60" cy="37" rx="60" ry="37"/><text class="sk-label" x="60" y="23">Шифрование</text><text class="sk-value" x="60" y="49" data-slot="encrypt"></text></g>
   <g class="sk-node sk-cipher" data-key="cipher"><rect width="120" height="74" rx="5"/><text class="sk-label" x="60" y="23">Шифротекст</text><text class="sk-value" x="60" y="49" data-slot="cipher"></text></g>
   <g class="sk-node sk-cipher-copy" data-key="cipher"><rect width="120" height="74" rx="5"/><text class="sk-label" x="60" y="23">Шифротекст</text><text class="sk-value" x="60" y="49" data-slot="cipher"></text></g>
-  <g class="sk-node sk-decrypt" data-key="decrypt"><rect width="120" height="74" rx="5"/><text class="sk-label sk-label-full" x="60" y="23">Расшифрование</text><text class="sk-label sk-label-short" x="60" y="23">Расшифровать</text><text class="sk-value" x="60" y="49" data-slot="decrypt"></text></g>
+  <g class="sk-node sk-decrypt" data-key="decrypt"><ellipse cx="60" cy="37" rx="60" ry="37"/><text class="sk-label sk-label-full" x="60" y="23">Расшифрование</text><text class="sk-label sk-label-short" x="60" y="23">Расшифровать</text><text class="sk-value" x="60" y="49" data-slot="decrypt"></text></g>
   <g class="sk-node sk-restored" data-key="restored"><rect width="120" height="74" rx="5"/><text class="sk-label sk-label-full" x="60" y="23">Сообщение</text><text class="sk-label sk-label-short" x="60" y="23">Сообщение</text><text class="sk-value" x="60" y="49" data-slot="restored"></text></g>
   <g class="sk-key" data-key="key"><text class="sk-key-label" x="45" y="20">Секретный ключ</text><text class="sk-value" x="45" y="47" data-slot="key"></text></g>
 </svg>

@@ -7,7 +7,7 @@
 .course-viz-cipher .cv-cipher-selection [aria-pressed="true"] { background:#d4eaf4; color:#203246; border-color:var(--cv-accent); }
 .course-viz-cipher .cv-cipher-graph { max-width:100%; margin:.25rem auto; }
 .course-viz-cipher .cv-cipher-graph svg { max-height:none; height:auto; }
-.course-viz-cipher .cv-cipher-graph svg:not(.is-wide):not(.is-medium) { max-width:380px; margin-inline:auto; }
+.course-viz-cipher .cv-cipher-graph svg:not(.is-wide):not(.is-medium) { max-width:500px; margin-inline:auto; }
 .course-viz-cipher .cv-cipher-graph svg.is-medium { max-width:680px; margin-inline:auto; }
 .course-viz-cipher .cv-cipher-tape { display:grid; grid-template-columns:repeat(9,minmax(0,1fr)); gap:3px; margin:.25rem 0; text-align:center; }
 .course-viz-cipher .cv-cipher-tape-column { display:grid; gap:3px; }

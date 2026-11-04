@@ -16,5 +16,5 @@ for source in sorted(BASE.rglob('graphs/*.dot')):
 crypto = BASE / 'crypto/static'
 source = (crypto / 'symmetric-key.svg').read_text()
 wide = source.replace('class="symmetric-key"', 'class="symmetric-key is-wide is-static-wide"', 1)
-wide = wide.replace('viewBox="0 0 380 254" width="380" height="254"', 'viewBox="0 0 1454 275" width="1454" height="275"', 1)
+wide = wide.replace('viewBox="0 0 500 254" width="500" height="254"', 'viewBox="0 0 1454 275" width="1454" height="275"', 1)
 (crypto / 'symmetric-key-slide.svg').write_text(wide)
