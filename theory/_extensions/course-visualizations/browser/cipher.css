@@ -74,3 +74,8 @@
 /* Линия нативного вычисления XOR: MathML выводит подчёркивание узким знаком. */
 #slide-crypto-xor-calculation math munder { border-bottom:2px solid currentColor; }
 #slide-crypto-xor-calculation math munder > mo[accent="true"] { visibility:hidden; }
+
+/* На аудиторном слайде показ сопровождается объяснением преподавателя. */
+.reveal .course-viz-caesar .cv-cipher-tape-label,
+.reveal .course-viz-caesar .cv-cipher-boundary { display:none; }
+.reveal .course-viz-caesar .cv-cipher-tape { grid-column:1 / -1; }
