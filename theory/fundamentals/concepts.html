@@ -9,7 +9,7 @@
 <meta name="author" content="Афоненко Анатолий">
 <meta name="author" content="Войтович Елизавета">
 
-<title>2&nbsp; Основные понятия и КЦД – Теория</title>
+<title>2&nbsp; Информационная безопасность – Теория</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -60,7 +60,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-contrib/course-presentation-0.1.0/presentation.js" data-course-runtime-asset="presentation.js" data-course-runtime-provider="course-presentation"></script>
 <link href="../site_libs/quarto-contrib/course-presentation-0.1.0/presentation.css" rel="stylesheet" data-course-runtime-asset="presentation.css" data-course-runtime-provider="course-presentation">
 <link href="../site_libs/quarto-contrib/course-navigation-header/header.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/course-visualizations-0.3.0/style.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/style.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/cipher.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/password.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/generator.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -100,9 +103,6 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand navbar-brand-logo" href="../../"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo light-content"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo dark-content">Основы кибербезопасности</a>
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Теория</span>
-    </a>
   </div><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Меню курса"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarCollapse"><ul class="navbar-nav navbar-nav-scroll me-auto"><li class="nav-item"><a class="nav-link" data-course-link="root" href="../../"><span class="menu-text">Курс</span></a></li><li class="nav-item"><a class="nav-link active" data-course-link="subproject-theory" href="../" aria-current="page"><span class="menu-text">Теория</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-task" href="../../task/"><span class="menu-text">Задания</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-seminars" href="../../seminars/"><span class="menu-text">Слайды занятий</span></a></li></ul></div>
         <div class="quarto-navbar-tools tools-end">
 </div>
@@ -114,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../fundamentals/concepts.html">Основные понятия</a></li><li class="breadcrumb-item"><a href="../fundamentals/concepts.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Основные понятия и КЦД</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../fundamentals/concepts.html">Основные понятия</a></li><li class="breadcrumb-item"><a href="../fundamentals/concepts.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Информационная безопасность</span></a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -147,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../fundamentals/concepts.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Основные понятия и КЦД</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Информационная безопасность</span></span></a>
   </div>
 </li>
       </ul>
@@ -187,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../security-center/organization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность и кибербезопасность: в чём разница?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -201,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-4-label">Стандарты, системы защиты и риски</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Требования к защите</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -215,7 +215,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-5-label">Идентификация и управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -229,7 +229,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-6-label">Случайность и криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -246,8 +246,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
+  <a href="../crypto/cypher.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -258,8 +258,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/cypher.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Шифрование</span></span></a>
+  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Известные алгоритмы</span></span></a>
   </div>
 </li>
       </ul>
@@ -267,13 +273,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-controls="quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-7-label">Целостность и резервное копирование</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-7-label">Сохранность данных</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../data-integrity/integrity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
   </div>
 </li>
       </ul>
@@ -281,13 +287,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-controls="quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-8-label">Подпись и доверие</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-8-label">Цифровая подпись</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-8" aria-labelledby="quarto-sidebar-section-8-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../crypto/public-key-outline.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
   </div>
 </li>
       </ul>
@@ -302,18 +308,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Содержание</h2>
    
   <ul>
-  <li><a href="#sec-theory-fundamentals-information-system" id="toc-sec-theory-fundamentals-information-system" class="nav-link active" data-scroll-target="#sec-theory-fundamentals-information-system"><span class="header-section-number">2.1</span> Информационная система и активы</a></li>
-  <li><a href="#sec-theory-fundamentals-cia" id="toc-sec-theory-fundamentals-cia" class="nav-link" data-scroll-target="#sec-theory-fundamentals-cia"><span class="header-section-number">2.2</span> Конфиденциальность, целостность и доступность</a></li>
-  <li><a href="#sec-theory-fundamentals-events-incidents" id="toc-sec-theory-fundamentals-events-incidents" class="nav-link" data-scroll-target="#sec-theory-fundamentals-events-incidents"><span class="header-section-number">2.3</span> Угрозы, уязвимости, события и инциденты</a></li>
+  <li><a href="#sec-theory-fundamentals-information-system" id="toc-sec-theory-fundamentals-information-system" class="nav-link active" data-scroll-target="#sec-theory-fundamentals-information-system"><span class="header-section-number">2.1</span> Активы информационной системы</a></li>
+  <li><a href="#sec-theory-fundamentals-cia" id="toc-sec-theory-fundamentals-cia" class="nav-link" data-scroll-target="#sec-theory-fundamentals-cia"><span class="header-section-number">2.2</span> Свойства информационной безопасности</a></li>
+  <li><a href="#sec-theory-fundamentals-events-incidents" id="toc-sec-theory-fundamentals-events-incidents" class="nav-link" data-scroll-target="#sec-theory-fundamentals-events-incidents"><span class="header-section-number">2.3</span> Инциденты информационной безопасности</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../fundamentals/concepts.html">Основные понятия</a></li><li class="breadcrumb-item"><a href="../fundamentals/concepts.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Основные понятия и КЦД</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../fundamentals/concepts.html">Основные понятия</a></li><li class="breadcrumb-item"><a href="../fundamentals/concepts.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Информационная безопасность</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-theory-fundamentals-concepts" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Основные понятия и КЦД</span></span></h1>
+<h1 class="title"><span id="sec-theory-fundamentals-concepts" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Информационная безопасность</span></span></h1>
 </div>
 
 
@@ -338,51 +344,75 @@ ul.task-list li input[type="checkbox"] {
 
 
 <section id="sec-theory-fundamentals-information-system" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="sec-theory-fundamentals-information-system"><span class="header-section-number">2.1</span> Информационная система и активы</h2>
-<p>В вопросе защиты информации в первую очередь важно определиться с тем, что мы защищаем.<br>
-<strong>Информационная система</strong> – совокупность банков данных, информационных технологий и комплекса (комплексов) программно-технических средств. То есть основными компонентами информационной системы с точки зрения информационной безопасности являются:<br>
+<h2 data-number="2.1" class="anchored" data-anchor-id="sec-theory-fundamentals-information-system"><span class="header-section-number">2.1</span> Активы информационной системы</h2>
+<p>В вопросе защиты информации в первую очередь важно определиться с тем, что мы защищаем.</p>
+<div id="def-information-system" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 2.1 (Информационная система)</strong></span> <strong>Информационная система</strong> – совокупность банков данных, информационных технологий и комплекса (комплексов) программно-технических средств.</p>
+</div>
+<p>То есть основными компонентами информационной системы с точки зрения информационной безопасности являются:<br>
 <strong>Данные:</strong> информация, которая хранится и обрабатывается в системе. Например, базы данных студентов с их номерами студенческих билетов, формой обучения&nbsp;оценками.<br>
 <strong>Программное обеспечение:</strong> программы и приложения, с помощью которых осуществляется функционирование информационной системы. Например, 1С для кадрового и бухгалтерского учёта, Moodle для обеспечения образовательного процесса.<br>
 <strong>Аппаратное обеспечение:</strong> компьютеры, серверы и сетевое оборудование, на котором всё это работает.<br>
 <strong>Персонал:</strong> люди, которые используют систему или обслуживают (администрируют) её.<br>
-<strong>Бизнес-процессы:</strong> инструкции и правила работы с информацией, режим доступа к ней. Например, доступ ко всему банку заданий для теста на образовательном портале есть только у преподавателя курса: он имеет право начать тестирование, принять задание и проверить результаты. Студент имеет право пройти тест в доступном ему курсе. Администратор ресурса выдаёт студентам и преподавателям доступ к тем или иным курсам.<br>
-Все эти элементы – <strong>активы информационной системы,</strong> то есть то, что имеет ценность и обеспечивает работу системы или выполнение задач организации. При этом активом может быть не только сама информация. Если сервер выйдет из строя, информация физически может остаться целой, но пользоваться системой будет невозможно. Если преподаватель потеряет возможность выставлять оценки по установленной процедуре, образовательный процесс тоже нарушится.<br>
+<strong>Бизнес-процессы:</strong> инструкции и правила работы с информацией, режим доступа к ней. Например, доступ ко всему банку заданий для теста на образовательном портале есть только у преподавателя курса: он имеет право начать тестирование, принять задание и проверить результаты. Студент имеет право пройти тест в доступном ему курсе. Администратор ресурса выдаёт студентам и преподавателям доступ к тем или иным курсам.</p>
+<div id="def-information-assets" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 2.2 (Активы информационной системы)</strong></span> Все эти элементы – <strong>активы информационной системы,</strong> то есть то, что имеет ценность и обеспечивает работу системы или выполнение задач организации.</p>
+</div>
+<p>При этом активом может быть не только сама информация. Если сервер выйдет из строя, информация физически может остаться целой, но пользоваться системой будет невозможно. Если преподаватель потеряет возможность выставлять оценки по установленной процедуре, образовательный процесс тоже нарушится.<br>
 Поэтому в безопасности важно сначала задать вопрос: <strong>что именно имеет ценность и от чего зависит работа системы?</strong><br>
 Информационной системой может быть как несколько компьютеров, объединённых в сеть, так и один компьютер. Как центр обработки данных, где работают тысячи информационных ресурсов, так и отдельный сайт.<br>
 Границы информационной системы определяет владелец. Исходя из логики её работы и здравого смысла.<br>
 Это важно, потому что защищать «вообще всё» невозможно. Сначала нужно понять, <strong>что входит в область рассмотрения</strong>, какие активы составляют информационную систему и что именно может нарушить ее функционирование.&nbsp;И здесь появляется следующий вопрос: что значит «защитить»?</p>
+<p>Границы и состав системы нужны и для определения её класса; этот следующий шаг разобран в <a href="../legal/system-classes.html" class="quarto-xref"><span>Глава 4</span></a>.</p>
 </section>
 <section id="sec-theory-fundamentals-cia" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="sec-theory-fundamentals-cia"><span class="header-section-number">2.2</span> Конфиденциальность, целостность и доступность</h2>
-<p><strong>Информационная безопасность</strong> – комплекс мероприятий по защите информации, которые обеспечивают её <strong>конфиденциальность, целостность и доступность</strong>.<br>
-Это также называют триадой <strong>КЦД</strong>: конфиденциальность, целостность, доступность. В англоязычной литературе используется обозначение CIA – Confidentiality, Integrity, Availability. Это базовая модель, через которую удобно описывать, что именно может пойти не так с информацией и системой.<br>
-<strong>Конфиденциальность</strong> – доступ к информации имеют только те, кто имеет на это право.<br>
-Например, расписание занятий университет публикует для всех студентов. Это нормально: информация изначально предназначена для широкого круга лиц. А ещё не опубликованные задания контрольной работы предназначены не для всех. Если студент получает доступ к заданиям за неделю до контрольной, проблема заключается в нарушении конфиденциальности такой информации.<br>
-<strong>Целостность</strong> – гарантия того, что данные не были изменены или уничтожены тем, кто не имел на это права, и что они остаются корректными.<br>
-Например, методистка изменила расписание в соответствии с установленной процедурой – это нормальное изменение. А если кто-то получил доступ к её компьютеру и устроил всем каникулы в середине семестра, нарушена целостность информации.<br>
-<strong>Доступность</strong> – состояние информации и системы, при котором те, кто имеет право ею пользоваться, могут своевременно выполнять разрешённые действия: читать, хранить, изменять, копировать и в предусмотренных случаях уничтожать информацию.<br>
-Например, афиша Капустника доступна всем студентам, а сценарий может быть доступен только группе организаторов, кураторам и редакторам.<br>
+<h2 data-number="2.2" class="anchored" data-anchor-id="sec-theory-fundamentals-cia"><span class="header-section-number">2.2</span> Свойства информационной безопасности</h2>
+<div id="def-information-security" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 2.3 (Информационная безопасность)</strong></span> <strong>Информационная безопасность</strong> – комплекс мероприятий по защите информации, которые обеспечивают её <strong>конфиденциальность, целостность и доступность</strong>.</p>
+</div>
+<p>Это также называют триадой <strong>КЦД</strong>: конфиденциальность, целостность, доступность. В англоязычной литературе используется обозначение CIA – Confidentiality, Integrity, Availability. Это базовая модель, через которую удобно описывать, что именно может пойти не так с информацией и системой.</p>
+<div id="def-confidentiality" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 2.4 (Конфиденциальность)</strong></span> <strong>Конфиденциальность</strong> – доступ к информации имеют только те, кто имеет на это право.</p>
+</div>
+<p>Например, расписание занятий университет публикует для всех студентов. Это нормально: информация изначально предназначена для широкого круга лиц. А ещё не опубликованные задания контрольной работы предназначены не для всех. Если студент получает доступ к заданиям за неделю до контрольной, проблема заключается в нарушении конфиденциальности такой информации.</p>
+<div id="def-integrity" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 2.5 (Целостность)</strong></span> <strong>Целостность</strong> – гарантия того, что данные не были изменены или уничтожены тем, кто не имел на это права, и что они остаются корректными.</p>
+</div>
+<p>Например, методистка изменила расписание в соответствии с установленной процедурой – это нормальное изменение. А если кто-то получил доступ к её компьютеру и устроил всем каникулы в середине семестра, нарушена целостность информации.</p>
+<div id="def-availability" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 2.6 (Доступность)</strong></span> <strong>Доступность</strong> – состояние информации и системы, при котором те, кто имеет право ею пользоваться, могут своевременно выполнять разрешённые действия: читать, хранить, изменять, копировать и в предусмотренных случаях уничтожать информацию.</p>
+</div>
+<p>Например, афиша Капустника доступна всем студентам, а сценарий может быть доступен только группе организаторов, кураторам и редакторам.<br>
 Если в день экзамена портал работает так, что студент не может открыть задание или отправить ответ, проблема уже не в том, кто имеет право на информацию. Проблема в том, что воспользоваться своим правом невозможно. Это нарушение доступности.<br>
 Эти три составляющие не являются взаимоисключающими и должны обеспечиваться в совокупности.<br>
 Одна и та же ситуация может затрагивать сразу несколько свойств. Например, злоумышленник может одновременно получить доступ к базе студентов, изменить данные и удалить часть записей. Тогда нарушены и конфиденциальность, и целостность, и доступность.<br>
 Но для анализа полезно уметь отвечать на более точный вопрос: <strong>какое свойство нарушено непосредственно описанным действием?</strong></p>
+<p>Правовые категории доступа к информации разобраны в <a href="../legal/information-access.html" class="quarto-xref"><span>Глава 3</span></a>, а виды мер для её защиты — в <a href="../legal/protection-measures.html" class="quarto-xref"><span>Глава 5</span></a>.</p>
 </section>
 <section id="sec-theory-fundamentals-events-incidents" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="sec-theory-fundamentals-events-incidents"><span class="header-section-number">2.3</span> Угрозы, уязвимости, события и инциденты</h2>
+<h2 data-number="2.3" class="anchored" data-anchor-id="sec-theory-fundamentals-events-incidents"><span class="header-section-number">2.3</span> Инциденты информационной безопасности</h2>
 <p>После того как мы разобрались, что защищаем и какие свойства хотим сохранить, возникает следующий вопрос: как вообще описывать происходящие проблемы?<br>
-Для этого нужны четыре понятия: <strong>угроза, уязвимость, событие и инцидент</strong>.<br>
-<strong>Угроза</strong>&nbsp;– возможное неблагоприятное воздействие на активы.<br>
-Например, студент может попытаться получить доступ к заданиям предстоящей контрольной. Сам факт того, что такое неблагоприятное воздействие возможно, уже относится к угрозе. Угроза не обязательно уже реализовалась.<br>
-<strong>Уязвимость</strong>&nbsp;– слабое место или условие, которое способствует реализации угрозы.<br>
-Например, преподаватель неосмотрительно оставил листы с заданиями на столе в аудитории без присмотра. Это само по себе ещё не означает, что кто-то сумел их сфотографировать и отправить в беседу потока. Но такое условие может помочь реализовать угрозу нарушения конфиденциальности этой информации.<br>
+Для этого нужны четыре понятия: <strong>угроза, уязвимость, событие и инцидент</strong>.</p>
+<div id="def-threat" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 2.7 (Угроза)</strong></span> <strong>Угроза</strong>&nbsp;– возможное неблагоприятное воздействие на активы.</p>
+</div>
+<p>Например, студент может попытаться получить доступ к заданиям предстоящей контрольной. Сам факт того, что такое неблагоприятное воздействие возможно, уже относится к угрозе. Угроза не обязательно уже реализовалась.</p>
+<div id="def-vulnerability" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 2.8 (Уязвимость)</strong></span> <strong>Уязвимость</strong>&nbsp;– слабое место или условие, которое способствует реализации угрозы.</p>
+</div>
+<p>Например, преподаватель неосмотрительно оставил листы с заданиями на столе в аудитории без присмотра. Это само по себе ещё не означает, что кто-то сумел их сфотографировать и отправить в беседу потока. Но такое условие может помочь реализовать угрозу нарушения конфиденциальности этой информации.<br>
 Иными словами:<br>
 <strong>угроза – что плохое потенциально может произойти;</strong><br>
 &nbsp;<strong>уязвимость – почему это может стать возможным.</strong><br>
-Дальше появляется <strong>событие</strong>.<br>
-<strong>Событие</strong>&nbsp;– наблюдаемое изменение состояния системы или наблюдаемое действие.<br>
-Например, студент сделал фото стола преподавателя. Мы пока просто знаем, что это произошло. Само по себе событие ещё не обязательно является инцидентом: задания могли не попасть в кадр.<br>
-И наконец, <strong>инцидент</strong>&nbsp;– событие или совокупность событий, которые привели или могут привести к нарушению конфиденциальности, целостности или доступности информации либо нарушают установленные требования безопасности и поэтому требуют реагирования.<br>
-Поэтому важно не смешивать эти понятия.<br>
+Дальше появляется <strong>событие</strong>.</p>
+<div id="def-security-event" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 2.9 (Событие)</strong></span> <strong>Событие</strong>&nbsp;– наблюдаемое изменение состояния системы или наблюдаемое действие.</p>
+</div>
+<p>Например, студент сделал фото стола преподавателя. Мы пока просто знаем, что это произошло. Само по себе событие ещё не обязательно является инцидентом: задания могли не попасть в кадр.</p>
+<div id="def-security-incident" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 2.10 (Инцидент)</strong></span> И наконец, <strong>инцидент</strong>&nbsp;– событие или совокупность событий, которые привели или могут привести к нарушению конфиденциальности, целостности или доступности информации либо нарушают установленные требования безопасности и поэтому требуют реагирования.</p>
+</div>
+<p>Поэтому важно не смешивать эти понятия.<br>
 Наличие уязвимости ещё не означает, что произошёл инцидент.<br>
 Наличие события тоже ещё не означает, что произошёл инцидент.<br>
 Фото преподавательского стола сделано – это событие.<br>
@@ -393,6 +423,7 @@ ul.task-list li input[type="checkbox"] {
 <strong>уязвимость → слабое место, которое помогает этому случиться;</strong><br>
 <strong>событие → что-то наблюдаемое произошло;</strong><br>
 <strong>инцидент → событие имеет отношение к нарушению безопасности и требует реагирования.</strong></p>
+<p>Как события анализируют и когда переходят к реагированию, показано в <a href="../security-center/workflow.html" class="quarto-xref"><span>Глава 7</span></a>. Оценка возможных последствий сценария рассматривается в <a href="../standards-risk/requirements-decisions.html#sec-theory-standards-risk-risk-model" class="quarto-xref"><span>Глава 8.5</span></a>.</p>
 
 
 

@@ -135,9 +135,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand navbar-brand-logo" href="../../"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo light-content"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo dark-content">Основы кибербезопасности</a>
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Задания</span>
-    </a>
   </div><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Меню курса"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarCollapse"><ul class="navbar-nav navbar-nav-scroll me-auto"><li class="nav-item"><a class="nav-link" data-course-link="root" href="../../"><span class="menu-text">Курс</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-theory" href="../../theory/"><span class="menu-text">Теория</span></a></li><li class="nav-item"><a class="nav-link active" data-course-link="subproject-task" href="../" aria-current="page"><span class="menu-text">Задания</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-seminars" href="../../seminars/"><span class="menu-text">Слайды занятий</span></a></li></ul></div>
         <div class="quarto-navbar-tools tools-end">
 </div>
@@ -200,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../bank/standards-risk.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Стандарты, системы защиты и риски</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Требования к защите</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -232,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../works/01-fundamentals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Занятие 1 – Понятия и КЦД</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Занятие 1 – Информационная безопасность</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -277,8 +274,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Содержание</h2>
    
   <ul class="collapse">
-  <li><a href="#sec-bank-access-control-identity" id="toc-sec-bank-access-control-identity" class="nav-link active" data-scroll-target="#sec-bank-access-control-identity"><span class="header-section-number">7.1</span> Вход и учётные записи</a></li>
-  <li><a href="#sec-bank-access-control-policies" id="toc-sec-bank-access-control-policies" class="nav-link" data-scroll-target="#sec-bank-access-control-policies"><span class="header-section-number">7.2</span> Политики и модели доступа</a></li>
+  <li><a href="#sec-bank-access-control-identity" id="toc-sec-bank-access-control-identity" class="nav-link active" data-scroll-target="#sec-bank-access-control-identity"><span class="header-section-number">7.1</span> Доступ к учётной записи</a></li>
+  <li><a href="#sec-bank-access-control-policies" id="toc-sec-bank-access-control-policies" class="nav-link" data-scroll-target="#sec-bank-access-control-policies"><span class="header-section-number">7.2</span> Модели управления доступом</a></li>
   <li><a href="#sec-bank-access-control-discussion" id="toc-sec-bank-access-control-discussion" class="nav-link" data-scroll-target="#sec-bank-access-control-discussion"><span class="header-section-number">7.3</span> Применение понятий</a></li>
   </ul>
 </nav>
@@ -306,7 +303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Дата публикации</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">3 ноября 2026 г.</p>
+      <p class="date">4 ноября 2026 г.</p>
     </div>
   </div>
   
@@ -319,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <section id="sec-bank-access-control-identity" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="sec-bank-access-control-identity"><span class="header-section-number">7.1</span> Вход и учётные записи</h2>
+<h2 data-number="7.1" class="anchored" data-anchor-id="sec-bank-access-control-identity"><span class="header-section-number">7.1</span> Доступ к учётной записи</h2>
 <div id="exr-access-control-request" class="theorem exercise" data-course-difficulty="introductory">
 <p><span class="theorem-title"><strong>Задача 7.1 (Запрос к банку заданий)</strong></span> &nbsp;</p>
 <div class="course-metadata">
@@ -368,7 +365,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="sec-bank-access-control-policies" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="sec-bank-access-control-policies"><span class="header-section-number">7.2</span> Политики и модели доступа</h2>
+<h2 data-number="7.2" class="anchored" data-anchor-id="sec-bank-access-control-policies"><span class="header-section-number">7.2</span> Модели управления доступом</h2>
 <div id="exr-access-control-combined" class="theorem exercise" data-course-difficulty="introductory">
 <p><span class="theorem-title"><strong>Задача 7.2 (Сравнение оснований доступа)</strong></span> &nbsp;</p>
 <div class="course-metadata">
@@ -618,15 +615,15 @@ vera, material/8, read, lena, draft</code></pre>
 </ol>
 </div>
 <div id="exr-access-short-totp-factor" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
-<p><span class="theorem-title"><strong>Задача 7.9 (Пароль и код приложения)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Задача 7.9 (Подтверждение входа)</strong></span> &nbsp;</p>
 <div class="course-metadata">
 <span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
 </div>
-<p>Портал сначала проверяет пароль пользователя, затем код TOTP. Код создаёт зарегистрированное приложение, которое хранит секрет <code>K</code> и показывает код без локальной проверки PIN или биометрии. Для входа нужны обе проверки.</p>
+<p>Портал сначала проверяет пароль пользователя, затем код TOTP. Код создаёт зарегистрированное приложение, которое хранит секрет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> и показывает код без локальной проверки PIN или биометрии. Для входа нужны обе проверки.</p>
 <ol type="1">
 <li>Какие факторы используются в этой процедуре? Какому этапу соответствует каждый из них?</li>
 <li>Достаточно ли украденного пароля для входа? Чем ещё должен воспользоваться посторонний?</li>
-<li>Как связаны сохранённый секрет <code>K</code> и вычисленный из него код? К какому фактору они относятся? Как копирование <code>K</code> на другой телефон повлияет на возможность пройти проверку?</li>
+<li>Как связаны сохранённый секрет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> и вычисленный из него код? К какому фактору они относятся? Как копирование <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> на другой телефон повлияет на возможность пройти проверку?</li>
 </ol>
 </div>
 

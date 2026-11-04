@@ -59,7 +59,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-contrib/course-presentation-0.1.0/presentation.js" data-course-runtime-asset="presentation.js" data-course-runtime-provider="course-presentation"></script>
 <link href="site_libs/quarto-contrib/course-presentation-0.1.0/presentation.css" rel="stylesheet" data-course-runtime-asset="presentation.css" data-course-runtime-provider="course-presentation">
 <link href="site_libs/quarto-contrib/course-navigation-header/header.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/course-visualizations-0.3.0/style.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/style.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/cipher.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/password.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/generator.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -99,9 +102,6 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand navbar-brand-logo" href="../"><img src="site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo light-content"><img src="site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo dark-content">Основы кибербезопасности</a>
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Теория</span>
-    </a>
   </div><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Меню курса"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarCollapse"><ul class="navbar-nav navbar-nav-scroll me-auto"><li class="nav-item"><a class="nav-link" data-course-link="root" href="../"><span class="menu-text">Курс</span></a></li><li class="nav-item"><a class="nav-link active" data-course-link="subproject-theory" href="./" aria-current="page"><span class="menu-text">Теория</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-task" href="../task/"><span class="menu-text">Задания</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-seminars" href="../seminars/"><span class="menu-text">Слайды занятий</span></a></li></ul></div>
         <div class="quarto-navbar-tools tools-end">
 </div>
@@ -146,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fundamentals/concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Основные понятия и КЦД</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Информационная безопасность</span></span></a>
   </div>
 </li>
       </ul>
@@ -186,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./security-center/organization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность и кибербезопасность: в чём разница?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -200,7 +200,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-4-label">Стандарты, системы защиты и риски</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Требования к защите</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -214,7 +214,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-5-label">Идентификация и управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -228,7 +228,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-6-label">Случайность и криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -245,8 +245,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./crypto/password-storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
+  <a href="./crypto/cypher.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -257,8 +257,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./crypto/cypher.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Шифрование</span></span></a>
+  <a href="./crypto/password-storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./crypto/algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Известные алгоритмы</span></span></a>
   </div>
 </li>
       </ul>
@@ -266,13 +272,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-controls="quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-7-label">Целостность и резервное копирование</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-7-label">Сохранность данных</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-integrity/integrity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
   </div>
 </li>
       </ul>
@@ -280,13 +286,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-controls="quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-8-label">Подпись и доверие</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-8-label">Цифровая подпись</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-8" aria-labelledby="quarto-sidebar-section-8-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./crypto/public-key-outline.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
   </div>
 </li>
       </ul>
@@ -338,21 +344,22 @@ ul.task-list li input[type="checkbox"] {
 <h1 data-number="1"><span class="header-section-number">1</span> Теория</h1>
 <p>Материалы об основных понятиях, правовых основах, организации обеспечения кибербезопасности, стандартах, системах защиты, рисках и криптографии.</p>
 <ul>
-<li><p><a href="fundamentals/concepts.html" class="quarto-xref"><span>Глава 2</span></a> — основные понятия и КЦД.</p></li>
-<li><p><a href="legal/information-access.html" class="quarto-xref"><span>Глава 3</span></a> — категории доступа к информации.</p></li>
-<li><p><a href="legal/system-classes.html" class="quarto-xref"><span>Глава 4</span></a> — классы информационных систем.</p></li>
-<li><p><a href="legal/protection-measures.html" class="quarto-xref"><span>Глава 5</span></a> — меры защиты информации.</p></li>
-<li><p><a href="security-center/organization.html" class="quarto-xref"><span>Глава 6</span></a> — организация обеспечения кибербезопасности.</p></li>
-<li><p><a href="security-center/workflow.html" class="quarto-xref"><span>Глава 7</span></a> — процесс оказания услуги обеспечения кибербезопасности.</p></li>
-<li><p><a href="standards-risk/requirements-decisions.html" class="quarto-xref"><span>Глава 8</span></a> — применение нормативно-правовых актов.</p></li>
-<li><p><a href="crypto/random.html" class="quarto-xref"><span>Глава 10</span></a> — генераторы случайных чисел и энтропия.</p></li>
-<li><p><a href="crypto/hash.html#sec-theory-crypto-hash" class="quarto-xref"><span>Глава 11.1</span></a> — хеширование и криптографические хеш-функции.</p></li>
-<li><p><a href="crypto/key-gen.html#sec-theory-crypto-key-gen" class="quarto-xref"><span>Глава 13.1</span></a> — получение криптографических ключей.</p></li>
-<li><p><a href="crypto/cypher.html#sec-theory-crypto-cypher" class="quarto-xref"><span>Глава 14.1</span></a> — симметричное шифрование.</p></li>
-<li><p><a href="access-control/access-control.html" class="quarto-xref"><span>Глава 9</span></a> — идентификация, аутентификация и управление доступом.</p></li>
-<li><p><a href="crypto/password-storage.html" class="quarto-xref"><span>Глава 12</span></a> — хранение паролей.</p></li>
-<li><p><a href="data-integrity/integrity.html" class="quarto-xref"><span>Глава 15</span></a> — контроль целостности, копии и RAID.</p></li>
-<li><p><a href="./crypto/public-key-outline.html">Подпись и доверие</a> — создание и проверка подписи, принадлежность ключа и сертификаты.</p></li>
+<li><a href="fundamentals/concepts.html" class="quarto-xref"><span>Глава 2</span></a> — основные понятия и КЦД.</li>
+<li><a href="legal/information-access.html" class="quarto-xref"><span>Глава 3</span></a> — категории доступа к информации.</li>
+<li><a href="legal/system-classes.html" class="quarto-xref"><span>Глава 4</span></a> — классы информационных систем.</li>
+<li><a href="legal/protection-measures.html" class="quarto-xref"><span>Глава 5</span></a> — меры защиты информации.</li>
+<li><a href="security-center/organization.html" class="quarto-xref"><span>Глава 6</span></a> — организация обеспечения кибербезопасности.</li>
+<li><a href="security-center/workflow.html" class="quarto-xref"><span>Глава 7</span></a> — процесс оказания услуги обеспечения кибербезопасности.</li>
+<li><a href="standards-risk/requirements-decisions.html" class="quarto-xref"><span>Глава 8</span></a> — применение нормативно-правовых актов.</li>
+<li><a href="access-control/access-control.html" class="quarto-xref"><span>Глава 9</span></a> — идентификация, аутентификация и управление доступом.</li>
+<li><a href="crypto/random.html" class="quarto-xref"><span>Глава 10</span></a> — генераторы случайных чисел и энтропия.</li>
+<li><a href="crypto/hash.html" class="quarto-xref"><span>Глава 11</span></a> — хеширование и криптографические хеш-функции.</li>
+<li><a href="crypto/cypher.html" class="quarto-xref"><span>Глава 12</span></a> — симметричное шифрование.</li>
+<li><a href="crypto/key-gen.html" class="quarto-xref"><span>Глава 13</span></a> — получение криптографических ключей.</li>
+<li><a href="crypto/password-storage.html" class="quarto-xref"><span>Глава 14</span></a> — хранение паролей.</li>
+<li><a href="crypto/algorithms.html" class="quarto-xref"><span>Глава 15</span></a> — известные криптографические алгоритмы.</li>
+<li><a href="data-integrity/integrity.html" class="quarto-xref"><span>Глава 16</span></a> — контроль целостности, копии и RAID.</li>
+<li><a href="crypto/public-key-outline.html" class="quarto-xref"><span>Глава 17</span></a> — создание и проверка подписи, принадлежность ключа и сертификаты.</li>
 </ul>
 
 
@@ -767,8 +774,8 @@ ul.task-list li input[type="checkbox"] {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./fundamentals/concepts.html" class="pagination-link" aria-label="Основные понятия и КЦД">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Основные понятия и КЦД</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./fundamentals/concepts.html" class="pagination-link" aria-label="Информационная безопасность">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Информационная безопасность</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

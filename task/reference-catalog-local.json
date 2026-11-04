@@ -581,22 +581,22 @@
       "id": "sec-bank-access-control-identity",
       "page": "bank/access-control.html",
       "fragment": "sec-bank-access-control-identity",
-      "labelHtml": "Вход и учётные записи",
+      "labelHtml": "Доступ к учётной записи",
       "numberHtml": "",
-      "label": "Вход и учётные записи",
+      "label": "Доступ к учётной записи",
       "number": "",
-      "title": "Вход и учётные записи"
+      "title": "Доступ к учётной записи"
     },
     "tasks:sec-bank-access-control-policies": {
       "namespace": "tasks",
       "id": "sec-bank-access-control-policies",
       "page": "bank/access-control.html",
       "fragment": "sec-bank-access-control-policies",
-      "labelHtml": "Политики и модели доступа",
+      "labelHtml": "Модели управления доступом",
       "numberHtml": "",
-      "label": "Политики и модели доступа",
+      "label": "Модели управления доступом",
       "number": "",
-      "title": "Политики и модели доступа"
+      "title": "Модели управления доступом"
     },
     "tasks:sec-bank-crypto": {
       "namespace": "tasks",
@@ -625,11 +625,11 @@
       "id": "sec-bank-crypto-practice",
       "page": "bank/crypto.html",
       "fragment": "sec-bank-crypto-practice",
-      "labelHtml": "Пароли, шифрование и подписи",
+      "labelHtml": "Применение криптографии",
       "numberHtml": "",
-      "label": "Пароли, шифрование и подписи",
+      "label": "Применение криптографии",
       "number": "",
-      "title": "Пароли, шифрование и подписи"
+      "title": "Применение криптографии"
     },
     "tasks:sec-bank-data-integrity": {
       "namespace": "tasks",
@@ -658,22 +658,22 @@
       "id": "sec-bank-fundamentals-analysis",
       "page": "bank/fundamentals.html",
       "fragment": "sec-bank-fundamentals-analysis",
-      "labelHtml": "Анализ ситуаций и инцидентов",
+      "labelHtml": "Анализ инцидентов",
       "numberHtml": "",
-      "label": "Анализ ситуаций и инцидентов",
+      "label": "Анализ инцидентов",
       "number": "",
-      "title": "Анализ ситуаций и инцидентов"
+      "title": "Анализ инцидентов"
     },
     "tasks:sec-bank-fundamentals-concepts": {
       "namespace": "tasks",
       "id": "sec-bank-fundamentals-concepts",
       "page": "bank/fundamentals.html",
       "fragment": "sec-bank-fundamentals-concepts",
-      "labelHtml": "Понятия и свойства безопасности",
+      "labelHtml": "Свойства безопасности",
       "numberHtml": "",
-      "label": "Понятия и свойства безопасности",
+      "label": "Свойства безопасности",
       "number": "",
-      "title": "Понятия и свойства безопасности"
+      "title": "Свойства безопасности"
     },
     "tasks:sec-bank-legal": {
       "namespace": "tasks",
@@ -691,11 +691,11 @@
       "id": "sec-bank-legal-classification",
       "page": "bank/legal.html",
       "fragment": "sec-bank-legal-classification",
-      "labelHtml": "Классификация информации и меры защиты",
+      "labelHtml": "Классификация информации",
       "numberHtml": "",
-      "label": "Классификация информации и меры защиты",
+      "label": "Классификация информации",
       "number": "",
-      "title": "Классификация информации и меры защиты"
+      "title": "Классификация информации"
     },
     "tasks:sec-bank-legal-verification": {
       "namespace": "tasks",
@@ -728,7 +728,7 @@
       "numberHtml": "<span>5</span>",
       "label": "Глава 5",
       "number": "5",
-      "title": "Стандарты, системы защиты и риски"
+      "title": "Требования к защите"
     },
     "tasks:sec-bank-standards-risk-estimation": {
       "namespace": "tasks",
@@ -746,11 +746,11 @@
       "id": "sec-bank-standards-risk-requirements",
       "page": "bank/standards-risk.html",
       "fragment": "sec-bank-standards-risk-requirements",
-      "labelHtml": "Выбор и применение требований",
+      "labelHtml": "Применение требований",
       "numberHtml": "",
-      "label": "Выбор и применение требований",
+      "label": "Применение требований",
       "number": "",
-      "title": "Выбор и применение требований"
+      "title": "Применение требований"
     },
     "tasks:sec-control-demo": {
       "namespace": "tasks",
@@ -805,7 +805,7 @@
       "numberHtml": "<span>9</span>",
       "label": "Глава 9",
       "number": "9",
-      "title": "Занятие 1 – Понятия и КЦД"
+      "title": "Занятие 1 – Информационная безопасность"
     },
     "tasks:sec-work-legal-requirements": {
       "namespace": "tasks",

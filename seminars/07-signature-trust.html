@@ -11,12 +11,15 @@
 <script src="site_libs/quarto-contrib/course-presentation-0.1.0/disclosure.js" data-course-runtime-asset="disclosure.js" data-course-runtime-provider="course-presentation"></script>
 <script src="site_libs/quarto-contrib/course-presentation-0.1.0/presentation.js" data-course-runtime-asset="presentation.js" data-course-runtime-provider="course-presentation"></script>
 <link href="site_libs/quarto-contrib/course-presentation-0.1.0/presentation.css" rel="stylesheet" data-course-runtime-asset="presentation.css" data-course-runtime-provider="course-presentation">
-<link href="site_libs/quarto-contrib/course-visualizations-0.3.0/style.css" rel="stylesheet"><meta charset="utf-8">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/style.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/cipher.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/password.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/generator.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.11.6">
 
   <meta name="author" content="Афоненко Анатолий">
   <meta name="author" content="Войтович Елизавета">
-  <title>Семинары — Основы кибербезопасности – Семинар 7 — Подпись и доверие к ключу</title>
+  <title>Семинары — Основы кибербезопасности – Семинар 7 — Цифровая подпись</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -142,21 +145,57 @@
 
 
 <section id="sec-seminar-7" class="title-slide slide level1 center">
-<h1>Семинар 7 — Подпись и доверие к ключу</h1>
+<h1>Семинар 7 — Цифровая подпись</h1>
 <p>Как проверить происхождение и неизменность сообщения, а затем определить, можно ли ему доверять в данном контексте.</p>
 </section>
 
 <section>
+<section id="sec-seminar-7-public-key" class="title-slide slide level1 center">
+<h1>Асимметричные схемы</h1>
+
+</section>
+<section id="гибридное-применение" class="slide level2">
+<h2>Гибридное применение</h2>
+<p><code>установление общего секрета → KDF → симметричный ключ → AEAD данных</code></p>
+<p>Асимметричные схемы используют пару открытого и закрытого ключей и помогают установить общий секрет; KDF выводит ключ, а AEAD защищает данные. Открытый ключ надо связать с нужным владельцем. Подробности: <a data-qrc-custom="false" data-qrc-ref="theory:sec-theory-public-key" data-qrc-style="default" class="qrc-link" href="../theory/crypto/public-key-outline.html#sec-theory-public-key"><span>Глава 17</span></a>.</p>
+</section>
+<section id="назначения-асимметрических-схем" class="slide level2 smaller">
+<h2>Назначения асимметрических схем</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Схема</th>
+<th>Действие</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>RSA-OAEP</td>
+<td>Шифрование небольшого сообщения получателю</td>
+</tr>
+<tr class="even">
+<td>ECDH</td>
+<td>Согласование общего секрета; затем нужна KDF</td>
+</tr>
+<tr class="odd">
+<td>ECDSA, Ed25519</td>
+<td>Создание и проверка подписи</td>
+</tr>
+</tbody>
+</table>
+<p>Открытый ключ нужно связать с нужным владельцем. ECDH само по себе не устанавливает личность сторон.</p>
+</section></section>
+<section>
 <section id="sec-seminar-7-signatures" class="title-slide slide level1 center">
-<h1>Подпись и проверка сообщения</h1>
+<h1>Проверка цифровой подписи</h1>
 
 </section>
 <section id="два-применения-пары-ключей" class="slide level2 smaller">
 <h2>Два применения пары ключей</h2>
 <p><strong>Секрет для получателя:</strong> отправитель шифрует сообщение открытым ключом получателя; получатель использует свой закрытый ключ для расшифрования.</p>
 <p><strong>Подпись автора:</strong> автор создаёт подпись закрытым ключом, получатель проверяет её открытым:</p>
-<p><code>подпись = Sign(закрытый ключ автора, сообщение)</code></p>
-<p><code>результат = Verify(открытый ключ автора, сообщение, подпись)</code></p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">подпись</mtext><mo>=</mo><mrow><mi mathvariant="normal">Sign</mi><mo>⁡</mo></mrow><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">закрытый ключ автора</mtext><mo>,</mo><mspace width="0.222em"></mspace><mtext mathvariant="normal">сообщение</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{подпись} = \operatorname{Sign}(\text{закрытый ключ автора},\ \text{сообщение})</annotation></semantics></math></p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">результат</mtext><mo>=</mo><mrow><mi mathvariant="normal">Verify</mi><mo>⁡</mo></mrow><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">открытый ключ автора</mtext><mo>,</mo><mspace width="0.222em"></mspace><mtext mathvariant="normal">сообщение</mtext><mo>,</mo><mspace width="0.222em"></mspace><mtext mathvariant="normal">подпись</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{результат} = \operatorname{Verify}(\text{открытый ключ автора},\ \text{сообщение},\ \text{подпись})</annotation></semantics></math></p>
 <p>Успешная проверка относится к конкретному сообщению и ключу. Она не скрывает сообщение и не устанавливает полномочия автора.</p>
 </section>
 <section id="пример-расписание" class="slide level2">
@@ -164,8 +203,8 @@
 <p>Ира подписывает байты расписания своим закрытым ключом и передаёт файл с подписью. Получатель проверяет оба с открытым ключом Иры. Изменение файла или подписи обычно приводит к неуспешной проверке.</p>
 <p>Но сначала нужно установить, что открытый ключ действительно принадлежит Ире: иначе атакующий может подменить и файл, и ключ, и подпись.</p>
 </section>
-<section id="hmac-и-подпись" class="slide level2">
-<h2>HMAC и подпись</h2>
+<section id="аутентификация-сообщения" class="slide level2">
+<h2>Аутентификация сообщения</h2>
 <p>Ира и Максим знают общий секрет HMAC и проверяют метку сообщения. Каждый из них может создать такую же допустимую метку: сторонний наблюдатель не отличит автора по одной метке.</p>
 <p>Цифровая подпись проверяется открытым ключом; при надёжной защите закрытого ключа она связывает сообщение с владельцем этого ключа.</p>
 </section>
@@ -182,11 +221,11 @@
 </section></section>
 <section>
 <section id="sec-seminar-7-trust" class="title-slide slide level1 center">
-<h1>Доверие к ключу и полномочия</h1>
+<h1>Доверие к ключу</h1>
 
 </section>
-<section id="сертификат-и-доверие" class="slide level2">
-<h2>Сертификат и доверие</h2>
+<section id="проверка-сертификата" class="slide level2">
+<h2>Проверка сертификата</h2>
 <p>Сертификат связывает сведения о владельце с открытым ключом и подписывается удостоверяющей стороной. Получатель проверяет цепочку к доверенному основанию, имя и назначение, срок и сведения об отзыве по применимым правилам.</p>
 <p>При компрометации закрытого ключа владелец прекращает его использование и сообщает удостоверяющей стороне для отзыва; получателям нужен новый проверенный ключ. Значимы время и правила проверки: истечение срока сегодня само по себе не опровергает все прежние подписи.</p>
 </section>

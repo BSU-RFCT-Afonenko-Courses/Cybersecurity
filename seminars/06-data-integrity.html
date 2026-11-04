@@ -11,7 +11,10 @@
 <script src="site_libs/quarto-contrib/course-presentation-0.1.0/disclosure.js" data-course-runtime-asset="disclosure.js" data-course-runtime-provider="course-presentation"></script>
 <script src="site_libs/quarto-contrib/course-presentation-0.1.0/presentation.js" data-course-runtime-asset="presentation.js" data-course-runtime-provider="course-presentation"></script>
 <link href="site_libs/quarto-contrib/course-presentation-0.1.0/presentation.css" rel="stylesheet" data-course-runtime-asset="presentation.css" data-course-runtime-provider="course-presentation">
-<link href="site_libs/quarto-contrib/course-visualizations-0.3.0/style.css" rel="stylesheet"><meta charset="utf-8">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/style.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/cipher.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/password.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/generator.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.11.6">
 
   <meta name="author" content="Афоненко Анатолий">
@@ -210,7 +213,7 @@
 
 
 <section id="sec-seminar-6" class="title-slide slide level1 center">
-<h1>Занятие 6 – Целостность и копии</h1>
+<h1>Занятие 6 – Сохранность данных</h1>
 
 </section>
 
@@ -237,48 +240,30 @@
 <div class="course-metadata">
 <span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Средний</span>
 </div>
-<p>На сайте лежали файл <code>F</code> и его хеш <code>H(F)</code>. Атакующий заменил их на <code>G</code> и <code>H(G)</code>. Проверка совпала. Доказано ли происхождение файла?</p>
+<p>На сайте лежали файл <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math> и его хеш <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false" form="prefix">(</mo><mi>F</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">H(F)</annotation></semantics></math>. Атакующий заменил их на <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>G</mi><annotation encoding="application/x-tex">G</annotation></semantics></math> и <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false" form="prefix">(</mo><mi>G</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">H(G)</annotation></semantics></math>. Проверка совпала. Доказано ли происхождение файла?</p>
 </div>
 </section>
-<section id="замена-файла-и-эталона" class="slide level2">
-<h2>Замена файла и эталона</h2>
+<section id="подмена-эталона" class="slide level2">
+<h2>Подмена эталона</h2>
+<div class="cell hidden">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="1" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a aria-label="1"></a>referenceReplacementLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/data-integrity/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display hidden">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="34" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 33;"><span id="cb1-34"><a aria-label="34"></a>integrityLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/data-integrity/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span>
-<span id="cb1-35"><a aria-label="35"></a>integrityLesson<span class="op">.</span><span class="fu">referenceReplacement</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-slide-integrity-reference" class="cell quarto-float quarto-figure quarto-figure-center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="2" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1;"><span id="cb2-2"><a aria-label="2"></a>referenceReplacementLesson<span class="op">.</span><span class="fu">referenceReplacement</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fig-integrity-reference" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-slide-integrity-reference-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display">
-<div id="fig-slide-integrity-reference-1" class="quarto-float quarto-figure quarto-figure-center">
-<figure class="quarto-float quarto-subfloat-fig">
-<div aria-describedby="fig-slide-integrity-reference-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-1-1" data-nodetype="declaration">
+<div aria-describedby="fig-integrity-reference-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="ojs-cell-2" data-nodetype="expression">
 
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-slide-integrity-reference-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a)
-</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div id="fig-slide-integrity-reference-2" class="quarto-float quarto-figure quarto-figure-center">
-<figure class="quarto-float quarto-subfloat-fig">
-<div aria-describedby="fig-slide-integrity-reference-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-1-2" data-nodetype="expression">
-
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-slide-integrity-reference-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b)
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-integrity-reference-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;2: Замена файла и эталона
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-integrity-reference-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;2: Подмена эталона
 </figcaption>
 </figure>
 </div>
@@ -286,12 +271,12 @@
 </section></section>
 <section>
 <section id="sec-seminar-6-backups" class="title-slide slide level1 center">
-<h1>Резервное копирование и восстановление</h1>
+<h1>Резервное копирование</h1>
 
 </section>
 <section id="три-схемы-на-одних-изменениях" class="slide level2">
 <h2>Три схемы на одних изменениях</h2>
-<p>Целые файлы A = 2, B = 3, C = 5 МБ; воскресенье — полная копия, затем изменяются A, B и снова A. Копируем ежедневно после правки.</p>
+<p>Целые файлы <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">A = 2</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">B = 3</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">C = 5</annotation></semantics></math> МБ; воскресенье — полная копия, затем изменяются A, B и снова A. Копируем ежедневно после правки.</p>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -344,7 +329,7 @@
 <div class="course-metadata">
 <span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
 </div>
-<p>Копируются целые файлы <code>A = 2</code>, <code>B = 3</code>, <code>C = 5</code> МБ постоянного размера; добавлений, удалений, сжатия и дедупликации нет. В воскресенье сделана полная копия. В понедельник изменён A, во вторник B, в среду снова A; ежедневно после правки создаётся копия. Каков объём создаваемой в среду полной, инкрементной и дифференциальной копии?</p>
+<p>Копируются целые файлы <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">A = 2</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">B = 3</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">C = 5</annotation></semantics></math> МБ постоянного размера; добавлений, удалений, сжатия и дедупликации нет. В воскресенье сделана полная копия. В понедельник изменён A, во вторник B, в среду снова A; ежедневно после правки создаётся копия. Каков объём создаваемой в среду полной, инкрементной и дифференциальной копии?</p>
 </div>
 </section>
 <section id="сравнение-объёма-копий" class="slide level2">
@@ -364,11 +349,11 @@
 </section></section>
 <section>
 <section id="sec-seminar-6-raid" class="title-slide slide level1 center">
-<h1>Массивы дисков и восстановление</h1>
+<h1>Восстановление в массивах дисков</h1>
 
 </section>
-<section id="raid-0-1-и-5" class="slide level2">
-<h2>RAID 0, 1 и 5</h2>
+<section id="уровни-raid" class="slide level2">
+<h2>Уровни RAID</h2>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -413,21 +398,29 @@
 </p></section>
 <section id="восстановление-xor" class="slide level2">
 <h2>Восстановление XOR</h2>
-<p><code>P = A XOR B</code>, <code>A = 1010</code>, <code>P = 0110</code> → <code>B = A XOR P = 1100</code>.</p>
-<p>Из одного P нельзя однозначно вернуть оба отсутствующих блока: <code>0000 XOR 0110 = 0110</code> и <code>1010 XOR 1100 = 0110</code>.</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo><mi>A</mi><mo>⊕</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">P = A \oplus B</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mn mathvariant="monospace">𝟷𝟶𝟷𝟶</mn></mrow><annotation encoding="application/x-tex">A = \mathtt{1010}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo><mn mathvariant="monospace">𝟶𝟷𝟷𝟶</mn></mrow><annotation encoding="application/x-tex">P = \mathtt{0110}</annotation></semantics></math> → <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo><mi>A</mi><mo>⊕</mo><mi>P</mi><mo>=</mo><mn mathvariant="monospace">𝟷𝟷𝟶𝟶</mn></mrow><annotation encoding="application/x-tex">B = A \oplus P = \mathtt{1100}</annotation></semantics></math>.</p>
+<p>Из одного <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math> нельзя однозначно вернуть оба отсутствующих блока: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn mathvariant="monospace">𝟶𝟶𝟶𝟶</mn><mo>⊕</mo><mn mathvariant="monospace">𝟶𝟷𝟷𝟶</mn><mo>=</mo><mn mathvariant="monospace">𝟶𝟷𝟷𝟶</mn></mrow><annotation encoding="application/x-tex">\mathtt{0000} \oplus \mathtt{0110} = \mathtt{0110}</annotation></semantics></math> и <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn mathvariant="monospace">𝟷𝟶𝟷𝟶</mn><mo>⊕</mo><mn mathvariant="monospace">𝟷𝟷𝟶𝟶</mn><mo>=</mo><mn mathvariant="monospace">𝟶𝟷𝟷𝟶</mn></mrow><annotation encoding="application/x-tex">\mathtt{1010} \oplus \mathtt{1100} = \mathtt{0110}</annotation></semantics></math>.</p>
 </section>
 <section id="иллюстрация-восстановления-xor" class="slide level2">
 <h2>Иллюстрация восстановления XOR</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="101" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 100;"><span id="cb2-101"><a aria-label="101"></a>integrityLesson<span class="op">.</span><span class="fu">xorRecovery</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-slide-integrity-xor" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-slide-integrity-xor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-2" data-nodetype="expression">
+<div class="cell hidden">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="1" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a aria-label="1"></a>xorRecoveryLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/data-integrity/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display hidden">
+<div id="ojs-cell-3" data-nodetype="declaration">
 
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-integrity-xor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="2" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1;"><span id="cb4-2"><a aria-label="2"></a>xorRecoveryLesson<span class="op">.</span><span class="fu">xorRecovery</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fig-integrity-xor" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-integrity-xor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-integrity-xor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Рисунок&nbsp;5: Восстановление блока по XOR
 </figcaption>
 </figure>
@@ -438,7 +431,7 @@
 <h2>Вопрос для обсуждения</h2>
 <!-- Создано CI/prepare-bank-fragments.py из task/bank/data-integrity.qmd; не редактировать. -->
 <div id="exr-data-integrity-mirror-copy" class="course-block course-role-discussion theorem exercise" target="manual" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="intermediate">
-<p><span class="theorem-title"><strong>Упражнение 3 (Зеркало и копия)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Упражнение 3 (Защита от удаления)</strong></span> &nbsp;</p>
 <div class="course-metadata">
 <span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Средний</span>
 </div>
@@ -452,16 +445,24 @@
 </section>
 <section id="запас-простая-сумма" class="slide level2">
 <h2>Запас: простая сумма</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="116" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 115;"><span id="cb3-116"><a aria-label="116"></a>integrityLesson<span class="op">.</span><span class="fu">sumCollision</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-slide-integrity-collision" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-slide-integrity-collision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-3" data-nodetype="expression">
+<div class="cell hidden">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="1" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a aria-label="1"></a>sumCollisionLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/data-integrity/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display hidden">
+<div id="ojs-cell-5" data-nodetype="declaration">
 
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-integrity-collision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="2" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1;"><span id="cb6-2"><a aria-label="2"></a>sumCollisionLesson<span class="op">.</span><span class="fu">sumCollision</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fig-integrity-sum-collision" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-integrity-sum-collision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-integrity-sum-collision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Рисунок&nbsp;6: Коллизия простой суммы
 </figcaption>
 </figure>
@@ -470,17 +471,25 @@
 </section>
 <section id="запас-изменение-байта" class="slide level2">
 <h2>Запас: изменение байта</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="125" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 124;"><span id="cb4-125"><a aria-label="125"></a>integrityLesson<span class="op">.</span><span class="fu">byteChange</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-slide-integrity-byte" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-slide-integrity-byte-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-4" data-nodetype="expression">
+<div class="cell hidden">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="1" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a aria-label="1"></a>byteChangeLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/data-integrity/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display hidden">
+<div id="ojs-cell-7" data-nodetype="declaration">
 
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-integrity-byte-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;7: Изменение байта
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="2" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1;"><span id="cb8-2"><a aria-label="2"></a>byteChangeLesson<span class="op">.</span><span class="fu">byteChange</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fig-integrity-byte-change" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-integrity-byte-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="ojs-cell-8" data-nodetype="expression">
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-integrity-byte-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;7: Проверка изменения байта
 </figcaption>
 </figure>
 </div>
@@ -700,7 +709,7 @@
       });
     </script>
     <script type="ojs-module-contents">
-    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImludGVncml0eUxlc3NvbiA9IGF3YWl0IGltcG9ydChhd2FpdCBGaWxlQXR0YWNobWVudChcIi9fcHJlcGFyZWQvdmlzdWFsaXphdGlvbnMvZGF0YS1pbnRlZ3JpdHkvbGVzc29uLmpzXCIpLnVybCgpKVxuaW50ZWdyaXR5TGVzc29uLnJlZmVyZW5jZVJlcGxhY2VtZW50KClcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImludGVncml0eUxlc3Nvbi54b3JSZWNvdmVyeSgpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJpbnRlZ3JpdHlMZXNzb24uc3VtQ29sbGlzaW9uKClcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImludGVncml0eUxlc3Nvbi5ieXRlQ2hhbmdlKClcbiJ9XX0=
+    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InJlZmVyZW5jZVJlcGxhY2VtZW50TGVzc29uID0gYXdhaXQgaW1wb3J0KGF3YWl0IEZpbGVBdHRhY2htZW50KFwiL19wcmVwYXJlZC92aXN1YWxpemF0aW9ucy9kYXRhLWludGVncml0eS9sZXNzb24uanNcIikudXJsKCkpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJyZWZlcmVuY2VSZXBsYWNlbWVudExlc3Nvbi5yZWZlcmVuY2VSZXBsYWNlbWVudCgpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ4b3JSZWNvdmVyeUxlc3NvbiA9IGF3YWl0IGltcG9ydChhd2FpdCBGaWxlQXR0YWNobWVudChcIi9fcHJlcGFyZWQvdmlzdWFsaXphdGlvbnMvZGF0YS1pbnRlZ3JpdHkvbGVzc29uLmpzXCIpLnVybCgpKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC00IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoieG9yUmVjb3ZlcnlMZXNzb24ueG9yUmVjb3ZlcnkoKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoic3VtQ29sbGlzaW9uTGVzc29uID0gYXdhaXQgaW1wb3J0KGF3YWl0IEZpbGVBdHRhY2htZW50KFwiL19wcmVwYXJlZC92aXN1YWxpemF0aW9ucy9kYXRhLWludGVncml0eS9sZXNzb24uanNcIikudXJsKCkpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTYiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJzdW1Db2xsaXNpb25MZXNzb24uc3VtQ29sbGlzaW9uKClcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImJ5dGVDaGFuZ2VMZXNzb24gPSBhd2FpdCBpbXBvcnQoYXdhaXQgRmlsZUF0dGFjaG1lbnQoXCIvX3ByZXBhcmVkL3Zpc3VhbGl6YXRpb25zL2RhdGEtaW50ZWdyaXR5L2xlc3Nvbi5qc1wiKS51cmwoKSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtOCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImJ5dGVDaGFuZ2VMZXNzb24uYnl0ZUNoYW5nZSgpXG4ifV19
     </script>
     <script type="module">
     if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }

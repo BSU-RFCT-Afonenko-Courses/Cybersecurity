@@ -73,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../crypto/password-storage.html" rel="next">
+<link href="../crypto/cypher.html" rel="next">
 <link href="../crypto/random.html" rel="prev">
 <link href="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -95,7 +95,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-contrib/course-presentation-0.1.0/presentation.js" data-course-runtime-asset="presentation.js" data-course-runtime-provider="course-presentation"></script>
 <link href="../site_libs/quarto-contrib/course-presentation-0.1.0/presentation.css" rel="stylesheet" data-course-runtime-asset="presentation.css" data-course-runtime-provider="course-presentation">
 <link href="../site_libs/quarto-contrib/course-navigation-header/header.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/course-visualizations-0.3.0/style.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/style.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/cipher.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/password.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/generator.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -137,9 +140,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand navbar-brand-logo" href="../../"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo light-content"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo dark-content">Основы кибербезопасности</a>
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Теория</span>
-    </a>
   </div><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Меню курса"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarCollapse"><ul class="navbar-nav navbar-nav-scroll me-auto"><li class="nav-item"><a class="nav-link" data-course-link="root" href="../../"><span class="menu-text">Курс</span></a></li><li class="nav-item"><a class="nav-link active" data-course-link="subproject-theory" href="../" aria-current="page"><span class="menu-text">Теория</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-task" href="../../task/"><span class="menu-text">Задания</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-seminars" href="../../seminars/"><span class="menu-text">Слайды занятий</span></a></li></ul></div>
         <div class="quarto-navbar-tools tools-end">
 </div>
@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/random.html">Случайность и криптография</a></li><li class="breadcrumb-item"><a href="../crypto/hash.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Хеш-функции</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/random.html">Криптография</a></li><li class="breadcrumb-item"><a href="../crypto/hash.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Хеш-функции</span></a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -184,7 +184,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../fundamentals/concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Основные понятия и КЦД</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Информационная безопасность</span></span></a>
   </div>
 </li>
       </ul>
@@ -224,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../security-center/organization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность и кибербезопасность: в чём разница?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -238,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-4-label">Стандарты, системы защиты и риски</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Требования к защите</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -252,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-5-label">Идентификация и управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -266,7 +266,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-6-label">Случайность и криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -283,8 +283,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
+  <a href="../crypto/cypher.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -295,8 +295,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/cypher.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Шифрование</span></span></a>
+  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Известные алгоритмы</span></span></a>
   </div>
 </li>
       </ul>
@@ -304,13 +310,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-controls="quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-7-label">Целостность и резервное копирование</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-7-label">Сохранность данных</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../data-integrity/integrity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
   </div>
 </li>
       </ul>
@@ -318,13 +324,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-controls="quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-8-label">Подпись и доверие</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-8-label">Цифровая подпись</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-8" aria-labelledby="quarto-sidebar-section-8-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../crypto/public-key-outline.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
   </div>
 </li>
       </ul>
@@ -339,20 +345,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Содержание</h2>
    
   <ul>
-  <li><a href="#sec-theory-crypto-hash" id="toc-sec-theory-crypto-hash" class="nav-link active" data-scroll-target="#sec-theory-crypto-hash"><span class="header-section-number">11.1</span> Основные понятия</a></li>
-  <li><a href="#три-задачи-для-криптографического-хеша" id="toc-три-задачи-для-криптографического-хеша" class="nav-link" data-scroll-target="#три-задачи-для-криптографического-хеша"><span class="header-section-number">11.2</span> Три задачи для криптографического хеша</a></li>
-  <li><a href="#изменение-входа-и-усечение" id="toc-изменение-входа-и-усечение" class="nav-link" data-scroll-target="#изменение-входа-и-усечение"><span class="header-section-number">11.3</span> Изменение входа и усечение</a></li>
-  <li><a href="#проверка-скачанного-файла" id="toc-проверка-скачанного-файла" class="nav-link" data-scroll-target="#проверка-скачанного-файла"><span class="header-section-number">11.4</span> Проверка скачанного файла</a></li>
-  <li><a href="#проверьте-себя" id="toc-проверьте-себя" class="nav-link" data-scroll-target="#проверьте-себя"><span class="header-section-number">11.5</span> Проверьте себя</a></li>
+  <li><a href="#дайджест" id="toc-дайджест" class="nav-link active" data-scroll-target="#дайджест"><span class="header-section-number">11.1</span> Дайджест</a></li>
+  <li><a href="#лавинный-эффект" id="toc-лавинный-эффект" class="nav-link" data-scroll-target="#лавинный-эффект"><span class="header-section-number">11.2</span> Лавинный эффект</a></li>
+  <li><a href="#стойкость-хеша" id="toc-стойкость-хеша" class="nav-link" data-scroll-target="#стойкость-хеша"><span class="header-section-number">11.3</span> Стойкость хеша</a></li>
+  <li><a href="#изменение-входа" id="toc-изменение-входа" class="nav-link" data-scroll-target="#изменение-входа"><span class="header-section-number">11.4</span> Изменение входа</a></li>
+  <li><a href="#усечение" id="toc-усечение" class="nav-link" data-scroll-target="#усечение"><span class="header-section-number">11.5</span> Усечение</a></li>
+  <li><a href="#проверка-скачанного-файла" id="toc-проверка-скачанного-файла" class="nav-link" data-scroll-target="#проверка-скачанного-файла"><span class="header-section-number">11.6</span> Проверка скачанного файла</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/random.html">Случайность и криптография</a></li><li class="breadcrumb-item"><a href="../crypto/hash.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Хеш-функции</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/random.html">Криптография</a></li><li class="breadcrumb-item"><a href="../crypto/hash.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Хеш-функции</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Хеш-функции</span></h1>
+<h1 class="title"><span id="sec-theory-crypto-hash" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Хеш-функции</span></span></h1>
 </div>
 
 
@@ -376,34 +383,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="sec-theory-crypto-hash" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="sec-theory-crypto-hash"><span class="header-section-number">11.1</span> Основные понятия</h2>
-<p>Хеш-функция преобразует данные в значение фиксированной длины — <strong>хеш</strong>, или дайджест. Одинаковая последовательность байтов при одинаковом алгоритме всегда даёт одинаковый результат. Возможных входов больше, чем фиксированных выходов, поэтому существуют <strong>коллизии</strong>: разные входы с одинаковым результатом. Размер входа не обязан совпадать с длиной хеша.</p>
-<div id="fig-hash-process" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Данные преобразуются в дайджест фиксированной длины">
+<section id="дайджест" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="дайджест"><span class="header-section-number">11.1</span> Дайджест</h2>
+<div id="def-crypto-digest" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 11.1 (Хеш-функция)</strong></span> <strong>Хеш-функция</strong> преобразует последовательность байтов в значение фиксированной длины — <strong>хеш</strong>, или дайджест.</p>
+</div>
+<p>Дайджест представляет данные компактным значением для поиска или проверки. У хеш-функции есть следующие свойства:</p>
+<ul>
+<li><strong>Длина входа.</strong> Вход может иметь различную длину, в том числе значительно превышать длину результата. Конкретный алгоритм задаёт допустимый диапазон: SHA-256 принимает сообщения длиной менее <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mn>64</mn></msup><annotation encoding="application/x-tex">2^{64}</annotation></semantics></math> битов согласно <a href="https://csrc.nist.gov/pubs/fips/180-4/upd1/final">FIPS 180-4</a>.</li>
+<li><strong>Длина дайджеста.</strong> Для выбранного алгоритма она фиксирована. SHA-256 выдаёт 256 бит независимо от длины допустимого входа.</li>
+<li><strong>Детерминированность.</strong> Одна и та же последовательность байтов при повторном вычислении заданной функцией даёт тот же дайджест. Это позволяет сравнить результат с ранее вычисленным значением.</li>
+</ul>
+<p>При криптографическом применении дополнительно рассматривают <strong>лавинный эффект</strong> — распространение малого изменения входа по выходным битам — и <strong>стойкость к трём задачам поиска</strong>: прообраза, второго прообраза и коллизии. Длина дайджеста и детерминированность описывают вычисление; задачи поиска определяют, чему должен сопротивляться криптографический алгоритм.</p>
+<p>Возможных входов больше, чем фиксированных выходов, поэтому существуют <strong>коллизии</strong>: разные входы с одинаковым результатом. Для SHA-256 входов длиной 512 бит уже <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mn>512</mn></msup><annotation encoding="application/x-tex">2^{512}</annotation></semantics></math>, а возможных дайджестов <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mn>256</mn></msup><annotation encoding="application/x-tex">2^{256}</annotation></semantics></math>; некоторым входам приходится соответствовать одному результату.</p>
+<p>На <a href="#fig-hash-process" class="quarto-xref">Рисунок&nbsp;<span>11.1</span></a> входные строки имеют разную длину, а каждый SHA-256 занимает ровно 64 шестнадцатеричных знака.</p>
+<div id="fig-hash-process" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Три строки размером 2, 12 и 39 байт UTF-8 преобразуются в разные дайджесты одинаковой длины: 256 бит">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hash-process-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../_prepared/visualizations/crypto/static/hash.svg" class="img-fluid figure-img" alt="Данные преобразуются в дайджест фиксированной длины">
+<img src="../_prepared/visualizations/crypto/static/hash-length.svg" class="img-fluid figure-img" alt="Три строки размером 2, 12 и 39 байт UTF-8 преобразуются в разные дайджесты одинаковой длины: 256 бит">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hash-process-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;11.1: Получение хеша данных
+Рисунок&nbsp;11.1: Входы разной длины и дайджесты SHA-256
 </figcaption>
 </figure>
 </div>
-<p>Хеш используют, например, для поиска в таблице. Java <code>String.hashCode</code> вычисляет 32-битное целое в арифметике <code>int</code> по кодовым единицам UTF-16: для двух символов это <code>31 × код первого + код второго</code>. У <code>Aa</code> получается <code>31 × 65 + 97 = 2112</code>, а у <code>BB</code> — <code>31 × 66 + 66 = 2112</code>. Строки различны, хотя их хеши совпали. Хеш-таблица при совпадении хеша сравнивает сами ключи и тем самым различает эти записи. Такой хеш предназначен для организации поиска; его совпадение не доказывает равенство данных.</p>
-<p>SHA-256 выдаёт 256 бит — 32 байта, обычно записываемых 64 шестнадцатеричными цифрами. Длина результата и назначение SHA-256 отличаются от 32-битного <code>hashCode</code>; простой переход к более длинному значению сам по себе не определяет криптографическую стойкость.</p>
+<p>Хеш используют, например, для поиска в таблице. Java <code>String.hashCode</code> вычисляет 32-битное целое в арифметике <code>int</code> по кодовым единицам UTF-16: для двух символов это <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>31</mn><mo>⋅</mo><mtext mathvariant="normal">код первого</mtext><mo>+</mo><mtext mathvariant="normal">код второго</mtext></mrow><annotation encoding="application/x-tex">31 \cdot \text{код первого} + \text{код второго}</annotation></semantics></math>. У <code>Aa</code> получается <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>31</mn><mo>⋅</mo><mn>65</mn><mo>+</mo><mn>97</mn><mo>=</mo><mn>2112</mn></mrow><annotation encoding="application/x-tex">31 \cdot 65 + 97 = 2112</annotation></semantics></math>, а у <code>BB</code> — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>31</mn><mo>⋅</mo><mn>66</mn><mo>+</mo><mn>66</mn><mo>=</mo><mn>2112</mn></mrow><annotation encoding="application/x-tex">31 \cdot 66 + 66 = 2112</annotation></semantics></math>. Строки различны, хотя их хеши совпали. Хеш-таблица при совпадении хеша сравнивает сами ключи и тем самым различает эти записи. Такой хеш предназначен для организации поиска; его совпадение не доказывает равенство данных.</p>
+<p>SHA-256 выдаёт 256 бит — 32 байта, обычно записываемых 64 шестнадцатеричными цифрами. Длина результата и назначение SHA-256 отличаются от 32-битного <code>hashCode</code>. SHA-256 и SHA-512 сопоставлены по длине дайджеста в <a href="algorithms.html" class="quarto-xref"><span>Глава 15</span></a>.</p>
 </section>
-<section id="три-задачи-для-криптографического-хеша" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="три-задачи-для-криптографического-хеша"><span class="header-section-number">11.2</span> Три задачи для криптографического хеша</h2>
+<section id="лавинный-эффект" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="лавинный-эффект"><span class="header-section-number">11.2</span> Лавинный эффект</h2>
+<p>Криптографическая хеш-функция стремится распределять влияние малого изменения входа по всему дайджесту. Это свойство называют <strong>лавинным эффектом</strong>: при изменении одного бита входа изменения выходных битов исследуют на множестве входов. Отдельная пара показывает лишь собственный результат; стойкость к поиску прообраза или коллизии устанавливают отдельно.</p>
+</section>
+<section id="стойкость-хеша" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="стойкость-хеша"><span class="header-section-number">11.3</span> Стойкость хеша</h2>
 <p>Пусть известны алгоритм <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math> и его выходы. Для подходящей криптографической хеш-функции должны быть вычислительно трудны отдельные задачи:</p>
 <ul>
 <li><strong>Прообраз:</strong> по заданному значению <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math> найти любой вход <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>, для которого <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">H(x)=y</annotation></semantics></math>.</li>
 <li><strong>Второй прообраз:</strong> по заданному входу <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> найти другой вход <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo>′</mo></msup><mo>≠</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">x'\ne x</annotation></semantics></math> с тем же хешем, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false" form="prefix">(</mo><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>H</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">H(x')=H(x)</annotation></semantics></math>.</li>
 <li><strong>Коллизия:</strong> найти любую пару разных входов <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> и <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>x</mi><mo>′</mo></msup><annotation encoding="application/x-tex">x'</annotation></semantics></math> с одинаковым хешем; первый вход заранее не задан.</li>
 </ul>
-<p>Это разные условия поиска. Наличие коллизий неизбежно, но для безопасного применения важно, насколько трудно их найти. Хеширование не является шифрованием: у него нет ключа расшифрования, возвращающего произвольный исходный вход.</p>
+<p>На <a href="#fig-hash-security-goals" class="quarto-xref">Рисунок&nbsp;<span>11.2</span></a> различаются заданные и искомые значения: при поиске прообраза задан дайджест, при поиске второго прообраза — вход, а при поиске коллизии выбирают оба входа.</p>
+<div id="fig-hash-security-goals" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Прообраз: задан хеш, ищем вход. Второй прообраз: задан вход, ищем другой с тем же хешем. Коллизия: выбираем два разных входа с общим хешем">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hash-security-goals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../_prepared/visualizations/crypto/static/hash-security-goals.svg" class="img-fluid figure-img" alt="Прообраз: задан хеш, ищем вход. Второй прообраз: задан вход, ищем другой с тем же хешем. Коллизия: выбираем два разных входа с общим хешем">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hash-security-goals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;11.2: Три задачи поиска для криптографической хеш-функции
+</figcaption>
+</figure>
+</div>
+<p>Это разные условия поиска. Фиксированная длина результата и лавинный эффект сами по себе не обеспечивают стойкость к этим задачам. <a href="https://csrc.nist.gov/Projects/Hash-Functions">NIST выделяет три требования стойкости</a>. Наличие коллизий неизбежно, но для безопасного применения важно, насколько трудно их найти. Хеширование не является шифрованием: у него нет ключа расшифрования, возвращающего произвольный исходный вход.</p>
 </section>
-<section id="изменение-входа-и-усечение" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="изменение-входа-и-усечение"><span class="header-section-number">11.3</span> Изменение входа и усечение</h2>
+<section id="изменение-входа" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="изменение-входа"><span class="header-section-number">11.4</span> Изменение входа</h2>
 <p>Возьмём байты UTF-8 строк <code>abc</code> и <code>abb</code>, без кавычек и завершающего перевода строки. Последние байты <code>63</code> и <code>62</code> в шестнадцатеричной записи отличаются одним младшим битом. Их полные SHA-256:</p>
 <table class="caption-top table">
 <colgroup>
@@ -427,48 +460,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>В этой паре различаются 124 из 256 выходных битов. Такое распространение изменения называют лавинным эффектом. Конкретное число 124 относится к выбранной паре; оно не доказывает стойкость функции и не означает, что каждое изменение входа меняет ровно половину битов.</p>
+<p>В этой паре различаются 124 из 256 выходных битов SHA-256; у 32-битного результата Java <code>String.hashCode</code> различаются два бита. Другая пара входов может дать иное число изменившихся битов. Интерактивное сравнение позволяет изменить вход и наблюдать оба результата.</p>
+<div class="cell hidden">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="1" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>hashBitExperimentLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/crypto/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display hidden">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="38" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 37;"><span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>cryptoLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/crypto/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>cryptoLesson<span class="op">.</span><span class="fu">hashBitExperiment</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-hash-bit-change" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="2" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1;"><span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>hashBitExperimentLesson<span class="op">.</span><span class="fu">hashBitExperiment</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fig-hash-bit-change" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hash-bit-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display">
-<div id="fig-hash-bit-change-1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-hash-bit-change-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-1-1" data-nodetype="declaration">
+<div id="ojs-cell-2" data-nodetype="expression">
 
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-hash-bit-change-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a)
-</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div id="fig-hash-bit-change-2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-hash-bit-change-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-1-2" data-nodetype="expression">
-
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-hash-bit-change-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b)
-</figcaption>
-</figure>
-</div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hash-bit-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;11.2: Различие входных и выходных битов SHA-256
+Рисунок&nbsp;11.3: Изменение битов хеша
 </figcaption>
 </figure>
 </div>
 </div>
+</section>
+<section id="усечение" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="усечение"><span class="header-section-number">11.5</span> Усечение</h2>
 <p>Для наглядного поиска сократим SHA-256 до первых 12 битов, то есть трёх шестнадцатеричных цифр. Вычисляем хеши UTF-8 строк <code>Файл 0</code>, <code>Файл 1</code>, … без кавычек и перевода строки. На 47-м вычислении, для <code>Файл 46</code>, впервые в этом порядке повторяется префикс <code>2a5</code>, ранее полученный для <code>Файл 16</code>:</p>
 <table class="caption-top table">
 <colgroup>
@@ -496,51 +514,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Это коллизия усечённой функции, а не полного SHA-256: остальные биты дайджестов различаются. Усечение оставляет всего <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>12</mn></msup><mo>=</mo><mn>4096</mn></mrow><annotation encoding="application/x-tex">2^{12}=4096</annotation></semantics></math> возможных результатов и облегчает поиск совпадения.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="54" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 53;"><span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>cryptoLesson<span class="op">.</span><span class="fu">truncatedHashCollision</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-hash-truncated-collision" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-hash-truncated-collision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-2" data-nodetype="expression">
-
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hash-truncated-collision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;11.3: Поиск коллизии первых двенадцати битов
-</figcaption>
-</figure>
-</div>
-</div>
+<p>Это коллизия усечённой функции; полные SHA-256 различаются по остальным битам. Усечение оставляет всего <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>12</mn></msup><mo>=</mo><mn>4096</mn></mrow><annotation encoding="application/x-tex">2^{12}=4096</annotation></semantics></math> возможных результатов и облегчает поиск совпадения. При проверке каждой новой строки достаточно сравнить её префикс с уже полученными: совпасть могут любые два из них. При проверке заданного файла требуется совпадение именно с его дайджестом; это другая постановка поиска, соответствующая второму прообразу.</p>
 </section>
-<section id="проверка-скачанного-файла" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="проверка-скачанного-файла"><span class="header-section-number">11.4</span> Проверка скачанного файла</h2>
+<section id="проверка-скачанного-файла" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="проверка-скачанного-файла"><span class="header-section-number">11.6</span> Проверка скачанного файла</h2>
 <p>Разработчик публикует файл и его SHA-256. Получатель вычисляет дайджест скачанных байтов и сравнивает его с эталоном. При различии хотя бы одно из значений изменилось или вычислено для другого содержимого. Совпадение с <strong>доверенным</strong> эталоном даёт основание считать файл неизменённым с момента вычисления эталона с учётом стойкости функции; оно не сообщает, кто опубликовал файл.</p>
-<p>Если злоумышленник заменил и файл, и размещённый рядом эталон на хеш подменённого файла, сравнение тоже совпадёт. Поэтому происхождение эталона нужно установить отдельно. Например, издатель подписывает список имён файлов и их хешей, а получатель проверяет подпись и связь ключа с издателем; эти действия рассматриваются в теме цифровой подписи и доверия к ключу.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="67" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 66;"><span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>cryptoLesson<span class="op">.</span><span class="fu">fileHashExperiment</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-hash-download" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-hash-download-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-3" data-nodetype="expression">
-
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hash-download-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;11.4: Файл, опубликованный эталон и результат сравнения
-</figcaption>
-</figure>
-</div>
-</div>
-<p>Быстрый хеш удобен для больших файлов, но делает дешёвой проверку каждого кандидата пароля. Для сохранения паролей применяют специальную затратную функцию с солью.</p>
-</section>
-<section id="проверьте-себя" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="проверьте-себя"><span class="header-section-number">11.5</span> Проверьте себя</h2>
-<ol type="1">
-<li>Почему таблица может хранить одновременно ключи <code>Aa</code> и <code>BB</code>?</li>
-<li>Как отличается поиск коллизии от поиска второго прообраза заданного файла?</li>
-<li>Какие выводы доступны при совпадении хешей, если источник эталона неизвестен?</li>
-</ol>
+<p>Если злоумышленник заменил и файл, и размещённый рядом эталон на хеш подменённого файла, сравнение тоже совпадёт. Поэтому происхождение эталона нужно установить отдельно. Например, издатель подписывает список имён файлов и их хешей, а получатель проверяет подпись и связь ключа с издателем; эти действия рассматриваются в <a href="../crypto/public-key-outline.html">теме цифровой подписи и доверия к ключу</a>.</p>
+<p>Быстрый хеш удобен для больших файлов, но делает дешёвой проверку каждого кандидата пароля. Для сохранения паролей применяют специальную затратную функцию с солью: <a href="password-storage.html" class="quarto-xref"><span>Глава 14</span></a> показывает, как соль и параметры сохраняются в проверочной записи.</p>
 
 
 
@@ -548,7 +528,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImNyeXB0b0xlc3NvbiA9IGF3YWl0IGltcG9ydChhd2FpdCBGaWxlQXR0YWNobWVudChcIi9fcHJlcGFyZWQvdmlzdWFsaXphdGlvbnMvY3J5cHRvL2xlc3Nvbi5qc1wiKS51cmwoKSlcbmNyeXB0b0xlc3Nvbi5oYXNoQml0RXhwZXJpbWVudCgpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJjcnlwdG9MZXNzb24udHJ1bmNhdGVkSGFzaENvbGxpc2lvbigpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJjcnlwdG9MZXNzb24uZmlsZUhhc2hFeHBlcmltZW50KClcbiJ9XX0=
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Imhhc2hCaXRFeHBlcmltZW50TGVzc29uID0gYXdhaXQgaW1wb3J0KGF3YWl0IEZpbGVBdHRhY2htZW50KFwiL19wcmVwYXJlZC92aXN1YWxpemF0aW9ucy9jcnlwdG8vbGVzc29uLmpzXCIpLnVybCgpKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiaGFzaEJpdEV4cGVyaW1lbnRMZXNzb24uaGFzaEJpdEV4cGVyaW1lbnQoKVxuIn1dfQ==
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
@@ -968,8 +948,8 @@ window._ojs.runtime.interpretFromScriptTags();
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../crypto/password-storage.html" class="pagination-link" aria-label="Хранение паролей">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../crypto/cypher.html" class="pagination-link" aria-label="Симметричное шифрование">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

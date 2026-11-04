@@ -11,7 +11,7 @@ export function dacTrace({subject,operation,grant=false,acl={anna:['read','write
  const rights=[...(acl[subject]||[])];if(grant&&subject==='boris')rights.push('write');
  const result=rights.includes(operation)?'allow':'deny',entity=[`subject-${subject}`,`matrix-${subject}`];
  return [
- {name:'request',label:'Запрос к черновику',model:[...entity,'matrix-column'],algorithm:['request'],explanation:'Выбираем субъект, объект «Черновик» и одну операцию.'},
+ {name:'request',label:'Запрос к черновику',model:[...entity,'matrix-column'],algorithm:['request'],explanation:'Субъект запрашивает доступ к черновику.'},
  {name:'acl',label:grant?'Владелец меняет ACL':'ACL черновика',model:[...entity,'acl',`acl-${subject}`,...(grant?['owner','owner-label']:[])],algorithm:['acl'],explanation:grant?'Анна как владелец добавила Борису запись w в ACL черновика.':'Столбец черновика задаёт ACL этого объекта. Право записи содержимого не даёт права менять ACL.'},
  {name:'operation',label:'Проверка операции',model:[...entity,`acl-${subject}`],algorithm:['operation'],explanation:`Проверяем, выдано ли ${operation==='read'?'чтение r':'изменение w'} выбранному субъекту.`},
  {name:'result',label:result==='allow'?'Разрешить':'Отказать',model:[...entity,`acl-${subject}`],algorithm:[result],result,explanation:result==='allow'?'В ACL черновика найдено запрошенное право.':'Запрошенного права в ACL черновика нет.'}

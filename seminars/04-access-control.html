@@ -11,7 +11,10 @@
 <script src="site_libs/quarto-contrib/course-presentation-0.1.0/disclosure.js" data-course-runtime-asset="disclosure.js" data-course-runtime-provider="course-presentation"></script>
 <script src="site_libs/quarto-contrib/course-presentation-0.1.0/presentation.js" data-course-runtime-asset="presentation.js" data-course-runtime-provider="course-presentation"></script>
 <link href="site_libs/quarto-contrib/course-presentation-0.1.0/presentation.css" rel="stylesheet" data-course-runtime-asset="presentation.css" data-course-runtime-provider="course-presentation">
-<link href="site_libs/quarto-contrib/course-visualizations-0.3.0/style.css" rel="stylesheet"><meta charset="utf-8">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/style.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/cipher.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/password.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/generator.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.11.6">
 
   <meta name="author" content="Афоненко Анатолий">
@@ -211,16 +214,16 @@
 
 <section id="sec-seminar-4" class="title-slide slide level1 center">
 <h1>Семинар 4 — Управление доступом</h1>
-<p>Кто выполняет какое действие над каким объектом?</p>
+<p>Общая модель распределения доступа</p>
 </section>
 
 <section>
 <section id="sec-seminar-4-access-decision" class="title-slide slide level1 center">
-<h1>Запрос и решение о доступе</h1>
+<h1>Общая схема взаимодействия</h1>
 
 </section>
-<section id="запрос-и-политика" class="slide level2">
-<h2>Запрос и политика</h2>
+<section id="порядок-обработки-запроса-на-доступ" class="slide level2">
+<h2>Порядок обработки запроса на доступ</h2>
 <p>Субъект: процесс редактора Лены → объект: файл → операция: запись.</p>
 <p>Политика определяет разрешения; монитор проверяет запрос и останавливает запрещённое действие.</p>
 
@@ -258,23 +261,29 @@
 </section></section>
 <section>
 <section id="sec-seminar-4-authentication" class="title-slide slide level1 center">
-<h1>Идентификация и аутентификация</h1>
+<h1>Аутентификация пользователя</h1>
 
 </section>
-<section id="три-процедуры" class="slide level2">
-<h2>Три процедуры</h2>
+<section id="порядок-входа" class="slide level2">
+<h2>Порядок входа</h2>
 <ol type="1">
-<li>Идентификация выбирает запись по предъявленному имени.</li>
-<li>Аутентификация проверяет подтверждение для записи.</li>
-<li>Авторизация решает, можно ли выполнить действие над объектом.</li>
+<li>Идентификация: кем я представляюсь системе.</li>
+<li>Аутентификация: являюсь ли я тем, за кого себя выдаю.</li>
+<li>Авторизация: какие права у меня есть.</li>
 </ol>
-<p>Лена заявляет запись <code>lena</code>, подтверждает вход и отправляет работу в курс А.</p>
-
-<img data-src="_prepared/visualizations/access-control/static/procedures.svg" style="width:85.0%" alt="Запись Лены, подтверждение входа и разрешение отправить работу" class="r-stretch quarto-figure-center" id="fig-slide-access-procedures"><p class="caption">
+<div id="fig-slide-access-procedures" class="nostretch quarto-float quarto-figure quarto-figure-center" alt="Идентификация: кем я представляюсь системе; аутентификация: являюсь ли я тем, за кого себя выдаю; авторизация: какие права у меня есть">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-slide-access-procedures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="_prepared/visualizations/access-control/static/procedures.svg" class="" style="width:100.0%" alt="Идентификация: кем я представляюсь системе; аутентификация: являюсь ли я тем, за кого себя выдаю; авторизация: какие права у меня есть">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-access-procedures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Рисунок&nbsp;2: Три процедуры на портале
-</p></section>
-<section id="вход-и-обращение-к-ресурсу" class="slide level2 smaller">
-<h2>Вход и обращение к ресурсу</h2>
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="доступ-к-ресурсу" class="slide level2 smaller">
+<h2>Доступ к ресурсу</h2>
 <div id="exr-slide-access-entry" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
 <p><span class="theorem-title"><strong>Упражнение 2</strong></span> &nbsp;</p>
 <div class="course-metadata">
@@ -284,7 +293,6 @@
 <ol type="1">
 <li>На каких шагах выполняются идентификация, аутентификация и авторизация?</li>
 <li>Какие действия выполняют браузер, приложение и сервер портала?</li>
-<li>Чьи полномочия и для какого действия должен проверить сервер перед изменением ведомости? Как он обработает прямой запрос, если кнопка скрыта в браузере?</li>
 </ol>
 </div>
 </section>
@@ -296,8 +304,8 @@
 <li><strong>Свойство человека:</strong> отпечаток или лицо — измерение, сравниваемое с эталоном.</li>
 </ul>
 </section>
-<section id="два-этапа-и-два-фактора" class="slide level2">
-<h2>Два этапа и два фактора</h2>
+<section id="этапы-подтверждения-входа" class="slide level2">
+<h2>Этапы подтверждения входа</h2>
 <p><strong>Двухэтапная аутентификация:</strong> для входа нужно последовательно пройти две обязательные проверки.</p>
 <p><strong>Двухфакторная аутентификация:</strong> проверки используют два разных вида факторов.</p>
 <p>При разборе входа отдельно назовите порядок проверок и виды факторов, которые они используют.</p>
@@ -318,42 +326,19 @@
 </ol>
 </div>
 </section>
-<section id="totp-ключ-код-и-фактор" class="slide level2">
-<h2>TOTP: ключ, код и фактор</h2>
-<ol type="1">
-<li>При настройке портал и приложение получают общий секрет <code>K</code>.</li>
-<li>Приложение и сервер вычисляют код из <code>K</code> и номера временного шага.</li>
-<li>Лена получает код в приложении и вводит на портале.</li>
-</ol>
-<p><strong>Владение</strong> — возможность использовать зарегистрированное средство с <code>K</code>. Пользователь не обязан помнить ключ.</p>
-<p>Копия <code>K</code> создаёт те же коды: сервер не различит исходное средство и клон.</p>
-<aside class="notes">
-<p>При копировании K атакующий вычисляет тот же код. Локальный PIN имеет значение как фактор активации только при обязательной и действенной защите применения секрета.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
 <section id="вопрос-для-аудитории-1" class="slide level2 smaller">
 <h2>Вопрос для аудитории</h2>
 <!-- Создано CI/prepare-bank-fragments.py из task/bank/access-control.qmd; не редактировать. -->
 <div id="exr-access-short-totp-factor" class="course-block course-role-discussion theorem exercise" target="manual" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
-<p><span class="theorem-title"><strong>Упражнение 4 (Пароль и код приложения)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Упражнение 4 (Подтверждение входа)</strong></span> &nbsp;</p>
 <div class="course-metadata">
 <span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
 </div>
-<p>Портал сначала проверяет пароль пользователя, затем код TOTP. Код создаёт зарегистрированное приложение, которое хранит секрет <code>K</code> и показывает код без локальной проверки PIN или биометрии. Для входа нужны обе проверки.</p>
+<p>Портал сначала проверяет пароль пользователя, затем код TOTP. Код создаёт зарегистрированное приложение, которое хранит секрет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> и показывает код без локальной проверки PIN или биометрии. Для входа нужны обе проверки.</p>
 <ol type="1">
 <li>Какие факторы используются в этой процедуре? Какому этапу соответствует каждый из них?</li>
 <li>Достаточно ли украденного пароля для входа? Чем ещё должен воспользоваться посторонний?</li>
-<li>Как связаны сохранённый секрет <code>K</code> и вычисленный из него код? К какому фактору они относятся? Как копирование <code>K</code> на другой телефон повлияет на возможность пройти проверку?</li>
+<li>Как связаны сохранённый секрет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> и вычисленный из него код? К какому фактору они относятся? Как копирование <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> на другой телефон повлияет на возможность пройти проверку?</li>
 </ol>
 </div>
 </section>
@@ -364,80 +349,6 @@
 <li>OTP ограничивает повтор принятого кода, но ещё не использованный код можно переслать.</li>
 <li>Passkey отвечает на свежий запрос с привязкой к сервису и адресу сайта; закрытый ключ сайту не передаётся.</li>
 </ul>
-</section>
-<section id="что-хранится-и-передаётся" class="slide level2 smaller">
-<h2>Что хранится и передаётся</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Способ</th>
-<th>У пользователя</th>
-<th>На сервере</th>
-<th>При входе</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Пароль</td>
-<td>Сам пароль</td>
-<td>Проверочное значение</td>
-<td>Пароль</td>
-</tr>
-<tr class="even">
-<td>TOTP</td>
-<td>Секрет <code>K</code> в приложении</td>
-<td>Копия <code>K</code></td>
-<td>Код временного шага</td>
-</tr>
-<tr class="odd">
-<td>Passkey</td>
-<td>Закрытый ключ</td>
-<td>Открытый ключ</td>
-<td>Подписанный ответ на свежий запрос</td>
-</tr>
-</tbody>
-</table>
-<p>Все обращения к порталу выполняются по защищённому соединению.</p>
-</section>
-<section id="passkey-регистрация" class="slide level2 smaller">
-<h2>Passkey: регистрация</h2>
-<ol type="1">
-<li>Лена входит в свою запись и выбирает добавление passkey.</li>
-<li>Браузер обращается к выбранному средству: устройству или аппаратному ключу.</li>
-<li>Средство создаёт пару ключей для портала.</li>
-<li>Портал связывает <strong>открытый ключ</strong> с записью Лены; <strong>закрытым</strong> управляет средство.</li>
-</ol>
-<p>Создание ключа требует доверенной привязки к записи. Ключ может быть привязан к устройству или синхронизироваться между устройствами.</p>
-</section>
-<section id="passkey-вход" class="slide level2 smaller">
-<h2>Passkey: вход</h2>
-<ol type="1">
-<li>Портал выдаёт свежий случайный запрос — <strong>challenge</strong>.</li>
-<li>Лена разрешает использование ключа, например локальным PIN.</li>
-<li>Средство подписывает ответ, связанный с запросом и порталом.</li>
-<li>Портал проверяет ответ сохранённым открытым ключом.</li>
-</ol>
-<p>Старый ответ не подходит к новому запросу. Закрытый ключ, PIN и биометрический образец сайту не передаются.</p>
-<p>Протокол связывает подтверждение с сервисом и адресом сайта, что препятствует его получению через поддельный сайт.</p>
-<aside class="notes">
-<p>PIN или биометрия проверяются локально; касание означает присутствие, а не обязательно проверку пользователя. Синхронизируемый passkey может находиться на нескольких устройствах.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section></section>
 <section>
 <section id="sec-seminar-4-access-models" class="title-slide slide level1 center">
@@ -468,8 +379,8 @@
 <section id="dac-применение-политики" class="slide level2 smaller">
 <h2>DAC: применение политики</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="151" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 150;"><span id="cb1-151"><a aria-label="151"></a>dacLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/access-control/dac/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span>
-<span id="cb1-152"><a aria-label="152"></a>viewof slideDac <span class="op">=</span> dacLesson<span class="op">.</span><span class="fu">dacControls</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a aria-label="1"></a>dacLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/access-control/dac/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span>
+<span id="cb1-2"><a aria-label="2"></a>viewof dacRequest <span class="op">=</span> dacLesson<span class="op">.</span><span class="fu">dacControls</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -486,15 +397,15 @@
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="158" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 157;"><span id="cb2-158"><a aria-label="158"></a>dacLesson<span class="op">.</span><span class="fu">dacDiagram</span>(slideDac)</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-slide-dac-decision" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="3" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 2;"><span id="cb2-3"><a aria-label="3"></a>dacLesson<span class="op">.</span><span class="fu">dacDiagram</span>(dacRequest)</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fig-dac-decision" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-slide-dac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-dac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div id="ojs-cell-2" data-nodetype="expression">
 
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-dac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Рисунок&nbsp;4: Применение дискреционной политики
 </figcaption>
 </figure>
@@ -525,17 +436,8 @@
 <section id="mac-применение-политики" class="slide level2 smaller">
 <h2>MAC: применение политики</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="213" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 212;"><span id="cb3-213"><a aria-label="213"></a>macLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/access-control/mac/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span>
-<span id="cb3-214"><a aria-label="214"></a></span>
-<span id="cb3-215"><a aria-label="215"></a><span class="co">// Авторские пояснения: удаление свойства не удаляет именованный этап.</span></span>
-<span id="cb3-216"><a aria-label="216"></a>macNotes <span class="op">=</span> ({</span>
-<span id="cb3-217"><a aria-label="217"></a>  <span class="dt">request</span><span class="op">:</span> <span class="st">"Одна операция над одним файлом. Успешный вход уже выполнен и не даёт новых прав."</span><span class="op">,</span></span>
-<span id="cb3-218"><a aria-label="218"></a>  <span class="dt">levels</span><span class="op">:</span> <span class="st">"У процесса L2; метку файла определяет политика. В учебной модели ровно три уровня."</span><span class="op">,</span></span>
-<span id="cb3-219"><a aria-label="219"></a>  <span class="st">"read-rule"</span><span class="op">:</span> <span class="st">"Читать можно свой и нижние уровни. Стрелка чтения идёт из файла в процесс."</span><span class="op">,</span></span>
-<span id="cb3-220"><a aria-label="220"></a>  <span class="st">"write-rule"</span><span class="op">:</span> <span class="st">"Добавлять без чтения можно на свой и верхние уровни. Поток идёт из процесса в файл."</span><span class="op">,</span></span>
-<span id="cb3-221"><a aria-label="221"></a>  <span class="dt">result</span><span class="op">:</span> <span class="st">"Результат следует из проверки уровней. Обычное редактирование потребовало бы также разрешённого чтения."</span></span>
-<span id="cb3-222"><a aria-label="222"></a>})</span>
-<span id="cb3-223"><a aria-label="223"></a>viewof macRequest <span class="op">=</span> macLesson<span class="op">.</span><span class="fu">macControls</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a aria-label="1"></a>macLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/access-control/mac/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span>
+<span id="cb3-2"><a aria-label="2"></a>viewof macRequest <span class="op">=</span> macLesson<span class="op">.</span><span class="fu">macControls</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-3-1" data-nodetype="declaration">
@@ -550,16 +452,9 @@
 </div>
 </div>
 </div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-3" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="220" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 219;"><span id="cb4-220"><a aria-label="220"></a>macLesson<span class="op">.</span><span class="fu">macDiagram</span>(macRequest<span class="op">,</span> macNotes)</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="3" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 2;"><span id="cb4-3"><a aria-label="3"></a>macLesson<span class="op">.</span><span class="fu">macDiagram</span>(macRequest)</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-mac-decision" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-mac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -647,7 +542,7 @@
 <h2>RBAC: применение политики</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a aria-label="1"></a>rbacLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/access-control/rbac/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span>
-<span id="cb5-2"><a aria-label="2"></a>viewof slideRbac <span class="op">=</span> rbacLesson<span class="op">.</span><span class="fu">rbacControls</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-2"><a aria-label="2"></a>viewof rbacRequest <span class="op">=</span> rbacLesson<span class="op">.</span><span class="fu">rbacControls</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-5-1" data-nodetype="declaration">
@@ -664,15 +559,15 @@
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="2" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1;"><span id="cb6-2"><a aria-label="2"></a>rbacLesson<span class="op">.</span><span class="fu">rbacDiagram</span>(slideRbac)</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-slide-rbac-decision" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="3" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 2;"><span id="cb6-3"><a aria-label="3"></a>rbacLesson<span class="op">.</span><span class="fu">rbacDiagram</span>(rbacRequest)</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fig-rbac-decision" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-slide-rbac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-rbac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div id="ojs-cell-6" data-nodetype="expression">
 
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-rbac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rbac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Рисунок&nbsp;8: Применение ролевой политики
 </figcaption>
 </figure>
@@ -733,40 +628,6 @@
 <li>Для запроса В отозвали роль. Изменится ли решение? Какие права нужно отозвать, чтобы закрыть доступ?</li>
 </ol>
 </div>
-</section></section>
-<section>
-<section id="sec-seminar-4-additional" class="title-slide slide level1 center">
-<h1>Практическая работа и итог</h1>
-
-</section>
-<section id="задачи-семинара" class="slide level2">
-<h2>Задачи семинара</h2>
-<p>Продолжите разбор входа, моделей доступа и изменения полномочий:</p>
-<ul>
-<li><a data-qrc-custom="false" data-qrc-ref="tasks:exr-access-control-request" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-request">задача&nbsp;<span>7.1</span></a></li>
-<li><a data-qrc-custom="false" data-qrc-ref="tasks:exr-access-control-dac" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-dac">задача&nbsp;<span>7.3</span></a></li>
-<li><a data-qrc-custom="false" data-qrc-ref="tasks:exr-access-control-mac" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-mac">задача&nbsp;<span>7.4</span></a></li>
-<li><a data-qrc-custom="false" data-qrc-ref="tasks:exr-access-control-rbac" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-rbac">задача&nbsp;<span>7.5</span></a></li>
-<li><a data-qrc-custom="false" data-qrc-ref="tasks:exr-access-control-combined" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-combined">задача&nbsp;<span>7.2</span></a></li>
-</ul>
-<p>Назначения и дополнительная задача: <a data-qrc-custom="false" data-qrc-ref="tasks:sec-work-access-control" data-qrc-style="default" class="qrc-link" href="../task/works/04-access-control.html#sec-work-access-control"><span>Глава 12</span></a>.</p>
-</section>
-<section id="итог" class="slide level2">
-<h2>Итог</h2>
-<p>Назовите субъект, объект и операцию; проверьте назначения и ограничения. Минимальные привилегии сохраняют необходимые права только на нужные объекты и срок.</p>
-<aside class="notes">
-<p>Обсудите независимые пути получения права: отзыв одного назначения не всегда закрывает другой путь.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 
 
 
@@ -974,7 +835,7 @@
       });
     </script>
     <script type="ojs-module-contents">
-    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImRhY0xlc3NvbiA9IGF3YWl0IGltcG9ydChhd2FpdCBGaWxlQXR0YWNobWVudChcIi9fcHJlcGFyZWQvdmlzdWFsaXphdGlvbnMvYWNjZXNzLWNvbnRyb2wvZGFjL2xlc3Nvbi5qc1wiKS51cmwoKSlcbnZpZXdvZiBzbGlkZURhYyA9IGRhY0xlc3Nvbi5kYWNDb250cm9scygpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJkYWNMZXNzb24uZGFjRGlhZ3JhbShzbGlkZURhYylcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im1hY0xlc3NvbiA9IGF3YWl0IGltcG9ydChhd2FpdCBGaWxlQXR0YWNobWVudChcIi9fcHJlcGFyZWQvdmlzdWFsaXphdGlvbnMvYWNjZXNzLWNvbnRyb2wvbWFjL2xlc3Nvbi5qc1wiKS51cmwoKSlcblxuLy8g0JDQstGC0L7RgNGB0LrQuNC1INC/0L7Rj9GB0L3QtdC90LjRjzog0YPQtNCw0LvQtdC90LjQtSDRgdCy0L7QudGB0YLQstCwINC90LUg0YPQtNCw0LvRj9C10YIg0LjQvNC10L3QvtCy0LDQvdC90YvQuSDRjdGC0LDQvy5cbm1hY05vdGVzID0gKHtcbiAgcmVxdWVzdDogXCLQntC00L3QsCDQvtC/0LXRgNCw0YbQuNGPINC90LDQtCDQvtC00L3QuNC8INGE0LDQudC70L7QvC4g0KPRgdC/0LXRiNC90YvQuSDQstGF0L7QtCDRg9C20LUg0LLRi9C/0L7Qu9C90LXQvSDQuCDQvdC1INC00LDRkdGCINC90L7QstGL0YUg0L/RgNCw0LIuXCIsXG4gIGxldmVsczogXCLQoyDQv9GA0L7RhtC10YHRgdCwIEwyOyDQvNC10YLQutGDINGE0LDQudC70LAg0L7Qv9GA0LXQtNC10LvRj9C10YIg0L/QvtC70LjRgtC40LrQsC4g0JIg0YPRh9C10LHQvdC+0Lkg0LzQvtC00LXQu9C4INGA0L7QstC90L4g0YLRgNC4INGD0YDQvtCy0L3Rjy5cIixcbiAgXCJyZWFkLXJ1bGVcIjogXCLQp9C40YLQsNGC0Ywg0LzQvtC20L3QviDRgdCy0L7QuSDQuCDQvdC40LbQvdC40LUg0YPRgNC+0LLQvdC4LiDQodGC0YDQtdC70LrQsCDRh9GC0LXQvdC40Y8g0LjQtNGR0YIg0LjQtyDRhNCw0LnQu9CwINCyINC/0YDQvtGG0LXRgdGBLlwiLFxuICBcIndyaXRlLXJ1bGVcIjogXCLQlNC+0LHQsNCy0LvRj9GC0Ywg0LHQtdC3INGH0YLQtdC90LjRjyDQvNC+0LbQvdC+INC90LAg0YHQstC+0Lkg0Lgg0LLQtdGA0YXQvdC40LUg0YPRgNC+0LLQvdC4LiDQn9C+0YLQvtC6INC40LTRkdGCINC40Lcg0L/RgNC+0YbQtdGB0YHQsCDQsiDRhNCw0LnQuy5cIixcbiAgcmVzdWx0OiBcItCg0LXQt9GD0LvRjNGC0LDRgiDRgdC70LXQtNGD0LXRgiDQuNC3INC/0YDQvtCy0LXRgNC60Lgg0YPRgNC+0LLQvdC10LkuINCe0LHRi9GH0L3QvtC1INGA0LXQtNCw0LrRgtC40YDQvtCy0LDQvdC40LUg0L/QvtGC0YDQtdCx0L7QstCw0LvQviDQsdGLINGC0LDQutC20LUg0YDQsNC30YDQtdGI0ZHQvdC90L7Qs9C+INGH0YLQtdC90LjRjy5cIlxufSlcbnZpZXdvZiBtYWNSZXF1ZXN0ID0gbWFjTGVzc29uLm1hY0NvbnRyb2xzKClcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im1hY0xlc3Nvbi5tYWNEaWFncmFtKG1hY1JlcXVlc3QsIG1hY05vdGVzKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoicmJhY0xlc3NvbiA9IGF3YWl0IGltcG9ydChhd2FpdCBGaWxlQXR0YWNobWVudChcIi9fcHJlcGFyZWQvdmlzdWFsaXphdGlvbnMvYWNjZXNzLWNvbnRyb2wvcmJhYy9sZXNzb24uanNcIikudXJsKCkpXG52aWV3b2Ygc2xpZGVSYmFjID0gcmJhY0xlc3Nvbi5yYmFjQ29udHJvbHMoKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC02IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoicmJhY0xlc3Nvbi5yYmFjRGlhZ3JhbShzbGlkZVJiYWMpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3NsaWRlRGFjJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ21hY1JlcXVlc3QnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnc2xpZGVSYmFjJykifV19
+    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImRhY0xlc3NvbiA9IGF3YWl0IGltcG9ydChhd2FpdCBGaWxlQXR0YWNobWVudChcIi9fcHJlcGFyZWQvdmlzdWFsaXphdGlvbnMvYWNjZXNzLWNvbnRyb2wvZGFjL2xlc3Nvbi5qc1wiKS51cmwoKSlcbnZpZXdvZiBkYWNSZXF1ZXN0ID0gZGFjTGVzc29uLmRhY0NvbnRyb2xzKClcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImRhY0xlc3Nvbi5kYWNEaWFncmFtKGRhY1JlcXVlc3QpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJtYWNMZXNzb24gPSBhd2FpdCBpbXBvcnQoYXdhaXQgRmlsZUF0dGFjaG1lbnQoXCIvX3ByZXBhcmVkL3Zpc3VhbGl6YXRpb25zL2FjY2Vzcy1jb250cm9sL21hYy9sZXNzb24uanNcIikudXJsKCkpXG52aWV3b2YgbWFjUmVxdWVzdCA9IG1hY0xlc3Nvbi5tYWNDb250cm9scygpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTQiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJtYWNMZXNzb24ubWFjRGlhZ3JhbShtYWNSZXF1ZXN0KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoicmJhY0xlc3NvbiA9IGF3YWl0IGltcG9ydChhd2FpdCBGaWxlQXR0YWNobWVudChcIi9fcHJlcGFyZWQvdmlzdWFsaXphdGlvbnMvYWNjZXNzLWNvbnRyb2wvcmJhYy9sZXNzb24uanNcIikudXJsKCkpXG52aWV3b2YgcmJhY1JlcXVlc3QgPSByYmFjTGVzc29uLnJiYWNDb250cm9scygpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTYiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJyYmFjTGVzc29uLnJiYWNEaWFncmFtKHJiYWNSZXF1ZXN0KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdkYWNSZXF1ZXN0JykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ21hY1JlcXVlc3QnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgncmJhY1JlcXVlc3QnKSJ9XX0=
     </script>
     <script type="module">
     if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }

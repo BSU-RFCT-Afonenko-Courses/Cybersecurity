@@ -99,9 +99,6 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand navbar-brand-logo" href="../../"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo light-content"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo dark-content">Основы кибербезопасности</a>
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Задания</span>
-    </a>
   </div><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Меню курса"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarCollapse"><ul class="navbar-nav navbar-nav-scroll me-auto"><li class="nav-item"><a class="nav-link" data-course-link="root" href="../../"><span class="menu-text">Курс</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-theory" href="../../theory/"><span class="menu-text">Теория</span></a></li><li class="nav-item"><a class="nav-link active" data-course-link="subproject-task" href="../" aria-current="page"><span class="menu-text">Задания</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-seminars" href="../../seminars/"><span class="menu-text">Слайды занятий</span></a></li></ul></div>
         <div class="quarto-navbar-tools tools-end">
 </div>
@@ -164,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../bank/standards-risk.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Стандарты, системы защиты и риски</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Требования к защите</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -196,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../works/01-fundamentals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Занятие 1 – Понятия и КЦД</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Занятие 1 – Информационная безопасность</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -262,7 +259,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Дата публикации</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">3 ноября 2026 г.</p>
+      <p class="date">4 ноября 2026 г.</p>
     </div>
   </div>
   
@@ -298,17 +295,17 @@ ul.task-list li input[type="checkbox"] {
 <div class="course-metadata">
 <span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Средний</span>
 </div>
-<p>На сайте лежали файл <code>F</code> и его хеш <code>H(F)</code>. Атакующий заменил их на <code>G</code> и <code>H(G)</code>. Проверка совпала. Доказано ли происхождение файла?</p>
+<p>На сайте лежали файл <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math> и его хеш <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false" form="prefix">(</mo><mi>F</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">H(F)</annotation></semantics></math>. Атакующий заменил их на <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>G</mi><annotation encoding="application/x-tex">G</annotation></semantics></math> и <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false" form="prefix">(</mo><mi>G</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">H(G)</annotation></semantics></math>. Проверка совпала. Доказано ли происхождение файла?</p>
 </div>
 <div id="exr-data-integrity-backup-volume" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
 <p><span class="theorem-title"><strong>Задача 8.3 (Объём копий)</strong></span> &nbsp;</p>
 <div class="course-metadata">
 <span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
 </div>
-<p>Копируются целые файлы <code>A = 2</code>, <code>B = 3</code>, <code>C = 5</code> МБ постоянного размера; добавлений, удалений, сжатия и дедупликации нет. В воскресенье сделана полная копия. В понедельник изменён A, во вторник B, в среду снова A; ежедневно после правки создаётся копия. Каков объём создаваемой в среду полной, инкрементной и дифференциальной копии?</p>
+<p>Копируются целые файлы <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">A = 2</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">B = 3</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">C = 5</annotation></semantics></math> МБ постоянного размера; добавлений, удалений, сжатия и дедупликации нет. В воскресенье сделана полная копия. В понедельник изменён A, во вторник B, в среду снова A; ежедневно после правки создаётся копия. Каков объём создаваемой в среду полной, инкрементной и дифференциальной копии?</p>
 </div>
 <div id="exr-data-integrity-mirror-copy" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="intermediate">
-<p><span class="theorem-title"><strong>Задача 8.4 (Зеркало и копия)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Задача 8.4 (Защита от удаления)</strong></span> &nbsp;</p>
 <div class="course-metadata">
 <span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Средний</span>
 </div>
@@ -336,7 +333,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Отдельные массивы из дисков по 2 ТБ: RAID 0 — три диска, RAID 1 — два, RAID 5 — три. Служебными расходами пренебречь; остальные диски и метаданные исправны. Какова полезная ёмкость каждого массива и переживёт ли он один полный отказ диска?</p>
 </div>
 <div id="exr-data-integrity-mirror-history" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
-<p><span class="theorem-title"><strong>Задача 8.8 (Зеркало и история)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Задача 8.8 (История изменений)</strong></span> &nbsp;</p>
 <div class="course-metadata">
 <span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
 </div>
@@ -347,7 +344,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="course-metadata">
 <span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Средний</span>
 </div>
-<p><code>P = A XOR B</code>, <code>A = 1010</code>, <code>P = 0110</code>. Найдите B. Хватит ли одного P при потере обоих блоков данных?</p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo><mi>A</mi><mo>⊕</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">P = A \oplus B</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mn mathvariant="monospace">𝟷𝟶𝟷𝟶</mn></mrow><annotation encoding="application/x-tex">A = \mathtt{1010}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo><mn mathvariant="monospace">𝟶𝟷𝟷𝟶</mn></mrow><annotation encoding="application/x-tex">P = \mathtt{0110}</annotation></semantics></math>. Найдите <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>. Хватит ли одного <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math> при потере обоих блоков данных?</p>
 </div>
 
 
@@ -815,8 +812,8 @@ ul.task-list li input[type="checkbox"] {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../works/01-fundamentals.html" class="pagination-link" aria-label="Занятие 1 – Понятия и КЦД">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Занятие 1 – Понятия и КЦД</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../works/01-fundamentals.html" class="pagination-link" aria-label="Занятие 1 – Информационная безопасность">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Занятие 1 – Информационная безопасность</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

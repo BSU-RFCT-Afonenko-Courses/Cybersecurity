@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="hash-security" viewBox="0 0 1140 720" width="1140" height="720" role="img" aria-labelledby="hash-security-title hash-security-desc">
+  <title id="hash-security-title">Три задачи поиска для хеш-функции</title>
+  <desc id="hash-security-desc">Прообраз: по заданному y найти x с H(x) = y. Второй прообраз: при заданном x и его хеше y найти другое сообщение x′, для которого H(x′) = H(x). Коллизия: свободно выбрать два разных сообщения x и x′ с общим хешем y; это значение заранее не задано. Синие пунктирные блоки обозначают искомые значения, серые блоки — заданные. Стрелки обозначают вычисление H.</desc>
+  <defs>
+    <marker id="hs-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#396078"/></marker>
+  </defs>
+  <style>
+    .hash-security { font-family:system-ui,sans-serif; color:#203246; }
+    .hash-security text { fill:currentColor; }
+    .hash-security .hs-heading { font-size:26px; font-weight:650; }
+    .hash-security .hs-description { font-size:22px; }
+    .hash-security .hs-node rect { fill:#eef2f6; stroke:#afbdca; stroke-width:1.5; }
+    .hash-security .hs-node text { text-anchor:middle; font-size:24px; }
+    .hash-security .hs-sought rect { fill:#e3f0fa; stroke:#006b8f; stroke-width:2; stroke-dasharray:7 5; }
+    .hash-security .hs-node .hs-small { font-size:20px; }
+    .hash-security .hs-function rect { fill:#f8fafc; stroke:#8b9ba8; stroke-width:1.5; }
+    .hash-security .hs-function text { font-weight:600; font-size:26px; }
+    .hash-security .hs-flow { fill:none; stroke:#396078; stroke-width:3; stroke-linejoin:round; }
+    .hash-security .hs-condition { font-size:24px; text-anchor:middle; }
+    .hash-security .hs-divider { stroke:#d5dee6; stroke-width:1.5; }
+  </style>
+  <g id="hs-preimage">
+    <text class="hs-heading" x="24" y="48">Прообраз</text>
+    <text class="hs-description" x="24" y="84">Дано значение y.</text>
+    <text class="hs-description" x="24" y="116">Ищем подходящее x.</text>
+    <g class="hs-node hs-sought" transform="translate(370 54)"><rect width="170" height="80" rx="6"/><text x="85" y="48">Ищем x</text></g>
+    <g class="hs-node hs-function" transform="translate(630 69)"><rect width="80" height="50" rx="6"/><text x="40" y="34">H</text></g>
+    <g class="hs-node" transform="translate(810 54)"><rect width="260" height="80" rx="6"/><text x="130" y="48">Дано y</text></g>
+    <path class="hs-flow" d="M552 94H618" marker-end="url(#hs-arrow)"/>
+    <path class="hs-flow" d="M722 94H798" marker-end="url(#hs-arrow)"/>
+    <text class="hs-condition" x="720" y="182">H(x) = y</text>
+  </g>
+  <path class="hs-divider" d="M24 220H1112"/>
+  <g id="hs-second-preimage">
+    <text class="hs-heading" x="24" y="268">Второй прообраз</text>
+    <text class="hs-description" x="24" y="304">Даны x и y = H(x).</text>
+    <text class="hs-description" x="24" y="336">Ищем другое x′.</text>
+    <g class="hs-node" transform="translate(370 238)"><rect width="170" height="60" rx="6"/><text x="85" y="39">Дано x</text></g>
+    <g class="hs-node hs-sought" transform="translate(370 336)"><rect width="170" height="60" rx="6"/><text x="85" y="39">Ищем x′</text></g>
+    <g class="hs-node hs-function" transform="translate(630 243)"><rect width="80" height="50" rx="6"/><text x="40" y="34">H</text></g>
+    <g class="hs-node hs-function" transform="translate(630 341)"><rect width="80" height="50" rx="6"/><text x="40" y="34">H</text></g>
+    <g class="hs-node" transform="translate(810 288)"><rect width="260" height="80" rx="6"/><text x="130" y="48">Дано y = H(x)</text></g>
+    <path class="hs-flow" d="M552 268H618" marker-end="url(#hs-arrow)"/>
+    <path class="hs-flow" d="M552 366H618" marker-end="url(#hs-arrow)"/>
+    <path class="hs-flow" d="M722 268H760V328 M722 366H760V328"/>
+    <path class="hs-flow" d="M760 328H798" marker-end="url(#hs-arrow)"/>
+    <text class="hs-condition" x="720" y="435">x′ ≠ x,  H(x′) = H(x)</text>
+  </g>
+  <path class="hs-divider" d="M24 470H1112"/>
+  <g id="hs-collision">
+    <text class="hs-heading" x="24" y="518">Коллизия</text>
+    <text class="hs-description" x="24" y="554">Оба сообщения выбираем</text>
+    <text class="hs-description" x="24" y="586">свободно, но x ≠ x′.</text>
+    <g class="hs-node hs-sought" transform="translate(370 488)"><rect width="170" height="60" rx="6"/><text x="85" y="39">Ищем x</text></g>
+    <g class="hs-node hs-sought" transform="translate(370 586)"><rect width="170" height="60" rx="6"/><text x="85" y="39">Ищем x′</text></g>
+    <g class="hs-node hs-function" transform="translate(630 493)"><rect width="80" height="50" rx="6"/><text x="40" y="34">H</text></g>
+    <g class="hs-node hs-function" transform="translate(630 591)"><rect width="80" height="50" rx="6"/><text x="40" y="34">H</text></g>
+    <g class="hs-node hs-sought" transform="translate(810 538)"><rect width="260" height="80" rx="6"/><text x="130" y="33">Общий y</text><text class="hs-small" x="130" y="61">не задан заранее</text></g>
+    <path class="hs-flow" d="M552 518H618" marker-end="url(#hs-arrow)"/>
+    <path class="hs-flow" d="M552 616H618" marker-end="url(#hs-arrow)"/>
+    <path class="hs-flow" d="M722 518H760V578 M722 616H760V578"/>
+    <path class="hs-flow" d="M760 578H798" marker-end="url(#hs-arrow)"/>
+    <text class="hs-condition" x="720" y="688">H(x) = H(x′) = y</text>
+  </g>
+</svg>

@@ -60,7 +60,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-contrib/course-presentation-0.1.0/presentation.js" data-course-runtime-asset="presentation.js" data-course-runtime-provider="course-presentation"></script>
 <link href="../site_libs/quarto-contrib/course-presentation-0.1.0/presentation.css" rel="stylesheet" data-course-runtime-asset="presentation.css" data-course-runtime-provider="course-presentation">
 <link href="../site_libs/quarto-contrib/course-navigation-header/header.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/course-visualizations-0.3.0/style.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/style.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/cipher.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/password.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/generator.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -100,9 +103,6 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand navbar-brand-logo" href="../../"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo light-content"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo dark-content">Основы кибербезопасности</a>
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Теория</span>
-    </a>
   </div><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Меню курса"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarCollapse"><ul class="navbar-nav navbar-nav-scroll me-auto"><li class="nav-item"><a class="nav-link" data-course-link="root" href="../../"><span class="menu-text">Курс</span></a></li><li class="nav-item"><a class="nav-link active" data-course-link="subproject-theory" href="../" aria-current="page"><span class="menu-text">Теория</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-task" href="../../task/"><span class="menu-text">Задания</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-seminars" href="../../seminars/"><span class="menu-text">Слайды занятий</span></a></li></ul></div>
         <div class="quarto-navbar-tools tools-end">
 </div>
@@ -147,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../fundamentals/concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Основные понятия и КЦД</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Информационная безопасность</span></span></a>
   </div>
 </li>
       </ul>
@@ -187,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../security-center/organization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность и кибербезопасность: в чём разница?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -201,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-4-label">Стандарты, системы защиты и риски</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Требования к защите</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -215,7 +215,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-5-label">Идентификация и управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -229,7 +229,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-6-label">Случайность и криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -246,8 +246,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
+  <a href="../crypto/cypher.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -258,8 +258,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/cypher.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Шифрование</span></span></a>
+  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Известные алгоритмы</span></span></a>
   </div>
 </li>
       </ul>
@@ -267,13 +273,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-controls="quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-7-label">Целостность и резервное копирование</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-7-label">Сохранность данных</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../data-integrity/integrity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
   </div>
 </li>
       </ul>
@@ -281,13 +287,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-controls="quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-8-label">Подпись и доверие</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-8-label">Цифровая подпись</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-8" aria-labelledby="quarto-sidebar-section-8-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../crypto/public-key-outline.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
   </div>
 </li>
       </ul>
@@ -302,7 +308,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Содержание</h2>
    
   <ul>
-  <li><a href="#технические-средства-цкб" id="toc-технические-средства-цкб" class="nav-link active" data-scroll-target="#технические-средства-цкб"><span class="header-section-number">7.1</span> Технические средства ЦКБ</a></li>
+  <li><a href="#sec-theory-security-center-tools" id="toc-sec-theory-security-center-tools" class="nav-link active" data-scroll-target="#sec-theory-security-center-tools"><span class="header-section-number">7.1</span> Технические средства ЦКБ</a></li>
   </ul>
 </nav>
     </div>
@@ -335,6 +341,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Роли участников этого процесса разобраны в <a href="organization.html#sec-theory-security-center-roles" class="quarto-xref"><span>Глава 6.3</span></a>, а его нормативная основа — в <a href="organization.html#sec-theory-security-center-requirements" class="quarto-xref"><span>Глава 6.2</span></a>.</p>
 <ol type="1">
 <li><p><strong>Заключение договора.</strong></p></li>
 <li><p><strong>Подключение объекта.</strong> Работы выполняет группа администрирования ЦКБ:</p>
@@ -374,14 +381,14 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>Дальнейшая обработка включает несколько действий:</p>
 <ul>
-<li><strong>Анализ события.</strong> Аналитики выясняют, где и что произошло. Причиной может быть как легитимная активность, так и киберинцидент.</li>
+<li><strong>Анализ события.</strong> Аналитики выясняют, где и что произошло. Причиной может быть как легитимная активность, так и киберинцидент. Поэтому важно различать событие (<a href="../fundamentals/concepts.html#def-security-event" class="quarto-xref">Определение&nbsp;<span>2.9</span></a>) и инцидент (<a href="../fundamentals/concepts.html#def-security-incident" class="quarto-xref">Определение&nbsp;<span>2.10</span></a>).</li>
 <li><strong>Уточнение информации.</strong> Если данных недостаточно, сотрудники ЦКБ обращаются к клиенту. Клиент также может сообщить о проблеме; аналитики проверяют события в SIEM и отвечают на обращение.</li>
 <li><strong>Регистрация и расследование.</strong> Выявленный киберинцидент регистрируют в IRP, проводят расследование и предоставляют клиенту результаты и инструкции по ликвидации последствий. IRP автоматизирует обработку инцидентов и реагирование на них.</li>
-<li><strong>Обмен информацией.</strong> Киберинциденты высокого и среднего уровня регистрируют в системе НЦКБ для обмена сведениями в рамках национальной системы кибербезопасности.</li>
+<li><strong>Обмен информацией.</strong> Киберинциденты высокого и среднего уровня регистрируют в системе НЦКБ для обмена сведениями в рамках национальной системы кибербезопасности (<a href="organization.html#sec-theory-security-center-national-system" class="quarto-xref"><span>Глава 6.1</span></a>).</li>
 </ul></li>
 </ol>
-<section id="технические-средства-цкб" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="технические-средства-цкб"><span class="header-section-number">7.1</span> Технические средства ЦКБ</h2>
+<section id="sec-theory-security-center-tools" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="sec-theory-security-center-tools"><span class="header-section-number">7.1</span> Технические средства ЦКБ</h2>
 <p>ЦКБ должен иметь на праве собственности или ином законном основании:</p>
 <ul>
 <li>системы сбора, обработки и хранения событий кибербезопасности — для поступающих событий;</li>
@@ -391,6 +398,7 @@ ul.task-list li input[type="checkbox"] {
 <li>средства оценки эффективности защищённости ОИИ от кибератак — например, сканеры уязвимостей и инструменты тестирования на проникновение.</li>
 </ul>
 <p>Наличие средств динамического анализа вредоносного ПО и оценки эффективности защищённости обязательно для центров, планирующих оказывать услуги по обеспечению кибербезопасности.</p>
+<p>Регламенты, распределение ответственности и перечисленные средства дополняют друг друга: различие организационных и технических мер разобрано в <a href="../legal/protection-measures.html" class="quarto-xref"><span>Глава 5</span></a>.</p>
 
 
 
@@ -802,8 +810,8 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation" aria-label="Страница">
   <div class="nav-page nav-page-previous">
-      <a href="../security-center/organization.html" class="pagination-link" aria-label="Информационная безопасность и кибербезопасность: в чём разница?">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность и кибербезопасность: в чём разница?</span></span>
+      <a href="../security-center/organization.html" class="pagination-link" aria-label="Информационная безопасность в цифровой среде">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

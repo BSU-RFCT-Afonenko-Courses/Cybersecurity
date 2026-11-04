@@ -9,7 +9,7 @@
 <meta name="author" content="Афоненко Анатолий">
 <meta name="author" content="Войтович Елизавета">
 
-<title>16&nbsp; Асимметричная криптография – Теория</title>
+<title>17&nbsp; Асимметричная криптография – Теория</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -59,7 +59,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-contrib/course-presentation-0.1.0/presentation.js" data-course-runtime-asset="presentation.js" data-course-runtime-provider="course-presentation"></script>
 <link href="../site_libs/quarto-contrib/course-presentation-0.1.0/presentation.css" rel="stylesheet" data-course-runtime-asset="presentation.css" data-course-runtime-provider="course-presentation">
 <link href="../site_libs/quarto-contrib/course-navigation-header/header.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/course-visualizations-0.3.0/style.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/style.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/cipher.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/password.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/generator.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -99,9 +102,6 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand navbar-brand-logo" href="../../"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo light-content"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo dark-content">Основы кибербезопасности</a>
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Теория</span>
-    </a>
   </div><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Меню курса"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarCollapse"><ul class="navbar-nav navbar-nav-scroll me-auto"><li class="nav-item"><a class="nav-link" data-course-link="root" href="../../"><span class="menu-text">Курс</span></a></li><li class="nav-item"><a class="nav-link active" data-course-link="subproject-theory" href="../" aria-current="page"><span class="menu-text">Теория</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-task" href="../../task/"><span class="menu-text">Задания</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-seminars" href="../../seminars/"><span class="menu-text">Слайды занятий</span></a></li></ul></div>
         <div class="quarto-navbar-tools tools-end">
 </div>
@@ -113,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/public-key-outline.html">Подпись и доверие</a></li><li class="breadcrumb-item"><a href="../crypto/public-key-outline.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/public-key-outline.html">Цифровая подпись</a></li><li class="breadcrumb-item"><a href="../crypto/public-key-outline.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -146,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../fundamentals/concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Основные понятия и КЦД</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Информационная безопасность</span></span></a>
   </div>
 </li>
       </ul>
@@ -186,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../security-center/organization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность и кибербезопасность: в чём разница?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -200,7 +200,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-4-label">Стандарты, системы защиты и риски</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Требования к защите</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -214,7 +214,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-5-label">Идентификация и управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -228,7 +228,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-6-label">Случайность и криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -245,8 +245,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
+  <a href="../crypto/cypher.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -257,8 +257,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/cypher.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Шифрование</span></span></a>
+  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Известные алгоритмы</span></span></a>
   </div>
 </li>
       </ul>
@@ -266,13 +272,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-controls="quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-7-label">Целостность и резервное копирование</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-7-label">Сохранность данных</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../data-integrity/integrity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
   </div>
 </li>
       </ul>
@@ -280,13 +286,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-controls="quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-8-label">Подпись и доверие</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-8-label">Цифровая подпись</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-8" aria-labelledby="quarto-sidebar-section-8-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../crypto/public-key-outline.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
   </div>
 </li>
       </ul>
@@ -301,18 +307,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Содержание</h2>
    
   <ul>
-  <li><a href="#электронная-цифровая-подпись" id="toc-электронная-цифровая-подпись" class="nav-link active" data-scroll-target="#электронная-цифровая-подпись"><span class="header-section-number">16.1</span> Электронная цифровая подпись</a></li>
-  <li><a href="#инфраструктура-открытых-ключей-pki" id="toc-инфраструктура-открытых-ключей-pki" class="nav-link" data-scroll-target="#инфраструктура-открытых-ключей-pki"><span class="header-section-number">16.2</span> Инфраструктура открытых ключей (PKI)</a></li>
-  <li><a href="#доверие-к-ключам" id="toc-доверие-к-ключам" class="nav-link" data-scroll-target="#доверие-к-ключам"><span class="header-section-number">16.3</span> Доверие к ключам</a></li>
+  <li><a href="#открытый-ключ" id="toc-открытый-ключ" class="nav-link active" data-scroll-target="#открытый-ключ"><span class="header-section-number">17.1</span> Открытый ключ</a></li>
+  <li><a href="#электронная-цифровая-подпись" id="toc-электронная-цифровая-подпись" class="nav-link" data-scroll-target="#электронная-цифровая-подпись"><span class="header-section-number">17.2</span> Электронная цифровая подпись</a></li>
+  <li><a href="#сертификаты" id="toc-сертификаты" class="nav-link" data-scroll-target="#сертификаты"><span class="header-section-number">17.3</span> Сертификаты</a></li>
+  <li><a href="#проверка-доверия" id="toc-проверка-доверия" class="nav-link" data-scroll-target="#проверка-доверия"><span class="header-section-number">17.4</span> Проверка доверия</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/public-key-outline.html">Подпись и доверие</a></li><li class="breadcrumb-item"><a href="../crypto/public-key-outline.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/public-key-outline.html">Цифровая подпись</a></li><li class="breadcrumb-item"><a href="../crypto/public-key-outline.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></h1>
+<h1 class="title"><span id="sec-theory-public-key" class="quarto-section-identifier"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></h1>
 </div>
 
 
@@ -336,26 +343,31 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="электронная-цифровая-подпись" class="level2" data-number="16.1">
-<h2 data-number="16.1" class="anchored" data-anchor-id="электронная-цифровая-подпись"><span class="header-section-number">16.1</span> Электронная цифровая подпись</h2>
+<section id="открытый-ключ" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="открытый-ключ"><span class="header-section-number">17.1</span> Открытый ключ</h2>
+<p>Симметричное шифрование быстро обрабатывает большие данные, но участникам нужен общий секрет. В асимметричной криптографии используется пара ключей: открытый распространяется, закрытый защищается владельцем. Например, RSA-OAEP позволяет зашифровать небольшое сообщение для получателя по его открытому ключу; расшифровать его должен обладатель соответствующего закрытого ключа. При этом отправителю необходимо удостовериться, что открытый ключ действительно принадлежит получателю.</p>
+<p>На практике часто применяют гибридную схему: асимметрический механизм помогает безопасно доставить или согласовать секрет, KDF выводит из него ключ, а симметричная схема защищает сам файл или поток. ECDH согласует общий секрет, но само по себе не шифрует файл и не устанавливает личность сторон. Асимметрические операции обычно дороже симметричной обработки больших объёмов; выбор конкретной схемы зависит от задачи. ECDSA и Ed25519 предназначены для цифровой подписи; эта операция подтверждает связь данных с ключом подписавшего. Проверка подписи и принадлежности ключа требует отдельного рассмотрения.</p>
+</section>
+<section id="электронная-цифровая-подпись" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="электронная-цифровая-подпись"><span class="header-section-number">17.2</span> Электронная цифровая подпись</h2>
 <p>Открытое расписание может читать любой желающий. Чтобы проверить его происхождение и целостность, издатель подписывает <strong>точные данные</strong> документа своим закрытым ключом. Проверяющий получает документ, подпись и открытый ключ, принадлежность которого он установил доверенным способом.</p>
 <ol type="1">
 <li>Издатель выбирает точное представление документа — последовательность байтов — и выполняет операцию <code>Sign</code> закрытым ключом.</li>
 <li>Получатель выполняет <code>Verify</code> над полученными байтами, подписью и проверенным открытым ключом.</li>
 <li>Успешная проверка означает, что подпись соответствует этим данным и этому ключу по правилам схемы. Изменение подписанных данных или подписи обычно приводит к отказу проверки.</li>
 </ol>
-<p>В схемах подписи может использоваться криптографический хеш данных; он связывает операцию с документом, но сам по себе не устанавливает автора. Свойства хеша и необходимость доверять опубликованному эталону разобраны в <a href="hash.html#sec-theory-crypto-hash" class="quarto-xref"><span>Глава 11.1</span></a>. Подпись не следует определять как «шифрование закрытым ключом»: <code>Sign</code> и <code>Verify</code> имеют собственное назначение и правила. ECDSA и Ed25519 — примеры схем подписи; существуют и схемы подписи на основе хеш-функций.</p>
-<p>Сравним расписание с закрытым списком контактов. При шифровании получателю отправитель использует доверенный открытый ключ <strong>получателя</strong>, а тот применяет свой закрытый ключ для расшифрования. При подписи издатель использует <strong>свой</strong> закрытый ключ, и любой проверяющий может применить соответствующий открытый ключ. Подпись сама по себе не скрывает расписание, а шифрование само по себе не устанавливает автора.</p>
+<p>В схемах подписи может использоваться криптографический хеш данных; он связывает операцию с документом, но сам по себе не устанавливает автора. Свойства хеша и необходимость доверять опубликованному эталону разобраны в <a href="hash.html" class="quarto-xref"><span>Глава 11</span></a>. Подпись не следует определять как «шифрование закрытым ключом»: <code>Sign</code> и <code>Verify</code> имеют собственное назначение и правила. ECDSA и Ed25519 — примеры схем подписи; существуют и схемы подписи на основе хеш-функций.</p>
+<p>Сравним расписание с закрытым списком контактов. При шифровании получателю отправитель использует доверенный открытый ключ <strong>получателя</strong>, а тот применяет свой закрытый ключ для расшифрования. При подписи издатель использует <strong>свой</strong> закрытый ключ, и любой проверяющий может применить соответствующий открытый ключ. Подпись оставляет расписание открытым для чтения. Шифрование обеспечивает секретность сообщения; для установления автора нужна отдельная проверка.</p>
 <p>Общий код аутентификации сообщения, например HMAC, решает другую задачу. Если две стороны знают общий секрет, каждая из них способна создать правильную метку. Она помогает участникам проверить сообщение от обладателя секрета, но не позволяет постороннему публично отличить, кто из двух сторон её создал. Здесь MAC — код аутентификации сообщения; это другое значение сокращения, чем мандатное управление доступом. Механизм подписи с отдельными открытым и закрытым ключами даёт публичную проверку без выдачи проверяющим закрытого ключа.</p>
 </section>
-<section id="инфраструктура-открытых-ключей-pki" class="level2" data-number="16.2">
-<h2 data-number="16.2" class="anchored" data-anchor-id="инфраструктура-открытых-ключей-pki"><span class="header-section-number">16.2</span> Инфраструктура открытых ключей (PKI)</h2>
+<section id="сертификаты" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="сертификаты"><span class="header-section-number">17.3</span> Сертификаты</h2>
 <p>Успешного <code>Verify</code> ещё недостаточно, если открытый ключ получен из ненадёжного источника. Противник может подменить расписание, подписать его своим закрытым ключом и приложить собственный открытый ключ. Проверка с этим ключом пройдёт, но не докажет, что документ выпустила организация, от имени которой он представлен.</p>
 <p><strong>Сертификат</strong> связывает сведения о владельце с открытым ключом и подписывается издателем сертификата. Проверяющий оценивает эту подпись и цепочку сертификатов до заранее принятого основания доверия, а также правила применения и данные владельца. Само наличие сертификата не делает любой ключ доверенным: нужно знать, почему принят издатель и подходит ли подтверждённая в сертификате личность для данной задачи. PKI объединяет правила и средства выпуска, проверки и отзыва сертификатов; она помогает установить связь ключа с владельцем, но не заменяет оценку полномочий этого владельца.</p>
 <p>У сертификата есть срок действия, а при определённых обстоятельствах он может быть отозван. Если закрытый ключ скомпрометирован, владелец прекращает его использование, уведомляет соответствующих участников и инициирует отзыв сертификата по установленной процедуре; затем создаётся новая пара ключей. Проверяющему нужны сведения о сроке и отзыве и применимые правила проверки, в том числе сведения о времени подписания, когда они доступны и надёжны. Истечение сертификата сегодня само по себе не доказывает недействительность каждой подписи, созданной раньше в период его действия.</p>
 </section>
-<section id="доверие-к-ключам" class="level2" data-number="16.3">
-<h2 data-number="16.3" class="anchored" data-anchor-id="доверие-к-ключам"><span class="header-section-number">16.3</span> Доверие к ключам</h2>
+<section id="проверка-доверия" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="проверка-доверия"><span class="header-section-number">17.4</span> Проверка доверия</h2>
 <p>При проверке расписания полезно последовательно ответить на четыре разных вопроса:</p>
 <ol type="1">
 <li><strong>Правильна ли подпись?</strong> <code>Verify</code> проверяет связь подписи с точными данными и данным открытым ключом.</li>
@@ -776,7 +788,7 @@ ul.task-list li input[type="checkbox"] {
 <nav class="page-navigation" aria-label="Страница">
   <div class="nav-page nav-page-previous">
       <a href="../data-integrity/integrity.html" class="pagination-link" aria-label="Целостность данных">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Целостность данных</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Целостность данных</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

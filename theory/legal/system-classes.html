@@ -60,7 +60,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-contrib/course-presentation-0.1.0/presentation.js" data-course-runtime-asset="presentation.js" data-course-runtime-provider="course-presentation"></script>
 <link href="../site_libs/quarto-contrib/course-presentation-0.1.0/presentation.css" rel="stylesheet" data-course-runtime-asset="presentation.css" data-course-runtime-provider="course-presentation">
 <link href="../site_libs/quarto-contrib/course-navigation-header/header.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/course-visualizations-0.3.0/style.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/style.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/cipher.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/password.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/generator.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -100,9 +103,6 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand navbar-brand-logo" href="../../"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo light-content"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo dark-content">Основы кибербезопасности</a>
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Теория</span>
-    </a>
   </div><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Меню курса"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarCollapse"><ul class="navbar-nav navbar-nav-scroll me-auto"><li class="nav-item"><a class="nav-link" data-course-link="root" href="../../"><span class="menu-text">Курс</span></a></li><li class="nav-item"><a class="nav-link active" data-course-link="subproject-theory" href="../" aria-current="page"><span class="menu-text">Теория</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-task" href="../../task/"><span class="menu-text">Задания</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-seminars" href="../../seminars/"><span class="menu-text">Слайды занятий</span></a></li></ul></div>
         <div class="quarto-navbar-tools tools-end">
 </div>
@@ -147,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../fundamentals/concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Основные понятия и КЦД</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Информационная безопасность</span></span></a>
   </div>
 </li>
       </ul>
@@ -187,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../security-center/organization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность и кибербезопасность: в чём разница?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -201,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-4-label">Стандарты, системы защиты и риски</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Требования к защите</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -215,7 +215,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-5-label">Идентификация и управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -229,7 +229,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-6-label">Случайность и криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -246,8 +246,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
+  <a href="../crypto/cypher.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -258,8 +258,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/cypher.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Шифрование</span></span></a>
+  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Известные алгоритмы</span></span></a>
   </div>
 </li>
       </ul>
@@ -267,13 +273,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-controls="quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-7-label">Целостность и резервное копирование</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-7-label">Сохранность данных</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../data-integrity/integrity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
   </div>
 </li>
       </ul>
@@ -281,13 +287,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-controls="quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-8-label">Подпись и доверие</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-8-label">Цифровая подпись</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-8" aria-labelledby="quarto-sidebar-section-8-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../crypto/public-key-outline.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
   </div>
 </li>
       </ul>
@@ -297,8 +303,16 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">Содержание</h2>
+   
+  <ul>
+  <li><a href="#sec-theory-legal-attestation" id="toc-sec-theory-legal-attestation" class="nav-link active" data-scroll-target="#sec-theory-legal-attestation"><span class="header-section-number">4.1</span> Аттестация системы защиты информации</a></li>
+  <li><a href="#sec-theory-legal-classification" id="toc-sec-theory-legal-classification" class="nav-link" data-scroll-target="#sec-theory-legal-classification"><span class="header-section-number">4.2</span> Классификация информационных систем</a></li>
+  <li><a href="#sec-theory-legal-critical-information" id="toc-sec-theory-legal-critical-information" class="nav-link" data-scroll-target="#sec-theory-legal-critical-information"><span class="header-section-number">4.3</span> Критически важные объекты информатизации</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
@@ -329,10 +343,16 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Но что происходит дальше, если организация обрабатывает информацию ограниченного распространения? Закон не просто устанавливает ограничения доступа: он также задаёт требования к защите такой информации.</p>
+<p>Но что происходит дальше, если организация обрабатывает информацию ограниченного распространения (<a href="information-access.html#def-restricted-information" class="quarto-xref">Определение&nbsp;<span>3.2</span></a>)? Закон не просто устанавливает ограничения доступа: он также задаёт требования к защите такой информации.</p>
+<section id="sec-theory-legal-attestation" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="sec-theory-legal-attestation"><span class="header-section-number">4.1</span> Аттестация системы защиты информации</h2>
 <p>Согласно статье 28 Закона № 455-З, информация, распространение и (или) предоставление которой ограничено и которая не относится к государственным секретам, должна обрабатываться в информационных системах с применением системы защиты информации, аттестованной в установленном порядке.</p>
 <p>Проще говоря, организация должна не просто заявить, что она защищает свои данные, а еще и обеспечить выполнение применимых требований и подтвердить соответствие системы защиты установленному порядку.</p>
 <p>Требования к технической и криптографической защите таких информационных систем, а также порядок аттестации систем защиты информации регулируются приказом Оперативно-аналитического центра при Президенте Республики Беларусь от 20 февраля 2020 г. № 66.</p>
+<p>Система защиты информации определена в <a href="../standards-risk/requirements-decisions.html#def-protection-system" class="quarto-xref">Определение&nbsp;<span>8.1</span></a>; её создание разобрано в <a href="../standards-risk/requirements-decisions.html#sec-theory-standards-risk-protection-system" class="quarto-xref"><span>Глава 8.3</span></a>, а отличие от отдельного средства защиты — в <a href="../standards-risk/requirements-decisions.html#sec-theory-standards-risk-protection-tools" class="quarto-xref"><span>Глава 8.4</span></a>.</p>
+</section>
+<section id="sec-theory-legal-classification" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="sec-theory-legal-classification"><span class="header-section-number">4.2</span> Классификация информационных систем</h2>
 <p>До проектирования системы защиты владелец определяет, какая информация будет обрабатываться, и относит информационную систему к соответствующему классу или классам типовых информационных систем. В зависимости от присвоенного класса к информационно системе предъявляются те или иные требования.</p>
 <p>В актуальном перечне классов, используются следующие обозначения:</p>
 <table class="caption-top table">
@@ -392,14 +412,21 @@ ul.task-list li input[type="checkbox"] {
 </table>
 <p>класс 3 соответствует информационным системам, подключённым к открытым каналам передачи данных, а класс 4 – системам без такого подключения.</p>
 <p>Следует отметить, что классы 5-частн/5-гос и 6-частн/6-гос исключены из актуальной редакции приказа ОАЦ № 66, они присваивались информационным системам, обрабатывающим общедоступную информацию частных или государственных организаций соответственно.</p>
+</section>
+<section id="sec-theory-legal-critical-information" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="sec-theory-legal-critical-information"><span class="header-section-number">4.3</span> Критически важные объекты информатизации</h2>
 <p>Что касается классов 1 и 2. Это информация, относящаяся к госсекретам и КВОИ.</p>
-<p>КВОИ (Критически важные объекты информатизации) – это информационные системы, сбой или взлом которых может привести к масштабным негативным последствиям для государства и общества. Такие объекты лежат в основе функционирования ключевых отраслей: энергетики, транспорта, финансов, промышленности, социальной сферы, связи и других. (Если нарушится штатное функционирование Белтелекома, сорвется не только запланированная на вечер катка, но и не запустится образовательный портал, пропадет связь между большинством организаций, перестанут работать сервисы, размещенные в ЦОДах). Порядок отнесения информационных систем к КВОИ определен <a href="https://www.oac.gov.by/public/content/files/files/law/decrees-rb/2013-196.pdf">положением о порядке отнесения объектов информатизации к критически важным объектам информатизации</a>, утвержденным Указом Президента Республики Беларусь 16.04.2013 № 196 (в редакции Указа Президента Республики Беларусь 09.12.2019 № 449).</p>
-<p>А <a href="https://www.oac.gov.by/public/content/files/files/law/decrees-rb/2023-40.pdf">перечень владельцев критически важных объектов информатизации</a> приведен в Приложении 1 к Указу Президента Республики Беларусь 14.02.2023 № 40.</p>
+<div id="def-critical-information-object" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 4.1 (Критически важные объекты информатизации)</strong></span> КВОИ (Критически важные объекты информатизации) – это информационные системы, сбой или взлом которых может привести к масштабным негативным последствиям для государства и общества.</p>
+</div>
+<p>Такие объекты лежат в основе функционирования ключевых отраслей: энергетики, транспорта, финансов, промышленности, социальной сферы, связи и других. (Если нарушится штатное функционирование Белтелекома, сорвется не только запланированная на вечер катка, но и не запустится образовательный портал, пропадет связь между большинством организаций, перестанут работать сервисы, размещенные в ЦОДах). Порядок отнесения информационных систем к КВОИ определен <a href="https://www.oac.gov.by/public/content/files/files/law/decrees-rb/2013-196.pdf">положением о порядке отнесения объектов информатизации к критически важным объектам информатизации</a>, утвержденным Указом Президента Республики Беларусь 16.04.2013 № 196 (в редакции Указа Президента Республики Беларусь 09.12.2019 № 449).</p>
+<p>А <a href="https://www.oac.gov.by/public/content/files/files/law/decrees-rb/2023-40.pdf">перечень владельцев критически важных объектов информатизации</a> приведен в Приложении 1 к Указу Президента Республики Беларусь 14.02.2023 № 40. Предусмотренная этим указом национальная система кибербезопасности разобрана в <a href="../security-center/organization.html#sec-theory-security-center-national-system" class="quarto-xref"><span>Глава 6.1</span></a>.</p>
 <p>Класс 1 – сведенья отнесенные к государственным секретам в различных областях политики, сфере национальной безопасности, военной промышленности. К ним применяются особые положения законодательства, которые в этом курсе не рассматриваются.</p>
-<p>Конкретные меры выбираются с учётом класса системы, используемых технологий и применимых требований.</p>
+<p>Конкретные меры выбираются с учётом класса системы, используемых технологий и применимых требований. Виды мер разобраны в <a href="protection-measures.html" class="quarto-xref"><span>Глава 5</span></a>, а различие СЗИ и СИБ — в <a href="../standards-risk/requirements-decisions.html#sec-theory-standards-risk-protection-system" class="quarto-xref"><span>Глава 8.3</span></a>.</p>
 
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

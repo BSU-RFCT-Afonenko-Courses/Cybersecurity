@@ -9,7 +9,7 @@
 <meta name="author" content="Афоненко Анатолий">
 <meta name="author" content="Войтович Елизавета">
 
-<title>14&nbsp; Шифрование – Теория</title>
+<title>12&nbsp; Симметричное шифрование – Теория</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -73,8 +73,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../data-integrity/integrity.html" rel="next">
-<link href="../crypto/key-gen.html" rel="prev">
+<link href="../crypto/key-gen.html" rel="next">
+<link href="../crypto/hash.html" rel="prev">
 <link href="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -95,7 +95,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-contrib/course-presentation-0.1.0/presentation.js" data-course-runtime-asset="presentation.js" data-course-runtime-provider="course-presentation"></script>
 <link href="../site_libs/quarto-contrib/course-presentation-0.1.0/presentation.css" rel="stylesheet" data-course-runtime-asset="presentation.css" data-course-runtime-provider="course-presentation">
 <link href="../site_libs/quarto-contrib/course-navigation-header/header.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/course-visualizations-0.3.0/style.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/style.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/cipher.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/password.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/generator.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -137,9 +140,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand navbar-brand-logo" href="../../"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo light-content"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo dark-content">Основы кибербезопасности</a>
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Теория</span>
-    </a>
   </div><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Меню курса"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarCollapse"><ul class="navbar-nav navbar-nav-scroll me-auto"><li class="nav-item"><a class="nav-link" data-course-link="root" href="../../"><span class="menu-text">Курс</span></a></li><li class="nav-item"><a class="nav-link active" data-course-link="subproject-theory" href="../" aria-current="page"><span class="menu-text">Теория</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-task" href="../../task/"><span class="menu-text">Задания</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-seminars" href="../../seminars/"><span class="menu-text">Слайды занятий</span></a></li></ul></div>
         <div class="quarto-navbar-tools tools-end">
 </div>
@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/random.html">Случайность и криптография</a></li><li class="breadcrumb-item"><a href="../crypto/cypher.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Шифрование</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/random.html">Криптография</a></li><li class="breadcrumb-item"><a href="../crypto/cypher.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -184,7 +184,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../fundamentals/concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Основные понятия и КЦД</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Информационная безопасность</span></span></a>
   </div>
 </li>
       </ul>
@@ -224,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../security-center/organization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность и кибербезопасность: в чём разница?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -238,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-4-label">Стандарты, системы защиты и риски</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Требования к защите</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -252,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-5-label">Идентификация и управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -266,7 +266,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-6-label">Случайность и криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -283,8 +283,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
+  <a href="../crypto/cypher.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -295,8 +295,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/cypher.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Шифрование</span></span></a>
+  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Известные алгоритмы</span></span></a>
   </div>
 </li>
       </ul>
@@ -304,13 +310,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-controls="quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-7-label">Целостность и резервное копирование</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-7-label">Сохранность данных</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../data-integrity/integrity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
   </div>
 </li>
       </ul>
@@ -318,13 +324,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-controls="quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-8-label">Подпись и доверие</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-8-label">Цифровая подпись</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-8" aria-labelledby="quarto-sidebar-section-8-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../crypto/public-key-outline.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
   </div>
 </li>
       </ul>
@@ -339,22 +345,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Содержание</h2>
    
   <ul>
-  <li><a href="#sec-theory-crypto-cypher" id="toc-sec-theory-crypto-cypher" class="nav-link active" data-scroll-target="#sec-theory-crypto-cypher"><span class="header-section-number">14.1</span> Основные понятия</a>
+  <li><a href="#общий-секрет" id="toc-общий-секрет" class="nav-link active" data-scroll-target="#общий-секрет"><span class="header-section-number">12.1</span> Общий секрет</a></li>
+  <li><a href="#шифр-цезаря" id="toc-шифр-цезаря" class="nav-link" data-scroll-target="#шифр-цезаря"><span class="header-section-number">12.2</span> Шифр Цезаря</a></li>
+  <li><a href="#исключающее-или" id="toc-исключающее-или" class="nav-link" data-scroll-target="#исключающее-или"><span class="header-section-number">12.3</span> Исключающее ИЛИ</a>
   <ul class="collapse">
-  <li><a href="#сдвиг-букв-шифр-цезаря" id="toc-сдвиг-букв-шифр-цезаря" class="nav-link" data-scroll-target="#сдвиг-букв-шифр-цезаря"><span class="header-section-number">14.1.1</span> Сдвиг букв: шифр Цезаря</a></li>
-  <li><a href="#xor-от-текста-к-байтам" id="toc-xor-от-текста-к-байтам" class="nav-link" data-scroll-target="#xor-от-текста-к-байтам"><span class="header-section-number">14.1.2</span> XOR: от текста к байтам</a></li>
-  <li><a href="#современная-защита-данных" id="toc-современная-защита-данных" class="nav-link" data-scroll-target="#современная-защита-данных"><span class="header-section-number">14.1.3</span> Современная защита данных</a></li>
-  <li><a href="#симметричные-и-асимметричные-операции" id="toc-симметричные-и-асимметричные-операции" class="nav-link" data-scroll-target="#симметричные-и-асимметричные-операции"><span class="header-section-number">14.1.4</span> Симметричные и асимметричные операции</a></li>
+  <li><a href="#повтор-ключевого-потока" id="toc-повтор-ключевого-потока" class="nav-link" data-scroll-target="#повтор-ключевого-потока"><span class="header-section-number">12.3.1</span> Повтор ключевого потока</a></li>
   </ul></li>
+  <li><a href="#стойкость-шифра" id="toc-стойкость-шифра" class="nav-link" data-scroll-target="#стойкость-шифра"><span class="header-section-number">12.4</span> Стойкость шифра</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/random.html">Случайность и криптография</a></li><li class="breadcrumb-item"><a href="../crypto/cypher.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Шифрование</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/random.html">Криптография</a></li><li class="breadcrumb-item"><a href="../crypto/cypher.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Шифрование</span></h1>
+<h1 class="title"><span id="sec-theory-crypto-cypher" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span></h1>
 </div>
 
 
@@ -378,91 +384,105 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="sec-theory-crypto-cypher" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="sec-theory-crypto-cypher"><span class="header-section-number">14.1</span> Основные понятия</h2>
-<p>Шифрование преобразует открытое сообщение в шифротекст с помощью ключа. Расшифрование с подходящим ключом восстанавливает исходные данные. Например, закрытый список контактов должен оставаться непонятным тому, кто получил копию файла без ключа. Для открытого расписания секретность может быть не нужна, зато читателю важно убедиться в происхождении и целостности опубликованной версии; для этого используется подпись, рассмотренная в <a href="../crypto/public-key-outline.html">следующей главе</a>.</p>
-<p>При <strong>симметричном шифровании</strong> отправитель и получатель используют один секретный ключ либо связанные секретные ключи. Описание алгоритма можно публиковать: защита зависит от ключа и правильного применения схемы. Как создают и защищают ключ, объясняет <a href="key-gen.html#sec-theory-crypto-key-gen" class="quarto-xref"><span>Глава 13.1</span></a>.</p>
-<section id="сдвиг-букв-шифр-цезаря" class="level3" data-number="14.1.1">
-<h3 data-number="14.1.1" class="anchored" data-anchor-id="сдвиг-букв-шифр-цезаря"><span class="header-section-number">14.1.1</span> Сдвиг букв: шифр Цезаря</h3>
-<p>В учебном шифре Цезаря каждая буква сдвигается на одинаковое число позиций по кругу выбранного алфавита. Пусть русский алфавит включает <code>Ё</code> между <code>Е</code> и <code>Ж</code>, а сдвиг равен 3. Регистр сохраняется; пробелы и знаки препинания не меняются. Тогда целая фраза преобразуется так:</p>
+<section id="общий-секрет" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="общий-секрет"><span class="header-section-number">12.1</span> Общий секрет</h2>
+<p>Шифрование нужно, чтобы передавать или хранить данные в форме, доступной для чтения обладателю ключа. Например, сотрудники могут хранить зашифрованный список контактов: копия файла должна оставаться непонятной постороннему, а участники должны уметь восстановить исходный список.</p>
+<div id="def-crypto-encryption" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 12.1 (Шифрование)</strong></span> <strong>Шифрование</strong> преобразует открытое сообщение в шифротекст с помощью ключа. Расшифрование с подходящим ключом восстанавливает исходные данные.</p>
+</div>
+<div id="def-crypto-key" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 12.2 (Ключ шифрования)</strong></span> <strong>Ключ шифрования</strong> — значение, которое выбирает конкретное преобразование среди предусмотренных алгоритмом. При симметричном шифровании отправитель и получатель используют один общий секретный ключ.</p>
+</div>
+<p>Алгоритм задаёт правило преобразования, а ключ — его секретный параметр. Участники списка контактов могут пользоваться общедоступной программой шифрования и сохранять в секрете только ключ. На <a href="#fig-crypto-symmetric-key" class="quarto-xref">Рисунок&nbsp;<span>12.1</span></a> он поступает в оба преобразования: зашифрование и расшифрование.</p>
+<div id="fig-crypto-symmetric-key" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Сообщение проходит шифрование и расшифрование; один ключ K поступает в оба преобразования">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-crypto-symmetric-key-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../_prepared/visualizations/crypto/static/symmetric-key.svg" class="img-fluid figure-img" alt="Сообщение проходит шифрование и расшифрование; один ключ K поступает в оба преобразования" width="380">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-crypto-symmetric-key-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;12.1: Один ключ для зашифрования и расшифрования
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="шифр-цезаря" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="шифр-цезаря"><span class="header-section-number">12.2</span> Шифр Цезаря</h2>
+<p>В учебном шифре Цезаря каждая буква сдвигается на одинаковое число позиций по кругу выбранного алфавита. Алгоритм задаёт правило замены, а ключом служит число позиций. Возьмём русский алфавит из 33 букв, включая <code>Ё</code> между <code>Е</code> и <code>Ж</code>:</p>
+<p><code>А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я</code>.</p>
+<p>При ключе <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>15</mn><annotation encoding="application/x-tex">15</annotation></semantics></math> слово <code>БАГАЖ</code> превращается в другое осмысленное слово — <code>ПОСОХ</code>:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Исходная фраза</th>
-<th>Сдвиг на 3</th>
-<th>Обратный сдвиг на 3</th>
+<th>Сообщение</th>
+<th>Сдвиг на 15</th>
+<th>Обратный сдвиг на 15</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>Ёж, мир!</code></td>
-<td><code>Ий, плу!</code></td>
-<td><code>Ёж, мир!</code></td>
+<td><code>БАГАЖ</code></td>
+<td><code>ПОСОХ</code></td>
+<td><code>БАГАЖ</code></td>
 </tr>
 </tbody>
 </table>
-<p>Например, <code>Ё → И</code>, <code>ж → й</code>; после конца алфавита отсчёт продолжается с начала. Для латиницы берём отдельный алфавит <code>A</code>–<code>Z</code> и то же правило регистра: <code>Hello, Zoo! → Khoor, Crr!</code>. Буквы другого алфавита при выбранном режиме остаются без изменения. Отрицательный сдвиг идёт в обратную сторону, а сдвиг на длину алфавита возвращает исходный текст.</p>
-<p>Получатель обращает преобразование сдвигом в противоположную сторону. Не зная сдвига, он может перебрать все 33 варианта русского алфавита или все 26 латинского, включая нулевой, и искать осмысленный текст. Одинаковые буквы всегда заменяются одинаково, поэтому сохраняется и распределение частот. Цезарь помогает увидеть роль ключа и обратного преобразования, но для защиты контактов непригоден.</p>
+<p>Преобразование действует побуквенно: <code>Б → П</code>, <code>А → О</code>, <code>Г → С</code>, <code>А → О</code>, <code>Ж → Х</code>. После конца алфавита отсчёт продолжается с начала. Получатель сдвигает буквы на 15 позиций в обратную сторону и восстанавливает <code>БАГАЖ</code>. Регистр сохраняется; пробелы и знаки препинания остаются на месте.</p>
+<p>Наблюдатель, знающий алгоритм, может перебрать все 33 значения ключа, включая нулевое. Одинаковые буквы всегда заменяются одинаково, поэтому сохраняется распределение частот. Малое пространство ключей и эта зависимость позволяют атаковать шифр Цезаря. Даже осмысленный шифротекст <code>ПОСОХ</code> не сообщает, что исходным словом был именно <code>БАГАЖ</code>: кандидата оценивают с учётом языка и контекста сообщения.</p>
+<div class="cell hidden">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="1" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>caesarTrainerLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/crypto/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display hidden">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="25" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 24;"><span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>cryptoLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/crypto/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>cryptoLesson<span class="op">.</span><span class="fu">caesarTrainer</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-cypher-caesar" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="2" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1;"><span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>caesarTrainerLesson<span class="op">.</span><span class="fu">caesarTrainer</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fig-cypher-caesar" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cypher-caesar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display">
-<div id="fig-cypher-caesar-1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-cypher-caesar-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-1-1" data-nodetype="declaration">
+<div id="ojs-cell-2" data-nodetype="expression">
 
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-cypher-caesar-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a)
-</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div id="fig-cypher-caesar-2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-cypher-caesar-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-1-2" data-nodetype="expression">
-
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-cypher-caesar-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b)
-</figcaption>
-</figure>
-</div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cypher-caesar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;14.1: Шифрование фразы и перебор сдвигов
+Рисунок&nbsp;12.2: Шифр Цезаря
 </figcaption>
 </figure>
 </div>
 </div>
 </section>
-<section id="xor-от-текста-к-байтам" class="level3" data-number="14.1.2">
-<h3 data-number="14.1.2" class="anchored" data-anchor-id="xor-от-текста-к-байтам"><span class="header-section-number">14.1.2</span> XOR: от текста к байтам</h3>
-<p>XOR сравнивает биты: одинаковые дают 0, разные — 1. Повторная операция с тем же битом отменяет первую, поэтому для сообщения <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>, потока ключа <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> и шифротекста <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math> выполняются <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mi>M</mi><mrow><mi mathvariant="normal">X</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">R</mi></mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">C=M\mathbin{\mathrm{XOR}}K</annotation></semantics></math> и <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><mi>C</mi><mrow><mi mathvariant="normal">X</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">R</mi></mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">M=C\mathbin{\mathrm{XOR}}K</annotation></semantics></math>. Для текста сначала нужна кодировка: один символ не обязательно равен одному байту. Например, <code>Я</code> в UTF-8 записывается байтами <code>d0 af</code>. Если учебный поток равен <code>10 20</code>, то побайтовый XOR даёт шифротекст <code>c0 8f</code>; повторный XOR с <code>10 20</code> восстанавливает <code>d0 af</code>, а декодирование UTF-8 — <code>Я</code>. Здесь числа записаны шестнадцатерично, по две цифры на байт.</p>
-<p>Рассмотрим опасность повтора потока на двух коротких сообщениях. ASCII-байты этих латинских строк совпадают с их байтами UTF-8:</p>
+<section id="исключающее-или" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="исключающее-или"><span class="header-section-number">12.3</span> Исключающее ИЛИ</h2>
+<p>Цифровые данные представляют битами. Операция <strong>исключающее ИЛИ</strong>, или XOR, позволяет управлять изменением каждого бита: XOR с <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math> сохраняет бит, XOR с <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math> меняет его на противоположный. Поэтому одинаковые входные биты дают <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>, разные — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math>. В формулах операция обозначается <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊕</mi><annotation encoding="application/x-tex">\oplus</annotation></semantics></math>.</p>
+<p>Возьмём сообщение из восьми битов и ключевой поток той же длины. Применим XOR в каждом столбце:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">Сообщение</mtext></mtd><mtd columnalign="center" style="text-align: center"></mtd><mtd columnalign="right" style="text-align: right"><mn mathvariant="monospace">𝟷𝟶𝟷𝟷𝟶𝟶𝟷𝟶</mn></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">Ключевой поток</mtext></mtd><mtd columnalign="center" style="text-align: center"><mi>⊕</mi></mtd><mtd columnalign="right" style="text-align: right"><mn mathvariant="monospace">𝟶𝟷𝟷𝟶𝟷𝟶𝟶𝟷</mn></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">Шифротекст</mtext></mtd><mtd columnalign="center" style="text-align: center"></mtd><mtd columnalign="right" style="text-align: right"><mn mathvariant="monospace">𝟷𝟷𝟶𝟷𝟷𝟶𝟷𝟷</mn></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{array}{rcr}
+\text{Сообщение}      &amp;        &amp; \mathtt{10110010} \\
+\text{Ключевой поток} &amp; \oplus &amp; \mathtt{01101001} \\
+\hline
+\text{Шифротекст}     &amp;        &amp; \mathtt{11011011}
+\end{array}
+</annotation></semantics></math></p>
+<p>В первом столбце <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math> сохраняет исходную единицу; во втором <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math> меняет ноль на единицу. Повторный XOR с тем же ключевым битом восстанавливает исходный: два изменения отменяют друг друга, а два сохранения оставляют бит прежним. Для сообщения <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>, ключевого потока <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> и шифротекста <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math> это записывается как <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mi>M</mi><mo>⊕</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">C=M\oplus K</annotation></semantics></math> и <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><mi>C</mi><mo>⊕</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">M=C\oplus K</annotation></semantics></math>. В нашем примере расшифрование даёт <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11011011</mn><mo>⊕</mo><mn>01101001</mn><mo>=</mo><mn>10110010</mn></mrow><annotation encoding="application/x-tex">11011011\oplus01101001=10110010</annotation></semantics></math>.</p>
+<p>Для текста сначала нужна кодировка: один символ может занимать несколько байтов. Например, <code>Я</code> в UTF-8 записывается байтами <code>d0 af</code>. Если учебный поток равен <code>10 20</code>, побайтовый XOR даёт шифротекст <code>c0 8f</code>; повторный XOR с <code>10 20</code> восстанавливает <code>d0 af</code>, а декодирование UTF-8 — <code>Я</code>. Здесь числа записаны шестнадцатерично, по две цифры на байт.</p>
+<section id="повтор-ключевого-потока" class="level3" data-number="12.3.1">
+<h3 data-number="12.3.1" class="anchored" data-anchor-id="повтор-ключевого-потока"><span class="header-section-number">12.3.1</span> Повтор ключевого потока</h3>
+<p>Рассмотрим два коротких сообщения с одним и тем же потоком. ASCII-байты этих латинских строк совпадают с их байтами UTF-8:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Величина</th>
-<th>Байты в hex</th>
+<th>Байты в шестнадцатеричной записи</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>M</mi><mn>1</mn></msub><annotation encoding="application/x-tex">M_1</annotation></semantics></math> = <code>CAT</code></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mn>1</mn></msub><mo>=</mo></mrow><annotation encoding="application/x-tex">M_1 =</annotation></semantics></math> <code>CAT</code></td>
 <td><code>43 41 54</code></td>
 </tr>
 <tr class="even">
-<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>M</mi><mn>2</mn></msub><annotation encoding="application/x-tex">M_2</annotation></semantics></math> = <code>DOG</code></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mn>2</mn></msub><mo>=</mo></mrow><annotation encoding="application/x-tex">M_2 =</annotation></semantics></math> <code>DOG</code></td>
 <td><code>44 4f 47</code></td>
 </tr>
 <tr class="odd">
@@ -479,42 +499,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Поток в таблице раскрыт для ручной проверки; в защищённом обмене он должен быть секретным. Даже не зная его, наблюдатель вычисляет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>1</mn></msub><mrow><mi mathvariant="normal">X</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">R</mi></mrow><msub><mi>C</mi><mn>2</mn></msub><mo>=</mo><msub><mi>M</mi><mn>1</mn></msub><mrow><mi mathvariant="normal">X</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">R</mi></mrow><msub><mi>M</mi><mn>2</mn></msub><mo>=</mo><mtext mathvariant="monospace">𝟶𝟽 𝟶𝚎 𝟷𝟹</mtext></mrow><annotation encoding="application/x-tex">C_1\mathbin{\mathrm{XOR}}C_2=M_1\mathbin{\mathrm{XOR}}M_2=\texttt{07 0e 13}</annotation></semantics></math>: два одинаковых потока сокращаются. Если известно первое сообщение, то <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mn>2</mn></msub><mo>=</mo><msub><mi>C</mi><mn>1</mn></msub><mrow><mi mathvariant="normal">X</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">R</mi></mrow><msub><mi>C</mi><mn>2</mn></msub><mrow><mi mathvariant="normal">X</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">R</mi></mrow><msub><mi>M</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">M_2=C_1\mathbin{\mathrm{XOR}}C_2\mathbin{\mathrm{XOR}}M_1</annotation></semantics></math>, то есть <code>07 0e 13 XOR 43 41 54 = 44 4f 47</code> и получается <code>DOG</code>. Повторный поток связывает сообщения и может раскрыть их содержание.</p>
-<p>Сам XOR не обнаруживает вмешательство: изменение одного бита шифротекста изменит соответствующий бит восстановленного сообщения. Одноразовый блокнот даёт теоретическую совершенную секретность, когда ключ действительно случаен, равен сообщению по длине, хранится в секрете и никогда не используется повторно. Без этих условий свойство не следует из одной формулы XOR; сама схема также не обеспечивает проверку целостности.</p>
+<p>Наблюдатель видит <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mn>1</mn></msub><annotation encoding="application/x-tex">C_1</annotation></semantics></math> и <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mn>2</mn></msub><annotation encoding="application/x-tex">C_2</annotation></semantics></math>. Он может вычислить <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>1</mn></msub><mo>⊕</mo><msub><mi>C</mi><mn>2</mn></msub><mo>=</mo><msub><mi>M</mi><mn>1</mn></msub><mo>⊕</mo><msub><mi>M</mi><mn>2</mn></msub><mo>=</mo><mrow><mn mathvariant="monospace">𝟶𝟽</mn><mspace width="0.222em"></mspace><mn mathvariant="monospace">𝟶</mn><mi mathvariant="monospace">𝚎</mi><mspace width="0.222em"></mspace><mn mathvariant="monospace">𝟷𝟹</mn></mrow></mrow><annotation encoding="application/x-tex">C_1\oplus C_2=M_1\oplus M_2=\mathtt{07\ 0e\ 13}</annotation></semantics></math>: два одинаковых потока сокращаются. Если первое сообщение известно, то</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mn>2</mn></msub><mo>=</mo><msub><mi>C</mi><mn>1</mn></msub><mo>⊕</mo><msub><mi>C</mi><mn>2</mn></msub><mo>⊕</mo><msub><mi>M</mi><mn>1</mn></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">M_2=C_1\oplus C_2\oplus M_1.</annotation></semantics></math></p>
+<p>В таблице <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mn mathvariant="monospace">𝟶𝟽</mn><mspace width="0.222em"></mspace><mn mathvariant="monospace">𝟶</mn><mi mathvariant="monospace">𝚎</mi><mspace width="0.222em"></mspace><mn mathvariant="monospace">𝟷𝟹</mn></mrow><mo>⊕</mo><mrow><mn mathvariant="monospace">𝟺𝟹</mn><mspace width="0.222em"></mspace><mn mathvariant="monospace">𝟺𝟷</mn><mspace width="0.222em"></mspace><mn mathvariant="monospace">𝟻𝟺</mn></mrow><mo>=</mo><mrow><mn mathvariant="monospace">𝟺𝟺</mn><mspace width="0.222em"></mspace><mn mathvariant="monospace">𝟺</mn><mi mathvariant="monospace">𝚏</mi><mspace width="0.222em"></mspace><mn mathvariant="monospace">𝟺𝟽</mn></mrow></mrow><annotation encoding="application/x-tex">\mathtt{07\ 0e\ 13}\oplus\mathtt{43\ 41\ 54}=\mathtt{44\ 4f\ 47}</annotation></semantics></math>, то есть получается <code>DOG</code>. Для этой атаки знать сам поток не требуется. Его байты приведены в таблице для проверки вычислений.</p>
+<p>Одноразовый блокнот даёт теоретическую совершенную секретность, когда поток действительно случаен, равен сообщению по длине, хранится в секрете и никогда не используется повторно. Изменение бита шифротекста всё же меняет соответствующий бит восстановленного сообщения: XOR с секретным потоком не проверяет целостность.</p>
+<div class="cell hidden">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="1" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>xorTrainerLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/crypto/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display hidden">
+<div id="ojs-cell-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="50" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 49;"><span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>cryptoLesson<span class="op">.</span><span class="fu">xorTrainer</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="2" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1;"><span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>xorTrainerLesson<span class="op">.</span><span class="fu">xorTrainer</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-cypher-xor" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cypher-xor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-2" data-nodetype="expression">
+<div id="ojs-cell-4" data-nodetype="expression">
 
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cypher-xor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;14.2: Байты UTF-8, XOR и повтор ключевого потока
+Рисунок&nbsp;12.3: Побитовое сложение XOR
 </figcaption>
 </figure>
 </div>
 </div>
+<p>XOR входит в число базовых операций многих шифров. В потоковом шифре специальная конструкция вырабатывает ключевой поток из короткого секретного ключа. Стойкость такого шифра зависит от непредсказуемости потока и соблюдения правил его применения. Блочный AES и потоковый ChaCha20 описаны по назначению в <a href="algorithms.html" class="quarto-xref"><span>Глава 15</span></a>.</p>
 </section>
-<section id="современная-защита-данных" class="level3" data-number="14.1.3">
-<h3 data-number="14.1.3" class="anchored" data-anchor-id="современная-защита-данных"><span class="header-section-number">14.1.3</span> Современная защита данных</h3>
-<p>AES — блочный симметричный шифр, ChaCha20 — потоковый. Применение шифра требует выбранной схемы и соблюдения её условий; само название шифра ещё не задаёт защиту целостности. Для списка контактов можно применять проверенную схему <strong>аутентифицированного шифрования</strong>, например AES-GCM или ChaCha20-Poly1305. Она выдаёт шифротекст и тег проверки; при расшифровании неверный тег приводит к отказу, а данные не принимаются как подлинные.</p>
-<p>В записи следует различать три поля: <code>nonce</code> задаёт значение для конкретной операции, шифротекст содержит защищённые данные, тег позволяет проверить их вместе с предусмотренными схемой параметрами. <code>nonce</code> обычно не секретен и хранится или передаётся вместе с результатом. Для названных схем нельзя повторять <code>nonce</code> с одним ключом; точные длины и правила задаёт используемая реализация. Одного тега недостаточно, если сам ключ раскрыт.</p>
 </section>
-<section id="симметричные-и-асимметричные-операции" class="level3" data-number="14.1.4">
-<h3 data-number="14.1.4" class="anchored" data-anchor-id="симметричные-и-асимметричные-операции"><span class="header-section-number">14.1.4</span> Симметричные и асимметричные операции</h3>
-<p>Симметричное шифрование быстро обрабатывает большие данные, но участникам нужен общий секрет. В асимметричной криптографии используется пара ключей: открытый распространяется, закрытый защищается владельцем. Например, RSA-OAEP позволяет зашифровать небольшое сообщение для получателя по его открытому ключу; расшифровать его должен обладатель соответствующего закрытого ключа. При этом отправителю необходимо удостовериться, что открытый ключ действительно принадлежит получателю.</p>
-<p>На практике часто применяют гибридную схему: асимметрический механизм помогает безопасно доставить или согласовать секрет, KDF выводит из него ключ, а симметричная схема защищает сам файл или поток. ECDH согласует общий секрет, но само по себе не шифрует файл и не устанавливает личность сторон. Асимметрические операции обычно дороже симметричной обработки больших объёмов; выбор конкретной схемы зависит от задачи. ECDSA и Ed25519 предназначены для цифровой подписи, а не для шифрования сообщения получателю. Проверка подписи и принадлежности ключа рассмотрена далее.</p>
+<section id="стойкость-шифра" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="стойкость-шифра"><span class="header-section-number">12.4</span> Стойкость шифра</h2>
+<p>При проектировании защиты предполагают, что противник знает алгоритм. Публичное описание позволяет исследовать конструкцию; секретность общего ключа должна сохраняться и при известном правиле преобразования. У Цезаря правило известно, но всего 33 ключа можно проверить полностью. У современного шифра пространство ключей должно делать такой перебор практически недоступным.</p>
+<p>Если ключ содержит <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math> битов, существует <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mi>b</mi></msup><annotation encoding="application/x-tex">2^b</annotation></semantics></math> битовых строк этой длины. При независимом равномерном выборе всех битов каждая строка имеет вероятность <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mi>−</mi><mi>b</mi></mrow></msup><annotation encoding="application/x-tex">2^{-b}</annotation></semantics></math>; полный перебор проверяет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mi>b</mi></msup><annotation encoding="application/x-tex">2^b</annotation></semantics></math> кандидатов, а среднее число проверок в фиксированном порядке равно <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mn>2</mn><mi>b</mi></msup><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">(2^b+1)/2</annotation></semantics></math>. Например, для 128 битов пространство содержит <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mn>128</mn></msup><annotation encoding="application/x-tex">2^{128}</annotation></semantics></math> вариантов.</p>
+<p>Предсказуемый выбор уменьшает неопределённость ключа. Если 256-битная строка детерминированно получается из одного 32-битного начального значения, возможны не более <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mn>32</mn></msup><annotation encoding="application/x-tex">2^{32}</annotation></semantics></math> таких строк. Противник может перебирать начальные значения, поэтому длина записи ключа и его <a href="../crypto/random.html#def-random-entropy">энтропия</a> различаются. Получение непредсказуемого ключа разобрано в <a href="key-gen.html" class="quarto-xref"><span>Глава 13</span></a>.</p>
+<p>Большое пространство ключей затрудняет полный перебор. Уязвимость конструкции может дать более короткий способ восстановления данных; повтор потока, как в разобранном примере, связывает два сообщения даже без перебора. Реализация также должна защищать ключ при хранении и вычислениях: его утечка предоставляет противнику тот же секрет, которым пользуется получатель. Стойкость зависит от конструкции, применения и реализации шифра.</p>
+<p>Общий секрет требуется безопасно доставить участникам. Асимметричные механизмы помогают согласовать или передать секрет; гибридное применение рассмотрено в <a href="public-key-outline.html" class="quarto-xref"><span>Глава 17</span></a>.</p>
 
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImNyeXB0b0xlc3NvbiA9IGF3YWl0IGltcG9ydChhd2FpdCBGaWxlQXR0YWNobWVudChcIi9fcHJlcGFyZWQvdmlzdWFsaXphdGlvbnMvY3J5cHRvL2xlc3Nvbi5qc1wiKS51cmwoKSlcbmNyeXB0b0xlc3Nvbi5jYWVzYXJUcmFpbmVyKClcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImNyeXB0b0xlc3Nvbi54b3JUcmFpbmVyKClcbiJ9XX0=
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImNhZXNhclRyYWluZXJMZXNzb24gPSBhd2FpdCBpbXBvcnQoYXdhaXQgRmlsZUF0dGFjaG1lbnQoXCIvX3ByZXBhcmVkL3Zpc3VhbGl6YXRpb25zL2NyeXB0by9sZXNzb24uanNcIikudXJsKCkpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJjYWVzYXJUcmFpbmVyTGVzc29uLmNhZXNhclRyYWluZXIoKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0zIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoieG9yVHJhaW5lckxlc3NvbiA9IGF3YWl0IGltcG9ydChhd2FpdCBGaWxlQXR0YWNobWVudChcIi9fcHJlcGFyZWQvdmlzdWFsaXphdGlvbnMvY3J5cHRvL2xlc3Nvbi5qc1wiKS51cmwoKSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InhvclRyYWluZXJMZXNzb24ueG9yVHJhaW5lcigpXG4ifV19
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
@@ -929,13 +958,13 @@ window._ojs.runtime.interpretFromScriptTags();
   </script>
 <nav class="page-navigation" aria-label="Страница">
   <div class="nav-page nav-page-previous">
-      <a href="../crypto/key-gen.html" class="pagination-link" aria-label="Генерация ключей">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Генерация ключей</span></span>
+      <a href="../crypto/hash.html" class="pagination-link" aria-label="Хеш-функции">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Хеш-функции</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../data-integrity/integrity.html" class="pagination-link" aria-label="Целостность данных">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Целостность данных</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../crypto/key-gen.html" class="pagination-link" aria-label="Генерация ключей">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Генерация ключей</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

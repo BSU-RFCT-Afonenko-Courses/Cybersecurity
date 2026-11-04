@@ -39,6 +39,39 @@
       "label": "Таблица 1",
       "number": "1"
     },
+    "practice:def-slide-crypto-digest": {
+      "namespace": "practice",
+      "id": "def-slide-crypto-digest",
+      "page": "seminars/05-crypto.html",
+      "fragment": "def-slide-crypto-digest",
+      "slide": "хеш-функция",
+      "labelHtml": "Определение&nbsp;2",
+      "numberHtml": "2",
+      "label": "Определение 2",
+      "number": "2"
+    },
+    "practice:def-slide-crypto-encryption": {
+      "namespace": "practice",
+      "id": "def-slide-crypto-encryption",
+      "page": "seminars/05-crypto.html",
+      "fragment": "def-slide-crypto-encryption",
+      "slide": "симметричное-шифрование",
+      "labelHtml": "Определение&nbsp;3",
+      "numberHtml": "3",
+      "label": "Определение 3",
+      "number": "3"
+    },
+    "practice:def-slide-random-state": {
+      "namespace": "practice",
+      "id": "def-slide-random-state",
+      "page": "seminars/05-crypto.html",
+      "fragment": "def-slide-random-state",
+      "slide": "состояние-генератора",
+      "labelHtml": "Определение&nbsp;1",
+      "numberHtml": "1",
+      "label": "Определение 1",
+      "number": "1"
+    },
     "practice:exr-access-short-editor": {
       "namespace": "practice",
       "id": "exr-access-short-editor",
@@ -77,7 +110,7 @@
       "id": "exr-crypto-file-and-hash-replaced",
       "page": "seminars/05-crypto.html",
       "fragment": "exr-crypto-file-and-hash-replaced",
-      "slide": "вопрос-файл-и-эталон",
+      "slide": "доверенный-эталон",
       "labelHtml": "Упражнение&nbsp;3",
       "numberHtml": "3",
       "label": "Упражнение 3",
@@ -88,18 +121,18 @@
       "id": "exr-crypto-five-people-keys",
       "page": "seminars/05-crypto.html",
       "fragment": "exr-crypto-five-people-keys",
-      "slide": "вопрос-распределение-ключей",
-      "labelHtml": "Упражнение&nbsp;5",
-      "numberHtml": "5",
-      "label": "Упражнение 5",
-      "number": "5"
+      "slide": "распределение-ключей",
+      "labelHtml": "Упражнение&nbsp;4",
+      "numberHtml": "4",
+      "label": "Упражнение 4",
+      "number": "4"
     },
     "practice:exr-crypto-hash-aa-bb": {
       "namespace": "practice",
       "id": "exr-crypto-hash-aa-bb",
       "page": "seminars/05-crypto.html",
       "fragment": "exr-crypto-hash-aa-bb",
-      "slide": "вопрос-совпадение-хешей",
+      "slide": "коллизия",
       "labelHtml": "Упражнение&nbsp;2",
       "numberHtml": "2",
       "label": "Упражнение 2",
@@ -121,7 +154,7 @@
       "id": "exr-crypto-lcg-mod16",
       "page": "seminars/05-crypto.html",
       "fragment": "exr-crypto-lcg-mod16",
-      "slide": "вопрос-для-аудитории",
+      "slide": "линейный-конгруэнтный-генератор",
       "labelHtml": "Упражнение&nbsp;1",
       "numberHtml": "1",
       "label": "Упражнение 1",
@@ -143,22 +176,11 @@
       "id": "exr-crypto-password-search-cost",
       "page": "seminars/05-crypto.html",
       "fragment": "exr-crypto-password-search-cost",
-      "slide": "вопрос-цена-перебора",
-      "labelHtml": "Упражнение&nbsp;4",
-      "numberHtml": "4",
-      "label": "Упражнение 4",
-      "number": "4"
-    },
-    "practice:exr-crypto-short-xor": {
-      "namespace": "practice",
-      "id": "exr-crypto-short-xor",
-      "page": "seminars/05-crypto.html",
-      "fragment": "exr-crypto-short-xor",
-      "slide": "вопрос-обратное-преобразование",
-      "labelHtml": "Упражнение&nbsp;6",
-      "numberHtml": "6",
-      "label": "Упражнение 6",
-      "number": "6"
+      "slide": "пространство-паролей",
+      "labelHtml": "Упражнение&nbsp;5",
+      "numberHtml": "5",
+      "label": "Упражнение 5",
+      "number": "5"
     },
     "practice:exr-data-integrity-backup-volume": {
       "namespace": "practice",
@@ -264,7 +286,7 @@
       "id": "exr-slide-access-entry",
       "page": "seminars/04-access-control.html",
       "fragment": "exr-slide-access-entry",
-      "slide": "вход-и-обращение-к-ресурсу",
+      "slide": "доступ-к-ресурсу",
       "labelHtml": "Упражнение&nbsp;2",
       "numberHtml": "2",
       "label": "Упражнение 2",
@@ -292,6 +314,83 @@
       "label": "Упражнение 1",
       "number": "1"
     },
+    "practice:fig-cypher-caesar": {
+      "namespace": "practice",
+      "id": "fig-cypher-caesar",
+      "page": "seminars/05-crypto.html",
+      "fragment": "fig-cypher-caesar",
+      "slide": "шифр-цезаря-опыт",
+      "labelHtml": "Рисунок&nbsp;6",
+      "numberHtml": "6",
+      "label": "Рисунок 6",
+      "number": "6"
+    },
+    "practice:fig-dac-decision": {
+      "namespace": "practice",
+      "id": "fig-dac-decision",
+      "page": "seminars/04-access-control.html",
+      "fragment": "fig-dac-decision",
+      "slide": "dac-применение-политики",
+      "labelHtml": "Рисунок&nbsp;4",
+      "numberHtml": "4",
+      "label": "Рисунок 4",
+      "number": "4"
+    },
+    "practice:fig-integrity-byte-change": {
+      "namespace": "practice",
+      "id": "fig-integrity-byte-change",
+      "page": "seminars/06-data-integrity.html",
+      "fragment": "fig-integrity-byte-change",
+      "slide": "запас-изменение-байта",
+      "labelHtml": "Рисунок&nbsp;7",
+      "numberHtml": "7",
+      "label": "Рисунок 7",
+      "number": "7"
+    },
+    "practice:fig-integrity-reference": {
+      "namespace": "practice",
+      "id": "fig-integrity-reference",
+      "page": "seminars/06-data-integrity.html",
+      "fragment": "fig-integrity-reference",
+      "slide": "подмена-эталона",
+      "labelHtml": "Рисунок&nbsp;2",
+      "numberHtml": "2",
+      "label": "Рисунок 2",
+      "number": "2"
+    },
+    "practice:fig-integrity-sum-collision": {
+      "namespace": "practice",
+      "id": "fig-integrity-sum-collision",
+      "page": "seminars/06-data-integrity.html",
+      "fragment": "fig-integrity-sum-collision",
+      "slide": "запас-простая-сумма",
+      "labelHtml": "Рисунок&nbsp;6",
+      "numberHtml": "6",
+      "label": "Рисунок 6",
+      "number": "6"
+    },
+    "practice:fig-integrity-xor": {
+      "namespace": "practice",
+      "id": "fig-integrity-xor",
+      "page": "seminars/06-data-integrity.html",
+      "fragment": "fig-integrity-xor",
+      "slide": "иллюстрация-восстановления-xor",
+      "labelHtml": "Рисунок&nbsp;5",
+      "numberHtml": "5",
+      "label": "Рисунок 5",
+      "number": "5"
+    },
+    "practice:fig-lcg-model-selection": {
+      "namespace": "practice",
+      "id": "fig-lcg-model-selection",
+      "page": "seminars/05-crypto.html",
+      "fragment": "fig-lcg-model-selection",
+      "slide": "отбор-параметров-lcg",
+      "labelHtml": "Рисунок&nbsp;3",
+      "numberHtml": "3",
+      "label": "Рисунок 3",
+      "number": "3"
+    },
     "practice:fig-mac-decision": {
       "namespace": "practice",
       "id": "fig-mac-decision",
@@ -303,12 +402,23 @@
       "label": "Рисунок 6",
       "number": "6"
     },
+    "practice:fig-rbac-decision": {
+      "namespace": "practice",
+      "id": "fig-rbac-decision",
+      "page": "seminars/04-access-control.html",
+      "fragment": "fig-rbac-decision",
+      "slide": "rbac-применение-политики",
+      "labelHtml": "Рисунок&nbsp;8",
+      "numberHtml": "8",
+      "label": "Рисунок 8",
+      "number": "8"
+    },
     "practice:fig-slide-access-overview": {
       "namespace": "practice",
       "id": "fig-slide-access-overview",
       "page": "seminars/04-access-control.html",
       "fragment": "fig-slide-access-overview",
-      "slide": "запрос-и-политика",
+      "slide": "порядок-обработки-запроса-на-доступ",
       "labelHtml": "Рисунок&nbsp;1",
       "numberHtml": "1",
       "label": "Рисунок 1",
@@ -319,22 +429,11 @@
       "id": "fig-slide-access-procedures",
       "page": "seminars/04-access-control.html",
       "fragment": "fig-slide-access-procedures",
-      "slide": "три-процедуры",
+      "slide": "порядок-входа",
       "labelHtml": "Рисунок&nbsp;2",
       "numberHtml": "2",
       "label": "Рисунок 2",
       "number": "2"
-    },
-    "practice:fig-slide-caesar": {
-      "namespace": "practice",
-      "id": "fig-slide-caesar",
-      "page": "seminars/05-crypto.html",
-      "fragment": "fig-slide-caesar",
-      "slide": "цезарь-опыт",
-      "labelHtml": "Рисунок&nbsp;3",
-      "numberHtml": "3",
-      "label": "Рисунок 3",
-      "number": "3"
     },
     "practice:fig-slide-dac": {
       "namespace": "practice",
@@ -347,38 +446,16 @@
       "label": "Рисунок 3",
       "number": "3"
     },
-    "practice:fig-slide-dac-decision": {
+    "practice:fig-slide-hash-length": {
       "namespace": "practice",
-      "id": "fig-slide-dac-decision",
-      "page": "seminars/04-access-control.html",
-      "fragment": "fig-slide-dac-decision",
-      "slide": "dac-применение-политики",
+      "id": "fig-slide-hash-length",
+      "page": "seminars/05-crypto.html",
+      "fragment": "fig-slide-hash-length",
+      "slide": "хеш-функция",
       "labelHtml": "Рисунок&nbsp;4",
       "numberHtml": "4",
       "label": "Рисунок 4",
       "number": "4"
-    },
-    "practice:fig-slide-integrity-byte": {
-      "namespace": "practice",
-      "id": "fig-slide-integrity-byte",
-      "page": "seminars/06-data-integrity.html",
-      "fragment": "fig-slide-integrity-byte",
-      "slide": "запас-изменение-байта",
-      "labelHtml": "Рисунок&nbsp;7",
-      "numberHtml": "7",
-      "label": "Рисунок 7",
-      "number": "7"
-    },
-    "practice:fig-slide-integrity-collision": {
-      "namespace": "practice",
-      "id": "fig-slide-integrity-collision",
-      "page": "seminars/06-data-integrity.html",
-      "fragment": "fig-slide-integrity-collision",
-      "slide": "запас-простая-сумма",
-      "labelHtml": "Рисунок&nbsp;6",
-      "numberHtml": "6",
-      "label": "Рисунок 6",
-      "number": "6"
     },
     "practice:fig-slide-integrity-copy-scales": {
       "namespace": "practice",
@@ -402,39 +479,6 @@
       "label": "Рисунок 4",
       "number": "4"
     },
-    "practice:fig-slide-integrity-reference": {
-      "namespace": "practice",
-      "id": "fig-slide-integrity-reference",
-      "page": "seminars/06-data-integrity.html",
-      "fragment": "fig-slide-integrity-reference",
-      "slide": "замена-файла-и-эталона",
-      "labelHtml": "Рисунок&nbsp;2",
-      "numberHtml": "2",
-      "label": "Рисунок 2",
-      "number": "2"
-    },
-    "practice:fig-slide-integrity-reference-1": {
-      "namespace": "practice",
-      "id": "fig-slide-integrity-reference-1",
-      "page": "seminars/06-data-integrity.html",
-      "fragment": "fig-slide-integrity-reference-1",
-      "slide": "замена-файла-и-эталона",
-      "labelHtml": "Рисунок&nbsp;2 (a)",
-      "numberHtml": "2 (a)",
-      "label": "Рисунок 2 (a)",
-      "number": "2 (a)"
-    },
-    "practice:fig-slide-integrity-reference-2": {
-      "namespace": "practice",
-      "id": "fig-slide-integrity-reference-2",
-      "page": "seminars/06-data-integrity.html",
-      "fragment": "fig-slide-integrity-reference-2",
-      "slide": "замена-файла-и-эталона",
-      "labelHtml": "Рисунок&nbsp;2 (b)",
-      "numberHtml": "2 (b)",
-      "label": "Рисунок 2 (b)",
-      "number": "2 (b)"
-    },
     "practice:fig-slide-integrity-sum-hash": {
       "namespace": "practice",
       "id": "fig-slide-integrity-sum-hash",
@@ -446,56 +490,23 @@
       "label": "Рисунок 1",
       "number": "1"
     },
-    "practice:fig-slide-integrity-xor": {
+    "practice:fig-slide-key-pairs": {
       "namespace": "practice",
-      "id": "fig-slide-integrity-xor",
-      "page": "seminars/06-data-integrity.html",
-      "fragment": "fig-slide-integrity-xor",
-      "slide": "иллюстрация-восстановления-xor",
-      "labelHtml": "Рисунок&nbsp;5",
-      "numberHtml": "5",
-      "label": "Рисунок 5",
-      "number": "5"
+      "id": "fig-slide-key-pairs",
+      "page": "seminars/05-crypto.html",
+      "fragment": "fig-slide-key-pairs",
+      "slide": "slide-crypto-key-pairs",
+      "labelHtml": "Рисунок&nbsp;7",
+      "numberHtml": "7",
+      "label": "Рисунок 7",
+      "number": "7"
     },
     "practice:fig-slide-lcg": {
       "namespace": "practice",
       "id": "fig-slide-lcg",
       "page": "seminars/05-crypto.html",
       "fragment": "fig-slide-lcg",
-      "slide": "генератор-опыт",
-      "labelHtml": "Рисунок&nbsp;2",
-      "numberHtml": "2",
-      "label": "Рисунок 2",
-      "number": "2"
-    },
-    "practice:fig-slide-lcg-1": {
-      "namespace": "practice",
-      "id": "fig-slide-lcg-1",
-      "page": "seminars/05-crypto.html",
-      "fragment": "fig-slide-lcg-1",
-      "slide": "генератор-опыт",
-      "labelHtml": "Рисунок&nbsp;2 (a)",
-      "numberHtml": "2 (a)",
-      "label": "Рисунок 2 (a)",
-      "number": "2 (a)"
-    },
-    "practice:fig-slide-lcg-2": {
-      "namespace": "practice",
-      "id": "fig-slide-lcg-2",
-      "page": "seminars/05-crypto.html",
-      "fragment": "fig-slide-lcg-2",
-      "slide": "генератор-опыт",
-      "labelHtml": "Рисунок&nbsp;2 (b)",
-      "numberHtml": "2 (b)",
-      "label": "Рисунок 2 (b)",
-      "number": "2 (b)"
-    },
-    "practice:fig-slide-lcg-feedback": {
-      "namespace": "practice",
-      "id": "fig-slide-lcg-feedback",
-      "page": "seminars/05-crypto.html",
-      "fragment": "fig-slide-lcg-feedback",
-      "slide": "обратная-связь-генератора",
+      "slide": "slide-crypto-lcg-calculation",
       "labelHtml": "Рисунок&nbsp;1",
       "numberHtml": "1",
       "label": "Рисунок 1",
@@ -512,6 +523,17 @@
       "label": "Рисунок 5",
       "number": "5"
     },
+    "practice:fig-slide-randu": {
+      "namespace": "practice",
+      "id": "fig-slide-randu",
+      "page": "seminars/05-crypto.html",
+      "fragment": "fig-slide-randu",
+      "slide": "randu",
+      "labelHtml": "Рисунок&nbsp;2",
+      "numberHtml": "2",
+      "label": "Рисунок 2",
+      "number": "2"
+    },
     "practice:fig-slide-rbac": {
       "namespace": "practice",
       "id": "fig-slide-rbac",
@@ -523,16 +545,16 @@
       "label": "Рисунок 7",
       "number": "7"
     },
-    "practice:fig-slide-rbac-decision": {
+    "practice:fig-slide-symmetric-key": {
       "namespace": "practice",
-      "id": "fig-slide-rbac-decision",
-      "page": "seminars/04-access-control.html",
-      "fragment": "fig-slide-rbac-decision",
-      "slide": "rbac-применение-политики",
-      "labelHtml": "Рисунок&nbsp;8",
-      "numberHtml": "8",
-      "label": "Рисунок 8",
-      "number": "8"
+      "id": "fig-slide-symmetric-key",
+      "page": "seminars/05-crypto.html",
+      "fragment": "fig-slide-symmetric-key",
+      "slide": "симметричное-шифрование",
+      "labelHtml": "Рисунок&nbsp;5",
+      "numberHtml": "5",
+      "label": "Рисунок 5",
+      "number": "5"
     },
     "practice:sec-practice": {
       "namespace": "practice",
@@ -551,11 +573,11 @@
       "page": "seminars/01-introduction.html",
       "fragment": "sec-seminar-1",
       "slide": "sec-seminar-1",
-      "labelHtml": "Занятие 1 – Понятия и КЦД",
+      "labelHtml": "Занятие 1 – Информационная безопасность",
       "numberHtml": "",
-      "label": "Занятие 1 – Понятия и КЦД",
+      "label": "Занятие 1 – Информационная безопасность",
       "number": "",
-      "title": "Занятие 1 – Понятия и КЦД"
+      "title": "Занятие 1 – Информационная безопасность"
     },
     "practice:sec-seminar-1-additional": {
       "namespace": "practice",
@@ -575,11 +597,11 @@
       "page": "seminars/01-introduction.html",
       "fragment": "sec-seminar-1-assets",
       "slide": "sec-seminar-1-assets",
-      "labelHtml": "Информационная система и свойства безопасности",
+      "labelHtml": "Безопасность информационной системы",
       "numberHtml": "",
-      "label": "Информационная система и свойства безопасности",
+      "label": "Безопасность информационной системы",
       "number": "",
-      "title": "Информационная система и свойства безопасности"
+      "title": "Безопасность информационной системы"
     },
     "practice:sec-seminar-1-incidents": {
       "namespace": "practice",
@@ -587,11 +609,11 @@
       "page": "seminars/01-introduction.html",
       "fragment": "sec-seminar-1-incidents",
       "slide": "sec-seminar-1-incidents",
-      "labelHtml": "Угрозы и инциденты",
+      "labelHtml": "Инциденты безопасности",
       "numberHtml": "",
-      "label": "Угрозы и инциденты",
+      "label": "Инциденты безопасности",
       "number": "",
-      "title": "Угрозы и инциденты"
+      "title": "Инциденты безопасности"
     },
     "practice:sec-seminar-2": {
       "namespace": "practice",
@@ -599,11 +621,11 @@
       "page": "seminars/02-legal-requirements.html",
       "fragment": "sec-seminar-2",
       "slide": "sec-seminar-2",
-      "labelHtml": "Семинар 2 – Правовые аспекты и требования",
+      "labelHtml": "Семинар 2 – Правовые основы защиты",
       "numberHtml": "",
-      "label": "Семинар 2 – Правовые аспекты и требования",
+      "label": "Семинар 2 – Правовые основы защиты",
       "number": "",
-      "title": "Семинар 2 – Правовые аспекты и требования"
+      "title": "Семинар 2 – Правовые основы защиты"
     },
     "practice:sec-seminar-2-additional": {
       "namespace": "practice",
@@ -635,11 +657,11 @@
       "page": "seminars/02-legal-requirements.html",
       "fragment": "sec-seminar-2-protection",
       "slide": "sec-seminar-2-protection",
-      "labelHtml": "Требования и меры защиты",
+      "labelHtml": "Меры защиты информации",
       "numberHtml": "",
-      "label": "Требования и меры защиты",
+      "label": "Меры защиты информации",
       "number": "",
-      "title": "Требования и меры защиты"
+      "title": "Меры защиты информации"
     },
     "practice:sec-seminar-3": {
       "namespace": "practice",
@@ -671,11 +693,11 @@
       "page": "seminars/03-standards-risk.html",
       "fragment": "sec-seminar-3-requirements",
       "slide": "sec-seminar-3-requirements",
-      "labelHtml": "Документы и средства защиты",
+      "labelHtml": "Требования к защите",
       "numberHtml": "",
-      "label": "Документы и средства защиты",
+      "label": "Требования к защите",
       "number": "",
-      "title": "Документы и средства защиты"
+      "title": "Требования к защите"
     },
     "practice:sec-seminar-3-risk": {
       "namespace": "practice",
@@ -707,11 +729,11 @@
       "page": "seminars/04-access-control.html",
       "fragment": "sec-seminar-4-access-decision",
       "slide": "sec-seminar-4-access-decision",
-      "labelHtml": "Запрос и решение о доступе",
+      "labelHtml": "Общая схема взаимодействия",
       "numberHtml": "",
-      "label": "Запрос и решение о доступе",
+      "label": "Общая схема взаимодействия",
       "number": "",
-      "title": "Запрос и решение о доступе"
+      "title": "Общая схема взаимодействия"
     },
     "practice:sec-seminar-4-access-models": {
       "namespace": "practice",
@@ -725,29 +747,17 @@
       "number": "",
       "title": "Модели управления доступом"
     },
-    "practice:sec-seminar-4-additional": {
-      "namespace": "practice",
-      "id": "sec-seminar-4-additional",
-      "page": "seminars/04-access-control.html",
-      "fragment": "sec-seminar-4-additional",
-      "slide": "sec-seminar-4-additional",
-      "labelHtml": "Практическая работа и итог",
-      "numberHtml": "",
-      "label": "Практическая работа и итог",
-      "number": "",
-      "title": "Практическая работа и итог"
-    },
     "practice:sec-seminar-4-authentication": {
       "namespace": "practice",
       "id": "sec-seminar-4-authentication",
       "page": "seminars/04-access-control.html",
       "fragment": "sec-seminar-4-authentication",
       "slide": "sec-seminar-4-authentication",
-      "labelHtml": "Идентификация и аутентификация",
+      "labelHtml": "Аутентификация пользователя",
       "numberHtml": "",
-      "label": "Идентификация и аутентификация",
+      "label": "Аутентификация пользователя",
       "number": "",
-      "title": "Идентификация и аутентификация"
+      "title": "Аутентификация пользователя"
     },
     "practice:sec-seminar-5": {
       "namespace": "practice",
@@ -755,11 +765,23 @@
       "page": "seminars/05-crypto.html",
       "fragment": "sec-seminar-5",
       "slide": "sec-seminar-5",
-      "labelHtml": "Семинар 5 — Случайность и криптография",
+      "labelHtml": "Семинар 5 — Криптография",
       "numberHtml": "",
-      "label": "Семинар 5 — Случайность и криптография",
+      "label": "Семинар 5 — Криптография",
       "number": "",
-      "title": "Семинар 5 — Случайность и криптография"
+      "title": "Семинар 5 — Криптография"
+    },
+    "practice:sec-seminar-5-algorithms": {
+      "namespace": "practice",
+      "id": "sec-seminar-5-algorithms",
+      "page": "seminars/05-crypto.html",
+      "fragment": "sec-seminar-5-algorithms",
+      "slide": "sec-seminar-5-algorithms",
+      "labelHtml": "Известные алгоритмы",
+      "numberHtml": "",
+      "label": "Известные алгоритмы",
+      "number": "",
+      "title": "Известные алгоритмы"
     },
     "practice:sec-seminar-5-encryption": {
       "namespace": "practice",
@@ -767,11 +789,11 @@
       "page": "seminars/05-crypto.html",
       "fragment": "sec-seminar-5-encryption",
       "slide": "sec-seminar-5-encryption",
-      "labelHtml": "Современное шифрование и асимметрические схемы",
+      "labelHtml": "Симметричное шифрование",
       "numberHtml": "",
-      "label": "Современное шифрование и асимметрические схемы",
+      "label": "Симметричное шифрование",
       "number": "",
-      "title": "Современное шифрование и асимметрические схемы"
+      "title": "Симметричное шифрование"
     },
     "practice:sec-seminar-5-hashes": {
       "namespace": "practice",
@@ -779,11 +801,11 @@
       "page": "seminars/05-crypto.html",
       "fragment": "sec-seminar-5-hashes",
       "slide": "sec-seminar-5-hashes",
-      "labelHtml": "Хеши и проверка файлов",
+      "labelHtml": "Хеширование",
       "numberHtml": "",
-      "label": "Хеши и проверка файлов",
+      "label": "Хеширование",
       "number": "",
-      "title": "Хеши и проверка файлов"
+      "title": "Хеширование"
     },
     "practice:sec-seminar-5-keys": {
       "namespace": "practice",
@@ -791,11 +813,11 @@
       "page": "seminars/05-crypto.html",
       "fragment": "sec-seminar-5-keys",
       "slide": "sec-seminar-5-keys",
-      "labelHtml": "Ключи и простые преобразования",
+      "labelHtml": "Ключи",
       "numberHtml": "",
-      "label": "Ключи и простые преобразования",
+      "label": "Ключи",
       "number": "",
-      "title": "Ключи и простые преобразования"
+      "title": "Ключи"
     },
     "practice:sec-seminar-5-passwords": {
       "namespace": "practice",
@@ -803,11 +825,11 @@
       "page": "seminars/05-crypto.html",
       "fragment": "sec-seminar-5-passwords",
       "slide": "sec-seminar-5-passwords",
-      "labelHtml": "Хранение и проверка паролей",
+      "labelHtml": "Хранение паролей",
       "numberHtml": "",
-      "label": "Хранение и проверка паролей",
+      "label": "Хранение паролей",
       "number": "",
-      "title": "Хранение и проверка паролей"
+      "title": "Хранение паролей"
     },
     "practice:sec-seminar-5-randomness": {
       "namespace": "practice",
@@ -815,11 +837,11 @@
       "page": "seminars/05-crypto.html",
       "fragment": "sec-seminar-5-randomness",
       "slide": "sec-seminar-5-randomness",
-      "labelHtml": "Генераторы и предсказуемость",
+      "labelHtml": "Случайность",
       "numberHtml": "",
-      "label": "Генераторы и предсказуемость",
+      "label": "Случайность",
       "number": "",
-      "title": "Генераторы и предсказуемость"
+      "title": "Случайность"
     },
     "practice:sec-seminar-6": {
       "namespace": "practice",
@@ -827,11 +849,11 @@
       "page": "seminars/06-data-integrity.html",
       "fragment": "sec-seminar-6",
       "slide": "sec-seminar-6",
-      "labelHtml": "Занятие 6 – Целостность и копии",
+      "labelHtml": "Занятие 6 – Сохранность данных",
       "numberHtml": "",
-      "label": "Занятие 6 – Целостность и копии",
+      "label": "Занятие 6 – Сохранность данных",
       "number": "",
-      "title": "Занятие 6 – Целостность и копии"
+      "title": "Занятие 6 – Сохранность данных"
     },
     "practice:sec-seminar-6-additional": {
       "namespace": "practice",
@@ -851,11 +873,11 @@
       "page": "seminars/06-data-integrity.html",
       "fragment": "sec-seminar-6-backups",
       "slide": "sec-seminar-6-backups",
-      "labelHtml": "Резервное копирование и восстановление",
+      "labelHtml": "Резервное копирование",
       "numberHtml": "",
-      "label": "Резервное копирование и восстановление",
+      "label": "Резервное копирование",
       "number": "",
-      "title": "Резервное копирование и восстановление"
+      "title": "Резервное копирование"
     },
     "practice:sec-seminar-6-integrity": {
       "namespace": "practice",
@@ -875,11 +897,11 @@
       "page": "seminars/06-data-integrity.html",
       "fragment": "sec-seminar-6-raid",
       "slide": "sec-seminar-6-raid",
-      "labelHtml": "Массивы дисков и восстановление",
+      "labelHtml": "Восстановление в массивах дисков",
       "numberHtml": "",
-      "label": "Массивы дисков и восстановление",
+      "label": "Восстановление в массивах дисков",
       "number": "",
-      "title": "Массивы дисков и восстановление"
+      "title": "Восстановление в массивах дисков"
     },
     "practice:sec-seminar-7": {
       "namespace": "practice",
@@ -887,11 +909,23 @@
       "page": "seminars/07-signature-trust.html",
       "fragment": "sec-seminar-7",
       "slide": "sec-seminar-7",
-      "labelHtml": "Семинар 7 — Подпись и доверие к ключу",
+      "labelHtml": "Семинар 7 — Цифровая подпись",
       "numberHtml": "",
-      "label": "Семинар 7 — Подпись и доверие к ключу",
+      "label": "Семинар 7 — Цифровая подпись",
       "number": "",
-      "title": "Семинар 7 — Подпись и доверие к ключу"
+      "title": "Семинар 7 — Цифровая подпись"
+    },
+    "practice:sec-seminar-7-public-key": {
+      "namespace": "practice",
+      "id": "sec-seminar-7-public-key",
+      "page": "seminars/07-signature-trust.html",
+      "fragment": "sec-seminar-7-public-key",
+      "slide": "sec-seminar-7-public-key",
+      "labelHtml": "Асимметричные схемы",
+      "numberHtml": "",
+      "label": "Асимметричные схемы",
+      "number": "",
+      "title": "Асимметричные схемы"
     },
     "practice:sec-seminar-7-signatures": {
       "namespace": "practice",
@@ -899,11 +933,11 @@
       "page": "seminars/07-signature-trust.html",
       "fragment": "sec-seminar-7-signatures",
       "slide": "sec-seminar-7-signatures",
-      "labelHtml": "Подпись и проверка сообщения",
+      "labelHtml": "Проверка цифровой подписи",
       "numberHtml": "",
-      "label": "Подпись и проверка сообщения",
+      "label": "Проверка цифровой подписи",
       "number": "",
-      "title": "Подпись и проверка сообщения"
+      "title": "Проверка цифровой подписи"
     },
     "practice:sec-seminar-7-trust": {
       "namespace": "practice",
@@ -911,11 +945,11 @@
       "page": "seminars/07-signature-trust.html",
       "fragment": "sec-seminar-7-trust",
       "slide": "sec-seminar-7-trust",
-      "labelHtml": "Доверие к ключу и полномочия",
+      "labelHtml": "Доверие к ключу",
       "numberHtml": "",
-      "label": "Доверие к ключу и полномочия",
+      "label": "Доверие к ключу",
       "number": "",
-      "title": "Доверие к ключу и полномочия"
+      "title": "Доверие к ключу"
     },
     "practice:sol-fundamentals-cia-cases": {
       "namespace": "practice",
@@ -1505,22 +1539,22 @@
       "id": "sec-bank-access-control-identity",
       "page": "task/bank/access-control.html",
       "fragment": "sec-bank-access-control-identity",
-      "labelHtml": "Вход и учётные записи",
+      "labelHtml": "Доступ к учётной записи",
       "numberHtml": "",
-      "label": "Вход и учётные записи",
+      "label": "Доступ к учётной записи",
       "number": "",
-      "title": "Вход и учётные записи"
+      "title": "Доступ к учётной записи"
     },
     "tasks:sec-bank-access-control-policies": {
       "namespace": "tasks",
       "id": "sec-bank-access-control-policies",
       "page": "task/bank/access-control.html",
       "fragment": "sec-bank-access-control-policies",
-      "labelHtml": "Политики и модели доступа",
+      "labelHtml": "Модели управления доступом",
       "numberHtml": "",
-      "label": "Политики и модели доступа",
+      "label": "Модели управления доступом",
       "number": "",
-      "title": "Политики и модели доступа"
+      "title": "Модели управления доступом"
     },
     "tasks:sec-bank-crypto": {
       "namespace": "tasks",
@@ -1549,11 +1583,11 @@
       "id": "sec-bank-crypto-practice",
       "page": "task/bank/crypto.html",
       "fragment": "sec-bank-crypto-practice",
-      "labelHtml": "Пароли, шифрование и подписи",
+      "labelHtml": "Применение криптографии",
       "numberHtml": "",
-      "label": "Пароли, шифрование и подписи",
+      "label": "Применение криптографии",
       "number": "",
-      "title": "Пароли, шифрование и подписи"
+      "title": "Применение криптографии"
     },
     "tasks:sec-bank-data-integrity": {
       "namespace": "tasks",
@@ -1582,22 +1616,22 @@
       "id": "sec-bank-fundamentals-analysis",
       "page": "task/bank/fundamentals.html",
       "fragment": "sec-bank-fundamentals-analysis",
-      "labelHtml": "Анализ ситуаций и инцидентов",
+      "labelHtml": "Анализ инцидентов",
       "numberHtml": "",
-      "label": "Анализ ситуаций и инцидентов",
+      "label": "Анализ инцидентов",
       "number": "",
-      "title": "Анализ ситуаций и инцидентов"
+      "title": "Анализ инцидентов"
     },
     "tasks:sec-bank-fundamentals-concepts": {
       "namespace": "tasks",
       "id": "sec-bank-fundamentals-concepts",
       "page": "task/bank/fundamentals.html",
       "fragment": "sec-bank-fundamentals-concepts",
-      "labelHtml": "Понятия и свойства безопасности",
+      "labelHtml": "Свойства безопасности",
       "numberHtml": "",
-      "label": "Понятия и свойства безопасности",
+      "label": "Свойства безопасности",
       "number": "",
-      "title": "Понятия и свойства безопасности"
+      "title": "Свойства безопасности"
     },
     "tasks:sec-bank-legal": {
       "namespace": "tasks",
@@ -1615,11 +1649,11 @@
       "id": "sec-bank-legal-classification",
       "page": "task/bank/legal.html",
       "fragment": "sec-bank-legal-classification",
-      "labelHtml": "Классификация информации и меры защиты",
+      "labelHtml": "Классификация информации",
       "numberHtml": "",
-      "label": "Классификация информации и меры защиты",
+      "label": "Классификация информации",
       "number": "",
-      "title": "Классификация информации и меры защиты"
+      "title": "Классификация информации"
     },
     "tasks:sec-bank-legal-verification": {
       "namespace": "tasks",
@@ -1652,7 +1686,7 @@
       "numberHtml": "<span>5</span>",
       "label": "Глава 5",
       "number": "5",
-      "title": "Стандарты, системы защиты и риски"
+      "title": "Требования к защите"
     },
     "tasks:sec-bank-standards-risk-estimation": {
       "namespace": "tasks",
@@ -1670,11 +1704,11 @@
       "id": "sec-bank-standards-risk-requirements",
       "page": "task/bank/standards-risk.html",
       "fragment": "sec-bank-standards-risk-requirements",
-      "labelHtml": "Выбор и применение требований",
+      "labelHtml": "Применение требований",
       "numberHtml": "",
-      "label": "Выбор и применение требований",
+      "label": "Применение требований",
       "number": "",
-      "title": "Выбор и применение требований"
+      "title": "Применение требований"
     },
     "tasks:sec-control-demo": {
       "namespace": "tasks",
@@ -1729,7 +1763,7 @@
       "numberHtml": "<span>9</span>",
       "label": "Глава 9",
       "number": "9",
-      "title": "Занятие 1 – Понятия и КЦД"
+      "title": "Занятие 1 – Информационная безопасность"
     },
     "tasks:sec-work-legal-requirements": {
       "namespace": "tasks",
@@ -1762,6 +1796,236 @@
       "numberHtml": "<span>2.1</span>",
       "label": "Solution 2.1",
       "number": "2.1"
+    },
+    "theory:def-availability": {
+      "namespace": "theory",
+      "id": "def-availability",
+      "page": "theory/fundamentals/concepts.html",
+      "fragment": "def-availability",
+      "labelHtml": "Определение&nbsp;<span>2.6</span>",
+      "numberHtml": "<span>2.6</span>",
+      "label": "Определение 2.6",
+      "number": "2.6"
+    },
+    "theory:def-confidentiality": {
+      "namespace": "theory",
+      "id": "def-confidentiality",
+      "page": "theory/fundamentals/concepts.html",
+      "fragment": "def-confidentiality",
+      "labelHtml": "Определение&nbsp;<span>2.4</span>",
+      "numberHtml": "<span>2.4</span>",
+      "label": "Определение 2.4",
+      "number": "2.4"
+    },
+    "theory:def-critical-information-object": {
+      "namespace": "theory",
+      "id": "def-critical-information-object",
+      "page": "theory/legal/system-classes.html",
+      "fragment": "def-critical-information-object",
+      "labelHtml": "Определение&nbsp;<span>4.1</span>",
+      "numberHtml": "<span>4.1</span>",
+      "label": "Определение 4.1",
+      "number": "4.1"
+    },
+    "theory:def-crypto-digest": {
+      "namespace": "theory",
+      "id": "def-crypto-digest",
+      "page": "theory/crypto/hash.html",
+      "fragment": "def-crypto-digest",
+      "labelHtml": "Определение&nbsp;<span>11.1</span>",
+      "numberHtml": "<span>11.1</span>",
+      "label": "Определение 11.1",
+      "number": "11.1"
+    },
+    "theory:def-crypto-encryption": {
+      "namespace": "theory",
+      "id": "def-crypto-encryption",
+      "page": "theory/crypto/cypher.html",
+      "fragment": "def-crypto-encryption",
+      "labelHtml": "Определение&nbsp;<span>12.1</span>",
+      "numberHtml": "<span>12.1</span>",
+      "label": "Определение 12.1",
+      "number": "12.1"
+    },
+    "theory:def-crypto-key": {
+      "namespace": "theory",
+      "id": "def-crypto-key",
+      "page": "theory/crypto/cypher.html",
+      "fragment": "def-crypto-key",
+      "labelHtml": "Определение&nbsp;<span>12.2</span>",
+      "numberHtml": "<span>12.2</span>",
+      "label": "Определение 12.2",
+      "number": "12.2"
+    },
+    "theory:def-cybersecurity": {
+      "namespace": "theory",
+      "id": "def-cybersecurity",
+      "page": "theory/security-center/organization.html",
+      "fragment": "def-cybersecurity",
+      "labelHtml": "Определение&nbsp;<span>6.1</span>",
+      "numberHtml": "<span>6.1</span>",
+      "label": "Определение 6.1",
+      "number": "6.1"
+    },
+    "theory:def-information-assets": {
+      "namespace": "theory",
+      "id": "def-information-assets",
+      "page": "theory/fundamentals/concepts.html",
+      "fragment": "def-information-assets",
+      "labelHtml": "Определение&nbsp;<span>2.2</span>",
+      "numberHtml": "<span>2.2</span>",
+      "label": "Определение 2.2",
+      "number": "2.2"
+    },
+    "theory:def-information-protection": {
+      "namespace": "theory",
+      "id": "def-information-protection",
+      "page": "theory/legal/protection-measures.html",
+      "fragment": "def-information-protection",
+      "labelHtml": "Определение&nbsp;<span>5.1</span>",
+      "numberHtml": "<span>5.1</span>",
+      "label": "Определение 5.1",
+      "number": "5.1"
+    },
+    "theory:def-information-protection-tools": {
+      "namespace": "theory",
+      "id": "def-information-protection-tools",
+      "page": "theory/standards-risk/requirements-decisions.html",
+      "fragment": "def-information-protection-tools",
+      "labelHtml": "Определение&nbsp;<span>8.2</span>",
+      "numberHtml": "<span>8.2</span>",
+      "label": "Определение 8.2",
+      "number": "8.2"
+    },
+    "theory:def-information-security": {
+      "namespace": "theory",
+      "id": "def-information-security",
+      "page": "theory/fundamentals/concepts.html",
+      "fragment": "def-information-security",
+      "labelHtml": "Определение&nbsp;<span>2.3</span>",
+      "numberHtml": "<span>2.3</span>",
+      "label": "Определение 2.3",
+      "number": "2.3"
+    },
+    "theory:def-information-system": {
+      "namespace": "theory",
+      "id": "def-information-system",
+      "page": "theory/fundamentals/concepts.html",
+      "fragment": "def-information-system",
+      "labelHtml": "Определение&nbsp;<span>2.1</span>",
+      "numberHtml": "<span>2.1</span>",
+      "label": "Определение 2.1",
+      "number": "2.1"
+    },
+    "theory:def-integrity": {
+      "namespace": "theory",
+      "id": "def-integrity",
+      "page": "theory/fundamentals/concepts.html",
+      "fragment": "def-integrity",
+      "labelHtml": "Определение&nbsp;<span>2.5</span>",
+      "numberHtml": "<span>2.5</span>",
+      "label": "Определение 2.5",
+      "number": "2.5"
+    },
+    "theory:def-protection-system": {
+      "namespace": "theory",
+      "id": "def-protection-system",
+      "page": "theory/standards-risk/requirements-decisions.html",
+      "fragment": "def-protection-system",
+      "labelHtml": "Определение&nbsp;<span>8.1</span>",
+      "numberHtml": "<span>8.1</span>",
+      "label": "Определение 8.1",
+      "number": "8.1"
+    },
+    "theory:def-public-information": {
+      "namespace": "theory",
+      "id": "def-public-information",
+      "page": "theory/legal/information-access.html",
+      "fragment": "def-public-information",
+      "labelHtml": "Определение&nbsp;<span>3.1</span>",
+      "numberHtml": "<span>3.1</span>",
+      "label": "Определение 3.1",
+      "number": "3.1"
+    },
+    "theory:def-random-entropy": {
+      "namespace": "theory",
+      "id": "def-random-entropy",
+      "page": "theory/crypto/random.html",
+      "fragment": "def-random-entropy",
+      "labelHtml": "Определение&nbsp;<span>10.2</span>",
+      "numberHtml": "<span>10.2</span>",
+      "label": "Определение 10.2",
+      "number": "10.2"
+    },
+    "theory:def-random-state": {
+      "namespace": "theory",
+      "id": "def-random-state",
+      "page": "theory/crypto/random.html",
+      "fragment": "def-random-state",
+      "labelHtml": "Определение&nbsp;<span>10.1</span>",
+      "numberHtml": "<span>10.1</span>",
+      "label": "Определение 10.1",
+      "number": "10.1"
+    },
+    "theory:def-restricted-information": {
+      "namespace": "theory",
+      "id": "def-restricted-information",
+      "page": "theory/legal/information-access.html",
+      "fragment": "def-restricted-information",
+      "labelHtml": "Определение&nbsp;<span>3.2</span>",
+      "numberHtml": "<span>3.2</span>",
+      "label": "Определение 3.2",
+      "number": "3.2"
+    },
+    "theory:def-security-event": {
+      "namespace": "theory",
+      "id": "def-security-event",
+      "page": "theory/fundamentals/concepts.html",
+      "fragment": "def-security-event",
+      "labelHtml": "Определение&nbsp;<span>2.9</span>",
+      "numberHtml": "<span>2.9</span>",
+      "label": "Определение 2.9",
+      "number": "2.9"
+    },
+    "theory:def-security-incident": {
+      "namespace": "theory",
+      "id": "def-security-incident",
+      "page": "theory/fundamentals/concepts.html",
+      "fragment": "def-security-incident",
+      "labelHtml": "Определение&nbsp;<span>2.10</span>",
+      "numberHtml": "<span>2.10</span>",
+      "label": "Определение 2.10",
+      "number": "2.10"
+    },
+    "theory:def-threat": {
+      "namespace": "theory",
+      "id": "def-threat",
+      "page": "theory/fundamentals/concepts.html",
+      "fragment": "def-threat",
+      "labelHtml": "Определение&nbsp;<span>2.7</span>",
+      "numberHtml": "<span>2.7</span>",
+      "label": "Определение 2.7",
+      "number": "2.7"
+    },
+    "theory:def-vulnerability": {
+      "namespace": "theory",
+      "id": "def-vulnerability",
+      "page": "theory/fundamentals/concepts.html",
+      "fragment": "def-vulnerability",
+      "labelHtml": "Определение&nbsp;<span>2.8</span>",
+      "numberHtml": "<span>2.8</span>",
+      "label": "Определение 2.8",
+      "number": "2.8"
+    },
+    "theory:exm-random-lcg-recovery": {
+      "namespace": "theory",
+      "id": "exm-random-lcg-recovery",
+      "page": "theory/crypto/random.html",
+      "fragment": "exm-random-lcg-recovery",
+      "labelHtml": "Пример&nbsp;<span>10.2</span>",
+      "numberHtml": "<span>10.2</span>",
+      "label": "Пример 10.2",
+      "number": "10.2"
     },
     "theory:exm-random-output": {
       "namespace": "theory",
@@ -1823,85 +2087,65 @@
       "label": "Рисунок 9.7",
       "number": "9.7"
     },
+    "theory:fig-crypto-key-pairs": {
+      "namespace": "theory",
+      "id": "fig-crypto-key-pairs",
+      "page": "theory/crypto/key-gen.html",
+      "fragment": "fig-crypto-key-pairs",
+      "labelHtml": "Рисунок&nbsp;<span>13.1</span>",
+      "numberHtml": "<span>13.1</span>",
+      "label": "Рисунок 13.1",
+      "number": "13.1"
+    },
+    "theory:fig-crypto-symmetric-key": {
+      "namespace": "theory",
+      "id": "fig-crypto-symmetric-key",
+      "page": "theory/crypto/cypher.html",
+      "fragment": "fig-crypto-symmetric-key",
+      "labelHtml": "Рисунок&nbsp;<span>12.1</span>",
+      "numberHtml": "<span>12.1</span>",
+      "label": "Рисунок 12.1",
+      "number": "12.1"
+    },
     "theory:fig-cypher-caesar": {
       "namespace": "theory",
       "id": "fig-cypher-caesar",
       "page": "theory/crypto/cypher.html",
       "fragment": "fig-cypher-caesar",
-      "labelHtml": "Рисунок&nbsp;<span>14.1</span>",
-      "numberHtml": "<span>14.1</span>",
-      "label": "Рисунок 14.1",
-      "number": "14.1"
-    },
-    "theory:fig-cypher-caesar-1": {
-      "namespace": "theory",
-      "id": "fig-cypher-caesar-1",
-      "page": "theory/crypto/cypher.html",
-      "fragment": "fig-cypher-caesar-1",
-      "labelHtml": "Рисунок&nbsp;<span>14.1 (a)</span>",
-      "numberHtml": "<span>14.1 (a)</span>",
-      "label": "Рисунок 14.1 (a)",
-      "number": "14.1 (a)"
-    },
-    "theory:fig-cypher-caesar-2": {
-      "namespace": "theory",
-      "id": "fig-cypher-caesar-2",
-      "page": "theory/crypto/cypher.html",
-      "fragment": "fig-cypher-caesar-2",
-      "labelHtml": "Рисунок&nbsp;<span>14.1 (b)</span>",
-      "numberHtml": "<span>14.1 (b)</span>",
-      "label": "Рисунок 14.1 (b)",
-      "number": "14.1 (b)"
+      "labelHtml": "Рисунок&nbsp;<span>12.2</span>",
+      "numberHtml": "<span>12.2</span>",
+      "label": "Рисунок 12.2",
+      "number": "12.2"
     },
     "theory:fig-cypher-xor": {
       "namespace": "theory",
       "id": "fig-cypher-xor",
       "page": "theory/crypto/cypher.html",
       "fragment": "fig-cypher-xor",
-      "labelHtml": "Рисунок&nbsp;<span>14.2</span>",
-      "numberHtml": "<span>14.2</span>",
-      "label": "Рисунок 14.2",
-      "number": "14.2"
+      "labelHtml": "Рисунок&nbsp;<span>12.3</span>",
+      "numberHtml": "<span>12.3</span>",
+      "label": "Рисунок 12.3",
+      "number": "12.3"
+    },
+    "theory:fig-dac-decision": {
+      "namespace": "theory",
+      "id": "fig-dac-decision",
+      "page": "theory/access-control/access-control.html",
+      "fragment": "fig-dac-decision",
+      "labelHtml": "Рисунок&nbsp;<span>9.4</span>",
+      "numberHtml": "<span>9.4</span>",
+      "label": "Рисунок 9.4",
+      "number": "9.4"
     },
     "theory:fig-hash-bit-change": {
       "namespace": "theory",
       "id": "fig-hash-bit-change",
       "page": "theory/crypto/hash.html",
       "fragment": "fig-hash-bit-change",
-      "labelHtml": "Рисунок&nbsp;<span>11.2</span>",
-      "numberHtml": "<span>11.2</span>",
-      "label": "Рисунок 11.2",
-      "number": "11.2"
-    },
-    "theory:fig-hash-bit-change-1": {
-      "namespace": "theory",
-      "id": "fig-hash-bit-change-1",
-      "page": "theory/crypto/hash.html",
-      "fragment": "fig-hash-bit-change-1",
-      "labelHtml": "Рисунок&nbsp;<span>11.2 (a)</span>",
-      "numberHtml": "<span>11.2 (a)</span>",
-      "label": "Рисунок 11.2 (a)",
-      "number": "11.2 (a)"
-    },
-    "theory:fig-hash-bit-change-2": {
-      "namespace": "theory",
-      "id": "fig-hash-bit-change-2",
-      "page": "theory/crypto/hash.html",
-      "fragment": "fig-hash-bit-change-2",
-      "labelHtml": "Рисунок&nbsp;<span>11.2 (b)</span>",
-      "numberHtml": "<span>11.2 (b)</span>",
-      "label": "Рисунок 11.2 (b)",
-      "number": "11.2 (b)"
-    },
-    "theory:fig-hash-download": {
-      "namespace": "theory",
-      "id": "fig-hash-download",
-      "page": "theory/crypto/hash.html",
-      "fragment": "fig-hash-download",
-      "labelHtml": "Рисунок&nbsp;<span>11.4</span>",
-      "numberHtml": "<span>11.4</span>",
-      "label": "Рисунок 11.4",
-      "number": "11.4"
+      "labelHtml": "Рисунок&nbsp;<span>11.3</span>",
+      "numberHtml": "<span>11.3</span>",
+      "label": "Рисунок 11.3",
+      "number": "11.3"
     },
     "theory:fig-hash-process": {
       "namespace": "theory",
@@ -1913,105 +2157,95 @@
       "label": "Рисунок 11.1",
       "number": "11.1"
     },
-    "theory:fig-hash-truncated-collision": {
+    "theory:fig-hash-security-goals": {
       "namespace": "theory",
-      "id": "fig-hash-truncated-collision",
+      "id": "fig-hash-security-goals",
       "page": "theory/crypto/hash.html",
-      "fragment": "fig-hash-truncated-collision",
-      "labelHtml": "Рисунок&nbsp;<span>11.3</span>",
-      "numberHtml": "<span>11.3</span>",
-      "label": "Рисунок 11.3",
-      "number": "11.3"
+      "fragment": "fig-hash-security-goals",
+      "labelHtml": "Рисунок&nbsp;<span>11.2</span>",
+      "numberHtml": "<span>11.2</span>",
+      "label": "Рисунок 11.2",
+      "number": "11.2"
     },
     "theory:fig-integrity-byte-change": {
       "namespace": "theory",
       "id": "fig-integrity-byte-change",
       "page": "theory/data-integrity/integrity.html",
       "fragment": "fig-integrity-byte-change",
-      "labelHtml": "Рисунок&nbsp;<span>15.3</span>",
-      "numberHtml": "<span>15.3</span>",
-      "label": "Рисунок 15.3",
-      "number": "15.3"
+      "labelHtml": "Рисунок&nbsp;<span>16.3</span>",
+      "numberHtml": "<span>16.3</span>",
+      "label": "Рисунок 16.3",
+      "number": "16.3"
     },
     "theory:fig-integrity-copy-scales": {
       "namespace": "theory",
       "id": "fig-integrity-copy-scales",
       "page": "theory/data-integrity/integrity.html",
       "fragment": "fig-integrity-copy-scales",
-      "labelHtml": "Рисунок&nbsp;<span>15.5</span>",
-      "numberHtml": "<span>15.5</span>",
-      "label": "Рисунок 15.5",
-      "number": "15.5"
+      "labelHtml": "Рисунок&nbsp;<span>16.5</span>",
+      "numberHtml": "<span>16.5</span>",
+      "label": "Рисунок 16.5",
+      "number": "16.5"
     },
     "theory:fig-integrity-raid": {
       "namespace": "theory",
       "id": "fig-integrity-raid",
       "page": "theory/data-integrity/integrity.html",
       "fragment": "fig-integrity-raid",
-      "labelHtml": "Рисунок&nbsp;<span>15.6</span>",
-      "numberHtml": "<span>15.6</span>",
-      "label": "Рисунок 15.6",
-      "number": "15.6"
+      "labelHtml": "Рисунок&nbsp;<span>16.6</span>",
+      "numberHtml": "<span>16.6</span>",
+      "label": "Рисунок 16.6",
+      "number": "16.6"
     },
     "theory:fig-integrity-reference": {
       "namespace": "theory",
       "id": "fig-integrity-reference",
       "page": "theory/data-integrity/integrity.html",
       "fragment": "fig-integrity-reference",
-      "labelHtml": "Рисунок&nbsp;<span>15.4</span>",
-      "numberHtml": "<span>15.4</span>",
-      "label": "Рисунок 15.4",
-      "number": "15.4"
+      "labelHtml": "Рисунок&nbsp;<span>16.4</span>",
+      "numberHtml": "<span>16.4</span>",
+      "label": "Рисунок 16.4",
+      "number": "16.4"
     },
     "theory:fig-integrity-sum-collision": {
       "namespace": "theory",
       "id": "fig-integrity-sum-collision",
       "page": "theory/data-integrity/integrity.html",
       "fragment": "fig-integrity-sum-collision",
-      "labelHtml": "Рисунок&nbsp;<span>15.2</span>",
-      "numberHtml": "<span>15.2</span>",
-      "label": "Рисунок 15.2",
-      "number": "15.2"
-    },
-    "theory:fig-integrity-sum-collision-1": {
-      "namespace": "theory",
-      "id": "fig-integrity-sum-collision-1",
-      "page": "theory/data-integrity/integrity.html",
-      "fragment": "fig-integrity-sum-collision-1",
-      "labelHtml": "Рисунок&nbsp;<span>15.2 (a)</span>",
-      "numberHtml": "<span>15.2 (a)</span>",
-      "label": "Рисунок 15.2 (a)",
-      "number": "15.2 (a)"
-    },
-    "theory:fig-integrity-sum-collision-2": {
-      "namespace": "theory",
-      "id": "fig-integrity-sum-collision-2",
-      "page": "theory/data-integrity/integrity.html",
-      "fragment": "fig-integrity-sum-collision-2",
-      "labelHtml": "Рисунок&nbsp;<span>15.2 (b)</span>",
-      "numberHtml": "<span>15.2 (b)</span>",
-      "label": "Рисунок 15.2 (b)",
-      "number": "15.2 (b)"
+      "labelHtml": "Рисунок&nbsp;<span>16.2</span>",
+      "numberHtml": "<span>16.2</span>",
+      "label": "Рисунок 16.2",
+      "number": "16.2"
     },
     "theory:fig-integrity-sum-hash": {
       "namespace": "theory",
       "id": "fig-integrity-sum-hash",
       "page": "theory/data-integrity/integrity.html",
       "fragment": "fig-integrity-sum-hash",
-      "labelHtml": "Рисунок&nbsp;<span>15.1</span>",
-      "numberHtml": "<span>15.1</span>",
-      "label": "Рисунок 15.1",
-      "number": "15.1"
+      "labelHtml": "Рисунок&nbsp;<span>16.1</span>",
+      "numberHtml": "<span>16.1</span>",
+      "label": "Рисунок 16.1",
+      "number": "16.1"
     },
     "theory:fig-integrity-xor": {
       "namespace": "theory",
       "id": "fig-integrity-xor",
       "page": "theory/data-integrity/integrity.html",
       "fragment": "fig-integrity-xor",
-      "labelHtml": "Рисунок&nbsp;<span>15.7</span>",
-      "numberHtml": "<span>15.7</span>",
-      "label": "Рисунок 15.7",
-      "number": "15.7"
+      "labelHtml": "Рисунок&nbsp;<span>16.7</span>",
+      "numberHtml": "<span>16.7</span>",
+      "label": "Рисунок 16.7",
+      "number": "16.7"
+    },
+    "theory:fig-lcg-model-selection": {
+      "namespace": "theory",
+      "id": "fig-lcg-model-selection",
+      "page": "theory/crypto/random.html",
+      "fragment": "fig-lcg-model-selection",
+      "labelHtml": "Рисунок&nbsp;<span>10.4</span>",
+      "numberHtml": "<span>10.4</span>",
+      "label": "Рисунок 10.4",
+      "number": "10.4"
     },
     "theory:fig-mac-decision": {
       "namespace": "theory",
@@ -2028,40 +2262,20 @@
       "id": "fig-password-pbkdf2",
       "page": "theory/crypto/password-storage.html",
       "fragment": "fig-password-pbkdf2",
-      "labelHtml": "Рисунок&nbsp;<span>12.1</span>",
-      "numberHtml": "<span>12.1</span>",
-      "label": "Рисунок 12.1",
-      "number": "12.1"
+      "labelHtml": "Рисунок&nbsp;<span>14.2</span>",
+      "numberHtml": "<span>14.2</span>",
+      "label": "Рисунок 14.2",
+      "number": "14.2"
     },
-    "theory:fig-password-pbkdf2-1": {
+    "theory:fig-password-record": {
       "namespace": "theory",
-      "id": "fig-password-pbkdf2-1",
+      "id": "fig-password-record",
       "page": "theory/crypto/password-storage.html",
-      "fragment": "fig-password-pbkdf2-1",
-      "labelHtml": "Рисунок&nbsp;<span>12.1 (a)</span>",
-      "numberHtml": "<span>12.1 (a)</span>",
-      "label": "Рисунок 12.1 (a)",
-      "number": "12.1 (a)"
-    },
-    "theory:fig-password-pbkdf2-2": {
-      "namespace": "theory",
-      "id": "fig-password-pbkdf2-2",
-      "page": "theory/crypto/password-storage.html",
-      "fragment": "fig-password-pbkdf2-2",
-      "labelHtml": "Рисунок&nbsp;<span>12.1 (b)</span>",
-      "numberHtml": "<span>12.1 (b)</span>",
-      "label": "Рисунок 12.1 (b)",
-      "number": "12.1 (b)"
-    },
-    "theory:fig-password-search": {
-      "namespace": "theory",
-      "id": "fig-password-search",
-      "page": "theory/crypto/password-storage.html",
-      "fragment": "fig-password-search",
-      "labelHtml": "Рисунок&nbsp;<span>12.2</span>",
-      "numberHtml": "<span>12.2</span>",
-      "label": "Рисунок 12.2",
-      "number": "12.2"
+      "fragment": "fig-password-record",
+      "labelHtml": "Рисунок&nbsp;<span>14.1</span>",
+      "numberHtml": "<span>14.1</span>",
+      "label": "Рисунок 14.1",
+      "number": "14.1"
     },
     "theory:fig-random-lcg": {
       "namespace": "theory",
@@ -2073,26 +2287,6 @@
       "label": "Рисунок 10.2",
       "number": "10.2"
     },
-    "theory:fig-random-lcg-1": {
-      "namespace": "theory",
-      "id": "fig-random-lcg-1",
-      "page": "theory/crypto/random.html",
-      "fragment": "fig-random-lcg-1",
-      "labelHtml": "Рисунок&nbsp;<span>10.2 (a)</span>",
-      "numberHtml": "<span>10.2 (a)</span>",
-      "label": "Рисунок 10.2 (a)",
-      "number": "10.2 (a)"
-    },
-    "theory:fig-random-lcg-2": {
-      "namespace": "theory",
-      "id": "fig-random-lcg-2",
-      "page": "theory/crypto/random.html",
-      "fragment": "fig-random-lcg-2",
-      "labelHtml": "Рисунок&nbsp;<span>10.2 (b)</span>",
-      "numberHtml": "<span>10.2 (b)</span>",
-      "label": "Рисунок 10.2 (b)",
-      "number": "10.2 (b)"
-    },
     "theory:fig-random-lcg-overview": {
       "namespace": "theory",
       "id": "fig-random-lcg-overview",
@@ -2103,11 +2297,11 @@
       "label": "Рисунок 10.1",
       "number": "10.1"
     },
-    "theory:fig-random-public-chain": {
+    "theory:fig-random-randu": {
       "namespace": "theory",
-      "id": "fig-random-public-chain",
+      "id": "fig-random-randu",
       "page": "theory/crypto/random.html",
-      "fragment": "fig-random-public-chain",
+      "fragment": "fig-random-randu",
       "labelHtml": "Рисунок&nbsp;<span>10.3</span>",
       "numberHtml": "<span>10.3</span>",
       "label": "Рисунок 10.3",
@@ -2118,10 +2312,20 @@
       "id": "fig-random-seed",
       "page": "theory/crypto/random.html",
       "fragment": "fig-random-seed",
-      "labelHtml": "Рисунок&nbsp;<span>10.4</span>",
-      "numberHtml": "<span>10.4</span>",
-      "label": "Рисунок 10.4",
-      "number": "10.4"
+      "labelHtml": "Рисунок&nbsp;<span>10.5</span>",
+      "numberHtml": "<span>10.5</span>",
+      "label": "Рисунок 10.5",
+      "number": "10.5"
+    },
+    "theory:fig-rbac-decision": {
+      "namespace": "theory",
+      "id": "fig-rbac-decision",
+      "page": "theory/access-control/access-control.html",
+      "fragment": "fig-rbac-decision",
+      "labelHtml": "Рисунок&nbsp;<span>9.8</span>",
+      "numberHtml": "<span>9.8</span>",
+      "label": "Рисунок 9.8",
+      "number": "9.8"
     },
     "theory:fig-security-center-incident-alert": {
       "namespace": "theory",
@@ -2173,36 +2377,16 @@
       "label": "Рисунок 8.1",
       "number": "8.1"
     },
-    "theory:fig-theory-dac-decision": {
-      "namespace": "theory",
-      "id": "fig-theory-dac-decision",
-      "page": "theory/access-control/access-control.html",
-      "fragment": "fig-theory-dac-decision",
-      "labelHtml": "Рисунок&nbsp;<span>9.4</span>",
-      "numberHtml": "<span>9.4</span>",
-      "label": "Рисунок 9.4",
-      "number": "9.4"
-    },
-    "theory:fig-theory-rbac-decision": {
-      "namespace": "theory",
-      "id": "fig-theory-rbac-decision",
-      "page": "theory/access-control/access-control.html",
-      "fragment": "fig-theory-rbac-decision",
-      "labelHtml": "Рисунок&nbsp;<span>9.8</span>",
-      "numberHtml": "<span>9.8</span>",
-      "label": "Рисунок 9.8",
-      "number": "9.8"
-    },
     "theory:sec-random-concepts": {
       "namespace": "theory",
       "id": "sec-random-concepts",
       "page": "theory/crypto/random.html",
       "fragment": "sec-random-concepts",
-      "labelHtml": "Основные понятия",
+      "labelHtml": "Состояние генератора",
       "numberHtml": "",
-      "label": "Основные понятия",
+      "label": "Состояние генератора",
       "number": "",
-      "title": "Основные понятия"
+      "title": "Состояние генератора"
     },
     "theory:sec-theory": {
       "namespace": "theory",
@@ -2314,38 +2498,49 @@
       "number": "",
       "title": "Ролевое управление доступом"
     },
+    "theory:sec-theory-crypto-algorithms": {
+      "namespace": "theory",
+      "id": "sec-theory-crypto-algorithms",
+      "page": "theory/crypto/algorithms.html",
+      "fragment": "sec-theory-crypto-algorithms",
+      "labelHtml": "<span>Глава 15</span>",
+      "numberHtml": "<span>15</span>",
+      "label": "Глава 15",
+      "number": "15",
+      "title": "Известные алгоритмы"
+    },
     "theory:sec-theory-crypto-cypher": {
       "namespace": "theory",
       "id": "sec-theory-crypto-cypher",
       "page": "theory/crypto/cypher.html",
       "fragment": "sec-theory-crypto-cypher",
-      "labelHtml": "Основные понятия",
-      "numberHtml": "",
-      "label": "Основные понятия",
-      "number": "",
-      "title": "Основные понятия"
+      "labelHtml": "<span>Глава 12</span>",
+      "numberHtml": "<span>12</span>",
+      "label": "Глава 12",
+      "number": "12",
+      "title": "Симметричное шифрование"
     },
     "theory:sec-theory-crypto-hash": {
       "namespace": "theory",
       "id": "sec-theory-crypto-hash",
       "page": "theory/crypto/hash.html",
       "fragment": "sec-theory-crypto-hash",
-      "labelHtml": "Основные понятия",
-      "numberHtml": "",
-      "label": "Основные понятия",
-      "number": "",
-      "title": "Основные понятия"
+      "labelHtml": "<span>Глава 11</span>",
+      "numberHtml": "<span>11</span>",
+      "label": "Глава 11",
+      "number": "11",
+      "title": "Хеш-функции"
     },
     "theory:sec-theory-crypto-key-gen": {
       "namespace": "theory",
       "id": "sec-theory-crypto-key-gen",
       "page": "theory/crypto/key-gen.html",
       "fragment": "sec-theory-crypto-key-gen",
-      "labelHtml": "Основные понятия",
-      "numberHtml": "",
-      "label": "Основные понятия",
-      "number": "",
-      "title": "Основные понятия"
+      "labelHtml": "<span>Глава 13</span>",
+      "numberHtml": "<span>13</span>",
+      "label": "Глава 13",
+      "number": "13",
+      "title": "Генерация ключей"
     },
     "theory:sec-theory-crypto-random": {
       "namespace": "theory",
@@ -2363,10 +2558,10 @@
       "id": "sec-theory-data-integrity",
       "page": "theory/data-integrity/integrity.html",
       "fragment": "sec-theory-data-integrity",
-      "labelHtml": "<span>Глава 15</span>",
-      "numberHtml": "<span>15</span>",
-      "label": "Глава 15",
-      "number": "15",
+      "labelHtml": "<span>Глава 16</span>",
+      "numberHtml": "<span>16</span>",
+      "label": "Глава 16",
+      "number": "16",
       "title": "Целостность данных"
     },
     "theory:sec-theory-fundamentals-cia": {
@@ -2374,11 +2569,11 @@
       "id": "sec-theory-fundamentals-cia",
       "page": "theory/fundamentals/concepts.html",
       "fragment": "sec-theory-fundamentals-cia",
-      "labelHtml": "Конфиденциальность, целостность и доступность",
+      "labelHtml": "Свойства информационной безопасности",
       "numberHtml": "",
-      "label": "Конфиденциальность, целостность и доступность",
+      "label": "Свойства информационной безопасности",
       "number": "",
-      "title": "Конфиденциальность, целостность и доступность"
+      "title": "Свойства информационной безопасности"
     },
     "theory:sec-theory-fundamentals-concepts": {
       "namespace": "theory",
@@ -2389,29 +2584,62 @@
       "numberHtml": "<span>2</span>",
       "label": "Глава 2",
       "number": "2",
-      "title": "Основные понятия и КЦД"
+      "title": "Информационная безопасность"
     },
     "theory:sec-theory-fundamentals-events-incidents": {
       "namespace": "theory",
       "id": "sec-theory-fundamentals-events-incidents",
       "page": "theory/fundamentals/concepts.html",
       "fragment": "sec-theory-fundamentals-events-incidents",
-      "labelHtml": "Угрозы, уязвимости, события и инциденты",
+      "labelHtml": "Инциденты информационной безопасности",
       "numberHtml": "",
-      "label": "Угрозы, уязвимости, события и инциденты",
+      "label": "Инциденты информационной безопасности",
       "number": "",
-      "title": "Угрозы, уязвимости, события и инциденты"
+      "title": "Инциденты информационной безопасности"
     },
     "theory:sec-theory-fundamentals-information-system": {
       "namespace": "theory",
       "id": "sec-theory-fundamentals-information-system",
       "page": "theory/fundamentals/concepts.html",
       "fragment": "sec-theory-fundamentals-information-system",
-      "labelHtml": "Информационная система и активы",
+      "labelHtml": "Активы информационной системы",
       "numberHtml": "",
-      "label": "Информационная система и активы",
+      "label": "Активы информационной системы",
       "number": "",
-      "title": "Информационная система и активы"
+      "title": "Активы информационной системы"
+    },
+    "theory:sec-theory-legal-attestation": {
+      "namespace": "theory",
+      "id": "sec-theory-legal-attestation",
+      "page": "theory/legal/system-classes.html",
+      "fragment": "sec-theory-legal-attestation",
+      "labelHtml": "Аттестация системы защиты информации",
+      "numberHtml": "",
+      "label": "Аттестация системы защиты информации",
+      "number": "",
+      "title": "Аттестация системы защиты информации"
+    },
+    "theory:sec-theory-legal-classification": {
+      "namespace": "theory",
+      "id": "sec-theory-legal-classification",
+      "page": "theory/legal/system-classes.html",
+      "fragment": "sec-theory-legal-classification",
+      "labelHtml": "Классификация информационных систем",
+      "numberHtml": "",
+      "label": "Классификация информационных систем",
+      "number": "",
+      "title": "Классификация информационных систем"
+    },
+    "theory:sec-theory-legal-critical-information": {
+      "namespace": "theory",
+      "id": "sec-theory-legal-critical-information",
+      "page": "theory/legal/system-classes.html",
+      "fragment": "sec-theory-legal-critical-information",
+      "labelHtml": "Критически важные объекты информатизации",
+      "numberHtml": "",
+      "label": "Критически важные объекты информатизации",
+      "number": "",
+      "title": "Критически важные объекты информатизации"
     },
     "theory:sec-theory-legal-information-access": {
       "namespace": "theory",
@@ -2423,6 +2651,17 @@
       "label": "Глава 3",
       "number": "3",
       "title": "Категории доступа к информации"
+    },
+    "theory:sec-theory-legal-information-law": {
+      "namespace": "theory",
+      "id": "sec-theory-legal-information-law",
+      "page": "theory/legal/information-access.html",
+      "fragment": "sec-theory-legal-information-law",
+      "labelHtml": "Закон об информации",
+      "numberHtml": "",
+      "label": "Закон об информации",
+      "number": "",
+      "title": "Закон об информации"
     },
     "theory:sec-theory-legal-protection-measures": {
       "namespace": "theory",
@@ -2451,11 +2690,33 @@
       "id": "sec-theory-password-storage",
       "page": "theory/crypto/password-storage.html",
       "fragment": "sec-theory-password-storage",
-      "labelHtml": "<span>Глава 12</span>",
-      "numberHtml": "<span>12</span>",
-      "label": "Глава 12",
-      "number": "12",
+      "labelHtml": "<span>Глава 14</span>",
+      "numberHtml": "<span>14</span>",
+      "label": "Глава 14",
+      "number": "14",
       "title": "Хранение паролей"
+    },
+    "theory:sec-theory-public-key": {
+      "namespace": "theory",
+      "id": "sec-theory-public-key",
+      "page": "theory/crypto/public-key-outline.html",
+      "fragment": "sec-theory-public-key",
+      "labelHtml": "<span>Глава 17</span>",
+      "numberHtml": "<span>17</span>",
+      "label": "Глава 17",
+      "number": "17",
+      "title": "Асимметричная криптография"
+    },
+    "theory:sec-theory-security-center-national-system": {
+      "namespace": "theory",
+      "id": "sec-theory-security-center-national-system",
+      "page": "theory/security-center/organization.html",
+      "fragment": "sec-theory-security-center-national-system",
+      "labelHtml": "Национальная система кибербезопасности",
+      "numberHtml": "",
+      "label": "Национальная система кибербезопасности",
+      "number": "",
+      "title": "Национальная система кибербезопасности"
     },
     "theory:sec-theory-security-center-organization": {
       "namespace": "theory",
@@ -2466,7 +2727,40 @@
       "numberHtml": "<span>6</span>",
       "label": "Глава 6",
       "number": "6",
-      "title": "Информационная безопасность и кибербезопасность: в чём разница?"
+      "title": "Информационная безопасность в цифровой среде"
+    },
+    "theory:sec-theory-security-center-requirements": {
+      "namespace": "theory",
+      "id": "sec-theory-security-center-requirements",
+      "page": "theory/security-center/organization.html",
+      "fragment": "sec-theory-security-center-requirements",
+      "labelHtml": "Требования к защите информации",
+      "numberHtml": "",
+      "label": "Требования к защите информации",
+      "number": "",
+      "title": "Требования к защите информации"
+    },
+    "theory:sec-theory-security-center-roles": {
+      "namespace": "theory",
+      "id": "sec-theory-security-center-roles",
+      "page": "theory/security-center/organization.html",
+      "fragment": "sec-theory-security-center-roles",
+      "labelHtml": "Роли центра кибербезопасности",
+      "numberHtml": "",
+      "label": "Роли центра кибербезопасности",
+      "number": "",
+      "title": "Роли центра кибербезопасности"
+    },
+    "theory:sec-theory-security-center-tools": {
+      "namespace": "theory",
+      "id": "sec-theory-security-center-tools",
+      "page": "theory/security-center/workflow.html",
+      "fragment": "sec-theory-security-center-tools",
+      "labelHtml": "Технические средства ЦКБ",
+      "numberHtml": "",
+      "label": "Технические средства ЦКБ",
+      "number": "",
+      "title": "Технические средства ЦКБ"
     },
     "theory:sec-theory-security-center-workflow": {
       "namespace": "theory",
@@ -2490,6 +2784,28 @@
       "number": "",
       "title": "Создание системы защиты информации"
     },
+    "theory:sec-theory-standards-risk-protection-tools": {
+      "namespace": "theory",
+      "id": "sec-theory-standards-risk-protection-tools",
+      "page": "theory/standards-risk/requirements-decisions.html",
+      "fragment": "sec-theory-standards-risk-protection-tools",
+      "labelHtml": "Подтверждение соответствия средств защиты",
+      "numberHtml": "",
+      "label": "Подтверждение соответствия средств защиты",
+      "number": "",
+      "title": "Подтверждение соответствия средств защиты"
+    },
+    "theory:sec-theory-standards-risk-regulatory-map": {
+      "namespace": "theory",
+      "id": "sec-theory-standards-risk-regulatory-map",
+      "page": "theory/standards-risk/requirements-decisions.html",
+      "fragment": "sec-theory-standards-risk-regulatory-map",
+      "labelHtml": "Применение нормативных документов",
+      "numberHtml": "",
+      "label": "Применение нормативных документов",
+      "number": "",
+      "title": "Применение нормативных документов"
+    },
     "theory:sec-theory-standards-risk-requirements-decisions": {
       "namespace": "theory",
       "id": "sec-theory-standards-risk-requirements-decisions",
@@ -2500,6 +2816,38 @@
       "label": "Глава 8",
       "number": "8",
       "title": "Применение нормативно-правовых актов"
+    },
+    "theory:sec-theory-standards-risk-risk-model": {
+      "namespace": "theory",
+      "id": "sec-theory-standards-risk-risk-model",
+      "page": "theory/standards-risk/requirements-decisions.html",
+      "fragment": "sec-theory-standards-risk-risk-model",
+      "labelHtml": "Риск – способ обосновать решение",
+      "numberHtml": "",
+      "label": "Риск – способ обосновать решение",
+      "number": "",
+      "title": "Риск – способ обосновать решение"
+    },
+    "theory:sec-theory-standards-risk-standard-obligation": {
+      "namespace": "theory",
+      "id": "sec-theory-standards-risk-standard-obligation",
+      "page": "theory/standards-risk/requirements-decisions.html",
+      "fragment": "sec-theory-standards-risk-standard-obligation",
+      "labelHtml": "Когда <u>международный</u> стандарт становится обязательным?",
+      "numberHtml": "",
+      "label": "Когда международный стандарт становится обязательным?",
+      "number": "",
+      "title": "Когда международный стандарт становится обязательным?"
+    },
+    "theory:tbl-password-search-estimate": {
+      "namespace": "theory",
+      "id": "tbl-password-search-estimate",
+      "page": "theory/crypto/password-storage.html",
+      "fragment": "tbl-password-search-estimate",
+      "labelHtml": "Таблица&nbsp;<span>14.1</span>",
+      "numberHtml": "<span>14.1</span>",
+      "label": "Таблица 14.1",
+      "number": "14.1"
     }
   }
 }

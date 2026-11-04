@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="hash-length" viewBox="0 0 1140 446" width="1140" height="446" role="img" aria-labelledby="hash-length-title hash-length-desc">
+  <title id="hash-length-title">Разная длина сообщений и постоянная длина SHA-256</title>
+  <desc id="hash-length-desc">Три разных сообщения в UTF-8: «А» — 2 байта, «Привет» — 12 байт, «Проверка целостности» — 39 байт. SHA-256 преобразует каждое сообщение в хеш длиной 256 бит, или 32 байта. Каждый полный хеш показан двумя строками по 32 шестнадцатеричных знака.</desc>
+  <defs>
+    <marker id="hl-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#396078"/></marker>
+  </defs>
+  <style>
+    .hash-length { font-family:system-ui,sans-serif; color:#203246; }
+    .hash-length text { fill:currentColor; }
+    .hash-length .hl-heading { font-size:24px; font-weight:650; }
+    .hash-length .hl-message rect { fill:#eef2f6; stroke:#afbdca; stroke-width:1.5; }
+    .hash-length .hl-message text { font-size:26px; text-anchor:middle; }
+    .hash-length .hl-bytes { font-size:21px; }
+    .hash-length .hl-function rect { fill:#e3f0fa; stroke:#006b8f; stroke-width:2; }
+    .hash-length .hl-function text { font-size:24px; font-weight:600; text-anchor:middle; }
+    .hash-length .hl-digest rect { fill:#f8fafc; stroke:#8b9ba8; stroke-width:1.5; }
+    .hash-length .hl-digest text { font-family:ui-monospace,monospace; font-size:20px; }
+    .hash-length .hl-flow { fill:none; stroke:#396078; stroke-width:3; marker-end:url(#hl-arrow); }
+  </style>
+  <text class="hl-heading" x="24" y="37">Сообщение в UTF-8</text>
+  <text class="hl-heading" x="507.5" y="37" text-anchor="middle">Хеш-функция</text>
+  <text class="hl-heading" x="886" y="37" text-anchor="middle">Хеш · 256 бит (32 байта)</text>
+  <g class="hl-row" id="hl-row-1" data-input="А" data-bytes="2" data-sha256="1d15dbf70d129544581fda3192724f554f1f64c9aa404478a533e487b5d01626">
+    <g class="hl-message" transform="translate(24 96)"><rect width="84" height="64" rx="6"/><text x="42" y="42">А</text></g>
+    <text class="hl-bytes" x="24" y="186">2 байта</text>
+    <path class="hl-flow" d="M 120 128 H 418"/>
+    <g class="hl-function" transform="translate(430 96)"><rect width="155" height="64" rx="6"/><text x="77.5" y="41">SHA-256</text></g>
+    <path class="hl-flow" d="M 597 128 H 646"/>
+    <g class="hl-digest" transform="translate(660 80)"><rect width="452" height="96" rx="6"/><text x="22" y="39">1d15dbf70d129544581fda3192724f55</text><text x="22" y="70">4f1f64c9aa404478a533e487b5d01626</text></g>
+  </g>
+  <g class="hl-row" id="hl-row-2" data-input="Привет" data-bytes="12" data-sha256="dd679c0b9fd408a04148aa7d30c9df393f67b7227f65693fffe0ed6d0f0ade59">
+    <g class="hl-message" transform="translate(24 216)"><rect width="158" height="64" rx="6"/><text x="79" y="42">Привет</text></g>
+    <text class="hl-bytes" x="24" y="306">12 байт</text>
+    <path class="hl-flow" d="M 194 248 H 418"/>
+    <g class="hl-function" transform="translate(430 216)"><rect width="155" height="64" rx="6"/><text x="77.5" y="41">SHA-256</text></g>
+    <path class="hl-flow" d="M 597 248 H 646"/>
+    <g class="hl-digest" transform="translate(660 200)"><rect width="452" height="96" rx="6"/><text x="22" y="39">dd679c0b9fd408a04148aa7d30c9df39</text><text x="22" y="70">3f67b7227f65693fffe0ed6d0f0ade59</text></g>
+  </g>
+  <g class="hl-row" id="hl-row-3" data-input="Проверка целостности" data-bytes="39" data-sha256="a7b2b62032d4cd06b82546e13612c8754182e2868dfc489039864117ccf267e8">
+    <g class="hl-message" transform="translate(24 336)"><rect width="340" height="64" rx="6"/><text x="170" y="42">Проверка целостности</text></g>
+    <text class="hl-bytes" x="24" y="426">39 байт</text>
+    <path class="hl-flow" d="M 376 368 H 418"/>
+    <g class="hl-function" transform="translate(430 336)"><rect width="155" height="64" rx="6"/><text x="77.5" y="41">SHA-256</text></g>
+    <path class="hl-flow" d="M 597 368 H 646"/>
+    <g class="hl-digest" transform="translate(660 320)"><rect width="452" height="96" rx="6"/><text x="22" y="39">a7b2b62032d4cd06b82546e13612c875</text><text x="22" y="70">4182e2868dfc489039864117ccf267e8</text></g>
+  </g>
+</svg>

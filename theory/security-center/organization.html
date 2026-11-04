@@ -9,7 +9,7 @@
 <meta name="author" content="Афоненко Анатолий">
 <meta name="author" content="Войтович Елизавета">
 
-<title>6&nbsp; Информационная безопасность и кибербезопасность: в чём разница? – Теория</title>
+<title>6&nbsp; Информационная безопасность в цифровой среде – Теория</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -60,7 +60,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-contrib/course-presentation-0.1.0/presentation.js" data-course-runtime-asset="presentation.js" data-course-runtime-provider="course-presentation"></script>
 <link href="../site_libs/quarto-contrib/course-presentation-0.1.0/presentation.css" rel="stylesheet" data-course-runtime-asset="presentation.css" data-course-runtime-provider="course-presentation">
 <link href="../site_libs/quarto-contrib/course-navigation-header/header.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/course-visualizations-0.3.0/style.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/style.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/cipher.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/password.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/generator.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -100,9 +103,6 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand navbar-brand-logo" href="../../"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo light-content"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo dark-content">Основы кибербезопасности</a>
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Теория</span>
-    </a>
   </div><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Меню курса"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarCollapse"><ul class="navbar-nav navbar-nav-scroll me-auto"><li class="nav-item"><a class="nav-link" data-course-link="root" href="../../"><span class="menu-text">Курс</span></a></li><li class="nav-item"><a class="nav-link active" data-course-link="subproject-theory" href="../" aria-current="page"><span class="menu-text">Теория</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-task" href="../../task/"><span class="menu-text">Задания</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-seminars" href="../../seminars/"><span class="menu-text">Слайды занятий</span></a></li></ul></div>
         <div class="quarto-navbar-tools tools-end">
 </div>
@@ -114,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../security-center/organization.html">Организация обеспечения кибербезопасности</a></li><li class="breadcrumb-item"><a href="../security-center/organization.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность и кибербезопасность: в чём разница?</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../security-center/organization.html">Организация обеспечения кибербезопасности</a></li><li class="breadcrumb-item"><a href="../security-center/organization.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -147,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../fundamentals/concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Основные понятия и КЦД</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Информационная безопасность</span></span></a>
   </div>
 </li>
       </ul>
@@ -187,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../security-center/organization.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность и кибербезопасность: в чём разница?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -201,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-4-label">Стандарты, системы защиты и риски</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Требования к защите</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -215,7 +215,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-5-label">Идентификация и управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -229,7 +229,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-6-label">Случайность и криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
@@ -246,8 +246,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
+  <a href="../crypto/cypher.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -258,8 +258,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/cypher.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Шифрование</span></span></a>
+  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Известные алгоритмы</span></span></a>
   </div>
 </li>
       </ul>
@@ -267,13 +273,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-controls="quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-7-label">Целостность и резервное копирование</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-7-label">Сохранность данных</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../data-integrity/integrity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
   </div>
 </li>
       </ul>
@@ -281,13 +287,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-controls="quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-8-label">Подпись и доверие</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-8-label">Цифровая подпись</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-8" aria-labelledby="quarto-sidebar-section-8-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../crypto/public-key-outline.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
   </div>
 </li>
       </ul>
@@ -297,15 +303,23 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">Содержание</h2>
+   
+  <ul>
+  <li><a href="#sec-theory-security-center-national-system" id="toc-sec-theory-security-center-national-system" class="nav-link active" data-scroll-target="#sec-theory-security-center-national-system"><span class="header-section-number">6.1</span> Национальная система кибербезопасности</a></li>
+  <li><a href="#sec-theory-security-center-requirements" id="toc-sec-theory-security-center-requirements" class="nav-link" data-scroll-target="#sec-theory-security-center-requirements"><span class="header-section-number">6.2</span> Требования к защите информации</a></li>
+  <li><a href="#sec-theory-security-center-roles" id="toc-sec-theory-security-center-roles" class="nav-link" data-scroll-target="#sec-theory-security-center-roles"><span class="header-section-number">6.3</span> Роли центра кибербезопасности</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../security-center/organization.html">Организация обеспечения кибербезопасности</a></li><li class="breadcrumb-item"><a href="../security-center/organization.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность и кибербезопасность: в чём разница?</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../security-center/organization.html">Организация обеспечения кибербезопасности</a></li><li class="breadcrumb-item"><a href="../security-center/organization.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-theory-security-center-organization" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность и кибербезопасность: в чём разница?</span></span></h1>
+<h1 class="title"><span id="sec-theory-security-center-organization" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span></h1>
 </div>
 
 
@@ -329,10 +343,15 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>До этого момента мы говорили о защите информации в целом. Но почему в законодательстве отдельно выделяется кибербезопасность и почему для неё создана специальная национальная система?</p>
-<p>Информационная безопасность рассматривает защиту информации независимо от того, в какой форме она существует. Информация может храниться в базе данных, находиться в электронном письме или быть распечатана на бумаге. Важно обеспечить установленный режим доступа, целостность, подлинность, доступность и сохранность.</p>
-<p>Кибербезопасность – набор практик по защите объектов информационной инфраструктуры от кибератак, предотвращении и минимизации последствий таких атак и киберинцидентов.</p>
+<p>До этого момента мы говорили о защите информации в целом (<a href="../legal/protection-measures.html#def-information-protection" class="quarto-xref">Определение&nbsp;<span>5.1</span></a>). Но почему в законодательстве отдельно выделяется кибербезопасность и почему для неё создана специальная национальная система?</p>
+<p>Информационная безопасность (<a href="../fundamentals/concepts.html#def-information-security" class="quarto-xref">Определение&nbsp;<span>2.3</span></a>) рассматривает защиту информации независимо от того, в какой форме она существует. Информация может храниться в базе данных, находиться в электронном письме или быть распечатана на бумаге. Важно обеспечить установленный режим доступа, целостность, подлинность, доступность и сохранность.</p>
+<div id="def-cybersecurity" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 6.1 (Кибербезопасность)</strong></span> Кибербезопасность – набор практик по защите объектов информационной инфраструктуры от кибератак, предотвращении и минимизации последствий таких атак и киберинцидентов.</p>
+</div>
 <p>Отделы информационной безопасности организаций занимаются контролем и реализацией указанных выше мер, вопросами соответствия организации требованиям национального законодательства и международным стандартам. Центры кибербезопасности решают несколько иную задачу, они следят за активностью на объектах информационной инфраструктуры, выявляют киберинциденты, проводят расследования и реагирование на киберинциденты.</p>
+<p>Различие события и инцидента введено в <a href="../fundamentals/concepts.html#sec-theory-fundamentals-events-incidents" class="quarto-xref"><span>Глава 2.3</span></a>; оно понадобится при разборе работы центра.</p>
+<section id="sec-theory-security-center-national-system" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="sec-theory-security-center-national-system"><span class="header-section-number">6.1</span> Национальная система кибербезопасности</h2>
 <p>В Беларуси существует национальная система кибербезопасности, предусмотренная Указом Президента Республики Беларусь № 40 от 14 февраля 2023 г. «О кибербезопасности».</p>
 <p>В числе её задач названы:</p>
 <ul>
@@ -362,6 +381,9 @@ ul.task-list li input[type="checkbox"] {
 </figcaption>
 </figure>
 </div>
+</section>
+<section id="sec-theory-security-center-requirements" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="sec-theory-security-center-requirements"><span class="header-section-number">6.2</span> Требования к защите информации</h2>
 <p>Указ № 40 определяет национальную систему кибербезопасности и распределение основных функций между ее элементами. Приказ ОАЦ от 25 июля 2023 г. № 130 «О мерах по реализации Указа Президента Республики Беларусь от 14 февраля 2023 г. № 40» конкретизирует порядок её работы, и говорит о том, как именно это должно работать.</p>
 <p>В частности, приказ определяет:</p>
 <ul>
@@ -372,6 +394,9 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>Таким образом, Указ № 40 отвечает на вопрос «кто входит в систему и какова её общая логика», а приказ № 130 раскрывает значительную часть практических требований: как устроен обмен информацией, как реагируют команды и какие требования предъявляются к объектам и центрам.</p>
 <p>Данный процесс также регулирует государство. В условиях цифровизации экономики и бизнеса сильно возрастает риск кибератак на госорганы и другие организации, поэтому существует перечень организаций, которые должны создать свой ЦКБ или приобрести такие услуги (а у кого же? – ответ содержится в том же постановлении), определенный <a href="https://www.oac.gov.by/public/content/files/files/law/resolutions-sm/2026-246.pdf">постановлением совета министров № 264 «О центрах кибербезопасности»</a>.</p>
+</section>
+<section id="sec-theory-security-center-roles" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="sec-theory-security-center-roles"><span class="header-section-number">6.3</span> Роли центра кибербезопасности</h2>
 <p>Чтобы создать ЦКБ необходимо в первую очередь соответствие типовой структуре:</p>
 <ol type="1">
 <li><p><strong>Руководитель центра:</strong></p>
@@ -425,9 +450,11 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ol>
 <p>ЦКБ может оказывать услуги только при наличии в штате лиц, указанных в п. 7 и 8, если он создан только внутри организации, то данные штатные единицы могут закрываться при помощи подрядных организаций.</p>
+<p>Как эти роли взаимодействуют при подключении объекта, мониторинге и реагировании, показано в <a href="workflow.html" class="quarto-xref"><span>Глава 7</span></a>; используемые технические средства перечислены в <a href="workflow.html#sec-theory-security-center-tools" class="quarto-xref"><span>Глава 7.1</span></a>.</p>
 
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
