@@ -310,6 +310,9 @@
 <section id="отбор-параметров-lcg" class="slide level2 smaller">
 <h2>Отбор параметров LCG</h2>
 <p>Наблюдателю известны <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mn>16</mn></mrow><annotation encoding="application/x-tex">m=16</annotation></semantics></math>, диапазоны <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>,</mo><mi>c</mi><mo>∈</mo><mo stretchy="false" form="prefix">{</mo><mn>0</mn><mo>,</mo><mi>…</mi><mo>,</mo><mn>7</mn><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">a,c\in\{0,\ldots,7\}</annotation></semantics></math> и полные выходы. Из 64 пар оставляем только те, которые воспроизводят <strong>каждый наблюдавшийся переход</strong>. Затем фиксируем прогноз до раскрытия следующего выхода.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>a</mi><msub><mi>x</mi><mi>n</mi></msub><mo>+</mo><mi>c</mi><mo stretchy="false" form="postfix">)</mo><mrow><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">mod</mi><mo>⁡</mo></mrow><mspace width="0.222em"></mspace><mn>16</mn></mrow><mo>,</mo><mspace width="2.0em"></mspace><mi>a</mi><mo>,</mo><mi>c</mi><mo>∈</mo><mo stretchy="false" form="prefix">{</mo><mn>0</mn><mo>,</mo><mi>…</mi><mo>,</mo><mn>7</mn><mo stretchy="false" form="postfix">}</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">
+x_{n+1} = (a x_n + c) \bmod 16,\qquad a,c \in \{0,\ldots,7\}.
+</annotation></semantics></math></p>
 <div class="cell hidden">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="1" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a aria-label="1"></a>lcgmSelectionLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/crypto/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display hidden">
@@ -626,44 +629,38 @@
 <h1>Хранение паролей</h1>
 
 </section>
-<section id="проверочная-запись" class="slide level2 smaller">
-<h2>Проверочная запись</h2>
-<p>Сервису нужно проверить введённый пароль при входе. Для этого он сохраняет результат парольной функции и данные, необходимые для повторного вычисления.</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>В записи</th>
-<th>Для чего используется</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Алгоритм и параметры</td>
-<td>Задают способ и стоимость вычисления</td>
-</tr>
-<tr class="even">
-<td>Соль</td>
-<td>Входит в вычисление для этой записи</td>
-</tr>
-<tr class="odd">
-<td>Проверочное значение</td>
-<td>Сравнивается с результатом проверки</td>
-</tr>
-</tbody>
-</table>
-<p>При входе сервис берёт введённый пароль, сохранённые соль и параметры, повторяет вычисление и сравнивает результаты. Процедура: <a data-qrc-custom="false" data-qrc-ref="theory:sec-theory-password-storage" data-qrc-style="default" class="qrc-link" href="../theory/crypto/password-storage.html#sec-theory-password-storage"><span>Глава 14</span></a>.</p>
-</section>
-<section id="соль" class="slide level2">
-<h2>Соль</h2>
-<p><strong>Соль</strong> — случайное значение, выбранное отдельно для парольной записи. Оно входит в вычисление вместе с паролем и сохраняется открыто.</p>
-<p>Даже если два пользователя выбрали один пароль, разные соли требуют <strong>отдельно вычислять каждого кандидата для каждой записи</strong>. Таблицу результатов для одной соли нельзя напрямую использовать для другой.</p>
-<p>Соль затрудняет повторное использование вычислений между записями. Сам слабый пароль по-прежнему можно угадать перебором.</p>
+<section id="проверка-пароля" class="slide level2 smaller">
+<h2>Проверка пароля</h2>
+<p>При входе сервису нужно установить, верен ли введённый пароль. Способ хранения определяет, что получит атакующий при утечке базы.</p>
+<ul>
+<li><strong>Открытые пароли</strong> сразу становятся известны получившему базу.</li>
+<li><strong>Быстрый хеш</strong> позволяет дёшево проверять предполагаемые пароли. Одинаковые пароли дают одинаковые значения в разных записях.</li>
+</ul>
+<p>После утечки проверочных записей атакующий подбирает пароли <strong>офлайн</strong>, без обращения к сервису. Ограничение частоты входов на сайте не останавливает эти вычисления.</p>
 </section>
 <section id="парольная-функция" class="slide level2 smaller">
 <h2>Парольная функция</h2>
-<p><strong>Парольная функция выработки ключа (KDF)</strong> вычисляет результат из пароля и соли с заданной стоимостью. Повышение стоимости увеличивает расход вычислений или памяти на проверку каждого кандидата.</p>
-<p>При утечке записей атакующий проверяет кандидатов <strong>офлайн</strong>, без обращения к сервису. Ограничение частоты входов на сайте не останавливает эти вычисления.</p>
-<p>Соль разделяет вычисления для разных записей; KDF повышает цену одной проверки. Объяснение: <a data-qrc-custom="false" data-qrc-ref="theory:sec-theory-password-storage" data-qrc-style="default" class="qrc-link" href="../theory/crypto/password-storage.html#sec-theory-password-storage"><span>Глава 14</span></a>.</p>
+<p><strong>Парольная функция выработки ключа (KDF)</strong> вычисляет проверочное значение из пароля и соли с заданной стоимостью.</p>
+<ul>
+<li><strong>Соль</strong> — случайное значение, выбранное отдельно для записи и сохраняемое открыто. Для разных солей каждый кандидат приходится вычислять отдельно.</li>
+<li><strong>Стоимость</strong> задаёт расход вычислений или памяти на одну проверку. Её увеличение удорожает подбор каждого кандидата.</li>
+</ul>
+<p>Соль затрудняет повторное использование вычислений между записями; затратная функция повышает цену одной попытки. Слабый пароль по-прежнему можно угадать. Объяснение: <a data-qrc-custom="false" data-qrc-ref="theory:sec-theory-password-storage" data-qrc-style="default" class="qrc-link" href="../theory/crypto/password-storage.html#sec-theory-password-storage"><span>Глава 14</span></a>.</p>
+</section>
+<section id="хранение-пароля" class="slide level2 smaller">
+<h2>Хранение пароля</h2>
+<p>При регистрации сохраняют соль, алгоритм, параметры и проверочное значение. Сам пароль в эту запись не помещают.</p>
+<div id="fig-slide-password-record" class="nostretch quarto-float quarto-figure quarto-figure-center" alt="При регистрации парольная функция получает пароль, случайную соль и параметры; в базе сохраняются соль, алгоритм, параметры и результат. При входе та же функция обрабатывает введённый пароль с сохранёнными солью и параметрами, а новый результат сравнивается с записью">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-slide-password-record-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="_prepared/visualizations/crypto/static/password-record-slide.svg" class="" style="width:100.0%" alt="При регистрации парольная функция получает пароль, случайную соль и параметры; в базе сохраняются соль, алгоритм, параметры и результат. При входе та же функция обрабатывает введённый пароль с сохранёнными солью и параметрами, а новый результат сравнивается с записью">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-password-record-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;8: Создание парольной записи и проверка входа
+</figcaption>
+</figure>
+</div>
+<p>При входе повторяют вычисление с сохранёнными солью и параметрами и сравнивают результаты. Процедура: <a data-qrc-custom="false" data-qrc-ref="theory:sec-theory-password-storage" data-qrc-style="default" class="qrc-link" href="../theory/crypto/password-storage.html#sec-theory-password-storage"><span>Глава 14</span></a>.</p>
 </section>
 <section id="пространство-паролей" class="slide level2 smaller">
 <h2>Пространство паролей</h2>

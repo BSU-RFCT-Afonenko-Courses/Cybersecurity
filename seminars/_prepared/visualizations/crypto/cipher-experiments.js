@@ -41,7 +41,7 @@ function diagram(view) {
   if(!svg)return;
   const wide=container.clientWidth>=1000,medium=!wide&&container.clientWidth>=560;
   svg.classList.toggle('is-wide',wide);svg.classList.toggle('is-medium',medium);
-  const width=wide?1454:medium?680:380,height=wide?275:254;
+  const width=wide?1454:medium?680:500,height=wide?275:254;
   svg.setAttribute('viewBox',`0 0 ${width} ${height}`);svg.setAttribute('width',String(width));svg.setAttribute('height',String(height));
   if(!latest)return;
   for(const [name,value]of Object.entries(latest.values))for(const node of svg.querySelectorAll(`[data-slot="${name}"]`)){

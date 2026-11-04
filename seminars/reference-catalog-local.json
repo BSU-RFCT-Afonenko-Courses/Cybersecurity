@@ -488,6 +488,17 @@
       "label": "Рисунок 5",
       "number": "5"
     },
+    "practice:fig-slide-password-record": {
+      "namespace": "practice",
+      "id": "fig-slide-password-record",
+      "page": "05-crypto.html",
+      "fragment": "fig-slide-password-record",
+      "slide": "хранение-пароля",
+      "labelHtml": "Рисунок&nbsp;8",
+      "numberHtml": "8",
+      "label": "Рисунок 8",
+      "number": "8"
+    },
     "practice:fig-slide-randu": {
       "namespace": "practice",
       "id": "fig-slide-randu",

@@ -148,9 +148,6 @@ export function lcgModelSelection({compact = false} = {}) {
   const view = element('div', 'course-viz course-viz-lcg-selection');
   view.classList.toggle('course-viz-lcg-selection-compact', compact);
   view.setAttribute('aria-label', 'Пошаговый отбор параметров LCG по полным наблюдаемым состояниям');
-  const known = element('div', 'cv-lcg-known');
-  known.append(element('span', '', 'xₙ₊₁ = (a × xₙ + c) mod 16'));
-  known.append(element('span', '', 'a, c ∈ {0, …, 7}'));
   const observations = element('div', 'cv-lcg-observations');
   observations.append(element('p', 'cv-lcg-label', 'Полные наблюдаемые состояния'));
   const sequence = element('div', 'cv-lcg-sequence');
@@ -194,7 +191,7 @@ export function lcgModelSelection({compact = false} = {}) {
   const status = element('p', 'cv-lcg-sr-only');
   status.setAttribute('role', 'status');
   status.setAttribute('aria-live', 'polite');
-  view.append(known, observations, main, nav, status);
+  view.append(observations, main, nav, status);
 
   function render(state) {
     const {phase, candidates} = state;

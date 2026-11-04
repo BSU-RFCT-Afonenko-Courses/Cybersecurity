@@ -523,6 +523,17 @@
       "label": "Рисунок 5",
       "number": "5"
     },
+    "practice:fig-slide-password-record": {
+      "namespace": "practice",
+      "id": "fig-slide-password-record",
+      "page": "seminars/05-crypto.html",
+      "fragment": "fig-slide-password-record",
+      "slide": "хранение-пароля",
+      "labelHtml": "Рисунок&nbsp;8",
+      "numberHtml": "8",
+      "label": "Рисунок 8",
+      "number": "8"
+    },
     "practice:fig-slide-randu": {
       "namespace": "practice",
       "id": "fig-slide-randu",
@@ -1926,6 +1937,26 @@
       "numberHtml": "<span>2.5</span>",
       "label": "Определение 2.5",
       "number": "2.5"
+    },
+    "theory:def-password-function": {
+      "namespace": "theory",
+      "id": "def-password-function",
+      "page": "theory/crypto/password-storage.html",
+      "fragment": "def-password-function",
+      "labelHtml": "Определение&nbsp;<span>14.1</span>",
+      "numberHtml": "<span>14.1</span>",
+      "label": "Определение 14.1",
+      "number": "14.1"
+    },
+    "theory:def-password-salt": {
+      "namespace": "theory",
+      "id": "def-password-salt",
+      "page": "theory/crypto/password-storage.html",
+      "fragment": "def-password-salt",
+      "labelHtml": "Определение&nbsp;<span>14.2</span>",
+      "numberHtml": "<span>14.2</span>",
+      "label": "Определение 14.2",
+      "number": "14.2"
     },
     "theory:def-protection-system": {
       "namespace": "theory",

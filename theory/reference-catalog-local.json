@@ -134,6 +134,26 @@
       "label": "Определение 2.5",
       "number": "2.5"
     },
+    "theory:def-password-function": {
+      "namespace": "theory",
+      "id": "def-password-function",
+      "page": "crypto/password-storage.html",
+      "fragment": "def-password-function",
+      "labelHtml": "Определение&nbsp;<span>14.1</span>",
+      "numberHtml": "<span>14.1</span>",
+      "label": "Определение 14.1",
+      "number": "14.1"
+    },
+    "theory:def-password-salt": {
+      "namespace": "theory",
+      "id": "def-password-salt",
+      "page": "crypto/password-storage.html",
+      "fragment": "def-password-salt",
+      "labelHtml": "Определение&nbsp;<span>14.2</span>",
+      "numberHtml": "<span>14.2</span>",
+      "label": "Определение 14.2",
+      "number": "14.2"
+    },
     "theory:def-protection-system": {
       "namespace": "theory",
       "id": "def-protection-system",
