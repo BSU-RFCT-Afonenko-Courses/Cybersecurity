@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="key-pairs-diagram" width="630" height="615" viewBox="0 0 420 410" role="img" aria-labelledby="key-pairs-title key-pairs-desc">
+  <title id="key-pairs-title">Парные секретные ключи пяти участников</title>
+  <desc id="key-pairs-desc">Пять участников А, Б, В, Г, Д образуют десять пар. Каждой линии соответствует отдельный секретный ключ. Выделена пара А и Б: один и тот же ключ А–Б хранится у обоих владельцев.</desc>
+  <style>
+    .key-pairs-diagram { color-scheme: light dark; --pair-ink: light-dark(#123858, #e0f0ff); --pair-line: light-dark(#7a9bb3, #8aaac2); --pair-paper: light-dark(#ffffff, #111f2e); --pair-soft: light-dark(#eff7fc, #172c3e); --pair-fill: light-dark(#dceefa, #213d55); --pair-accent: light-dark(#166b9f, #7ec8ff); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .key-pairs-diagram .pair-edge { stroke: var(--pair-line); stroke-width: 1.5; }
+    .key-pairs-diagram .pair-highlight { stroke: var(--pair-accent); stroke-width: 5; }
+    .key-pairs-diagram .pair-node { fill: var(--pair-soft); stroke: var(--pair-line); stroke-width: 1.5; }
+    .key-pairs-diagram .pair-owner { fill: var(--pair-fill); stroke: var(--pair-accent); stroke-width: 2; }
+    .key-pairs-diagram text { fill: var(--pair-ink); font-size: 24px; font-weight: 400; text-anchor: middle; }
+    .key-pairs-diagram .pair-letter { font-weight: 500; dominant-baseline: central; }
+    .key-pairs-diagram .pair-key { font-weight: 500; }
+  </style>
+  <g aria-hidden="true">
+    <g class="pair-edge">
+      <line x1="115" y1="75" x2="350" y2="225"/>
+      <line x1="115" y1="75" x2="210" y2="310"/>
+      <line x1="115" y1="75" x2="70" y2="225"/>
+      <line x1="305" y1="75" x2="350" y2="225"/>
+      <line x1="305" y1="75" x2="210" y2="310"/>
+      <line x1="305" y1="75" x2="70" y2="225"/>
+      <line x1="350" y1="225" x2="210" y2="310"/>
+      <line x1="350" y1="225" x2="70" y2="225"/>
+      <line x1="210" y1="310" x2="70" y2="225"/>
+    </g>
+    <line class="pair-highlight" x1="115" y1="75" x2="305" y2="75"/>
+    <text class="pair-key" x="210" y="30">Ключ А–Б</text>
+    <circle class="pair-node pair-owner" cx="115" cy="75" r="26"/>
+    <circle class="pair-node pair-owner" cx="305" cy="75" r="26"/>
+    <circle class="pair-node" cx="350" cy="225" r="26"/>
+    <circle class="pair-node" cx="210" cy="310" r="26"/>
+    <circle class="pair-node" cx="70" cy="225" r="26"/>
+    <text class="pair-letter" x="115" y="75">А</text>
+    <text class="pair-letter" x="305" y="75">Б</text>
+    <text class="pair-letter" x="350" y="225">В</text>
+    <text class="pair-letter" x="210" y="310">Г</text>
+    <text class="pair-letter" x="70" y="225">Д</text>
+    <text x="110" y="370">У А: ключ А–Б</text>
+    <text x="310" y="370">У Б: ключ А–Б</text>
+    <text x="210" y="402">Два владельца одного ключа</text>
+  </g>
+</svg>

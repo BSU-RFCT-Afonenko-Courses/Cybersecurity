@@ -1,11 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" class="symmetric-key" viewBox="0 0 380 254" width="380" height="254" role="img" aria-labelledby="symmetric-key-desc">
-  <desc id="symmetric-key-desc">В верхней строке сообщение M зашифровывается в C, в нижней тот же C расшифровывается в M. Один ключ K между строками поступает в оба преобразования.</desc>
+  <desc id="symmetric-key-desc">В верхней строке сообщение преобразуется в шифротекст, в нижней шифротекст преобразуется обратно в сообщение. Один секретный ключ поступает в оба преобразования.</desc>
   <defs><marker id="sk-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 1 1 L 9 5 L 1 9 Z" fill="#396078"/></marker></defs>
   <style>
     .symmetric-key { color:#203246; font-family:system-ui,sans-serif; }
     .symmetric-key text { fill:currentColor; text-anchor:middle; }
     .symmetric-key .sk-node rect { width:120px; height:74px; fill:#eef2f6; stroke:#afbdca; stroke-width:1.5; }
     .symmetric-key .sk-label { font-size:17.5px; }
+    .symmetric-key:not(.has-values):not(.is-wide) .sk-label { transform:translateY(18px); }
+    .symmetric-key:not(.has-values):not(.is-wide) .sk-encrypt .sk-label, .symmetric-key:not(.has-values):not(.is-wide) .sk-decrypt .sk-label { transform:none; }
+    .symmetric-key:not(.has-values) .sk-key-label { transform:translateY(6px); }
     .symmetric-key .sk-encrypt rect, .symmetric-key .sk-decrypt rect { display:none; }
     .symmetric-key .sk-encrypt .sk-value, .symmetric-key .sk-decrypt .sk-value { transform:translate(0,19px); }
     .symmetric-key .sk-node.is-current .sk-label { fill:#006b8f; font-weight:600; }
@@ -50,6 +53,8 @@
     .symmetric-key.is-wide .sk-decrypt { transform:translate(900px,170px); }
     .symmetric-key.is-wide .sk-restored { transform:translate(1200px,170px); }
     .symmetric-key.is-wide .sk-key { transform:translate(672px,28px); }
+    .symmetric-key.is-static-wide .sk-label, .symmetric-key.is-static-wide .sk-key-label { font-size:28px; }
+    .symmetric-key.is-static-wide .sk-node text { transform:translate(67px,17px); }
   </style>
   <g class="sk-narrow-lines" aria-hidden="true">
     <path class="sk-line" data-edge="0" d="M 121 45 H 184" marker-end="url(#sk-arrow)"/>
@@ -74,11 +79,11 @@
     <path class="sk-line" d="M 427 108 V 162" marker-end="url(#sk-arrow)"/>
     <path class="sk-line" d="M 1027 108 V 162" marker-end="url(#sk-arrow)"/>
   </g>
-  <g class="sk-node sk-message" data-key="message"><rect width="120" height="74" rx="5"/><text class="sk-label" x="60" y="23">Сообщение</text><text class="sk-value" x="60" y="49" data-slot="message">M</text></g>
-  <g class="sk-node sk-encrypt" data-key="encrypt"><rect width="120" height="74" rx="5"/><text class="sk-label" x="60" y="23">Шифрование</text><text class="sk-value" x="60" y="49" data-slot="encrypt">Eₖ(M)</text></g>
-  <g class="sk-node sk-cipher" data-key="cipher"><rect width="120" height="74" rx="5"/><text class="sk-label" x="60" y="23">Шифротекст</text><text class="sk-value" x="60" y="49" data-slot="cipher">C</text></g>
-  <g class="sk-node sk-cipher-copy" data-key="cipher"><rect width="120" height="74" rx="5"/><text class="sk-label" x="60" y="23">Шифротекст</text><text class="sk-value" x="60" y="49" data-slot="cipher">C</text></g>
-  <g class="sk-node sk-decrypt" data-key="decrypt"><rect width="120" height="74" rx="5"/><text class="sk-label sk-label-full" x="60" y="23">Расшифрование</text><text class="sk-label sk-label-short" x="60" y="23">Расшифровать</text><text class="sk-value" x="60" y="49" data-slot="decrypt">Dₖ(C)</text></g>
-  <g class="sk-node sk-restored" data-key="restored"><rect width="120" height="74" rx="5"/><text class="sk-label sk-label-full" x="60" y="23">Исходный текст</text><text class="sk-label sk-label-short" x="60" y="23">Текст</text><text class="sk-value" x="60" y="49" data-slot="restored">M</text></g>
-  <g class="sk-key" data-key="key"><text class="sk-key-label" x="45" y="20">Ключ K</text><text class="sk-value" x="45" y="47" data-slot="key">K</text></g>
+  <g class="sk-node sk-message" data-key="message"><rect width="120" height="74" rx="5"/><text class="sk-label" x="60" y="23">Сообщение</text><text class="sk-value" x="60" y="49" data-slot="message"></text></g>
+  <g class="sk-node sk-encrypt" data-key="encrypt"><rect width="120" height="74" rx="5"/><text class="sk-label" x="60" y="23">Шифрование</text><text class="sk-value" x="60" y="49" data-slot="encrypt"></text></g>
+  <g class="sk-node sk-cipher" data-key="cipher"><rect width="120" height="74" rx="5"/><text class="sk-label" x="60" y="23">Шифротекст</text><text class="sk-value" x="60" y="49" data-slot="cipher"></text></g>
+  <g class="sk-node sk-cipher-copy" data-key="cipher"><rect width="120" height="74" rx="5"/><text class="sk-label" x="60" y="23">Шифротекст</text><text class="sk-value" x="60" y="49" data-slot="cipher"></text></g>
+  <g class="sk-node sk-decrypt" data-key="decrypt"><rect width="120" height="74" rx="5"/><text class="sk-label sk-label-full" x="60" y="23">Расшифрование</text><text class="sk-label sk-label-short" x="60" y="23">Расшифровать</text><text class="sk-value" x="60" y="49" data-slot="decrypt"></text></g>
+  <g class="sk-node sk-restored" data-key="restored"><rect width="120" height="74" rx="5"/><text class="sk-label sk-label-full" x="60" y="23">Сообщение</text><text class="sk-label sk-label-short" x="60" y="23">Сообщение</text><text class="sk-value" x="60" y="49" data-slot="restored"></text></g>
+  <g class="sk-key" data-key="key"><text class="sk-key-label" x="45" y="20">Секретный ключ</text><text class="sk-value" x="45" y="47" data-slot="key"></text></g>
 </svg>

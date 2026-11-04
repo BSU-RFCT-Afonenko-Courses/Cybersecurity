@@ -33,7 +33,7 @@ HTML использует Cosmo и `theme.scss` из Course Theme 1.0.0; про�
 - `_extensions/course-brand`, версия `1.0.0`: единый логотип и декларация бренда.
   Корневой каталог служит источником копий в подпроектах;
   обновление — `bash CI/install-course-brand.sh`.
-- `extensions/course-visualizations`, версия `0.3.5`: управление этапами,
+- `extensions/course-visualizations`, версия `0.3.6`: управление этапами,
   SVG и стили интерактивных рисунков. Устанавливается целиком в `theory` и `seminars`;
   [руководство пакета](extensions/course-visualizations/README.md).
 

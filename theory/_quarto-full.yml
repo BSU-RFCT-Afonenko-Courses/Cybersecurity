@@ -27,9 +27,10 @@ book:
     chapters:
     - crypto/random.qmd
     - crypto/hash.qmd
-    - crypto/key-gen.qmd
     - crypto/cypher.qmd
+    - crypto/key-gen.qmd
     - crypto/password-storage.qmd
+    - crypto/algorithms.qmd
   - part: Сохранность данных
     chapters:
     - data-integrity/integrity.qmd

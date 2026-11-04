@@ -13,8 +13,9 @@
 - @sec-theory-access-control — идентификация, аутентификация и управление доступом.
 - @sec-theory-crypto-random — генераторы случайных чисел и энтропия.
 - @sec-theory-crypto-hash — хеширование и криптографические хеш-функции.
-- @sec-theory-crypto-key-gen — получение криптографических ключей.
 - @sec-theory-crypto-cypher — симметричное шифрование.
+- @sec-theory-crypto-key-gen — получение криптографических ключей.
 - @sec-theory-password-storage — хранение паролей.
+- @sec-theory-crypto-algorithms — известные криптографические алгоритмы.
 - @sec-theory-data-integrity — контроль целостности, копии и RAID.
 - @sec-theory-public-key — создание и проверка подписи, принадлежность ключа и сертификаты.

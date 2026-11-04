@@ -59,13 +59,13 @@ function diagram(view) {
   const keys=['message','encrypt','cipher','decrypt','restored'];
   for(const node of svg.querySelectorAll('.sk-node'))node.classList.toggle('is-current',node.dataset.key===keys[latest.phase]);
   for(const edge of svg.querySelectorAll('[data-edge]'))edge.classList.toggle('is-complete',Number(edge.dataset.edge)<latest.phase);
-  svg.dataset.phase=String(latest.phase);svg.setAttribute('aria-label',latest.description);svg.querySelector('desc').textContent=latest.description;layout();
+  svg.querySelector('.sk-key-label').textContent=latest.keyLabel;svg.dataset.phase=String(latest.phase);svg.setAttribute('aria-label',latest.description);svg.querySelector('desc').textContent=latest.description;layout();
  }
- source().then(text=>{svg=prepareSVG(text);container.replaceChildren(svg);container.setAttribute('aria-busy','false');paint();}).catch(()=>{
+ source().then(text=>{svg=prepareSVG(text);svg.classList.add('has-values');container.replaceChildren(svg);container.setAttribute('aria-busy','false');paint();}).catch(()=>{
   container.dataset.failed='true';container.setAttribute('aria-busy','false');paint();
  });
  new ResizeObserver(layout).observe(container);
- return (values,phase,description)=>{latest={values,phase,description};paint();};
+ return (values,phase,description,keyLabel='Секретный ключ')=>{latest={values,phase,description,keyLabel};paint();};
 }
 function actions(view,total,advance) {
  const description=element(view,'output',undefined,'cv-cipher-operation');description.setAttribute('aria-live','polite');
@@ -86,9 +86,9 @@ function actions(view,total,advance) {
 }
 export function caesarTrainer() {
  const {view,controls,error}=base('caesar');
- const text=field(controls,'Сообщение','КОТ');text.maxLength=12;
+ const text=field(controls,'Сообщение','БАГАЖ');text.maxLength=12;
  const alphabet=selector(controls,'Алфавит',[['ru','Русский, включая Ё'],['latin','Латинский A–Z']]);
- const shift=field(controls,'Ключ K · сдвиг',3,'number');shift.step='1';
+ const shift=field(controls,'Ключ · сдвиг',15,'number');shift.step='1';
  const selection=element(view,'div',undefined,'cv-cipher-selection');
  const draw=diagram(view);
  element(view,'p','Сверху — открытый алфавит, снизу — шифралфавит. Выделена выбранная буква.','cv-cipher-tape-label');
@@ -114,7 +114,7 @@ export function caesarTrainer() {
   for(let j=0;j<9;j++){const i=(start+j+letters.length)%letters.length,col=element(tape,'div',undefined,'cv-cipher-tape-column'+(i===center?' is-current':''));element(col,'span',letters[i]);element(col,'span',letters[(i+k)%letters.length]);}
   tape.setAttribute('aria-label',center<0?`Символ ${c} не входит в алфавит и сохраняется.`:`Букве ${c} соответствует ${z}; сдвиг ${k}.`);
   const operation=center<0?`Символ «${c}» сохраняется без изменения.`:[`Выбран символ «${c}».`,`«${c}» + ${k} → «${z}».`,`В шифротексте: «${z}».`,`«${z}» − ${k} → «${c}».`,`Восстановлен тот же символ: «${c}».`][phase];
-  draw({message:text.value,encrypt:`${c} → ${z}`,cipher:encrypted,decrypt:`${z} → ${c}`,restored,key:String(k)},phase,`Один ключ K = ${k}. ${text.value} → ${encrypted} → ${restored}. ${operation}`);
+  draw({message:text.value,encrypt:`${c} → ${z}`,cipher:encrypted,decrypt:`${z} → ${c}`,restored,key:String(k)},phase,`Сдвиг ${k}. ${text.value} → ${encrypted} → ${restored}. ${operation}`,'Ключ · сдвиг');
   action.update(phase,operation,phase===4?'С начала':'Следующий шаг');
  }catch(e){error.textContent=e.message;action.update(phase,'Исправьте входные данные.','Следующий шаг',false);}}
  for(const input of [text,alphabet,shift])input.addEventListener('input',()=>{action.stop();index=0;phase=0;update();});
@@ -124,7 +124,7 @@ const bits=n=>n.toString(2).padStart(8,'0');
 const hex=n=>'0x'+n.toString(16).toUpperCase().padStart(2,'0');
 export function xorTrainer() {
  const {view,controls,error}=base('xor');
- const text=field(controls,'Символ ASCII','A'),key=field(controls,'Ключ K · символ ASCII','K');text.maxLength=key.maxLength=1;
+ const text=field(controls,'Символ ASCII','A'),key=field(controls,'Байт потока · символ ASCII','K');text.maxLength=key.maxLength=1;
  const draw=diagram(view),work=element(view,'div',undefined,'cv-cipher-bit-work');work.setAttribute('aria-label','Текущая побитовая операция');
  const rows={};
  for(const name of ['source','key','result']){
@@ -137,17 +137,17 @@ export function xorTrainer() {
  }
  let phase=0;
  const action=actions(view,16,()=>{phase=(phase+1)%17;update();});
- element(view,'p','Однобайтовый ключ допускает перебор до 256 значений. Повторное применение ключа восстанавливает байт: (M ⊕ K) ⊕ K = M.','cv-cipher-boundary');
+ element(view,'p','Поточный шифр вырабатывает ключевой поток с использованием секретного ключа. В этом опыте XOR выполняется над одним байтом.','cv-cipher-boundary');
  function update(){try{
   if(!/^[\x20-\x7e]$/.test(text.value)||!/^[\x20-\x7e]$/.test(key.value))throw Error('Нужен один печатный символ ASCII в каждом поле.');
   error.textContent='';
   const m=text.value.charCodeAt(0),k=key.value.charCodeAt(0),c=xorBytes([m],k)[0],back=phase>8,done=back?phase-8:phase,source=back?c:m,target=xorBytes([source],k)[0],current=done-1;
   const known=(n,count)=>bits(n).slice(0,count)+'·'.repeat(8-count);
-  const values={message:`«${text.value}» · ${hex(m)}`,encrypt:'M ⊕ K',cipher:phase>=8?hex(c):known(c,phase),decrypt:'C ⊕ K',restored:phase===16?`«${String.fromCharCode(target)}»`:phase>8?known(m,done):'········',key:`${key.value} · ${hex(k)}`};
+  const values={message:`«${text.value}» · ${hex(m)}`,encrypt:'XOR',cipher:phase>=8?hex(c):known(c,phase),decrypt:'XOR',restored:phase===16?`«${String.fromCharCode(target)}»`:phase>8?known(m,done):'········',key:`${key.value} · ${hex(k)}`};
   const currentPhase=phase===0?0:phase<8?1:phase===8?2:phase<16?3:4;
   const operation=done?`${back?'Расшифрование':'Шифрование'} · бит ${done}: ${bits(source)[current]} ⊕ ${bits(k)[current]} = ${bits(target)[current]}`:'Слева направо: по одной паре битов.';
-  draw(values,currentPhase,`Один ключ K = ${hex(k)}. Сообщение ${hex(m)}, шифротекст ${hex(c)}. ${operation}`);
-  const labels={source:back?'Шифротекст':'Сообщение',key:'Тот же ключ K',result:back?'Восстановленный символ':'Шифротекст'};
+  draw(values,currentPhase,`Байт потока ${hex(k)}. Сообщение ${hex(m)}, шифротекст ${hex(c)}. ${operation}`,'Тот же поток');
+  const labels={source:back?'Шифротекст':'Сообщение',key:'Ключевой поток',result:back?'Восстановленный символ':'Шифротекст'};
   for(const [name,row]of Object.entries(rows)){
    row.label.textContent=labels[name];
    row.value.textContent=name==='source'?hex(source):name==='key'?`«${key.value}» · ${hex(k)}`:done===8?(back?`«${String.fromCharCode(target)}» · ${hex(target)}`:hex(target)):'…';

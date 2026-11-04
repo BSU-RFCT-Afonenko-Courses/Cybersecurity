@@ -1,0 +1,12 @@
+```{ojs}
+//| echo: false
+//| output: false
+lcgmSelectionLesson = await import(await FileAttachment("/_prepared/visualizations/crypto/lesson.js").url())
+```
+
+```{ojs}
+//| echo: false
+//| label: fig-lcg-model-selection
+//| fig-cap: "Отбор параметров LCG по наблюдаемым переходам"
+lcgmSelectionLesson.lcgModelSelection()
+```
