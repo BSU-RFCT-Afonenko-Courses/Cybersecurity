@@ -1,0 +1,12 @@
+```{ojs}
+//| echo: false
+//| output: false
+sumCollisionLesson = await import(await FileAttachment("/_prepared/visualizations/data-integrity/lesson.js").url())
+```
+
+```{ojs}
+//| echo: false
+//| label: fig-integrity-sum-collision
+//| fig-cap: "Коллизия простой суммы"
+sumCollisionLesson.sumCollision()
+```

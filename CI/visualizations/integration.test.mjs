@@ -1,0 +1,51 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+const load = path => import('../../shared/visualizations/'+path);
+test('DAC различает чтение и запись; владелец меняет ACL, а отзыв действует на новый запрос', async () => {
+ const {dacTrace}=await load('access-control/dac/model.js');
+ assert.equal(dacTrace({subject:'boris',operation:'read'}).at(-1).result,'allow');
+ assert.equal(dacTrace({subject:'boris',operation:'write'}).at(-1).result,'deny');
+ assert.equal(dacTrace({subject:'boris',operation:'read',acl:{}}).at(-1).result,'deny');
+ assert.equal(dacTrace({subject:'vera',operation:'read'}).at(-1).result,'deny');
+ const anna=dacTrace({subject:'anna',operation:'write'});
+ assert.equal(anna.at(-1).result,'allow');
+ assert.ok(anna[0].model.includes('subject-anna'));
+ assert.ok(anna.at(-1).model.includes('subject-anna'));
+ const granted=dacTrace({subject:'boris',operation:'write',grant:true});
+ assert.equal(granted.at(-1).result,'allow');
+ assert.ok(granted.find(s=>s.name==='acl').model.includes('owner'));
+ assert.equal(dacTrace({subject:'boris',operation:'write'}).at(-1).result,'deny');
+});
+test('RBAC проверяет общие роли в курсе А и сохраняет независимость трасс', async () => {
+ const {rbacTrace}=await load('access-control/rbac/model.js');
+ const boris=rbacTrace({subject:'boris',context:'A',operation:'grade'}),snapshot=structuredClone(boris);
+ assert.equal(boris.at(-1).result,'allow');
+ const lena=rbacTrace({subject:'lena',context:'A',operation:'grade'});
+ assert.equal(lena.at(-1).result,'deny');lena[0].model.push('x');assert.deepEqual(boris,snapshot);
+ assert.equal(rbacTrace({subject:'lena',context:'A',operation:'view'}).at(-1).result,'allow');
+ assert.equal(rbacTrace({subject:'lena',context:'A',operation:'submit'}).at(-1).result,'allow');
+ assert.equal(rbacTrace({subject:'boris',context:'A',operation:'submit'}).at(-1).result,'deny');
+ assert.throws(()=>rbacTrace({subject:'boris',context:'B',operation:'grade'}),/контекст/);
+});
+test('LCG вычисляет полный следующий выход; Цезарь и XOR обратимы', async () => {
+ const {lcgSequence,caesar,xorBytes}=await load('crypto/model.js');
+ assert.deepEqual(lcgSequence(3,5,1,16,4),[0,1,6,15]);
+ assert.equal(caesar(caesar('ABC XYZ',3,'latin'),-3,'latin'),'ABC XYZ');
+ assert.equal(caesar(caesar('Ёж, мир! ABC',3,'ru'),-3,'ru'),'Ёж, мир! ABC');
+ assert.throws(()=>caesar('ABC',3),/алфавит/);
+ assert.deepEqual(xorBytes(xorBytes([65,66,255],42),42),[65,66,255]);
+ assert.throws(()=>lcgSequence(1,5,1,0,3)); assert.throws(()=>xorBytes([256],42));
+});
+test('Простая сумма допускает коллизию; XOR восстанавливает один известный потерянный блок', async () => {
+ const {byteSum,xorParity,recoverBlock,backupCopies,sha256}=await load('data-integrity/model.js');
+ assert.equal(byteSum([10,20]),byteSum([11,19]));
+ const parity=xorParity([[1,2],[3,4],[5,6]]);
+ assert.deepEqual(recoverBlock([null,[3,4],[5,6]],parity),[1,2]);
+ assert.throws(()=>recoverBlock([null,null,[5,6]],parity));
+ const copies=backupCopies({A:2,B:3,C:5},[['A'],['B'],['A']]);
+ assert.deepEqual(copies.full.map(d=>d.size),[10,10,10,10]);
+ assert.deepEqual(copies.incremental.map(d=>d.size),[10,2,3,2]);
+ assert.deepEqual(copies.differential.map(d=>d.size),[10,2,5,5]);
+ assert.deepEqual(copies.differential[3].files,['A','B']);
+ assert.notEqual(await sha256([10,20]),await sha256([11,19]));
+});

@@ -5,12 +5,9 @@ project:
   render:
   - index.qmd
   resources:
+  - '!**/*.scss'
   - ./assets/**
   - '!theory/**'
-  - '!tasks/**'
-  - '!lectures/**'
-  - '!practice/**'
-  - '!handbook/**'
   - '!_extensions/**'
   - '!_generated/**'
   - '!_site*/**'
@@ -36,8 +33,10 @@ project:
   - '!task/**'
   - '!seminars/**'
   - '!control-works/**'
-  - '!Новые семинары'
+  - '!shared/**'
+  - '!extensions/**'
   pre-render:
+  - python3 CI/prepare-course-visualizations.py
   - _extensions/Afonenko-Course-Tools/course-site/entrypoints/pre.ts
   post-render:
   - _extensions/Afonenko-Course-Tools/course-site/entrypoints/post.ts
@@ -45,7 +44,9 @@ project:
     watch-inputs: false
 format:
   html:
-    theme: cosmo
+    theme: [cosmo, _extensions/Afonenko-Course-Tools/course-theme/theme.scss]
+    html-math-method: mathml
+    embed-resources: false
     toc: false
 lang: ru
 author:
@@ -54,25 +55,17 @@ author:
 course:
   id: cybersecurity
 website:
+  navbar:
+    title: false
   title: Основы кибербезопасности
   site-url: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/
-  navbar:
-    left:
-    - text: Курс
-      href: index.html
-    - text: Теория
-      href: theory/index.html
-    - text: Задания и работы
-      href: task/index.html
-    - text: Семинары
-      href: seminars/index.html
   search: true
   page-footer: Афоненко Анатолий
-  favicon: assets/cover.png
 filters:
 - course-core
 - course-presentation
 - reference-catalog
+- course-navigation
 reference-catalog:
   namespace: portal
   publication:
@@ -83,6 +76,11 @@ profile:
   - - student
     - full
 subprojects:
-- theory
-- task
-- seminars
+- path: theory
+  to: default
+- path: task
+  to: default
+- path: seminars
+  to: default
+course-navigation:
+  enabled: true

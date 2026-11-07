@@ -1,0 +1,12 @@
+digraph G {
+ graph [rankdir=LR, bgcolor="transparent", pad="0.2", splines=polyline];
+ node [shape=box, style="rounded,filled", fillcolor="#eef4fa", fontname="DejaVu Sans", fontsize=12];
+ edge [fontname="DejaVu Sans", fontsize=10];
+ "n0" [id="n0", label="RAID 0\nчередование: A₀ | A₁\nизбыточности нет"];
+ "n1" [id="n1", label="RAID 1\nзеркало: A | A\nвыдерживает отказ одного диска"];
+ "n2" [id="n2", label="RAID 5\nA | B | A XOR B\nодин отказ, чётность распределена"];
+ "n3" [id="n3", label="RAID не хранит прошлые версии\nудаление может распространиться на массив"];
+ "n0" -> "n3" [label=""];
+ "n1" -> "n3" [label=""];
+ "n2" -> "n3" [label=""];
+}

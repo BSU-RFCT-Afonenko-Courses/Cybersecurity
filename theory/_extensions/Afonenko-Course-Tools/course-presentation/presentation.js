@@ -7,6 +7,7 @@
   let expandedForPrint = [];
   const parameters = new URLSearchParams(window.location.search);
   const printPdf = parameters.has('print-pdf');
+  const initialHash = location.hash;
   let mode = parameters.get('course-mode') === 'lecture' ? 'lecture' : 'study';
   let reveal, modeButton, notesBeforePrint, printing = false;
 
@@ -53,6 +54,7 @@
     modeButton.setAttribute('aria-label', mode === 'study' ? (ru ? 'Режим аудитории' : 'Presentation mode') : (ru ? 'Самостоятельное изучение' : 'Study mode'));
     reveal.configure({showNotes: !printPdf && mode === 'study'});
     normalizeNotes();
+    document.dispatchEvent(new CustomEvent('course-mode-change', {detail: {mode}}));
   }
   function exposeNote(target) {
     if (!reveal || !target.closest('aside.notes')) return null;
@@ -74,6 +76,16 @@
     modeButton.type = 'button'; modeButton.className = 'course-mode-toggle';
     modeButton.addEventListener('click', () => setMode(mode === 'study' ? 'lecture' : 'study'));
     document.body.append(modeButton);
+    modeButton.title = 'Alt+Shift+A';
+    modeButton.setAttribute('aria-keyshortcuts', 'Alt+Shift+A');
+    document.addEventListener('keydown', event => {
+      if (event.repeat || event.code !== 'KeyA' || !event.altKey || !event.shiftKey || event.ctrlKey || event.metaKey) return;
+      const target = event.target;
+      if (target instanceof Element && target.closest('input,textarea,select,[contenteditable]:not([contenteditable="false"])')) return;
+      event.preventDefault();
+      event.stopPropagation();
+      setMode(mode === 'study' ? 'lecture' : 'study');
+    }, true);
     // Native notes content is refreshed on slide/fragment changes. Normalize its
     // copied identifiers after each update without touching the source subtree.
     const panel = reveal.getRevealElement().querySelector('.speaker-notes');
@@ -88,7 +100,7 @@
     }
     setMode(mode);
     reveal.on('slidechanged', normalizeNotes);
-    window.CourseDisclosure?.expose(document.getElementById(decodeURIComponent(location.hash.replace(/^#\/?/, ''))));
+    window.CourseDisclosure?.expose(document.getElementById(decodeURIComponent(initialHash.replace(/^#\/?/, ''))));
   }
 
   function labelTabPanels() {

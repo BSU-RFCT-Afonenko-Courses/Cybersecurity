@@ -1,0 +1,12 @@
+```{ojs}
+//| echo: false
+//| output: false
+caesarTrainerLesson = await import(await FileAttachment("/_prepared/visualizations/crypto/lesson.js").url())
+```
+
+```{ojs}
+//| echo: false
+//| label: fig-cypher-caesar
+//| fig-cap: "Шифр Цезаря"
+caesarTrainerLesson.caesarTrainer()
+```

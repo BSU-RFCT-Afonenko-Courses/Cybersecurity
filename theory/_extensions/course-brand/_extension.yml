@@ -1,0 +1,8 @@
+title: Логотип курса «Основы кибербезопасности»
+author: Анатолий Афоненко
+version: 1.0.0
+quarto-required: ">=1.11.5"
+contributes:
+  metadata:
+    project:
+      brand: brand.yml

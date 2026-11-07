@@ -3,7 +3,13 @@ local __perfWalk1=__metrics.wrap_walk({id="course-presentation.filter.walk.1",ki
 local __perfWalk2=__metrics.wrap_walk({id="course-presentation.filter.walk.2",kind='ast_walk',scope="full-document"},function(node,filter)return node:walk(filter)end)
 local function __perfFilters(filters)
  for key,value in pairs(filters) do
-  if type(value)=='function' then filters[key]=__metrics.wrap_sync({id="course-presentation.filter.handler."..tostring(key),kind=key=='Pandoc' and 'phase' or 'function'},value)
+  if type(value)=='function' then local spec={id="course-presentation.filter.handler."..tostring(key),kind=key=='Pandoc' and 'phase' or 'function'}
+   if os.getenv('COURSE_PERF_MODE') and os.getenv('COURSE_PERF_MODE')~='off' then
+    filters[key]=function(...)
+     spec.document_id=quarto and quarto.doc and quarto.doc.input_file or nil
+     return __metrics.wrap_sync(spec,value)(...)
+    end
+   else filters[key]=__metrics.wrap_sync(spec,value) end
   elseif type(value)=='table' and type(key)=='number' then filters[key]=__perfFilters(value) end
  end
  return filters

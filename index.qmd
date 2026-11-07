@@ -5,25 +5,17 @@ toc: false
 
 # Основы кибербезопасности {#sec-portal}
 
-Цель курса — закрепить основные понятия кибербезопасности практической
-демонстрацией. Материалы посвящены криптографии, управлению доступом,
-целостности данных, аудиту и сетевым угрозам.
+## Карта курса {#sec-course-plan}
 
-## План курса {#sec-course-plan}
-
-| Тема | Теория | Задания и работы |
+| Тема | Теория | Семинар |
 | --- | --- | --- |
-| Основные понятия | @theory:sec-theory-fundamentals-concepts | @tasks:sec-work-fundamentals-concepts · @tasks:sec-fundamentals-educational-portal · @tasks:sec-fundamentals-cia-cases · @tasks:sec-fundamentals-event-or-incident · @tasks:sec-fundamentals-pizza-incident · @tasks:sec-fundamentals-exhibition · @tasks:sec-fundamentals-carsharing · @practice:sec-seminar-1 |
-| Правовые основы | @theory:sec-theory-legal-information-access · @theory:sec-theory-legal-system-classes · @theory:sec-theory-legal-protection-measures | @tasks:sec-legal-system-classes · @tasks:sec-legal-protection-measures · @tasks:sec-legal-information-sharing · @tasks:sec-legal-requirements-audit · @tasks:sec-work-legal-requirements · @practice:sec-seminar-2 |
-| Организация обеспечения кибербезопасности | @theory:sec-theory-security-center-organization · @theory:sec-theory-security-center-workflow | @tasks:sec-security-center-roles · @tasks:sec-work-legal-requirements · @practice:sec-seminar-2 |
-| Применение нормативно-правовых актов | @theory:sec-theory-standards-risk-requirements-decisions | @tasks:sec-standards-risk-document-first · @tasks:sec-standards-risk-requirement-or-standard · @tasks:sec-standards-risk-certificate · @tasks:sec-standards-risk-risk-cost · @tasks:sec-standards-risk-inspection · @tasks:sec-work-standards-risk · @practice:sec-seminar-3 |
-| Криптография | @theory:sec-theory-crypto-random · @theory:sec-theory-crypto-hash · @theory:sec-theory-crypto-key-gen · @theory:sec-theory-crypto-cypher | @tasks:sec-seminar-crypto-rng · @tasks:sec-seminar-crypto-hash · @tasks:sec-seminar-crypto-cypher-symmetric · @tasks:sec-work-crypto-cypher-asymmetric · @tasks:sec-seminar-crypto-sign · @tasks:sec-seminar-crypto-cert |
-| Управление доступом | Материалы готовятся. | @tasks:sec-seminar-access-control-ident · @tasks:sec-seminar-access-control-authn · @tasks:sec-seminar-access-control-authz |
-| Целостность данных | Материалы готовятся. | @tasks:sec-work-data-integrity-backup |
+| Информационная безопасность | @theory:sec-theory-fundamentals-concepts | @tasks:sec-work-fundamentals-concepts · @practice:sec-seminar-1 |
+| Правовые основы | @theory:sec-theory-legal-information-access · @theory:sec-theory-legal-system-classes · @theory:sec-theory-legal-protection-measures | @tasks:sec-work-legal-requirements · @practice:sec-seminar-2 |
+| Организация защиты | @theory:sec-theory-security-center-organization · @theory:sec-theory-security-center-workflow | @tasks:sec-work-legal-requirements · @practice:sec-seminar-2 |
+| Требования к защите | @theory:sec-theory-standards-risk-requirements-decisions | @tasks:sec-work-standards-risk · @practice:sec-seminar-3 |
+| Управление доступом | @theory:sec-theory-access-control | @tasks:sec-work-access-control · @practice:sec-seminar-4 |
+| Криптография | @theory:sec-theory-crypto-random · @theory:sec-theory-crypto-hash · @theory:sec-theory-crypto-cypher | @practice:sec-seminar-5 |
+| Сохранность данных | @theory:sec-theory-data-integrity | @tasks:sec-work-data-integrity-backup · @practice:sec-seminar-6 |
+| Цифровая подпись | @theory:sec-theory-public-key | @practice:sec-seminar-7 |
 
-: Материалы курса {#tbl-course-plan .course-plan .striped .hover .responsive}
-
-## Работа с материалами
-
-Условия находятся в общем банке: @tasks:sec-tasks. Теория: @theory:sec-theory.
-Семинарские занятия: @practice:sec-practice.
+: Темы курса {#tbl-course-plan .course-plan .striped .hover .responsive}

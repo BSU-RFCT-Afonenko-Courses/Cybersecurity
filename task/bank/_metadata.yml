@@ -1,0 +1,11 @@
+exercise-bank: true
+default-exercise-target: manual
+default-exercise-course-role: independent-study
+default-exercise-statement-visibility: open
+# Нумеруются главы и тематические разделы; у упражнений свой счётчик Quarto.
+number-sections: true
+number-depth: 2
+toc-depth: 2
+crossref:
+  exr-title: Задача
+  exr-prefix: задача

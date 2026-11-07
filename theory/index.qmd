@@ -10,9 +10,12 @@
 - @sec-theory-security-center-organization — организация обеспечения кибербезопасности.
 - @sec-theory-security-center-workflow — процесс оказания услуги обеспечения кибербезопасности.
 - @sec-theory-standards-risk-requirements-decisions — применение нормативно-правовых актов.
+- @sec-theory-access-control — идентификация, аутентификация и управление доступом.
 - @sec-theory-crypto-random — генераторы случайных чисел и энтропия.
 - @sec-theory-crypto-hash — хеширование и криптографические хеш-функции.
+- @sec-theory-crypto-cypher — симметричное шифрование.
 - @sec-theory-crypto-key-gen — получение криптографических ключей.
-- @sec-theory-crypto-cypher — симметричное и асимметричное шифрование.
-
-Практическое применение: @tasks:sec-tasks.
+- @sec-theory-password-storage — хранение паролей.
+- @sec-theory-crypto-algorithms — известные криптографические алгоритмы.
+- @sec-theory-data-integrity — контроль целостности, копии и RAID.
+- @sec-theory-public-key — создание и проверка подписи, принадлежность ключа и сертификаты.

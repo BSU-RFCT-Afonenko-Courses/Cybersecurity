@@ -1,38 +1,57 @@
-## [Семинар 2 – Правовые аспекты и формирование требований по защите информации и кибербезопасности]{.r-fit-text} {#sec-seminar-2}
+---
+css: assets/classroom.css
+---
 
-Трудные задачи выполняем немедленно, невозможные – после изучения мат.части
+## Семинар 2 – Правовые основы защиты {#sec-seminar-2}
 
-### Категории доступа к информации
+## Категории доступа к информации {#sec-seminar-2-information-access}
 
-@theory:sec-theory-legal-information-access
+### Категория доступа
 
-### Классы информационных систем
+Общедоступная информация предназначена для неограниченного доступа. Для информации ограниченного распространения законодательство устанавливает особый режим. Сначала определяют сведения и круг лиц, затем применимые требования.
 
-@theory:sec-theory-legal-system-classes
+**Предоставление** адресовано определённому кругу лиц; **распространение** — неопределённому.
 
-### Меры защиты информации
+Закон № 455-З и определения категорий: @theory:sec-theory-legal-information-law.
 
-@theory:sec-theory-legal-protection-measures
+### Вопрос для аудитории {.smaller}
 
-### Информационная безопасность и кибербезопасность: в чём разница?
+::: {.classroom-two-column style="font-size:0.72em"}
+{{< include _prepared/bank-fragments/exr-legal-information-sharing.qmd >}}
+:::
 
-@theory:sec-theory-security-center-organization
+## Меры защиты информации {#sec-seminar-2-protection}
 
-### Обобщенный процесс оказания услуги обеспечения кибербезопасности
+### Меры защиты по классу системы
 
-@theory:sec-theory-security-center-workflow
+Владелец определяет обрабатываемую информацию и класс системы; применимые требования зависят от контекста. Для отдельных видов информации и систем предусмотрены создание и аттестация СЗИ с учётом условий и исключений.
 
-### Аудиторные задачи
+- Правовые меры задают правила и ответственность.
+- Организационные определяют порядок действий и ответственных.
+- Технические реализуются программами и оборудованием.
 
-- @tasks:exr-legal-system-classes
-- @tasks:exr-legal-protection-measures
-- @tasks:exr-legal-information-sharing
-- @tasks:exr-security-center-roles
+Классификация: @theory:sec-theory-legal-classification. Примеры мер: @theory:sec-theory-legal-protection-measures.
 
-### Домашнее задание
+::: {.notes}
+Пример: замок на шкафу дополняется порядком выдачи и учёта ключей. При практическом применении проверяют действующие документы.
+:::
 
-@tasks:exr-legal-requirements-audit
+### Вопрос для аудитории {.smaller}
 
-### Семинарская работа
+::: {.classroom-two-column style="font-size:0.72em"}
+{{< include _prepared/bank-fragments/exr-legal-protection-measures.qmd >}}
+:::
 
-@tasks:sec-work-legal-requirements
+### Работа центра кибербезопасности
+
+Центр получает и анализирует события, выявляет возможные инциденты и организует реагирование. Роли и порядок взаимодействия определяются применимыми требованиями и процессами организации.
+
+Роли ЦКБ: @theory:sec-theory-security-center-roles. Процесс работы: @theory:sec-theory-security-center-workflow.
+
+## Дополнительная работа {#sec-seminar-2-additional}
+
+### Дополнительная работа
+
+@tasks:exr-legal-system-classes; @tasks:exr-legal-requirements-audit; @tasks:sec-work-legal-requirements.
+
+Дополнительное задание: @tasks:exr-security-center-roles.

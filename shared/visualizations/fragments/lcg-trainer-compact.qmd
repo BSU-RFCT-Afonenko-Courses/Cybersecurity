@@ -1,0 +1,13 @@
+```{ojs}
+//| echo: false
+//| output: false
+lcgTrainerCompactLocalPlot = await import(await FileAttachment("/_prepared/visualizations/vendor/plot.js").url())
+lcgTrainerCompactLesson = await import(await FileAttachment("/_prepared/visualizations/crypto/lesson.js").url())
+```
+
+```{ojs}
+//| echo: false
+//| label: fig-slide-lcg
+//| fig-cap: "Вычисление состояния LCG"
+lcgTrainerCompactLesson.lcgTrainer({Plot: lcgTrainerCompactLocalPlot, compact:true})
+```

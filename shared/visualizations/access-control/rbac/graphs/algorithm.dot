@@ -1,0 +1,8 @@
+digraph policy { graph [rankdir=TB,bgcolor="transparent",pad="0.15",ranksep="0.5"]; node [shape=box,style="rounded,filled",fillcolor="white",fontname="DejaVu Sans",fontsize=18,color="#a4b7c8",fontcolor="#203b50"]; edge [fontname="DejaVu Sans",fontsize=15,color="#a4b7c8"];
+request [id="request",label="Запрос в курсе А"];
+roles [id="roles",label="Роли пользователя"];
+permission [id="permission",label="Есть путь к разрешению?",shape=box];
+allow [id="allow",label="Разрешить"];deny [id="deny",label="Отказать"];
+request -> roles -> permission;
+permission -> allow [label="да"];permission -> deny [label="нет"];
+}

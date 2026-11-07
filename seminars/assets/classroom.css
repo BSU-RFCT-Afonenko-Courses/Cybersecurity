@@ -1,0 +1,13 @@
+.classroom-two-column .exercise > ol {
+  columns: 2;
+  column-gap: 2em;
+  padding-left: 1.5em;
+}
+
+.classroom-two-column .exercise > ol > li {
+  break-inside: avoid;
+}
+
+.classroom-two-column .exercise > ol > li > p {
+  margin-block: 0 0.3em;
+}

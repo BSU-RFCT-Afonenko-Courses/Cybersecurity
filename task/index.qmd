@@ -1,46 +1,27 @@
-# Задания и работы {#sec-tasks}
+# Задания {#sec-tasks}
 
-Начните с темы в книге теории, затем переходите к соответствующему условию
-из общего банка. Лабораторная работа по резервному копированию:
-@sec-work-data-integrity-backup.
+Начните с темы в книге теории, затем переходите к задачам из банка или к выбранной работе.
 
-Первое занятие: @sec-work-fundamentals-concepts.
-Второе занятие: @sec-work-legal-requirements.
-Третье занятие: @sec-work-standards-risk.
+## Банк задач
 
-Задачи по основным понятиям:
+- @sec-bank-fundamentals
+- @sec-bank-legal
+- @sec-bank-security-center
+- @sec-bank-standards-risk
+- @sec-bank-crypto
+- @sec-bank-access-control
+- @sec-bank-data-integrity
 
-- @sec-fundamentals-educational-portal
-- @sec-fundamentals-cia-cases
-- @sec-fundamentals-event-or-incident
-- @sec-fundamentals-pizza-incident
-- @sec-fundamentals-exhibition
-- @sec-fundamentals-carsharing
+## Работы
 
-Задачи по правовым основам:
+- Первое занятие: @sec-work-fundamentals-concepts.
+- Второе занятие: @sec-work-legal-requirements.
+- Третье занятие: @sec-work-standards-risk.
+- Четвёртое занятие: @sec-work-access-control.
+- Лабораторная работа по резервному копированию: @sec-work-data-integrity-backup.
+- Подготовка к контрольной работе: @sec-control-demo.
 
-- @sec-legal-system-classes
-- @sec-legal-protection-measures
-- @sec-legal-information-sharing
-- @sec-legal-requirements-audit
-
-Задача по организации обеспечения кибербезопасности:
-
-- @sec-security-center-roles
-
-Задачи по стандартам, системам защиты и рискам:
-
-- @sec-standards-risk-document-first
-- @sec-standards-risk-requirement-or-standard
-- @sec-standards-risk-certificate
-- @sec-standards-risk-risk-cost
-- @sec-standards-risk-inspection
-
-Состав работы задаётся явным списком `.task-items`. Задания лабораторной
-обязательны по умолчанию; дополнительные задания обозначаются отдельно и
-не заменяют выполнение обязательных. Условия повторно используемых задач
-хранятся один раз.
-
-Другие тематические страницы пока содержат заготовки для дальнейшего
-наполнения. Пустая страница контрольных сумм исключена из текущей публикации;
-её исходный файл сохранён.
+Задания лабораторной обязательны по умолчанию; дополнительные задания
+обозначаются отдельно и не заменяют выполнение обязательных. Условия повторно используемых задач
+хранятся в банке. Демонстрационный вариант контрольной содержит свои пять
+условий и материалы для подготовки непосредственно на странице работы.

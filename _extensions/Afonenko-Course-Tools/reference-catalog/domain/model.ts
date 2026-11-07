@@ -1,35 +1,19 @@
 import { referenceStyles } from "./contract.ts";
 export type ReferenceStyle = typeof referenceStyles[number];
-export interface Target {
-  namespace: string;
-  id: string;
-  page: string;
-  fragment: string;
-  slide?: string;
-  labelHtml: string;
-  numberHtml: string;
-  label: string;
-  number: string;
-  baseUrl?: string;
-  title?: string;
-  /** Настройки представления у потребителя; в экспорт не входят. */
-  sourceTitle?: string;
-  defaultStyle?: ReferenceStyle;
-}
+import type { validateImportedCatalog } from "../infrastructure/catalog-validation.ts";
+import type { parseImports } from "../infrastructure/import-config.ts";
+import type { parseExports } from "../infrastructure/export-config.ts";
+import type { importedTarget } from "./import-target.ts";
+export type Catalog = ReturnType<typeof validateImportedCatalog>;
+export type Import = ReturnType<typeof parseImports>[number];
+/** Publication fields и consumer decoration выводятся из фактических owners. */
+export type Target =
+  & Catalog["targets"][string]
+  & Partial<ReturnType<typeof importedTarget>>;
 export interface Reference {
   key: string;
   style: ReferenceStyle;
   custom: boolean;
 }
-export interface Catalog {
-  schema: "quarto-reference-catalog";
-  generator: { quarto: string };
-  publication?: { title: string };
-  targets: Record<string, Target>;
-}
-export interface Import {
-  namespace: string; source: string; sourceNamespace: string; baseUrl: string;
-  title?: string; style?: ReferenceStyle;
-}
-/** Публикуются только явно выбранные цели; отсутствие настройки означает пустой каталог. */
-export type Exports = Record<string, "*" | string[]>;
+/** Отсутствие exports и пустой exports имеют разные runtime значения. */
+export type Exports = NonNullable<ReturnType<typeof parseExports>>;

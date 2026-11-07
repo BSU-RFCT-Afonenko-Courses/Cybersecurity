@@ -1,0 +1,114 @@
+---
+exercise-bank: true
+default-exercise-target: manual
+default-exercise-course-role: independent-study
+default-exercise-statement-visibility: open
+course-presentation:
+  answers: auto
+---
+
+## Занятие 6 – Сохранность данных {#sec-seminar-6}
+
+## Проверка целостности {#sec-seminar-6-integrity}
+
+### Что показывает проверка
+
+Простая сумма обнаруживает некоторые изменения, но `[10,20,30]` и `[20,10,30]` дают 60. Криптографический хеш сравнивают с **доверенным эталоном**. Совпадение с подменённым эталоном не доказывает происхождение файла.
+
+
+### Сравнение контрольных значений
+
+![Сумма и хеш](_prepared/visualizations/data-integrity/static/sum-hash.svg){#fig-slide-integrity-sum-hash fig-alt="Сравнение контрольных значений"}
+
+### Вопрос для аудитории
+
+{{< include _prepared/bank-fragments/exr-data-integrity-trusted-hash.qmd >}}
+
+
+### Подмена эталона
+
+{{< include _prepared/visualizations/fragments/reference-replacement.qmd >}}
+
+## Резервное копирование {#sec-seminar-6-backups}
+
+### Три схемы на одних изменениях
+
+Целые файлы $A = 2$, $B = 3$, $C = 5$ МБ; воскресенье — полная копия, затем изменяются A, B и снова A. Копируем ежедневно после правки.
+
+| День | Полная | Инкрементная | Дифференциальная |
+|---|---|---|---|
+| Пн | A, B, C | A | A |
+| Вт | A, B, C | B | A, B |
+| Ср | A, B, C | A | A, B |
+
+::: {.notes}
+Инкремент зависит от предыдущей копии; дифференциальная копия содержит изменения с последней полной. Повторная правка A не создаёт второй файл A в копии среды.
+:::
+
+### Вопрос для аудитории {.smaller}
+
+{{< include _prepared/bank-fragments/exr-data-integrity-backup-volume.qmd >}}
+
+
+### Сравнение объёма копий
+
+![Объём копий](_prepared/visualizations/data-integrity/static/copy-scales.svg){#fig-slide-integrity-copy-scales fig-alt="Сравнение трёх схем копирования"}
+
+### Восстановление копии
+
+Для состояния среды в этой цепочке нужны:
+
+- инкрементная схема: воскресная полная и все три инкремента по порядку;
+- дифференциальная схема: воскресная полная и копия среды.
+
+Копию хранят независимо и проверяют восстановлением.
+
+## Восстановление в массивах дисков {#sec-seminar-6-raid}
+
+### Уровни RAID
+
+| Массив | Принцип | Диски по 2 ТБ | Полезно | Один отказ |
+|---|---|---:|---:|---|
+| RAID 0 | Чередование | 3 | 6 ТБ | Весь набор недоступен |
+| RAID 1 | Зеркало | 2 | 2 ТБ | Выдерживает |
+| RAID 5 | Данные и чётность | 3 | 4 ТБ | Выдерживает |
+
+Предполагаются исправные остальные диски и метаданные; служебными расходами пренебрегаем.
+
+
+### Размещение данных в RAID
+
+![Данные и чётность в RAID](_prepared/visualizations/data-integrity/static/raid.svg){#fig-slide-integrity-raid fig-alt="Размещение блоков по дискам"}
+
+### Восстановление XOR
+
+$P = A \oplus B$, $A = \mathtt{1010}$, $P = \mathtt{0110}$ → $B = A \oplus P = \mathtt{1100}$.
+
+Из одного $P$ нельзя однозначно вернуть оба отсутствующих блока: $\mathtt{0000} \oplus \mathtt{0110} = \mathtt{0110}$ и $\mathtt{1010} \oplus \mathtt{1100} = \mathtt{0110}$.
+
+
+### Иллюстрация восстановления XOR
+
+{{< include _prepared/visualizations/fragments/xor-recovery.qmd >}}
+
+### Вопрос для обсуждения {.smaller}
+
+{{< include _prepared/bank-fragments/exr-data-integrity-mirror-copy.qmd >}}
+
+## Дополнительные материалы {#sec-seminar-6-additional}
+
+### Запас: простая сумма
+
+{{< include _prepared/visualizations/fragments/sum-collision.qmd >}}
+
+### Запас: изменение байта
+
+{{< include _prepared/visualizations/fragments/byte-change.qmd >}}
+
+### Запасные вопросы {.smaller}
+
+По времени занятия выберите один: @tasks:exr-data-integrity-sum, @tasks:exr-data-integrity-backup-chain, @tasks:exr-data-integrity-raid-capacity, @tasks:exr-data-integrity-mirror-history или @tasks:exr-data-integrity-xor.
+
+### Дополнительная работа
+
+@tasks:exr-data-integrity-backup.

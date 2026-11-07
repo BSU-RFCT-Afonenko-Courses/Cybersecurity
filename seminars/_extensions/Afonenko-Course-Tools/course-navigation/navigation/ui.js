@@ -68,6 +68,8 @@
         const url = new URL(item.href, document.baseURI);
         if (url.protocol !== 'https:' && url.protocol !== 'http:') continue;
         link.setAttribute('href', item.href);
+        if (item.id) link.dataset.courseLink = item.id;
+        if (item.current) link.setAttribute('aria-current', 'page');
         if (item.scope === 'repository') { link.target = '_blank'; link.rel = 'noopener noreferrer'; }
         nav.append(link);
       }
@@ -217,6 +219,9 @@
         if (group && i === group.index) control.setAttribute('aria-current', 'step'); else control.removeAttribute('aria-current');
         control.classList.toggle('course-nav-topic-complete', !!group && i < group.index);
       }));
+      if (document.body.dataset.courseMode === 'lecture' && root.matchMedia('(max-width: 899px)').matches) {
+        lists.filter(list => list.offsetWidth > 0).forEach(list => list.querySelector('[aria-current]')?.scrollIntoView({block: 'nearest', inline: 'nearest'}));
+      }
       const disabled = {
         prev: index <= 0 && !fragmentState.prev, next: index >= total - 1 && !fragmentState.next,
         prevSection: !group || group.index === 0, nextSection: !group || group.index === model.groups.length - 1,

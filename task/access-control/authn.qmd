@@ -1,1 +1,0 @@
-# Аутентификация {#sec-seminar-access-control-authn}

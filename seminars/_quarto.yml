@@ -1,3 +1,4 @@
+exercise-bank: true
 fail-if-warnings: true
 project:
   type: website
@@ -6,7 +7,10 @@ project:
   - 01-introduction.qmd
   - 02-legal-requirements.qmd
   - 03-standards-risk.qmd
-  - control-demo.qmd
+  - 04-access-control.qmd
+  - 05-crypto.qmd
+  - 06-data-integrity.qmd
+  - 07-signature-trust.qmd
   output-dir: _output
   resources:
   - ./assets/**
@@ -14,6 +18,11 @@ project:
   - '!**/*.qmd'
   - '!**/_*.qmd'
   - '!_generated/**'
+  - ./_prepared/visualizations/**/static/*.svg
+  - ./_prepared/visualizations/**/*.js
+  - '!_prepared/**/*.qmd'
+  - '!_prepared/bank-fragments/**'
+  - '!**/_prepared/bank-fragments/**'
   - '!_freeze/**'
   - '!.quarto/**'
   - '!_extensions/**'
@@ -25,23 +34,29 @@ project:
   - '!**/.quarto/**'
   - '!**/_freeze/**'
   pre-render:
+  - python3 ../CI/prepare-course-visualizations.py
+  - python3 ../CI/cleanup-quarto-mediabag.py
   - _extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts
   post-render:
-  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/post.ts
+  - python3 ../CI/cleanup-quarto-mediabag.py
   - _extensions/Afonenko-Course-Tools/reference-catalog/entrypoints/post.ts
   - ../_extensions/Afonenko-Course-Tools/course-site/entrypoints/collect.ts
+  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/post.ts
 profile:
   default: student
   group:
   - - student
     - full
 filters:
-- course-navigation
 - course-core
 - course-presentation
 - reference-catalog
+- course-navigation
+- course-visualizations
 format:
   revealjs:
+    html-math-method: mathml
+    embed-resources: false
     shift-heading-level-by: -1
     slide-level: 2
     navigation-mode: linear
@@ -52,41 +67,12 @@ format:
     - course-navigation
     pdf-separate-fragments: false
 website:
-  title: Семинары — Основы кибербезопасности
   navbar:
-    title: Основы кибербезопасности
-    logo-href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/index.html
-    left:
-    - text: Курс
-      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/index.html
-    - text: Теория
-      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/theory/index.html
-    - text: Задания и работы
-      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/task/index.html
-    - text: Семинары
-      href: index.html
-    - text: Контрольные
-      menu:
-      - text: Демонстрационный вариант
-        href: control-demo.qmd
+    title: false
+  title: Семинары — Основы кибербезопасности
 course-navigation:
+  enabled: true
   course-url: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/
-  links:
-  - text: Курс
-    href: /index.html
-    scope: course
-  - text: Теория
-    href: /theory/index.html
-    scope: course
-  - text: Задания и работы
-    href: /task/index.html
-    scope: course
-  - text: Семинары
-    href: /index.html
-    scope: project
-  - text: Контрольные
-    href: /control-demo.html
-    scope: project
 bibliography: ../references.bib
 lang: ru
 author:

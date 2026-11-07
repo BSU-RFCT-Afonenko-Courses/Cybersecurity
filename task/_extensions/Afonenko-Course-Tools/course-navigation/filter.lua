@@ -13,9 +13,14 @@ local function local_path(value,field)
  for part in value:gmatch('[^/]+') do if part=='..' or part=='.' then fail(field,'Путь не должен выходить за корень публикации') end end
  return value
 end
-return {{Pandoc=metrics.wrap_sync({id='course-navigation.filter.handler.Pandoc',kind='phase'},function(doc)
- if not quarto.format.is_format('revealjs') then return doc end
+local function transform(doc)
  local cfg=doc.meta['course-navigation'] or {}
+ if not quarto.format.is_format('revealjs') then
+  if quarto.format.is_format('html') and cfg.enabled==true then
+   quarto.doc.add_html_dependency({name='course-navigation-header',stylesheets={'html/header.css'}})
+  end
+  return doc
+ end
  local input=quarto.doc.input_file
  if not pandoc.path.is_relative(input) then input=pandoc.path.make_relative(input,quarto.project.directory) end
  input=input:gsub('\\','/')
@@ -59,4 +64,8 @@ return {{Pandoc=metrics.wrap_sync({id='course-navigation.filter.handler.Pandoc',
   quarto.doc.include_text('in-header','<script id="course-navigation-context" type="application/json">'..payload..'</script>')
  end
  return doc
-end)}}
+end
+local function handler(doc)
+ return metrics.wrap_sync({id='course-navigation.filter.handler.Pandoc',kind='phase',document_id=quarto.doc.input_file},transform)(doc)
+end
+return {{Pandoc=(os.getenv('COURSE_PERF_MODE') and os.getenv('COURSE_PERF_MODE')~='off') and handler or transform}}

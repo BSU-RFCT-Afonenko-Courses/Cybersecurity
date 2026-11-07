@@ -1,0 +1,12 @@
+digraph G {
+ graph [rankdir=LR, bgcolor="transparent", pad="0.2", splines=polyline];
+ node [shape=box, style="rounded,filled", fillcolor="#eef4fa", fontname="DejaVu Sans", fontsize=12];
+ edge [fontname="DejaVu Sans", fontsize=10];
+ "n0" [id="n0", label="Блоки A=5, B=9, C=12"];
+ "n1" [id="n1", label="P = 5 XOR 9 XOR 12 = 0"];
+ "n2" [id="n2", label="Известно: потерян только B"];
+ "n3" [id="n3", label="B = P XOR A XOR C = 9\nдве потери одним P не определяются"];
+ "n0" -> "n1" [label=""];
+ "n1" -> "n2" [label=""];
+ "n2" -> "n3" [label=""];
+}

@@ -1,0 +1,55 @@
+/* Navigation определяет структуру шапки; тема задаёт палитру и шрифт
+   через --course-nav-*. Без общей темы используются переменные Bootstrap. */
+#quarto-header .navbar {
+  --bs-navbar-color: var(--course-nav-foreground, var(--bs-body-color));
+  --bs-navbar-hover-color: var(--course-nav-primary, var(--bs-link-color));
+  --bs-navbar-active-color: var(--course-nav-primary, var(--bs-link-color));
+  --bs-navbar-brand-color: var(--course-nav-foreground, var(--bs-body-color));
+  --bs-navbar-brand-hover-color: var(--course-nav-primary, var(--bs-link-color));
+  background-color: var(--course-nav-background, var(--bs-tertiary-bg));
+  color: var(--bs-navbar-color);
+  font-family: var(--course-nav-font, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+  font-size: 17px;
+  line-height: 1.5;
+  padding: 8.5px 17px;
+}
+
+#quarto-header .navbar .navbar-brand {
+  color: var(--bs-navbar-brand-color);
+  font: inherit;
+  font-size: 21.25px;
+  padding: 5.3125px 0;
+}
+
+#quarto-header .navbar .nav-link {
+  color: var(--bs-navbar-color);
+  font: inherit;
+}
+
+#quarto-header .navbar .nav-link.active,
+#quarto-header .navbar .nav-link:hover,
+#quarto-header .navbar .navbar-brand:hover {
+  color: var(--bs-navbar-active-color);
+}
+
+#quarto-header .navbar .navbar-toggler,
+#quarto-header .navbar #quarto-search .aa-DetachedSearchButton,
+#quarto-header .navbar #quarto-search .aa-DetachedSearchButtonIcon,
+#quarto-header .navbar #quarto-search svg {
+  color: var(--bs-navbar-color);
+}
+
+/* Штатный Bootstrap переключает меню; значок наследует цвет общей шапки. */
+#quarto-header .navbar .navbar-toggler-icon {
+  background-image: none;
+  position: relative;
+}
+
+#quarto-header .navbar .navbar-toggler-icon::before {
+  content: "";
+  position: absolute;
+  inset: calc(50% - 1px) 3px auto;
+  height: 2px;
+  background: currentColor;
+  box-shadow: 0 -7px currentColor, 0 7px currentColor;
+}

@@ -1,0 +1,13 @@
+```{ojs}
+//| echo: false
+macLesson = await import(await FileAttachment("/_prepared/visualizations/access-control/mac/lesson.js").url())
+viewof macRequest = macLesson.macControls()
+```
+
+```{ojs}
+//| echo: false
+//| label: fig-mac-decision
+//| fig-cap: "Применение мандатной политики к одному запросу"
+//| fig-alt: "Подсвечены процесс, файл и правило чтения или записи для выбранного запроса"
+macLesson.macDiagram(macRequest)
+```

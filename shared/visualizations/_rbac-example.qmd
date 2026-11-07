@@ -1,0 +1,13 @@
+```{ojs}
+//| echo: false
+rbacLesson = await import(await FileAttachment("/_prepared/visualizations/access-control/rbac/lesson.js").url())
+viewof rbacRequest = rbacLesson.rbacControls()
+```
+
+```{ojs}
+//| echo: false
+//| label: fig-rbac-decision
+//| fig-cap: "Применение ролевой политики"
+//| fig-alt: "Подсвечены пользователь, назначенная роль и проверяемое разрешение"
+rbacLesson.rbacDiagram(rbacRequest)
+```

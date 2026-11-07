@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="kotost-small-title kotost-small-desc">
+  <title id="kotost-small-title">Кибер котость: маленькая иконка</title>
+  <desc id="kotost-small-desc">Пухлый кот с заметными острыми ушами и усами держит защищённую вкладку. Детали укрупнены для маленького размера.</desc>
+  <path d="M40 43 38 12Q38 8 43 11L66 29Q80 25 94 29L117 11Q122 8 122 12L120 43C142 56 151 72 151 92C151 120 119 135 80 135C41 135 9 120 9 92C9 72 18 56 40 43Z" fill="#FFFFFF" stroke="#0A3470" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M46 24 47 40 59 33ZM114 24 113 40 101 33Z" fill="#144E9D"/>
+  <path d="M73 32Q80 30 87 32L84 43H76Z" fill="#144E9D"/>
+  <ellipse cx="61" cy="57" rx="9" ry="11" fill="#0A3470"/>
+  <ellipse cx="99" cy="57" rx="9" ry="11" fill="#0A3470"/>
+  <path d="M56 53a3.5 3.5 0 1 0 7 0 3.5 3.5 0 1 0-7 0ZM94 53a3.5 3.5 0 1 0 7 0 3.5 3.5 0 1 0-7 0Z" fill="#FFFFFF"/>
+  <path d="M16 72 37 76M144 72 123 76" fill="none" stroke="#0A3470" stroke-width="7" stroke-linecap="round"/>
+  <path d="M73 72h14l-7 9Z" fill="#0A3470"/>
+  <path d="M80 79v4m0 0q-6 5-12-1m12 1q6 5 12-1" fill="none" stroke="#0A3470" stroke-width="4.5" stroke-linecap="round"/>
+  <rect x="20" y="92" width="120" height="61" rx="11" fill="#144E9D" stroke="#0A3470" stroke-width="6"/>
+  <path d="M25 103h110" stroke="#FFFFFF" stroke-width="4"/>
+  <path d="M68 131v-6a12 12 0 0 1 24 0v6" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+  <rect x="62" y="128" width="36" height="20" rx="4" fill="#FFFFFF"/>
+  <path d="M28 86q-10 0-10 9t10 9h7q9-1 9-9t-9-9ZM132 86q10 0 10 9t-10 9h-7q-9-1-9-9t9-9Z" fill="#FFFFFF" stroke="#0A3470" stroke-width="5"/>
+</svg>

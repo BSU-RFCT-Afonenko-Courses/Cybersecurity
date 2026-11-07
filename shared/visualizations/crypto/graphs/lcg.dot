@@ -1,0 +1,13 @@
+digraph G {
+ graph [rankdir=LR, bgcolor="transparent", pad="0.2", splines=polyline];
+ node [shape=box, style="rounded,filled", fillcolor="#eef4fa", fontname="DejaVu Sans", fontsize=12];
+ edge [fontname="DejaVu Sans", fontsize=10];
+ state [label="Регистр состояния xₙ"];
+ compute [label="Вычисление\n(a × xₙ + c) mod m"];
+ next [label="Новое состояние xₙ₊₁"];
+ output [label="Выход: xₙ₊₁"];
+ state -> compute [label="прочитать xₙ"];
+ compute -> next;
+ next -> state [label="записать в тот же регистр", constraint=false];
+ next -> output [label="выдать"];
+}

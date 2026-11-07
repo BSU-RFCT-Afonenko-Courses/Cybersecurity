@@ -1,0 +1,12 @@
+```{ojs}
+//| echo: false
+//| output: false
+referenceReplacementLesson = await import(await FileAttachment("/_prepared/visualizations/data-integrity/lesson.js").url())
+```
+
+```{ojs}
+//| echo: false
+//| label: fig-integrity-reference
+//| fig-cap: "Подмена эталона"
+referenceReplacementLesson.referenceReplacement()
+```

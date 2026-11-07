@@ -5,7 +5,9 @@ export async function quarto(args: string[], cwd: string, extra: Record<string, 
   const command = Deno.env.get("QUARTO") || Deno.env.get("QRC_QUARTO") || "quarto";
   let result: Deno.CommandOutput;
   try {
-    result = await new Deno.Command(command, { args, cwd, env: __metrics.childEnv(extra), stdout: "piped", stderr: "piped" }).output();
+    const childEnv = __metrics.childEnv(extra);
+    const observed = childEnv !== extra;
+    result = await new Deno.Command(command, { args, cwd, env: observed ? __metrics.childEnv({ ...Deno.env.toObject(), ...extra }) : childEnv, clearEnv: observed, stdout: "piped", stderr: "piped" }).output();
   } catch (cause) {
     if (!Object.values(Deno.errors).some(kind => cause instanceof kind)) throw cause;
     const error = new Error(`Не удалось запустить Quarto (${command}): ${cause instanceof Error ? cause.message : cause}`, { cause });

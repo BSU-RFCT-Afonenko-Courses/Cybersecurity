@@ -1,0 +1,39 @@
+digraph entropy_sources {
+  graph [rankdir=LR, newrank=true, bgcolor="transparent", fontcolor="#243746", pad="0.25", nodesep="0.38", ranksep="0.70", splines=spline, fontname="DejaVu Sans", fontsize=18];
+  node [shape=box, style="rounded,filled", color="#acbcc9", fillcolor="#edf3f8", fontcolor="#243746", fontname="DejaVu Sans", fontsize=18, margin="0.20,0.17", penwidth=1.4];
+  edge [color="#41647d", fontcolor="#314e63", fontname="DejaVu Sans", fontsize=15, penwidth=1.7, arrowsize=0.8];
+
+  subgraph cluster_sources {
+    label="Возможные внешние входы";
+    labeljust=l;
+    color="#cad4dd";
+    style="rounded,dashed";
+    margin=20;
+    hardware [label="Аппаратный источник\nфизического шума"];
+    timing [label="Временные характеристики\nсобытий устройств"];
+    host [label="Случайные данные от хоста ВМ\n(уже подготовлены)"];
+    {rank=same; hardware; timing; host;}
+  }
+
+  collect [shape=ellipse, label="Сбор и обработка\nданных в ОС", fillcolor="#e6f0ed", color="#94b2a6"];
+
+  subgraph cluster_csprng {
+    label="CSPRNG";
+    labeljust=l;
+    color="#b4c4d4";
+    style=rounded;
+    margin=22;
+    state [label="Секретное\nсостояние", fillcolor="#e8edf7", color="#9cabc6"];
+    step [shape=ellipse, label="Вычисление выхода\nи нового состояния", fillcolor="#e8edf7", color="#9cabc6"];
+    state -> step [constraint=false];
+    step -> state [label="новое состояние", constraint=false];
+  }
+
+  output [label="Случайные байты\nдля приложений", fillcolor="#f4f6f8"];
+  hardware -> collect;
+  timing -> collect;
+  host -> collect;
+  collect -> state [label="инициализация\nили обновление"];
+  {rank=same; state; step; output;}
+  step -> output [constraint=false];
+}

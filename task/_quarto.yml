@@ -6,11 +6,12 @@ project:
   - _extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts
   - _extensions/Afonenko-Course-Tools/project-download/entrypoints/pre.ts
   post-render:
-  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/post.ts
-  - _extensions/Afonenko-Course-Tools/project-download/entrypoints/post.ts
   - _extensions/Afonenko-Course-Tools/reference-catalog/entrypoints/post.ts
   - ../_extensions/Afonenko-Course-Tools/course-site/entrypoints/collect.ts
+  - _extensions/Afonenko-Course-Tools/course-core/entrypoints/post.ts
+  - _extensions/Afonenko-Course-Tools/project-download/entrypoints/post.ts
   resources:
+  - '!**/*.scss'
   - '!**/*.qmd'
   - ./assets/**
   - '!materials/**'
@@ -34,25 +35,11 @@ filters:
 - course-presentation
 - project-download
 - reference-catalog
+- course-navigation
 book:
-  title: Задания и работы — Основы кибербезопасности
   navbar:
-    title: Основы кибербезопасности
-    logo-href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/index.html
-    left:
-    - text: Курс
-      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/index.html
-    - text: Теория
-      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/theory/index.html
-    - text: Задания и работы
-      href: index.html
-    - text: Семинары
-      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/seminars/index.html
-  sidebar:
-    tools:
-    - icon: house
-      href: https://bsu-rfct-afonenko-courses.github.io/Cybersecurity/index.html#sec-portal
-      text: Навигация курса
+    title: false
+  title: Задания
 author:
 - Афоненко Анатолий
 - Войтович Елизавета
@@ -61,6 +48,10 @@ lang: ru
 bibliography: ../references.bib
 format:
   html:
-    theme: cosmo
+    theme: [cosmo, _extensions/Afonenko-Course-Tools/course-theme/theme.scss]
+    html-math-method: mathml
+    embed-resources: false
 reference-catalog:
   namespace: tasks
+course-navigation:
+  enabled: true

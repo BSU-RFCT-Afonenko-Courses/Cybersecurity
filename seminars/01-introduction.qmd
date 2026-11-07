@@ -1,35 +1,52 @@
-## Занятие 1 – Понятия и КЦД {#sec-seminar-1}
+## Занятие 1 – Информационная безопасность {#sec-seminar-1}
 
-### Информационная система и активы
+## Безопасность информационной системы {#sec-seminar-1-assets}
 
-@theory:sec-theory-fundamentals-information-system
+### Активы информационной системы
 
-### Конфиденциальность, целостность и доступность
+Границы системы определяют область рассмотрения. Активы включают данные, программы, оборудование, людей и процессы. Например, портал зависит и от базы оценок, и от сервера, и от порядка выдачи прав.
 
-@theory:sec-theory-fundamentals-cia
+Определения: @theory:def-information-system; @theory:def-information-assets.
 
-### Угрозы, уязвимости, события и инциденты
+::: {.notes}
+Попросите назвать актив и объяснить, почему он важен для работы портала.
+:::
 
-@theory:sec-theory-fundamentals-events-incidents
+### Три свойства
 
-### Подготовительная задача
+- **Конфиденциальность:** доступ имеют уполномоченные лица.
+- **Целостность:** данные защищены от неправомерного изменения и уничтожения.
+- **Доступность:** уполномоченный пользователь может своевременно выполнить разрешённое действие.
 
-@tasks:exr-fundamentals-educational-portal
+Одно событие может затронуть несколько свойств; при анализе уточняем непосредственно нарушенное. Подробности и примеры: @theory:sec-theory-fundamentals-cia.
 
-### Демонстрационная задача
+### Вопрос для аудитории {.smaller}
 
-@tasks:exr-fundamentals-cia-cases
+{{< include _prepared/bank-fragments/exr-fundamentals-cia-cases.qmd >}}
 
-### Аудиторные задачи
+## Инциденты безопасности {#sec-seminar-1-incidents}
 
-- @tasks:exr-fundamentals-event-or-incident
-- @tasks:exr-fundamentals-pizza-incident
+### Угроза, уязвимость, событие, инцидент
 
-### Необязательные домашние задания
+- **Угроза** — возможное неблагоприятное воздействие; **уязвимость** — способствующее ему слабое место.
+- **Событие** — наблюдаемое действие или изменение; **инцидент** связан с нарушением безопасности или его возможностью и требует реагирования.
 
-- @tasks:exr-fundamentals-exhibition
-- @tasks:exr-fundamentals-carsharing
+Определения и разбор различий: @theory:sec-theory-fundamentals-events-incidents.
 
-### Семинарская работа
+::: {.notes}
+Само наблюдение ещё не доказывает нарушение: нужны контекст и установленные факты.
+:::
 
-@tasks:sec-work-fundamentals-concepts
+### Вопрос для аудитории {.smaller}
+
+::: {style="font-size:0.8em"}
+{{< include _prepared/bank-fragments/exr-fundamentals-event-or-incident.qmd >}}
+:::
+
+## Дополнительная работа {#sec-seminar-1-additional}
+
+### Дополнительная работа
+
+@tasks:exr-fundamentals-educational-portal; @tasks:exr-fundamentals-pizza-incident; @tasks:sec-work-fundamentals-concepts.
+
+Дополнительные задания: @tasks:exr-fundamentals-exhibition; @tasks:exr-fundamentals-carsharing.

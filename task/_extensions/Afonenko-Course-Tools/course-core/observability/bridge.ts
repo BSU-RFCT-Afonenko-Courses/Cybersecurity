@@ -3,6 +3,8 @@ export interface OperationSpec {
   id: string;
   kind: "phase" | "function" | "ast_walk" | "io" | "command";
   symbol_id?: string;
+  document_id?: string;
+  attributes?: Record<string, string | number | boolean | null>;
   origin?: "manual" | "auto" | "runtime";
 }
 export interface WalkSpec extends OperationSpec {
@@ -36,7 +38,19 @@ export function createMetrics(extensionId: string, abiVersion: 1 = 1): Metrics {
     abiVersion: number;
     metrics: Metrics;
   } | undefined;
-  if (agent?.abiVersion === abiVersion && agent.metrics) return agent.metrics;
+  if (agent?.abiVersion === abiVersion && agent.metrics) {
+    const metrics = agent.metrics;
+    const bound = <T extends OperationSpec>(spec: T): T => ({
+      ...spec,
+      attributes: { ...spec.attributes, extension_id: extensionId },
+    });
+    return {
+      wrapSync: (spec, fn) => metrics.wrapSync(bound(spec), fn),
+      wrapAsync: (spec, fn) => metrics.wrapAsync(bound(spec), fn),
+      wrapWalk: (spec, fn) => metrics.wrapWalk(bound(spec), fn),
+      childEnv: (base) => metrics.childEnv(base),
+    };
+  }
   const failures = Symbol.for("course.performance.failures.v1");
   ((registry[failures] ??= []) as string[]).push(
     `${extensionId}: агент ABI ${abiVersion} отсутствует или несовместим`,

@@ -68,12 +68,22 @@
         document.body.classList.add('course-navigation-active');
         if (options.sidebar === false) document.body.classList.add('course-navigation-no-sidebar');
         ui = UI.build(model, options, actions);
+        const modeChanged = () => {
+          if (document.body.dataset.courseMode === 'lecture') {
+            ui.closeDialogs();
+            ui.update(current(), history, deck.availableFragments());
+            document.querySelector('.course-mode-toggle')?.focus({preventScroll: true});
+          }
+          requestAnimationFrame(() => deck.layout());
+        };
+        document.addEventListener('course-mode-change', modeChanged);
+        modeChanged();
         const overviewShown = () => { deck.toggleOverview(false); actions.overview(); };
         deck.on('overviewshown', overviewShown);
         if (!document.documentElement.requestFullscreen) ui.shell.querySelectorAll('[data-action="fullscreen"]').forEach(control => { control.hidden = true; });
         const changed = () => update();
         ['ready', 'slidechanged', 'fragmentshown', 'fragmenthidden'].forEach(event => deck.on(event, changed));
-        const onResize = () => deck.layout();
+        const onResize = () => { deck.layout(); ui.update(current(), history, deck.availableFragments()); };
         root.addEventListener('resize', onResize);
         const beforePrint = () => { document.body.classList.add('course-navigation-print'); deck.layout(); };
         const afterPrint = () => { document.body.classList.remove('course-navigation-print'); deck.layout(); };
@@ -82,6 +92,7 @@
         cleanup.set(deck, () => {
           ['ready', 'slidechanged', 'fragmentshown', 'fragmenthidden'].forEach(event => deck.off(event, changed));
           root.removeEventListener('resize', onResize); root.removeEventListener('beforeprint', beforePrint); root.removeEventListener('afterprint', afterPrint);
+          document.removeEventListener('course-mode-change', modeChanged);
           deck.off('ready', start);
           deck.off('overviewshown', overviewShown);
           ui.destroy(); document.body.classList.remove('course-navigation-active', 'course-navigation-no-sidebar', 'course-navigation-print');

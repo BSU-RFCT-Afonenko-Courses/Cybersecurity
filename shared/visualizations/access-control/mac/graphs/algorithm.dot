@@ -1,0 +1,21 @@
+digraph policy {
+ graph [rankdir=TB,bgcolor="transparent",pad="0.12",nodesep="0.45",ranksep="0.35",splines=polyline];
+ node [shape=box,style="rounded,filled",fillcolor="white",fontname="DejaVu Sans",fontsize=17,color="#a4b7c8",fontcolor="#203b50",penwidth=1.6];
+ edge [fontname="DejaVu Sans",fontsize=14,color="#a4b7c8",arrowsize=.7];
+ request [id="request",label="Запрос",fillcolor="#edf4ff"];
+ levels [id="levels",label="Метки процесса и файла"];
+ subgraph cluster_rules {label="Правила конфиденциальности";fontname="DejaVu Sans";fontsize=16;color="#cfdae3";style="rounded";
+ read [id="read-rule",label="Не читать выше\nL процесса ≥ L файла?",shape=box];
+ write [id="write-rule",label="Не писать ниже\nL процесса ≤ L файла?",shape=box];
+ {rank=same;read;write;}}
+ allow [id="allow",label="Разрешить",fillcolor="#eaf8f6"];
+ deny [id="deny",label="Отказать",fillcolor="#fff5df"];
+ {rank=same;allow;deny;}
+ request -> levels [id="flow-request-levels"];
+ levels -> read [label="чтение",id="flow-levels-read-rule"];
+ levels -> write [label="запись",id="flow-levels-write-rule"];
+ read -> allow [label="да",id="flow-read-rule-allow"];
+ read -> deny [label="нет",id="flow-read-rule-deny"];
+ write -> allow [label="да",id="flow-write-rule-allow"];
+ write -> deny [label="нет",id="flow-write-rule-deny"];
+}

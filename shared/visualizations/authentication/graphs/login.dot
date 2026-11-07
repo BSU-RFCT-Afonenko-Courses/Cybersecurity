@@ -1,0 +1,12 @@
+digraph G {
+ graph [rankdir=LR, bgcolor="transparent", pad="0.2", splines=polyline];
+ node [shape=box, style="rounded,filled", fillcolor="#eef4fa", fontname="DejaVu Sans", fontsize=12];
+ edge [fontname="DejaVu Sans", fontsize=10];
+ "n0" [id="n0", label="RP: свежий challenge"];
+ "n1" [id="n1", label="Браузер: navigator.credentials.get()\nпроверка RP ID и origin"];
+ "n2" [id="n2", label="Аутентификатор: локальная активация\nподписывает данные церемонии"];
+ "n3" [id="n3", label="RP: challenge, origin, rpIdHash\nтип, UP/UV, подпись\nпроверяются по политике"];
+ "n0" -> "n1" [label=""];
+ "n1" -> "n2" [label=""];
+ "n2" -> "n3" [label=""];
+}

@@ -1,0 +1,12 @@
+digraph G {
+ graph [rankdir=LR, bgcolor="transparent", pad="0.2", splines=polyline];
+ node [shape=box, style="rounded,filled", fillcolor="#eef4fa", fontname="DejaVu Sans", fontsize=12];
+ edge [fontname="DejaVu Sans", fontsize=10];
+ "n0" [id="n0", label="До: [10, 20]"];
+ "n1" [id="n1", label="Один байт: 20 → 21"];
+ "n2" [id="n2", label="После: [10, 21]"];
+ "n3" [id="n3", label="SHA-256 до ≠ SHA-256 после\nсравнение с сохранённым эталоном"];
+ "n0" -> "n1" [label=""];
+ "n1" -> "n2" [label=""];
+ "n2" -> "n3" [label=""];
+}

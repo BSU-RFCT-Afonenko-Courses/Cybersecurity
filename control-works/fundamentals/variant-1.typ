@@ -1,5 +1,5 @@
-#import "styles.typ": layout, item-spacing
-#import "components.typ": *
+#import "../common/styles.typ": layout, item-spacing
+#import "../common/components.typ": *
 #show: layout
 #let scores = (
   (18, 6, 6),
