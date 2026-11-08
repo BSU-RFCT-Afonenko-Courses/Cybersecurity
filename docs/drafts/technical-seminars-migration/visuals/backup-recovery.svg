@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+<title id="title">Источники целевых версий</title><desc id="desc">Слева две дифференциальные альтернативы для вторника. Справа потерян понедельник инкрементной схемы A, B, A; среда достижима, вторнику недостаёт A₁.</desc>
+<rect width="1200" height="650" fill="white"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#4e6378"/></marker></defs>
+<g font-family="DejaVu Sans, sans-serif" fill="#172d46">
+<rect x="15" y="15" width="560" height="620" rx="10" fill="#fbfcfe" stroke="#cad5df" stroke-width="2"/>
+<rect x="595" y="15" width="590" height="620" rx="10" fill="#fbfcfe" stroke="#cad5df" stroke-width="2"/>
+<text x="38" y="52" font-size="25" fill="#172d46" font-weight="bold" text-anchor="start">Правки A → B → C</text>
+<text x="38" y="87" font-size="22" fill="#4e6378" font-weight="normal" text-anchor="start">Дифференциальные копии</text>
+<rect x="38" y="108" width="513" height="62" rx="10" fill="#eaf7f0" stroke="#15724e" stroke-width="2"/>
+<text x="294" y="147" font-size="24" fill="#15724e" font-weight="bold" text-anchor="middle">Цель вторника: A₁ · B₁ · C₀</text>
+<text x="38" y="208" font-size="22" fill="#172d46" font-weight="bold" text-anchor="start">Набор 1</text>
+<rect x="38" y="225" width="222" height="105" rx="10" fill="#edf5fc" stroke="#cad5df" stroke-width="2"/>
+<rect x="289" y="225" width="262" height="105" rx="10" fill="#edf5fc" stroke="#cad5df" stroke-width="2"/>
+<text x="149" y="258" font-size="21" fill="#172d46" font-weight="bold" text-anchor="middle">Воскресенье</text>
+<text x="149" y="297" font-size="22" fill="#172d46" font-weight="normal" text-anchor="middle">A₀ · B₀ · C₀</text>
+<text x="420" y="258" font-size="21" fill="#172d46" font-weight="bold" text-anchor="middle">Вторник</text>
+<text x="420" y="297" font-size="22" fill="#172d46" font-weight="normal" text-anchor="middle">A₁ · B₁</text>
+<path d="M149 336 L149 363" fill="none" stroke="#4e6378" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path d="M420 336 L420 363" fill="none" stroke="#4e6378" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="149" y="391" font-size="22" fill="#15724e" font-weight="normal" text-anchor="middle">Берём C₀</text>
+<text x="420" y="391" font-size="22" fill="#15724e" font-weight="normal" text-anchor="middle">Берём A₁ и B₁</text>
+<text x="38" y="438" font-size="22" fill="#172d46" font-weight="bold" text-anchor="start">Набор 2</text>
+<rect x="38" y="454" width="222" height="105" rx="10" fill="#edf5fc" stroke="#cad5df" stroke-width="2"/>
+<rect x="289" y="454" width="262" height="105" rx="10" fill="#edf5fc" stroke="#cad5df" stroke-width="2"/>
+<text x="149" y="487" font-size="21" fill="#172d46" font-weight="bold" text-anchor="middle">Воскресенье</text>
+<text x="149" y="527" font-size="22" fill="#15724e" font-weight="normal" text-anchor="middle">Берём C₀</text>
+<text x="420" y="487" font-size="20" fill="#172d46" font-weight="bold" text-anchor="middle">Среда: A₁ · B₁ · C₁</text>
+<text x="420" y="527" font-size="20" fill="#15724e" font-weight="normal" text-anchor="middle">Берём только A₁ и B₁</text>
+<text x="294" y="603" font-size="22" fill="#4e6378" font-weight="normal" text-anchor="middle">C₁ остаётся в копии среды</text>
+<text x="618" y="52" font-size="25" fill="#172d46" font-weight="bold" text-anchor="start">Правки A → B → A</text>
+<text x="618" y="87" font-size="22" fill="#4e6378" font-weight="normal" text-anchor="start">Инкрементные копии</text>
+<rect x="618" y="110" width="543" height="56" rx="10" fill="#edf5fc" stroke="#cad5df" stroke-width="2"/>
+<text x="634" y="146" font-size="21" fill="#172d46" font-weight="bold" text-anchor="start">Воскресенье</text>
+<text x="1138" y="146" font-size="23" fill="#172d46" font-weight="normal" text-anchor="end">A₀ · B₀ · C₀</text>
+<rect x="618" y="179" width="543" height="56" rx="10" fill="#fff0ef" stroke="#b13532" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="634" y="215" font-size="21" fill="#b13532" font-weight="bold" text-anchor="start">Понедельник</text>
+<text x="1138" y="215" font-size="23" fill="#b13532" font-weight="normal" text-anchor="end">A₁ — потеряна</text>
+<rect x="618" y="248" width="543" height="56" rx="10" fill="#edf5fc" stroke="#cad5df" stroke-width="2"/>
+<text x="634" y="284" font-size="21" fill="#172d46" font-weight="bold" text-anchor="start">Вторник</text>
+<text x="1138" y="284" font-size="23" fill="#172d46" font-weight="normal" text-anchor="end">B₁</text>
+<rect x="618" y="317" width="543" height="56" rx="10" fill="#edf5fc" stroke="#cad5df" stroke-width="2"/>
+<text x="634" y="353" font-size="21" fill="#172d46" font-weight="bold" text-anchor="start">Среда</text>
+<text x="1138" y="353" font-size="23" fill="#172d46" font-weight="normal" text-anchor="end">A₂</text>
+<path d="M892 390 L892 420" fill="none" stroke="#4e6378" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="618" y="432" width="543" height="81" rx="10" fill="#eaf7f0" stroke="#15724e" stroke-width="2"/>
+<text x="638" y="465" font-size="24" fill="#15724e" font-weight="bold" text-anchor="start">Среда: A₂ · B₁ · C₀</text>
+<text x="638" y="495" font-size="21" fill="#15724e" font-weight="normal" text-anchor="start">Источники: Ср · Вт · Вс</text>
+<rect x="618" y="539" width="543" height="71" rx="10" fill="#fff0ef" stroke="#b13532" stroke-width="2"/>
+<text x="638" y="568" font-size="23" fill="#b13532" font-weight="bold" text-anchor="start">Вторник: A₁ · B₁ · C₀</text>
+<text x="638" y="596" font-size="21" fill="#b13532" font-weight="normal" text-anchor="start">A₁ нет в доступных копиях</text>
+</g>
+</svg>

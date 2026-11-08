@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 470" role="img" aria-labelledby="title desc">
+<title id="title">Блоки при одном отказе диска</title><desc id="desc">Два экземпляра текущих блоков в RAID 1; RAID 5 с тремя строками и распределённой чётностью. В каждом массиве один известный отказ.</desc>
+<rect width="1200" height="470" fill="white"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#4e6378"/></marker></defs>
+<g font-family="DejaVu Sans, sans-serif" fill="#172d46">
+<text x="20" y="38" font-size="24" fill="#172d46" font-weight="bold" text-anchor="start">RAID 1: одинаковые экземпляры</text>
+<text x="592" y="38" font-size="24" fill="#172d46" font-weight="bold" text-anchor="start">RAID 5: два блока задают третий</text>
+<rect x="30" y="64" width="230" height="309" rx="10" fill="#fff0ef" stroke="#b13532" stroke-width="2"/>
+<text x="145" y="101" font-size="21" fill="#b13532" font-weight="bold" text-anchor="middle">Диск 1: отказ</text>
+<rect x="59" y="131" width="172" height="63" rx="10" fill="#f1f3f6" stroke="#b13532" stroke-width="2"/>
+<text x="145" y="172" font-size="26" fill="#b13532" font-weight="bold" text-anchor="middle">X</text>
+<rect x="59" y="222" width="172" height="63" rx="10" fill="#f1f3f6" stroke="#b13532" stroke-width="2"/>
+<text x="145" y="263" font-size="26" fill="#b13532" font-weight="bold" text-anchor="middle">Y</text>
+<path d="M46 119 L244 345" fill="none" stroke="#b13532" stroke-width="2.5"/>
+<path d="M244 119 L46 345" fill="none" stroke="#b13532" stroke-width="2.5"/>
+<rect x="289" y="64" width="230" height="309" rx="10" fill="#edf5fc" stroke="#1769aa" stroke-width="2"/>
+<text x="404" y="101" font-size="21" fill="#1769aa" font-weight="bold" text-anchor="middle">Диск 2: читается</text>
+<rect x="318" y="131" width="172" height="63" rx="10" fill="#eaf7f0" stroke="#15724e" stroke-width="2"/>
+<text x="404" y="172" font-size="26" fill="#15724e" font-weight="bold" text-anchor="middle">X</text>
+<rect x="318" y="222" width="172" height="63" rx="10" fill="#eaf7f0" stroke="#15724e" stroke-width="2"/>
+<text x="404" y="263" font-size="26" fill="#15724e" font-weight="bold" text-anchor="middle">Y</text>
+<text x="275" y="418" font-size="22" fill="#15724e" font-weight="normal" text-anchor="middle">X и Y доступны на диске 2</text>
+<rect x="596" y="64" width="174" height="309" rx="10" fill="#edf5fc" stroke="#1769aa" stroke-width="2"/>
+<text x="683" y="101" font-size="22" fill="#1769aa" font-weight="bold" text-anchor="middle">Диск 1</text>
+<rect x="614" y="128" width="138" height="57" rx="10" fill="#eaf7f0" stroke="#15724e" stroke-width="2"/>
+<text x="683" y="165" font-size="25" fill="#15724e" font-weight="bold" text-anchor="middle">A₁</text>
+<rect x="614" y="203" width="138" height="57" rx="10" fill="#eaf7f0" stroke="#15724e" stroke-width="2"/>
+<text x="683" y="240" font-size="25" fill="#15724e" font-weight="bold" text-anchor="middle">A₂</text>
+<rect x="614" y="278" width="138" height="57" rx="10" fill="#fff7e7" stroke="#97651d" stroke-width="2"/>
+<text x="683" y="315" font-size="25" fill="#97651d" font-weight="bold" text-anchor="middle">P₃</text>
+<rect x="788" y="64" width="174" height="309" rx="10" fill="#fff0ef" stroke="#b13532" stroke-width="2"/>
+<text x="875" y="101" font-size="22" fill="#b13532" font-weight="bold" text-anchor="middle">Диск 2</text>
+<rect x="806" y="128" width="138" height="57" rx="10" fill="#f1f3f6" stroke="#b13532" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="875" y="165" font-size="25" fill="#b13532" font-weight="bold" text-anchor="middle">B₁</text>
+<rect x="806" y="203" width="138" height="57" rx="10" fill="#f1f3f6" stroke="#b13532" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="875" y="240" font-size="25" fill="#b13532" font-weight="bold" text-anchor="middle">P₂</text>
+<rect x="806" y="278" width="138" height="57" rx="10" fill="#f1f3f6" stroke="#b13532" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="875" y="315" font-size="25" fill="#b13532" font-weight="bold" text-anchor="middle">A₃</text>
+<path d="M796 113 L954 359" fill="none" stroke="#b13532" stroke-width="2.5"/>
+<path d="M954 113 L796 359" fill="none" stroke="#b13532" stroke-width="2.5"/>
+<rect x="980" y="64" width="174" height="309" rx="10" fill="#edf5fc" stroke="#1769aa" stroke-width="2"/>
+<text x="1067" y="101" font-size="22" fill="#1769aa" font-weight="bold" text-anchor="middle">Диск 3</text>
+<rect x="998" y="128" width="138" height="57" rx="10" fill="#fff7e7" stroke="#97651d" stroke-width="2"/>
+<text x="1067" y="165" font-size="25" fill="#97651d" font-weight="bold" text-anchor="middle">P₁</text>
+<rect x="998" y="203" width="138" height="57" rx="10" fill="#eaf7f0" stroke="#15724e" stroke-width="2"/>
+<text x="1067" y="240" font-size="25" fill="#15724e" font-weight="bold" text-anchor="middle">B₂</text>
+<rect x="998" y="278" width="138" height="57" rx="10" fill="#eaf7f0" stroke="#15724e" stroke-width="2"/>
+<text x="1067" y="315" font-size="25" fill="#15724e" font-weight="bold" text-anchor="middle">B₃</text>
+<text x="877" y="418" font-size="22" fill="#4e6378" font-weight="normal" text-anchor="middle">В каждой строке утрачен один блок</text>
+<text x="877" y="451" font-size="20" fill="#4e6378" font-weight="normal" text-anchor="middle">P — контрольный блок своей строки</text>
+</g>
+</svg>
