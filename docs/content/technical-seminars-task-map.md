@@ -484,6 +484,98 @@ BB сохранён из исходного задания. Официальны
 Всего подготовлены 20 текстовых пар и одна отдельная лабораторная;
 З4.1 завершена как подготовка, следующая текстовая порция — З4.2.
 
+
+## Текстовый пакет для отложенной рецензии
+
+Пользователь поручил подготовить крупный блок сразу, поскольку сейчас
+не может читать и комментировать условия. Размер объединённого пакета
+заменяет прежние промежуточные порции; общая учебная концепция и К4
+сохранены. Порядок чтения — в [пакете рецензии](../drafts/technical-seminars-migration/review.md).
+
+Подготовлены З4.2–З4.3 и З5.1–З5.4, а дополнительный HMAC завершает
+редакторский отбор набора 6. Нынешние количества: 9 пар доступа,
+11 криптографии, 10 доверия и 8 сохранности — **38 текстовых пар**.
+Отдельная отложенная лабораторная даёт 39 пар вместе с ней.
+Все новые пары подготовлены для просмотра; К2 и К3 ещё не пройдены.
+
+### Судьба всех исходных условий
+
+Слева — 38 условий исходного снимка Р1, включая четыре слайдовых дубля.
+Справа — файл и короткий суффикс нового условия после его предметного
+`exr-*`. Действующие источники заменяются только на И4–И7.
+
+| Исходный ID | Новое условие или решение | Что изменилось |
+|---|---|---|
+| `exr-access-control-request` | `access-control/session-requests` | Объединены процедуры, конкретные обращения и использование сеанса |
+| `exr-access-control-combined` | `access-control/revoke-paths` | Роль или ACL, метка и прекращение временного доступа |
+| `exr-access-control-dac` | `access-control/dac-matrix`; `access-control/delegated-reading` | Разделены матрица и последствия делегирования |
+| `exr-access-control-mac` | `access-control/mac-operations` | Три операции, перенос и неизменный уровень процесса |
+| `exr-access-control-rbac` | `access-control/role-transfer` | Рабочая смена обязанностей вместо общего опроса |
+| `exr-access-control-casbin` | `access-control/role-path-repair` | Текстовое дополнительное ядро; синтаксис библиотеки исключён |
+| `exr-access-short-editor` | `access-control/session-requests` | Объединён конкретный запрос и серверное решение |
+| `exr-access-short-two-step` | `access-control/login-change` | Две процедуры и шесть исходов входа |
+| `exr-access-short-totp-factor` | `access-control/old-authenticator` | Копирование секрета и выбор прекращающего вход действия |
+| `exr-slide-access-entry` | `access-control/session-requests` | Слайдовый дубль объединён |
+| `exr-slide-access-dac-matrix` | `access-control/dac-matrix` | Слайдовая матрица объединена |
+| `exr-slide-access-role-matrix` | `access-control/role-transfer` | Слайдовая задача ролей объединена |
+| `exr-slide-access-combined` | `access-control/revoke-paths` | Слайдовый дубль сравнения объединён |
+| `exr-crypto-short-lcg` | `crypto/lcg-observation` | Объединён в дополнительный прогноз |
+| `exr-crypto-short-caesar` | `crypto/caesar-note` | Объединён с длинным вариантом; одно дополнительное условие |
+| `exr-crypto-short-xor` | `crypto/reused-xor-stream` | Сохранён расчёт, добавлены доступные атакующему данные |
+| `exr-crypto-short-salt` | `crypto/salted-records` | Объединён с шестью записями |
+| `exr-crypto-short-coin` | `crypto/balanced-generator` | Вместо оценки вида строки — совместимость частот и прогноза |
+| `exr-crypto-short-purpose` | `crypto/lost-drive`; `crypto/salted-records` | Назначения механизмов применяются к данным, общий опрос снят |
+| `exr-crypto-lcg-mod16` | `crypto/lcg-observation` | Объединён с коротким LCG и отбором параметров |
+| `exr-crypto-hash-aa-bb` | `crypto/colliding-catalog` | Получить результаты поиска и сохранить обе записи |
+| `exr-crypto-password-search-cost` | `crypto/password-order` | Два точных распределения вместо общего вопроса о словаре |
+| `exr-crypto-five-people-keys` | `crypto/pairwise-keys` | Расширение команды и граница одной утечки |
+| `exr-crypto-hmac-authors` | `data-trust/shared-mac` | Дополнительный конкретный контрпример к авторству |
+| `exr-crypto-file-and-hash-replaced` | `data-trust/download-reference` | Объединён доверенный эталон |
+| `exr-crypto-old-signature` | `data-trust/schedule-acceptance` | Объединены полномочия и правило версии |
+| `exr-crypto-password-six-records` | `crypto/salted-records` | Стратегия и цена заданы; истинные пароли атакующему не сообщаются |
+| `exr-crypto-caesar-coffee` | `crypto/caesar-note` | Дополнение без искусственной роли кофемашины |
+| `exr-crypto-schedule-signature-versions` | `crypto/colliding-catalog`; `data-trust/key-in-package`; `data-trust/schedule-acceptance` | Цели разделены; слабая сумма и неопределённый перечень полей сняты, точное кодирование относится к Т4 |
+| `exr-data-integrity-backup` | `data-preservation-lab/backup-lab` | Отдельная лабораторная подготовлена и отложена |
+| `exr-data-integrity-trusted-hash` | `data-trust/download-reference` | Объединён доверенный эталон |
+| `exr-data-integrity-backup-volume` | `data-preservation/repeated-edit`; `data-preservation/daily-copies` | Принятые задачи о составе и повторной правке |
+| `exr-data-integrity-mirror-copy` | `data-preservation/project-recovery` | Принятая комплексная задача проекта |
+| `exr-data-integrity-sum` | `Не переносить` | Отклонено пользователем как элементарное |
+| `exr-data-integrity-backup-chain` | `data-preservation/restore-tuesday`; `data-preservation/missing-copy`; `data-preservation/recovery-after-reedit` | Точные цели и доступные источники |
+| `exr-data-integrity-raid-capacity` | `Не переносить` | Серия расчётов уровней исключена; RAID остаётся кратким обзором Т6 |
+| `exr-data-integrity-mirror-history` | `data-preservation/project-recovery` | Объединено с отказом и выбором версии |
+| `exr-data-integrity-xor` | `data-preservation/parity-recovery` | Принятая дополнительная модель заменённого диска |
+
+Все пять групп без собственного ID также обработаны: Р1-В1 «ИЛИ/И» —
+`revoke-paths`; Р1-В2 изменяемый граф — `role-path-repair`;
+Р1-В3 смена операции — `session-requests`; Р1-В4 отбор LCG —
+`lcg-observation`; Р1-В5 четыре вывода о подписи — основные задачи
+принадлежности ключа, цепочки и приёма расписания в наборе 6.
+Связанные решения и 23 включения следуют за каноническими условиями
+при интеграции, отдельных новых заданий они не создают.
+
+Переработка не возвращает простую сумму, расчёты всех уровней RAID,
+ручной RSA, Хэмминг/CRC, время подписания и отвергнутый ролевой пример.
+Синтаксис Casbin исключён из текстового комплекта, но его проверяемое
+ядро о путях доступа и минимальном исправлении сохранено дополнением.
+
+### Проверка пакета
+
+Для вычислительных частей перебраны все 16 допустимых наборов удалений
+графа ролей: подтверждён единственный минимум из двух рёбер.
+Сверены матрицы и запросы, все девять MAC-решений, оба правила «ИЛИ/И»,
+LCG по всем 64 исходным парам, XOR, коллизия Java, русский Цезарь,
+число ключей, оба распределения паролей и стоимость работы по солям.
+Все 39 пар прошли штатную подготовку банковских фрагментов.
+Прежние условия и разборы сохранены по AST, местные ссылки и ресурсы доступны.
+Независимый просмотр пакета завершён без замечаний по условиям, решениям,
+покрытию и маршрутам. Лабораторная, будущие объяснения и рисунки,
+интеграционная сборка и реальный темп группы в его область не входили.
+Полная сборка не запускалась: действующие потребители не менялись.
+
+Отбор практики теперь охватывает все четыре темы и два положения нынешних
+групп. М1 ещё требует точных подготовительных ссылок после К4 и проверки
+фактического темпа. К2–К3 подготовлены к рецензии, но не объявлены пройденными.
+
 [b4]: https://github.com/BSU-RFCT-Afonenko-Courses/Cybersecurity/blob/dff0b3b0bf86d2fc32a37c284fdb9ee5eb75d622/task/bank/access-control.qmd
 [b5]: https://github.com/BSU-RFCT-Afonenko-Courses/Cybersecurity/blob/dff0b3b0bf86d2fc32a37c284fdb9ee5eb75d622/task/bank/crypto.qmd
 [b6]: https://github.com/BSU-RFCT-Afonenko-Courses/Cybersecurity/blob/dff0b3b0bf86d2fc32a37c284fdb9ee5eb75d622/task/bank/data-integrity.qmd
