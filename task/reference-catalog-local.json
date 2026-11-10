@@ -9,390 +9,590 @@
       "id": "exr-access-control-casbin",
       "page": "bank/access-control.html",
       "fragment": "exr-access-control-casbin",
-      "labelHtml": "задача&nbsp;<span>7.6</span>",
-      "numberHtml": "<span>7.6</span>",
-      "label": "задача 7.6",
-      "number": "7.6"
+      "labelHtml": "задача&nbsp;<span>6.10</span>",
+      "numberHtml": "<span>6.10</span>",
+      "label": "задача 6.10",
+      "number": "6.10"
     },
     "tasks:exr-access-control-combined": {
       "namespace": "tasks",
       "id": "exr-access-control-combined",
       "page": "bank/access-control.html",
       "fragment": "exr-access-control-combined",
-      "labelHtml": "задача&nbsp;<span>7.2</span>",
-      "numberHtml": "<span>7.2</span>",
-      "label": "задача 7.2",
-      "number": "7.2"
+      "labelHtml": "задача&nbsp;<span>6.4</span>",
+      "numberHtml": "<span>6.4</span>",
+      "label": "задача 6.4",
+      "number": "6.4"
+    },
+    "tasks:exr-access-control-compiler-output": {
+      "namespace": "tasks",
+      "id": "exr-access-control-compiler-output",
+      "page": "bank/access-control.html",
+      "fragment": "exr-access-control-compiler-output",
+      "labelHtml": "задача&nbsp;<span>6.2</span>",
+      "numberHtml": "<span>6.2</span>",
+      "label": "задача 6.2",
+      "number": "6.2"
+    },
+    "tasks:exr-access-control-compiler-statistics": {
+      "namespace": "tasks",
+      "id": "exr-access-control-compiler-statistics",
+      "page": "bank/access-control.html",
+      "fragment": "exr-access-control-compiler-statistics",
+      "labelHtml": "задача&nbsp;<span>6.9</span>",
+      "numberHtml": "<span>6.9</span>",
+      "label": "задача 6.9",
+      "number": "6.9"
     },
     "tasks:exr-access-control-dac": {
       "namespace": "tasks",
       "id": "exr-access-control-dac",
       "page": "bank/access-control.html",
       "fragment": "exr-access-control-dac",
-      "labelHtml": "задача&nbsp;<span>7.3</span>",
-      "numberHtml": "<span>7.3</span>",
-      "label": "задача 7.3",
-      "number": "7.3"
+      "labelHtml": "задача&nbsp;<span>6.5</span>",
+      "numberHtml": "<span>6.5</span>",
+      "label": "задача 6.5",
+      "number": "6.5"
     },
     "tasks:exr-access-control-mac": {
       "namespace": "tasks",
       "id": "exr-access-control-mac",
       "page": "bank/access-control.html",
       "fragment": "exr-access-control-mac",
-      "labelHtml": "задача&nbsp;<span>7.4</span>",
-      "numberHtml": "<span>7.4</span>",
-      "label": "задача 7.4",
-      "number": "7.4"
+      "labelHtml": "задача&nbsp;<span>6.6</span>",
+      "numberHtml": "<span>6.6</span>",
+      "label": "задача 6.6",
+      "number": "6.6"
+    },
+    "tasks:exr-access-control-printer-roles": {
+      "namespace": "tasks",
+      "id": "exr-access-control-printer-roles",
+      "page": "bank/access-control.html",
+      "fragment": "exr-access-control-printer-roles",
+      "labelHtml": "задача&nbsp;<span>6.7</span>",
+      "numberHtml": "<span>6.7</span>",
+      "label": "задача 6.7",
+      "number": "6.7"
     },
     "tasks:exr-access-control-rbac": {
       "namespace": "tasks",
       "id": "exr-access-control-rbac",
       "page": "bank/access-control.html",
       "fragment": "exr-access-control-rbac",
-      "labelHtml": "задача&nbsp;<span>7.5</span>",
-      "numberHtml": "<span>7.5</span>",
-      "label": "задача 7.5",
-      "number": "7.5"
+      "labelHtml": "задача&nbsp;<span>6.8</span>",
+      "numberHtml": "<span>6.8</span>",
+      "label": "задача 6.8",
+      "number": "6.8"
     },
     "tasks:exr-access-control-request": {
       "namespace": "tasks",
       "id": "exr-access-control-request",
       "page": "bank/access-control.html",
       "fragment": "exr-access-control-request",
-      "labelHtml": "задача&nbsp;<span>7.1</span>",
-      "numberHtml": "<span>7.1</span>",
-      "label": "задача 7.1",
-      "number": "7.1"
+      "labelHtml": "задача&nbsp;<span>6.3</span>",
+      "numberHtml": "<span>6.3</span>",
+      "label": "задача 6.3",
+      "number": "6.3"
+    },
+    "tasks:exr-access-control-request-subject": {
+      "namespace": "tasks",
+      "id": "exr-access-control-request-subject",
+      "page": "bank/access-control.html",
+      "fragment": "exr-access-control-request-subject",
+      "labelHtml": "задача&nbsp;<span>6.1</span>",
+      "numberHtml": "<span>6.1</span>",
+      "label": "задача 6.1",
+      "number": "6.1"
     },
     "tasks:exr-access-short-editor": {
       "namespace": "tasks",
       "id": "exr-access-short-editor",
       "page": "bank/access-control.html",
       "fragment": "exr-access-short-editor",
-      "labelHtml": "задача&nbsp;<span>7.7</span>",
-      "numberHtml": "<span>7.7</span>",
-      "label": "задача 7.7",
-      "number": "7.7"
+      "labelHtml": "задача&nbsp;<span>6.11</span>",
+      "numberHtml": "<span>6.11</span>",
+      "label": "задача 6.11",
+      "number": "6.11"
     },
     "tasks:exr-access-short-totp-factor": {
       "namespace": "tasks",
       "id": "exr-access-short-totp-factor",
       "page": "bank/access-control.html",
       "fragment": "exr-access-short-totp-factor",
-      "labelHtml": "задача&nbsp;<span>7.9</span>",
-      "numberHtml": "<span>7.9</span>",
-      "label": "задача 7.9",
-      "number": "7.9"
+      "labelHtml": "задача&nbsp;<span>6.13</span>",
+      "numberHtml": "<span>6.13</span>",
+      "label": "задача 6.13",
+      "number": "6.13"
     },
     "tasks:exr-access-short-two-step": {
       "namespace": "tasks",
       "id": "exr-access-short-two-step",
       "page": "bank/access-control.html",
       "fragment": "exr-access-short-two-step",
-      "labelHtml": "задача&nbsp;<span>7.8</span>",
-      "numberHtml": "<span>7.8</span>",
-      "label": "задача 7.8",
-      "number": "7.8"
+      "labelHtml": "задача&nbsp;<span>6.12</span>",
+      "numberHtml": "<span>6.12</span>",
+      "label": "задача 6.12",
+      "number": "6.12"
     },
     "tasks:exr-control-demo-document-selection": {
       "namespace": "tasks",
       "id": "exr-control-demo-document-selection",
       "page": "works/control-demo.html",
       "fragment": "exr-control-demo-document-selection",
-      "labelHtml": "задача&nbsp;<span>14.2</span>",
-      "numberHtml": "<span>14.2</span>",
-      "label": "задача 14.2",
-      "number": "14.2"
+      "labelHtml": "Упражнение&nbsp;<span>15.2</span>",
+      "numberHtml": "<span>15.2</span>",
+      "label": "Упражнение 15.2",
+      "number": "15.2"
     },
     "tasks:exr-control-demo-protection-measures": {
       "namespace": "tasks",
       "id": "exr-control-demo-protection-measures",
       "page": "works/control-demo.html",
       "fragment": "exr-control-demo-protection-measures",
-      "labelHtml": "задача&nbsp;<span>14.5</span>",
-      "numberHtml": "<span>14.5</span>",
-      "label": "задача 14.5",
-      "number": "14.5"
+      "labelHtml": "Упражнение&nbsp;<span>15.5</span>",
+      "numberHtml": "<span>15.5</span>",
+      "label": "Упражнение 15.5",
+      "number": "15.5"
     },
     "tasks:exr-control-demo-security-center": {
       "namespace": "tasks",
       "id": "exr-control-demo-security-center",
       "page": "works/control-demo.html",
       "fragment": "exr-control-demo-security-center",
-      "labelHtml": "задача&nbsp;<span>14.4</span>",
-      "numberHtml": "<span>14.4</span>",
-      "label": "задача 14.4",
-      "number": "14.4"
+      "labelHtml": "Упражнение&nbsp;<span>15.4</span>",
+      "numberHtml": "<span>15.4</span>",
+      "label": "Упражнение 15.4",
+      "number": "15.4"
     },
     "tasks:exr-control-demo-service-center": {
       "namespace": "tasks",
       "id": "exr-control-demo-service-center",
       "page": "works/control-demo.html",
       "fragment": "exr-control-demo-service-center",
-      "labelHtml": "задача&nbsp;<span>14.1</span>",
-      "numberHtml": "<span>14.1</span>",
-      "label": "задача 14.1",
-      "number": "14.1"
+      "labelHtml": "Упражнение&nbsp;<span>15.1</span>",
+      "numberHtml": "<span>15.1</span>",
+      "label": "Упражнение 15.1",
+      "number": "15.1"
     },
     "tasks:exr-control-demo-system-requirements": {
       "namespace": "tasks",
       "id": "exr-control-demo-system-requirements",
       "page": "works/control-demo.html",
       "fragment": "exr-control-demo-system-requirements",
-      "labelHtml": "задача&nbsp;<span>14.3</span>",
-      "numberHtml": "<span>14.3</span>",
-      "label": "задача 14.3",
-      "number": "14.3"
+      "labelHtml": "Упражнение&nbsp;<span>15.3</span>",
+      "numberHtml": "<span>15.3</span>",
+      "label": "Упражнение 15.3",
+      "number": "15.3"
     },
     "tasks:exr-crypto-caesar-coffee": {
       "namespace": "tasks",
       "id": "exr-crypto-caesar-coffee",
       "page": "bank/crypto.html",
       "fragment": "exr-crypto-caesar-coffee",
-      "labelHtml": "задача&nbsp;<span>6.15</span>",
-      "numberHtml": "<span>6.15</span>",
-      "label": "задача 6.15",
-      "number": "6.15"
+      "labelHtml": "задача&nbsp;<span>7.17</span>",
+      "numberHtml": "<span>7.17</span>",
+      "label": "задача 7.17",
+      "number": "7.17"
     },
     "tasks:exr-crypto-file-and-hash-replaced": {
       "namespace": "tasks",
       "id": "exr-crypto-file-and-hash-replaced",
       "page": "bank/crypto.html",
       "fragment": "exr-crypto-file-and-hash-replaced",
-      "labelHtml": "задача&nbsp;<span>6.12</span>",
-      "numberHtml": "<span>6.12</span>",
-      "label": "задача 6.12",
-      "number": "6.12"
+      "labelHtml": "задача&nbsp;<span>7.14</span>",
+      "numberHtml": "<span>7.14</span>",
+      "label": "задача 7.14",
+      "number": "7.14"
     },
     "tasks:exr-crypto-five-people-keys": {
       "namespace": "tasks",
       "id": "exr-crypto-five-people-keys",
       "page": "bank/crypto.html",
       "fragment": "exr-crypto-five-people-keys",
-      "labelHtml": "задача&nbsp;<span>6.10</span>",
-      "numberHtml": "<span>6.10</span>",
-      "label": "задача 6.10",
-      "number": "6.10"
+      "labelHtml": "задача&nbsp;<span>7.12</span>",
+      "numberHtml": "<span>7.12</span>",
+      "label": "задача 7.12",
+      "number": "7.12"
     },
     "tasks:exr-crypto-hash-aa-bb": {
       "namespace": "tasks",
       "id": "exr-crypto-hash-aa-bb",
       "page": "bank/crypto.html",
       "fragment": "exr-crypto-hash-aa-bb",
-      "labelHtml": "задача&nbsp;<span>6.8</span>",
-      "numberHtml": "<span>6.8</span>",
-      "label": "задача 6.8",
-      "number": "6.8"
+      "labelHtml": "задача&nbsp;<span>7.10</span>",
+      "numberHtml": "<span>7.10</span>",
+      "label": "задача 7.10",
+      "number": "7.10"
+    },
+    "tasks:exr-crypto-hash-search-kind": {
+      "namespace": "tasks",
+      "id": "exr-crypto-hash-search-kind",
+      "page": "bank/crypto.html",
+      "fragment": "exr-crypto-hash-search-kind",
+      "labelHtml": "задача&nbsp;<span>7.1</span>",
+      "numberHtml": "<span>7.1</span>",
+      "label": "задача 7.1",
+      "number": "7.1"
     },
     "tasks:exr-crypto-hmac-authors": {
       "namespace": "tasks",
       "id": "exr-crypto-hmac-authors",
       "page": "bank/crypto.html",
       "fragment": "exr-crypto-hmac-authors",
-      "labelHtml": "задача&nbsp;<span>6.11</span>",
-      "numberHtml": "<span>6.11</span>",
-      "label": "задача 6.11",
-      "number": "6.11"
+      "labelHtml": "задача&nbsp;<span>7.13</span>",
+      "numberHtml": "<span>7.13</span>",
+      "label": "задача 7.13",
+      "number": "7.13"
     },
     "tasks:exr-crypto-lcg-mod16": {
       "namespace": "tasks",
       "id": "exr-crypto-lcg-mod16",
       "page": "bank/crypto.html",
       "fragment": "exr-crypto-lcg-mod16",
-      "labelHtml": "задача&nbsp;<span>6.7</span>",
-      "numberHtml": "<span>6.7</span>",
-      "label": "задача 6.7",
-      "number": "6.7"
+      "labelHtml": "задача&nbsp;<span>7.9</span>",
+      "numberHtml": "<span>7.9</span>",
+      "label": "задача 7.9",
+      "number": "7.9"
     },
     "tasks:exr-crypto-old-signature": {
       "namespace": "tasks",
       "id": "exr-crypto-old-signature",
       "page": "bank/crypto.html",
       "fragment": "exr-crypto-old-signature",
-      "labelHtml": "задача&nbsp;<span>6.13</span>",
-      "numberHtml": "<span>6.13</span>",
-      "label": "задача 6.13",
-      "number": "6.13"
+      "labelHtml": "задача&nbsp;<span>7.15</span>",
+      "numberHtml": "<span>7.15</span>",
+      "label": "задача 7.15",
+      "number": "7.15"
     },
     "tasks:exr-crypto-password-search-cost": {
       "namespace": "tasks",
       "id": "exr-crypto-password-search-cost",
       "page": "bank/crypto.html",
       "fragment": "exr-crypto-password-search-cost",
-      "labelHtml": "задача&nbsp;<span>6.9</span>",
-      "numberHtml": "<span>6.9</span>",
-      "label": "задача 6.9",
-      "number": "6.9"
+      "labelHtml": "задача&nbsp;<span>7.11</span>",
+      "numberHtml": "<span>7.11</span>",
+      "label": "задача 7.11",
+      "number": "7.11"
     },
     "tasks:exr-crypto-password-six-records": {
       "namespace": "tasks",
       "id": "exr-crypto-password-six-records",
       "page": "bank/crypto.html",
       "fragment": "exr-crypto-password-six-records",
-      "labelHtml": "задача&nbsp;<span>6.14</span>",
-      "numberHtml": "<span>6.14</span>",
-      "label": "задача 6.14",
-      "number": "6.14"
+      "labelHtml": "задача&nbsp;<span>7.16</span>",
+      "numberHtml": "<span>7.16</span>",
+      "label": "задача 7.16",
+      "number": "7.16"
     },
     "tasks:exr-crypto-schedule-signature-versions": {
       "namespace": "tasks",
       "id": "exr-crypto-schedule-signature-versions",
       "page": "bank/crypto.html",
       "fragment": "exr-crypto-schedule-signature-versions",
-      "labelHtml": "задача&nbsp;<span>6.16</span>",
-      "numberHtml": "<span>6.16</span>",
-      "label": "задача 6.16",
-      "number": "6.16"
+      "labelHtml": "задача&nbsp;<span>7.18</span>",
+      "numberHtml": "<span>7.18</span>",
+      "label": "задача 7.18",
+      "number": "7.18"
     },
     "tasks:exr-crypto-short-caesar": {
       "namespace": "tasks",
       "id": "exr-crypto-short-caesar",
       "page": "bank/crypto.html",
       "fragment": "exr-crypto-short-caesar",
-      "labelHtml": "задача&nbsp;<span>6.2</span>",
-      "numberHtml": "<span>6.2</span>",
-      "label": "задача 6.2",
-      "number": "6.2"
+      "labelHtml": "задача&nbsp;<span>7.4</span>",
+      "numberHtml": "<span>7.4</span>",
+      "label": "задача 7.4",
+      "number": "7.4"
     },
     "tasks:exr-crypto-short-coin": {
       "namespace": "tasks",
       "id": "exr-crypto-short-coin",
       "page": "bank/crypto.html",
       "fragment": "exr-crypto-short-coin",
-      "labelHtml": "задача&nbsp;<span>6.5</span>",
-      "numberHtml": "<span>6.5</span>",
-      "label": "задача 6.5",
-      "number": "6.5"
+      "labelHtml": "задача&nbsp;<span>7.7</span>",
+      "numberHtml": "<span>7.7</span>",
+      "label": "задача 7.7",
+      "number": "7.7"
     },
     "tasks:exr-crypto-short-lcg": {
       "namespace": "tasks",
       "id": "exr-crypto-short-lcg",
       "page": "bank/crypto.html",
       "fragment": "exr-crypto-short-lcg",
-      "labelHtml": "задача&nbsp;<span>6.1</span>",
-      "numberHtml": "<span>6.1</span>",
-      "label": "задача 6.1",
-      "number": "6.1"
+      "labelHtml": "задача&nbsp;<span>7.3</span>",
+      "numberHtml": "<span>7.3</span>",
+      "label": "задача 7.3",
+      "number": "7.3"
     },
     "tasks:exr-crypto-short-purpose": {
       "namespace": "tasks",
       "id": "exr-crypto-short-purpose",
       "page": "bank/crypto.html",
       "fragment": "exr-crypto-short-purpose",
-      "labelHtml": "задача&nbsp;<span>6.6</span>",
-      "numberHtml": "<span>6.6</span>",
-      "label": "задача 6.6",
-      "number": "6.6"
+      "labelHtml": "задача&nbsp;<span>7.8</span>",
+      "numberHtml": "<span>7.8</span>",
+      "label": "задача 7.8",
+      "number": "7.8"
     },
     "tasks:exr-crypto-short-salt": {
       "namespace": "tasks",
       "id": "exr-crypto-short-salt",
       "page": "bank/crypto.html",
       "fragment": "exr-crypto-short-salt",
-      "labelHtml": "задача&nbsp;<span>6.4</span>",
-      "numberHtml": "<span>6.4</span>",
-      "label": "задача 6.4",
-      "number": "6.4"
+      "labelHtml": "задача&nbsp;<span>7.6</span>",
+      "numberHtml": "<span>7.6</span>",
+      "label": "задача 7.6",
+      "number": "7.6"
     },
     "tasks:exr-crypto-short-xor": {
       "namespace": "tasks",
       "id": "exr-crypto-short-xor",
       "page": "bank/crypto.html",
       "fragment": "exr-crypto-short-xor",
-      "labelHtml": "задача&nbsp;<span>6.3</span>",
-      "numberHtml": "<span>6.3</span>",
-      "label": "задача 6.3",
-      "number": "6.3"
+      "labelHtml": "задача&nbsp;<span>7.5</span>",
+      "numberHtml": "<span>7.5</span>",
+      "label": "задача 7.5",
+      "number": "7.5"
+    },
+    "tasks:exr-crypto-xor-fragment": {
+      "namespace": "tasks",
+      "id": "exr-crypto-xor-fragment",
+      "page": "bank/crypto.html",
+      "fragment": "exr-crypto-xor-fragment",
+      "labelHtml": "задача&nbsp;<span>7.2</span>",
+      "numberHtml": "<span>7.2</span>",
+      "label": "задача 7.2",
+      "number": "7.2"
     },
     "tasks:exr-data-integrity-backup": {
       "namespace": "tasks",
       "id": "exr-data-integrity-backup",
-      "page": "bank/data-integrity.html",
+      "page": "bank/data-preservation.html",
       "fragment": "exr-data-integrity-backup",
+      "labelHtml": "задача&nbsp;<span>9.1</span>",
+      "numberHtml": "<span>9.1</span>",
+      "label": "задача 9.1",
+      "number": "9.1"
+    },
+    "tasks:exr-data-integrity-backup-chain": {
+      "namespace": "tasks",
+      "id": "exr-data-integrity-backup-chain",
+      "page": "bank/data-preservation.html",
+      "fragment": "exr-data-integrity-backup-chain",
+      "labelHtml": "задача&nbsp;<span>9.6</span>",
+      "numberHtml": "<span>9.6</span>",
+      "label": "задача 9.6",
+      "number": "9.6"
+    },
+    "tasks:exr-data-integrity-backup-volume": {
+      "namespace": "tasks",
+      "id": "exr-data-integrity-backup-volume",
+      "page": "bank/data-preservation.html",
+      "fragment": "exr-data-integrity-backup-volume",
+      "labelHtml": "задача&nbsp;<span>9.3</span>",
+      "numberHtml": "<span>9.3</span>",
+      "label": "задача 9.3",
+      "number": "9.3"
+    },
+    "tasks:exr-data-integrity-mirror-copy": {
+      "namespace": "tasks",
+      "id": "exr-data-integrity-mirror-copy",
+      "page": "bank/data-preservation.html",
+      "fragment": "exr-data-integrity-mirror-copy",
+      "labelHtml": "задача&nbsp;<span>9.4</span>",
+      "numberHtml": "<span>9.4</span>",
+      "label": "задача 9.4",
+      "number": "9.4"
+    },
+    "tasks:exr-data-integrity-mirror-history": {
+      "namespace": "tasks",
+      "id": "exr-data-integrity-mirror-history",
+      "page": "bank/data-preservation.html",
+      "fragment": "exr-data-integrity-mirror-history",
+      "labelHtml": "задача&nbsp;<span>9.8</span>",
+      "numberHtml": "<span>9.8</span>",
+      "label": "задача 9.8",
+      "number": "9.8"
+    },
+    "tasks:exr-data-integrity-raid-capacity": {
+      "namespace": "tasks",
+      "id": "exr-data-integrity-raid-capacity",
+      "page": "bank/data-preservation.html",
+      "fragment": "exr-data-integrity-raid-capacity",
+      "labelHtml": "задача&nbsp;<span>9.7</span>",
+      "numberHtml": "<span>9.7</span>",
+      "label": "задача 9.7",
+      "number": "9.7"
+    },
+    "tasks:exr-data-integrity-sum": {
+      "namespace": "tasks",
+      "id": "exr-data-integrity-sum",
+      "page": "bank/data-preservation.html",
+      "fragment": "exr-data-integrity-sum",
+      "labelHtml": "задача&nbsp;<span>9.5</span>",
+      "numberHtml": "<span>9.5</span>",
+      "label": "задача 9.5",
+      "number": "9.5"
+    },
+    "tasks:exr-data-integrity-trusted-hash": {
+      "namespace": "tasks",
+      "id": "exr-data-integrity-trusted-hash",
+      "page": "bank/data-preservation.html",
+      "fragment": "exr-data-integrity-trusted-hash",
+      "labelHtml": "задача&nbsp;<span>9.2</span>",
+      "numberHtml": "<span>9.2</span>",
+      "label": "задача 9.2",
+      "number": "9.2"
+    },
+    "tasks:exr-data-preservation-missing-copy": {
+      "namespace": "tasks",
+      "id": "exr-data-preservation-missing-copy",
+      "page": "bank/data-preservation.html",
+      "fragment": "exr-data-preservation-missing-copy",
+      "labelHtml": "задача&nbsp;<span>9.10</span>",
+      "numberHtml": "<span>9.10</span>",
+      "label": "задача 9.10",
+      "number": "9.10"
+    },
+    "tasks:exr-data-preservation-parity-recovery": {
+      "namespace": "tasks",
+      "id": "exr-data-preservation-parity-recovery",
+      "page": "bank/data-preservation.html",
+      "fragment": "exr-data-preservation-parity-recovery",
+      "labelHtml": "задача&nbsp;<span>9.14</span>",
+      "numberHtml": "<span>9.14</span>",
+      "label": "задача 9.14",
+      "number": "9.14"
+    },
+    "tasks:exr-data-preservation-project-recovery": {
+      "namespace": "tasks",
+      "id": "exr-data-preservation-project-recovery",
+      "page": "bank/data-preservation.html",
+      "fragment": "exr-data-preservation-project-recovery",
+      "labelHtml": "задача&nbsp;<span>9.12</span>",
+      "numberHtml": "<span>9.12</span>",
+      "label": "задача 9.12",
+      "number": "9.12"
+    },
+    "tasks:exr-data-preservation-recovery-after-reedit": {
+      "namespace": "tasks",
+      "id": "exr-data-preservation-recovery-after-reedit",
+      "page": "bank/data-preservation.html",
+      "fragment": "exr-data-preservation-recovery-after-reedit",
+      "labelHtml": "задача&nbsp;<span>9.11</span>",
+      "numberHtml": "<span>9.11</span>",
+      "label": "задача 9.11",
+      "number": "9.11"
+    },
+    "tasks:exr-data-preservation-repeated-edit": {
+      "namespace": "tasks",
+      "id": "exr-data-preservation-repeated-edit",
+      "page": "bank/data-preservation.html",
+      "fragment": "exr-data-preservation-repeated-edit",
+      "labelHtml": "задача&nbsp;<span>9.13</span>",
+      "numberHtml": "<span>9.13</span>",
+      "label": "задача 9.13",
+      "number": "9.13"
+    },
+    "tasks:exr-data-preservation-restore-tuesday": {
+      "namespace": "tasks",
+      "id": "exr-data-preservation-restore-tuesday",
+      "page": "bank/data-preservation.html",
+      "fragment": "exr-data-preservation-restore-tuesday",
+      "labelHtml": "задача&nbsp;<span>9.9</span>",
+      "numberHtml": "<span>9.9</span>",
+      "label": "задача 9.9",
+      "number": "9.9"
+    },
+    "tasks:exr-data-trust-certificate-chain": {
+      "namespace": "tasks",
+      "id": "exr-data-trust-certificate-chain",
+      "page": "bank/data-trust.html",
+      "fragment": "exr-data-trust-certificate-chain",
+      "labelHtml": "задача&nbsp;<span>9.1</span>",
+      "numberHtml": "<span>9.1</span>",
+      "label": "задача 9.1",
+      "number": "9.1"
+    },
+    "tasks:exr-data-trust-download-reference": {
+      "namespace": "tasks",
+      "id": "exr-data-trust-download-reference",
+      "page": "bank/data-trust.html",
+      "fragment": "exr-data-trust-download-reference",
       "labelHtml": "задача&nbsp;<span>8.1</span>",
       "numberHtml": "<span>8.1</span>",
       "label": "задача 8.1",
       "number": "8.1"
     },
-    "tasks:exr-data-integrity-backup-chain": {
+    "tasks:exr-data-trust-edited-notice": {
       "namespace": "tasks",
-      "id": "exr-data-integrity-backup-chain",
-      "page": "bank/data-integrity.html",
-      "fragment": "exr-data-integrity-backup-chain",
-      "labelHtml": "задача&nbsp;<span>8.6</span>",
-      "numberHtml": "<span>8.6</span>",
-      "label": "задача 8.6",
-      "number": "8.6"
-    },
-    "tasks:exr-data-integrity-backup-volume": {
-      "namespace": "tasks",
-      "id": "exr-data-integrity-backup-volume",
-      "page": "bank/data-integrity.html",
-      "fragment": "exr-data-integrity-backup-volume",
+      "id": "exr-data-trust-edited-notice",
+      "page": "bank/data-trust.html",
+      "fragment": "exr-data-trust-edited-notice",
       "labelHtml": "задача&nbsp;<span>8.3</span>",
       "numberHtml": "<span>8.3</span>",
       "label": "задача 8.3",
       "number": "8.3"
     },
-    "tasks:exr-data-integrity-mirror-copy": {
+    "tasks:exr-data-trust-key-roles": {
       "namespace": "tasks",
-      "id": "exr-data-integrity-mirror-copy",
-      "page": "bank/data-integrity.html",
-      "fragment": "exr-data-integrity-mirror-copy",
+      "id": "exr-data-trust-key-roles",
+      "page": "bank/data-trust.html",
+      "fragment": "exr-data-trust-key-roles",
       "labelHtml": "задача&nbsp;<span>8.4</span>",
       "numberHtml": "<span>8.4</span>",
       "label": "задача 8.4",
       "number": "8.4"
     },
-    "tasks:exr-data-integrity-mirror-history": {
+    "tasks:exr-data-trust-lamport-check": {
       "namespace": "tasks",
-      "id": "exr-data-integrity-mirror-history",
-      "page": "bank/data-integrity.html",
-      "fragment": "exr-data-integrity-mirror-history",
-      "labelHtml": "задача&nbsp;<span>8.8</span>",
-      "numberHtml": "<span>8.8</span>",
-      "label": "задача 8.8",
-      "number": "8.8"
+      "id": "exr-data-trust-lamport-check",
+      "page": "bank/data-trust.html",
+      "fragment": "exr-data-trust-lamport-check",
+      "labelHtml": "задача&nbsp;<span>10.2</span>",
+      "numberHtml": "<span>10.2</span>",
+      "label": "задача 10.2",
+      "number": "10.2"
     },
-    "tasks:exr-data-integrity-raid-capacity": {
+    "tasks:exr-data-trust-lamport-demo": {
       "namespace": "tasks",
-      "id": "exr-data-integrity-raid-capacity",
-      "page": "bank/data-integrity.html",
-      "fragment": "exr-data-integrity-raid-capacity",
-      "labelHtml": "задача&nbsp;<span>8.7</span>",
-      "numberHtml": "<span>8.7</span>",
-      "label": "задача 8.7",
-      "number": "8.7"
+      "id": "exr-data-trust-lamport-demo",
+      "page": "bank/data-trust.html",
+      "fragment": "exr-data-trust-lamport-demo",
+      "labelHtml": "задача&nbsp;<span>10.1</span>",
+      "numberHtml": "<span>10.1</span>",
+      "label": "задача 10.1",
+      "number": "10.1"
     },
-    "tasks:exr-data-integrity-sum": {
+    "tasks:exr-data-trust-lamport-reuse": {
       "namespace": "tasks",
-      "id": "exr-data-integrity-sum",
-      "page": "bank/data-integrity.html",
-      "fragment": "exr-data-integrity-sum",
+      "id": "exr-data-trust-lamport-reuse",
+      "page": "bank/data-trust.html",
+      "fragment": "exr-data-trust-lamport-reuse",
+      "labelHtml": "задача&nbsp;<span>10.3</span>",
+      "numberHtml": "<span>10.3</span>",
+      "label": "задача 10.3",
+      "number": "10.3"
+    },
+    "tasks:exr-data-trust-missing-message": {
+      "namespace": "tasks",
+      "id": "exr-data-trust-missing-message",
+      "page": "bank/data-trust.html",
+      "fragment": "exr-data-trust-missing-message",
       "labelHtml": "задача&nbsp;<span>8.5</span>",
       "numberHtml": "<span>8.5</span>",
       "label": "задача 8.5",
       "number": "8.5"
     },
-    "tasks:exr-data-integrity-trusted-hash": {
+    "tasks:exr-data-trust-wrong-recipient": {
       "namespace": "tasks",
-      "id": "exr-data-integrity-trusted-hash",
-      "page": "bank/data-integrity.html",
-      "fragment": "exr-data-integrity-trusted-hash",
+      "id": "exr-data-trust-wrong-recipient",
+      "page": "bank/data-trust.html",
+      "fragment": "exr-data-trust-wrong-recipient",
       "labelHtml": "задача&nbsp;<span>8.2</span>",
       "numberHtml": "<span>8.2</span>",
       "label": "задача 8.2",
       "number": "8.2"
-    },
-    "tasks:exr-data-integrity-xor": {
-      "namespace": "tasks",
-      "id": "exr-data-integrity-xor",
-      "page": "bank/data-integrity.html",
-      "fragment": "exr-data-integrity-xor",
-      "labelHtml": "задача&nbsp;<span>8.9</span>",
-      "numberHtml": "<span>8.9</span>",
-      "label": "задача 8.9",
-      "number": "8.9"
     },
     "tasks:exr-fundamentals-carsharing": {
       "namespace": "tasks",
@@ -554,16 +754,47 @@
       "label": "задача 5.4",
       "number": "5.4"
     },
+    "tasks:fig-parity-storage": {
+      "namespace": "tasks",
+      "id": "fig-parity-storage",
+      "page": "bank/data-preservation.html",
+      "fragment": "fig-parity-storage",
+      "labelHtml": "Рисунок&nbsp;<span>9.2</span>",
+      "numberHtml": "<span>9.2</span>",
+      "label": "Рисунок 9.2",
+      "number": "9.2"
+    },
+    "tasks:fig-project-storage-before": {
+      "namespace": "tasks",
+      "id": "fig-project-storage-before",
+      "page": "bank/data-preservation.html",
+      "fragment": "fig-project-storage-before",
+      "labelHtml": "Рисунок&nbsp;<span>9.1</span>",
+      "numberHtml": "<span>9.1</span>",
+      "label": "Рисунок 9.1",
+      "number": "9.1"
+    },
     "tasks:sec-bank-access-control": {
       "namespace": "tasks",
       "id": "sec-bank-access-control",
       "page": "bank/access-control.html",
       "fragment": "sec-bank-access-control",
-      "labelHtml": "<span>Глава 7</span>",
-      "numberHtml": "<span>7</span>",
-      "label": "Глава 7",
-      "number": "7",
+      "labelHtml": "<span>Глава 6</span>",
+      "numberHtml": "<span>6</span>",
+      "label": "Глава 6",
+      "number": "6",
       "title": "Управление доступом"
+    },
+    "tasks:sec-bank-access-control-advanced-policy": {
+      "namespace": "tasks",
+      "id": "sec-bank-access-control-advanced-policy",
+      "page": "bank/access-control.html",
+      "fragment": "sec-bank-access-control-advanced-policy",
+      "labelHtml": "Проверка сложной политики",
+      "numberHtml": "",
+      "label": "Проверка сложной политики",
+      "number": "",
+      "title": "Проверка сложной политики"
     },
     "tasks:sec-bank-access-control-discussion": {
       "namespace": "tasks",
@@ -598,15 +829,48 @@
       "number": "",
       "title": "Модели управления доступом"
     },
+    "tasks:sec-bank-access-control-processes": {
+      "namespace": "tasks",
+      "id": "sec-bank-access-control-processes",
+      "page": "bank/access-control.html",
+      "fragment": "sec-bank-access-control-processes",
+      "labelHtml": "Разделение процессов",
+      "numberHtml": "",
+      "label": "Разделение процессов",
+      "number": "",
+      "title": "Разделение процессов"
+    },
+    "tasks:sec-bank-access-control-requests": {
+      "namespace": "tasks",
+      "id": "sec-bank-access-control-requests",
+      "page": "bank/access-control.html",
+      "fragment": "sec-bank-access-control-requests",
+      "labelHtml": "Обращения к ресурсам",
+      "numberHtml": "",
+      "label": "Обращения к ресурсам",
+      "number": "",
+      "title": "Обращения к ресурсам"
+    },
+    "tasks:sec-bank-access-control-role-assignments": {
+      "namespace": "tasks",
+      "id": "sec-bank-access-control-role-assignments",
+      "page": "bank/access-control.html",
+      "fragment": "sec-bank-access-control-role-assignments",
+      "labelHtml": "Назначения ролей",
+      "numberHtml": "",
+      "label": "Назначения ролей",
+      "number": "",
+      "title": "Назначения ролей"
+    },
     "tasks:sec-bank-crypto": {
       "namespace": "tasks",
       "id": "sec-bank-crypto",
       "page": "bank/crypto.html",
       "fragment": "sec-bank-crypto",
-      "labelHtml": "<span>Глава 6</span>",
-      "numberHtml": "<span>6</span>",
-      "label": "Глава 6",
-      "number": "6",
+      "labelHtml": "<span>Глава 7</span>",
+      "numberHtml": "<span>7</span>",
+      "label": "Глава 7",
+      "number": "7",
       "title": "Криптография"
     },
     "tasks:sec-bank-crypto-mechanisms": {
@@ -631,16 +895,38 @@
       "number": "",
       "title": "Применение криптографии"
     },
-    "tasks:sec-bank-data-integrity": {
+    "tasks:sec-bank-crypto-short": {
       "namespace": "tasks",
-      "id": "sec-bank-data-integrity",
-      "page": "bank/data-integrity.html",
-      "fragment": "sec-bank-data-integrity",
+      "id": "sec-bank-crypto-short",
+      "page": "bank/crypto.html",
+      "fragment": "sec-bank-crypto-short",
+      "labelHtml": "Короткие упражнения",
+      "numberHtml": "",
+      "label": "Короткие упражнения",
+      "number": "",
+      "title": "Короткие упражнения"
+    },
+    "tasks:sec-bank-data-preservation": {
+      "namespace": "tasks",
+      "id": "sec-bank-data-preservation",
+      "page": "bank/data-preservation.html",
+      "fragment": "sec-bank-data-preservation",
+      "labelHtml": "<span>Глава 9</span>",
+      "numberHtml": "<span>9</span>",
+      "label": "Глава 9",
+      "number": "9",
+      "title": "Сохранность данных"
+    },
+    "tasks:sec-bank-data-trust": {
+      "namespace": "tasks",
+      "id": "sec-bank-data-trust",
+      "page": "bank/data-trust.html",
+      "fragment": "sec-bank-data-trust",
       "labelHtml": "<span>Глава 8</span>",
       "numberHtml": "<span>8</span>",
       "label": "Глава 8",
       "number": "8",
-      "title": "Целостность данных"
+      "title": "Доверие к данным"
     },
     "tasks:sec-bank-fundamentals": {
       "namespace": "tasks",
@@ -757,10 +1043,10 @@
       "id": "sec-control-demo",
       "page": "works/control-demo.html",
       "fragment": "sec-control-demo",
-      "labelHtml": "<span>Глава 14</span>",
-      "numberHtml": "<span>14</span>",
-      "label": "Глава 14",
-      "number": "14",
+      "labelHtml": "<span>Глава 15</span>",
+      "numberHtml": "<span>15</span>",
+      "label": "Глава 15",
+      "number": "15",
       "title": "Демонстрационный вариант контрольной работы"
     },
     "tasks:sec-tasks": {
@@ -779,10 +1065,10 @@
       "id": "sec-work-access-control",
       "page": "works/04-access-control.html",
       "fragment": "sec-work-access-control",
-      "labelHtml": "<span>Глава 12</span>",
-      "numberHtml": "<span>12</span>",
-      "label": "Глава 12",
-      "number": "12",
+      "labelHtml": "<span>Глава 13</span>",
+      "numberHtml": "<span>13</span>",
+      "label": "Глава 13",
+      "number": "13",
       "title": "Семинар 4 — Управление доступом"
     },
     "tasks:sec-work-data-integrity-backup": {
@@ -790,10 +1076,10 @@
       "id": "sec-work-data-integrity-backup",
       "page": "works/backup.html",
       "fragment": "sec-work-data-integrity-backup",
-      "labelHtml": "<span>Глава 13</span>",
-      "numberHtml": "<span>13</span>",
-      "label": "Глава 13",
-      "number": "13",
+      "labelHtml": "<span>Глава 14</span>",
+      "numberHtml": "<span>14</span>",
+      "label": "Глава 14",
+      "number": "14",
       "title": "Введение в кибербезопасность"
     },
     "tasks:sec-work-fundamentals-concepts": {
@@ -801,10 +1087,10 @@
       "id": "sec-work-fundamentals-concepts",
       "page": "works/01-fundamentals.html",
       "fragment": "sec-work-fundamentals-concepts",
-      "labelHtml": "<span>Глава 9</span>",
-      "numberHtml": "<span>9</span>",
-      "label": "Глава 9",
-      "number": "9",
+      "labelHtml": "<span>Глава 10</span>",
+      "numberHtml": "<span>10</span>",
+      "label": "Глава 10",
+      "number": "10",
       "title": "Занятие 1 – Информационная безопасность"
     },
     "tasks:sec-work-legal-requirements": {
@@ -812,10 +1098,10 @@
       "id": "sec-work-legal-requirements",
       "page": "works/02-legal.html",
       "fragment": "sec-work-legal-requirements",
-      "labelHtml": "<span>Глава 10</span>",
-      "numberHtml": "<span>10</span>",
-      "label": "Глава 10",
-      "number": "10",
+      "labelHtml": "<span>Глава 11</span>",
+      "numberHtml": "<span>11</span>",
+      "label": "Глава 11",
+      "number": "11",
       "title": "Структура обеспечения кибербезопасности в РБ"
     },
     "tasks:sec-work-standards-risk": {
@@ -823,11 +1109,21 @@
       "id": "sec-work-standards-risk",
       "page": "works/03-standards-risk.html",
       "fragment": "sec-work-standards-risk",
-      "labelHtml": "<span>Глава 11</span>",
-      "numberHtml": "<span>11</span>",
-      "label": "Глава 11",
-      "number": "11",
+      "labelHtml": "<span>Глава 12</span>",
+      "numberHtml": "<span>12</span>",
+      "label": "Глава 12",
+      "number": "12",
       "title": "Семинар 3 – Применение нормативно-правовых актов"
+    },
+    "tasks:sol-data-trust-lamport-demo": {
+      "namespace": "tasks",
+      "id": "sol-data-trust-lamport-demo",
+      "page": "bank/data-trust.html",
+      "fragment": "sol-data-trust-lamport-demo",
+      "labelHtml": "Solution&nbsp;<span>10.1</span>",
+      "numberHtml": "<span>10.1</span>",
+      "label": "Solution 10.1",
+      "number": "10.1"
     },
     "tasks:sol-fundamentals-cia-cases": {
       "namespace": "tasks",

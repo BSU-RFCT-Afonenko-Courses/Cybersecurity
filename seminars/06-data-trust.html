@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<link href="site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-35fc0813589bbfbfa0b8ec974497eeb2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/quarto-contrib/course-presentation-0.1.0/disclosure.js" data-course-runtime-asset="disclosure.js" data-course-runtime-provider="course-presentation"></script>
+<script src="site_libs/quarto-contrib/course-presentation-0.1.0/presentation.js" data-course-runtime-asset="presentation.js" data-course-runtime-provider="course-presentation"></script>
+<link href="site_libs/quarto-contrib/course-presentation-0.1.0/presentation.css" rel="stylesheet" data-course-runtime-asset="presentation.css" data-course-runtime-provider="course-presentation">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/style.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/cipher.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/password.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/course-visualizations-0.3.6/generator.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.11.6">
+
+  <meta name="author" content="Афоненко Анатолий">
+  <meta name="author" content="Войтович Елизавета">
+  <title>Семинары — Основы кибербезопасности – Семинар 6 — Доверие к данным</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-dbf0164c62bdeac38ace71748d6f15e7.css">
+  <link rel="stylesheet" href="_prepared/visualizations/data-trust/data-trust-slides.css">
+  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/course-navigation/navigation.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+<script id="course-navigation-context" type="application/json">{"links":[{"id":"root","text":"Курс","href":"../","scope":"course","path":"index.html","current":false},{"id":"subproject-theory","text":"Теория","href":"../theory/","scope":"course","path":"theory/index.html","current":false},{"id":"subproject-task","text":"Задания","href":"../task/","scope":"course","path":"task/index.html","current":false},{"id":"subproject-seminars","text":"Слайды занятий","href":"./","scope":"course","path":"seminars/index.html","current":true}]}</script>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Семинар 6 — Доверие к данным</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Афоненко Анатолий
+</div>
+</div>
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Войтович Елизавета
+</div>
+</div>
+</div>
+
+</section>
+<section>
+<section id="sec-seminar-6" class="title-slide slide level1 center">
+<h1>Асимметричное шифрование</h1>
+<p>При симметричном шифровании отправитель и получатель используют <strong>общий секретный ключ</strong>. Чтобы передать конфиденциальный отчёт, им нужно сначала получить один и тот же ключ, не раскрыв его постороннему. Если стороны ещё не согласовали секрет, асимметричное шифрование позволяет отправителю защитить сообщение для получателя без заранее общего ключа.</p>
+</section>
+<section id="sec-seminar-6-key-pair" class="slide level2">
+<h2>Пара асимметричных ключей</h2>
+<p>Получатель создаёт <strong>два связанных ключа</strong>:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Ключ</th>
+<th>Кому доступен</th>
+<th>Для чего служит при шифровании</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Открытый <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>K</mi></mrow><annotation encoding="application/x-tex">PK</annotation></semantics></math></td>
+<td>Можно сообщить отправителям</td>
+<td>Зашифровать данные получателю</td>
+</tr>
+<tr class="even">
+<td>Закрытый <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>K</mi></mrow><annotation encoding="application/x-tex">SK</annotation></semantics></math></td>
+<td>Сохраняется у получателя</td>
+<td>Расшифровать адресованные ему данные</td>
+</tr>
+</tbody>
+</table>
+<p>Связь ключей устроена так, что сообщение, зашифрованное открытым ключом, расшифровывается соответствующим закрытым. Знание открытого ключа позволяет любому отправить сообщение владельцу, но не даёт практически осуществимого способа прочитать чужой шифротекст или восстановить закрытый ключ. Открытый ключ можно передать по сети; отправителю при этом важно установить, что он принадлежит <strong>нужному получателю</strong>.</p>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:def-trust-public-key-pair" data-qrc-style="default" class="qrc-link" href="../theory/crypto/asymmetric-cryptography.html#def-trust-public-key-pair">[*]</a>.</p>
+</section>
+<section id="sec-seminar-6-encryption" class="slide level2">
+<h2>Шифрование получателю</h2>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math> — байты отчёта, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math> — передаваемый шифротекст.</p>
+<div class="trust-figure">
+<div id="fig-seminar-6-asymmetric-encryption" class="quarto-float quarto-figure quarto-figure-center" alt="Отправитель шифрует данные m открытым ключом PK получателя. Получатель расшифровывает переданный шифротекст c своим закрытым ключом SK.">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-seminar-6-asymmetric-encryption-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="_prepared/visualizations/data-trust/static/asymmetric-encryption.svg" alt="Отправитель шифрует данные m открытым ключом PK получателя. Получатель расшифровывает переданный шифротекст c своим закрытым ключом SK.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-seminar-6-asymmetric-encryption-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;1: Шифрование открытым ключом получателя
+</figcaption>
+</figure>
+</div>
+</div>
+<p>Отправитель шифрует <strong>открытым ключом получателя</strong>; получатель расшифровывает <strong>своим закрытым</strong>. Общий секрет заранее не передавали.</p>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-asymmetric-encryption" data-qrc-style="default" class="qrc-link" href="../theory/crypto/asymmetric-cryptography.html#sec-theory-asymmetric-encryption">[*]</a>.</p>
+</section>
+<section id="выбор-ключа-для-отчёта" class="slide level2">
+<h2>Выбор ключа для отчёта</h2>
+<div id="exr-data-trust-slide-wrong-recipient" class="theorem exercise" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 1 (Отчёт не открывается)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-difficulty">Начальный</span>
+</div>
+<p><strong>Отправитель</strong> по ошибке зашифровал отчёт <strong>своим открытым ключом</strong>. <strong>Получатель</strong> не смог расшифровать пакет своим закрытым ключом. Исходный отчёт сохранился; открытый ключ получателя известен.</p>
+<ol type="1">
+<li>Чей закрытый ключ подходит к ошибочному пакету? Какой ключ выбрать для повторного шифрования получателю?</li>
+<li>Посторонний знает открытый ключ получателя. Может ли он зашифровать свой файл для получателя? А расшифровать чужие отчёты?</li>
+</ol>
+</div>
+<p><a data-qrc-custom="true" data-qrc-ref="tasks:exr-data-trust-wrong-recipient" data-qrc-style="default" class="qrc-link" href="../task/bank/data-trust.html#exr-data-trust-wrong-recipient">[*]</a>.</p>
+</section>
+<section id="sec-seminar-6-rsa" class="slide level2">
+<h2>Ключевая пара RSA</h2>
+<p>RSA — пример семейства асимметричных схем. При создании пары выбирают большие простые числа <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> и <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math> и вычисляют модуль <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mi>p</mi><mi>q</mi></mrow><annotation encoding="application/x-tex">n=pq</annotation></semantics></math>.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Открытая часть</th>
+<th>Закрытая часть</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Модуль <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> и показатель <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>e</mi><annotation encoding="application/x-tex">e</annotation></semantics></math>: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>n</mi><mo>,</mo><mi>e</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(n,e)</annotation></semantics></math></td>
+<td>Секретный показатель и параметры, связанные с <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> и <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math></td>
+</tr>
+</tbody>
+</table>
+<p>Открытая часть доступна отправителям; секретные параметры владелец защищает. Для шифрования применяют схему RSA-OAEP, для подписи — RSA-PSS.</p>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-rsa" data-qrc-style="default" class="qrc-link" href="../theory/crypto/asymmetric-cryptography.html#sec-theory-rsa">[*]</a>.</p>
+</section>
+<section id="sec-seminar-6-rsa-security" class="slide level2">
+<h2>Стойкость RSA</h2>
+<p>При создании ключа перемножают большие простые числа:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>×</mo><mi>q</mi><mo>=</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">p \times q = n</annotation></semantics></math></p>
+<p>Обратная задача — найти множители по известному <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> — называется <strong>факторизацией</strong>. Для правильно выбранного большого модуля она практически трудна. Знание множителей позволяет восстановить секретные параметры RSA.</p>
+<p>Это не означает, что любая атака на RSA обязательно сводится к факторизации. Безопасность зависит также от выбора параметров и схемы применения.</p>
+</section>
+<section id="sec-seminar-6-key-length" class="slide level2">
+<h2>Длина криптографического ключа</h2>
+<p>Длина записи ключа и оценка стойкости — разные величины. Для классических атак NIST приводит такие ориентиры:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Схема</th>
+<th style="text-align: right;">Размер ключа или модуля</th>
+<th style="text-align: right;">Оценка стойкости</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AES</td>
+<td style="text-align: right;">ключ 128 бит</td>
+<td style="text-align: right;">128 бит</td>
+</tr>
+<tr class="even">
+<td>RSA</td>
+<td style="text-align: right;">модуль 3072 бита</td>
+<td style="text-align: right;">около 128 бит</td>
+</tr>
+</tbody>
+</table>
+<p>Сопоставление означает близкую оценку трудоёмкости атак, а не способ превратить ключ AES в пару RSA. Сравнение не учитывает квантовые атаки.</p>
+<p>Источник: <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf#page=66" title="NIST SP 800-57 Part 1 Rev. 5, таблица 2">[*]</a>.</p>
+</section></section>
+<section>
+<section id="sec-seminar-6-download" class="title-slide slide level1 center">
+<h1>Хеш скачанного файла</h1>
+<p>Хеш <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mi>G</mi><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">d=G(m)</annotation></semantics></math> — дайджест фиксированной длины, вычисленный по байтам файла <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>. Его сравнивают с эталоном ожидаемого файла.</p>
+<p>Пример из выпуска PowerShell 7.4.6: SHA-256 файла <em>PowerShell-7.4.6-win-x64.msi</em>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a aria-label="1"></a>ED331A04679B83D4C013705282D1F3F8D8300485EB04C081F36E11EAF1148BD0</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Проверка скачанного файла:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource powershell number-lines code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a aria-label="1"></a>Get-FileHash <span class="op">.</span>\PowerShell-7<span class="op">.</span><span class="dv">4.6</span><span class="op">-</span>win-x64<span class="op">.</span><span class="fu">msi</span> <span class="op">-</span>Algorithm SHA256</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Для вычисления хеша <strong>секретный ключ не нужен</strong>. Чтобы сверка позволяла судить о содержимом ожидаемого файла, нужен достоверный эталон; его источник оценивают отдельно.</p>
+<p>Источник: <a href="https://github.com/PowerShell/PowerShell/releases/tag/v7.4.6" title="выпуск PowerShell 7.4.6">[*]</a>. <a data-qrc-custom="true" data-qrc-ref="theory:def-trust-integrity-reference" data-qrc-style="default" class="qrc-link" href="../theory/data-trust/integrity-verification.html#def-trust-integrity-reference">[*]</a>.</p>
+</section>
+<section id="проверка-установщика" class="slide level2">
+<h2>Проверка установщика</h2>
+<div id="exr-data-trust-slide-download-reference" class="theorem exercise" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 2 (Две проверки установщика)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-difficulty">Начальный</span>
+</div>
+<p>Хеш установщика совпал с хешем на странице загрузки. Но сайт взломан: посторонний мог заменить <strong>и файл, и значение на странице</strong>.</p>
+<ol type="1">
+<li>Как подменить файл, чтобы эта проверка прошла? Нужна ли коллизия?</li>
+<li>До взлома хеш этого выпуска получили от разработчика и сохранили на отключённой флешке. Хеш скачанного файла совпал и с этой записью. Что теперь можно заключить?</li>
+</ol>
+</div>
+<p><a data-qrc-custom="true" data-qrc-ref="tasks:exr-data-trust-download-reference" data-qrc-style="default" class="qrc-link" href="../task/bank/data-trust.html#exr-data-trust-download-reference">[*]</a>.</p>
+</section></section>
+<section>
+<section id="sec-seminar-6-signature-message" class="title-slide slide level1 center">
+<h1>Подписываемое сообщение</h1>
+<p>Хеш может вычислить любой, у кого есть файл. Сам по себе хеш не подтверждает, <strong>кто подготовил данные</strong>: файл можно заменить, а хеш пересчитать.</p>
+<p><strong>Цифровая подпись</strong> связывает сообщение с ключом подписывающего. Учебный отдел публикует:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Данные</th>
+<th>Что это</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Сообщение <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>: <em>notice.txt</em></td>
+<td>Точные байты текста «Кабинет 214»</td>
+</tr>
+<tr class="even">
+<td>Подпись <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>: <em>notice.sig</em></td>
+<td>Дополнительные данные для проверки сообщения</td>
+</tr>
+</tbody>
+</table>
+<p>Читать объявление может любой. Подпись нужна для проверки происхождения, а не для сокрытия текста.</p>
+</section>
+<section id="sec-seminar-6-signature" class="slide level2">
+<h2>Создание подписи</h2>
+<p>Отдел создаёт подпись <strong>своим закрытым ключом <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>K</mi></mrow><annotation encoding="application/x-tex">SK</annotation></semantics></math></strong>. Читатель проверяет её <strong>открытым ключом отдела <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>K</mi></mrow><annotation encoding="application/x-tex">PK</annotation></semantics></math></strong>.</p>
+<div class="trust-figure">
+<div id="fig-seminar-6-signature-flow" class="quarto-float quarto-figure quarto-figure-center" alt="Учебный отдел создаёт подпись s операцией Sign по сообщению m и закрытому ключу SK. Читателю передаются сообщение и подпись. Проверка Verify использует m, s и открытый ключ PK отдела и возвращает успех или отказ.">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-seminar-6-signature-flow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="_prepared/visualizations/data-trust/static/signature-flow-slide.svg" alt="Учебный отдел создаёт подпись s операцией Sign по сообщению m и закрытому ключу SK. Читателю передаются сообщение и подпись. Проверка Verify использует m, s и открытый ключ PK отдела и возвращает успех или отказ.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-seminar-6-signature-flow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;2: Создание подписи объявления и её проверка
+</figcaption>
+</figure>
+</div>
+</div>
+<p><code>Sign</code> получает сообщение и закрытый ключ и создаёт подпись <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>. <code>Verify</code> получает сообщение <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>, подпись <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math> и открытый ключ и возвращает <strong>успех или отказ</strong>. Оба ключа принадлежат <strong>подписывающему</strong>. Успех связывает сообщение с этим ключом; чтобы назвать автора, нужно доверять принадлежности открытого ключа отделу и сохранности закрытого.</p>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:def-trust-digital-signature" data-qrc-style="default" class="qrc-link" href="../theory/crypto/digital-signature.html#def-trust-digital-signature">[*]</a>.</p>
+</section>
+<section id="sec-seminar-6-signature-digest" class="slide level2">
+<h2>Подпись дайджеста</h2>
+<p>Хеш представляет файл дайджестом фиксированной длины, который можно подписать вместо полного файла. Проверка связывает подпись с полученными байтами, если проверяющий сам вычисляет дайджест. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math> — сообщение; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math> — его дайджест; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math> — подпись.</p>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p><strong>Подписывающий</strong></p>
+<ol type="1">
+<li>Вычисляет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mi>G</mi><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">d=G(m)</annotation></semantics></math> по всем байтам файла.</li>
+<li>Создаёт <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>=</mo><mrow><mi mathvariant="normal">SignDigest</mi><mo>⁡</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>S</mi><mi>K</mi><mo>,</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">s=\operatorname{SignDigest}(SK,d)</annotation></semantics></math> своим закрытым ключом.</li>
+</ol>
+<p>Передаёт <strong>файл <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math> и подпись <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math></strong>.</p>
+</div><div class="column" style="width:48%;">
+<p><strong>Проверяющий</strong></p>
+<ol type="1">
+<li>Сам вычисляет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mi>G</mi><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">d=G(m)</annotation></semantics></math> по полученному файлу.</li>
+<li>Выполняет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">VerifyDigest</mi><mo>⁡</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>P</mi><mi>K</mi><mo>,</mo><mi>d</mi><mo>,</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\operatorname{VerifyDigest}(PK,d,s)</annotation></semantics></math> открытым ключом подписывающего.</li>
+</ol>
+<p>Получает <strong>успех или отказ</strong>.</p>
+</div></div>
+<p>Здесь <code>SignDigest</code> создаёт подпись дайджеста, <code>VerifyDigest</code> проверяет её. Проверяющий вычисляет дайджест заново: переданного кем-либо значения недостаточно для проверки полученного файла. Для безопасности этой схемы нужны стойкая к коллизиям хеш-функция и безопасная схема подписи дайджеста. Подпись — отдельные данные; текст файла остаётся читаемым.</p>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-signature-digest" data-qrc-style="default" class="qrc-link" href="../theory/crypto/digital-signature.html#sec-theory-signature-digest">[*]</a>.</p>
+</section>
+<section id="исправление-подписанного-файла" class="slide level2">
+<h2>Исправление подписанного файла</h2>
+<div id="exr-data-trust-slide-edited-notice" class="theorem exercise" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 3 (Новый номер кабинета)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-difficulty">Начальный</span>
+</div>
+<p><strong>Учебный отдел</strong> подписал файл объявления своим закрытым ключом. <strong>Редактор</strong> изменил номер кабинета: прежняя подпись больше не проверяется. Он подписал исправленный файл своим ключом; новая подпись проверяется.</p>
+<ol type="1">
+<li>Подписан ли исправленный файл ключом учебного отдела? Что подтверждает подпись редактора?</li>
+<li>Какой файл передать отделу для новой подписи? Какими ключами её создать и проверить?</li>
+</ol>
+</div>
+<p><a data-qrc-custom="true" data-qrc-ref="tasks:exr-data-trust-edited-notice" data-qrc-style="default" class="qrc-link" href="../task/bank/data-trust.html#exr-data-trust-edited-notice">[*]</a>.</p>
+</section>
+<section id="sec-seminar-6-key-roles" class="slide level2">
+<h2>Назначение ключей</h2>
+<div id="exr-data-trust-slide-key-roles" class="theorem exercise" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 4 (Выбор ключей для четырёх операций)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-difficulty">Начальный</span>
+</div>
+<p>Нужно передать секретный отчёт <strong>получателю</strong> и проверить публичное объявление <strong>издателя</strong>. У каждого своя пара ключей. Обозначения: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math> — сообщение, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math> — шифротекст, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mi>G</mi><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">d=G(m)</annotation></semantics></math> — дайджест, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math> — подпись.</p>
+<p>Для каждой операции укажите вход, результат, тип ключа и его владельца.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Операция</th>
+<th>Вход</th>
+<th>Результат</th>
+<th>Тип ключа и владелец</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Зашифровать отчёт</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr class="even">
+<td>Расшифровать отчёт</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr class="odd">
+<td>Создать подпись дайджеста</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr class="even">
+<td>Проверить подпись дайджеста</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
+<p>Файл объявления <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math> и подпись <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math> лежат в открытой папке. Нужен ли постороннему ключ, чтобы <strong>прочитать объявление</strong>?</p>
+</div>
+<p><a data-qrc-custom="true" data-qrc-ref="tasks:exr-data-trust-key-roles" data-qrc-style="default" class="qrc-link" href="../task/bank/data-trust.html#exr-data-trust-key-roles">[*]</a>.</p>
+</section>
+<section id="sec-seminar-6-authenticode" class="slide level2">
+<h2>Издатель программы в Windows</h2>
+<p>Успешная проверка подписи сама по себе не устанавливает, кому принадлежит открытый ключ. Сертификат связывает ключ с именем; этой связи доверяют при проверке подписи удостоверяющей стороны.</p>
+<p>Для выбранного <em>setup.exe</em> можно получить состояние подписи и имя субъекта сертификата:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource powershell number-lines code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a aria-label="1"></a><span class="va">$sig</span> <span class="op">=</span> <span class="fu">Get-AuthenticodeSignature</span> <span class="op">-</span>FilePath <span class="op">.</span>\setup<span class="op">.</span><span class="fu">exe</span></span>
+<span id="cb3-2"><a aria-label="2"></a><span class="va">$sig</span><span class="op">.</span><span class="fu">Status</span></span>
+<span id="cb3-3"><a aria-label="3"></a><span class="va">$sig</span><span class="op">.</span><span class="fu">SignerCertificate</span><span class="op">.</span><span class="fu">Subject</span></span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Например, <strong>учебный результат</strong> для программы ожидаемого издателя <code>Example Software Ltd</code> может выглядеть так:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a aria-label="1"></a>Valid</span>
+<span id="cb4-2"><a aria-label="2"></a>CN=Example Software Ltd</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>Valid</code> означает, что система приняла подпись; имя в <code>Subject</code> сопоставляют с ожидаемым издателем. Значения зависят от файла и среды проверки.</p>
+<p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-authenticodesignature" title="Get-AuthenticodeSignature">[*]</a>.</p>
+</section></section>
+<section>
+<section id="sec-seminar-6-certificate" class="title-slide slide level1 center">
+<h1>Сертификат открытого ключа</h1>
+<p>Сертификат связывает имя субъекта с его открытым ключом; эту связь подписывает удостоверяющая сторона.</p>
+<p>Браузер открывает <code>https://portal.example</code>. Сертификат сайта содержит имя <code>portal.example</code> и открытый ключ <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>. Браузер проверяет имя, назначение, срок действия и путь к доверенной стороне. Сервер также подтверждает, что владеет соответствующим закрытым ключом.</p>
+<p>Сертификат другого сайта не подтверждает ключ <code>portal.example</code>.</p>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:def-trust-public-key-certificate" data-qrc-style="default" class="qrc-link" href="../theory/data-trust/certificates.html#def-trust-public-key-certificate">[*]</a>.</p>
+</section>
+<section id="sec-seminar-6-certificate-chain" class="slide level2">
+<h2>Цепочка сертификатов</h2>
+<p>В хранилище браузера заранее принят корневой ключ <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>. Сайт передаёт сертификат центра с ключом <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math> и сертификат сайта с ключом <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Проверяемая подпись</th>
+<th>Какой ключ нужен</th>
+<th>Что устанавливается</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>На сертификате центра <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math></td>
+<td>Заранее доверенный <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math></td>
+<td>Ключ <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math> принадлежит центру, которому разрешена выдача сертификатов</td>
+</tr>
+<tr class="even">
+<td>На сертификате сайта <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math></td>
+<td>Проверенный ключ <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math></td>
+<td>Ключ <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math> связан с именем <code>portal.example</code></td>
+</tr>
+</tbody>
+</table>
+<p>Проверка начинается с заранее принятого <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math> и устанавливает путь к <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>. Самоподпись неизвестного корня сама по себе доверия не создаёт.</p>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-certificate-chain" data-qrc-style="default" class="qrc-link" href="../theory/data-trust/certificates.html#sec-theory-certificate-chain">[*]</a>.</p>
+</section>
+<section id="проверка-сертификатов" class="slide level2">
+<h2>Проверка сертификатов</h2>
+<div id="exr-data-trust-slide-certificate-check" class="theorem exercise" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 5 (Два звена цепочки)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-difficulty">Начальный</span>
+</div>
+<p>Браузер заранее доверяет ключу <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>. Сертификат центра содержит ключ <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math> и подписан корневой стороной. Сертификат <code>portal.example</code> содержит ключ <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math> и подписан центром <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>.</p>
+<p>Студент проверил подпись сертификата сайта ключом <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math> и на этом основании принял ключ <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>. Сертификат центра он не проверял. Какой проверки не хватает и каким заранее доверенным ключом её выполнить?</p>
+</div>
+</section></section>
+<section id="sec-seminar-6-additional" class="title-slide slide level1 center">
+<h1>Дополнительная работа</h1>
+<ul>
+<li>Гибридное шифрование — <a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-hybrid-encryption" data-qrc-style="default" class="qrc-link" href="../theory/crypto/asymmetric-cryptography.html#sec-theory-hybrid-encryption">[*]</a>: защита файла симметричным ключом и передача этого ключа получателю.</li>
+<li>Подпись без файла — <a data-qrc-custom="true" data-qrc-ref="tasks:exr-data-trust-missing-message" data-qrc-style="default" class="qrc-link" href="../task/bank/data-trust.html#exr-data-trust-missing-message">[*]</a>: какие данные нужны для проверки подписи документа.</li>
+<li>Достроить цепочку — <a data-qrc-custom="true" data-qrc-ref="tasks:exr-data-trust-certificate-chain" data-qrc-style="default" class="qrc-link" href="../task/bank/data-trust.html#exr-data-trust-certificate-chain">[*]</a>: выбрать путь к заранее доверенному ключу.</li>
+<li>Подпись Лэмпорта — <a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-lamport" data-qrc-style="default" class="qrc-link" href="../theory/crypto/lamport-signature.html#sec-theory-lamport">[*]</a>: проследить внутренние действия конкретной схемы.</li>
+</ul>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-digital-signature" data-qrc-style="default" class="qrc-link" href="../theory/crypto/digital-signature.html#sec-theory-digital-signature">[*]</a>; <a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-certificate-browser" data-qrc-style="default" class="qrc-link" href="../theory/data-trust/certificates.html#sec-theory-certificate-browser">[*]</a>.</p>
+
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost.svg" alt="Кибер котость — логотип курса «Основы кибербезопасности»" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="site_libs/revealjs/plugin/course-navigation/model.js"></script>
+  <script src="site_libs/revealjs/plugin/course-navigation/ui.js"></script>
+  <script src="site_libs/revealjs/plugin/course-navigation/plugin.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":false},
+'scrollActivationWidth': 0,
+'courseNav': {"sidebar":true,"language":"ru","title":"Основы кибербезопасности"},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1600,
+
+        height: 900,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, CourseNavigation, QuartoSupport,
+
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Скопировано");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Скопировано");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+
+<script data-qrc-navigation>// Опубликованные цели сохраняют штатные ID Quarto. Обработчик раскрывает
+// существующее представление документа, не вводя учебных ролей и новых ID.
+(() => {
+  if (new URL(location.href).searchParams.has("print-pdf")) return;
+  let navigation = 0;
+
+  function hashId(url) {
+    try { return decodeURIComponent(url.hash.replace(/^#\/?/, "")); }
+    catch { return ""; } // Некорректный фрагмент внешней ссылки не должен нарушать работу страницы.
+  }
+
+  function ancestors(target) {
+    const nodes = [];
+    for (let node = target; node; node = node.parentElement) nodes.push(node);
+    return nodes.reverse();
+  }
+
+  function openDisclosures(nodes, scroll) {
+    for (const node of nodes) {
+      if (node.matches("details")) node.open = true;
+      if (!node.matches(".collapse:not(.show)")) continue;
+
+      // Bootstrap управляет анимацией и состоянием переключателя.
+      // В темах без Bootstrap блок раскрывается напрямую; details работает штатно.
+      const Collapse = window.bootstrap?.Collapse;
+      if (Collapse) {
+        node.addEventListener("shown.bs.collapse", scroll, { once: true });
+        Collapse.getOrCreateInstance(node, { toggle: false }).show();
+      } else {
+        node.classList.add("show");
+        if (!node.id) continue;
+        for (const trigger of document.querySelectorAll("[aria-controls]")) {
+          if (!trigger.getAttribute("aria-controls").split(/\s+/).includes(node.id)) continue;
+          trigger.setAttribute("aria-expanded", "true");
+          trigger.classList.remove("collapsed");
+        }
+      }
+    }
+  }
+
+  function revealTarget(id) {
+    const target = id && document.getElementById(id);
+    if (!target) return;
+    const current = ++navigation;
+    const scroll = () => requestAnimationFrame(() => {
+      // Завершение анимации не должно возвращать прокрутку после нового перехода.
+      if (current === navigation) target.scrollIntoView({ block: "nearest" });
+    });
+    const nodes = ancestors(target);
+    const section = target.closest("section.slide");
+    const reveal = window.Reveal;
+    if (section && target !== section && reveal?.isReady()) {
+      const position = reveal.getIndices(section);
+      reveal.slide(position.h, position.v);
+      // У вложенных фрагментов могут различаться индексы. Показываем
+      // все фрагменты вокруг цели; нулевой индекс также допустим.
+      const indices = nodes.filter(node => node.matches(".fragment[data-fragment-index]"))
+        .map(node => Number(node.getAttribute("data-fragment-index")))
+        .filter(Number.isFinite);
+      if (indices.length) reveal.navigateFragment(Math.max(...indices));
+    }
+    openDisclosures(nodes, scroll);
+    scroll();
+  }
+
+  function initialTarget() {
+    const url = new URL(location.href);
+    revealTarget(url.searchParams.get("qrc-target") || hashId(url));
+  }
+
+  function ready() {
+    if (window.Reveal && !window.Reveal.isReady()) window.Reveal.on("ready", initialTarget);
+    else initialTarget();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", ready, { once: true });
+  else ready();
+
+  // qrc-target обрабатывается только при входе на страницу. Повторное применение
+  // при смене фрагмента URL возвращало бы преподавателя к цели после перехода вперёд.
+  window.addEventListener("hashchange", () => revealTarget(hashId(new URL(location.href))));
+  document.addEventListener("click", event => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.defaultPrevented) return;
+    const link = event.target.closest?.("a[href]");
+    if (!link || link.hasAttribute("download") || (link.target && link.target !== "_self")) return;
+    const url = new URL(link.href, location.href);
+    if (url.origin !== location.origin || url.pathname !== location.pathname || url.search !== location.search) return;
+    // Повторный переход по тому же фрагменту URL не вызывает hashchange.
+    // Раскрываем цель после штатной навигации и обработчика Revealjs.
+    queueMicrotask(() => revealTarget(hashId(url)));
+  }, true);
+})();
+</script>
+</body></html>

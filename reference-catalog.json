@@ -44,22 +44,22 @@
       "id": "def-slide-crypto-digest",
       "page": "seminars/05-crypto.html",
       "fragment": "def-slide-crypto-digest",
-      "slide": "хеш-функция",
-      "labelHtml": "Определение&nbsp;2",
-      "numberHtml": "2",
-      "label": "Определение 2",
-      "number": "2"
+      "slide": "sec-seminar-5-hashes",
+      "labelHtml": "Определение&nbsp;3",
+      "numberHtml": "3",
+      "label": "Определение 3",
+      "number": "3"
     },
     "practice:def-slide-crypto-encryption": {
       "namespace": "practice",
       "id": "def-slide-crypto-encryption",
       "page": "seminars/05-crypto.html",
       "fragment": "def-slide-crypto-encryption",
-      "slide": "симметричное-шифрование",
-      "labelHtml": "Определение&nbsp;3",
-      "numberHtml": "3",
-      "label": "Определение 3",
-      "number": "3"
+      "slide": "sec-seminar-5-encryption",
+      "labelHtml": "Определение&nbsp;2",
+      "numberHtml": "2",
+      "label": "Определение 2",
+      "number": "2"
     },
     "practice:def-slide-random-state": {
       "namespace": "practice",
@@ -72,144 +72,122 @@
       "label": "Определение 1",
       "number": "1"
     },
-    "practice:exr-access-short-editor": {
+    "practice:exr-crypto-slide-eight-keys": {
       "namespace": "practice",
-      "id": "exr-access-short-editor",
-      "page": "seminars/04-access-control.html",
-      "fragment": "exr-access-short-editor",
-      "slide": "вопрос-для-аудитории",
+      "id": "exr-crypto-slide-eight-keys",
+      "page": "seminars/05-crypto.html",
+      "fragment": "exr-crypto-slide-eight-keys",
+      "slide": "создание-ключа",
       "labelHtml": "Упражнение&nbsp;1",
       "numberHtml": "1",
       "label": "Упражнение 1",
       "number": "1"
     },
-    "practice:exr-access-short-totp-factor": {
+    "practice:exr-crypto-slide-hash-search-kind": {
       "namespace": "practice",
-      "id": "exr-access-short-totp-factor",
-      "page": "seminars/04-access-control.html",
-      "fragment": "exr-access-short-totp-factor",
-      "slide": "вопрос-для-аудитории-1",
-      "labelHtml": "Упражнение&nbsp;4",
-      "numberHtml": "4",
-      "label": "Упражнение 4",
-      "number": "4"
-    },
-    "practice:exr-access-short-two-step": {
-      "namespace": "practice",
-      "id": "exr-access-short-two-step",
-      "page": "seminars/04-access-control.html",
-      "fragment": "exr-access-short-two-step",
-      "slide": "вопрос-две-проверки",
+      "id": "exr-crypto-slide-hash-search-kind",
+      "page": "seminars/05-crypto.html",
+      "fragment": "exr-crypto-slide-hash-search-kind",
+      "slide": "задачи-поиска",
       "labelHtml": "Упражнение&nbsp;3",
       "numberHtml": "3",
       "label": "Упражнение 3",
       "number": "3"
     },
-    "practice:exr-crypto-file-and-hash-replaced": {
+    "practice:exr-crypto-slide-password-cost": {
       "namespace": "practice",
-      "id": "exr-crypto-file-and-hash-replaced",
+      "id": "exr-crypto-slide-password-cost",
       "page": "seminars/05-crypto.html",
-      "fragment": "exr-crypto-file-and-hash-replaced",
-      "slide": "доверенный-эталон",
-      "labelHtml": "Упражнение&nbsp;3",
-      "numberHtml": "3",
-      "label": "Упражнение 3",
-      "number": "3"
-    },
-    "practice:exr-crypto-five-people-keys": {
-      "namespace": "practice",
-      "id": "exr-crypto-five-people-keys",
-      "page": "seminars/05-crypto.html",
-      "fragment": "exr-crypto-five-people-keys",
-      "slide": "распределение-ключей",
-      "labelHtml": "Упражнение&nbsp;4",
-      "numberHtml": "4",
-      "label": "Упражнение 4",
-      "number": "4"
-    },
-    "practice:exr-crypto-hash-aa-bb": {
-      "namespace": "practice",
-      "id": "exr-crypto-hash-aa-bb",
-      "page": "seminars/05-crypto.html",
-      "fragment": "exr-crypto-hash-aa-bb",
-      "slide": "коллизия",
-      "labelHtml": "Упражнение&nbsp;2",
-      "numberHtml": "2",
-      "label": "Упражнение 2",
-      "number": "2"
-    },
-    "practice:exr-crypto-hmac-authors": {
-      "namespace": "practice",
-      "id": "exr-crypto-hmac-authors",
-      "page": "seminars/07-signature-trust.html",
-      "fragment": "exr-crypto-hmac-authors",
-      "slide": "вопрос-для-аудитории",
-      "labelHtml": "Упражнение&nbsp;1",
-      "numberHtml": "1",
-      "label": "Упражнение 1",
-      "number": "1"
-    },
-    "practice:exr-crypto-lcg-mod16": {
-      "namespace": "practice",
-      "id": "exr-crypto-lcg-mod16",
-      "page": "seminars/05-crypto.html",
-      "fragment": "exr-crypto-lcg-mod16",
-      "slide": "линейный-конгруэнтный-генератор",
-      "labelHtml": "Упражнение&nbsp;1",
-      "numberHtml": "1",
-      "label": "Упражнение 1",
-      "number": "1"
-    },
-    "practice:exr-crypto-old-signature": {
-      "namespace": "practice",
-      "id": "exr-crypto-old-signature",
-      "page": "seminars/07-signature-trust.html",
-      "fragment": "exr-crypto-old-signature",
-      "slide": "вопрос-для-аудитории-1",
-      "labelHtml": "Упражнение&nbsp;2",
-      "numberHtml": "2",
-      "label": "Упражнение 2",
-      "number": "2"
-    },
-    "practice:exr-crypto-password-search-cost": {
-      "namespace": "practice",
-      "id": "exr-crypto-password-search-cost",
-      "page": "seminars/05-crypto.html",
-      "fragment": "exr-crypto-password-search-cost",
-      "slide": "пространство-паролей",
+      "fragment": "exr-crypto-slide-password-cost",
+      "slide": "подбор-после-утечки",
       "labelHtml": "Упражнение&nbsp;5",
       "numberHtml": "5",
       "label": "Упражнение 5",
       "number": "5"
     },
-    "practice:exr-data-integrity-backup-volume": {
+    "practice:exr-crypto-slide-salt": {
       "namespace": "practice",
-      "id": "exr-data-integrity-backup-volume",
-      "page": "seminars/06-data-integrity.html",
-      "fragment": "exr-data-integrity-backup-volume",
-      "slide": "вопрос-для-аудитории-1",
+      "id": "exr-crypto-slide-salt",
+      "page": "seminars/05-crypto.html",
+      "fragment": "exr-crypto-slide-salt",
+      "slide": "индивидуальная-соль",
+      "labelHtml": "Упражнение&nbsp;4",
+      "numberHtml": "4",
+      "label": "Упражнение 4",
+      "number": "4"
+    },
+    "practice:exr-crypto-slide-short-xor": {
+      "namespace": "practice",
+      "id": "exr-crypto-slide-short-xor",
+      "page": "seminars/05-crypto.html",
+      "fragment": "exr-crypto-slide-short-xor",
+      "slide": "восстановление-сообщения",
+      "labelHtml": "Упражнение&nbsp;6",
+      "numberHtml": "6",
+      "label": "Упражнение 6",
+      "number": "6"
+    },
+    "practice:exr-crypto-slide-xor-fragment": {
+      "namespace": "practice",
+      "id": "exr-crypto-slide-xor-fragment",
+      "page": "seminars/05-crypto.html",
+      "fragment": "exr-crypto-slide-xor-fragment",
+      "slide": "повтор-ключевого-потока",
       "labelHtml": "Упражнение&nbsp;2",
       "numberHtml": "2",
       "label": "Упражнение 2",
       "number": "2"
     },
-    "practice:exr-data-integrity-mirror-copy": {
+    "practice:exr-data-trust-slide-certificate-check": {
       "namespace": "practice",
-      "id": "exr-data-integrity-mirror-copy",
-      "page": "seminars/06-data-integrity.html",
-      "fragment": "exr-data-integrity-mirror-copy",
-      "slide": "вопрос-для-обсуждения",
+      "id": "exr-data-trust-slide-certificate-check",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "exr-data-trust-slide-certificate-check",
+      "slide": "проверка-сертификатов",
+      "labelHtml": "Упражнение&nbsp;5",
+      "numberHtml": "5",
+      "label": "Упражнение 5",
+      "number": "5"
+    },
+    "practice:exr-data-trust-slide-download-reference": {
+      "namespace": "practice",
+      "id": "exr-data-trust-slide-download-reference",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "exr-data-trust-slide-download-reference",
+      "slide": "проверка-установщика",
+      "labelHtml": "Упражнение&nbsp;2",
+      "numberHtml": "2",
+      "label": "Упражнение 2",
+      "number": "2"
+    },
+    "practice:exr-data-trust-slide-edited-notice": {
+      "namespace": "practice",
+      "id": "exr-data-trust-slide-edited-notice",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "exr-data-trust-slide-edited-notice",
+      "slide": "исправление-подписанного-файла",
       "labelHtml": "Упражнение&nbsp;3",
       "numberHtml": "3",
       "label": "Упражнение 3",
       "number": "3"
     },
-    "practice:exr-data-integrity-trusted-hash": {
+    "practice:exr-data-trust-slide-key-roles": {
       "namespace": "practice",
-      "id": "exr-data-integrity-trusted-hash",
-      "page": "seminars/06-data-integrity.html",
-      "fragment": "exr-data-integrity-trusted-hash",
-      "slide": "вопрос-для-аудитории",
+      "id": "exr-data-trust-slide-key-roles",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "exr-data-trust-slide-key-roles",
+      "slide": "sec-seminar-6-key-roles",
+      "labelHtml": "Упражнение&nbsp;4",
+      "numberHtml": "4",
+      "label": "Упражнение 4",
+      "number": "4"
+    },
+    "practice:exr-data-trust-slide-wrong-recipient": {
+      "namespace": "practice",
+      "id": "exr-data-trust-slide-wrong-recipient",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "exr-data-trust-slide-wrong-recipient",
+      "slide": "выбор-ключа-для-отчёта",
       "labelHtml": "Упражнение&nbsp;1",
       "numberHtml": "1",
       "label": "Упражнение 1",
@@ -265,17 +243,50 @@
       "page": "seminars/04-access-control.html",
       "fragment": "exr-slide-access-combined",
       "slide": "совместное-применение-политик",
+      "labelHtml": "Упражнение&nbsp;10",
+      "numberHtml": "10",
+      "label": "Упражнение 10",
+      "number": "10"
+    },
+    "practice:exr-slide-access-compiler-output": {
+      "namespace": "practice",
+      "id": "exr-slide-access-compiler-output",
+      "page": "seminars/04-access-control.html",
+      "fragment": "exr-slide-access-compiler-output",
+      "slide": "sec-seminar-4-compiler-output",
+      "labelHtml": "Упражнение&nbsp;6",
+      "numberHtml": "6",
+      "label": "Упражнение 6",
+      "number": "6"
+    },
+    "practice:exr-slide-access-compiler-rights": {
+      "namespace": "practice",
+      "id": "exr-slide-access-compiler-rights",
+      "page": "seminars/04-access-control.html",
+      "fragment": "exr-slide-access-compiler-rights",
+      "slide": "sec-seminar-4-compiler-rights",
       "labelHtml": "Упражнение&nbsp;7",
       "numberHtml": "7",
       "label": "Упражнение 7",
       "number": "7"
+    },
+    "practice:exr-slide-access-compiler-statistics": {
+      "namespace": "practice",
+      "id": "exr-slide-access-compiler-statistics",
+      "page": "seminars/04-access-control.html",
+      "fragment": "exr-slide-access-compiler-statistics",
+      "slide": "sec-seminar-4-additional",
+      "labelHtml": "Упражнение&nbsp;13",
+      "numberHtml": "13",
+      "label": "Упражнение 13",
+      "number": "13"
     },
     "practice:exr-slide-access-dac-matrix": {
       "namespace": "practice",
       "id": "exr-slide-access-dac-matrix",
       "page": "seminars/04-access-control.html",
       "fragment": "exr-slide-access-dac-matrix",
-      "slide": "dac-составьте-матрицу",
+      "slide": "sec-seminar-4-matrix",
       "labelHtml": "Упражнение&nbsp;5",
       "numberHtml": "5",
       "label": "Упражнение 5",
@@ -286,22 +297,132 @@
       "id": "exr-slide-access-entry",
       "page": "seminars/04-access-control.html",
       "fragment": "exr-slide-access-entry",
-      "slide": "доступ-к-ресурсу",
-      "labelHtml": "Упражнение&nbsp;2",
-      "numberHtml": "2",
-      "label": "Упражнение 2",
-      "number": "2"
+      "slide": "sec-seminar-4-portal",
+      "labelHtml": "Упражнение&nbsp;1",
+      "numberHtml": "1",
+      "label": "Упражнение 1",
+      "number": "1"
+    },
+    "practice:exr-slide-access-mac-operations": {
+      "namespace": "practice",
+      "id": "exr-slide-access-mac-operations",
+      "page": "seminars/04-access-control.html",
+      "fragment": "exr-slide-access-mac-operations",
+      "slide": "sec-seminar-4-mac-operations",
+      "labelHtml": "Упражнение&nbsp;8",
+      "numberHtml": "8",
+      "label": "Упражнение 8",
+      "number": "8"
+    },
+    "practice:exr-slide-access-printer-roles": {
+      "namespace": "practice",
+      "id": "exr-slide-access-printer-roles",
+      "page": "seminars/04-access-control.html",
+      "fragment": "exr-slide-access-printer-roles",
+      "slide": "sec-seminar-4-printer",
+      "labelHtml": "Упражнение&nbsp;12",
+      "numberHtml": "12",
+      "label": "Упражнение 12",
+      "number": "12"
+    },
+    "practice:exr-slide-access-request-subject": {
+      "namespace": "practice",
+      "id": "exr-slide-access-request-subject",
+      "page": "seminars/04-access-control.html",
+      "fragment": "exr-slide-access-request-subject",
+      "slide": "sec-seminar-4-access-request",
+      "labelHtml": "Упражнение&nbsp;3",
+      "numberHtml": "3",
+      "label": "Упражнение 3",
+      "number": "3"
     },
     "practice:exr-slide-access-role-matrix": {
       "namespace": "practice",
       "id": "exr-slide-access-role-matrix",
       "page": "seminars/04-access-control.html",
       "fragment": "exr-slide-access-role-matrix",
-      "slide": "rbac-постройте-роли",
-      "labelHtml": "Упражнение&nbsp;6",
-      "numberHtml": "6",
-      "label": "Упражнение 6",
-      "number": "6"
+      "slide": "rbac-распределение-ролей",
+      "labelHtml": "Упражнение&nbsp;9",
+      "numberHtml": "9",
+      "label": "Упражнение 9",
+      "number": "9"
+    },
+    "practice:exr-slide-access-server-check": {
+      "namespace": "practice",
+      "id": "exr-slide-access-server-check",
+      "page": "seminars/04-access-control.html",
+      "fragment": "exr-slide-access-server-check",
+      "slide": "sec-seminar-4-server-check",
+      "labelHtml": "Упражнение&nbsp;4",
+      "numberHtml": "4",
+      "label": "Упражнение 4",
+      "number": "4"
+    },
+    "practice:exr-slide-access-totp-transfer": {
+      "namespace": "practice",
+      "id": "exr-slide-access-totp-transfer",
+      "page": "seminars/04-access-control.html",
+      "fragment": "exr-slide-access-totp-transfer",
+      "slide": "sec-seminar-4-totp-transfer",
+      "labelHtml": "Упражнение&nbsp;11",
+      "numberHtml": "11",
+      "label": "Упражнение 11",
+      "number": "11"
+    },
+    "practice:exr-slide-access-two-step": {
+      "namespace": "practice",
+      "id": "exr-slide-access-two-step",
+      "page": "seminars/04-access-control.html",
+      "fragment": "exr-slide-access-two-step",
+      "slide": "sec-seminar-4-two-step",
+      "labelHtml": "Упражнение&nbsp;2",
+      "numberHtml": "2",
+      "label": "Упражнение 2",
+      "number": "2"
+    },
+    "practice:exr-slide-preservation-backup-volume": {
+      "namespace": "practice",
+      "id": "exr-slide-preservation-backup-volume",
+      "page": "seminars/07-data-preservation.html",
+      "fragment": "exr-slide-preservation-backup-volume",
+      "slide": "состав-копии",
+      "labelHtml": "Упражнение&nbsp;1",
+      "numberHtml": "1",
+      "label": "Упражнение 1",
+      "number": "1"
+    },
+    "practice:exr-slide-preservation-choice": {
+      "namespace": "practice",
+      "id": "exr-slide-preservation-choice",
+      "page": "seminars/07-data-preservation.html",
+      "fragment": "exr-slide-preservation-choice",
+      "slide": "выбор-средства-защиты",
+      "labelHtml": "Упражнение&nbsp;4",
+      "numberHtml": "4",
+      "label": "Упражнение 4",
+      "number": "4"
+    },
+    "practice:exr-slide-preservation-project": {
+      "namespace": "practice",
+      "id": "exr-slide-preservation-project",
+      "page": "seminars/07-data-preservation.html",
+      "fragment": "exr-slide-preservation-project",
+      "slide": "восстановление-проекта",
+      "labelHtml": "Упражнение&nbsp;3",
+      "numberHtml": "3",
+      "label": "Упражнение 3",
+      "number": "3"
+    },
+    "practice:exr-slide-preservation-restore": {
+      "namespace": "practice",
+      "id": "exr-slide-preservation-restore",
+      "page": "seminars/07-data-preservation.html",
+      "fragment": "exr-slide-preservation-restore",
+      "slide": "восстановление-папки",
+      "labelHtml": "Упражнение&nbsp;2",
+      "numberHtml": "2",
+      "label": "Упражнение 2",
+      "number": "2"
     },
     "practice:exr-standards-risk-risk-cost": {
       "namespace": "practice",
@@ -314,258 +435,181 @@
       "label": "Упражнение 1",
       "number": "1"
     },
-    "practice:fig-cypher-caesar": {
+    "practice:fig-hash-bit-seminar": {
       "namespace": "practice",
-      "id": "fig-cypher-caesar",
+      "id": "fig-hash-bit-seminar",
       "page": "seminars/05-crypto.html",
-      "fragment": "fig-cypher-caesar",
-      "slide": "шифр-цезаря-опыт",
-      "labelHtml": "Рисунок&nbsp;6",
-      "numberHtml": "6",
-      "label": "Рисунок 6",
-      "number": "6"
-    },
-    "practice:fig-dac-decision": {
-      "namespace": "practice",
-      "id": "fig-dac-decision",
-      "page": "seminars/04-access-control.html",
-      "fragment": "fig-dac-decision",
-      "slide": "dac-применение-политики",
-      "labelHtml": "Рисунок&nbsp;4",
-      "numberHtml": "4",
-      "label": "Рисунок 4",
-      "number": "4"
-    },
-    "practice:fig-integrity-byte-change": {
-      "namespace": "practice",
-      "id": "fig-integrity-byte-change",
-      "page": "seminars/06-data-integrity.html",
-      "fragment": "fig-integrity-byte-change",
-      "slide": "запас-изменение-байта",
-      "labelHtml": "Рисунок&nbsp;7",
-      "numberHtml": "7",
-      "label": "Рисунок 7",
-      "number": "7"
-    },
-    "practice:fig-integrity-reference": {
-      "namespace": "practice",
-      "id": "fig-integrity-reference",
-      "page": "seminars/06-data-integrity.html",
-      "fragment": "fig-integrity-reference",
-      "slide": "подмена-эталона",
-      "labelHtml": "Рисунок&nbsp;2",
-      "numberHtml": "2",
-      "label": "Рисунок 2",
-      "number": "2"
-    },
-    "practice:fig-integrity-sum-collision": {
-      "namespace": "practice",
-      "id": "fig-integrity-sum-collision",
-      "page": "seminars/06-data-integrity.html",
-      "fragment": "fig-integrity-sum-collision",
-      "slide": "запас-простая-сумма",
-      "labelHtml": "Рисунок&nbsp;6",
-      "numberHtml": "6",
-      "label": "Рисунок 6",
-      "number": "6"
-    },
-    "practice:fig-integrity-xor": {
-      "namespace": "practice",
-      "id": "fig-integrity-xor",
-      "page": "seminars/06-data-integrity.html",
-      "fragment": "fig-integrity-xor",
-      "slide": "иллюстрация-восстановления-xor",
+      "fragment": "fig-hash-bit-seminar",
+      "slide": "изменение-файла",
       "labelHtml": "Рисунок&nbsp;5",
       "numberHtml": "5",
       "label": "Рисунок 5",
       "number": "5"
     },
-    "practice:fig-lcg-model-selection": {
+    "practice:fig-seminar-6-asymmetric-encryption": {
       "namespace": "practice",
-      "id": "fig-lcg-model-selection",
-      "page": "seminars/05-crypto.html",
-      "fragment": "fig-lcg-model-selection",
-      "slide": "отбор-параметров-lcg",
-      "labelHtml": "Рисунок&nbsp;3",
-      "numberHtml": "3",
-      "label": "Рисунок 3",
-      "number": "3"
+      "id": "fig-seminar-6-asymmetric-encryption",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "fig-seminar-6-asymmetric-encryption",
+      "slide": "sec-seminar-6-encryption",
+      "labelHtml": "Рисунок&nbsp;1",
+      "numberHtml": "1",
+      "label": "Рисунок 1",
+      "number": "1"
     },
-    "practice:fig-mac-decision": {
+    "practice:fig-seminar-6-signature-flow": {
       "namespace": "practice",
-      "id": "fig-mac-decision",
-      "page": "seminars/04-access-control.html",
-      "fragment": "fig-mac-decision",
-      "slide": "mac-применение-политики",
-      "labelHtml": "Рисунок&nbsp;6",
-      "numberHtml": "6",
-      "label": "Рисунок 6",
-      "number": "6"
-    },
-    "practice:fig-rbac-decision": {
-      "namespace": "practice",
-      "id": "fig-rbac-decision",
-      "page": "seminars/04-access-control.html",
-      "fragment": "fig-rbac-decision",
-      "slide": "rbac-применение-политики",
-      "labelHtml": "Рисунок&nbsp;8",
-      "numberHtml": "8",
-      "label": "Рисунок 8",
-      "number": "8"
+      "id": "fig-seminar-6-signature-flow",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "fig-seminar-6-signature-flow",
+      "slide": "sec-seminar-6-signature",
+      "labelHtml": "Рисунок&nbsp;2",
+      "numberHtml": "2",
+      "label": "Рисунок 2",
+      "number": "2"
     },
     "practice:fig-slide-access-overview": {
       "namespace": "practice",
       "id": "fig-slide-access-overview",
       "page": "seminars/04-access-control.html",
       "fragment": "fig-slide-access-overview",
-      "slide": "порядок-обработки-запроса-на-доступ",
+      "slide": "sec-seminar-4-access-decision",
       "labelHtml": "Рисунок&nbsp;1",
       "numberHtml": "1",
       "label": "Рисунок 1",
       "number": "1"
-    },
-    "practice:fig-slide-access-procedures": {
-      "namespace": "practice",
-      "id": "fig-slide-access-procedures",
-      "page": "seminars/04-access-control.html",
-      "fragment": "fig-slide-access-procedures",
-      "slide": "порядок-входа",
-      "labelHtml": "Рисунок&nbsp;2",
-      "numberHtml": "2",
-      "label": "Рисунок 2",
-      "number": "2"
     },
     "practice:fig-slide-dac": {
       "namespace": "practice",
       "id": "fig-slide-dac",
       "page": "seminars/04-access-control.html",
       "fragment": "fig-slide-dac",
-      "slide": "dac-права-на-объект",
-      "labelHtml": "Рисунок&nbsp;3",
-      "numberHtml": "3",
-      "label": "Рисунок 3",
-      "number": "3"
+      "slide": "sec-seminar-4-access-models",
+      "labelHtml": "Рисунок&nbsp;2",
+      "numberHtml": "2",
+      "label": "Рисунок 2",
+      "number": "2"
     },
     "practice:fig-slide-hash-length": {
       "namespace": "practice",
       "id": "fig-slide-hash-length",
       "page": "seminars/05-crypto.html",
       "fragment": "fig-slide-hash-length",
-      "slide": "хеш-функция",
+      "slide": "sec-seminar-5-hashes",
       "labelHtml": "Рисунок&nbsp;4",
       "numberHtml": "4",
       "label": "Рисунок 4",
       "number": "4"
-    },
-    "practice:fig-slide-integrity-copy-scales": {
-      "namespace": "practice",
-      "id": "fig-slide-integrity-copy-scales",
-      "page": "seminars/06-data-integrity.html",
-      "fragment": "fig-slide-integrity-copy-scales",
-      "slide": "сравнение-объёма-копий",
-      "labelHtml": "Рисунок&nbsp;3",
-      "numberHtml": "3",
-      "label": "Рисунок 3",
-      "number": "3"
     },
     "practice:fig-slide-integrity-raid": {
       "namespace": "practice",
       "id": "fig-slide-integrity-raid",
-      "page": "seminars/06-data-integrity.html",
+      "page": "seminars/07-data-preservation.html",
       "fragment": "fig-slide-integrity-raid",
       "slide": "размещение-данных-в-raid",
-      "labelHtml": "Рисунок&nbsp;4",
-      "numberHtml": "4",
-      "label": "Рисунок 4",
-      "number": "4"
-    },
-    "practice:fig-slide-integrity-sum-hash": {
-      "namespace": "practice",
-      "id": "fig-slide-integrity-sum-hash",
-      "page": "seminars/06-data-integrity.html",
-      "fragment": "fig-slide-integrity-sum-hash",
-      "slide": "сравнение-контрольных-значений",
-      "labelHtml": "Рисунок&nbsp;1",
-      "numberHtml": "1",
-      "label": "Рисунок 1",
-      "number": "1"
+      "labelHtml": "Рисунок&nbsp;3",
+      "numberHtml": "3",
+      "label": "Рисунок 3",
+      "number": "3"
     },
     "practice:fig-slide-key-pairs": {
       "namespace": "practice",
       "id": "fig-slide-key-pairs",
       "page": "seminars/05-crypto.html",
       "fragment": "fig-slide-key-pairs",
-      "slide": "slide-crypto-key-pairs",
-      "labelHtml": "Рисунок&nbsp;7",
-      "numberHtml": "7",
-      "label": "Рисунок 7",
-      "number": "7"
-    },
-    "practice:fig-slide-lcg": {
-      "namespace": "practice",
-      "id": "fig-slide-lcg",
-      "page": "seminars/05-crypto.html",
-      "fragment": "fig-slide-lcg",
-      "slide": "slide-crypto-lcg-calculation",
-      "labelHtml": "Рисунок&nbsp;1",
-      "numberHtml": "1",
-      "label": "Рисунок 1",
-      "number": "1"
+      "slide": "sec-seminar-5-keys",
+      "labelHtml": "Рисунок&nbsp;3",
+      "numberHtml": "3",
+      "label": "Рисунок 3",
+      "number": "3"
     },
     "practice:fig-slide-mac": {
       "namespace": "practice",
       "id": "fig-slide-mac",
       "page": "seminars/04-access-control.html",
       "fragment": "fig-slide-mac",
-      "slide": "mac-три-уровня",
-      "labelHtml": "Рисунок&nbsp;5",
-      "numberHtml": "5",
-      "label": "Рисунок 5",
-      "number": "5"
+      "slide": "sec-seminar-4-mac",
+      "labelHtml": "Рисунок&nbsp;3",
+      "numberHtml": "3",
+      "label": "Рисунок 3",
+      "number": "3"
     },
     "practice:fig-slide-password-record": {
       "namespace": "practice",
       "id": "fig-slide-password-record",
       "page": "seminars/05-crypto.html",
       "fragment": "fig-slide-password-record",
-      "slide": "хранение-пароля",
-      "labelHtml": "Рисунок&nbsp;8",
-      "numberHtml": "8",
-      "label": "Рисунок 8",
-      "number": "8"
+      "slide": "парольная-запись",
+      "labelHtml": "Рисунок&nbsp;6",
+      "numberHtml": "6",
+      "label": "Рисунок 6",
+      "number": "6"
+    },
+    "practice:fig-slide-preservation-backup-history": {
+      "namespace": "practice",
+      "id": "fig-slide-preservation-backup-history",
+      "page": "seminars/07-data-preservation.html",
+      "fragment": "fig-slide-preservation-backup-history",
+      "slide": "состав-копии",
+      "labelHtml": "Рисунок&nbsp;2",
+      "numberHtml": "2",
+      "label": "Рисунок 2",
+      "number": "2"
+    },
+    "practice:fig-slide-preservation-backup-types": {
+      "namespace": "practice",
+      "id": "fig-slide-preservation-backup-types",
+      "page": "seminars/07-data-preservation.html",
+      "fragment": "fig-slide-preservation-backup-types",
+      "slide": "содержимое-резервных-копий",
+      "labelHtml": "Рисунок&nbsp;1",
+      "numberHtml": "1",
+      "label": "Рисунок 1",
+      "number": "1"
+    },
+    "practice:fig-slide-preservation-project": {
+      "namespace": "practice",
+      "id": "fig-slide-preservation-project",
+      "page": "seminars/07-data-preservation.html",
+      "fragment": "fig-slide-preservation-project",
+      "slide": "восстановление-проекта",
+      "labelHtml": "Рисунок&nbsp;4",
+      "numberHtml": "4",
+      "label": "Рисунок 4",
+      "number": "4"
     },
     "practice:fig-slide-randu": {
       "namespace": "practice",
       "id": "fig-slide-randu",
       "page": "seminars/05-crypto.html",
       "fragment": "fig-slide-randu",
-      "slide": "randu",
-      "labelHtml": "Рисунок&nbsp;2",
-      "numberHtml": "2",
-      "label": "Рисунок 2",
-      "number": "2"
+      "slide": "предсказуемость-randu",
+      "labelHtml": "Рисунок&nbsp;1",
+      "numberHtml": "1",
+      "label": "Рисунок 1",
+      "number": "1"
     },
     "practice:fig-slide-rbac": {
       "namespace": "practice",
       "id": "fig-slide-rbac",
       "page": "seminars/04-access-control.html",
       "fragment": "fig-slide-rbac",
-      "slide": "rbac-права-по-обязанностям",
-      "labelHtml": "Рисунок&nbsp;7",
-      "numberHtml": "7",
-      "label": "Рисунок 7",
-      "number": "7"
+      "slide": "sec-seminar-4-rbac",
+      "labelHtml": "Рисунок&nbsp;4",
+      "numberHtml": "4",
+      "label": "Рисунок 4",
+      "number": "4"
     },
     "practice:fig-slide-symmetric-key": {
       "namespace": "practice",
       "id": "fig-slide-symmetric-key",
       "page": "seminars/05-crypto.html",
       "fragment": "fig-slide-symmetric-key",
-      "slide": "симметричное-шифрование",
-      "labelHtml": "Рисунок&nbsp;5",
-      "numberHtml": "5",
-      "label": "Рисунок 5",
-      "number": "5"
+      "slide": "sec-seminar-5-encryption",
+      "labelHtml": "Рисунок&nbsp;2",
+      "numberHtml": "2",
+      "label": "Рисунок 2",
+      "number": "2"
     },
     "practice:sec-practice": {
       "namespace": "practice",
@@ -584,11 +628,11 @@
       "page": "seminars/01-introduction.html",
       "fragment": "sec-seminar-1",
       "slide": "sec-seminar-1",
-      "labelHtml": "Занятие 1 – Информационная безопасность",
+      "labelHtml": "Безопасность информационной системы",
       "numberHtml": "",
-      "label": "Занятие 1 – Информационная безопасность",
+      "label": "Безопасность информационной системы",
       "number": "",
-      "title": "Занятие 1 – Информационная безопасность"
+      "title": "Безопасность информационной системы"
     },
     "practice:sec-seminar-1-additional": {
       "namespace": "practice",
@@ -601,18 +645,6 @@
       "label": "Дополнительная работа",
       "number": "",
       "title": "Дополнительная работа"
-    },
-    "practice:sec-seminar-1-assets": {
-      "namespace": "practice",
-      "id": "sec-seminar-1-assets",
-      "page": "seminars/01-introduction.html",
-      "fragment": "sec-seminar-1-assets",
-      "slide": "sec-seminar-1-assets",
-      "labelHtml": "Безопасность информационной системы",
-      "numberHtml": "",
-      "label": "Безопасность информационной системы",
-      "number": "",
-      "title": "Безопасность информационной системы"
     },
     "practice:sec-seminar-1-incidents": {
       "namespace": "practice",
@@ -632,11 +664,11 @@
       "page": "seminars/02-legal-requirements.html",
       "fragment": "sec-seminar-2",
       "slide": "sec-seminar-2",
-      "labelHtml": "Семинар 2 – Правовые основы защиты",
+      "labelHtml": "Категории доступа к информации",
       "numberHtml": "",
-      "label": "Семинар 2 – Правовые основы защиты",
+      "label": "Категории доступа к информации",
       "number": "",
-      "title": "Семинар 2 – Правовые основы защиты"
+      "title": "Категории доступа к информации"
     },
     "practice:sec-seminar-2-additional": {
       "namespace": "practice",
@@ -649,18 +681,6 @@
       "label": "Дополнительная работа",
       "number": "",
       "title": "Дополнительная работа"
-    },
-    "practice:sec-seminar-2-information-access": {
-      "namespace": "practice",
-      "id": "sec-seminar-2-information-access",
-      "page": "seminars/02-legal-requirements.html",
-      "fragment": "sec-seminar-2-information-access",
-      "slide": "sec-seminar-2-information-access",
-      "labelHtml": "Категории доступа к информации",
-      "numberHtml": "",
-      "label": "Категории доступа к информации",
-      "number": "",
-      "title": "Категории доступа к информации"
     },
     "practice:sec-seminar-2-protection": {
       "namespace": "practice",
@@ -680,11 +700,11 @@
       "page": "seminars/03-standards-risk.html",
       "fragment": "sec-seminar-3",
       "slide": "sec-seminar-3",
-      "labelHtml": "Семинар 3 – Применение нормативных требований",
+      "labelHtml": "Требования к защите",
       "numberHtml": "",
-      "label": "Семинар 3 – Применение нормативных требований",
+      "label": "Требования к защите",
       "number": "",
-      "title": "Семинар 3 – Применение нормативных требований"
+      "title": "Требования к защите"
     },
     "practice:sec-seminar-3-additional": {
       "namespace": "practice",
@@ -697,18 +717,6 @@
       "label": "Дополнительная работа",
       "number": "",
       "title": "Дополнительная работа"
-    },
-    "practice:sec-seminar-3-requirements": {
-      "namespace": "practice",
-      "id": "sec-seminar-3-requirements",
-      "page": "seminars/03-standards-risk.html",
-      "fragment": "sec-seminar-3-requirements",
-      "slide": "sec-seminar-3-requirements",
-      "labelHtml": "Требования к защите",
-      "numberHtml": "",
-      "label": "Требования к защите",
-      "number": "",
-      "title": "Требования к защите"
     },
     "practice:sec-seminar-3-risk": {
       "namespace": "practice",
@@ -728,11 +736,11 @@
       "page": "seminars/04-access-control.html",
       "fragment": "sec-seminar-4",
       "slide": "sec-seminar-4",
-      "labelHtml": "Семинар 4 — Управление доступом",
+      "labelHtml": "Процедура получения доступа",
       "numberHtml": "",
-      "label": "Семинар 4 — Управление доступом",
+      "label": "Процедура получения доступа",
       "number": "",
-      "title": "Семинар 4 — Управление доступом"
+      "title": "Процедура получения доступа"
     },
     "practice:sec-seminar-4-access-decision": {
       "namespace": "practice",
@@ -740,11 +748,11 @@
       "page": "seminars/04-access-control.html",
       "fragment": "sec-seminar-4-access-decision",
       "slide": "sec-seminar-4-access-decision",
-      "labelHtml": "Общая схема взаимодействия",
+      "labelHtml": "Управление доступом",
       "numberHtml": "",
-      "label": "Общая схема взаимодействия",
+      "label": "Управление доступом",
       "number": "",
-      "title": "Общая схема взаимодействия"
+      "title": "Управление доступом"
     },
     "practice:sec-seminar-4-access-models": {
       "namespace": "practice",
@@ -752,23 +760,215 @@
       "page": "seminars/04-access-control.html",
       "fragment": "sec-seminar-4-access-models",
       "slide": "sec-seminar-4-access-models",
-      "labelHtml": "Модели управления доступом",
+      "labelHtml": "Дискреционное управление доступом",
       "numberHtml": "",
-      "label": "Модели управления доступом",
+      "label": "Дискреционное управление доступом",
       "number": "",
-      "title": "Модели управления доступом"
+      "title": "Дискреционное управление доступом"
     },
-    "practice:sec-seminar-4-authentication": {
+    "practice:sec-seminar-4-access-request": {
       "namespace": "practice",
-      "id": "sec-seminar-4-authentication",
+      "id": "sec-seminar-4-access-request",
       "page": "seminars/04-access-control.html",
-      "fragment": "sec-seminar-4-authentication",
-      "slide": "sec-seminar-4-authentication",
-      "labelHtml": "Аутентификация пользователя",
+      "fragment": "sec-seminar-4-access-request",
+      "slide": "sec-seminar-4-access-request",
+      "labelHtml": "Один файл открывают две программы",
       "numberHtml": "",
-      "label": "Аутентификация пользователя",
+      "label": "Один файл открывают две программы",
       "number": "",
-      "title": "Аутентификация пользователя"
+      "title": "Один файл открывают две программы"
+    },
+    "practice:sec-seminar-4-additional": {
+      "namespace": "practice",
+      "id": "sec-seminar-4-additional",
+      "page": "seminars/04-access-control.html",
+      "fragment": "sec-seminar-4-additional",
+      "slide": "sec-seminar-4-additional",
+      "labelHtml": "Дополнительно: разделение служебных полномочий",
+      "numberHtml": "",
+      "label": "Дополнительно: разделение служебных полномочий",
+      "number": "",
+      "title": "Дополнительно: разделение служебных полномочий"
+    },
+    "practice:sec-seminar-4-compiler": {
+      "namespace": "practice",
+      "id": "sec-seminar-4-compiler",
+      "page": "seminars/04-access-control.html",
+      "fragment": "sec-seminar-4-compiler",
+      "slide": "sec-seminar-4-compiler",
+      "labelHtml": "Компиляция программы",
+      "numberHtml": "",
+      "label": "Компиляция программы",
+      "number": "",
+      "title": "Компиляция программы"
+    },
+    "practice:sec-seminar-4-compiler-output": {
+      "namespace": "practice",
+      "id": "sec-seminar-4-compiler-output",
+      "page": "seminars/04-access-control.html",
+      "fragment": "sec-seminar-4-compiler-output",
+      "slide": "sec-seminar-4-compiler-output",
+      "labelHtml": "Выбор выходного файла",
+      "numberHtml": "",
+      "label": "Выбор выходного файла",
+      "number": "",
+      "title": "Выбор выходного файла"
+    },
+    "practice:sec-seminar-4-compiler-rights": {
+      "namespace": "practice",
+      "id": "sec-seminar-4-compiler-rights",
+      "page": "seminars/04-access-control.html",
+      "fragment": "sec-seminar-4-compiler-rights",
+      "slide": "sec-seminar-4-compiler-rights",
+      "labelHtml": "Ограничение прав компилятора",
+      "numberHtml": "",
+      "label": "Ограничение прав компилятора",
+      "number": "",
+      "title": "Ограничение прав компилятора"
+    },
+    "practice:sec-seminar-4-factors": {
+      "namespace": "practice",
+      "id": "sec-seminar-4-factors",
+      "page": "seminars/04-access-control.html",
+      "fragment": "sec-seminar-4-factors",
+      "slide": "sec-seminar-4-factors",
+      "labelHtml": "Факторы аутентификации",
+      "numberHtml": "",
+      "label": "Факторы аутентификации",
+      "number": "",
+      "title": "Факторы аутентификации"
+    },
+    "practice:sec-seminar-4-mac": {
+      "namespace": "practice",
+      "id": "sec-seminar-4-mac",
+      "page": "seminars/04-access-control.html",
+      "fragment": "sec-seminar-4-mac",
+      "slide": "sec-seminar-4-mac",
+      "labelHtml": "MAC: обязательные уровни",
+      "numberHtml": "",
+      "label": "MAC: обязательные уровни",
+      "number": "",
+      "title": "MAC: обязательные уровни"
+    },
+    "practice:sec-seminar-4-mac-operations": {
+      "namespace": "practice",
+      "id": "sec-seminar-4-mac-operations",
+      "page": "seminars/04-access-control.html",
+      "fragment": "sec-seminar-4-mac-operations",
+      "slide": "sec-seminar-4-mac-operations",
+      "labelHtml": "MAC: допустимость операций",
+      "numberHtml": "",
+      "label": "MAC: допустимость операций",
+      "number": "",
+      "title": "MAC: допустимость операций"
+    },
+    "practice:sec-seminar-4-matrix": {
+      "namespace": "practice",
+      "id": "sec-seminar-4-matrix",
+      "page": "seminars/04-access-control.html",
+      "fragment": "sec-seminar-4-matrix",
+      "slide": "sec-seminar-4-matrix",
+      "labelHtml": "Совместный черновик",
+      "numberHtml": "",
+      "label": "Совместный черновик",
+      "number": "",
+      "title": "Совместный черновик"
+    },
+    "practice:sec-seminar-4-means": {
+      "namespace": "practice",
+      "id": "sec-seminar-4-means",
+      "page": "seminars/04-access-control.html",
+      "fragment": "sec-seminar-4-means",
+      "slide": "sec-seminar-4-means",
+      "labelHtml": "Средства аутентификации",
+      "numberHtml": "",
+      "label": "Средства аутентификации",
+      "number": "",
+      "title": "Средства аутентификации"
+    },
+    "practice:sec-seminar-4-portal": {
+      "namespace": "practice",
+      "id": "sec-seminar-4-portal",
+      "page": "seminars/04-access-control.html",
+      "fragment": "sec-seminar-4-portal",
+      "slide": "sec-seminar-4-portal",
+      "labelHtml": "Вход на учебный портал",
+      "numberHtml": "",
+      "label": "Вход на учебный портал",
+      "number": "",
+      "title": "Вход на учебный портал"
+    },
+    "practice:sec-seminar-4-printer": {
+      "namespace": "practice",
+      "id": "sec-seminar-4-printer",
+      "page": "seminars/04-access-control.html",
+      "fragment": "sec-seminar-4-printer",
+      "slide": "sec-seminar-4-printer",
+      "labelHtml": "Дополнительно: права на сервере печати",
+      "numberHtml": "",
+      "label": "Дополнительно: права на сервере печати",
+      "number": "",
+      "title": "Дополнительно: права на сервере печати"
+    },
+    "practice:sec-seminar-4-rbac": {
+      "namespace": "practice",
+      "id": "sec-seminar-4-rbac",
+      "page": "seminars/04-access-control.html",
+      "fragment": "sec-seminar-4-rbac",
+      "slide": "sec-seminar-4-rbac",
+      "labelHtml": "RBAC: разрешения через роли",
+      "numberHtml": "",
+      "label": "RBAC: разрешения через роли",
+      "number": "",
+      "title": "RBAC: разрешения через роли"
+    },
+    "practice:sec-seminar-4-server-check": {
+      "namespace": "practice",
+      "id": "sec-seminar-4-server-check",
+      "page": "seminars/04-access-control.html",
+      "fragment": "sec-seminar-4-server-check",
+      "slide": "sec-seminar-4-server-check",
+      "labelHtml": "Проверка полномочий на сервере",
+      "numberHtml": "",
+      "label": "Проверка полномочий на сервере",
+      "number": "",
+      "title": "Проверка полномочий на сервере"
+    },
+    "practice:sec-seminar-4-totp": {
+      "namespace": "practice",
+      "id": "sec-seminar-4-totp",
+      "page": "seminars/04-access-control.html",
+      "fragment": "sec-seminar-4-totp",
+      "slide": "sec-seminar-4-totp",
+      "labelHtml": "Одноразовые коды",
+      "numberHtml": "",
+      "label": "Одноразовые коды",
+      "number": "",
+      "title": "Одноразовые коды"
+    },
+    "practice:sec-seminar-4-totp-transfer": {
+      "namespace": "practice",
+      "id": "sec-seminar-4-totp-transfer",
+      "page": "seminars/04-access-control.html",
+      "fragment": "sec-seminar-4-totp-transfer",
+      "slide": "sec-seminar-4-totp-transfer",
+      "labelHtml": "Дополнительно: перенос приложения",
+      "numberHtml": "",
+      "label": "Дополнительно: перенос приложения",
+      "number": "",
+      "title": "Дополнительно: перенос приложения"
+    },
+    "practice:sec-seminar-4-two-step": {
+      "namespace": "practice",
+      "id": "sec-seminar-4-two-step",
+      "page": "seminars/04-access-control.html",
+      "fragment": "sec-seminar-4-two-step",
+      "slide": "sec-seminar-4-two-step",
+      "labelHtml": "Две проверки при входе",
+      "numberHtml": "",
+      "label": "Две проверки при входе",
+      "number": "",
+      "title": "Две проверки при входе"
     },
     "practice:sec-seminar-5": {
       "namespace": "practice",
@@ -776,23 +976,11 @@
       "page": "seminars/05-crypto.html",
       "fragment": "sec-seminar-5",
       "slide": "sec-seminar-5",
-      "labelHtml": "Семинар 5 — Криптография",
+      "labelHtml": "Зашифрованный архив",
       "numberHtml": "",
-      "label": "Семинар 5 — Криптография",
+      "label": "Зашифрованный архив",
       "number": "",
-      "title": "Семинар 5 — Криптография"
-    },
-    "practice:sec-seminar-5-algorithms": {
-      "namespace": "practice",
-      "id": "sec-seminar-5-algorithms",
-      "page": "seminars/05-crypto.html",
-      "fragment": "sec-seminar-5-algorithms",
-      "slide": "sec-seminar-5-algorithms",
-      "labelHtml": "Известные алгоритмы",
-      "numberHtml": "",
-      "label": "Известные алгоритмы",
-      "number": "",
-      "title": "Известные алгоритмы"
+      "title": "Зашифрованный архив"
     },
     "practice:sec-seminar-5-encryption": {
       "namespace": "practice",
@@ -812,11 +1000,11 @@
       "page": "seminars/05-crypto.html",
       "fragment": "sec-seminar-5-hashes",
       "slide": "sec-seminar-5-hashes",
-      "labelHtml": "Хеширование",
+      "labelHtml": "Хеш-функция",
       "numberHtml": "",
-      "label": "Хеширование",
+      "label": "Хеш-функция",
       "number": "",
-      "title": "Хеширование"
+      "title": "Хеш-функция"
     },
     "practice:sec-seminar-5-keys": {
       "namespace": "practice",
@@ -824,11 +1012,11 @@
       "page": "seminars/05-crypto.html",
       "fragment": "sec-seminar-5-keys",
       "slide": "sec-seminar-5-keys",
-      "labelHtml": "Ключи",
+      "labelHtml": "Распределение общего ключа",
       "numberHtml": "",
-      "label": "Ключи",
+      "label": "Распределение общего ключа",
       "number": "",
-      "title": "Ключи"
+      "title": "Распределение общего ключа"
     },
     "practice:sec-seminar-5-passwords": {
       "namespace": "practice",
@@ -836,11 +1024,11 @@
       "page": "seminars/05-crypto.html",
       "fragment": "sec-seminar-5-passwords",
       "slide": "sec-seminar-5-passwords",
-      "labelHtml": "Хранение паролей",
+      "labelHtml": "Проверка пароля",
       "numberHtml": "",
-      "label": "Хранение паролей",
+      "label": "Проверка пароля",
       "number": "",
-      "title": "Хранение паролей"
+      "title": "Проверка пароля"
     },
     "practice:sec-seminar-5-randomness": {
       "namespace": "practice",
@@ -848,520 +1036,817 @@
       "page": "seminars/05-crypto.html",
       "fragment": "sec-seminar-5-randomness",
       "slide": "sec-seminar-5-randomness",
-      "labelHtml": "Случайность",
+      "labelHtml": "Криптографическая случайность",
       "numberHtml": "",
-      "label": "Случайность",
+      "label": "Криптографическая случайность",
       "number": "",
-      "title": "Случайность"
+      "title": "Криптографическая случайность"
     },
     "practice:sec-seminar-6": {
       "namespace": "practice",
       "id": "sec-seminar-6",
-      "page": "seminars/06-data-integrity.html",
+      "page": "seminars/06-data-trust.html",
       "fragment": "sec-seminar-6",
       "slide": "sec-seminar-6",
-      "labelHtml": "Занятие 6 – Сохранность данных",
+      "labelHtml": "Асимметричное шифрование",
       "numberHtml": "",
-      "label": "Занятие 6 – Сохранность данных",
+      "label": "Асимметричное шифрование",
       "number": "",
-      "title": "Занятие 6 – Сохранность данных"
+      "title": "Асимметричное шифрование"
     },
     "practice:sec-seminar-6-additional": {
       "namespace": "practice",
       "id": "sec-seminar-6-additional",
-      "page": "seminars/06-data-integrity.html",
+      "page": "seminars/06-data-trust.html",
       "fragment": "sec-seminar-6-additional",
       "slide": "sec-seminar-6-additional",
-      "labelHtml": "Дополнительные материалы",
+      "labelHtml": "Дополнительная работа",
       "numberHtml": "",
-      "label": "Дополнительные материалы",
+      "label": "Дополнительная работа",
       "number": "",
-      "title": "Дополнительные материалы"
+      "title": "Дополнительная работа"
     },
-    "practice:sec-seminar-6-backups": {
+    "practice:sec-seminar-6-authenticode": {
       "namespace": "practice",
-      "id": "sec-seminar-6-backups",
-      "page": "seminars/06-data-integrity.html",
-      "fragment": "sec-seminar-6-backups",
-      "slide": "sec-seminar-6-backups",
+      "id": "sec-seminar-6-authenticode",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "sec-seminar-6-authenticode",
+      "slide": "sec-seminar-6-authenticode",
+      "labelHtml": "Издатель программы в Windows",
+      "numberHtml": "",
+      "label": "Издатель программы в Windows",
+      "number": "",
+      "title": "Издатель программы в Windows"
+    },
+    "practice:sec-seminar-6-certificate": {
+      "namespace": "practice",
+      "id": "sec-seminar-6-certificate",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "sec-seminar-6-certificate",
+      "slide": "sec-seminar-6-certificate",
+      "labelHtml": "Сертификат открытого ключа",
+      "numberHtml": "",
+      "label": "Сертификат открытого ключа",
+      "number": "",
+      "title": "Сертификат открытого ключа"
+    },
+    "practice:sec-seminar-6-certificate-chain": {
+      "namespace": "practice",
+      "id": "sec-seminar-6-certificate-chain",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "sec-seminar-6-certificate-chain",
+      "slide": "sec-seminar-6-certificate-chain",
+      "labelHtml": "Цепочка сертификатов",
+      "numberHtml": "",
+      "label": "Цепочка сертификатов",
+      "number": "",
+      "title": "Цепочка сертификатов"
+    },
+    "practice:sec-seminar-6-download": {
+      "namespace": "practice",
+      "id": "sec-seminar-6-download",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "sec-seminar-6-download",
+      "slide": "sec-seminar-6-download",
+      "labelHtml": "Хеш скачанного файла",
+      "numberHtml": "",
+      "label": "Хеш скачанного файла",
+      "number": "",
+      "title": "Хеш скачанного файла"
+    },
+    "practice:sec-seminar-6-encryption": {
+      "namespace": "practice",
+      "id": "sec-seminar-6-encryption",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "sec-seminar-6-encryption",
+      "slide": "sec-seminar-6-encryption",
+      "labelHtml": "Шифрование получателю",
+      "numberHtml": "",
+      "label": "Шифрование получателю",
+      "number": "",
+      "title": "Шифрование получателю"
+    },
+    "practice:sec-seminar-6-key-length": {
+      "namespace": "practice",
+      "id": "sec-seminar-6-key-length",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "sec-seminar-6-key-length",
+      "slide": "sec-seminar-6-key-length",
+      "labelHtml": "Длина криптографического ключа",
+      "numberHtml": "",
+      "label": "Длина криптографического ключа",
+      "number": "",
+      "title": "Длина криптографического ключа"
+    },
+    "practice:sec-seminar-6-key-pair": {
+      "namespace": "practice",
+      "id": "sec-seminar-6-key-pair",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "sec-seminar-6-key-pair",
+      "slide": "sec-seminar-6-key-pair",
+      "labelHtml": "Пара асимметричных ключей",
+      "numberHtml": "",
+      "label": "Пара асимметричных ключей",
+      "number": "",
+      "title": "Пара асимметричных ключей"
+    },
+    "practice:sec-seminar-6-key-roles": {
+      "namespace": "practice",
+      "id": "sec-seminar-6-key-roles",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "sec-seminar-6-key-roles",
+      "slide": "sec-seminar-6-key-roles",
+      "labelHtml": "Назначение ключей",
+      "numberHtml": "",
+      "label": "Назначение ключей",
+      "number": "",
+      "title": "Назначение ключей"
+    },
+    "practice:sec-seminar-6-rsa": {
+      "namespace": "practice",
+      "id": "sec-seminar-6-rsa",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "sec-seminar-6-rsa",
+      "slide": "sec-seminar-6-rsa",
+      "labelHtml": "Ключевая пара RSA",
+      "numberHtml": "",
+      "label": "Ключевая пара RSA",
+      "number": "",
+      "title": "Ключевая пара RSA"
+    },
+    "practice:sec-seminar-6-rsa-security": {
+      "namespace": "practice",
+      "id": "sec-seminar-6-rsa-security",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "sec-seminar-6-rsa-security",
+      "slide": "sec-seminar-6-rsa-security",
+      "labelHtml": "Стойкость RSA",
+      "numberHtml": "",
+      "label": "Стойкость RSA",
+      "number": "",
+      "title": "Стойкость RSA"
+    },
+    "practice:sec-seminar-6-signature": {
+      "namespace": "practice",
+      "id": "sec-seminar-6-signature",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "sec-seminar-6-signature",
+      "slide": "sec-seminar-6-signature",
+      "labelHtml": "Создание подписи",
+      "numberHtml": "",
+      "label": "Создание подписи",
+      "number": "",
+      "title": "Создание подписи"
+    },
+    "practice:sec-seminar-6-signature-digest": {
+      "namespace": "practice",
+      "id": "sec-seminar-6-signature-digest",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "sec-seminar-6-signature-digest",
+      "slide": "sec-seminar-6-signature-digest",
+      "labelHtml": "Подпись дайджеста",
+      "numberHtml": "",
+      "label": "Подпись дайджеста",
+      "number": "",
+      "title": "Подпись дайджеста"
+    },
+    "practice:sec-seminar-6-signature-message": {
+      "namespace": "practice",
+      "id": "sec-seminar-6-signature-message",
+      "page": "seminars/06-data-trust.html",
+      "fragment": "sec-seminar-6-signature-message",
+      "slide": "sec-seminar-6-signature-message",
+      "labelHtml": "Подписываемое сообщение",
+      "numberHtml": "",
+      "label": "Подписываемое сообщение",
+      "number": "",
+      "title": "Подписываемое сообщение"
+    },
+    "practice:sec-seminar-7": {
+      "namespace": "practice",
+      "id": "sec-seminar-7",
+      "page": "seminars/07-data-preservation.html",
+      "fragment": "sec-seminar-7",
+      "slide": "sec-seminar-7",
       "labelHtml": "Резервное копирование",
       "numberHtml": "",
       "label": "Резервное копирование",
       "number": "",
       "title": "Резервное копирование"
     },
-    "practice:sec-seminar-6-integrity": {
+    "practice:sec-seminar-7-additional": {
       "namespace": "practice",
-      "id": "sec-seminar-6-integrity",
-      "page": "seminars/06-data-integrity.html",
-      "fragment": "sec-seminar-6-integrity",
-      "slide": "sec-seminar-6-integrity",
-      "labelHtml": "Проверка целостности",
+      "id": "sec-seminar-7-additional",
+      "page": "seminars/07-data-preservation.html",
+      "fragment": "sec-seminar-7-additional",
+      "slide": "sec-seminar-7-additional",
+      "labelHtml": "Дополнительные задачи",
       "numberHtml": "",
-      "label": "Проверка целостности",
+      "label": "Дополнительные задачи",
       "number": "",
-      "title": "Проверка целостности"
+      "title": "Дополнительные задачи"
     },
-    "practice:sec-seminar-6-raid": {
+    "practice:sec-seminar-7-raid": {
       "namespace": "practice",
-      "id": "sec-seminar-6-raid",
-      "page": "seminars/06-data-integrity.html",
-      "fragment": "sec-seminar-6-raid",
-      "slide": "sec-seminar-6-raid",
-      "labelHtml": "Восстановление в массивах дисков",
+      "id": "sec-seminar-7-raid",
+      "page": "seminars/07-data-preservation.html",
+      "fragment": "sec-seminar-7-raid",
+      "slide": "sec-seminar-7-raid",
+      "labelHtml": "Дисковый массив",
       "numberHtml": "",
-      "label": "Восстановление в массивах дисков",
+      "label": "Дисковый массив",
       "number": "",
-      "title": "Восстановление в массивах дисков"
-    },
-    "practice:sec-seminar-7": {
-      "namespace": "practice",
-      "id": "sec-seminar-7",
-      "page": "seminars/07-signature-trust.html",
-      "fragment": "sec-seminar-7",
-      "slide": "sec-seminar-7",
-      "labelHtml": "Семинар 7 — Цифровая подпись",
-      "numberHtml": "",
-      "label": "Семинар 7 — Цифровая подпись",
-      "number": "",
-      "title": "Семинар 7 — Цифровая подпись"
-    },
-    "practice:sec-seminar-7-public-key": {
-      "namespace": "practice",
-      "id": "sec-seminar-7-public-key",
-      "page": "seminars/07-signature-trust.html",
-      "fragment": "sec-seminar-7-public-key",
-      "slide": "sec-seminar-7-public-key",
-      "labelHtml": "Асимметричные схемы",
-      "numberHtml": "",
-      "label": "Асимметричные схемы",
-      "number": "",
-      "title": "Асимметричные схемы"
-    },
-    "practice:sec-seminar-7-signatures": {
-      "namespace": "practice",
-      "id": "sec-seminar-7-signatures",
-      "page": "seminars/07-signature-trust.html",
-      "fragment": "sec-seminar-7-signatures",
-      "slide": "sec-seminar-7-signatures",
-      "labelHtml": "Проверка цифровой подписи",
-      "numberHtml": "",
-      "label": "Проверка цифровой подписи",
-      "number": "",
-      "title": "Проверка цифровой подписи"
-    },
-    "practice:sec-seminar-7-trust": {
-      "namespace": "practice",
-      "id": "sec-seminar-7-trust",
-      "page": "seminars/07-signature-trust.html",
-      "fragment": "sec-seminar-7-trust",
-      "slide": "sec-seminar-7-trust",
-      "labelHtml": "Доверие к ключу",
-      "numberHtml": "",
-      "label": "Доверие к ключу",
-      "number": "",
-      "title": "Доверие к ключу"
-    },
-    "practice:sol-fundamentals-cia-cases": {
-      "namespace": "practice",
-      "id": "sol-fundamentals-cia-cases",
-      "page": "seminars/01-introduction.html",
-      "fragment": "sol-fundamentals-cia-cases",
-      "slide": "вопрос-для-аудитории",
-      "labelHtml": "Solution&nbsp;1",
-      "numberHtml": "1",
-      "label": "Solution 1",
-      "number": "1"
+      "title": "Дисковый массив"
     },
     "tasks:exr-access-control-casbin": {
       "namespace": "tasks",
       "id": "exr-access-control-casbin",
       "page": "task/bank/access-control.html",
       "fragment": "exr-access-control-casbin",
-      "labelHtml": "задача&nbsp;<span>7.6</span>",
-      "numberHtml": "<span>7.6</span>",
-      "label": "задача 7.6",
-      "number": "7.6"
+      "labelHtml": "задача&nbsp;<span>6.10</span>",
+      "numberHtml": "<span>6.10</span>",
+      "label": "задача 6.10",
+      "number": "6.10"
     },
     "tasks:exr-access-control-combined": {
       "namespace": "tasks",
       "id": "exr-access-control-combined",
       "page": "task/bank/access-control.html",
       "fragment": "exr-access-control-combined",
-      "labelHtml": "задача&nbsp;<span>7.2</span>",
-      "numberHtml": "<span>7.2</span>",
-      "label": "задача 7.2",
-      "number": "7.2"
+      "labelHtml": "задача&nbsp;<span>6.4</span>",
+      "numberHtml": "<span>6.4</span>",
+      "label": "задача 6.4",
+      "number": "6.4"
+    },
+    "tasks:exr-access-control-compiler-output": {
+      "namespace": "tasks",
+      "id": "exr-access-control-compiler-output",
+      "page": "task/bank/access-control.html",
+      "fragment": "exr-access-control-compiler-output",
+      "labelHtml": "задача&nbsp;<span>6.2</span>",
+      "numberHtml": "<span>6.2</span>",
+      "label": "задача 6.2",
+      "number": "6.2"
+    },
+    "tasks:exr-access-control-compiler-statistics": {
+      "namespace": "tasks",
+      "id": "exr-access-control-compiler-statistics",
+      "page": "task/bank/access-control.html",
+      "fragment": "exr-access-control-compiler-statistics",
+      "labelHtml": "задача&nbsp;<span>6.9</span>",
+      "numberHtml": "<span>6.9</span>",
+      "label": "задача 6.9",
+      "number": "6.9"
     },
     "tasks:exr-access-control-dac": {
       "namespace": "tasks",
       "id": "exr-access-control-dac",
       "page": "task/bank/access-control.html",
       "fragment": "exr-access-control-dac",
-      "labelHtml": "задача&nbsp;<span>7.3</span>",
-      "numberHtml": "<span>7.3</span>",
-      "label": "задача 7.3",
-      "number": "7.3"
+      "labelHtml": "задача&nbsp;<span>6.5</span>",
+      "numberHtml": "<span>6.5</span>",
+      "label": "задача 6.5",
+      "number": "6.5"
     },
     "tasks:exr-access-control-mac": {
       "namespace": "tasks",
       "id": "exr-access-control-mac",
       "page": "task/bank/access-control.html",
       "fragment": "exr-access-control-mac",
-      "labelHtml": "задача&nbsp;<span>7.4</span>",
-      "numberHtml": "<span>7.4</span>",
-      "label": "задача 7.4",
-      "number": "7.4"
+      "labelHtml": "задача&nbsp;<span>6.6</span>",
+      "numberHtml": "<span>6.6</span>",
+      "label": "задача 6.6",
+      "number": "6.6"
+    },
+    "tasks:exr-access-control-printer-roles": {
+      "namespace": "tasks",
+      "id": "exr-access-control-printer-roles",
+      "page": "task/bank/access-control.html",
+      "fragment": "exr-access-control-printer-roles",
+      "labelHtml": "задача&nbsp;<span>6.7</span>",
+      "numberHtml": "<span>6.7</span>",
+      "label": "задача 6.7",
+      "number": "6.7"
     },
     "tasks:exr-access-control-rbac": {
       "namespace": "tasks",
       "id": "exr-access-control-rbac",
       "page": "task/bank/access-control.html",
       "fragment": "exr-access-control-rbac",
-      "labelHtml": "задача&nbsp;<span>7.5</span>",
-      "numberHtml": "<span>7.5</span>",
-      "label": "задача 7.5",
-      "number": "7.5"
+      "labelHtml": "задача&nbsp;<span>6.8</span>",
+      "numberHtml": "<span>6.8</span>",
+      "label": "задача 6.8",
+      "number": "6.8"
     },
     "tasks:exr-access-control-request": {
       "namespace": "tasks",
       "id": "exr-access-control-request",
       "page": "task/bank/access-control.html",
       "fragment": "exr-access-control-request",
-      "labelHtml": "задача&nbsp;<span>7.1</span>",
-      "numberHtml": "<span>7.1</span>",
-      "label": "задача 7.1",
-      "number": "7.1"
+      "labelHtml": "задача&nbsp;<span>6.3</span>",
+      "numberHtml": "<span>6.3</span>",
+      "label": "задача 6.3",
+      "number": "6.3"
+    },
+    "tasks:exr-access-control-request-subject": {
+      "namespace": "tasks",
+      "id": "exr-access-control-request-subject",
+      "page": "task/bank/access-control.html",
+      "fragment": "exr-access-control-request-subject",
+      "labelHtml": "задача&nbsp;<span>6.1</span>",
+      "numberHtml": "<span>6.1</span>",
+      "label": "задача 6.1",
+      "number": "6.1"
     },
     "tasks:exr-access-short-editor": {
       "namespace": "tasks",
       "id": "exr-access-short-editor",
       "page": "task/bank/access-control.html",
       "fragment": "exr-access-short-editor",
-      "labelHtml": "задача&nbsp;<span>7.7</span>",
-      "numberHtml": "<span>7.7</span>",
-      "label": "задача 7.7",
-      "number": "7.7"
+      "labelHtml": "задача&nbsp;<span>6.11</span>",
+      "numberHtml": "<span>6.11</span>",
+      "label": "задача 6.11",
+      "number": "6.11"
     },
     "tasks:exr-access-short-totp-factor": {
       "namespace": "tasks",
       "id": "exr-access-short-totp-factor",
       "page": "task/bank/access-control.html",
       "fragment": "exr-access-short-totp-factor",
-      "labelHtml": "задача&nbsp;<span>7.9</span>",
-      "numberHtml": "<span>7.9</span>",
-      "label": "задача 7.9",
-      "number": "7.9"
+      "labelHtml": "задача&nbsp;<span>6.13</span>",
+      "numberHtml": "<span>6.13</span>",
+      "label": "задача 6.13",
+      "number": "6.13"
     },
     "tasks:exr-access-short-two-step": {
       "namespace": "tasks",
       "id": "exr-access-short-two-step",
       "page": "task/bank/access-control.html",
       "fragment": "exr-access-short-two-step",
-      "labelHtml": "задача&nbsp;<span>7.8</span>",
-      "numberHtml": "<span>7.8</span>",
-      "label": "задача 7.8",
-      "number": "7.8"
+      "labelHtml": "задача&nbsp;<span>6.12</span>",
+      "numberHtml": "<span>6.12</span>",
+      "label": "задача 6.12",
+      "number": "6.12"
     },
     "tasks:exr-control-demo-document-selection": {
       "namespace": "tasks",
       "id": "exr-control-demo-document-selection",
       "page": "task/works/control-demo.html",
       "fragment": "exr-control-demo-document-selection",
-      "labelHtml": "задача&nbsp;<span>14.2</span>",
-      "numberHtml": "<span>14.2</span>",
-      "label": "задача 14.2",
-      "number": "14.2"
+      "labelHtml": "Упражнение&nbsp;<span>15.2</span>",
+      "numberHtml": "<span>15.2</span>",
+      "label": "Упражнение 15.2",
+      "number": "15.2"
     },
     "tasks:exr-control-demo-protection-measures": {
       "namespace": "tasks",
       "id": "exr-control-demo-protection-measures",
       "page": "task/works/control-demo.html",
       "fragment": "exr-control-demo-protection-measures",
-      "labelHtml": "задача&nbsp;<span>14.5</span>",
-      "numberHtml": "<span>14.5</span>",
-      "label": "задача 14.5",
-      "number": "14.5"
+      "labelHtml": "Упражнение&nbsp;<span>15.5</span>",
+      "numberHtml": "<span>15.5</span>",
+      "label": "Упражнение 15.5",
+      "number": "15.5"
     },
     "tasks:exr-control-demo-security-center": {
       "namespace": "tasks",
       "id": "exr-control-demo-security-center",
       "page": "task/works/control-demo.html",
       "fragment": "exr-control-demo-security-center",
-      "labelHtml": "задача&nbsp;<span>14.4</span>",
-      "numberHtml": "<span>14.4</span>",
-      "label": "задача 14.4",
-      "number": "14.4"
+      "labelHtml": "Упражнение&nbsp;<span>15.4</span>",
+      "numberHtml": "<span>15.4</span>",
+      "label": "Упражнение 15.4",
+      "number": "15.4"
     },
     "tasks:exr-control-demo-service-center": {
       "namespace": "tasks",
       "id": "exr-control-demo-service-center",
       "page": "task/works/control-demo.html",
       "fragment": "exr-control-demo-service-center",
-      "labelHtml": "задача&nbsp;<span>14.1</span>",
-      "numberHtml": "<span>14.1</span>",
-      "label": "задача 14.1",
-      "number": "14.1"
+      "labelHtml": "Упражнение&nbsp;<span>15.1</span>",
+      "numberHtml": "<span>15.1</span>",
+      "label": "Упражнение 15.1",
+      "number": "15.1"
     },
     "tasks:exr-control-demo-system-requirements": {
       "namespace": "tasks",
       "id": "exr-control-demo-system-requirements",
       "page": "task/works/control-demo.html",
       "fragment": "exr-control-demo-system-requirements",
-      "labelHtml": "задача&nbsp;<span>14.3</span>",
-      "numberHtml": "<span>14.3</span>",
-      "label": "задача 14.3",
-      "number": "14.3"
+      "labelHtml": "Упражнение&nbsp;<span>15.3</span>",
+      "numberHtml": "<span>15.3</span>",
+      "label": "Упражнение 15.3",
+      "number": "15.3"
     },
     "tasks:exr-crypto-caesar-coffee": {
       "namespace": "tasks",
       "id": "exr-crypto-caesar-coffee",
       "page": "task/bank/crypto.html",
       "fragment": "exr-crypto-caesar-coffee",
-      "labelHtml": "задача&nbsp;<span>6.15</span>",
-      "numberHtml": "<span>6.15</span>",
-      "label": "задача 6.15",
-      "number": "6.15"
+      "labelHtml": "задача&nbsp;<span>7.17</span>",
+      "numberHtml": "<span>7.17</span>",
+      "label": "задача 7.17",
+      "number": "7.17"
     },
     "tasks:exr-crypto-file-and-hash-replaced": {
       "namespace": "tasks",
       "id": "exr-crypto-file-and-hash-replaced",
       "page": "task/bank/crypto.html",
       "fragment": "exr-crypto-file-and-hash-replaced",
-      "labelHtml": "задача&nbsp;<span>6.12</span>",
-      "numberHtml": "<span>6.12</span>",
-      "label": "задача 6.12",
-      "number": "6.12"
+      "labelHtml": "задача&nbsp;<span>7.14</span>",
+      "numberHtml": "<span>7.14</span>",
+      "label": "задача 7.14",
+      "number": "7.14"
     },
     "tasks:exr-crypto-five-people-keys": {
       "namespace": "tasks",
       "id": "exr-crypto-five-people-keys",
       "page": "task/bank/crypto.html",
       "fragment": "exr-crypto-five-people-keys",
-      "labelHtml": "задача&nbsp;<span>6.10</span>",
-      "numberHtml": "<span>6.10</span>",
-      "label": "задача 6.10",
-      "number": "6.10"
+      "labelHtml": "задача&nbsp;<span>7.12</span>",
+      "numberHtml": "<span>7.12</span>",
+      "label": "задача 7.12",
+      "number": "7.12"
     },
     "tasks:exr-crypto-hash-aa-bb": {
       "namespace": "tasks",
       "id": "exr-crypto-hash-aa-bb",
       "page": "task/bank/crypto.html",
       "fragment": "exr-crypto-hash-aa-bb",
-      "labelHtml": "задача&nbsp;<span>6.8</span>",
-      "numberHtml": "<span>6.8</span>",
-      "label": "задача 6.8",
-      "number": "6.8"
+      "labelHtml": "задача&nbsp;<span>7.10</span>",
+      "numberHtml": "<span>7.10</span>",
+      "label": "задача 7.10",
+      "number": "7.10"
+    },
+    "tasks:exr-crypto-hash-search-kind": {
+      "namespace": "tasks",
+      "id": "exr-crypto-hash-search-kind",
+      "page": "task/bank/crypto.html",
+      "fragment": "exr-crypto-hash-search-kind",
+      "labelHtml": "задача&nbsp;<span>7.1</span>",
+      "numberHtml": "<span>7.1</span>",
+      "label": "задача 7.1",
+      "number": "7.1"
     },
     "tasks:exr-crypto-hmac-authors": {
       "namespace": "tasks",
       "id": "exr-crypto-hmac-authors",
       "page": "task/bank/crypto.html",
       "fragment": "exr-crypto-hmac-authors",
-      "labelHtml": "задача&nbsp;<span>6.11</span>",
-      "numberHtml": "<span>6.11</span>",
-      "label": "задача 6.11",
-      "number": "6.11"
+      "labelHtml": "задача&nbsp;<span>7.13</span>",
+      "numberHtml": "<span>7.13</span>",
+      "label": "задача 7.13",
+      "number": "7.13"
     },
     "tasks:exr-crypto-lcg-mod16": {
       "namespace": "tasks",
       "id": "exr-crypto-lcg-mod16",
       "page": "task/bank/crypto.html",
       "fragment": "exr-crypto-lcg-mod16",
-      "labelHtml": "задача&nbsp;<span>6.7</span>",
-      "numberHtml": "<span>6.7</span>",
-      "label": "задача 6.7",
-      "number": "6.7"
+      "labelHtml": "задача&nbsp;<span>7.9</span>",
+      "numberHtml": "<span>7.9</span>",
+      "label": "задача 7.9",
+      "number": "7.9"
     },
     "tasks:exr-crypto-old-signature": {
       "namespace": "tasks",
       "id": "exr-crypto-old-signature",
       "page": "task/bank/crypto.html",
       "fragment": "exr-crypto-old-signature",
-      "labelHtml": "задача&nbsp;<span>6.13</span>",
-      "numberHtml": "<span>6.13</span>",
-      "label": "задача 6.13",
-      "number": "6.13"
+      "labelHtml": "задача&nbsp;<span>7.15</span>",
+      "numberHtml": "<span>7.15</span>",
+      "label": "задача 7.15",
+      "number": "7.15"
     },
     "tasks:exr-crypto-password-search-cost": {
       "namespace": "tasks",
       "id": "exr-crypto-password-search-cost",
       "page": "task/bank/crypto.html",
       "fragment": "exr-crypto-password-search-cost",
-      "labelHtml": "задача&nbsp;<span>6.9</span>",
-      "numberHtml": "<span>6.9</span>",
-      "label": "задача 6.9",
-      "number": "6.9"
+      "labelHtml": "задача&nbsp;<span>7.11</span>",
+      "numberHtml": "<span>7.11</span>",
+      "label": "задача 7.11",
+      "number": "7.11"
     },
     "tasks:exr-crypto-password-six-records": {
       "namespace": "tasks",
       "id": "exr-crypto-password-six-records",
       "page": "task/bank/crypto.html",
       "fragment": "exr-crypto-password-six-records",
-      "labelHtml": "задача&nbsp;<span>6.14</span>",
-      "numberHtml": "<span>6.14</span>",
-      "label": "задача 6.14",
-      "number": "6.14"
+      "labelHtml": "задача&nbsp;<span>7.16</span>",
+      "numberHtml": "<span>7.16</span>",
+      "label": "задача 7.16",
+      "number": "7.16"
     },
     "tasks:exr-crypto-schedule-signature-versions": {
       "namespace": "tasks",
       "id": "exr-crypto-schedule-signature-versions",
       "page": "task/bank/crypto.html",
       "fragment": "exr-crypto-schedule-signature-versions",
-      "labelHtml": "задача&nbsp;<span>6.16</span>",
-      "numberHtml": "<span>6.16</span>",
-      "label": "задача 6.16",
-      "number": "6.16"
+      "labelHtml": "задача&nbsp;<span>7.18</span>",
+      "numberHtml": "<span>7.18</span>",
+      "label": "задача 7.18",
+      "number": "7.18"
     },
     "tasks:exr-crypto-short-caesar": {
       "namespace": "tasks",
       "id": "exr-crypto-short-caesar",
       "page": "task/bank/crypto.html",
       "fragment": "exr-crypto-short-caesar",
-      "labelHtml": "задача&nbsp;<span>6.2</span>",
-      "numberHtml": "<span>6.2</span>",
-      "label": "задача 6.2",
-      "number": "6.2"
+      "labelHtml": "задача&nbsp;<span>7.4</span>",
+      "numberHtml": "<span>7.4</span>",
+      "label": "задача 7.4",
+      "number": "7.4"
     },
     "tasks:exr-crypto-short-coin": {
       "namespace": "tasks",
       "id": "exr-crypto-short-coin",
       "page": "task/bank/crypto.html",
       "fragment": "exr-crypto-short-coin",
-      "labelHtml": "задача&nbsp;<span>6.5</span>",
-      "numberHtml": "<span>6.5</span>",
-      "label": "задача 6.5",
-      "number": "6.5"
+      "labelHtml": "задача&nbsp;<span>7.7</span>",
+      "numberHtml": "<span>7.7</span>",
+      "label": "задача 7.7",
+      "number": "7.7"
     },
     "tasks:exr-crypto-short-lcg": {
       "namespace": "tasks",
       "id": "exr-crypto-short-lcg",
       "page": "task/bank/crypto.html",
       "fragment": "exr-crypto-short-lcg",
-      "labelHtml": "задача&nbsp;<span>6.1</span>",
-      "numberHtml": "<span>6.1</span>",
-      "label": "задача 6.1",
-      "number": "6.1"
+      "labelHtml": "задача&nbsp;<span>7.3</span>",
+      "numberHtml": "<span>7.3</span>",
+      "label": "задача 7.3",
+      "number": "7.3"
     },
     "tasks:exr-crypto-short-purpose": {
       "namespace": "tasks",
       "id": "exr-crypto-short-purpose",
       "page": "task/bank/crypto.html",
       "fragment": "exr-crypto-short-purpose",
-      "labelHtml": "задача&nbsp;<span>6.6</span>",
-      "numberHtml": "<span>6.6</span>",
-      "label": "задача 6.6",
-      "number": "6.6"
+      "labelHtml": "задача&nbsp;<span>7.8</span>",
+      "numberHtml": "<span>7.8</span>",
+      "label": "задача 7.8",
+      "number": "7.8"
     },
     "tasks:exr-crypto-short-salt": {
       "namespace": "tasks",
       "id": "exr-crypto-short-salt",
       "page": "task/bank/crypto.html",
       "fragment": "exr-crypto-short-salt",
-      "labelHtml": "задача&nbsp;<span>6.4</span>",
-      "numberHtml": "<span>6.4</span>",
-      "label": "задача 6.4",
-      "number": "6.4"
+      "labelHtml": "задача&nbsp;<span>7.6</span>",
+      "numberHtml": "<span>7.6</span>",
+      "label": "задача 7.6",
+      "number": "7.6"
     },
     "tasks:exr-crypto-short-xor": {
       "namespace": "tasks",
       "id": "exr-crypto-short-xor",
       "page": "task/bank/crypto.html",
       "fragment": "exr-crypto-short-xor",
-      "labelHtml": "задача&nbsp;<span>6.3</span>",
-      "numberHtml": "<span>6.3</span>",
-      "label": "задача 6.3",
-      "number": "6.3"
+      "labelHtml": "задача&nbsp;<span>7.5</span>",
+      "numberHtml": "<span>7.5</span>",
+      "label": "задача 7.5",
+      "number": "7.5"
+    },
+    "tasks:exr-crypto-xor-fragment": {
+      "namespace": "tasks",
+      "id": "exr-crypto-xor-fragment",
+      "page": "task/bank/crypto.html",
+      "fragment": "exr-crypto-xor-fragment",
+      "labelHtml": "задача&nbsp;<span>7.2</span>",
+      "numberHtml": "<span>7.2</span>",
+      "label": "задача 7.2",
+      "number": "7.2"
     },
     "tasks:exr-data-integrity-backup": {
       "namespace": "tasks",
       "id": "exr-data-integrity-backup",
-      "page": "task/bank/data-integrity.html",
+      "page": "task/bank/data-preservation.html",
       "fragment": "exr-data-integrity-backup",
+      "labelHtml": "задача&nbsp;<span>9.1</span>",
+      "numberHtml": "<span>9.1</span>",
+      "label": "задача 9.1",
+      "number": "9.1"
+    },
+    "tasks:exr-data-integrity-backup-chain": {
+      "namespace": "tasks",
+      "id": "exr-data-integrity-backup-chain",
+      "page": "task/bank/data-preservation.html",
+      "fragment": "exr-data-integrity-backup-chain",
+      "labelHtml": "задача&nbsp;<span>9.6</span>",
+      "numberHtml": "<span>9.6</span>",
+      "label": "задача 9.6",
+      "number": "9.6"
+    },
+    "tasks:exr-data-integrity-backup-volume": {
+      "namespace": "tasks",
+      "id": "exr-data-integrity-backup-volume",
+      "page": "task/bank/data-preservation.html",
+      "fragment": "exr-data-integrity-backup-volume",
+      "labelHtml": "задача&nbsp;<span>9.3</span>",
+      "numberHtml": "<span>9.3</span>",
+      "label": "задача 9.3",
+      "number": "9.3"
+    },
+    "tasks:exr-data-integrity-mirror-copy": {
+      "namespace": "tasks",
+      "id": "exr-data-integrity-mirror-copy",
+      "page": "task/bank/data-preservation.html",
+      "fragment": "exr-data-integrity-mirror-copy",
+      "labelHtml": "задача&nbsp;<span>9.4</span>",
+      "numberHtml": "<span>9.4</span>",
+      "label": "задача 9.4",
+      "number": "9.4"
+    },
+    "tasks:exr-data-integrity-mirror-history": {
+      "namespace": "tasks",
+      "id": "exr-data-integrity-mirror-history",
+      "page": "task/bank/data-preservation.html",
+      "fragment": "exr-data-integrity-mirror-history",
+      "labelHtml": "задача&nbsp;<span>9.8</span>",
+      "numberHtml": "<span>9.8</span>",
+      "label": "задача 9.8",
+      "number": "9.8"
+    },
+    "tasks:exr-data-integrity-raid-capacity": {
+      "namespace": "tasks",
+      "id": "exr-data-integrity-raid-capacity",
+      "page": "task/bank/data-preservation.html",
+      "fragment": "exr-data-integrity-raid-capacity",
+      "labelHtml": "задача&nbsp;<span>9.7</span>",
+      "numberHtml": "<span>9.7</span>",
+      "label": "задача 9.7",
+      "number": "9.7"
+    },
+    "tasks:exr-data-integrity-sum": {
+      "namespace": "tasks",
+      "id": "exr-data-integrity-sum",
+      "page": "task/bank/data-preservation.html",
+      "fragment": "exr-data-integrity-sum",
+      "labelHtml": "задача&nbsp;<span>9.5</span>",
+      "numberHtml": "<span>9.5</span>",
+      "label": "задача 9.5",
+      "number": "9.5"
+    },
+    "tasks:exr-data-integrity-trusted-hash": {
+      "namespace": "tasks",
+      "id": "exr-data-integrity-trusted-hash",
+      "page": "task/bank/data-preservation.html",
+      "fragment": "exr-data-integrity-trusted-hash",
+      "labelHtml": "задача&nbsp;<span>9.2</span>",
+      "numberHtml": "<span>9.2</span>",
+      "label": "задача 9.2",
+      "number": "9.2"
+    },
+    "tasks:exr-data-preservation-missing-copy": {
+      "namespace": "tasks",
+      "id": "exr-data-preservation-missing-copy",
+      "page": "task/bank/data-preservation.html",
+      "fragment": "exr-data-preservation-missing-copy",
+      "labelHtml": "задача&nbsp;<span>9.10</span>",
+      "numberHtml": "<span>9.10</span>",
+      "label": "задача 9.10",
+      "number": "9.10"
+    },
+    "tasks:exr-data-preservation-parity-recovery": {
+      "namespace": "tasks",
+      "id": "exr-data-preservation-parity-recovery",
+      "page": "task/bank/data-preservation.html",
+      "fragment": "exr-data-preservation-parity-recovery",
+      "labelHtml": "задача&nbsp;<span>9.14</span>",
+      "numberHtml": "<span>9.14</span>",
+      "label": "задача 9.14",
+      "number": "9.14"
+    },
+    "tasks:exr-data-preservation-project-recovery": {
+      "namespace": "tasks",
+      "id": "exr-data-preservation-project-recovery",
+      "page": "task/bank/data-preservation.html",
+      "fragment": "exr-data-preservation-project-recovery",
+      "labelHtml": "задача&nbsp;<span>9.12</span>",
+      "numberHtml": "<span>9.12</span>",
+      "label": "задача 9.12",
+      "number": "9.12"
+    },
+    "tasks:exr-data-preservation-recovery-after-reedit": {
+      "namespace": "tasks",
+      "id": "exr-data-preservation-recovery-after-reedit",
+      "page": "task/bank/data-preservation.html",
+      "fragment": "exr-data-preservation-recovery-after-reedit",
+      "labelHtml": "задача&nbsp;<span>9.11</span>",
+      "numberHtml": "<span>9.11</span>",
+      "label": "задача 9.11",
+      "number": "9.11"
+    },
+    "tasks:exr-data-preservation-repeated-edit": {
+      "namespace": "tasks",
+      "id": "exr-data-preservation-repeated-edit",
+      "page": "task/bank/data-preservation.html",
+      "fragment": "exr-data-preservation-repeated-edit",
+      "labelHtml": "задача&nbsp;<span>9.13</span>",
+      "numberHtml": "<span>9.13</span>",
+      "label": "задача 9.13",
+      "number": "9.13"
+    },
+    "tasks:exr-data-preservation-restore-tuesday": {
+      "namespace": "tasks",
+      "id": "exr-data-preservation-restore-tuesday",
+      "page": "task/bank/data-preservation.html",
+      "fragment": "exr-data-preservation-restore-tuesday",
+      "labelHtml": "задача&nbsp;<span>9.9</span>",
+      "numberHtml": "<span>9.9</span>",
+      "label": "задача 9.9",
+      "number": "9.9"
+    },
+    "tasks:exr-data-trust-certificate-chain": {
+      "namespace": "tasks",
+      "id": "exr-data-trust-certificate-chain",
+      "page": "task/bank/data-trust.html",
+      "fragment": "exr-data-trust-certificate-chain",
+      "labelHtml": "задача&nbsp;<span>9.1</span>",
+      "numberHtml": "<span>9.1</span>",
+      "label": "задача 9.1",
+      "number": "9.1"
+    },
+    "tasks:exr-data-trust-download-reference": {
+      "namespace": "tasks",
+      "id": "exr-data-trust-download-reference",
+      "page": "task/bank/data-trust.html",
+      "fragment": "exr-data-trust-download-reference",
       "labelHtml": "задача&nbsp;<span>8.1</span>",
       "numberHtml": "<span>8.1</span>",
       "label": "задача 8.1",
       "number": "8.1"
     },
-    "tasks:exr-data-integrity-backup-chain": {
+    "tasks:exr-data-trust-edited-notice": {
       "namespace": "tasks",
-      "id": "exr-data-integrity-backup-chain",
-      "page": "task/bank/data-integrity.html",
-      "fragment": "exr-data-integrity-backup-chain",
-      "labelHtml": "задача&nbsp;<span>8.6</span>",
-      "numberHtml": "<span>8.6</span>",
-      "label": "задача 8.6",
-      "number": "8.6"
-    },
-    "tasks:exr-data-integrity-backup-volume": {
-      "namespace": "tasks",
-      "id": "exr-data-integrity-backup-volume",
-      "page": "task/bank/data-integrity.html",
-      "fragment": "exr-data-integrity-backup-volume",
+      "id": "exr-data-trust-edited-notice",
+      "page": "task/bank/data-trust.html",
+      "fragment": "exr-data-trust-edited-notice",
       "labelHtml": "задача&nbsp;<span>8.3</span>",
       "numberHtml": "<span>8.3</span>",
       "label": "задача 8.3",
       "number": "8.3"
     },
-    "tasks:exr-data-integrity-mirror-copy": {
+    "tasks:exr-data-trust-key-roles": {
       "namespace": "tasks",
-      "id": "exr-data-integrity-mirror-copy",
-      "page": "task/bank/data-integrity.html",
-      "fragment": "exr-data-integrity-mirror-copy",
+      "id": "exr-data-trust-key-roles",
+      "page": "task/bank/data-trust.html",
+      "fragment": "exr-data-trust-key-roles",
       "labelHtml": "задача&nbsp;<span>8.4</span>",
       "numberHtml": "<span>8.4</span>",
       "label": "задача 8.4",
       "number": "8.4"
     },
-    "tasks:exr-data-integrity-mirror-history": {
+    "tasks:exr-data-trust-lamport-check": {
       "namespace": "tasks",
-      "id": "exr-data-integrity-mirror-history",
-      "page": "task/bank/data-integrity.html",
-      "fragment": "exr-data-integrity-mirror-history",
-      "labelHtml": "задача&nbsp;<span>8.8</span>",
-      "numberHtml": "<span>8.8</span>",
-      "label": "задача 8.8",
-      "number": "8.8"
+      "id": "exr-data-trust-lamport-check",
+      "page": "task/bank/data-trust.html",
+      "fragment": "exr-data-trust-lamport-check",
+      "labelHtml": "задача&nbsp;<span>10.2</span>",
+      "numberHtml": "<span>10.2</span>",
+      "label": "задача 10.2",
+      "number": "10.2"
     },
-    "tasks:exr-data-integrity-raid-capacity": {
+    "tasks:exr-data-trust-lamport-demo": {
       "namespace": "tasks",
-      "id": "exr-data-integrity-raid-capacity",
-      "page": "task/bank/data-integrity.html",
-      "fragment": "exr-data-integrity-raid-capacity",
-      "labelHtml": "задача&nbsp;<span>8.7</span>",
-      "numberHtml": "<span>8.7</span>",
-      "label": "задача 8.7",
-      "number": "8.7"
+      "id": "exr-data-trust-lamport-demo",
+      "page": "task/bank/data-trust.html",
+      "fragment": "exr-data-trust-lamport-demo",
+      "labelHtml": "задача&nbsp;<span>10.1</span>",
+      "numberHtml": "<span>10.1</span>",
+      "label": "задача 10.1",
+      "number": "10.1"
     },
-    "tasks:exr-data-integrity-sum": {
+    "tasks:exr-data-trust-lamport-reuse": {
       "namespace": "tasks",
-      "id": "exr-data-integrity-sum",
-      "page": "task/bank/data-integrity.html",
-      "fragment": "exr-data-integrity-sum",
+      "id": "exr-data-trust-lamport-reuse",
+      "page": "task/bank/data-trust.html",
+      "fragment": "exr-data-trust-lamport-reuse",
+      "labelHtml": "задача&nbsp;<span>10.3</span>",
+      "numberHtml": "<span>10.3</span>",
+      "label": "задача 10.3",
+      "number": "10.3"
+    },
+    "tasks:exr-data-trust-missing-message": {
+      "namespace": "tasks",
+      "id": "exr-data-trust-missing-message",
+      "page": "task/bank/data-trust.html",
+      "fragment": "exr-data-trust-missing-message",
       "labelHtml": "задача&nbsp;<span>8.5</span>",
       "numberHtml": "<span>8.5</span>",
       "label": "задача 8.5",
       "number": "8.5"
     },
-    "tasks:exr-data-integrity-trusted-hash": {
+    "tasks:exr-data-trust-wrong-recipient": {
       "namespace": "tasks",
-      "id": "exr-data-integrity-trusted-hash",
-      "page": "task/bank/data-integrity.html",
-      "fragment": "exr-data-integrity-trusted-hash",
+      "id": "exr-data-trust-wrong-recipient",
+      "page": "task/bank/data-trust.html",
+      "fragment": "exr-data-trust-wrong-recipient",
       "labelHtml": "задача&nbsp;<span>8.2</span>",
       "numberHtml": "<span>8.2</span>",
       "label": "задача 8.2",
       "number": "8.2"
-    },
-    "tasks:exr-data-integrity-xor": {
-      "namespace": "tasks",
-      "id": "exr-data-integrity-xor",
-      "page": "task/bank/data-integrity.html",
-      "fragment": "exr-data-integrity-xor",
-      "labelHtml": "задача&nbsp;<span>8.9</span>",
-      "numberHtml": "<span>8.9</span>",
-      "label": "задача 8.9",
-      "number": "8.9"
     },
     "tasks:exr-fundamentals-carsharing": {
       "namespace": "tasks",
@@ -1523,16 +2008,47 @@
       "label": "задача 5.4",
       "number": "5.4"
     },
+    "tasks:fig-parity-storage": {
+      "namespace": "tasks",
+      "id": "fig-parity-storage",
+      "page": "task/bank/data-preservation.html",
+      "fragment": "fig-parity-storage",
+      "labelHtml": "Рисунок&nbsp;<span>9.2</span>",
+      "numberHtml": "<span>9.2</span>",
+      "label": "Рисунок 9.2",
+      "number": "9.2"
+    },
+    "tasks:fig-project-storage-before": {
+      "namespace": "tasks",
+      "id": "fig-project-storage-before",
+      "page": "task/bank/data-preservation.html",
+      "fragment": "fig-project-storage-before",
+      "labelHtml": "Рисунок&nbsp;<span>9.1</span>",
+      "numberHtml": "<span>9.1</span>",
+      "label": "Рисунок 9.1",
+      "number": "9.1"
+    },
     "tasks:sec-bank-access-control": {
       "namespace": "tasks",
       "id": "sec-bank-access-control",
       "page": "task/bank/access-control.html",
       "fragment": "sec-bank-access-control",
-      "labelHtml": "<span>Глава 7</span>",
-      "numberHtml": "<span>7</span>",
-      "label": "Глава 7",
-      "number": "7",
+      "labelHtml": "<span>Глава 6</span>",
+      "numberHtml": "<span>6</span>",
+      "label": "Глава 6",
+      "number": "6",
       "title": "Управление доступом"
+    },
+    "tasks:sec-bank-access-control-advanced-policy": {
+      "namespace": "tasks",
+      "id": "sec-bank-access-control-advanced-policy",
+      "page": "task/bank/access-control.html",
+      "fragment": "sec-bank-access-control-advanced-policy",
+      "labelHtml": "Проверка сложной политики",
+      "numberHtml": "",
+      "label": "Проверка сложной политики",
+      "number": "",
+      "title": "Проверка сложной политики"
     },
     "tasks:sec-bank-access-control-discussion": {
       "namespace": "tasks",
@@ -1567,15 +2083,48 @@
       "number": "",
       "title": "Модели управления доступом"
     },
+    "tasks:sec-bank-access-control-processes": {
+      "namespace": "tasks",
+      "id": "sec-bank-access-control-processes",
+      "page": "task/bank/access-control.html",
+      "fragment": "sec-bank-access-control-processes",
+      "labelHtml": "Разделение процессов",
+      "numberHtml": "",
+      "label": "Разделение процессов",
+      "number": "",
+      "title": "Разделение процессов"
+    },
+    "tasks:sec-bank-access-control-requests": {
+      "namespace": "tasks",
+      "id": "sec-bank-access-control-requests",
+      "page": "task/bank/access-control.html",
+      "fragment": "sec-bank-access-control-requests",
+      "labelHtml": "Обращения к ресурсам",
+      "numberHtml": "",
+      "label": "Обращения к ресурсам",
+      "number": "",
+      "title": "Обращения к ресурсам"
+    },
+    "tasks:sec-bank-access-control-role-assignments": {
+      "namespace": "tasks",
+      "id": "sec-bank-access-control-role-assignments",
+      "page": "task/bank/access-control.html",
+      "fragment": "sec-bank-access-control-role-assignments",
+      "labelHtml": "Назначения ролей",
+      "numberHtml": "",
+      "label": "Назначения ролей",
+      "number": "",
+      "title": "Назначения ролей"
+    },
     "tasks:sec-bank-crypto": {
       "namespace": "tasks",
       "id": "sec-bank-crypto",
       "page": "task/bank/crypto.html",
       "fragment": "sec-bank-crypto",
-      "labelHtml": "<span>Глава 6</span>",
-      "numberHtml": "<span>6</span>",
-      "label": "Глава 6",
-      "number": "6",
+      "labelHtml": "<span>Глава 7</span>",
+      "numberHtml": "<span>7</span>",
+      "label": "Глава 7",
+      "number": "7",
       "title": "Криптография"
     },
     "tasks:sec-bank-crypto-mechanisms": {
@@ -1600,16 +2149,38 @@
       "number": "",
       "title": "Применение криптографии"
     },
-    "tasks:sec-bank-data-integrity": {
+    "tasks:sec-bank-crypto-short": {
       "namespace": "tasks",
-      "id": "sec-bank-data-integrity",
-      "page": "task/bank/data-integrity.html",
-      "fragment": "sec-bank-data-integrity",
+      "id": "sec-bank-crypto-short",
+      "page": "task/bank/crypto.html",
+      "fragment": "sec-bank-crypto-short",
+      "labelHtml": "Короткие упражнения",
+      "numberHtml": "",
+      "label": "Короткие упражнения",
+      "number": "",
+      "title": "Короткие упражнения"
+    },
+    "tasks:sec-bank-data-preservation": {
+      "namespace": "tasks",
+      "id": "sec-bank-data-preservation",
+      "page": "task/bank/data-preservation.html",
+      "fragment": "sec-bank-data-preservation",
+      "labelHtml": "<span>Глава 9</span>",
+      "numberHtml": "<span>9</span>",
+      "label": "Глава 9",
+      "number": "9",
+      "title": "Сохранность данных"
+    },
+    "tasks:sec-bank-data-trust": {
+      "namespace": "tasks",
+      "id": "sec-bank-data-trust",
+      "page": "task/bank/data-trust.html",
+      "fragment": "sec-bank-data-trust",
       "labelHtml": "<span>Глава 8</span>",
       "numberHtml": "<span>8</span>",
       "label": "Глава 8",
       "number": "8",
-      "title": "Целостность данных"
+      "title": "Доверие к данным"
     },
     "tasks:sec-bank-fundamentals": {
       "namespace": "tasks",
@@ -1726,10 +2297,10 @@
       "id": "sec-control-demo",
       "page": "task/works/control-demo.html",
       "fragment": "sec-control-demo",
-      "labelHtml": "<span>Глава 14</span>",
-      "numberHtml": "<span>14</span>",
-      "label": "Глава 14",
-      "number": "14",
+      "labelHtml": "<span>Глава 15</span>",
+      "numberHtml": "<span>15</span>",
+      "label": "Глава 15",
+      "number": "15",
       "title": "Демонстрационный вариант контрольной работы"
     },
     "tasks:sec-tasks": {
@@ -1748,10 +2319,10 @@
       "id": "sec-work-access-control",
       "page": "task/works/04-access-control.html",
       "fragment": "sec-work-access-control",
-      "labelHtml": "<span>Глава 12</span>",
-      "numberHtml": "<span>12</span>",
-      "label": "Глава 12",
-      "number": "12",
+      "labelHtml": "<span>Глава 13</span>",
+      "numberHtml": "<span>13</span>",
+      "label": "Глава 13",
+      "number": "13",
       "title": "Семинар 4 — Управление доступом"
     },
     "tasks:sec-work-data-integrity-backup": {
@@ -1759,10 +2330,10 @@
       "id": "sec-work-data-integrity-backup",
       "page": "task/works/backup.html",
       "fragment": "sec-work-data-integrity-backup",
-      "labelHtml": "<span>Глава 13</span>",
-      "numberHtml": "<span>13</span>",
-      "label": "Глава 13",
-      "number": "13",
+      "labelHtml": "<span>Глава 14</span>",
+      "numberHtml": "<span>14</span>",
+      "label": "Глава 14",
+      "number": "14",
       "title": "Введение в кибербезопасность"
     },
     "tasks:sec-work-fundamentals-concepts": {
@@ -1770,10 +2341,10 @@
       "id": "sec-work-fundamentals-concepts",
       "page": "task/works/01-fundamentals.html",
       "fragment": "sec-work-fundamentals-concepts",
-      "labelHtml": "<span>Глава 9</span>",
-      "numberHtml": "<span>9</span>",
-      "label": "Глава 9",
-      "number": "9",
+      "labelHtml": "<span>Глава 10</span>",
+      "numberHtml": "<span>10</span>",
+      "label": "Глава 10",
+      "number": "10",
       "title": "Занятие 1 – Информационная безопасность"
     },
     "tasks:sec-work-legal-requirements": {
@@ -1781,10 +2352,10 @@
       "id": "sec-work-legal-requirements",
       "page": "task/works/02-legal.html",
       "fragment": "sec-work-legal-requirements",
-      "labelHtml": "<span>Глава 10</span>",
-      "numberHtml": "<span>10</span>",
-      "label": "Глава 10",
-      "number": "10",
+      "labelHtml": "<span>Глава 11</span>",
+      "numberHtml": "<span>11</span>",
+      "label": "Глава 11",
+      "number": "11",
       "title": "Структура обеспечения кибербезопасности в РБ"
     },
     "tasks:sec-work-standards-risk": {
@@ -1792,11 +2363,21 @@
       "id": "sec-work-standards-risk",
       "page": "task/works/03-standards-risk.html",
       "fragment": "sec-work-standards-risk",
-      "labelHtml": "<span>Глава 11</span>",
-      "numberHtml": "<span>11</span>",
-      "label": "Глава 11",
-      "number": "11",
+      "labelHtml": "<span>Глава 12</span>",
+      "numberHtml": "<span>12</span>",
+      "label": "Глава 12",
+      "number": "12",
       "title": "Семинар 3 – Применение нормативно-правовых актов"
+    },
+    "tasks:sol-data-trust-lamport-demo": {
+      "namespace": "tasks",
+      "id": "sol-data-trust-lamport-demo",
+      "page": "task/bank/data-trust.html",
+      "fragment": "sol-data-trust-lamport-demo",
+      "labelHtml": "Solution&nbsp;<span>10.1</span>",
+      "numberHtml": "<span>10.1</span>",
+      "label": "Solution 10.1",
+      "number": "10.1"
     },
     "tasks:sol-fundamentals-cia-cases": {
       "namespace": "tasks",
@@ -1808,6 +2389,166 @@
       "label": "Solution 2.1",
       "number": "2.1"
     },
+    "theory:def-access-account": {
+      "namespace": "theory",
+      "id": "def-access-account",
+      "page": "theory/access-control/authentication.html",
+      "fragment": "def-access-account",
+      "labelHtml": "Определение&nbsp;<span>10.1</span>",
+      "numberHtml": "<span>10.1</span>",
+      "label": "Определение 10.1",
+      "number": "10.1"
+    },
+    "theory:def-access-authentication": {
+      "namespace": "theory",
+      "id": "def-access-authentication",
+      "page": "theory/access-control/authentication.html",
+      "fragment": "def-access-authentication",
+      "labelHtml": "Определение&nbsp;<span>10.3</span>",
+      "numberHtml": "<span>10.3</span>",
+      "label": "Определение 10.3",
+      "number": "10.3"
+    },
+    "theory:def-access-authorization": {
+      "namespace": "theory",
+      "id": "def-access-authorization",
+      "page": "theory/access-control/authorization.html",
+      "fragment": "def-access-authorization",
+      "labelHtml": "Определение&nbsp;<span>11.2</span>",
+      "numberHtml": "<span>11.2</span>",
+      "label": "Определение 11.2",
+      "number": "11.2"
+    },
+    "theory:def-access-control": {
+      "namespace": "theory",
+      "id": "def-access-control",
+      "page": "theory/access-control/authorization.html",
+      "fragment": "def-access-control",
+      "labelHtml": "Определение&nbsp;<span>11.1</span>",
+      "numberHtml": "<span>11.1</span>",
+      "label": "Определение 11.1",
+      "number": "11.1"
+    },
+    "theory:def-access-dac": {
+      "namespace": "theory",
+      "id": "def-access-dac",
+      "page": "theory/access-control/authorization.html",
+      "fragment": "def-access-dac",
+      "labelHtml": "Определение&nbsp;<span>11.6</span>",
+      "numberHtml": "<span>11.6</span>",
+      "label": "Определение 11.6",
+      "number": "11.6"
+    },
+    "theory:def-access-factor": {
+      "namespace": "theory",
+      "id": "def-access-factor",
+      "page": "theory/access-control/authentication.html",
+      "fragment": "def-access-factor",
+      "labelHtml": "Определение&nbsp;<span>10.4</span>",
+      "numberHtml": "<span>10.4</span>",
+      "label": "Определение 10.4",
+      "number": "10.4"
+    },
+    "theory:def-access-identification": {
+      "namespace": "theory",
+      "id": "def-access-identification",
+      "page": "theory/access-control/authentication.html",
+      "fragment": "def-access-identification",
+      "labelHtml": "Определение&nbsp;<span>10.2</span>",
+      "numberHtml": "<span>10.2</span>",
+      "label": "Определение 10.2",
+      "number": "10.2"
+    },
+    "theory:def-access-mac": {
+      "namespace": "theory",
+      "id": "def-access-mac",
+      "page": "theory/access-control/authorization.html",
+      "fragment": "def-access-mac",
+      "labelHtml": "Определение&nbsp;<span>11.8</span>",
+      "numberHtml": "<span>11.8</span>",
+      "label": "Определение 11.8",
+      "number": "11.8"
+    },
+    "theory:def-access-matrix": {
+      "namespace": "theory",
+      "id": "def-access-matrix",
+      "page": "theory/access-control/authorization.html",
+      "fragment": "def-access-matrix",
+      "labelHtml": "Определение&nbsp;<span>11.7</span>",
+      "numberHtml": "<span>11.7</span>",
+      "label": "Определение 11.7",
+      "number": "11.7"
+    },
+    "theory:def-access-monitor": {
+      "namespace": "theory",
+      "id": "def-access-monitor",
+      "page": "theory/access-control/authorization.html",
+      "fragment": "def-access-monitor",
+      "labelHtml": "Определение&nbsp;<span>11.5</span>",
+      "numberHtml": "<span>11.5</span>",
+      "label": "Определение 11.5",
+      "number": "11.5"
+    },
+    "theory:def-access-otp": {
+      "namespace": "theory",
+      "id": "def-access-otp",
+      "page": "theory/access-control/authentication.html",
+      "fragment": "def-access-otp",
+      "labelHtml": "Определение&nbsp;<span>10.6</span>",
+      "numberHtml": "<span>10.6</span>",
+      "label": "Определение 10.6",
+      "number": "10.6"
+    },
+    "theory:def-access-passkey": {
+      "namespace": "theory",
+      "id": "def-access-passkey",
+      "page": "theory/access-control/authentication.html",
+      "fragment": "def-access-passkey",
+      "labelHtml": "Определение&nbsp;<span>10.7</span>",
+      "numberHtml": "<span>10.7</span>",
+      "label": "Определение 10.7",
+      "number": "10.7"
+    },
+    "theory:def-access-password": {
+      "namespace": "theory",
+      "id": "def-access-password",
+      "page": "theory/access-control/authentication.html",
+      "fragment": "def-access-password",
+      "labelHtml": "Определение&nbsp;<span>10.5</span>",
+      "numberHtml": "<span>10.5</span>",
+      "label": "Определение 10.5",
+      "number": "10.5"
+    },
+    "theory:def-access-policy": {
+      "namespace": "theory",
+      "id": "def-access-policy",
+      "page": "theory/access-control/authorization.html",
+      "fragment": "def-access-policy",
+      "labelHtml": "Определение&nbsp;<span>11.4</span>",
+      "numberHtml": "<span>11.4</span>",
+      "label": "Определение 11.4",
+      "number": "11.4"
+    },
+    "theory:def-access-rbac": {
+      "namespace": "theory",
+      "id": "def-access-rbac",
+      "page": "theory/access-control/authorization.html",
+      "fragment": "def-access-rbac",
+      "labelHtml": "Определение&nbsp;<span>11.9</span>",
+      "numberHtml": "<span>11.9</span>",
+      "label": "Определение 11.9",
+      "number": "11.9"
+    },
+    "theory:def-access-request": {
+      "namespace": "theory",
+      "id": "def-access-request",
+      "page": "theory/access-control/authorization.html",
+      "fragment": "def-access-request",
+      "labelHtml": "Определение&nbsp;<span>11.3</span>",
+      "numberHtml": "<span>11.3</span>",
+      "label": "Определение 11.3",
+      "number": "11.3"
+    },
     "theory:def-availability": {
       "namespace": "theory",
       "id": "def-availability",
@@ -1817,6 +2558,16 @@
       "numberHtml": "<span>2.6</span>",
       "label": "Определение 2.6",
       "number": "2.6"
+    },
+    "theory:def-backup": {
+      "namespace": "theory",
+      "id": "def-backup",
+      "page": "theory/data-preservation/backups.html",
+      "fragment": "def-backup",
+      "labelHtml": "Определение&nbsp;<span>21.1</span>",
+      "numberHtml": "<span>21.1</span>",
+      "label": "Определение 21.1",
+      "number": "21.1"
     },
     "theory:def-confidentiality": {
       "namespace": "theory",
@@ -1841,42 +2592,72 @@
     "theory:def-crypto-digest": {
       "namespace": "theory",
       "id": "def-crypto-digest",
-      "page": "theory/crypto/hash.html",
+      "page": "theory/crypto/hash-functions.html",
       "fragment": "def-crypto-digest",
-      "labelHtml": "Определение&nbsp;<span>11.1</span>",
-      "numberHtml": "<span>11.1</span>",
-      "label": "Определение 11.1",
-      "number": "11.1"
+      "labelHtml": "Определение&nbsp;<span>14.1</span>",
+      "numberHtml": "<span>14.1</span>",
+      "label": "Определение 14.1",
+      "number": "14.1"
     },
     "theory:def-crypto-encryption": {
       "namespace": "theory",
       "id": "def-crypto-encryption",
-      "page": "theory/crypto/cypher.html",
+      "page": "theory/crypto/symmetric-encryption.html",
       "fragment": "def-crypto-encryption",
-      "labelHtml": "Определение&nbsp;<span>12.1</span>",
-      "numberHtml": "<span>12.1</span>",
-      "label": "Определение 12.1",
-      "number": "12.1"
+      "labelHtml": "Определение&nbsp;<span>13.1</span>",
+      "numberHtml": "<span>13.1</span>",
+      "label": "Определение 13.1",
+      "number": "13.1"
     },
     "theory:def-crypto-key": {
       "namespace": "theory",
       "id": "def-crypto-key",
-      "page": "theory/crypto/cypher.html",
+      "page": "theory/crypto/symmetric-encryption.html",
       "fragment": "def-crypto-key",
-      "labelHtml": "Определение&nbsp;<span>12.2</span>",
-      "numberHtml": "<span>12.2</span>",
-      "label": "Определение 12.2",
-      "number": "12.2"
+      "labelHtml": "Определение&nbsp;<span>13.2</span>",
+      "numberHtml": "<span>13.2</span>",
+      "label": "Определение 13.2",
+      "number": "13.2"
     },
     "theory:def-cybersecurity": {
       "namespace": "theory",
       "id": "def-cybersecurity",
       "page": "theory/security-center/organization.html",
       "fragment": "def-cybersecurity",
-      "labelHtml": "Определение&nbsp;<span>6.1</span>",
-      "numberHtml": "<span>6.1</span>",
-      "label": "Определение 6.1",
-      "number": "6.1"
+      "labelHtml": "Определение&nbsp;<span>7.1</span>",
+      "numberHtml": "<span>7.1</span>",
+      "label": "Определение 7.1",
+      "number": "7.1"
+    },
+    "theory:def-differential-backup": {
+      "namespace": "theory",
+      "id": "def-differential-backup",
+      "page": "theory/data-preservation/backups.html",
+      "fragment": "def-differential-backup",
+      "labelHtml": "Определение&nbsp;<span>21.4</span>",
+      "numberHtml": "<span>21.4</span>",
+      "label": "Определение 21.4",
+      "number": "21.4"
+    },
+    "theory:def-full-backup": {
+      "namespace": "theory",
+      "id": "def-full-backup",
+      "page": "theory/data-preservation/backups.html",
+      "fragment": "def-full-backup",
+      "labelHtml": "Определение&nbsp;<span>21.2</span>",
+      "numberHtml": "<span>21.2</span>",
+      "label": "Определение 21.2",
+      "number": "21.2"
+    },
+    "theory:def-incremental-backup": {
+      "namespace": "theory",
+      "id": "def-incremental-backup",
+      "page": "theory/data-preservation/backups.html",
+      "fragment": "def-incremental-backup",
+      "labelHtml": "Определение&nbsp;<span>21.3</span>",
+      "numberHtml": "<span>21.3</span>",
+      "label": "Определение 21.3",
+      "number": "21.3"
     },
     "theory:def-information-assets": {
       "namespace": "theory",
@@ -1901,12 +2682,12 @@
     "theory:def-information-protection-tools": {
       "namespace": "theory",
       "id": "def-information-protection-tools",
-      "page": "theory/standards-risk/requirements-decisions.html",
+      "page": "theory/legal/standards.html",
       "fragment": "def-information-protection-tools",
-      "labelHtml": "Определение&nbsp;<span>8.2</span>",
-      "numberHtml": "<span>8.2</span>",
-      "label": "Определение 8.2",
-      "number": "8.2"
+      "labelHtml": "Определение&nbsp;<span>6.2</span>",
+      "numberHtml": "<span>6.2</span>",
+      "label": "Определение 6.2",
+      "number": "6.2"
     },
     "theory:def-information-security": {
       "namespace": "theory",
@@ -1943,30 +2724,30 @@
       "id": "def-password-function",
       "page": "theory/crypto/password-storage.html",
       "fragment": "def-password-function",
-      "labelHtml": "Определение&nbsp;<span>14.1</span>",
-      "numberHtml": "<span>14.1</span>",
-      "label": "Определение 14.1",
-      "number": "14.1"
+      "labelHtml": "Определение&nbsp;<span>18.1</span>",
+      "numberHtml": "<span>18.1</span>",
+      "label": "Определение 18.1",
+      "number": "18.1"
     },
     "theory:def-password-salt": {
       "namespace": "theory",
       "id": "def-password-salt",
       "page": "theory/crypto/password-storage.html",
       "fragment": "def-password-salt",
-      "labelHtml": "Определение&nbsp;<span>14.2</span>",
-      "numberHtml": "<span>14.2</span>",
-      "label": "Определение 14.2",
-      "number": "14.2"
+      "labelHtml": "Определение&nbsp;<span>18.2</span>",
+      "numberHtml": "<span>18.2</span>",
+      "label": "Определение 18.2",
+      "number": "18.2"
     },
     "theory:def-protection-system": {
       "namespace": "theory",
       "id": "def-protection-system",
-      "page": "theory/standards-risk/requirements-decisions.html",
+      "page": "theory/legal/standards.html",
       "fragment": "def-protection-system",
-      "labelHtml": "Определение&nbsp;<span>8.1</span>",
-      "numberHtml": "<span>8.1</span>",
-      "label": "Определение 8.1",
-      "number": "8.1"
+      "labelHtml": "Определение&nbsp;<span>6.1</span>",
+      "numberHtml": "<span>6.1</span>",
+      "label": "Определение 6.1",
+      "number": "6.1"
     },
     "theory:def-public-information": {
       "namespace": "theory",
@@ -1978,25 +2759,65 @@
       "label": "Определение 3.1",
       "number": "3.1"
     },
+    "theory:def-raid": {
+      "namespace": "theory",
+      "id": "def-raid",
+      "page": "theory/data-preservation/raid.html",
+      "fragment": "def-raid",
+      "labelHtml": "Определение&nbsp;<span>22.1</span>",
+      "numberHtml": "<span>22.1</span>",
+      "label": "Определение 22.1",
+      "number": "22.1"
+    },
+    "theory:def-random-csprng": {
+      "namespace": "theory",
+      "id": "def-random-csprng",
+      "page": "theory/crypto/randomness.html",
+      "fragment": "def-random-csprng",
+      "labelHtml": "Определение&nbsp;<span>12.4</span>",
+      "numberHtml": "<span>12.4</span>",
+      "label": "Определение 12.4",
+      "number": "12.4"
+    },
     "theory:def-random-entropy": {
       "namespace": "theory",
       "id": "def-random-entropy",
-      "page": "theory/crypto/random.html",
+      "page": "theory/crypto/randomness.html",
       "fragment": "def-random-entropy",
-      "labelHtml": "Определение&nbsp;<span>10.2</span>",
-      "numberHtml": "<span>10.2</span>",
-      "label": "Определение 10.2",
-      "number": "10.2"
+      "labelHtml": "Определение&nbsp;<span>12.2</span>",
+      "numberHtml": "<span>12.2</span>",
+      "label": "Определение 12.2",
+      "number": "12.2"
+    },
+    "theory:def-random-source": {
+      "namespace": "theory",
+      "id": "def-random-source",
+      "page": "theory/crypto/randomness.html",
+      "fragment": "def-random-source",
+      "labelHtml": "Определение&nbsp;<span>12.3</span>",
+      "numberHtml": "<span>12.3</span>",
+      "label": "Определение 12.3",
+      "number": "12.3"
     },
     "theory:def-random-state": {
       "namespace": "theory",
       "id": "def-random-state",
-      "page": "theory/crypto/random.html",
+      "page": "theory/crypto/randomness.html",
       "fragment": "def-random-state",
-      "labelHtml": "Определение&nbsp;<span>10.1</span>",
-      "numberHtml": "<span>10.1</span>",
-      "label": "Определение 10.1",
-      "number": "10.1"
+      "labelHtml": "Определение&nbsp;<span>12.1</span>",
+      "numberHtml": "<span>12.1</span>",
+      "label": "Определение 12.1",
+      "number": "12.1"
+    },
+    "theory:def-recovery-target": {
+      "namespace": "theory",
+      "id": "def-recovery-target",
+      "page": "theory/data-preservation/backups.html",
+      "fragment": "def-recovery-target",
+      "labelHtml": "Определение&nbsp;<span>21.5</span>",
+      "numberHtml": "<span>21.5</span>",
+      "label": "Определение 21.5",
+      "number": "21.5"
     },
     "theory:def-restricted-information": {
       "namespace": "theory",
@@ -2038,6 +2859,96 @@
       "label": "Определение 2.7",
       "number": "2.7"
     },
+    "theory:def-trust-anchor": {
+      "namespace": "theory",
+      "id": "def-trust-anchor",
+      "page": "theory/data-trust/certificates.html",
+      "fragment": "def-trust-anchor",
+      "labelHtml": "Определение&nbsp;<span>20.2</span>",
+      "numberHtml": "<span>20.2</span>",
+      "label": "Определение 20.2",
+      "number": "20.2"
+    },
+    "theory:def-trust-digital-signature": {
+      "namespace": "theory",
+      "id": "def-trust-digital-signature",
+      "page": "theory/crypto/digital-signature.html",
+      "fragment": "def-trust-digital-signature",
+      "labelHtml": "Определение&nbsp;<span>16.2</span>",
+      "numberHtml": "<span>16.2</span>",
+      "label": "Определение 16.2",
+      "number": "16.2"
+    },
+    "theory:def-trust-dynamic-integrity": {
+      "namespace": "theory",
+      "id": "def-trust-dynamic-integrity",
+      "page": "theory/data-trust/integrity-verification.html",
+      "fragment": "def-trust-dynamic-integrity",
+      "labelHtml": "Определение&nbsp;<span>19.2</span>",
+      "numberHtml": "<span>19.2</span>",
+      "label": "Определение 19.2",
+      "number": "19.2"
+    },
+    "theory:def-trust-integrity-reference": {
+      "namespace": "theory",
+      "id": "def-trust-integrity-reference",
+      "page": "theory/data-trust/integrity-verification.html",
+      "fragment": "def-trust-integrity-reference",
+      "labelHtml": "Определение&nbsp;<span>19.3</span>",
+      "numberHtml": "<span>19.3</span>",
+      "label": "Определение 19.3",
+      "number": "19.3"
+    },
+    "theory:def-trust-lamport-one-time": {
+      "namespace": "theory",
+      "id": "def-trust-lamport-one-time",
+      "page": "theory/crypto/lamport-signature.html",
+      "fragment": "def-trust-lamport-one-time",
+      "labelHtml": "Определение&nbsp;<span>A.1</span>",
+      "numberHtml": "<span>A.1</span>",
+      "label": "Определение A.1",
+      "number": "A.1"
+    },
+    "theory:def-trust-public-key-certificate": {
+      "namespace": "theory",
+      "id": "def-trust-public-key-certificate",
+      "page": "theory/data-trust/certificates.html",
+      "fragment": "def-trust-public-key-certificate",
+      "labelHtml": "Определение&nbsp;<span>20.1</span>",
+      "numberHtml": "<span>20.1</span>",
+      "label": "Определение 20.1",
+      "number": "20.1"
+    },
+    "theory:def-trust-public-key-pair": {
+      "namespace": "theory",
+      "id": "def-trust-public-key-pair",
+      "page": "theory/crypto/asymmetric-cryptography.html",
+      "fragment": "def-trust-public-key-pair",
+      "labelHtml": "Определение&nbsp;<span>15.1</span>",
+      "numberHtml": "<span>15.1</span>",
+      "label": "Определение 15.1",
+      "number": "15.1"
+    },
+    "theory:def-trust-signed-message": {
+      "namespace": "theory",
+      "id": "def-trust-signed-message",
+      "page": "theory/crypto/digital-signature.html",
+      "fragment": "def-trust-signed-message",
+      "labelHtml": "Определение&nbsp;<span>16.1</span>",
+      "numberHtml": "<span>16.1</span>",
+      "label": "Определение 16.1",
+      "number": "16.1"
+    },
+    "theory:def-trust-static-integrity": {
+      "namespace": "theory",
+      "id": "def-trust-static-integrity",
+      "page": "theory/data-trust/integrity-verification.html",
+      "fragment": "def-trust-static-integrity",
+      "labelHtml": "Определение&nbsp;<span>19.1</span>",
+      "numberHtml": "<span>19.1</span>",
+      "label": "Определение 19.1",
+      "number": "19.1"
+    },
     "theory:def-vulnerability": {
       "namespace": "theory",
       "id": "def-vulnerability",
@@ -2051,373 +2962,416 @@
     "theory:exm-random-lcg-recovery": {
       "namespace": "theory",
       "id": "exm-random-lcg-recovery",
-      "page": "theory/crypto/random.html",
+      "page": "theory/crypto/randomness.html",
       "fragment": "exm-random-lcg-recovery",
-      "labelHtml": "Пример&nbsp;<span>10.2</span>",
-      "numberHtml": "<span>10.2</span>",
-      "label": "Пример 10.2",
-      "number": "10.2"
+      "labelHtml": "Пример&nbsp;<span>12.2</span>",
+      "numberHtml": "<span>12.2</span>",
+      "label": "Пример 12.2",
+      "number": "12.2"
     },
     "theory:exm-random-output": {
       "namespace": "theory",
       "id": "exm-random-output",
-      "page": "theory/crypto/random.html",
+      "page": "theory/crypto/randomness.html",
       "fragment": "exm-random-output",
-      "labelHtml": "Пример&nbsp;<span>10.1</span>",
-      "numberHtml": "<span>10.1</span>",
-      "label": "Пример 10.1",
-      "number": "10.1"
+      "labelHtml": "Пример&nbsp;<span>12.1</span>",
+      "numberHtml": "<span>12.1</span>",
+      "label": "Пример 12.1",
+      "number": "12.1"
     },
     "theory:fig-access-architecture": {
       "namespace": "theory",
       "id": "fig-access-architecture",
-      "page": "theory/access-control/access-control.html",
+      "page": "theory/access-control/authorization.html",
       "fragment": "fig-access-architecture",
-      "labelHtml": "Рисунок&nbsp;<span>9.1</span>",
-      "numberHtml": "<span>9.1</span>",
-      "label": "Рисунок 9.1",
-      "number": "9.1"
-    },
-    "theory:fig-access-dac": {
-      "namespace": "theory",
-      "id": "fig-access-dac",
-      "page": "theory/access-control/access-control.html",
-      "fragment": "fig-access-dac",
-      "labelHtml": "Рисунок&nbsp;<span>9.3</span>",
-      "numberHtml": "<span>9.3</span>",
-      "label": "Рисунок 9.3",
-      "number": "9.3"
-    },
-    "theory:fig-access-mac": {
-      "namespace": "theory",
-      "id": "fig-access-mac",
-      "page": "theory/access-control/access-control.html",
-      "fragment": "fig-access-mac",
-      "labelHtml": "Рисунок&nbsp;<span>9.5</span>",
-      "numberHtml": "<span>9.5</span>",
-      "label": "Рисунок 9.5",
-      "number": "9.5"
-    },
-    "theory:fig-access-procedures": {
-      "namespace": "theory",
-      "id": "fig-access-procedures",
-      "page": "theory/access-control/access-control.html",
-      "fragment": "fig-access-procedures",
-      "labelHtml": "Рисунок&nbsp;<span>9.2</span>",
-      "numberHtml": "<span>9.2</span>",
-      "label": "Рисунок 9.2",
-      "number": "9.2"
-    },
-    "theory:fig-access-rbac": {
-      "namespace": "theory",
-      "id": "fig-access-rbac",
-      "page": "theory/access-control/access-control.html",
-      "fragment": "fig-access-rbac",
-      "labelHtml": "Рисунок&nbsp;<span>9.7</span>",
-      "numberHtml": "<span>9.7</span>",
-      "label": "Рисунок 9.7",
-      "number": "9.7"
-    },
-    "theory:fig-crypto-key-pairs": {
-      "namespace": "theory",
-      "id": "fig-crypto-key-pairs",
-      "page": "theory/crypto/key-gen.html",
-      "fragment": "fig-crypto-key-pairs",
-      "labelHtml": "Рисунок&nbsp;<span>13.1</span>",
-      "numberHtml": "<span>13.1</span>",
-      "label": "Рисунок 13.1",
-      "number": "13.1"
-    },
-    "theory:fig-crypto-symmetric-key": {
-      "namespace": "theory",
-      "id": "fig-crypto-symmetric-key",
-      "page": "theory/crypto/cypher.html",
-      "fragment": "fig-crypto-symmetric-key",
-      "labelHtml": "Рисунок&nbsp;<span>12.1</span>",
-      "numberHtml": "<span>12.1</span>",
-      "label": "Рисунок 12.1",
-      "number": "12.1"
-    },
-    "theory:fig-cypher-caesar": {
-      "namespace": "theory",
-      "id": "fig-cypher-caesar",
-      "page": "theory/crypto/cypher.html",
-      "fragment": "fig-cypher-caesar",
-      "labelHtml": "Рисунок&nbsp;<span>12.2</span>",
-      "numberHtml": "<span>12.2</span>",
-      "label": "Рисунок 12.2",
-      "number": "12.2"
-    },
-    "theory:fig-cypher-xor": {
-      "namespace": "theory",
-      "id": "fig-cypher-xor",
-      "page": "theory/crypto/cypher.html",
-      "fragment": "fig-cypher-xor",
-      "labelHtml": "Рисунок&nbsp;<span>12.3</span>",
-      "numberHtml": "<span>12.3</span>",
-      "label": "Рисунок 12.3",
-      "number": "12.3"
-    },
-    "theory:fig-dac-decision": {
-      "namespace": "theory",
-      "id": "fig-dac-decision",
-      "page": "theory/access-control/access-control.html",
-      "fragment": "fig-dac-decision",
-      "labelHtml": "Рисунок&nbsp;<span>9.4</span>",
-      "numberHtml": "<span>9.4</span>",
-      "label": "Рисунок 9.4",
-      "number": "9.4"
-    },
-    "theory:fig-hash-bit-change": {
-      "namespace": "theory",
-      "id": "fig-hash-bit-change",
-      "page": "theory/crypto/hash.html",
-      "fragment": "fig-hash-bit-change",
-      "labelHtml": "Рисунок&nbsp;<span>11.3</span>",
-      "numberHtml": "<span>11.3</span>",
-      "label": "Рисунок 11.3",
-      "number": "11.3"
-    },
-    "theory:fig-hash-process": {
-      "namespace": "theory",
-      "id": "fig-hash-process",
-      "page": "theory/crypto/hash.html",
-      "fragment": "fig-hash-process",
       "labelHtml": "Рисунок&nbsp;<span>11.1</span>",
       "numberHtml": "<span>11.1</span>",
       "label": "Рисунок 11.1",
       "number": "11.1"
     },
-    "theory:fig-hash-security-goals": {
+    "theory:fig-access-dac": {
       "namespace": "theory",
-      "id": "fig-hash-security-goals",
-      "page": "theory/crypto/hash.html",
-      "fragment": "fig-hash-security-goals",
+      "id": "fig-access-dac",
+      "page": "theory/access-control/authorization.html",
+      "fragment": "fig-access-dac",
       "labelHtml": "Рисунок&nbsp;<span>11.2</span>",
       "numberHtml": "<span>11.2</span>",
       "label": "Рисунок 11.2",
       "number": "11.2"
     },
-    "theory:fig-integrity-byte-change": {
+    "theory:fig-access-mac": {
       "namespace": "theory",
-      "id": "fig-integrity-byte-change",
-      "page": "theory/data-integrity/integrity.html",
-      "fragment": "fig-integrity-byte-change",
-      "labelHtml": "Рисунок&nbsp;<span>16.3</span>",
-      "numberHtml": "<span>16.3</span>",
-      "label": "Рисунок 16.3",
-      "number": "16.3"
+      "id": "fig-access-mac",
+      "page": "theory/access-control/authorization.html",
+      "fragment": "fig-access-mac",
+      "labelHtml": "Рисунок&nbsp;<span>11.4</span>",
+      "numberHtml": "<span>11.4</span>",
+      "label": "Рисунок 11.4",
+      "number": "11.4"
     },
-    "theory:fig-integrity-copy-scales": {
+    "theory:fig-access-rbac": {
       "namespace": "theory",
-      "id": "fig-integrity-copy-scales",
-      "page": "theory/data-integrity/integrity.html",
-      "fragment": "fig-integrity-copy-scales",
-      "labelHtml": "Рисунок&nbsp;<span>16.5</span>",
-      "numberHtml": "<span>16.5</span>",
-      "label": "Рисунок 16.5",
-      "number": "16.5"
+      "id": "fig-access-rbac",
+      "page": "theory/access-control/authorization.html",
+      "fragment": "fig-access-rbac",
+      "labelHtml": "Рисунок&nbsp;<span>11.6</span>",
+      "numberHtml": "<span>11.6</span>",
+      "label": "Рисунок 11.6",
+      "number": "11.6"
+    },
+    "theory:fig-backup-types": {
+      "namespace": "theory",
+      "id": "fig-backup-types",
+      "page": "theory/data-preservation/backups.html",
+      "fragment": "fig-backup-types",
+      "labelHtml": "Рисунок&nbsp;<span>21.1</span>",
+      "numberHtml": "<span>21.1</span>",
+      "label": "Рисунок 21.1",
+      "number": "21.1"
+    },
+    "theory:fig-crypto-key-pairs": {
+      "namespace": "theory",
+      "id": "fig-crypto-key-pairs",
+      "page": "theory/crypto/key-management.html",
+      "fragment": "fig-crypto-key-pairs",
+      "labelHtml": "Рисунок&nbsp;<span>17.1</span>",
+      "numberHtml": "<span>17.1</span>",
+      "label": "Рисунок 17.1",
+      "number": "17.1"
+    },
+    "theory:fig-crypto-symmetric-key": {
+      "namespace": "theory",
+      "id": "fig-crypto-symmetric-key",
+      "page": "theory/crypto/symmetric-encryption.html",
+      "fragment": "fig-crypto-symmetric-key",
+      "labelHtml": "Рисунок&nbsp;<span>13.1</span>",
+      "numberHtml": "<span>13.1</span>",
+      "label": "Рисунок 13.1",
+      "number": "13.1"
+    },
+    "theory:fig-cypher-caesar": {
+      "namespace": "theory",
+      "id": "fig-cypher-caesar",
+      "page": "theory/crypto/symmetric-encryption.html",
+      "fragment": "fig-cypher-caesar",
+      "labelHtml": "Рисунок&nbsp;<span>13.2</span>",
+      "numberHtml": "<span>13.2</span>",
+      "label": "Рисунок 13.2",
+      "number": "13.2"
+    },
+    "theory:fig-cypher-xor": {
+      "namespace": "theory",
+      "id": "fig-cypher-xor",
+      "page": "theory/crypto/symmetric-encryption.html",
+      "fragment": "fig-cypher-xor",
+      "labelHtml": "Рисунок&nbsp;<span>13.3</span>",
+      "numberHtml": "<span>13.3</span>",
+      "label": "Рисунок 13.3",
+      "number": "13.3"
+    },
+    "theory:fig-dac-decision": {
+      "namespace": "theory",
+      "id": "fig-dac-decision",
+      "page": "theory/access-control/authorization.html",
+      "fragment": "fig-dac-decision",
+      "labelHtml": "Рисунок&nbsp;<span>11.3</span>",
+      "numberHtml": "<span>11.3</span>",
+      "label": "Рисунок 11.3",
+      "number": "11.3"
+    },
+    "theory:fig-hash-bit-change": {
+      "namespace": "theory",
+      "id": "fig-hash-bit-change",
+      "page": "theory/crypto/hash-functions.html",
+      "fragment": "fig-hash-bit-change",
+      "labelHtml": "Рисунок&nbsp;<span>14.3</span>",
+      "numberHtml": "<span>14.3</span>",
+      "label": "Рисунок 14.3",
+      "number": "14.3"
+    },
+    "theory:fig-hash-process": {
+      "namespace": "theory",
+      "id": "fig-hash-process",
+      "page": "theory/crypto/hash-functions.html",
+      "fragment": "fig-hash-process",
+      "labelHtml": "Рисунок&nbsp;<span>14.1</span>",
+      "numberHtml": "<span>14.1</span>",
+      "label": "Рисунок 14.1",
+      "number": "14.1"
+    },
+    "theory:fig-hash-security-goals": {
+      "namespace": "theory",
+      "id": "fig-hash-security-goals",
+      "page": "theory/crypto/hash-functions.html",
+      "fragment": "fig-hash-security-goals",
+      "labelHtml": "Рисунок&nbsp;<span>14.2</span>",
+      "numberHtml": "<span>14.2</span>",
+      "label": "Рисунок 14.2",
+      "number": "14.2"
     },
     "theory:fig-integrity-raid": {
       "namespace": "theory",
       "id": "fig-integrity-raid",
-      "page": "theory/data-integrity/integrity.html",
+      "page": "theory/data-preservation/raid.html",
       "fragment": "fig-integrity-raid",
-      "labelHtml": "Рисунок&nbsp;<span>16.6</span>",
-      "numberHtml": "<span>16.6</span>",
-      "label": "Рисунок 16.6",
-      "number": "16.6"
-    },
-    "theory:fig-integrity-reference": {
-      "namespace": "theory",
-      "id": "fig-integrity-reference",
-      "page": "theory/data-integrity/integrity.html",
-      "fragment": "fig-integrity-reference",
-      "labelHtml": "Рисунок&nbsp;<span>16.4</span>",
-      "numberHtml": "<span>16.4</span>",
-      "label": "Рисунок 16.4",
-      "number": "16.4"
-    },
-    "theory:fig-integrity-sum-collision": {
-      "namespace": "theory",
-      "id": "fig-integrity-sum-collision",
-      "page": "theory/data-integrity/integrity.html",
-      "fragment": "fig-integrity-sum-collision",
-      "labelHtml": "Рисунок&nbsp;<span>16.2</span>",
-      "numberHtml": "<span>16.2</span>",
-      "label": "Рисунок 16.2",
-      "number": "16.2"
-    },
-    "theory:fig-integrity-sum-hash": {
-      "namespace": "theory",
-      "id": "fig-integrity-sum-hash",
-      "page": "theory/data-integrity/integrity.html",
-      "fragment": "fig-integrity-sum-hash",
-      "labelHtml": "Рисунок&nbsp;<span>16.1</span>",
-      "numberHtml": "<span>16.1</span>",
-      "label": "Рисунок 16.1",
-      "number": "16.1"
-    },
-    "theory:fig-integrity-xor": {
-      "namespace": "theory",
-      "id": "fig-integrity-xor",
-      "page": "theory/data-integrity/integrity.html",
-      "fragment": "fig-integrity-xor",
-      "labelHtml": "Рисунок&nbsp;<span>16.7</span>",
-      "numberHtml": "<span>16.7</span>",
-      "label": "Рисунок 16.7",
-      "number": "16.7"
+      "labelHtml": "Рисунок&nbsp;<span>22.1</span>",
+      "numberHtml": "<span>22.1</span>",
+      "label": "Рисунок 22.1",
+      "number": "22.1"
     },
     "theory:fig-lcg-model-selection": {
       "namespace": "theory",
       "id": "fig-lcg-model-selection",
-      "page": "theory/crypto/random.html",
+      "page": "theory/crypto/randomness.html",
       "fragment": "fig-lcg-model-selection",
-      "labelHtml": "Рисунок&nbsp;<span>10.4</span>",
-      "numberHtml": "<span>10.4</span>",
-      "label": "Рисунок 10.4",
-      "number": "10.4"
+      "labelHtml": "Рисунок&nbsp;<span>12.5</span>",
+      "numberHtml": "<span>12.5</span>",
+      "label": "Рисунок 12.5",
+      "number": "12.5"
     },
     "theory:fig-mac-decision": {
       "namespace": "theory",
       "id": "fig-mac-decision",
-      "page": "theory/access-control/access-control.html",
+      "page": "theory/access-control/authorization.html",
       "fragment": "fig-mac-decision",
-      "labelHtml": "Рисунок&nbsp;<span>9.6</span>",
-      "numberHtml": "<span>9.6</span>",
-      "label": "Рисунок 9.6",
-      "number": "9.6"
+      "labelHtml": "Рисунок&nbsp;<span>11.5</span>",
+      "numberHtml": "<span>11.5</span>",
+      "label": "Рисунок 11.5",
+      "number": "11.5"
     },
     "theory:fig-password-pbkdf2": {
       "namespace": "theory",
       "id": "fig-password-pbkdf2",
       "page": "theory/crypto/password-storage.html",
       "fragment": "fig-password-pbkdf2",
-      "labelHtml": "Рисунок&nbsp;<span>14.2</span>",
-      "numberHtml": "<span>14.2</span>",
-      "label": "Рисунок 14.2",
-      "number": "14.2"
+      "labelHtml": "Рисунок&nbsp;<span>18.2</span>",
+      "numberHtml": "<span>18.2</span>",
+      "label": "Рисунок 18.2",
+      "number": "18.2"
     },
     "theory:fig-password-record": {
       "namespace": "theory",
       "id": "fig-password-record",
       "page": "theory/crypto/password-storage.html",
       "fragment": "fig-password-record",
-      "labelHtml": "Рисунок&nbsp;<span>14.1</span>",
-      "numberHtml": "<span>14.1</span>",
-      "label": "Рисунок 14.1",
-      "number": "14.1"
+      "labelHtml": "Рисунок&nbsp;<span>18.1</span>",
+      "numberHtml": "<span>18.1</span>",
+      "label": "Рисунок 18.1",
+      "number": "18.1"
     },
     "theory:fig-random-lcg": {
       "namespace": "theory",
       "id": "fig-random-lcg",
-      "page": "theory/crypto/random.html",
+      "page": "theory/crypto/randomness.html",
       "fragment": "fig-random-lcg",
-      "labelHtml": "Рисунок&nbsp;<span>10.2</span>",
-      "numberHtml": "<span>10.2</span>",
-      "label": "Рисунок 10.2",
-      "number": "10.2"
+      "labelHtml": "Рисунок&nbsp;<span>12.3</span>",
+      "numberHtml": "<span>12.3</span>",
+      "label": "Рисунок 12.3",
+      "number": "12.3"
     },
     "theory:fig-random-lcg-overview": {
       "namespace": "theory",
       "id": "fig-random-lcg-overview",
-      "page": "theory/crypto/random.html",
+      "page": "theory/crypto/randomness.html",
       "fragment": "fig-random-lcg-overview",
-      "labelHtml": "Рисунок&nbsp;<span>10.1</span>",
-      "numberHtml": "<span>10.1</span>",
-      "label": "Рисунок 10.1",
-      "number": "10.1"
+      "labelHtml": "Рисунок&nbsp;<span>12.2</span>",
+      "numberHtml": "<span>12.2</span>",
+      "label": "Рисунок 12.2",
+      "number": "12.2"
     },
     "theory:fig-random-randu": {
       "namespace": "theory",
       "id": "fig-random-randu",
-      "page": "theory/crypto/random.html",
+      "page": "theory/crypto/randomness.html",
       "fragment": "fig-random-randu",
-      "labelHtml": "Рисунок&nbsp;<span>10.3</span>",
-      "numberHtml": "<span>10.3</span>",
-      "label": "Рисунок 10.3",
-      "number": "10.3"
+      "labelHtml": "Рисунок&nbsp;<span>12.4</span>",
+      "numberHtml": "<span>12.4</span>",
+      "label": "Рисунок 12.4",
+      "number": "12.4"
     },
     "theory:fig-random-seed": {
       "namespace": "theory",
       "id": "fig-random-seed",
-      "page": "theory/crypto/random.html",
+      "page": "theory/crypto/randomness.html",
       "fragment": "fig-random-seed",
-      "labelHtml": "Рисунок&nbsp;<span>10.5</span>",
-      "numberHtml": "<span>10.5</span>",
-      "label": "Рисунок 10.5",
-      "number": "10.5"
+      "labelHtml": "Рисунок&nbsp;<span>12.1</span>",
+      "numberHtml": "<span>12.1</span>",
+      "label": "Рисунок 12.1",
+      "number": "12.1"
     },
     "theory:fig-rbac-decision": {
       "namespace": "theory",
       "id": "fig-rbac-decision",
-      "page": "theory/access-control/access-control.html",
+      "page": "theory/access-control/authorization.html",
       "fragment": "fig-rbac-decision",
-      "labelHtml": "Рисунок&nbsp;<span>9.8</span>",
-      "numberHtml": "<span>9.8</span>",
-      "label": "Рисунок 9.8",
-      "number": "9.8"
+      "labelHtml": "Рисунок&nbsp;<span>11.7</span>",
+      "numberHtml": "<span>11.7</span>",
+      "label": "Рисунок 11.7",
+      "number": "11.7"
     },
     "theory:fig-security-center-incident-alert": {
       "namespace": "theory",
       "id": "fig-security-center-incident-alert",
       "page": "theory/security-center/workflow.html",
       "fragment": "fig-security-center-incident-alert",
-      "labelHtml": "Рисунок&nbsp;<span>7.2</span>",
-      "numberHtml": "<span>7.2</span>",
-      "label": "Рисунок 7.2",
-      "number": "7.2"
+      "labelHtml": "Рисунок&nbsp;<span>8.2</span>",
+      "numberHtml": "<span>8.2</span>",
+      "label": "Рисунок 8.2",
+      "number": "8.2"
     },
     "theory:fig-security-center-national-system": {
       "namespace": "theory",
       "id": "fig-security-center-national-system",
       "page": "theory/security-center/organization.html",
       "fragment": "fig-security-center-national-system",
-      "labelHtml": "Рисунок&nbsp;<span>6.1</span>",
-      "numberHtml": "<span>6.1</span>",
-      "label": "Рисунок 6.1",
-      "number": "6.1"
+      "labelHtml": "Рисунок&nbsp;<span>7.1</span>",
+      "numberHtml": "<span>7.1</span>",
+      "label": "Рисунок 7.1",
+      "number": "7.1"
     },
     "theory:fig-security-center-siem-flow": {
       "namespace": "theory",
       "id": "fig-security-center-siem-flow",
       "page": "theory/security-center/workflow.html",
       "fragment": "fig-security-center-siem-flow",
-      "labelHtml": "Рисунок&nbsp;<span>7.1</span>",
-      "numberHtml": "<span>7.1</span>",
-      "label": "Рисунок 7.1",
-      "number": "7.1"
-    },
-    "theory:fig-standards-risk-protection-product-certificate": {
-      "namespace": "theory",
-      "id": "fig-standards-risk-protection-product-certificate",
-      "page": "theory/standards-risk/requirements-decisions.html",
-      "fragment": "fig-standards-risk-protection-product-certificate",
-      "labelHtml": "Рисунок&nbsp;<span>8.2</span>",
-      "numberHtml": "<span>8.2</span>",
-      "label": "Рисунок 8.2",
-      "number": "8.2"
-    },
-    "theory:fig-standards-risk-protection-product-requirements": {
-      "namespace": "theory",
-      "id": "fig-standards-risk-protection-product-requirements",
-      "page": "theory/standards-risk/requirements-decisions.html",
-      "fragment": "fig-standards-risk-protection-product-requirements",
       "labelHtml": "Рисунок&nbsp;<span>8.1</span>",
       "numberHtml": "<span>8.1</span>",
       "label": "Рисунок 8.1",
       "number": "8.1"
     },
+    "theory:fig-standards-risk-protection-product-certificate": {
+      "namespace": "theory",
+      "id": "fig-standards-risk-protection-product-certificate",
+      "page": "theory/legal/standards.html",
+      "fragment": "fig-standards-risk-protection-product-certificate",
+      "labelHtml": "Рисунок&nbsp;<span>6.2</span>",
+      "numberHtml": "<span>6.2</span>",
+      "label": "Рисунок 6.2",
+      "number": "6.2"
+    },
+    "theory:fig-standards-risk-protection-product-requirements": {
+      "namespace": "theory",
+      "id": "fig-standards-risk-protection-product-requirements",
+      "page": "theory/legal/standards.html",
+      "fragment": "fig-standards-risk-protection-product-requirements",
+      "labelHtml": "Рисунок&nbsp;<span>6.1</span>",
+      "numberHtml": "<span>6.1</span>",
+      "label": "Рисунок 6.1",
+      "number": "6.1"
+    },
+    "theory:fig-trust-asymmetric-encryption": {
+      "namespace": "theory",
+      "id": "fig-trust-asymmetric-encryption",
+      "page": "theory/crypto/asymmetric-cryptography.html",
+      "fragment": "fig-trust-asymmetric-encryption",
+      "labelHtml": "Рисунок&nbsp;<span>15.1</span>",
+      "numberHtml": "<span>15.1</span>",
+      "label": "Рисунок 15.1",
+      "number": "15.1"
+    },
+    "theory:fig-trust-certificate-chain": {
+      "namespace": "theory",
+      "id": "fig-trust-certificate-chain",
+      "page": "theory/data-trust/certificates.html",
+      "fragment": "fig-trust-certificate-chain",
+      "labelHtml": "Рисунок&nbsp;<span>20.1</span>",
+      "numberHtml": "<span>20.1</span>",
+      "label": "Рисунок 20.1",
+      "number": "20.1"
+    },
+    "theory:fig-trust-lamport-disclosure": {
+      "namespace": "theory",
+      "id": "fig-trust-lamport-disclosure",
+      "page": "theory/crypto/lamport-signature.html",
+      "fragment": "fig-trust-lamport-disclosure",
+      "labelHtml": "Рисунок&nbsp;<span>A.4</span>",
+      "numberHtml": "<span>A.4</span>",
+      "label": "Рисунок A.4",
+      "number": "A.4"
+    },
+    "theory:fig-trust-lamport-keygen": {
+      "namespace": "theory",
+      "id": "fig-trust-lamport-keygen",
+      "page": "theory/crypto/lamport-signature.html",
+      "fragment": "fig-trust-lamport-keygen",
+      "labelHtml": "Рисунок&nbsp;<span>A.1</span>",
+      "numberHtml": "<span>A.1</span>",
+      "label": "Рисунок A.1",
+      "number": "A.1"
+    },
+    "theory:fig-trust-lamport-signing": {
+      "namespace": "theory",
+      "id": "fig-trust-lamport-signing",
+      "page": "theory/crypto/lamport-signature.html",
+      "fragment": "fig-trust-lamport-signing",
+      "labelHtml": "Рисунок&nbsp;<span>A.2</span>",
+      "numberHtml": "<span>A.2</span>",
+      "label": "Рисунок A.2",
+      "number": "A.2"
+    },
+    "theory:fig-trust-lamport-verification": {
+      "namespace": "theory",
+      "id": "fig-trust-lamport-verification",
+      "page": "theory/crypto/lamport-signature.html",
+      "fragment": "fig-trust-lamport-verification",
+      "labelHtml": "Рисунок&nbsp;<span>A.3</span>",
+      "numberHtml": "<span>A.3</span>",
+      "label": "Рисунок A.3",
+      "number": "A.3"
+    },
+    "theory:fig-trust-signature-flow": {
+      "namespace": "theory",
+      "id": "fig-trust-signature-flow",
+      "page": "theory/crypto/digital-signature.html",
+      "fragment": "fig-trust-signature-flow",
+      "labelHtml": "Рисунок&nbsp;<span>16.1</span>",
+      "numberHtml": "<span>16.1</span>",
+      "label": "Рисунок 16.1",
+      "number": "16.1"
+    },
     "theory:sec-random-concepts": {
       "namespace": "theory",
       "id": "sec-random-concepts",
-      "page": "theory/crypto/random.html",
+      "page": "theory/crypto/randomness.html",
       "fragment": "sec-random-concepts",
       "labelHtml": "Состояние генератора",
       "numberHtml": "",
       "label": "Состояние генератора",
       "number": "",
       "title": "Состояние генератора"
+    },
+    "theory:sec-random-csprng": {
+      "namespace": "theory",
+      "id": "sec-random-csprng",
+      "page": "theory/crypto/randomness.html",
+      "fragment": "sec-random-csprng",
+      "labelHtml": "Криптографический генератор",
+      "numberHtml": "",
+      "label": "Криптографический генератор",
+      "number": "",
+      "title": "Криптографический генератор"
+    },
+    "theory:sec-random-entropy-source": {
+      "namespace": "theory",
+      "id": "sec-random-entropy-source",
+      "page": "theory/crypto/randomness.html",
+      "fragment": "sec-random-entropy-source",
+      "labelHtml": "Источник энтропии",
+      "numberHtml": "",
+      "label": "Источник энтропии",
+      "number": "",
+      "title": "Источник энтропии"
+    },
+    "theory:sec-random-lcg-experiments": {
+      "namespace": "theory",
+      "id": "sec-random-lcg-experiments",
+      "page": "theory/crypto/randomness.html",
+      "fragment": "sec-random-lcg-experiments",
+      "labelHtml": "Дополнительные опыты",
+      "numberHtml": "",
+      "label": "Дополнительные опыты",
+      "number": "",
+      "title": "Дополнительные опыты"
     },
     "theory:sec-theory": {
       "namespace": "theory",
@@ -2433,7 +3387,7 @@
     "theory:sec-theory-access-authentication": {
       "namespace": "theory",
       "id": "sec-theory-access-authentication",
-      "page": "theory/access-control/access-control.html",
+      "page": "theory/access-control/authentication.html",
       "fragment": "sec-theory-access-authentication",
       "labelHtml": "Аутентификация",
       "numberHtml": "",
@@ -2444,7 +3398,7 @@
     "theory:sec-theory-access-authorization": {
       "namespace": "theory",
       "id": "sec-theory-access-authorization",
-      "page": "theory/access-control/access-control.html",
+      "page": "theory/access-control/authorization.html",
       "fragment": "sec-theory-access-authorization",
       "labelHtml": "Авторизация конкретного запроса",
       "numberHtml": "",
@@ -2452,21 +3406,21 @@
       "number": "",
       "title": "Авторизация конкретного запроса"
     },
-    "theory:sec-theory-access-control": {
+    "theory:sec-theory-access-combined": {
       "namespace": "theory",
-      "id": "sec-theory-access-control",
-      "page": "theory/access-control/access-control.html",
-      "fragment": "sec-theory-access-control",
-      "labelHtml": "<span>Глава 9</span>",
-      "numberHtml": "<span>9</span>",
-      "label": "Глава 9",
-      "number": "9",
-      "title": "Управление доступом"
+      "id": "sec-theory-access-combined",
+      "page": "theory/access-control/authorization.html",
+      "fragment": "sec-theory-access-combined",
+      "labelHtml": "Совместное применение политик",
+      "numberHtml": "",
+      "label": "Совместное применение политик",
+      "number": "",
+      "title": "Совместное применение политик"
     },
     "theory:sec-theory-access-dac": {
       "namespace": "theory",
       "id": "sec-theory-access-dac",
-      "page": "theory/access-control/access-control.html",
+      "page": "theory/access-control/authorization.html",
       "fragment": "sec-theory-access-dac",
       "labelHtml": "Дискреционное управление доступом",
       "numberHtml": "",
@@ -2477,7 +3431,7 @@
     "theory:sec-theory-access-factors": {
       "namespace": "theory",
       "id": "sec-theory-access-factors",
-      "page": "theory/access-control/access-control.html",
+      "page": "theory/access-control/authentication.html",
       "fragment": "sec-theory-access-factors",
       "labelHtml": "Факторы аутентификации",
       "numberHtml": "",
@@ -2488,7 +3442,7 @@
     "theory:sec-theory-access-identification": {
       "namespace": "theory",
       "id": "sec-theory-access-identification",
-      "page": "theory/access-control/access-control.html",
+      "page": "theory/access-control/authentication.html",
       "fragment": "sec-theory-access-identification",
       "labelHtml": "Идентификация",
       "numberHtml": "",
@@ -2499,7 +3453,7 @@
     "theory:sec-theory-access-mac": {
       "namespace": "theory",
       "id": "sec-theory-access-mac",
-      "page": "theory/access-control/access-control.html",
+      "page": "theory/access-control/authorization.html",
       "fragment": "sec-theory-access-mac",
       "labelHtml": "Мандатное управление доступом",
       "numberHtml": "",
@@ -2507,21 +3461,54 @@
       "number": "",
       "title": "Мандатное управление доступом"
     },
+    "theory:sec-theory-access-models": {
+      "namespace": "theory",
+      "id": "sec-theory-access-models",
+      "page": "theory/access-control/authorization.html",
+      "fragment": "sec-theory-access-models",
+      "labelHtml": "Модели управления доступом",
+      "numberHtml": "",
+      "label": "Модели управления доступом",
+      "number": "",
+      "title": "Модели управления доступом"
+    },
+    "theory:sec-theory-access-otp": {
+      "namespace": "theory",
+      "id": "sec-theory-access-otp",
+      "page": "theory/access-control/authentication.html",
+      "fragment": "sec-theory-access-otp",
+      "labelHtml": "Одноразовые коды",
+      "numberHtml": "",
+      "label": "Одноразовые коды",
+      "number": "",
+      "title": "Одноразовые коды"
+    },
+    "theory:sec-theory-access-passkey": {
+      "namespace": "theory",
+      "id": "sec-theory-access-passkey",
+      "page": "theory/access-control/authentication.html",
+      "fragment": "sec-theory-access-passkey",
+      "labelHtml": "Использование passkey",
+      "numberHtml": "",
+      "label": "Использование passkey",
+      "number": "",
+      "title": "Использование passkey"
+    },
     "theory:sec-theory-access-policy": {
       "namespace": "theory",
       "id": "sec-theory-access-policy",
-      "page": "theory/access-control/access-control.html",
+      "page": "theory/access-control/authentication.html",
       "fragment": "sec-theory-access-policy",
-      "labelHtml": "Процедура получения доступа к ресурсу",
+      "labelHtml": "Процедура получения доступа",
       "numberHtml": "",
-      "label": "Процедура получения доступа к ресурсу",
+      "label": "Процедура получения доступа",
       "number": "",
-      "title": "Процедура получения доступа к ресурсу"
+      "title": "Процедура получения доступа"
     },
     "theory:sec-theory-access-rbac": {
       "namespace": "theory",
       "id": "sec-theory-access-rbac",
-      "page": "theory/access-control/access-control.html",
+      "page": "theory/access-control/authorization.html",
       "fragment": "sec-theory-access-rbac",
       "labelHtml": "Ролевое управление доступом",
       "numberHtml": "",
@@ -2529,71 +3516,115 @@
       "number": "",
       "title": "Ролевое управление доступом"
     },
-    "theory:sec-theory-crypto-algorithms": {
+    "theory:sec-theory-access-request": {
       "namespace": "theory",
-      "id": "sec-theory-crypto-algorithms",
-      "page": "theory/crypto/algorithms.html",
-      "fragment": "sec-theory-crypto-algorithms",
+      "id": "sec-theory-access-request",
+      "page": "theory/access-control/authorization.html",
+      "fragment": "sec-theory-access-request",
+      "labelHtml": "Запрос доступа",
+      "numberHtml": "",
+      "label": "Запрос доступа",
+      "number": "",
+      "title": "Запрос доступа"
+    },
+    "theory:sec-theory-asymmetric-cryptography": {
+      "namespace": "theory",
+      "id": "sec-theory-asymmetric-cryptography",
+      "page": "theory/crypto/asymmetric-cryptography.html",
+      "fragment": "sec-theory-asymmetric-cryptography",
       "labelHtml": "<span>Глава 15</span>",
       "numberHtml": "<span>15</span>",
       "label": "Глава 15",
       "number": "15",
-      "title": "Известные алгоритмы"
+      "title": "Асимметричная криптография"
     },
-    "theory:sec-theory-crypto-cypher": {
+    "theory:sec-theory-asymmetric-encryption": {
       "namespace": "theory",
-      "id": "sec-theory-crypto-cypher",
-      "page": "theory/crypto/cypher.html",
-      "fragment": "sec-theory-crypto-cypher",
-      "labelHtml": "<span>Глава 12</span>",
-      "numberHtml": "<span>12</span>",
-      "label": "Глава 12",
-      "number": "12",
-      "title": "Симметричное шифрование"
+      "id": "sec-theory-asymmetric-encryption",
+      "page": "theory/crypto/asymmetric-cryptography.html",
+      "fragment": "sec-theory-asymmetric-encryption",
+      "labelHtml": "Шифрование получателю",
+      "numberHtml": "",
+      "label": "Шифрование получателю",
+      "number": "",
+      "title": "Шифрование получателю"
     },
-    "theory:sec-theory-crypto-hash": {
+    "theory:sec-theory-authentication": {
       "namespace": "theory",
-      "id": "sec-theory-crypto-hash",
-      "page": "theory/crypto/hash.html",
-      "fragment": "sec-theory-crypto-hash",
-      "labelHtml": "<span>Глава 11</span>",
-      "numberHtml": "<span>11</span>",
-      "label": "Глава 11",
-      "number": "11",
-      "title": "Хеш-функции"
-    },
-    "theory:sec-theory-crypto-key-gen": {
-      "namespace": "theory",
-      "id": "sec-theory-crypto-key-gen",
-      "page": "theory/crypto/key-gen.html",
-      "fragment": "sec-theory-crypto-key-gen",
-      "labelHtml": "<span>Глава 13</span>",
-      "numberHtml": "<span>13</span>",
-      "label": "Глава 13",
-      "number": "13",
-      "title": "Генерация ключей"
-    },
-    "theory:sec-theory-crypto-random": {
-      "namespace": "theory",
-      "id": "sec-theory-crypto-random",
-      "page": "theory/crypto/random.html",
-      "fragment": "sec-theory-crypto-random",
+      "id": "sec-theory-authentication",
+      "page": "theory/access-control/authentication.html",
+      "fragment": "sec-theory-authentication",
       "labelHtml": "<span>Глава 10</span>",
       "numberHtml": "<span>10</span>",
       "label": "Глава 10",
       "number": "10",
-      "title": "Генераторы случайных чисел"
+      "title": "Аутентификация"
     },
-    "theory:sec-theory-data-integrity": {
+    "theory:sec-theory-authorization": {
       "namespace": "theory",
-      "id": "sec-theory-data-integrity",
-      "page": "theory/data-integrity/integrity.html",
-      "fragment": "sec-theory-data-integrity",
+      "id": "sec-theory-authorization",
+      "page": "theory/access-control/authorization.html",
+      "fragment": "sec-theory-authorization",
+      "labelHtml": "<span>Глава 11</span>",
+      "numberHtml": "<span>11</span>",
+      "label": "Глава 11",
+      "number": "11",
+      "title": "Авторизация"
+    },
+    "theory:sec-theory-backups": {
+      "namespace": "theory",
+      "id": "sec-theory-backups",
+      "page": "theory/data-preservation/backups.html",
+      "fragment": "sec-theory-backups",
+      "labelHtml": "<span>Глава 21</span>",
+      "numberHtml": "<span>21</span>",
+      "label": "Глава 21",
+      "number": "21",
+      "title": "Резервное копирование"
+    },
+    "theory:sec-theory-certificate-browser": {
+      "namespace": "theory",
+      "id": "sec-theory-certificate-browser",
+      "page": "theory/data-trust/certificates.html",
+      "fragment": "sec-theory-certificate-browser",
+      "labelHtml": "Просмотр сертификата сайта",
+      "numberHtml": "",
+      "label": "Просмотр сертификата сайта",
+      "number": "",
+      "title": "Просмотр сертификата сайта"
+    },
+    "theory:sec-theory-certificate-chain": {
+      "namespace": "theory",
+      "id": "sec-theory-certificate-chain",
+      "page": "theory/data-trust/certificates.html",
+      "fragment": "sec-theory-certificate-chain",
+      "labelHtml": "Цепочка сертификатов",
+      "numberHtml": "",
+      "label": "Цепочка сертификатов",
+      "number": "",
+      "title": "Цепочка сертификатов"
+    },
+    "theory:sec-theory-certificates": {
+      "namespace": "theory",
+      "id": "sec-theory-certificates",
+      "page": "theory/data-trust/certificates.html",
+      "fragment": "sec-theory-certificates",
+      "labelHtml": "<span>Глава 20</span>",
+      "numberHtml": "<span>20</span>",
+      "label": "Глава 20",
+      "number": "20",
+      "title": "Сертификаты открытого ключа"
+    },
+    "theory:sec-theory-digital-signature": {
+      "namespace": "theory",
+      "id": "sec-theory-digital-signature",
+      "page": "theory/crypto/digital-signature.html",
+      "fragment": "sec-theory-digital-signature",
       "labelHtml": "<span>Глава 16</span>",
       "numberHtml": "<span>16</span>",
       "label": "Глава 16",
       "number": "16",
-      "title": "Целостность данных"
+      "title": "Цифровая подпись"
     },
     "theory:sec-theory-fundamentals-cia": {
       "namespace": "theory",
@@ -2638,6 +3669,149 @@
       "label": "Активы информационной системы",
       "number": "",
       "title": "Активы информационной системы"
+    },
+    "theory:sec-theory-hash-functions": {
+      "namespace": "theory",
+      "id": "sec-theory-hash-functions",
+      "page": "theory/crypto/hash-functions.html",
+      "fragment": "sec-theory-hash-functions",
+      "labelHtml": "<span>Глава 14</span>",
+      "numberHtml": "<span>14</span>",
+      "label": "Глава 14",
+      "number": "14",
+      "title": "Хеш-функции"
+    },
+    "theory:sec-theory-hybrid-encryption": {
+      "namespace": "theory",
+      "id": "sec-theory-hybrid-encryption",
+      "page": "theory/crypto/asymmetric-cryptography.html",
+      "fragment": "sec-theory-hybrid-encryption",
+      "labelHtml": "Гибридное шифрование",
+      "numberHtml": "",
+      "label": "Гибридное шифрование",
+      "number": "",
+      "title": "Гибридное шифрование"
+    },
+    "theory:sec-theory-integrity-reference": {
+      "namespace": "theory",
+      "id": "sec-theory-integrity-reference",
+      "page": "theory/data-trust/integrity-verification.html",
+      "fragment": "sec-theory-integrity-reference",
+      "labelHtml": "Сравнение с эталоном",
+      "numberHtml": "",
+      "label": "Сравнение с эталоном",
+      "number": "",
+      "title": "Сравнение с эталоном"
+    },
+    "theory:sec-theory-integrity-state": {
+      "namespace": "theory",
+      "id": "sec-theory-integrity-state",
+      "page": "theory/data-trust/integrity-verification.html",
+      "fragment": "sec-theory-integrity-state",
+      "labelHtml": "Допустимое состояние",
+      "numberHtml": "",
+      "label": "Допустимое состояние",
+      "number": "",
+      "title": "Допустимое состояние"
+    },
+    "theory:sec-theory-integrity-verification": {
+      "namespace": "theory",
+      "id": "sec-theory-integrity-verification",
+      "page": "theory/data-trust/integrity-verification.html",
+      "fragment": "sec-theory-integrity-verification",
+      "labelHtml": "<span>Глава 19</span>",
+      "numberHtml": "<span>19</span>",
+      "label": "Глава 19",
+      "number": "19",
+      "title": "Проверка целостности"
+    },
+    "theory:sec-theory-key-length": {
+      "namespace": "theory",
+      "id": "sec-theory-key-length",
+      "page": "theory/crypto/asymmetric-cryptography.html",
+      "fragment": "sec-theory-key-length",
+      "labelHtml": "Длина ключа",
+      "numberHtml": "",
+      "label": "Длина ключа",
+      "number": "",
+      "title": "Длина ключа"
+    },
+    "theory:sec-theory-key-management": {
+      "namespace": "theory",
+      "id": "sec-theory-key-management",
+      "page": "theory/crypto/key-management.html",
+      "fragment": "sec-theory-key-management",
+      "labelHtml": "<span>Глава 17</span>",
+      "numberHtml": "<span>17</span>",
+      "label": "Глава 17",
+      "number": "17",
+      "title": "Управление ключами"
+    },
+    "theory:sec-theory-key-operations": {
+      "namespace": "theory",
+      "id": "sec-theory-key-operations",
+      "page": "theory/crypto/digital-signature.html",
+      "fragment": "sec-theory-key-operations",
+      "labelHtml": "Назначение ключей",
+      "numberHtml": "",
+      "label": "Назначение ключей",
+      "number": "",
+      "title": "Назначение ключей"
+    },
+    "theory:sec-theory-lamport": {
+      "namespace": "theory",
+      "id": "sec-theory-lamport",
+      "page": "theory/crypto/lamport-signature.html",
+      "fragment": "sec-theory-lamport",
+      "labelHtml": "<span>Приложение A</span>",
+      "numberHtml": "<span>A</span>",
+      "label": "Приложение A",
+      "number": "A",
+      "title": "Приложение A — Подпись Лэмпорта"
+    },
+    "theory:sec-theory-lamport-forgery": {
+      "namespace": "theory",
+      "id": "sec-theory-lamport-forgery",
+      "page": "theory/crypto/lamport-signature.html",
+      "fragment": "sec-theory-lamport-forgery",
+      "labelHtml": "Попытка заменить <code>10</code> на <code>11</code>",
+      "numberHtml": "",
+      "label": "Попытка заменить 10 на 11",
+      "number": "",
+      "title": "Попытка заменить 10 на 11"
+    },
+    "theory:sec-theory-lamport-reuse": {
+      "namespace": "theory",
+      "id": "sec-theory-lamport-reuse",
+      "page": "theory/crypto/lamport-signature.html",
+      "fragment": "sec-theory-lamport-reuse",
+      "labelHtml": "Повторное использование",
+      "numberHtml": "",
+      "label": "Повторное использование",
+      "number": "",
+      "title": "Повторное использование"
+    },
+    "theory:sec-theory-lamport-signing": {
+      "namespace": "theory",
+      "id": "sec-theory-lamport-signing",
+      "page": "theory/crypto/lamport-signature.html",
+      "fragment": "sec-theory-lamport-signing",
+      "labelHtml": "Создание подписи <code>10</code>",
+      "numberHtml": "",
+      "label": "Создание подписи 10",
+      "number": "",
+      "title": "Создание подписи 10"
+    },
+    "theory:sec-theory-lamport-verification": {
+      "namespace": "theory",
+      "id": "sec-theory-lamport-verification",
+      "page": "theory/crypto/lamport-signature.html",
+      "fragment": "sec-theory-lamport-verification",
+      "labelHtml": "Проверка подписи <code>10</code>",
+      "numberHtml": "",
+      "label": "Проверка подписи 10",
+      "number": "",
+      "title": "Проверка подписи 10"
     },
     "theory:sec-theory-legal-attestation": {
       "namespace": "theory",
@@ -2705,6 +3879,61 @@
       "number": "5",
       "title": "Меры защиты информации"
     },
+    "theory:sec-theory-legal-protection-system": {
+      "namespace": "theory",
+      "id": "sec-theory-legal-protection-system",
+      "page": "theory/legal/standards.html",
+      "fragment": "sec-theory-legal-protection-system",
+      "labelHtml": "Создание системы защиты информации",
+      "numberHtml": "",
+      "label": "Создание системы защиты информации",
+      "number": "",
+      "title": "Создание системы защиты информации"
+    },
+    "theory:sec-theory-legal-protection-tools": {
+      "namespace": "theory",
+      "id": "sec-theory-legal-protection-tools",
+      "page": "theory/legal/standards.html",
+      "fragment": "sec-theory-legal-protection-tools",
+      "labelHtml": "Подтверждение соответствия средств защиты",
+      "numberHtml": "",
+      "label": "Подтверждение соответствия средств защиты",
+      "number": "",
+      "title": "Подтверждение соответствия средств защиты"
+    },
+    "theory:sec-theory-legal-regulatory-map": {
+      "namespace": "theory",
+      "id": "sec-theory-legal-regulatory-map",
+      "page": "theory/legal/standards.html",
+      "fragment": "sec-theory-legal-regulatory-map",
+      "labelHtml": "Применение нормативных документов",
+      "numberHtml": "",
+      "label": "Применение нормативных документов",
+      "number": "",
+      "title": "Применение нормативных документов"
+    },
+    "theory:sec-theory-legal-standard-obligation": {
+      "namespace": "theory",
+      "id": "sec-theory-legal-standard-obligation",
+      "page": "theory/legal/standards.html",
+      "fragment": "sec-theory-legal-standard-obligation",
+      "labelHtml": "Обязательность стандартов",
+      "numberHtml": "",
+      "label": "Обязательность стандартов",
+      "number": "",
+      "title": "Обязательность стандартов"
+    },
+    "theory:sec-theory-legal-standards": {
+      "namespace": "theory",
+      "id": "sec-theory-legal-standards",
+      "page": "theory/legal/standards.html",
+      "fragment": "sec-theory-legal-standards",
+      "labelHtml": "<span>Глава 6</span>",
+      "numberHtml": "<span>6</span>",
+      "label": "Глава 6",
+      "number": "6",
+      "title": "Нормативные требования"
+    },
     "theory:sec-theory-legal-system-classes": {
       "namespace": "theory",
       "id": "sec-theory-legal-system-classes",
@@ -2716,27 +3945,115 @@
       "number": "4",
       "title": "Классы информационных систем"
     },
+    "theory:sec-theory-password-functions": {
+      "namespace": "theory",
+      "id": "sec-theory-password-functions",
+      "page": "theory/crypto/password-storage.html",
+      "fragment": "sec-theory-password-functions",
+      "labelHtml": "Парольные функции",
+      "numberHtml": "",
+      "label": "Парольные функции",
+      "number": "",
+      "title": "Парольные функции"
+    },
     "theory:sec-theory-password-storage": {
       "namespace": "theory",
       "id": "sec-theory-password-storage",
       "page": "theory/crypto/password-storage.html",
       "fragment": "sec-theory-password-storage",
-      "labelHtml": "<span>Глава 14</span>",
-      "numberHtml": "<span>14</span>",
-      "label": "Глава 14",
-      "number": "14",
+      "labelHtml": "<span>Глава 18</span>",
+      "numberHtml": "<span>18</span>",
+      "label": "Глава 18",
+      "number": "18",
       "title": "Хранение паролей"
     },
-    "theory:sec-theory-public-key": {
+    "theory:sec-theory-public-key-certificate": {
       "namespace": "theory",
-      "id": "sec-theory-public-key",
-      "page": "theory/crypto/public-key-outline.html",
-      "fragment": "sec-theory-public-key",
-      "labelHtml": "<span>Глава 17</span>",
-      "numberHtml": "<span>17</span>",
-      "label": "Глава 17",
-      "number": "17",
-      "title": "Асимметричная криптография"
+      "id": "sec-theory-public-key-certificate",
+      "page": "theory/data-trust/certificates.html",
+      "fragment": "sec-theory-public-key-certificate",
+      "labelHtml": "Устройство сертификата",
+      "numberHtml": "",
+      "label": "Устройство сертификата",
+      "number": "",
+      "title": "Устройство сертификата"
+    },
+    "theory:sec-theory-public-key-pair": {
+      "namespace": "theory",
+      "id": "sec-theory-public-key-pair",
+      "page": "theory/crypto/asymmetric-cryptography.html",
+      "fragment": "sec-theory-public-key-pair",
+      "labelHtml": "Пара ключей",
+      "numberHtml": "",
+      "label": "Пара ключей",
+      "number": "",
+      "title": "Пара ключей"
+    },
+    "theory:sec-theory-public-key-signature": {
+      "namespace": "theory",
+      "id": "sec-theory-public-key-signature",
+      "page": "theory/crypto/asymmetric-cryptography.html",
+      "fragment": "sec-theory-public-key-signature",
+      "labelHtml": "Ключ проверки подписи",
+      "numberHtml": "",
+      "label": "Ключ проверки подписи",
+      "number": "",
+      "title": "Ключ проверки подписи"
+    },
+    "theory:sec-theory-raid": {
+      "namespace": "theory",
+      "id": "sec-theory-raid",
+      "page": "theory/data-preservation/raid.html",
+      "fragment": "sec-theory-raid",
+      "labelHtml": "<span>Глава 22</span>",
+      "numberHtml": "<span>22</span>",
+      "label": "Глава 22",
+      "number": "22",
+      "title": "Дисковые массивы"
+    },
+    "theory:sec-theory-randomness": {
+      "namespace": "theory",
+      "id": "sec-theory-randomness",
+      "page": "theory/crypto/randomness.html",
+      "fragment": "sec-theory-randomness",
+      "labelHtml": "<span>Глава 12</span>",
+      "numberHtml": "<span>12</span>",
+      "label": "Глава 12",
+      "number": "12",
+      "title": "Криптографическая случайность"
+    },
+    "theory:sec-theory-release-hash": {
+      "namespace": "theory",
+      "id": "sec-theory-release-hash",
+      "page": "theory/data-trust/integrity-verification.html",
+      "fragment": "sec-theory-release-hash",
+      "labelHtml": "Хеш опубликованного выпуска",
+      "numberHtml": "",
+      "label": "Хеш опубликованного выпуска",
+      "number": "",
+      "title": "Хеш опубликованного выпуска"
+    },
+    "theory:sec-theory-risk-assessment": {
+      "namespace": "theory",
+      "id": "sec-theory-risk-assessment",
+      "page": "theory/risk-assessment.html",
+      "fragment": "sec-theory-risk-assessment",
+      "labelHtml": "<span>Глава 9</span>",
+      "numberHtml": "<span>9</span>",
+      "label": "Глава 9",
+      "number": "9",
+      "title": "Оценка риска"
+    },
+    "theory:sec-theory-rsa": {
+      "namespace": "theory",
+      "id": "sec-theory-rsa",
+      "page": "theory/crypto/asymmetric-cryptography.html",
+      "fragment": "sec-theory-rsa",
+      "labelHtml": "Ключевая пара RSA",
+      "numberHtml": "",
+      "label": "Ключевая пара RSA",
+      "number": "",
+      "title": "Ключевая пара RSA"
     },
     "theory:sec-theory-security-center-national-system": {
       "namespace": "theory",
@@ -2754,10 +4071,10 @@
       "id": "sec-theory-security-center-organization",
       "page": "theory/security-center/organization.html",
       "fragment": "sec-theory-security-center-organization",
-      "labelHtml": "<span>Глава 6</span>",
-      "numberHtml": "<span>6</span>",
-      "label": "Глава 6",
-      "number": "6",
+      "labelHtml": "<span>Глава 7</span>",
+      "numberHtml": "<span>7</span>",
+      "label": "Глава 7",
+      "number": "7",
       "title": "Информационная безопасность в цифровой среде"
     },
     "theory:sec-theory-security-center-requirements": {
@@ -2798,87 +4115,131 @@
       "id": "sec-theory-security-center-workflow",
       "page": "theory/security-center/workflow.html",
       "fragment": "sec-theory-security-center-workflow",
-      "labelHtml": "<span>Глава 7</span>",
-      "numberHtml": "<span>7</span>",
-      "label": "Глава 7",
-      "number": "7",
-      "title": "Обобщенный процесс оказания услуги обеспечения кибербезопасности"
-    },
-    "theory:sec-theory-standards-risk-protection-system": {
-      "namespace": "theory",
-      "id": "sec-theory-standards-risk-protection-system",
-      "page": "theory/standards-risk/requirements-decisions.html",
-      "fragment": "sec-theory-standards-risk-protection-system",
-      "labelHtml": "Создание системы защиты информации",
-      "numberHtml": "",
-      "label": "Создание системы защиты информации",
-      "number": "",
-      "title": "Создание системы защиты информации"
-    },
-    "theory:sec-theory-standards-risk-protection-tools": {
-      "namespace": "theory",
-      "id": "sec-theory-standards-risk-protection-tools",
-      "page": "theory/standards-risk/requirements-decisions.html",
-      "fragment": "sec-theory-standards-risk-protection-tools",
-      "labelHtml": "Подтверждение соответствия средств защиты",
-      "numberHtml": "",
-      "label": "Подтверждение соответствия средств защиты",
-      "number": "",
-      "title": "Подтверждение соответствия средств защиты"
-    },
-    "theory:sec-theory-standards-risk-regulatory-map": {
-      "namespace": "theory",
-      "id": "sec-theory-standards-risk-regulatory-map",
-      "page": "theory/standards-risk/requirements-decisions.html",
-      "fragment": "sec-theory-standards-risk-regulatory-map",
-      "labelHtml": "Применение нормативных документов",
-      "numberHtml": "",
-      "label": "Применение нормативных документов",
-      "number": "",
-      "title": "Применение нормативных документов"
-    },
-    "theory:sec-theory-standards-risk-requirements-decisions": {
-      "namespace": "theory",
-      "id": "sec-theory-standards-risk-requirements-decisions",
-      "page": "theory/standards-risk/requirements-decisions.html",
-      "fragment": "sec-theory-standards-risk-requirements-decisions",
       "labelHtml": "<span>Глава 8</span>",
       "numberHtml": "<span>8</span>",
       "label": "Глава 8",
       "number": "8",
-      "title": "Применение нормативно-правовых актов"
+      "title": "Обобщенный процесс оказания услуги обеспечения кибербезопасности"
     },
-    "theory:sec-theory-standards-risk-risk-model": {
+    "theory:sec-theory-sha-2": {
       "namespace": "theory",
-      "id": "sec-theory-standards-risk-risk-model",
-      "page": "theory/standards-risk/requirements-decisions.html",
-      "fragment": "sec-theory-standards-risk-risk-model",
-      "labelHtml": "Риск – способ обосновать решение",
+      "id": "sec-theory-sha-2",
+      "page": "theory/crypto/hash-functions.html",
+      "fragment": "sec-theory-sha-2",
+      "labelHtml": "Семейство SHA-2",
       "numberHtml": "",
-      "label": "Риск – способ обосновать решение",
+      "label": "Семейство SHA-2",
       "number": "",
-      "title": "Риск – способ обосновать решение"
+      "title": "Семейство SHA-2"
     },
-    "theory:sec-theory-standards-risk-standard-obligation": {
+    "theory:sec-theory-signature-check": {
       "namespace": "theory",
-      "id": "sec-theory-standards-risk-standard-obligation",
-      "page": "theory/standards-risk/requirements-decisions.html",
-      "fragment": "sec-theory-standards-risk-standard-obligation",
-      "labelHtml": "Когда <u>международный</u> стандарт становится обязательным?",
+      "id": "sec-theory-signature-check",
+      "page": "theory/crypto/digital-signature.html",
+      "fragment": "sec-theory-signature-check",
+      "labelHtml": "Создание подписи",
       "numberHtml": "",
-      "label": "Когда международный стандарт становится обязательным?",
+      "label": "Создание подписи",
       "number": "",
-      "title": "Когда международный стандарт становится обязательным?"
+      "title": "Создание подписи"
+    },
+    "theory:sec-theory-signature-collision": {
+      "namespace": "theory",
+      "id": "sec-theory-signature-collision",
+      "page": "theory/crypto/digital-signature.html",
+      "fragment": "sec-theory-signature-collision",
+      "labelHtml": "Связь подписи с документом",
+      "numberHtml": "",
+      "label": "Связь подписи с документом",
+      "number": "",
+      "title": "Связь подписи с документом"
+    },
+    "theory:sec-theory-signature-digest": {
+      "namespace": "theory",
+      "id": "sec-theory-signature-digest",
+      "page": "theory/crypto/digital-signature.html",
+      "fragment": "sec-theory-signature-digest",
+      "labelHtml": "Подпись хеша",
+      "numberHtml": "",
+      "label": "Подпись хеша",
+      "number": "",
+      "title": "Подпись хеша"
+    },
+    "theory:sec-theory-signature-key-owner": {
+      "namespace": "theory",
+      "id": "sec-theory-signature-key-owner",
+      "page": "theory/data-trust/certificates.html",
+      "fragment": "sec-theory-signature-key-owner",
+      "labelHtml": "Принадлежность ключа",
+      "numberHtml": "",
+      "label": "Принадлежность ключа",
+      "number": "",
+      "title": "Принадлежность ключа"
+    },
+    "theory:sec-theory-signature-limits": {
+      "namespace": "theory",
+      "id": "sec-theory-signature-limits",
+      "page": "theory/crypto/digital-signature.html",
+      "fragment": "sec-theory-signature-limits",
+      "labelHtml": "Границы вывода",
+      "numberHtml": "",
+      "label": "Границы вывода",
+      "number": "",
+      "title": "Границы вывода"
+    },
+    "theory:sec-theory-signature-message": {
+      "namespace": "theory",
+      "id": "sec-theory-signature-message",
+      "page": "theory/crypto/digital-signature.html",
+      "fragment": "sec-theory-signature-message",
+      "labelHtml": "Подписываемые данные",
+      "numberHtml": "",
+      "label": "Подписываемые данные",
+      "number": "",
+      "title": "Подписываемые данные"
+    },
+    "theory:sec-theory-signature-windows": {
+      "namespace": "theory",
+      "id": "sec-theory-signature-windows",
+      "page": "theory/crypto/digital-signature.html",
+      "fragment": "sec-theory-signature-windows",
+      "labelHtml": "Подписанная программа в Windows",
+      "numberHtml": "",
+      "label": "Подписанная программа в Windows",
+      "number": "",
+      "title": "Подписанная программа в Windows"
+    },
+    "theory:sec-theory-symmetric-algorithms": {
+      "namespace": "theory",
+      "id": "sec-theory-symmetric-algorithms",
+      "page": "theory/crypto/symmetric-encryption.html",
+      "fragment": "sec-theory-symmetric-algorithms",
+      "labelHtml": "Современные симметричные алгоритмы",
+      "numberHtml": "",
+      "label": "Современные симметричные алгоритмы",
+      "number": "",
+      "title": "Современные симметричные алгоритмы"
+    },
+    "theory:sec-theory-symmetric-encryption": {
+      "namespace": "theory",
+      "id": "sec-theory-symmetric-encryption",
+      "page": "theory/crypto/symmetric-encryption.html",
+      "fragment": "sec-theory-symmetric-encryption",
+      "labelHtml": "<span>Глава 13</span>",
+      "numberHtml": "<span>13</span>",
+      "label": "Глава 13",
+      "number": "13",
+      "title": "Симметричное шифрование"
     },
     "theory:tbl-password-search-estimate": {
       "namespace": "theory",
       "id": "tbl-password-search-estimate",
       "page": "theory/crypto/password-storage.html",
       "fragment": "tbl-password-search-estimate",
-      "labelHtml": "Таблица&nbsp;<span>14.1</span>",
-      "numberHtml": "<span>14.1</span>",
-      "label": "Таблица 14.1",
-      "number": "14.1"
+      "labelHtml": "Таблица&nbsp;<span>18.1</span>",
+      "numberHtml": "<span>18.1</span>",
+      "label": "Таблица 18.1",
+      "number": "18.1"
     }
   }
 }

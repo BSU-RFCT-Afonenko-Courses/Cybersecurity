@@ -111,6 +111,7 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-dbf0164c62bdeac38ace71748d6f15e7.css">
+  <link rel="stylesheet" href="_prepared/visualizations/crypto/crypto-slides.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -211,170 +212,168 @@
   <div class="reveal">
     <div class="slides">
 
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Семинар 5 — Криптография</h1>
 
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Афоненко Анатолий
+</div>
+</div>
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Войтович Елизавета
+</div>
+</div>
+</div>
+
+</section>
 <section id="sec-seminar-5" class="title-slide slide level1 center">
-<h1>Семинар 5 — Криптография</h1>
-
+<h1>Зашифрованный архив</h1>
+<p>В общей папке лежит зашифрованный архив с контактами. Его можно скопировать на другой компьютер; программа открывает архив без обращения к серверу и запрашивает пароль.</p>
+<p>Почему возможности скопировать архив ещё недостаточно, чтобы прочитать контакты?</p>
 </section>
 
 <section>
 <section id="sec-seminar-5-randomness" class="title-slide slide level1 center">
-<h1>Случайность</h1>
-
+<h1>Криптографическая случайность</h1>
+<p>Секретный ключ должен быть <strong>непредсказуемым</strong> для постороннего: зная способ его получения и доступные наблюдения, тот не должен практически уметь угадать значение.</p>
+<p>Равные частоты нулей и единиц этого не гарантируют. В последовательности <code>010101…</code> оба бита встречаются одинаково часто, но следующий бит известен по предыдущему.</p>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-randomness" data-qrc-style="default" class="qrc-link" href="../theory/crypto/randomness.html#sec-theory-randomness">[*]</a>.</p>
 </section>
-<section id="случайность" class="slide level2">
-<h2>Случайность</h2>
-<p>Секретный ключ должен быть труден для угадывания. Для его создания нужен способ выбора, результат которого нельзя практически предсказать.</p>
-<p>Одна и та же строка битов может появиться при бросках монеты, вычислении по формуле или копировании из файла. По виду строки нельзя установить, как она получена.</p>
-<p>Свойство, нужное криптографии, относится к <strong>процессу получения значений</strong>: наблюдатель не должен уметь угадать следующий результат по уже известным данным.</p>
+<section id="источник-энтропии" class="slide level2">
+<h2>Источник энтропии</h2>
+<p>Физический процесс содержит непредсказуемые изменения. Устройство измеряет их и обрабатывает результат, получая исходные данные для генератора.</p>
+<p>Например, источник использует тепловой шум в полупроводнике: его измеряют, преобразуют измерения в цифровые данные и обрабатывают их для инициализации генератора. Обработка не создаёт неопределённость из полностью предсказуемого входа. <a href="https://csrc.nist.gov/pubs/sp/800/90/b/final" title="NIST SP 800-90B">[*]</a>; <a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-randomness" data-qrc-style="default" class="qrc-link" href="../theory/crypto/randomness.html#sec-theory-randomness">[*]</a>.</p>
 </section>
-<section id="состояние-генератора" class="slide level2 smaller">
+<section id="состояние-генератора" class="slide level2">
 <h2>Состояние генератора</h2>
 <div id="def-slide-random-state" class="theorem definition">
-<p><span class="theorem-title"><strong>Определение 1 (Состояние генератора)</strong></span> <strong>Состояние</strong> — данные, которые генератор хранит между выдачами результатов и использует для вычисления следующего результата.</p>
+<p><span class="theorem-title"><strong>Определение 1 (Состояние генератора)</strong></span> Состояние — данные, которые генератор хранит между выдачами результатов и использует для вычисления следующего результата.</p>
 </div>
-<p>Детерминированный генератор повторяет три действия:</p>
-<ol type="1">
-<li>Читает текущее состояние.</li>
-<li>По заданному правилу вычисляет и сохраняет новое состояние.</li>
-<li>Выдаёт результат, полученный из состояния.</li>
-</ol>
-<p>Одинаковые правило и начальное состояние воспроизводят одну последовательность. Начальное значение называют <code>seed</code>. Подробное объяснение: <a data-qrc-custom="false" data-qrc-ref="theory:def-random-state" data-qrc-style="default" class="qrc-link" href="../theory/crypto/random.html#def-random-state">Определение&nbsp;<span>10.1</span></a>.</p>
+<p>При одинаковом состоянии детерминированный генератор повторит ту же последовательность.</p>
+<p><strong>CSPRNG</strong> использует криптографическое правило: по доступным выходам должно быть практически трудно предсказать следующие значения. Непредсказуемые данные источника инициализируют и обновляют состояние.</p>
 </section>
-<section id="линейный-конгруэнтный-генератор" class="slide level2 smaller">
-<h2>Линейный конгруэнтный генератор</h2>
-<p>LCG в нашем примере выдаёт само новое состояние:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>a</mi><msub><mi>x</mi><mi>n</mi></msub><mo>+</mo><mi>c</mi><mo stretchy="false" form="postfix">)</mo><mrow><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">mod</mi><mo>⁡</mo></mrow><mspace width="0.222em"></mspace><mi>m</mi></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">x_{n+1}=(a x_n+c)\bmod m.</annotation></semantics></math></p>
-<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>x</mi><mi>n</mi></msub><annotation encoding="application/x-tex">x_n</annotation></semantics></math> — текущее состояние, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><annotation encoding="application/x-tex">x_{n+1}</annotation></semantics></math> — следующее, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>x</mi><mn>0</mn></msub><annotation encoding="application/x-tex">x_0</annotation></semantics></math> — начальное; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math> — множитель, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math> — слагаемое, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math> — модуль. Остаток по модулю <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math> лежит от <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math> до <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">m-1</annotation></semantics></math>.</p>
-<!-- Создано CI/prepare-bank-fragments.py из task/bank/crypto.qmd; не редактировать. -->
-<div id="exr-crypto-lcg-mod16" class="course-block course-role-discussion theorem exercise" target="manual" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
-<p><span class="theorem-title"><strong>Упражнение 1 (Три шага генератора)</strong></span> &nbsp;</p>
+<section id="предсказуемость-randu" class="slide level2">
+<h2>Предсказуемость RANDU</h2>
+<p>RANDU вычисляет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mn>65539</mn><msub><mi>x</mi><mi>n</mi></msub><mrow><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">mod</mi><mo>⁡</mo></mrow><mspace width="0.222em"></mspace><msup><mn>2</mn><mn>31</mn></msup></mrow></mrow><annotation encoding="application/x-tex">x_{n+1}=65539x_n\bmod 2^{31}</annotation></semantics></math>, где <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>x</mi><mi>n</mi></msub><annotation encoding="application/x-tex">x_n</annotation></semantics></math> — очередной выход. Нормализованный выход <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mi>n</mi></msub><mo>=</mo><msub><mi>x</mi><mi>n</mi></msub><mi>/</mi><msup><mn>2</mn><mn>31</mn></msup></mrow><annotation encoding="application/x-tex">u_n=x_n/2^{31}</annotation></semantics></math> лежит в диапазоне <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">[0,1)</annotation></semantics></math>. Для каждой тройки последовательных выходов строим точку <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>u</mi><mi>n</mi></msub><mo>,</mo><msub><mi>u</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>,</mo><msub><mi>u</mi><mrow><mi>n</mi><mo>+</mo><mn>2</mn></mrow></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(u_n,u_{n+1},u_{n+2})</annotation></semantics></math>.</p>
+
+<img data-src="_prepared/visualizations/crypto/static/randu-planes.svg" style="width:75.0%" alt="Одни и те же тройки показаны с двух сторон; второй ракурс выявляет параллельные плоскости" class="r-stretch quarto-figure-center" id="fig-slide-randu"><p class="caption">
+Рисунок&nbsp;1: Два ракурса последовательных троек RANDU
+</p><p>Плоскости обнаруживают зависимость соседних выходов, возникающую из правила генератора. Этот опыт выявляет дефект, но прохождение подобной проверки не доказывает криптографическую стойкость. <a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-randomness" data-qrc-style="default" class="qrc-link" href="../theory/crypto/randomness.html#sec-theory-randomness">[*]</a>.</p>
+</section>
+<section id="создание-ключа" class="slide level2">
+<h2>Создание ключа</h2>
+<p>Если <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math> битов выбраны независимо и равновероятно, возможны <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mi>b</mi></msup><annotation encoding="application/x-tex">2^b</annotation></semantics></math> ключей. Длина записи сама по себе не определяет исходную неопределённость: детерминированное преобразование не увеличивает число возможных входов.</p>
+<div id="exr-crypto-slide-eight-keys" class="theorem exercise" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 1 (Сколько вариантов проверить)</strong></span> &nbsp;</p>
 <div class="course-metadata">
-<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
+<span class="course-meta course-meta-difficulty">Начальный</span>
 </div>
-<p>Для <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo>′</mo></msup><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>5</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mrow><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">mod</mi><mo>⁡</mo></mrow><mspace width="0.222em"></mspace><mn>16</mn></mrow></mrow><annotation encoding="application/x-tex">x' = (5x + 1) \bmod 16</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">x_0 = 2</annotation></semantics></math> найдите три следующих состояния. Что даст повторный запуск с тем же <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>x</mi><mn>0</mn></msub><annotation encoding="application/x-tex">x_0</annotation></semantics></math>?</p>
+<p>Известная программа получает число от 0 до 7 и детерминированно создаёт из него 256-битный ключ; других входов нет. Сколько запусков достаточно для получения всех возможных ключей? Изменится ли ответ при длине результата 512 битов?</p>
 </div>
-<p>Устройство генератора: <a data-qrc-custom="false" data-qrc-ref="theory:sec-theory-crypto-random" data-qrc-style="default" class="qrc-link" href="../theory/crypto/random.html#sec-theory-crypto-random"><span>Глава 10</span></a>.</p>
-</section>
-<section id="slide-crypto-lcg-calculation" class="slide level2">
-<h2></h2>
-<p>Для <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">a=5</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">c=1</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mn>16</mn></mrow><annotation encoding="application/x-tex">m=16</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">x_0=2</annotation></semantics></math> первый переход даёт <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>5</mn><mo>⋅</mo><mn>2</mn><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mrow><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">mod</mi><mo>⁡</mo></mrow><mspace width="0.222em"></mspace><mn>16</mn></mrow><mo>=</mo><mn>11</mn></mrow><annotation encoding="application/x-tex">(5\cdot2+1)\bmod16=11</annotation></semantics></math>.</p>
-<div class="cell hidden">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="2" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1;"><span id="cb1-2"><a aria-label="2"></a>lcgTrainerCompactLocalPlot <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/vendor/plot.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span>
-<span id="cb1-3"><a aria-label="3"></a>lcgTrainerCompactLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/crypto/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display hidden">
-<div>
-<div id="ojs-cell-1-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display hidden">
-<div>
-<div id="ojs-cell-1-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="2" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1;"><span id="cb2-2"><a aria-label="2"></a>lcgTrainerCompactLesson<span class="op">.</span><span class="fu">lcgTrainer</span>({<span class="dt">Plot</span><span class="op">:</span> lcgTrainerCompactLocalPlot<span class="op">,</span> <span class="dt">compact</span><span class="op">:</span><span class="kw">true</span>})</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-slide-lcg" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-slide-lcg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-2" data-nodetype="expression">
-
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-lcg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;1: Вычисление состояния LCG
-</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="предсказуемость" class="slide level2">
-<h2>Предсказуемость</h2>
-<p>В полном периоде этого LCG каждое состояние от 0 до 15 встречается один раз. Через 16 переходов состояние <code>2</code> повторяется, а за ним повторяется вся последовательность.</p>
-<p>Младший бит чередуется: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mi>…</mi></mrow><annotation encoding="application/x-tex">0,1,0,1,\ldots</annotation></semantics></math> Зная текущий бит, можно назвать следующий, хотя нули и единицы встречаются одинаково часто.</p>
-<p><strong>Равномерные частоты сами по себе не обеспечивают непредсказуемость.</strong> Для ключей важно, что наблюдатель сможет узнать о следующих значениях.</p>
-</section>
-<section id="randu" class="slide level2 smaller">
-<h2>RANDU</h2>
-<p>RANDU — LCG с правилом <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mn>65539</mn><msub><mi>x</mi><mi>n</mi></msub><mrow><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">mod</mi><mo>⁡</mo></mrow><mspace width="0.222em"></mspace><msup><mn>2</mn><mn>31</mn></msup></mrow></mrow><annotation encoding="application/x-tex">x_{n+1}=65539x_n\bmod 2^{31}</annotation></semantics></math>. После нормализации <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mi>n</mi></msub><mo>=</mo><msub><mi>x</mi><mi>n</mi></msub><mi>/</mi><msup><mn>2</mn><mn>31</mn></msup></mrow><annotation encoding="application/x-tex">u_n=x_n/2^{31}</annotation></semantics></math> строим точки <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>u</mi><mi>n</mi></msub><mo>,</mo><msub><mi>u</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>,</mo><msub><mi>u</mi><mrow><mi>n</mi><mo>+</mo><mn>2</mn></mrow></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(u_n,u_{n+1},u_{n+2})</annotation></semantics></math> из соседних выходов.</p>
-
-<img data-src="_prepared/visualizations/crypto/static/randu-planes.svg" style="width:82.0%" alt="Одно облако троек RANDU показано с двух сторон; второй ракурс выявляет параллельные плоскости" class="r-stretch quarto-figure-center" id="fig-slide-randu"><p class="caption">
-Рисунок&nbsp;2: Два ракурса последовательных троек RANDU
-</p><p>Параллельные плоскости обнаруживают зависимость соседних выходов, которую трудно заметить в одном списке чисел.</p>
-</section>
-<section id="отбор-параметров-lcg" class="slide level2 smaller">
-<h2>Отбор параметров LCG</h2>
-<p>Наблюдателю известны <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mn>16</mn></mrow><annotation encoding="application/x-tex">m=16</annotation></semantics></math>, диапазоны <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>,</mo><mi>c</mi><mo>∈</mo><mo stretchy="false" form="prefix">{</mo><mn>0</mn><mo>,</mo><mi>…</mi><mo>,</mo><mn>7</mn><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">a,c\in\{0,\ldots,7\}</annotation></semantics></math> и полные выходы. Из 64 пар оставляем только те, которые воспроизводят <strong>каждый наблюдавшийся переход</strong>. Затем фиксируем прогноз до раскрытия следующего выхода.</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>a</mi><msub><mi>x</mi><mi>n</mi></msub><mo>+</mo><mi>c</mi><mo stretchy="false" form="postfix">)</mo><mrow><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">mod</mi><mo>⁡</mo></mrow><mspace width="0.222em"></mspace><mn>16</mn></mrow><mo>,</mo><mspace width="2.0em"></mspace><mi>a</mi><mo>,</mo><mi>c</mi><mo>∈</mo><mo stretchy="false" form="prefix">{</mo><mn>0</mn><mo>,</mo><mi>…</mi><mo>,</mo><mn>7</mn><mo stretchy="false" form="postfix">}</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">
-x_{n+1} = (a x_n + c) \bmod 16,\qquad a,c \in \{0,\ldots,7\}.
-</annotation></semantics></math></p>
-<div class="cell hidden">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="1" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a aria-label="1"></a>lcgmSelectionLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/crypto/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display hidden">
-<div id="ojs-cell-3" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="2" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1;"><span id="cb4-2"><a aria-label="2"></a>lcgmSelectionLesson<span class="op">.</span><span class="fu">lcgModelSelection</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-lcg-model-selection" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-lcg-model-selection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-4" data-nodetype="expression">
-
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lcg-model-selection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;3: Отбор параметров LCG по наблюдаемым переходам
-</figcaption>
-</figure>
-</div>
-</div>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-key-management" data-qrc-style="default" class="qrc-link" href="../theory/crypto/key-management.html#sec-theory-key-management">[*]</a>.</p>
 </section></section>
 <section>
-<section id="sec-seminar-5-hashes" class="title-slide slide level1 center">
-<h1>Хеширование</h1>
-
-</section>
-<section id="хеш-функция" class="slide level2 smaller">
-<h2>Хеш-функция</h2>
-<p>Чтобы сравнить данные с сохранённым эталоном, вычисляют компактное значение от их байтов.</p>
-<div id="def-slide-crypto-digest" class="theorem definition">
-<p><span class="theorem-title"><strong>Определение 2 (Хеш-функция)</strong></span> <strong>Хеш-функция</strong> преобразует последовательность байтов в <strong>дайджест фиксированной длины</strong>. Для одних и тех же байтов заданная функция всегда выдаёт один результат.</p>
+<section id="sec-seminar-5-encryption" class="title-slide slide level1 center">
+<h1>Симметричное шифрование</h1>
+<div id="def-slide-crypto-encryption" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 2 (Симметричное шифрование)</strong></span> Отправитель шифрует сообщение секретным ключом; получатель использует <strong>тот же ключ</strong> для восстановления сообщения из шифротекста.</p>
 </div>
+<p>Постороннему ключ неизвестен.</p>
 
-<img data-src="_prepared/visualizations/crypto/static/hash-length.svg" style="width:78.0%" alt="Строки разной длины имеют дайджесты SHA-256 по 256 бит, то есть по 32 байта" class="r-stretch quarto-figure-center" id="fig-slide-hash-length"><p class="caption">
-Рисунок&nbsp;4: Разные длины входа и фиксированная длина SHA-256
-</p><p>Определение и свойства: <a data-qrc-custom="false" data-qrc-ref="theory:def-crypto-digest" data-qrc-style="default" class="qrc-link" href="../theory/crypto/hash.html#def-crypto-digest">Определение&nbsp;<span>11.1</span></a>.</p>
+<img data-src="_prepared/visualizations/crypto/static/symmetric-key-slide.svg" style="width:85.0%" alt="Сообщение шифруется общим секретным ключом и восстанавливается тем же ключом" class="r-stretch quarto-figure-center" id="fig-slide-symmetric-key"><p class="caption">
+Рисунок&nbsp;2: Общий секретный ключ при шифровании и расшифровании
+</p><p>AES — пример блочного шифра, ChaCha20 — поточного. <a data-qrc-custom="true" data-qrc-ref="theory:def-crypto-encryption" data-qrc-style="default" class="qrc-link" href="../theory/crypto/symmetric-encryption.html#def-crypto-encryption">[*]</a>; <a href="https://www.rfc-editor.org/rfc/rfc8439.html" title="RFC 8439">[*]</a>.</p>
 </section>
-<section id="коллизия" class="slide level2">
-<h2>Коллизия</h2>
-<p><strong>Коллизия</strong> — одинаковый дайджест у двух разных входов. Число дайджестов фиксированной длины ограничено, поэтому совпадения неизбежны при достаточно большом множестве входов.</p>
-<!-- Создано CI/prepare-bank-fragments.py из task/bank/crypto.qmd; не редактировать. -->
-<div id="exr-crypto-hash-aa-bb" class="course-block course-role-discussion theorem exercise" target="manual" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
-<p><span class="theorem-title"><strong>Упражнение 2 (Коллизия хеша)</strong></span> &nbsp;</p>
+<section id="операция-xor" class="slide level2">
+<h2>Операция XOR</h2>
+<p>XOR (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊕</mi><annotation encoding="application/x-tex">\oplus</annotation></semantics></math>) даёт 0 для одинаковых битов и 1 для разных. Поточный шифр вырабатывает поток нужной длины из секретного ключа и параметров запуска. В этой модели <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mi>M</mi><mo>⊕</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">C=M\oplus K</annotation></semantics></math>, где <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math> — сообщение, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> — ключевой поток, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math> — шифротекст.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Шифрование</strong></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">Сообщение</mtext></mtd><mtd columnalign="center" style="text-align: center"></mtd><mtd columnalign="right" style="text-align: right"><mn mathvariant="monospace">𝟷𝟶𝟷𝟷𝟶𝟷</mn></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">Ключевой поток</mtext></mtd><mtd columnalign="center" style="text-align: center"><mi>⊕</mi></mtd><mtd columnalign="right" style="text-align: right"><munder><mn mathvariant="monospace">𝟶𝟷𝟷𝟶𝟷𝟷</mn><mo accent="true">_</mo></munder></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">Шифротекст</mtext></mtd><mtd columnalign="center" style="text-align: center"></mtd><mtd columnalign="right" style="text-align: right"><mn mathvariant="monospace">𝟷𝟷𝟶𝟷𝟷𝟶</mn></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{array}{rcr}
+\text{Сообщение} &amp;&amp; \mathtt{101101}\\
+\text{Ключевой поток} &amp;\oplus&amp; \underline{\mathtt{011011}}\\
+\text{Шифротекст} &amp;&amp; \mathtt{110110}
+\end{array}
+</annotation></semantics></math></p>
+</div><div class="column" style="width:50%;">
+<p><strong>Расшифрование</strong></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">Шифротекст</mtext></mtd><mtd columnalign="center" style="text-align: center"></mtd><mtd columnalign="right" style="text-align: right"><mn mathvariant="monospace">𝟷𝟷𝟶𝟷𝟷𝟶</mn></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">Ключевой поток</mtext></mtd><mtd columnalign="center" style="text-align: center"><mi>⊕</mi></mtd><mtd columnalign="right" style="text-align: right"><munder><mn mathvariant="monospace">𝟶𝟷𝟷𝟶𝟷𝟷</mn><mo accent="true">_</mo></munder></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">Сообщение</mtext></mtd><mtd columnalign="center" style="text-align: center"></mtd><mtd columnalign="right" style="text-align: right"><mn mathvariant="monospace">𝟷𝟶𝟷𝟷𝟶𝟷</mn></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{array}{rcr}
+\text{Шифротекст} &amp;&amp; \mathtt{110110}\\
+\text{Ключевой поток} &amp;\oplus&amp; \underline{\mathtt{011011}}\\
+\text{Сообщение} &amp;&amp; \mathtt{101101}
+\end{array}
+</annotation></semantics></math></p>
+</div></div>
+<p>Повторный XOR с тем же потоком восстанавливает сообщение: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><mi>C</mi><mo>⊕</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">M=C\oplus K</annotation></semantics></math>. <a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-symmetric-encryption" data-qrc-style="default" class="qrc-link" href="../theory/crypto/symmetric-encryption.html#sec-theory-symmetric-encryption">[*]</a>.</p>
+</section>
+<section id="повтор-ключевого-потока" class="slide level2">
+<h2>Повтор ключевого потока</h2>
+<div id="exr-crypto-slide-xor-fragment" class="theorem exercise" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 2 (Один поток для двух фрагментов)</strong></span> &nbsp;</p>
 <div class="course-metadata">
-<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
+<span class="course-meta course-meta-difficulty">Начальный</span>
 </div>
-<p>Java <code>String.hashCode</code> для <code>Aa</code> и <code>BB</code> даёт 2112. Равны ли строки и может ли хеш-таблица хранить обе?</p>
-</div>
-<p>Криптографической функции требуется затруднять целенаправленный поиск таких совпадений.</p>
-</section>
-<section id="лавинный-эффект" class="slide level2">
-<h2>Лавинный эффект</h2>
-<p>У криптографического хеша изменение одного бита входа распространяется по дайджесту.</p>
+<p>Два фрагмента зашифрованы одним потоком <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> по правилу <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mi>M</mi><mo>⊕</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">C=M\oplus K</annotation></semantics></math>.</p>
 <table class="caption-top">
 <thead>
 <tr class="header">
-<th>Сравниваемые входы в UTF-8</th>
+<th>Величина</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Первый шифротекст <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mn>1</mn></msub><annotation encoding="application/x-tex">C_1</annotation></semantics></math></td>
+<td><code>0110</code></td>
+</tr>
+<tr class="even">
+<td>Второй шифротекст <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mn>2</mn></msub><annotation encoding="application/x-tex">C_2</annotation></semantics></math></td>
+<td><code>1110</code></td>
+</tr>
+<tr class="odd">
+<td>Известный первый фрагмент <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>M</mi><mn>1</mn></msub><annotation encoding="application/x-tex">M_1</annotation></semantics></math></td>
+<td><code>1010</code></td>
+</tr>
+</tbody>
+</table>
+<p>Найдите <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> и второй фрагмент <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>M</mi><mn>2</mn></msub><annotation encoding="application/x-tex">M_2</annotation></semantics></math>. Какую опасность создаёт повтор потока?</p>
+</div>
+</section>
+<section id="sec-seminar-5-keys" class="slide level2">
+<h2>Распределение общего ключа</h2>
+<p>Каждая пара участников может использовать собственный секретный ключ. Для пяти участников получается десять пар: каждый имеет четырёх партнёров, но при таком подсчёте каждая пара учтена дважды.</p>
+
+<img data-src="_prepared/visualizations/crypto/static/key-pairs.svg" style="width:32.0%" alt="Пять участников образуют десять пар, каждой паре соответствует отдельный ключ" class="r-stretch quarto-figure-center" id="fig-slide-key-pairs"><p class="caption">
+Рисунок&nbsp;3: Парные секретные ключи пяти участников
+</p><p>Обоим участникам нужно безопасно получить общий ключ до обмена. Как доставить его без заранее общего секрета? <a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-key-management" data-qrc-style="default" class="qrc-link" href="../theory/crypto/key-management.html#sec-theory-key-management">[*]</a>.</p>
+</section></section>
+<section>
+<section id="sec-seminar-5-hashes" class="title-slide slide level1 center">
+<h1>Хеш-функция</h1>
+<div id="def-slide-crypto-digest" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 3 (Хеш-функция)</strong></span> Хеш-функция преобразует данные в дайджест фиксированной длины. Для одинаковых входных байтов заданная функция всегда выдаёт одинаковый результат.</p>
+</div>
+
+<img data-src="_prepared/visualizations/crypto/static/hash-length.svg" style="width:78.0%" alt="Входы длиной 2, 12 и 39 байт проходят одну хеш-функцию; каждый дайджест SHA-256 содержит 256 бит" class="r-stretch quarto-figure-center" id="fig-slide-hash-length"><p class="caption">
+Рисунок&nbsp;4: Разные длины входа и фиксированная длина SHA-256
+</p><p>SHA-256 выдаёт 256 битов, или 32 байта. Разные входы могут иметь одинаковый дайджест: это <strong>коллизия</strong>.</p>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:def-crypto-digest" data-qrc-style="default" class="qrc-link" href="../theory/crypto/hash-functions.html#def-crypto-digest">[*]</a>; <a href="https://csrc.nist.gov/pubs/fips/180-4/upd1/final" title="FIPS 180-4">[*]</a>.</p>
+</section>
+<section id="изменение-файла" class="slide level2">
+<h2>Изменение файла</h2>
+<p>Изменим один бит входа SHA-256 и сравним результаты:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Входы в UTF-8</th>
 <th style="text-align: right;">Изменение входа</th>
-<th style="text-align: right;">Изменение SHA-256</th>
+<th style="text-align: right;">Различаются в SHA-256</th>
 </tr>
 </thead>
 <tbody>
@@ -385,364 +384,163 @@ x_{n+1} = (a x_n + c) \bmod 16,\qquad a,c \in \{0,\ldots,7\}.
 </tr>
 </tbody>
 </table>
-<p>Число изменившихся битов зависит от пары входов. Такое наблюдение показывает распространение изменения; трудность поиска прообраза или коллизии проверяют отдельно.</p>
-<p>Свойства и битовый опыт: <a data-qrc-custom="false" data-qrc-ref="theory:sec-theory-crypto-hash" data-qrc-style="default" class="qrc-link" href="../theory/crypto/hash.html#sec-theory-crypto-hash"><span>Глава 11</span></a>.</p>
-</section>
-<section id="задачи-поиска" class="slide level2 smaller">
-<h2>Задачи поиска</h2>
-<p>Для хеш-функции <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math> различают три задачи:</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Задача</th>
-<th>Что уже задано</th>
-<th>Что требуется найти</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Прообраз</strong></td>
-<td>Дайджест <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math></td>
-<td>Вход <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>, для которого <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">H(x)=y</annotation></semantics></math></td>
-</tr>
-<tr class="even">
-<td><strong>Второй прообраз</strong></td>
-<td>Вход <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math></td>
-<td>Другой вход <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>x</mi><mo>′</mo></msup><annotation encoding="application/x-tex">x'</annotation></semantics></math> с тем же хешем</td>
-</tr>
-<tr class="odd">
-<td><strong>Коллизия</strong></td>
-<td>Только функция <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math></td>
-<td>Любые два разных входа с одинаковым хешем</td>
-</tr>
-</tbody>
-</table>
-<p>Для криптографического применения все три задачи должны быть вычислительно трудными. При поиске второго прообраза первый вход выбрать уже нельзя; при поиске коллизии можно выбирать оба.</p>
-</section>
-<section id="доверенный-эталон" class="slide level2 smaller">
-<h2>Доверенный эталон</h2>
-<p>Получатель вычисляет хеш скачанного файла и сравнивает его с <strong>доверенным эталоном</strong>. Совпадение проверяет неизменность файла относительно этого эталона.</p>
-<!-- Создано CI/prepare-bank-fragments.py из task/bank/crypto.qmd; не редактировать. -->
-<div id="exr-crypto-file-and-hash-replaced" class="course-block course-role-discussion theorem exercise" target="manual" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="intermediate">
-<p><span class="theorem-title"><strong>Упражнение 3 (Подмена эталона)</strong></span> &nbsp;</p>
-<div class="course-metadata">
-<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Средний</span>
-</div>
-<p>На одном сайте опубликованы файл и его SHA-256. Злоумышленник заменил и файл, и значение хеша на соответствующее новому файлу. Что покажет сравнение и как получить основание доверия?</p>
-</div>
-<p>Происхождение эталона устанавливают отдельно, например проверкой подписи списка хешей. Объяснение: <a data-qrc-custom="false" data-qrc-ref="theory:sec-theory-crypto-hash" data-qrc-style="default" class="qrc-link" href="../theory/crypto/hash.html#sec-theory-crypto-hash"><span>Глава 11</span></a>.</p>
-</section></section>
-<section>
-<section id="sec-seminar-5-encryption" class="title-slide slide level1 center">
-<h1>Симметричное шифрование</h1>
-
-</section>
-<section id="симметричное-шифрование" class="slide level2">
-<h2>Симметричное шифрование</h2>
-<div id="def-slide-crypto-encryption" class="theorem definition">
-<p><span class="theorem-title"><strong>Определение 3 (Симметричное шифрование)</strong></span> Шифрование преобразует открытое сообщение в шифротекст, скрывая содержание от постороннего наблюдателя. В симметричной схеме отправитель и получатель используют <strong>один и тот же секретный ключ</strong> для прямого и обратного преобразования.</p>
-</div>
-
-<img data-src="_prepared/visualizations/crypto/static/symmetric-key-slide.svg" style="width:95.0%" alt="Сообщение проходит шифрование, становится шифротекстом и восстанавливается расшифрованием; оба преобразования получают один секретный ключ" class="r-stretch quarto-figure-center" id="fig-slide-symmetric-key"><p class="caption">
-Рисунок&nbsp;5: Общий секретный ключ при шифровании и расшифровании
-</p><p>Определение и примеры: <a data-qrc-custom="false" data-qrc-ref="theory:def-crypto-encryption" data-qrc-style="default" class="qrc-link" href="../theory/crypto/cypher.html#def-crypto-encryption">Определение&nbsp;<span>12.1</span></a>.</p>
-</section>
-<section id="шифр-цезаря" class="slide level2">
-<h2>Шифр Цезаря</h2>
-<p>Шифр Цезаря заменяет каждую букву буквой на заданное число позиций дальше по кругу алфавита. <strong>Ключ — величина сдвига</strong>; обратный сдвиг восстанавливает сообщение.</p>
-<p>Русский алфавит содержит 33 буквы, включая <strong>Ё</strong>:</p>
-<p><code>АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ</code></p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Сообщение</th>
-<th style="text-align: center;">Б</th>
-<th style="text-align: center;">А</th>
-<th style="text-align: center;">Г</th>
-<th style="text-align: center;">А</th>
-<th style="text-align: center;">Ж</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Сдвиг +15</td>
-<td style="text-align: center;">П</td>
-<td style="text-align: center;">О</td>
-<td style="text-align: center;">С</td>
-<td style="text-align: center;">О</td>
-<td style="text-align: center;">Х</td>
-</tr>
-</tbody>
-</table>
-<p><code>БАГАЖ → ПОСОХ</code>; сдвиг −15 возвращает <code>БАГАЖ</code>. Всего 33 возможных ключа с учётом нулевого — их легко перебрать.</p>
-</section>
-<section id="шифр-цезаря-опыт" class="slide level2 smaller">
-<h2>Шифр Цезаря: опыт</h2>
+<p>Изменение одного бита входа распространяется на дайджест; число различающихся битов зависит от пары входов. Опыт не доказывает трудность поиска коллизии.</p>
 <div class="cell hidden">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="1" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a aria-label="1"></a>caesarTrainerLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/crypto/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="1" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a aria-label="1"></a>hashBitSeminarLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/crypto/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display hidden">
-<div id="ojs-cell-5" data-nodetype="declaration">
+<div id="ojs-cell-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="2" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1;"><span id="cb6-2"><a aria-label="2"></a>caesarTrainerLesson<span class="op">.</span><span class="fu">caesarTrainer</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-cypher-caesar" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="2" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1;"><span id="cb2-2"><a aria-label="2"></a>hashBitSeminarLesson<span class="op">.</span><span class="fu">hashBitExperiment</span>({<span class="dt">compact</span><span class="op">:</span> <span class="kw">true</span>})</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fig-hash-bit-seminar" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-cypher-caesar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-6" data-nodetype="expression">
+<div aria-describedby="fig-hash-bit-seminar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="ojs-cell-2" data-nodetype="expression">
 
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cypher-caesar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;6: Шифр Цезаря
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hash-bit-seminar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;5: Изменение битов SHA-256
 </figcaption>
 </figure>
 </div>
 </div>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-hash-functions" data-qrc-style="default" class="qrc-link" href="../theory/crypto/hash-functions.html#sec-theory-hash-functions">[*]</a>.</p>
 </section>
-<section id="исключающее-или" class="slide level2 smaller">
-<h2>Исключающее ИЛИ</h2>
-<p>Операция <strong>XOR</strong> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊕</mi><annotation encoding="application/x-tex">\oplus</annotation></semantics></math>) сравнивает биты в одинаковых позициях: результат равен 0 для одинаковых битов и 1 для разных.</p>
+<section id="криптографические-свойства-хеша" class="slide level2">
+<h2>Криптографические свойства хеша</h2>
+<p>Для функции <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math> различают три задачи поиска:</p>
 <table class="caption-top">
 <thead>
 <tr class="header">
-<th style="text-align: center;">Бит сообщения</th>
-<th style="text-align: center;">Бит ключевого потока</th>
-<th style="text-align: center;">Результат XOR</th>
+<th>Задача</th>
+<th>Задано</th>
+<th>Требуется найти</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
+<td>Прообраз</td>
+<td>Дайджест <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math></td>
+<td>Вход <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> с <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">H(x)=y</annotation></semantics></math></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">1</td>
+<td>Второй прообраз</td>
+<td>Вход <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math></td>
+<td>Другой вход <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>x</mi><mo>′</mo></msup><annotation encoding="application/x-tex">x'</annotation></semantics></math> с <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false" form="prefix">(</mo><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>H</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">H(x')=H(x)</annotation></semantics></math></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">0</td>
+<td>Коллизия</td>
+<td>Функция <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math></td>
+<td>Любые два разных входа с одинаковым хешем</td>
 </tr>
 </tbody>
 </table>
-<p>В ключевом потоке <strong>0 сохраняет бит, 1 меняет его</strong>. Текст перед этой операцией представляют байтами.</p>
+<p>Криптографическая хеш-функция должна затруднять каждый из этих поисков. <a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-hash-functions" data-qrc-style="default" class="qrc-link" href="../theory/crypto/hash-functions.html#sec-theory-hash-functions">[*]</a>.</p>
 </section>
-<section id="slide-crypto-xor-calculation" class="slide level2 smaller">
-<h2></h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><strong>Шифрование</strong></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">Сообщение</mtext></mtd><mtd columnalign="center" style="text-align: center"></mtd><mtd columnalign="left" style="text-align: left"><mn mathvariant="monospace">𝟷𝟶𝟷𝟷𝟶𝟷</mn></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">Ключевой поток</mtext></mtd><mtd columnalign="center" style="text-align: center"><mi mathvariant="bold-italic">⊕</mi></mtd><mtd columnalign="left" style="text-align: left"><munder><mn mathvariant="monospace">𝟶𝟷𝟷𝟶𝟷𝟷</mn><mo accent="true">_</mo></munder></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">Шифротекст</mtext></mtd><mtd columnalign="center" style="text-align: center"></mtd><mtd columnalign="left" style="text-align: left"><mn mathvariant="monospace">𝟷𝟷𝟶𝟷𝟷𝟶</mn></mtd></mtr></mtable><annotation encoding="application/x-tex">
-\begin{array}{rcl}
-\text{Сообщение} &amp; &amp; \mathtt{101101}\\
-\text{Ключевой поток} &amp;\boldsymbol{\oplus}&amp; \underline{\mathtt{011011}}\\
-\text{Шифротекст} &amp; &amp; \mathtt{110110}
-\end{array}
-</annotation></semantics></math></p>
-</div><div class="column" style="width:50%;">
-<p><strong>Расшифрование</strong></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">Шифротекст</mtext></mtd><mtd columnalign="center" style="text-align: center"></mtd><mtd columnalign="left" style="text-align: left"><mn mathvariant="monospace">𝟷𝟷𝟶𝟷𝟷𝟶</mn></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">Ключевой поток</mtext></mtd><mtd columnalign="center" style="text-align: center"><mi mathvariant="bold-italic">⊕</mi></mtd><mtd columnalign="left" style="text-align: left"><munder><mn mathvariant="monospace">𝟶𝟷𝟷𝟶𝟷𝟷</mn><mo accent="true">_</mo></munder></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">Сообщение</mtext></mtd><mtd columnalign="center" style="text-align: center"></mtd><mtd columnalign="left" style="text-align: left"><mn mathvariant="monospace">𝟷𝟶𝟷𝟷𝟶𝟷</mn></mtd></mtr></mtable><annotation encoding="application/x-tex">
-\begin{array}{rcl}
-\text{Шифротекст} &amp; &amp; \mathtt{110110}\\
-\text{Ключевой поток} &amp;\boldsymbol{\oplus}&amp; \underline{\mathtt{011011}}\\
-\text{Сообщение} &amp; &amp; \mathtt{101101}
-\end{array}
-</annotation></semantics></math></p>
-</div></div>
-<p>Повторный XOR с <strong>тем же потоком</strong> восстанавливает сообщение: каждый изменённый бит меняется ещё раз.</p>
-<p>Поточный шифр создаёт ключевой поток из секретного ключа. Объяснение операции: <a data-qrc-custom="false" data-qrc-ref="theory:sec-theory-crypto-cypher" data-qrc-style="default" class="qrc-link" href="../theory/crypto/cypher.html#sec-theory-crypto-cypher"><span>Глава 12</span></a>.</p>
-<p>Один и тот же поток нельзя применять к двум сообщениям: при сравнении их шифротекстов общий поток сокращается и раскрывает связь между сообщениями.</p>
-</section>
-<section id="стойкость" class="slide level2 smaller">
-<h2>Стойкость</h2>
-<p>Алгоритм может быть известен всем. <strong>Секретом остаётся ключ.</strong></p>
-<ul>
-<li>Длина ключа <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math> — число битов в его записи.</li>
-<li>При независимом равновероятном выборе битов доступны <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mi>b</mi></msup><annotation encoding="application/x-tex">2^b</annotation></semantics></math> ключей.</li>
-<li>При полном переборе атакующий пробует возможные значения ключа.</li>
-</ul>
-<p><strong>Ещё один случайный бит удваивает число вариантов.</strong> Длинный ключ усложняет перебор; предсказуемый способ выбора может резко сократить число проверяемых кандидатов.</p>
-<p>Стойкость зависит также от алгоритма, условий его применения и реализации.</p>
-</section></section>
-<section>
-<section id="sec-seminar-5-keys" class="title-slide slide level1 center">
-<h1>Ключи</h1>
-
-</section>
-<section id="создание-ключа" class="slide level2 smaller">
-<h2>Создание ключа</h2>
-<p><strong>Криптографический генератор случайных чисел (CSPRNG)</strong> предназначен для получения непредсказуемых значений: по наблюдаемым выходам должно быть практически трудно восстановить его защищённое состояние и предсказать следующие выходы.</p>
-<p>Источник энтропии даёт непредсказуемые данные для создания и обновления состояния. CSPRNG развивает это состояние по криптографическому правилу и выдаёт нужное число случайных битов ключа.</p>
-<p>Ключ требуется защитить после создания: раскрытие его копии позволяет использовать тот же секрет. Генерация и защита ключа: <a data-qrc-custom="false" data-qrc-ref="theory:sec-theory-crypto-key-gen" data-qrc-style="default" class="qrc-link" href="../theory/crypto/key-gen.html#sec-theory-crypto-key-gen"><span>Глава 13</span></a>.</p>
-</section>
-<section id="распределение-ключей" class="slide level2 smaller">
-<h2>Распределение ключей</h2>
-<p>До обмена сообщениями оба участника должны безопасно получить общий секретный ключ. Если у каждой пары собственный ключ, чужая пара его не получает.</p>
-<!-- Создано CI/prepare-bank-fragments.py из task/bank/crypto.qmd; не редактировать. -->
-<div id="exr-crypto-five-people-keys" class="course-block course-role-discussion theorem exercise" target="manual" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
-<p><span class="theorem-title"><strong>Упражнение 4 (Секрет каждой пары)</strong></span> &nbsp;</p>
+<section id="задачи-поиска" class="slide level2">
+<h2>Задачи поиска</h2>
+<div id="exr-crypto-slide-hash-search-kind" class="theorem exercise" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 3 (Три условия поиска)</strong></span> &nbsp;</p>
 <div class="course-metadata">
-<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
+<span class="course-meta course-meta-difficulty">Начальный</span>
 </div>
-<p>Пять человек хотят иметь отдельный общий симметричный ключ для каждой пары. Сколько ключей нужно?</p>
+<p>Назовите задачу: прообраз, второй прообраз или коллизия.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Задано</th>
+<th>Требуется найти</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Значение <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>h</mi><annotation encoding="application/x-tex">h</annotation></semantics></math></td>
+<td>Сообщение <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math> с <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>h</mi></mrow><annotation encoding="application/x-tex">H(m)=h</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>Документ <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>m</mi><mn>0</mn></msub><annotation encoding="application/x-tex">m_0</annotation></semantics></math></td>
+<td>Другой документ <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math> с <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>H</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>m</mi><mn>0</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">H(m)=H(m_0)</annotation></semantics></math></td>
+</tr>
+<tr class="odd">
+<td>Только функция <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math></td>
+<td>Два разных сообщения с одинаковым хешем</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p>Создание ключа и его доставка участникам — разные задачи. Распределение: <a data-qrc-custom="false" data-qrc-ref="theory:sec-theory-crypto-key-gen" data-qrc-style="default" class="qrc-link" href="../theory/crypto/key-gen.html#sec-theory-crypto-key-gen"><span>Глава 13</span></a>.</p>
 </section>
-<section id="slide-crypto-key-pairs" class="slide level2">
-<h2></h2>
-<div class="columns">
-<div class="column" style="width:48%;">
-<div id="fig-slide-key-pairs" class="quarto-float quarto-figure quarto-figure-center" alt="Пять участников образуют десять пар; выделенный ключ А–Б хранится у А и у Б">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-slide-key-pairs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="_prepared/visualizations/crypto/static/key-pairs.svg" style="width:90.0%" alt="Пять участников образуют десять пар; выделенный ключ А–Б хранится у А и у Б">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-key-pairs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;7: Парные секретные ключи пяти участников
-</figcaption>
-</figure>
-</div>
-</div><div class="column" style="width:52%;">
-<p><strong>5 участников → 10 парных ключей.</strong> Каждая линия обозначает отдельный ключ.</p>
-<p>Выделенный ключ А–Б хранится у обоих владельцев: у А и у Б.</p>
-<p>Для <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> участников нужно <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo stretchy="false" form="prefix">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">n(n-1)/2</annotation></semantics></math> ключей: у каждого <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-1</annotation></semantics></math> партнёров, а каждую пару при таком подсчёте учли дважды.</p>
-</div></div>
+<section id="проверка-копии-файла" class="slide level2">
+<h2>Проверка копии файла</h2>
+<p>Получатель вычисляет SHA-256 скачанного файла и сравнивает его с доверенным эталоном. Разные значения означают, что байты различаются. Совпадение даёт основание считать копию неизменённой относительно эталона, но совпадения хешей возможны и для разных файлов.</p>
+<p>Злоумышленник заменил файл и размещённый рядом с ним хеш на соответствующий новому файлу. Поможет ли сравнение с этим хешем обнаружить подмену? Как получить доверенный эталон?</p>
+<p><a href="https://securitybook.eecs.berkeley.edu/chapters/lec03.html" title="The Structure of Secure Systems, глава 3">[*]</a>; <a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-hash-functions" data-qrc-style="default" class="qrc-link" href="../theory/crypto/hash-functions.html#sec-theory-hash-functions">[*]</a>.</p>
 </section></section>
 <section>
 <section id="sec-seminar-5-passwords" class="title-slide slide level1 center">
-<h1>Хранение паролей</h1>
-
+<h1>Проверка пароля</h1>
+<p>При входе сервису достаточно проверить введённый пароль; восстанавливать пароль из базы для этого не требуется. Вместо него хранят проверочную запись, вычисленную парольной функцией.</p>
+<p>Если база утекла, атакующий может вычислять записи для предполагаемых паролей и сравнивать их с сохранённой. Быстрая хеш-функция делает каждую такую попытку дешёвой. <a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-password-storage" data-qrc-style="default" class="qrc-link" href="../theory/crypto/password-storage.html#sec-theory-password-storage">[*]</a>.</p>
 </section>
-<section id="проверка-пароля" class="slide level2 smaller">
-<h2>Проверка пароля</h2>
-<p>При входе сервису нужно установить, верен ли введённый пароль. Способ хранения определяет, что получит атакующий при утечке базы.</p>
-<ul>
-<li><strong>Открытые пароли</strong> сразу становятся известны получившему базу.</li>
-<li><strong>Быстрый хеш</strong> позволяет дёшево проверять предполагаемые пароли. Одинаковые пароли дают одинаковые значения в разных записях.</li>
-</ul>
-<p>После утечки проверочных записей атакующий подбирает пароли <strong>офлайн</strong>, без обращения к сервису. Ограничение частоты входов на сайте не останавливает эти вычисления.</p>
-</section>
-<section id="парольная-функция" class="slide level2 smaller">
-<h2>Парольная функция</h2>
-<p><strong>Парольная функция выработки ключа (KDF)</strong> вычисляет проверочное значение из пароля и соли с заданной стоимостью.</p>
-<ul>
-<li><strong>Соль</strong> — случайное значение, выбранное отдельно для записи и сохраняемое открыто. Для разных солей каждый кандидат приходится вычислять отдельно.</li>
-<li><strong>Стоимость</strong> задаёт расход вычислений или памяти на одну проверку. Её увеличение удорожает подбор каждого кандидата.</li>
-</ul>
-<p>Соль затрудняет повторное использование вычислений между записями; затратная функция повышает цену одной попытки. Слабый пароль по-прежнему можно угадать. Объяснение: <a data-qrc-custom="false" data-qrc-ref="theory:sec-theory-password-storage" data-qrc-style="default" class="qrc-link" href="../theory/crypto/password-storage.html#sec-theory-password-storage"><span>Глава 14</span></a>.</p>
-</section>
-<section id="хранение-пароля" class="slide level2 smaller">
-<h2>Хранение пароля</h2>
-<p>При регистрации сохраняют соль, алгоритм, параметры и проверочное значение. Сам пароль в эту запись не помещают.</p>
-<div id="fig-slide-password-record" class="nostretch quarto-float quarto-figure quarto-figure-center" alt="При регистрации парольная функция получает пароль, случайную соль и параметры; в базе сохраняются соль, алгоритм, параметры и результат. При входе та же функция обрабатывает введённый пароль с сохранёнными солью и параметрами, а новый результат сравнивается с записью">
+<section id="парольная-запись" class="slide level2">
+<h2>Парольная запись</h2>
+<p>При регистрации выбирают случайную <strong>соль</strong> для записи и вычисляют парольную функцию с заданными параметрами стоимости. Сохраняют алгоритм, параметры, соль и результат.</p>
+<div id="fig-slide-password-record" class="nostretch quarto-float quarto-figure quarto-figure-center" alt="При регистрации функция получает пароль, соль и параметры; при входе сохранённые соль и параметры используются повторно, а результат сравнивается с записью">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-slide-password-record-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="_prepared/visualizations/crypto/static/password-record-slide.svg" class="" style="width:100.0%" alt="При регистрации парольная функция получает пароль, случайную соль и параметры; в базе сохраняются соль, алгоритм, параметры и результат. При входе та же функция обрабатывает введённый пароль с сохранёнными солью и параметрами, а новый результат сравнивается с записью">
+<img data-src="_prepared/visualizations/crypto/static/password-record-slide.svg" class="" style="width:95.0%" alt="При регистрации функция получает пароль, соль и параметры; при входе сохранённые соль и параметры используются повторно, а результат сравнивается с записью">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-password-record-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;8: Создание парольной записи и проверка входа
+Рисунок&nbsp;6: Создание парольной записи и проверка входа
 </figcaption>
 </figure>
 </div>
-<p>При входе повторяют вычисление с сохранёнными солью и параметрами и сравнивают результаты. Процедура: <a data-qrc-custom="false" data-qrc-ref="theory:sec-theory-password-storage" data-qrc-style="default" class="qrc-link" href="../theory/crypto/password-storage.html#sec-theory-password-storage"><span>Глава 14</span></a>.</p>
+<p>Argon2id позволяет задавать расход памяти, число проходов и параллелизм. <a href="https://www.rfc-editor.org/rfc/rfc9106.html" title="RFC 9106">[*]</a>; <a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-password-storage" data-qrc-style="default" class="qrc-link" href="../theory/crypto/password-storage.html#sec-theory-password-storage">[*]</a>.</p>
 </section>
-<section id="пространство-паролей" class="slide level2 smaller">
-<h2>Пространство паролей</h2>
-<p>При независимом равновероятном выборе <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math> символов из алфавита размера <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math> возможны <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><msup><mi>A</mi><mi>L</mi></msup></mrow><annotation encoding="application/x-tex">N=A^L</annotation></semantics></math> паролей.</p>
-<p>Если проверять каждый вариант один раз, средний номер правильной проверки равен <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>N</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">(N+1)/2</annotation></semantics></math>.</p>
-<!-- Создано CI/prepare-bank-fragments.py из task/bank/crypto.qmd; не редактировать. -->
-<div id="exr-crypto-password-search-cost" class="course-block course-role-discussion theorem exercise" target="manual" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="intermediate">
-<p><span class="theorem-title"><strong>Упражнение 5 (Сколько стоит перебор?)</strong></span> &nbsp;</p>
+<section id="индивидуальная-соль" class="slide level2">
+<h2>Индивидуальная соль</h2>
+<p>Соль хранится открыто и различается у записей. Она не добавляет неопределённости самому паролю, но заставляет отдельно вычислять кандидатов для разных солей.</p>
+<div id="exr-crypto-slide-salt" class="theorem exercise" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 4 (Две записи)</strong></span> &nbsp;</p>
 <div class="course-metadata">
-<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Средний</span>
+<span class="course-meta course-meta-difficulty">Начальный</span>
 </div>
-<p>Пароль из четырёх независимо и равномерно выбранных цифр проверяют последовательно по 20 мс за кандидата. Сколько вариантов и сколько времени в среднем до нахождения? Что меняется для словарного пароля?</p>
+<p>Два пользователя выбрали один пароль. Для них применили одну парольную функцию с одинаковыми параметрами, но разными солями. Обязаны ли результаты совпасть? Можно ли использовать один вычисленный результат кандидата для обеих записей?</p>
 </div>
 </section>
-<section id="стоимость-подбора" class="slide level2 smaller">
-<h2>Стоимость подбора</h2>
-<p>Пароль состоит ровно из <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math> независимо и равномерно выбранных <strong>строчных латинских букв</strong>: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>26</mn><mi>L</mi></msup><annotation encoding="application/x-tex">26^L</annotation></semantics></math> вариантов.</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: right;">Длина <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math></th>
-<th style="text-align: right;">Полный перебор</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">6 букв</td>
-<td style="text-align: right;">около 37 минут</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">8 букв</td>
-<td style="text-align: right;">около 17 суток</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">10 букв</td>
-<td style="text-align: right;">около 32 лет</td>
-</tr>
-</tbody>
-</table>
-<p>Условия оценки: одна запись; bcrypt, <code>cost = 10</code>; 16 RTX 5090; <strong>138 675 проверок/с</strong>. Скорость считается постоянной, кандидаты не повторяются.</p>
-<p>Каждая дополнительная буква увеличивает время в 26 раз. Здесь проверяются <strong>все</strong> варианты; среднее время для случайного пароля примерно вдвое меньше. Словарный пароль может быть найден значительно раньше.</p>
-<p><a href="https://www.hivesystems.com/newsroom-posts/07-14-2026">Измерение Hive Systems, 14 июля 2026 года</a>. Расчёт и границы оценки: <a data-qrc-custom="false" data-qrc-ref="theory:sec-theory-password-storage" data-qrc-style="default" class="qrc-link" href="../theory/crypto/password-storage.html#sec-theory-password-storage"><span>Глава 14</span></a>.</p>
+<section id="подбор-после-утечки" class="slide level2">
+<h2>Подбор после утечки</h2>
+<p>Получив запись, атакующий может проверять кандидатов <strong>офлайн</strong>, без обращения к серверу. Ограничение частоты входа эти вычисления не останавливает; стоимость парольной функции увеличивает цену каждой проверки.</p>
+<div id="exr-crypto-slide-password-cost" class="theorem exercise" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 5 (Стоимость перебора)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-difficulty">Начальный</span>
+</div>
+<p>Для одной записи возможны 100 000 равновероятных паролей. Атакующий проверяет 1 000 разных кандидатов в секунду. Сколько времени займёт полный перебор? Сколько в среднем потребуется проверок до нахождения пароля?</p>
+</div>
 </section></section>
 <section>
-<section id="sec-seminar-5-algorithms" class="title-slide slide level1 center">
-<h1>Известные алгоритмы</h1>
-
+<section id="дополнительные-опыты" class="title-slide slide level1 center">
+<h1>Дополнительные опыты</h1>
+<ul>
+<li>Исследуйте влияние параметров LCG и восстановление его состояния: <a data-qrc-custom="true" data-qrc-ref="theory:sec-random-lcg-experiments" data-qrc-style="default" class="qrc-link" href="../theory/crypto/randomness.html#sec-random-lcg-experiments">[*]</a>. Что произойдёт, если две виртуальные машины продолжат работу с одинакового снимка состояния генератора?</li>
+<li>Исследуйте шифр Цезаря и перебор его ключей: <a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-symmetric-encryption" data-qrc-style="default" class="qrc-link" href="../theory/crypto/symmetric-encryption.html#sec-theory-symmetric-encryption">[*]</a>.</li>
+<li>Оцените пространство паролей и границы оценки скорости перебора: <a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-password-storage" data-qrc-style="default" class="qrc-link" href="../theory/crypto/password-storage.html#sec-theory-password-storage">[*]</a>.</li>
+</ul>
 </section>
-<section id="известные-алгоритмы" class="slide level2 smaller">
-<h2>Известные алгоритмы</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Назначение</th>
-<th>Примеры</th>
-<th>Существенное различие</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Симметричное шифрование</td>
-<td>AES, ChaCha20</td>
-<td>AES — блочный шифр; ChaCha20 создаёт ключевой поток</td>
-</tr>
-<tr class="even">
-<td>Хеширование</td>
-<td>SHA-256, SHA-512</td>
-<td>Дайджесты длиной 256 и 512 бит соответственно</td>
-</tr>
-<tr class="odd">
-<td>Парольная функция</td>
-<td>PBKDF2, Argon2id</td>
-<td>Соль и настраиваемая стоимость проверки кандидата</td>
-</tr>
-</tbody>
-</table>
-<p>Название алгоритма выбирают вместе с его назначением и условиями применения. Краткий справочник: <a data-qrc-custom="false" data-qrc-ref="theory:sec-theory-crypto-algorithms" data-qrc-style="default" class="qrc-link" href="../theory/crypto/algorithms.html#sec-theory-crypto-algorithms"><span>Глава 15</span></a>.</p>
+<section id="восстановление-сообщения" class="slide level2">
+<h2>Восстановление сообщения</h2>
+<div id="exr-crypto-slide-short-xor" class="theorem exercise" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 6 (Применение XOR)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-difficulty">Начальный</span>
+</div>
+<p>В модели поточного шифрования <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mi>M</mi><mo>⊕</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">C=M\oplus K</annotation></semantics></math>, а повторный XOR с потоком восстанавливает сообщение: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><mi>C</mi><mo>⊕</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">M=C\oplus K</annotation></semantics></math>. Одинаковые биты при XOR дают 0, разные — 1.</p>
+<p>Даны шифротекст <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mn mathvariant="monospace">𝟷𝟶𝟷𝟶</mn></mrow><annotation encoding="application/x-tex">C=\mathtt{1010}</annotation></semantics></math> и поток <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>=</mo><mn mathvariant="monospace">𝟶𝟶𝟷𝟷</mn></mrow><annotation encoding="application/x-tex">K=\mathtt{0011}</annotation></semantics></math>. Найдите сообщение <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math> и проверьте результат обратным преобразованием.</p>
+</div>
 
 
 
@@ -785,9 +583,9 @@ x_{n+1} = (a x_n + c) \bmod 16,\qquad a,c \in \{0,\ldots,7\}.
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":false},
 'scrollActivationWidth': 0,
-'courseNav': {"sidebar":true},
+'courseNav': {"sidebar":true,"language":"ru","title":"Основы кибербезопасности"},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -933,9 +731,9 @@ x_{n+1} = (a x_n + c) \bmod 16,\qquad a,c \in \{0,\ldots,7\}.
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1050,
+        width: 1600,
 
-        height: 700,
+        height: 900,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
@@ -950,7 +748,7 @@ x_{n+1} = (a x_n + c) \bmod 16,\qquad a,c \in \{0,\ldots,7\}.
       });
     </script>
     <script type="ojs-module-contents">
-    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImxjZ1RyYWluZXJDb21wYWN0TG9jYWxQbG90ID0gYXdhaXQgaW1wb3J0KGF3YWl0IEZpbGVBdHRhY2htZW50KFwiL19wcmVwYXJlZC92aXN1YWxpemF0aW9ucy92ZW5kb3IvcGxvdC5qc1wiKS51cmwoKSlcbmxjZ1RyYWluZXJDb21wYWN0TGVzc29uID0gYXdhaXQgaW1wb3J0KGF3YWl0IEZpbGVBdHRhY2htZW50KFwiL19wcmVwYXJlZC92aXN1YWxpemF0aW9ucy9jcnlwdG8vbGVzc29uLmpzXCIpLnVybCgpKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoibGNnVHJhaW5lckNvbXBhY3RMZXNzb24ubGNnVHJhaW5lcih7UGxvdDogbGNnVHJhaW5lckNvbXBhY3RMb2NhbFBsb3QsIGNvbXBhY3Q6dHJ1ZX0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJsY2dtU2VsZWN0aW9uTGVzc29uID0gYXdhaXQgaW1wb3J0KGF3YWl0IEZpbGVBdHRhY2htZW50KFwiL19wcmVwYXJlZC92aXN1YWxpemF0aW9ucy9jcnlwdG8vbGVzc29uLmpzXCIpLnVybCgpKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC00IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoibGNnbVNlbGVjdGlvbkxlc3Nvbi5sY2dNb2RlbFNlbGVjdGlvbigpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTUiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJjYWVzYXJUcmFpbmVyTGVzc29uID0gYXdhaXQgaW1wb3J0KGF3YWl0IEZpbGVBdHRhY2htZW50KFwiL19wcmVwYXJlZC92aXN1YWxpemF0aW9ucy9jcnlwdG8vbGVzc29uLmpzXCIpLnVybCgpKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC02IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiY2Flc2FyVHJhaW5lckxlc3Nvbi5jYWVzYXJUcmFpbmVyKClcbiJ9XX0=
+    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Imhhc2hCaXRTZW1pbmFyTGVzc29uID0gYXdhaXQgaW1wb3J0KGF3YWl0IEZpbGVBdHRhY2htZW50KFwiL19wcmVwYXJlZC92aXN1YWxpemF0aW9ucy9jcnlwdG8vbGVzc29uLmpzXCIpLnVybCgpKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiaGFzaEJpdFNlbWluYXJMZXNzb24uaGFzaEJpdEV4cGVyaW1lbnQoe2NvbXBhY3Q6IHRydWV9KVxuIn1dfQ==
     </script>
     <script type="module">
     if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }

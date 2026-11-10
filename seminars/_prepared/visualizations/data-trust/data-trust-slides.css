@@ -1,0 +1,26 @@
+.reveal .slides .trust-figure {
+  margin: 0.4em 0;
+}
+
+.reveal .slides .trust-figure figure,
+.reveal .slides .trust-figure .quarto-figure {
+  margin: 0;
+}
+
+.reveal .slides .trust-figure img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 400px;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.reveal .slides .trust-figure figcaption,
+.reveal .slides .trust-figure .quarto-float-caption {
+  margin-top: 0.35em;
+  font-size: 0.65em;
+  line-height: 1.2;
+  text-align: center;
+}

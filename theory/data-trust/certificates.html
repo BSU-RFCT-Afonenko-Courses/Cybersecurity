@@ -9,7 +9,7 @@
 <meta name="author" content="Афоненко Анатолий">
 <meta name="author" content="Войтович Елизавета">
 
-<title>8&nbsp; Целостность данных – Задания</title>
+<title>20&nbsp; Сертификаты открытого ключа – Теория</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -38,8 +38,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../works/01-fundamentals.html" rel="next">
-<link href="../bank/access-control.html" rel="prev">
+<link href="../data-preservation/backups.html" rel="next">
+<link href="../data-trust/integrity-verification.html" rel="prev">
 <link href="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -60,6 +60,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-contrib/course-presentation-0.1.0/presentation.js" data-course-runtime-asset="presentation.js" data-course-runtime-provider="course-presentation"></script>
 <link href="../site_libs/quarto-contrib/course-presentation-0.1.0/presentation.css" rel="stylesheet" data-course-runtime-asset="presentation.css" data-course-runtime-provider="course-presentation">
 <link href="../site_libs/quarto-contrib/course-navigation-header/header.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/style.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/cipher.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/password.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/course-visualizations-0.3.6/generator.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -99,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand navbar-brand-logo" href="../../"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo light-content"><img src="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" alt="Значок курса «Основы кибербезопасности» — кот с защищённой вкладкой" class="navbar-logo dark-content">Основы кибербезопасности</a>
-  </div><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Меню курса"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarCollapse"><ul class="navbar-nav navbar-nav-scroll me-auto"><li class="nav-item"><a class="nav-link" data-course-link="root" href="../../"><span class="menu-text">Курс</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-theory" href="../../theory/"><span class="menu-text">Теория</span></a></li><li class="nav-item"><a class="nav-link active" data-course-link="subproject-task" href="../" aria-current="page"><span class="menu-text">Задания</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-seminars" href="../../seminars/"><span class="menu-text">Слайды занятий</span></a></li></ul></div>
+  </div><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Меню курса"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarCollapse"><ul class="navbar-nav navbar-nav-scroll me-auto"><li class="nav-item"><a class="nav-link" data-course-link="root" href="../../"><span class="menu-text">Курс</span></a></li><li class="nav-item"><a class="nav-link active" data-course-link="subproject-theory" href="../" aria-current="page"><span class="menu-text">Теория</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-task" href="../../task/"><span class="menu-text">Задания</span></a></li><li class="nav-item"><a class="nav-link" data-course-link="subproject-seminars" href="../../seminars/"><span class="menu-text">Слайды занятий</span></a></li></ul></div>
         <div class="quarto-navbar-tools tools-end">
 </div>
           <div id="quarto-search" class="" title="Поиск"></div>
@@ -110,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../bank/fundamentals.html">Банк задач</a></li><li class="breadcrumb-item"><a href="../bank/data-integrity.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Целостность данных</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data-trust/integrity-verification.html">Доверие к данным</a></li><li class="breadcrumb-item"><a href="../data-trust/certificates.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Сертификаты открытого ключа</span></a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -131,55 +135,19 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Задания</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Теория</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-1-label">Банк задач</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Основные понятия</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bank/fundamentals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Основные понятия</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bank/legal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Правовые основы</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bank/security-center.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Организация обеспечения кибербезопасности</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bank/standards-risk.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Требования к защите</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bank/crypto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Криптография</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bank/access-control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Управление доступом</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../bank/data-integrity.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
+  <a href="../fundamentals/concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Информационная безопасность</span></span></a>
   </div>
 </li>
       </ul>
@@ -187,43 +155,181 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-2-label">Работы</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Правовые основы</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../works/01-fundamentals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Занятие 1 – Информационная безопасность</span></span></a>
+  <a href="../legal/information-access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Категории доступа к информации</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../works/02-legal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Структура обеспечения кибербезопасности в РБ</span></span></a>
+  <a href="../legal/system-classes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Классы информационных систем</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../works/03-standards-risk.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Семинар 3 – Применение нормативно-правовых актов</span></span></a>
+  <a href="../legal/protection-measures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Меры защиты информации</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../works/04-access-control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Семинар 4 — Управление доступом</span></span></a>
+  <a href="../legal/standards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Нормативные требования</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Организация обеспечения кибербезопасности</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../security-center/organization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../works/backup.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Введение в кибербезопасность</span></span></a>
+  <a href="../security-center/workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Обобщенный процесс оказания услуги обеспечения кибербезопасности</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../risk-assessment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Оценка риска</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../access-control/authentication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Аутентификация</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../works/control-demo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Демонстрационный вариант контрольной работы</span></span></a>
+  <a href="../access-control/authorization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Авторизация</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/randomness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Криптографическая случайность</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/symmetric-encryption.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/hash-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хеш-функции</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/asymmetric-cryptography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/digital-signature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Цифровая подпись</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/key-management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Управление ключами</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Доверие к данным</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data-trust/integrity-verification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Проверка целостности</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data-trust/certificates.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Сертификаты открытого ключа</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-controls="quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-7-label">Сохранность данных</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data-preservation/backups.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Резервное копирование</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data-preservation/raid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Дисковые массивы</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-controls="quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-8-label">Приложения</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-8" aria-labelledby="quarto-sidebar-section-8-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/lamport-signature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Подпись Лэмпорта</span></span></a>
   </div>
 </li>
       </ul>
@@ -233,15 +339,25 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">Содержание</h2>
+   
+  <ul>
+  <li><a href="#sec-theory-signature-key-owner" id="toc-sec-theory-signature-key-owner" class="nav-link active" data-scroll-target="#sec-theory-signature-key-owner"><span class="header-section-number">20.1</span> Принадлежность ключа</a></li>
+  <li><a href="#sec-theory-public-key-certificate" id="toc-sec-theory-public-key-certificate" class="nav-link" data-scroll-target="#sec-theory-public-key-certificate"><span class="header-section-number">20.2</span> Устройство сертификата</a></li>
+  <li><a href="#sec-theory-certificate-chain" id="toc-sec-theory-certificate-chain" class="nav-link" data-scroll-target="#sec-theory-certificate-chain"><span class="header-section-number">20.3</span> Цепочка сертификатов</a></li>
+  <li><a href="#sec-theory-certificate-browser" id="toc-sec-theory-certificate-browser" class="nav-link" data-scroll-target="#sec-theory-certificate-browser"><span class="header-section-number">20.4</span> Просмотр сертификата сайта</a></li>
+  <li><a href="#источники" id="toc-источники" class="nav-link" data-scroll-target="#источники"><span class="header-section-number">20.5</span> Источники</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../bank/fundamentals.html">Банк задач</a></li><li class="breadcrumb-item"><a href="../bank/data-integrity.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Целостность данных</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data-trust/integrity-verification.html">Доверие к данным</a></li><li class="breadcrumb-item"><a href="../data-trust/certificates.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Сертификаты открытого ключа</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-bank-data-integrity" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></h1>
+<h1 class="title"><span id="sec-theory-certificates" class="quarto-section-identifier"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Сертификаты открытого ключа</span></span></h1>
 </div>
 
 
@@ -256,12 +372,6 @@ ul.task-list li input[type="checkbox"] {
           </div>
   </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Дата публикации</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">4 ноября 2026 г.</p>
-    </div>
-  </div>
   
     
   </div>
@@ -271,84 +381,83 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div id="exr-data-integrity-backup" class="course-block course-role-independent-study theorem exercise" data-course-role="independent-study" data-course-difficulty="intermediate" data-course-time="90">
-<p><span class="theorem-title"><strong>Задача 8.1 (Виды резервных копий)</strong></span> &nbsp;</p>
-<div class="course-metadata">
-<span class="course-meta course-meta-role">Самостоятельная работа</span> <span class="course-meta course-meta-difficulty">Средний</span> <span class="course-meta course-meta-time">90 мин</span>
+<p>Проверка <a href="../crypto/digital-signature.html#def-trust-digital-signature">цифровой подписи</a> требует открытого ключа подписавшего. Сертификат позволяет проверить связь ключа с именем владельца, опираясь на заранее принятую удостоверяющую сторону. При открытии сайта браузер использует такую связь, чтобы проверить, что соединение устанавливается с нужным сайтом.</p>
+<section id="sec-theory-signature-key-owner" class="level2" data-number="20.1">
+<h2 data-number="20.1" class="anchored" data-anchor-id="sec-theory-signature-key-owner"><span class="header-section-number">20.1</span> Принадлежность ключа</h2>
+<p>Успех проверки устанавливает соответствие подписи данным и открытому ключу. Чтобы назвать издателя, нужно знать, что ключ принадлежит ему. Если получить файл, подпись и неизвестный ключ из одного подменённого пакета, нарушитель может подготовить все три части своей парой ключей.</p>
+<p>Ключ или его контрольное значение можно получить заранее доверенным способом. Для большого числа сайтов и издателей используют сертификаты.</p>
+</section>
+<section id="sec-theory-public-key-certificate" class="level2" data-number="20.2">
+<h2 data-number="20.2" class="anchored" data-anchor-id="sec-theory-public-key-certificate"><span class="header-section-number">20.2</span> Устройство сертификата</h2>
+<div id="def-trust-public-key-certificate" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 20.1 (Сертификат открытого ключа)</strong></span> Сертификат открытого ключа — подписанный удостоверяющей стороной документ, который связывает имя субъекта с его открытым ключом и условиями применения. Его подпись проверяют открытым ключом выдавшей стороны.</p>
 </div>
-<p>С помощью утилиты <a href="https://github.com/MatteoGuadrini/Butterfly-Backup" class="uri">https://github.com/MatteoGuadrini/Butterfly-Backup</a> реализовать все 4 (полный, инкрементальный, дифференциальный и зеркальный) бекапы. Изменять исходные файлы, откатывать бекапы.</p>
-<div class="course-block course-role-deliverables" data-course-role="deliverables">
-<div class="course-metadata">
-<span class="course-meta course-meta-role">Что сдавать</span>
+<p>Знакомый случай — открытие сайта по HTTPS. В адресной строке указан нужный сайт, а браузер должен проверить связь этого имени с ключом, используемым при установлении защищённого соединения. Сертификат сервера предоставляет такую связь. Само соединение требует также, чтобы сервер подтвердил владение соответствующим закрытым ключом.</p>
+<p>Рассмотрим учебный адрес <code>https://portal.example</code>. Имя <code>portal.example</code> здесь придумано для примера. Сертификат предъявленного сайта должен подходить именно для этого ожидаемого имени и для аутентификации сервера. Правильный сертификат другого сайта не заменяет эту проверку. Сертификат также не свидетельствует об истинности всех текстов на страницах.</p>
+</section>
+<section id="sec-theory-certificate-chain" class="level2" data-number="20.3">
+<h2 data-number="20.3" class="anchored" data-anchor-id="sec-theory-certificate-chain"><span class="header-section-number">20.3</span> Цепочка сертификатов</h2>
+<div id="def-trust-anchor" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 20.2 (Доверенное основание)</strong></span> Доверенное основание — заранее принятые системой сведения об удостоверяющей стороне и её открытом ключе, с которых начинается проверка цепочки сертификатов.</p>
 </div>
-<p>Предоставить архив с файлами резервных копий и краткий протокол изменений и восстановления исходных файлов.</p>
+<p>У браузера есть доверенное хранилище: список принятых корневых удостоверяющих сторон. Оно поставляется с браузером или используется из операционной системы; его состав также может задавать организация. Полученный от сайта неизвестный корневой сертификат сам по себе в этот список не попадает.</p>
+<p>В учебном примере в хранилище заранее принят корневой ключ <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>. Сайт предъявляет сертификат своего ключа <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math> и сертификат промежуточного центра <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Проверяемый документ</th>
+<th>Что он связывает</th>
+<th>Каким ключом проверяют подпись</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Сертификат промежуточного центра</td>
+<td>Центр с ключом <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>; ему разрешена выдача сертификатов</td>
+<td>Доверенным корневым ключом <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>Сертификат сайта</td>
+<td>Имя <code>portal.example</code> с ключом <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math></td>
+<td>Проверенным ключом центра <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math></td>
+</tr>
+</tbody>
+</table>
+<p>Проверка начинается с известного <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>. По нему проверяют сертификат центра, затем ключом <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math> — сертификат сайта. Проверяются подписи и разрешённые назначения; имя конечного сертификата сопоставляется с <code>portal.example</code> из адреса. Так возникает проверенная связь между именем сайта и ключом <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>.</p>
+<div id="fig-trust-certificate-chain" class="quarto-float quarto-figure quarto-figure-center anchored" alt="В доверенном хранилище заранее принят корневой ключ R. Он проверяет сертификат центра C, которому разрешена выдача сертификатов. Ключ C проверяет сертификат сайта portal.example с ключом P. Неизвестная самоподписанная сторона N не имеет пути к доверенному основанию.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trust-certificate-chain-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../_prepared/visualizations/data-trust/static/certificate-chain.svg" class="img-fluid figure-img" alt="В доверенном хранилище заранее принят корневой ключ R. Он проверяет сертификат центра C, которому разрешена выдача сертификатов. Ключ C проверяет сертификат сайта portal.example с ключом P. Неизвестная самоподписанная сторона N не имеет пути к доверенному основанию.">
 </div>
-<div class="course-block course-role-criteria" data-course-role="criteria">
-<div class="course-metadata">
-<span class="course-meta course-meta-role">Критерии</span>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trust-certificate-chain-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;20.1: Цепочка от доверенного корневого ключа до ключа сайта
+</figcaption>
+</figure>
 </div>
-<p>Показать каждый из четырёх способов резервного копирования и восстановление файлов после изменений. Для каждого опыта указать исходное состояние, содержимое резервной копии и результат восстановления.</p>
-</div>
-</div>
-<div id="exr-data-integrity-trusted-hash" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="intermediate">
-<p><span class="theorem-title"><strong>Задача 8.2 (Доверие к эталону)</strong></span> &nbsp;</p>
-<div class="course-metadata">
-<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Средний</span>
-</div>
-<p>На сайте лежали файл <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math> и его хеш <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false" form="prefix">(</mo><mi>F</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">H(F)</annotation></semantics></math>. Атакующий заменил их на <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>G</mi><annotation encoding="application/x-tex">G</annotation></semantics></math> и <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false" form="prefix">(</mo><mi>G</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">H(G)</annotation></semantics></math>. Проверка совпала. Доказано ли происхождение файла?</p>
-</div>
-<div id="exr-data-integrity-backup-volume" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
-<p><span class="theorem-title"><strong>Задача 8.3 (Объём копий)</strong></span> &nbsp;</p>
-<div class="course-metadata">
-<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
-</div>
-<p>Копируются целые файлы <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">A = 2</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">B = 3</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">C = 5</annotation></semantics></math> МБ постоянного размера; добавлений, удалений, сжатия и дедупликации нет. В воскресенье сделана полная копия. В понедельник изменён A, во вторник B, в среду снова A; ежедневно после правки создаётся копия. Каков объём создаваемой в среду полной, инкрементной и дифференциальной копии?</p>
-</div>
-<div id="exr-data-integrity-mirror-copy" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="intermediate">
-<p><span class="theorem-title"><strong>Задача 8.4 (Защита от удаления)</strong></span> &nbsp;</p>
-<div class="course-metadata">
-<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Средний</span>
-</div>
-<p>Два диска работают в RAID 1, есть отдельная исправная независимая резервная копия. В понедельник в 10:00 сотрудник удалил файл, и удаление отразилось на обоих дисках. Последняя копия воскресенья 23:00 содержит файл; после копии его изменяли. Других копий, корзины и снимков нет. Один администратор предлагает второй диск, другой — резервную копию. Сравните решения, назовите доступную версию и событие, от которого помогает зеркало.</p>
-</div>
-<div id="exr-data-integrity-sum" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
-<p><span class="theorem-title"><strong>Задача 8.5 (Простая сумма)</strong></span> &nbsp;</p>
-<div class="course-metadata">
-<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
-</div>
-<p>Найдите суммы байтов без переполнения для <code>[10,20,30]</code>, <code>[10,21,30]</code>, <code>[20,10,30]</code>. Какие массивы сумма не различает?</p>
-</div>
-<div id="exr-data-integrity-backup-chain" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
-<p><span class="theorem-title"><strong>Задача 8.6 (Цепочка восстановления)</strong></span> &nbsp;</p>
-<div class="course-metadata">
-<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
-</div>
-<p>Копируются целые файлы только перезаписью. Полная копия воскресенья содержит A, B, C. В понедельник меняли только A, во вторник B, в среду C; ежедневно создаётся копия выбранного типа. Что нужно для восстановления состояния среды в инкрементной и дифференциальной схеме?</p>
-</div>
-<div id="exr-data-integrity-raid-capacity" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
-<p><span class="theorem-title"><strong>Задача 8.7 (Ёмкость RAID)</strong></span> &nbsp;</p>
-<div class="course-metadata">
-<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
-</div>
-<p>Отдельные массивы из дисков по 2 ТБ: RAID 0 — три диска, RAID 1 — два, RAID 5 — три. Служебными расходами пренебречь; остальные диски и метаданные исправны. Какова полезная ёмкость каждого массива и переживёт ли он один полный отказ диска?</p>
-</div>
-<div id="exr-data-integrity-mirror-history" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
-<p><span class="theorem-title"><strong>Задача 8.8 (История изменений)</strong></span> &nbsp;</p>
-<div class="course-metadata">
-<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
-</div>
-<p>Штатное удаление файла отразилось на обоих дисках RAID 1. Других копий, корзины и снимков нет. Можно ли средствами одного зеркала вернуть вчерашнюю версию?</p>
-</div>
-<div id="exr-data-integrity-xor" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="intermediate">
-<p><span class="theorem-title"><strong>Задача 8.9 (Восстановление XOR)</strong></span> &nbsp;</p>
-<div class="course-metadata">
-<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Средний</span>
-</div>
-<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo><mi>A</mi><mo>⊕</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">P = A \oplus B</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mn mathvariant="monospace">𝟷𝟶𝟷𝟶</mn></mrow><annotation encoding="application/x-tex">A = \mathtt{1010}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo><mn mathvariant="monospace">𝟶𝟷𝟷𝟶</mn></mrow><annotation encoding="application/x-tex">P = \mathtt{0110}</annotation></semantics></math>. Найдите <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>. Хватит ли одного <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math> при потере обоих блоков данных?</p>
-</div>
+<p>Самоподпись неизвестного корневого сертификата не даёт основания доверять ему. Доверие к исходному ключу устанавливается отдельно от полученной цепочки. Сертификат также может быть <strong>отозван</strong>, например после раскрытия закрытого ключа. При проверке учитывают сведения об отзыве по правилам приложения.</p>
+</section>
+<section id="sec-theory-certificate-browser" class="level2" data-number="20.4">
+<h2 data-number="20.4" class="anchored" data-anchor-id="sec-theory-certificate-browser"><span class="header-section-number">20.4</span> Просмотр сертификата сайта</h2>
+<p>В окне сертификата открытого HTTPS-сайта можно сопоставить поля с рассмотренной цепочкой:</p>
+<ol type="1">
+<li>В <code>Subject Alternative Name</code> найти имя, подходящее ожидаемому адресу сайта.</li>
+<li>В конечном сертификате найти открытый ключ сайта и издателя сертификата.</li>
+<li>В пути сертификации проследить издателей до основания, которому доверяет данная установка браузера или операционной системы.</li>
+</ol>
+<p>Порядок сертификатов в окне может быть обратным ходу проверки. Ключ субъекта находится в его сертификате, а подпись этого сертификата проверяют ключом выдавшей стороны. Настройки доверия принадлежат проверяющей системе; получение корневого сертификата от сайта само по себе их не меняет.</p>
+</section>
+<section id="источники" class="level2" data-number="20.5">
+<h2 data-number="20.5" class="anchored" data-anchor-id="источники"><span class="header-section-number">20.5</span> Источники</h2>
+<p>Связь имени с ключом объясняет <a href="https://securitybook.eecs.berkeley.edu/chapters/lec07.html#certificates">The Structure of Secure Systems, § 7.4</a>. Правила цепочек и отзыва определены в <a href="https://www.rfc-editor.org/rfc/rfc5280.html#section-6.1">RFC 5280, §§ 3.2–3.3, 6.1</a>. Применение доверенного хранилища показывает <a href="https://firefox-admin-docs.mozilla.org/reference/policies/certificates/">документация Firefox</a>; подтверждение владения закрытым ключом сервера описано в <a href="https://www.rfc-editor.org/rfc/rfc8446.html#section-4.4.3">RFC 8446, § 4.4.3</a>.</p>
 
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -421,57 +530,6 @@ ul.task-list li input[type="checkbox"] {
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
-        for (let i=0; i<cellDetails.length; i++) {
-          const details = cellDetails[i];
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -807,13 +865,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation" aria-label="Страница">
   <div class="nav-page nav-page-previous">
-      <a href="../bank/access-control.html" class="pagination-link" aria-label="Управление доступом">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Управление доступом</span></span>
+      <a href="../data-trust/integrity-verification.html" class="pagination-link" aria-label="Проверка целостности">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Проверка целостности</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../works/01-fundamentals.html" class="pagination-link" aria-label="Занятие 1 – Информационная безопасность">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Занятие 1 – Информационная безопасность</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../data-preservation/backups.html" class="pagination-link" aria-label="Резервное копирование">
+        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Резервное копирование</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

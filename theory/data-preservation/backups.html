@@ -9,7 +9,7 @@
 <meta name="author" content="Афоненко Анатолий">
 <meta name="author" content="Войтович Елизавета">
 
-<title>13&nbsp; Генерация ключей – Теория</title>
+<title>21&nbsp; Резервное копирование – Теория</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -38,8 +38,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../crypto/password-storage.html" rel="next">
-<link href="../crypto/cypher.html" rel="prev">
+<link href="../data-preservation/raid.html" rel="next">
+<link href="../data-trust/certificates.html" rel="prev">
 <link href="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -114,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/random.html">Криптография</a></li><li class="breadcrumb-item"><a href="../crypto/key-gen.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Генерация ключей</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data-preservation/backups.html">Сохранность данных</a></li><li class="breadcrumb-item"><a href="../data-preservation/backups.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Резервное копирование</span></a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -176,6 +176,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Меры защиты информации</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../legal/standards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Нормативные требования</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -187,27 +193,39 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../security-center/organization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../security-center/workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Обобщенный процесс оказания услуги обеспечения кибербезопасности</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Обобщенный процесс оказания услуги обеспечения кибербезопасности</span></span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../risk-assessment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Оценка риска</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-4-label">Требования к защите</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../standards-risk/requirements-decisions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Применение нормативно-правовых актов</span></span></a>
+  <a href="../access-control/authentication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Аутентификация</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../access-control/authorization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Авторизация</span></span></a>
   </div>
 </li>
       </ul>
@@ -215,13 +233,49 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-5-label">Управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../access-control/access-control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Управление доступом</span></span></a>
+  <a href="../crypto/randomness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Криптографическая случайность</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/symmetric-encryption.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/hash-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хеш-функции</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/asymmetric-cryptography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/digital-signature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Цифровая подпись</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/key-management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Управление ключами</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
   </div>
 </li>
       </ul>
@@ -229,43 +283,19 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-6-label">Криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Доверие к данным</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/random.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Генераторы случайных чисел</span></span></a>
+  <a href="../data-trust/integrity-verification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Проверка целостности</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/hash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Хеш-функции</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../crypto/cypher.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../crypto/key-gen.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Генерация ключей</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../crypto/algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Известные алгоритмы</span></span></a>
+  <a href="../data-trust/certificates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Сертификаты открытого ключа</span></span></a>
   </div>
 </li>
       </ul>
@@ -278,8 +308,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../data-integrity/integrity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
+  <a href="../data-preservation/backups.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Резервное копирование</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data-preservation/raid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Дисковые массивы</span></span></a>
   </div>
 </li>
       </ul>
@@ -287,13 +323,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-controls="quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-8-label">Цифровая подпись</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-8-label">Приложения</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-8" aria-labelledby="quarto-sidebar-section-8-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/public-key-outline.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
+  <a href="../crypto/lamport-signature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Подпись Лэмпорта</span></span></a>
   </div>
 </li>
       </ul>
@@ -308,22 +344,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Содержание</h2>
    
   <ul>
-  <li><a href="#ключевой-материал" id="toc-ключевой-материал" class="nav-link active" data-scroll-target="#ключевой-материал"><span class="header-section-number">13.1</span> Ключевой материал</a>
-  <ul class="collapse">
-  <li><a href="#назначение-значений" id="toc-назначение-значений" class="nav-link" data-scroll-target="#назначение-значений"><span class="header-section-number">13.1.1</span> Назначение значений</a></li>
-  <li><a href="#выработка-из-пароля" id="toc-выработка-из-пароля" class="nav-link" data-scroll-target="#выработка-из-пароля"><span class="header-section-number">13.1.2</span> Выработка из пароля</a></li>
-  <li><a href="#распределение-ключей" id="toc-распределение-ключей" class="nav-link" data-scroll-target="#распределение-ключей"><span class="header-section-number">13.1.3</span> Распределение ключей</a></li>
-  <li><a href="#защита-ключа" id="toc-защита-ключа" class="nav-link" data-scroll-target="#защита-ключа"><span class="header-section-number">13.1.4</span> Защита ключа</a></li>
-  </ul></li>
+  <li><a href="#резервное-копирование" id="toc-резервное-копирование" class="nav-link active" data-scroll-target="#резервное-копирование"><span class="header-section-number">21.1</span> Резервное копирование</a></li>
+  <li><a href="#восстановление-версий" id="toc-восстановление-версий" class="nav-link" data-scroll-target="#восстановление-версий"><span class="header-section-number">21.2</span> Восстановление версий</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/random.html">Криптография</a></li><li class="breadcrumb-item"><a href="../crypto/key-gen.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Генерация ключей</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data-preservation/backups.html">Сохранность данных</a></li><li class="breadcrumb-item"><a href="../data-preservation/backups.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Резервное копирование</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-theory-crypto-key-gen" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Генерация ключей</span></span></h1>
+<h1 class="title"><span id="sec-theory-backups" class="quarto-section-identifier"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Резервное копирование</span></span></h1>
 </div>
 
 
@@ -347,100 +378,124 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="ключевой-материал" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="ключевой-материал"><span class="header-section-number">13.1</span> Ключевой материал</h2>
-<p>Для <a href="../crypto/cypher.html#sec-theory-crypto-cypher">симметричного шифрования</a> списка контактов участникам нужен общий секретный ключ. Его роль определена в <a href="cypher.html#def-crypto-key" class="quarto-xref">Определение&nbsp;<span>12.2</span></a>: при известном алгоритме он выбирает преобразование, которым пользуются участники. Ключ требуется получить с достаточной непредсказуемостью, безопасно передать и защитить после создания.</p>
-<p>Случайный секретный ключ получают с помощью криптографически стойкого генератора случайных чисел (CSPRNG). Генератор поддерживает внутреннее состояние и получает непредсказуемые данные из источника энтропии; система обычно предоставляет готовый интерфейс для получения случайных байтов. Устройство генератора и различие статистической равномерности и непредсказуемости рассмотрены в <a href="random.html" class="quarto-xref"><span>Глава 10</span></a>. Самостоятельно заменять системный CSPRNG обычным генератором для моделирования нельзя: внешне разнообразный результат ещё не означает, что противник не сможет его предсказать.</p>
-<section id="назначение-значений" class="level3" data-number="13.1.1">
-<h3 data-number="13.1.1" class="anchored" data-anchor-id="назначение-значений"><span class="header-section-number">13.1.1</span> Назначение значений</h3>
-<p>При получении ключа могут использоваться начальное значение генератора или пароль с солью. Ключ ограничивает доступ к криптографической операции; начальное значение участвует в установлении состояния генератора, а соль различает вычисления парольной функции.</p>
+<p>Проверка обнаруживает изменение, но не возвращает прежнюю версию. Для восстановления после удаления, ошибочной правки или отказа носителя нужны сохранённые данные. Проверка целостности и доверенный эталон рассмотрены в <a href="../data-trust/integrity-verification.html" class="quarto-xref"><span>Глава 19</span></a>.</p>
+<section id="резервное-копирование" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="резервное-копирование"><span class="header-section-number">21.1</span> Резервное копирование</h2>
+<div id="def-backup" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 21.1 (Резервная копия)</strong></span> <strong>Резервная копия</strong> — сохранённая копия данных, предназначенная для их восстановления после потери или повреждения рабочего экземпляра.</p>
+</div>
+<p>Копия представляет данные на определённый момент. Если после её создания файл изменился, вернуть только по ней можно сохранённую версию, а не последующие изменения. Копию размещают независимо от рабочего экземпляра: отказ или удаление рабочего файла не должны уничтожать и её. Доступность нужных данных проверяют пробным восстановлением, а не только сообщением об успешном копировании.</p>
+<div id="def-full-backup" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 21.2 (Полная копия)</strong></span> <strong>Полная копия</strong> содержит весь выбранный набор данных на момент копирования.</p>
+</div>
+<div id="def-incremental-backup" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 21.3 (Инкрементная копия)</strong></span> <strong>Инкрементная копия</strong> содержит данные, изменившиеся после предыдущей копии.</p>
+</div>
+<div id="def-differential-backup" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 21.4 (Дифференциальная копия)</strong></span> <strong>Дифференциальная копия</strong> содержит данные, изменившиеся после последней полной копии.</p>
+</div>
+<p>Рассмотрим папку из целых файлов A, B и C размером 2, 3 и 5 МБ. В воскресенье создают полную копию, затем ежедневно после правки — копию выбранного вида. Индекс обозначает версию; жирным выделено изменение за день.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>День</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Воскресенье</td>
+<td>A₀</td>
+<td>B₀</td>
+<td>C₀</td>
+</tr>
+<tr class="even">
+<td>Понедельник</td>
+<td><strong>A₁</strong></td>
+<td>B₀</td>
+<td>C₀</td>
+</tr>
+<tr class="odd">
+<td>Вторник</td>
+<td>A₁</td>
+<td><strong>B₁</strong></td>
+<td>C₀</td>
+</tr>
+<tr class="even">
+<td>Среда</td>
+<td><strong>A₂</strong></td>
+<td>B₁</td>
+<td>C₀</td>
+</tr>
+</tbody>
+</table>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Значение</th>
-<th>Назначение</th>
-<th>Требование к секретности и повторению</th>
+<th>Копия</th>
+<th>Полная</th>
+<th>Инкрементная</th>
+<th>Дифференциальная</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Ключ</td>
-<td>Управляет криптографической операцией и определяет, кто может её выполнить</td>
-<td>Секретный или закрытый ключ защищают от посторонних; открытый ключ предназначен для распространения</td>
+<td>Воскресенье</td>
+<td>A₀, B₀, C₀ — 10 МБ</td>
+<td>A₀, B₀, C₀ — 10 МБ</td>
+<td>A₀, B₀, C₀ — 10 МБ</td>
 </tr>
 <tr class="even">
-<td>Начальное значение (<code>seed</code>)</td>
-<td>Задаёт или помогает установить начальное состояние генератора</td>
-<td>Для получения непредсказуемых ключей противник не должен суметь восстановить состояние; нужны достаточные непредсказуемые данные</td>
+<td>Понедельник</td>
+<td>A₁, B₀, C₀ — 10 МБ</td>
+<td>A₁ — 2 МБ</td>
+<td>A₁ — 2 МБ</td>
 </tr>
 <tr class="odd">
-<td>Соль</td>
-<td>Различает независимые вычисления функции выработки из пароля</td>
-<td>Обычно хранится открыто вместе с параметрами; для разных записей выбирается своя соль</td>
+<td>Вторник</td>
+<td>A₁, B₁, C₀ — 10 МБ</td>
+<td>B₁ — 3 МБ</td>
+<td>A₁, B₁ — 5 МБ</td>
+</tr>
+<tr class="even">
+<td>Среда</td>
+<td>A₂, B₁, C₀ — 10 МБ</td>
+<td>A₂ — 2 МБ</td>
+<td>A₂, B₁ — 5 МБ</td>
 </tr>
 </tbody>
 </table>
-<p>Размер результата генератора не создаёт дополнительной неопределённости. Представим детерминированный генератор, который получает только 32-битное начальное значение и по нему выдаёт 256-битный ключ. Начальных значений не более <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mn>32</mn></msup><annotation encoding="application/x-tex">2^{32}</annotation></semantics></math>, поэтому и возможных выходных ключей не более <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mn>32</mn></msup><annotation encoding="application/x-tex">2^{32}</annotation></semantics></math>, хотя каждый записан 256 битами. Противник, знающий алгоритм, может перебирать начальные значения. Если начальное значение угадывается ещё легче, реальное число попыток может быть меньше. Для случайного 256-битного ключа недостаточно просто напечатать 256 бит: нужен источник с достаточной непредсказуемостью.</p>
-</section>
-<section id="выработка-из-пароля" class="level3" data-number="13.1.2">
-<h3 data-number="13.1.2" class="anchored" data-anchor-id="выработка-из-пароля"><span class="header-section-number">13.1.2</span> Выработка из пароля</h3>
-<p>В одном варианте программа получает из CSPRNG случайные байты ключа и сохраняет их в защищённом хранилище. В другом человек вводит пароль, а программа применяет к нему <strong>функцию выработки ключа</strong> (KDF), предназначенную для паролей. Она получает пароль, соль и параметры стоимости и выдаёт ключ требуемого формата. Одни и те же пароль, соль и параметры позволяют снова получить тот же ключ; соль и параметры поэтому нужно сохранить рядом с защищёнными данными.</p>
-<p>Соль мешает заранее вычисленным результатам одинаково подходить к множеству разных записей, а стоимость KDF повышает цену каждой проверки догадки. При этом слабый пароль остаётся слабым: длина полученных 256 бит не означает 256 бит непредсказуемости. PBKDF2 и Argon2id описаны в <a href="algorithms.html" class="quarto-xref"><span>Глава 15</span></a>; применение парольной функции для проверки входа разобрано в <a href="password-storage.html" class="quarto-xref"><span>Глава 14</span></a>.</p>
-</section>
-<section id="распределение-ключей" class="level3" data-number="13.1.3">
-<h3 data-number="13.1.3" class="anchored" data-anchor-id="распределение-ключей"><span class="header-section-number">13.1.3</span> Распределение ключей</h3>
-<p>Если каждый из пяти участников списка контактов хочет иметь отдельный общий секрет с каждым другим участником, число пар равно <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mo>⋅</mo><mn>4</mn><mi>/</mi><mn>2</mn><mo>=</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">5\cdot4/2=10</annotation></semantics></math>. На <a href="#fig-crypto-key-pairs" class="quarto-xref">Рисунок&nbsp;<span>13.1</span></a> каждой паре соответствует одно ребро; его ключ хранится у обоих участников этой пары.</p>
-<div id="fig-crypto-key-pairs" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Пять участников соединены десятью рёбрами: каждой неупорядоченной паре нужен отдельный общий секретный ключ">
+<p>На <a href="#fig-backup-types" class="quarto-xref">Рисунок&nbsp;<span>21.1</span></a> показаны первые три дня этой истории. Каждый столбец — отдельная копия. В полной схеме вся папка сохраняется заново. В инкрементной во вторник сохранена только B₁; в дифференциальной — и B₁, и изменённая ранее A₁. Стрелки связывают копию с той, после которой отсчитываются изменения.</p>
+<div id="fig-backup-types" class="quarto-float quarto-figure quarto-figure-center anchored" alt="По горизонтали воскресенье, понедельник и вторник. Полные копии каждый раз содержат все три файла. Инкрементная понедельника содержит A₁, вторника — B₁. Дифференциальная понедельника содержит A₁, вторника — A₁ и B₁. Показан отсчёт изменений от предыдущей копии в инкрементной схеме и от воскресной полной в дифференциальной.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-crypto-key-pairs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../_prepared/visualizations/crypto/static/key-pairs.svg" class="img-fluid figure-img" alt="Пять участников соединены десятью рёбрами: каждой неупорядоченной паре нужен отдельный общий секретный ключ" width="320">
+<div aria-describedby="fig-backup-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../_prepared/visualizations/data-integrity/static/backup-types.svg" class="img-fluid figure-img" alt="По горизонтали воскресенье, понедельник и вторник. Полные копии каждый раз содержат все три файла. Инкрементная понедельника содержит A₁, вторника — B₁. Дифференциальная понедельника содержит A₁, вторника — A₁ и B₁. Показан отсчёт изменений от предыдущей копии в инкрементной схеме и от воскресной полной в дифференциальной.">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-crypto-key-pairs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;13.1: Парные секреты пяти участников
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-backup-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;21.1: Состав резервных копий на общей оси времени
 </figcaption>
 </figure>
 </div>
-<p>Деление на два исключает повторный подсчёт пары в обратном порядке. В общем случае для <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> участников нужно <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo stretchy="false" form="prefix">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">n(n-1)/2</annotation></semantics></math> парных секретов:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: right;">Число участников <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math></th>
-<th style="text-align: right;">Число парных ключей</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">10</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">45</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">100</td>
-<td style="text-align: right;">4950</td>
-</tr>
-</tbody>
-</table>
-<p>Ключи требуется безопасно доставить каждой паре и заменить при уходе участника или компрометации. Если у пяти участников хранится по четыре парных ключа, всего получается 20 копий десяти разных секретов. Управление копиями и их заменой становится отдельной частью защиты.</p>
+<p>Дифференциальная копия среды содержит текущие версии обоих файлов, изменённых после полной копии. Хотя A правили дважды, в неё входит только A₂. Таблица показывает объём каждой копии, а не сумму объёмов хранилища.</p>
 </section>
-<section id="защита-ключа" class="level3" data-number="13.1.4">
-<h3 data-number="13.1.4" class="anchored" data-anchor-id="защита-ключа"><span class="header-section-number">13.1.4</span> Защита ключа</h3>
-<p>Созданный ключ хранят с ограничением доступа, не помещают в открытый исходный код и не передают по незащищённому каналу. Резервную копию тоже защищают. Ключ меняют по принятому порядку и при подозрении на раскрытие: прекращают его дальнейшее применение, создают новый и переводят данные или обмен на новый ключ. Уже раскрытые данные одна замена ключа не делает снова секретными. Для закрытого ключа подписи дополнительно сообщают о компрометации и отзывают связанный сертификат, если инфраструктура предусматривает отзыв; доверие к открытому ключу рассмотрено в <a href="../crypto/public-key-outline.html">главе о подписи</a>.</p>
+<section id="восстановление-версий" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="восстановление-версий"><span class="header-section-number">21.2</span> Восстановление версий</h2>
+<div id="def-recovery-target" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 21.5 (Цель восстановления)</strong></span> <strong>Цель восстановления</strong> — требуемое состояние данных, определённое набором нужных версий или моментом времени.</p>
+</div>
+<p>Пусть из каждой копии выше можно извлечь отдельный целый файл. Для состояния среды A₂, B₁, C₀ при инкрементной схеме нужны A₂ из среды, B₁ из вторника и C₀ из воскресенья. Копия понедельника с A₁ для этой цели не нужна. Но для состояния вторника требуется именно A₁: более поздняя A₂ её не заменяет. При дифференциальной схеме те же версии среды находятся в копиях воскресенья и среды. Выбор зависит от содержимого доступных копий и требуемых версий.</p>
+<p>Это модель независимого извлечения целых файлов. В конкретном ПО восстановление может зависеть от формата и последовательности операций. Например, для восстановления базы SQL Server применяют полную копию, соответствующую дифференциальную копию и, если нужно, копии журнала в соответствии с выбранной стратегией. См. <a href="https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/back-up-and-restore-of-sql-server-databases?view=sql-server-ver17">описание резервного копирования и восстановления SQL Server</a>.</p>
 
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -849,13 +904,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation" aria-label="Страница">
   <div class="nav-page nav-page-previous">
-      <a href="../crypto/cypher.html" class="pagination-link" aria-label="Симметричное шифрование">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span>
+      <a href="../data-trust/certificates.html" class="pagination-link" aria-label="Сертификаты открытого ключа">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Сертификаты открытого ключа</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../crypto/password-storage.html" class="pagination-link" aria-label="Хранение паролей">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../data-preservation/raid.html" class="pagination-link" aria-label="Дисковые массивы">
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Дисковые массивы</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

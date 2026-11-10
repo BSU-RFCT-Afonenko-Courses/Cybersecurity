@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="parity-desc">
+  <desc id="parity-desc">Отказавший диск 2 заменён пустым. Диски 1 и 3 исправны. Первая строка: A1 = 1010, B1 нужно восстановить, P1 = 0110. Вторая строка: A2 = 0111, P2 нужно восстановить, B2 = 1101. Третья строка: P3 = 1001, A3 нужно восстановить, B3 = 1110.</desc>
+  <style>
+    text { font-family: "DejaVu Sans", sans-serif; fill: #20313f; font-size: 24px; }
+    .label { font-size: 22px; font-weight: 600; }
+    .status { font-size: 20px; }
+    .disk { fill: #fff; stroke: #aab8c3; stroke-width: 1.5; }
+    .data { fill: #eaf1f4; }
+    .parity { fill: #dcece6; }
+    .missing { fill: #f3f3f3; stroke: #8d979f; stroke-width: 1.5; stroke-dasharray: 6 5; }
+  </style>
+  <rect width="960" height="420" fill="#fff"/>
+  <rect class="disk" x="18" y="18" width="290" height="380" rx="10"/>
+  <rect class="missing" x="335" y="18" width="290" height="380" rx="10"/>
+  <rect class="disk" x="652" y="18" width="290" height="380" rx="10"/>
+  <text class="label" x="40" y="55">Диск 1</text>
+  <text class="label" x="357" y="55">Диск 2</text>
+  <text class="label" x="674" y="55">Диск 3</text>
+  <text class="status" x="40" y="87">Исправен</text>
+  <text class="status" x="357" y="87">Новый · пустой</text>
+  <text class="status" x="674" y="87">Исправен</text>
+  <rect class="data" x="38" y="112" width="250" height="77" rx="5"/>
+  <rect class="parity" x="672" y="112" width="250" height="77" rx="5"/>
+  <rect class="data" x="38" y="207" width="250" height="77" rx="5"/>
+  <rect class="data" x="672" y="207" width="250" height="77" rx="5"/>
+  <rect class="parity" x="38" y="302" width="250" height="77" rx="5"/>
+  <rect class="data" x="672" y="302" width="250" height="77" rx="5"/>
+  <text x="60" y="160">A₁ = 1010</text>
+  <text x="377" y="160">B₁ = ?</text>
+  <text x="694" y="160">P₁ = 0110</text>
+  <text x="60" y="255">A₂ = 0111</text>
+  <text x="377" y="255">P₂ = ?</text>
+  <text x="694" y="255">B₂ = 1101</text>
+  <text x="60" y="350">P₃ = 1001</text>
+  <text x="377" y="350">A₃ = ?</text>
+  <text x="694" y="350">B₃ = 1110</text>
+</svg>

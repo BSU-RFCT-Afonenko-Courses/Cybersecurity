@@ -203,283 +203,494 @@
       margin-right: 0; 
     }
   </style>
-  <script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
-  <link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 <script id="course-navigation-context" type="application/json">{"links":[{"id":"root","text":"Курс","href":"../","scope":"course","path":"index.html","current":false},{"id":"subproject-theory","text":"Теория","href":"../theory/","scope":"course","path":"theory/index.html","current":false},{"id":"subproject-task","text":"Задания","href":"../task/","scope":"course","path":"task/index.html","current":false},{"id":"subproject-seminars","text":"Слайды занятий","href":"./","scope":"course","path":"seminars/index.html","current":true}]}</script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Семинар 4 — Управление доступом</h1>
 
-<section id="sec-seminar-4" class="title-slide slide level1 center">
-<h1>Семинар 4 — Управление доступом</h1>
-<p>Общая модель распределения доступа</p>
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Афоненко Анатолий
+</div>
+</div>
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Войтович Елизавета
+</div>
+</div>
+</div>
+
 </section>
-
 <section>
-<section id="sec-seminar-4-access-decision" class="title-slide slide level1 center">
-<h1>Общая схема взаимодействия</h1>
-
+<section id="sec-seminar-4" class="title-slide slide level1 center">
+<h1>Процедура получения доступа</h1>
+<ol type="1">
+<li><strong>Идентификация:</strong> какую учётную запись предъявили системе.</li>
+<li><strong>Аутентификация:</strong> подтверждено ли право пользоваться этой записью.</li>
+<li><strong>Авторизация:</strong> разрешено ли выбранное действие с выбранным ресурсом.</li>
+</ol>
+<p>Вход связывает сеанс с учётной записью. При обращении к ресурсу система отдельно проверяет полномочия на запрошенную операцию.</p>
 </section>
-<section id="порядок-обработки-запроса-на-доступ" class="slide level2">
-<h2>Порядок обработки запроса на доступ</h2>
-<p>Субъект: процесс редактора Лены → объект: файл → операция: запись.</p>
-<p>Политика определяет разрешения; монитор проверяет запрос и останавливает запрещённое действие.</p>
-
-<img data-src="_prepared/visualizations/access-control/static/overview.svg" style="width:70.0%" alt="Субъект обращается к объекту через монитор, который применяет политику" class="r-stretch quarto-figure-center" id="fig-slide-access-overview"><p class="caption">
-Рисунок&nbsp;1: Общая модель запроса
-</p><aside class="notes">
-<p>Попросите заменить запись чтением и сравнить решения для двух запросов.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="вопрос-для-аудитории" class="slide level2 smaller">
-<h2>Вопрос для аудитории</h2>
-<!-- Создано CI/prepare-bank-fragments.py из task/bank/access-control.qmd; не редактировать. -->
-<div id="exr-access-short-editor" class="course-block course-role-discussion theorem exercise" target="manual" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
-<p><span class="theorem-title"><strong>Упражнение 1 (Запрос редактора на запись)</strong></span> &nbsp;</p>
+<section id="sec-seminar-4-portal" class="slide level2">
+<h2>Вход на учебный портал</h2>
+<div id="exr-slide-access-entry" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 1 (Действия после входа)</strong></span> &nbsp;</p>
 <div class="course-metadata">
 <span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
 </div>
-<p>Анна открыла файл в редакторе. Процесс редактора работает с её полномочиями, а список доступа к файлу разрешает ей только чтение. Других разрешений нет. Редактор отправляет запрос на сохранение изменений.</p>
+<p>Вы открыли учебный портал:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Действие</th>
+<th>Результат</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ввести логин</td>
+<td>Найдена учётная запись</td>
+</tr>
+<tr class="even">
+<td>Ввести правильный пароль</td>
+<td>Вход выполнен</td>
+</tr>
+<tr class="odd">
+<td>Открыть задание своего курса</td>
+<td>Задание открыто</td>
+</tr>
+<tr class="even">
+<td>Отправить запрос на изменение своей оценки</td>
+<td>В доступе отказано</td>
+</tr>
+</tbody>
+</table>
+<p>Учётной записи разрешено читать задания и отправлять работы. Изменять оценки ей запрещено.</p>
 <ol type="1">
-<li>Назовите субъект, объект и операцию этого запроса. Какое правило определяет ответ системы?</li>
-<li>Какой компонент должен проверить запрос и каким будет решение?</li>
-<li>Разработчик скрыл кнопку «Сохранить». Какие проверки нужны, если процесс отправит тот же запрос другим способом?</li>
+<li>Каким процедурам соответствуют четыре строки таблицы?</li>
+<li>Почему успешного входа недостаточно для изменения оценки?</li>
+<li>Что изменится, если ещё раз ввести правильный пароль, сохранив прежние права?</li>
 </ol>
 </div>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:def-access-identification" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authentication.html#def-access-identification">[*]</a>; <a data-qrc-custom="true" data-qrc-ref="theory:def-access-authentication" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authentication.html#def-access-authentication">[*]</a>; <a data-qrc-custom="true" data-qrc-ref="theory:def-access-authorization" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authorization.html#def-access-authorization">[*]</a>. <a data-qrc-custom="true" data-qrc-ref="tasks:exr-access-control-request" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-request">[*]</a>.</p>
+</section>
+<section id="sec-seminar-4-factors" class="slide level2">
+<h2>Факторы аутентификации</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Фактор</th>
+<th>Что проверяется</th>
+<th>Пример</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Знание</td>
+<td>Секрет, который человек знает</td>
+<td>Пароль, PIN</td>
+</tr>
+<tr class="even">
+<td>Владение</td>
+<td>Средство, которым человек располагает</td>
+<td>Зарегистрированное приложение, аппаратный ключ</td>
+</tr>
+<tr class="odd">
+<td>Биометрический признак</td>
+<td>Измеряемое свойство человека</td>
+<td>Отпечаток пальца</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Два этапа:</strong> для входа обязательны две последовательные проверки.</p>
+<p><strong>Два фактора:</strong> проверки используют два разных вида факторов.</p>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:def-access-factor" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authentication.html#def-access-factor">[*]</a>; <a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-access-factors" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authentication.html#sec-theory-access-factors">[*]</a>.</p>
+</section>
+<section id="sec-seminar-4-two-step" class="slide level2">
+<h2>Две проверки при входе</h2>
+<p>Для входа на портал обязательны <strong>пароль</strong>, затем отдельное <strong>секретное слово</strong>. Оба значения пользователь помнит.</p>
+<div id="exr-slide-access-two-step" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 2 (Проверки на портале)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
+</div>
+<ol type="1">
+<li>Сколько этапов проходит пользователь? Проверяются ли два разных фактора?</li>
+<li>Пароль стал известен постороннему. Что ещё нужно ему для входа?</li>
+<li>Вместо секретного слова портал требует код зарегистрированного приложения. Как изменится набор факторов?</li>
+</ol>
+</div>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:def-access-factor" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authentication.html#def-access-factor">[*]</a>. <a data-qrc-custom="true" data-qrc-ref="tasks:exr-access-short-two-step" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-short-two-step">[*]</a>.</p>
+</section>
+<section id="sec-seminar-4-totp" class="slide level2">
+<h2>Одноразовые коды</h2>
+<p>При регистрации приложения портал и приложение получают общий секрет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math>. В TOTP приложение вычисляет код из секрета и текущего временного интервала; сервер независимо вычисляет код для проверки.</p>
+<p><strong>Секрет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> + текущий интервал → короткий код</strong></p>
+<p>Код действует ограниченное время. После успешной проверки сервер не принимает тот же код повторно в течение срока его действия. Приложение может создавать коды без подключения к порталу; секрет должен оставаться защищённым. <a href="https://datatracker.ietf.org/doc/html/rfc6238" title="RFC 6238">[*]</a>.</p>
+</section>
+<section id="sec-seminar-4-means" class="slide level2">
+<h2>Средства аутентификации</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Средство</th>
+<th>Подтверждение при входе</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Пароль</td>
+<td>Пользователь вводит известный ему секрет</td>
+</tr>
+<tr class="even">
+<td>Код TOTP</td>
+<td>Приложение вычисляет код из секрета и времени; пользователь вводит код</td>
+</tr>
+<tr class="odd">
+<td>Passkey</td>
+<td>Устройство использует закрытый ключ для подписи запроса сайта; сервер проверяет подпись открытым ключом</td>
+</tr>
+</tbody>
+</table>
+<p>При регистрации открытый ключ сохраняется на сервере вместе с учётной записью, а закрытый ключ остаётся в средстве пользователя. При входе сайт выдаёт новый запрос, а средство подписывает ответ закрытым ключом; сервер проверяет подпись открытым ключом.</p>
+<p>Для использования passkey устройство может требовать PIN или биометрию. Эта проверка происходит на устройстве; закрытый ключ сайту не передаётся. WebAuthn связывает подтверждение с сайтом. <a href="https://www.w3.org/TR/webauthn-2/" title="WebAuthn">[*]</a>.</p>
 </section></section>
 <section>
-<section id="sec-seminar-4-authentication" class="title-slide slide level1 center">
-<h1>Аутентификация пользователя</h1>
-
-</section>
-<section id="порядок-входа" class="slide level2">
-<h2>Порядок входа</h2>
-<ol type="1">
-<li>Идентификация: кем я представляюсь системе.</li>
-<li>Аутентификация: являюсь ли я тем, за кого себя выдаю.</li>
-<li>Авторизация: какие права у меня есть.</li>
-</ol>
-<div id="fig-slide-access-procedures" class="nostretch quarto-float quarto-figure quarto-figure-center" alt="Идентификация: кем я представляюсь системе; аутентификация: являюсь ли я тем, за кого себя выдаю; авторизация: какие права у меня есть">
+<section id="sec-seminar-4-access-decision" class="title-slide slide level1 center">
+<h1>Управление доступом</h1>
+<p>Управление доступом определяет, какие действия разрешены с ресурсами системы. Политика задаёт допустимые действия и условия их выполнения; система применяет её при обращении к ресурсу.</p>
+<div id="fig-slide-access-overview" class="nostretch quarto-float quarto-figure quarto-figure-center" alt="Субъект обращается к объекту через монитор, который применяет политику и разрешает или останавливает действие">
 <figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-slide-access-procedures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="_prepared/visualizations/access-control/static/procedures.svg" class="" style="width:100.0%" alt="Идентификация: кем я представляюсь системе; аутентификация: являюсь ли я тем, за кого себя выдаю; авторизация: какие права у меня есть">
+<div aria-describedby="fig-slide-access-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="_prepared/visualizations/access-control/static/overview.svg" class="" style="width:75.0%" alt="Субъект обращается к объекту через монитор, который применяет политику и разрешает или останавливает действие">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-access-procedures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;2: Три процедуры на портале
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-access-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;1: Проверка запроса на доступ
 </figcaption>
 </figure>
 </div>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:def-access-policy" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authorization.html#def-access-policy">[*]</a>; <a data-qrc-custom="true" data-qrc-ref="theory:def-access-monitor" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authorization.html#def-access-monitor">[*]</a>.</p>
 </section>
-<section id="доступ-к-ресурсу" class="slide level2 smaller">
-<h2>Доступ к ресурсу</h2>
-<div id="exr-slide-access-entry" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
-<p><span class="theorem-title"><strong>Упражнение 2</strong></span> &nbsp;</p>
+<section id="запрос-на-доступ" class="slide level2">
+<h2>Запрос на доступ</h2>
+<p>В запросе различают <strong>субъект</strong> — активную сущность, выполняющую обращение, <strong>объект</strong> — ресурс и <strong>операцию</strong> — действие над ним.</p>
+<p>Например, процесс редактора записывает изменения в <em>report.txt</em>: процесс — субъект, файл — объект, запись — операция. В операционной системе обращение выполняет процесс с определёнными полномочиями; они могут отличаться от полномочий пользователя, который его запустил.</p>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:def-access-request" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authorization.html#def-access-request">[*]</a>.</p>
+</section>
+<section id="sec-seminar-4-access-request" class="slide level2">
+<h2>Один файл открывают две программы</h2>
+<div id="exr-slide-access-request-subject" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 3 (Чтение <em>report.txt</em>)</strong></span> &nbsp;</p>
 <div class="course-metadata">
 <span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
 </div>
-<p>Лена вводит имя <code>lena</code> в браузере. Портал находит её учётную запись. Лена подтверждает вход в зарегистрированном приложении, и портал создаёт сеанс. С этим сеансом чтение банка курса А разрешено, изменение ведомости курса Б запрещено.</p>
-<ol type="1">
-<li>На каких шагах выполняются идентификация, аутентификация и авторизация?</li>
-<li>Какие действия выполняют браузер, приложение и сервер портала?</li>
-</ol>
+<p>Один пользователь запускает два действия:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Действие</th>
+<th>Кто читает <em>report.txt</em></th>
+<th>Под какой записью работает</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Открыть файл в редакторе</td>
+<td>Процесс редактора</td>
+<td>Запись пользователя</td>
+</tr>
+<tr class="even">
+<td>Запустить резервное копирование</td>
+<td>Процесс службы копирования</td>
+<td><strong>BackupSvc</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Для каждого случая назовите субъект, объект и операцию. По чьим полномочиям система проверит чтение?</p>
 </div>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:def-access-request" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authorization.html#def-access-request">[*]</a>. <a data-qrc-custom="true" data-qrc-ref="tasks:exr-access-control-request-subject" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-request-subject">[*]</a>.</p>
 </section>
-<section id="факторы-аутентификации" class="slide level2">
-<h2>Факторы аутентификации</h2>
-<ul>
-<li><strong>Знание:</strong> пароль или PIN — секрет, который человек знает.</li>
-<li><strong>Владение:</strong> приложение или ключ — средство, создающее подтверждение.</li>
-<li><strong>Свойство человека:</strong> отпечаток или лицо — измерение, сравниваемое с эталоном.</li>
-</ul>
-</section>
-<section id="этапы-подтверждения-входа" class="slide level2">
-<h2>Этапы подтверждения входа</h2>
-<p><strong>Двухэтапная аутентификация:</strong> для входа нужно последовательно пройти две обязательные проверки.</p>
-<p><strong>Двухфакторная аутентификация:</strong> проверки используют два разных вида факторов.</p>
-<p>При разборе входа отдельно назовите порядок проверок и виды факторов, которые они используют.</p>
-</section>
-<section id="вопрос-две-проверки" class="slide level2 smaller">
-<h2>Вопрос: две проверки</h2>
-<!-- Создано CI/prepare-bank-fragments.py из task/bank/access-control.qmd; не редактировать. -->
-<div id="exr-access-short-two-step" class="course-block course-role-discussion theorem exercise" target="manual" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
-<p><span class="theorem-title"><strong>Упражнение 3 (Две проверки при входе)</strong></span> &nbsp;</p>
+<section id="sec-seminar-4-server-check" class="slide level2">
+<h2>Проверка полномочий на сервере</h2>
+<p><strong>Монитор обращений</strong> применяет политику к запросу и обеспечивает исполнение решения. Сервер должен проверить право до изменения защищённых данных.</p>
+<div id="exr-slide-access-server-check" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 4 (Скрытая кнопка)</strong></span> &nbsp;</p>
 <div class="course-metadata">
 <span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
 </div>
-<p>Портал сначала проверяет пароль, затем просит ввести отдельное секретное слово. Оба значения пользователь помнит, и для входа обязательны обе проверки.</p>
+<p>На учебном портале студенту запрещено изменять оценки. Разработчик скрыл кнопку изменения оценки, но сервер сохраняет любую оценку из полученного запроса.</p>
+<p>Пользователь отправил такой запрос непосредственно, без нажатия кнопки.</p>
 <ol type="1">
-<li>Сколько этапов проверки проходит пользователь? К каким факторам относятся пароль и секретное слово?</li>
-<li>Какие сведения понадобятся постороннему для входа, если пароль ему уже известен?</li>
-<li>Вместо секретного слова портал начинает требовать код зарегистрированного приложения TOTP. Как изменится набор факторов?</li>
+<li>Защитит ли скрытая кнопка оценку от изменения?</li>
+<li>Где и перед каким действием нужно проверить право?</li>
 </ol>
 </div>
-</section>
-<section id="вопрос-для-аудитории-1" class="slide level2 smaller">
-<h2>Вопрос для аудитории</h2>
-<!-- Создано CI/prepare-bank-fragments.py из task/bank/access-control.qmd; не редактировать. -->
-<div id="exr-access-short-totp-factor" class="course-block course-role-discussion theorem exercise" target="manual" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
-<p><span class="theorem-title"><strong>Упражнение 4 (Подтверждение входа)</strong></span> &nbsp;</p>
-<div class="course-metadata">
-<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
-</div>
-<p>Портал сначала проверяет пароль пользователя, затем код TOTP. Код создаёт зарегистрированное приложение, которое хранит секрет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> и показывает код без локальной проверки PIN или биометрии. Для входа нужны обе проверки.</p>
-<ol type="1">
-<li>Какие факторы используются в этой процедуре? Какому этапу соответствует каждый из них?</li>
-<li>Достаточно ли украденного пароля для входа? Чем ещё должен воспользоваться посторонний?</li>
-<li>Как связаны сохранённый секрет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> и вычисленный из него код? К какому фактору они относятся? Как копирование <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> на другой телефон повлияет на возможность пройти проверку?</li>
-</ol>
-</div>
-</section>
-<section id="пароль-otp-passkey" class="slide level2">
-<h2>Пароль, OTP, passkey</h2>
-<ul>
-<li>Пароль — повторяемый секрет, который можно передать поддельному сайту.</li>
-<li>OTP ограничивает повтор принятого кода, но ещё не использованный код можно переслать.</li>
-<li>Passkey отвечает на свежий запрос с привязкой к сервису и адресу сайта; закрытый ключ сайту не передаётся.</li>
-</ul>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:def-access-monitor" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authorization.html#def-access-monitor">[*]</a> <a data-qrc-custom="true" data-qrc-ref="tasks:exr-access-control-request" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-request">[*]</a></p>
 </section></section>
 <section>
 <section id="sec-seminar-4-access-models" class="title-slide slide level1 center">
-<h1>Модели управления доступом</h1>
-
-</section>
-<section id="dac-права-на-объект" class="slide level2">
-<h2>DAC: права на объект</h2>
-<p>Анна управляет правами на черновик; Борису выдано чтение. Право писать в файл и право менять ACL различаются.</p>
-
-<img data-src="_prepared/visualizations/access-control/dac/static/overview.svg" style="width:85.0%" alt="Владелец Анна управляет ACL черновика; Борису разрешено чтение, Вере доступ не предоставлен" class="r-stretch quarto-figure-center" id="fig-slide-dac"><p class="caption">
-Рисунок&nbsp;3: Матрица и ACL черновика
-</p></section>
-<section id="dac-составьте-матрицу" class="slide level2 smaller">
-<h2>DAC: составьте матрицу</h2>
-<div id="exr-slide-access-dac-matrix" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
-<p><span class="theorem-title"><strong>Упражнение 5</strong></span> &nbsp;</p>
-<div class="course-metadata">
-<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
-</div>
-<p>Анна владеет черновиком и материалами. Она может читать и изменять оба файла, назначать и отзывать права на них. Борис читает и изменяет черновик, материалы только читает. Вера читает материалы, доступа к черновику у неё нет. Остальные действия запрещены.</p>
-<ol type="1">
-<li>Составьте матрицу прав чтения и записи: строки — участники, столбцы — файлы, <code>r</code> — чтение, <code>w</code> — запись.</li>
-<li>Анна разрешила Вере читать черновик. Как изменятся матрица и ACL черновика?</li>
-</ol>
-</div>
-</section>
-<section id="dac-применение-политики" class="slide level2 smaller">
-<h2>DAC: применение политики</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a aria-label="1"></a>dacLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/access-control/dac/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span>
-<span id="cb1-2"><a aria-label="2"></a>viewof dacRequest <span class="op">=</span> dacLesson<span class="op">.</span><span class="fu">dacControls</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="3" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 2;"><span id="cb2-3"><a aria-label="3"></a>dacLesson<span class="op">.</span><span class="fu">dacDiagram</span>(dacRequest)</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-dac-decision" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
+<h1>Дискреционное управление доступом</h1>
+<p>При <strong>дискреционном управлении доступом</strong> владелец объекта назначает и отзывает права на него.</p>
+<p>В <strong>матрице доступа</strong> строки соответствуют субъектам, столбцы — объектам, клетки — разрешённым операциям. <strong>ACL</strong> хранит разрешения для одного объекта.</p>
+<div id="fig-slide-dac" class="nostretch quarto-float quarto-figure quarto-figure-center" alt="Владелец Анна управляет ACL черновика; Борису разрешено чтение, Вере доступ не предоставлен">
 <figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-dac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-2" data-nodetype="expression">
-
+<div aria-describedby="fig-slide-dac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="_prepared/visualizations/access-control/dac/static/overview.svg" class="" style="width:70.0%" alt="Владелец Анна управляет ACL черновика; Борису разрешено чтение, Вере доступ не предоставлен">
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;4: Применение дискреционной политики
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-dac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;2: Права на черновик
 </figcaption>
 </figure>
 </div>
-</div>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:def-access-dac" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authorization.html#def-access-dac">[*]</a>; <a data-qrc-custom="true" data-qrc-ref="theory:def-access-matrix" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authorization.html#def-access-matrix">[*]</a>.</p>
 </section>
-<section id="mac-три-уровня" class="slide level2">
-<h2>MAC: три уровня</h2>
+<section id="sec-seminar-4-matrix" class="slide level2">
+<h2>Совместный черновик</h2>
+<div id="exr-slide-access-dac-matrix" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 5 (Матрица разрешений)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
+</div>
+<p><strong>Анна</strong> владеет двумя файлами и назначает права:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Участник</th>
+<th>Черновик</th>
+<th>Материалы</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Анна</td>
+<td>Читает и изменяет</td>
+<td>Читает и изменяет</td>
+</tr>
+<tr class="even">
+<td>Борис</td>
+<td>Читает и изменяет</td>
+<td>Только читает</td>
+</tr>
+<tr class="odd">
+<td>Вера</td>
+<td>Нет доступа</td>
+<td>Только читает</td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li>Запишите эти разрешения в матрице: <code>r</code> — чтение, <code>w</code> — запись, <code>—</code> — нет доступа. Остальные операции запрещены.</li>
+<li>Анна разрешила Вере <strong>читать</strong> черновик. Как изменится матрица? Сможет ли Вера записать изменения?</li>
+</ol>
+</div>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:def-access-matrix" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authorization.html#def-access-matrix">[*]</a> <a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-access-dac" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authorization.html#sec-theory-access-dac">[*]</a> <a data-qrc-custom="true" data-qrc-ref="tasks:exr-access-control-dac" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-dac">[*]</a></p>
+</section>
+<section id="sec-seminar-4-compiler" class="slide level2">
+<h2>Компиляция программы</h2>
+<p>В многопользовательской системе запустили учебную модификацию GCC:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-label="1"></a><span class="fu">gcc</span> <span class="at">-c</span> program.c <span class="at">-o</span> result.o</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Компилятор выполняет три действия:</p>
+<ol type="1">
+<li>Читает исходник <em>program.c</em>.</li>
+<li><strong>Перезаписывает</strong> файл <em>result.o</em> результатом компиляции.</li>
+<li>Дописывает строку в <em>stats.csv</em> — имя задано внутри программы.</li>
+</ol>
+<p>Пользователь выбирает исходник и файл результата. <code>-c</code> означает компиляцию без компоновки; <code>-o</code> задаёт имя результата.</p>
+<p>В той же системе хранится <em>billing.csv</em> с записями об оплате. Эти записи должны сохраняться.</p>
+</section>
+<section id="sec-seminar-4-compiler-output" class="slide level2">
+<h2>Выбор выходного файла</h2>
+<div id="exr-slide-access-compiler-output" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="intermediate">
+<p><span class="theorem-title"><strong>Упражнение 6 (Запуск GCC)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Средний</span>
+</div>
+<p>GCC читает исходник, <strong>перезаписывает</strong> файл из параметра <code>-o</code>, затем дописывает <em>stats.csv</em>. Система проверяет ячейку на пересечении строки процесса компилятора и столбца файла.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Субъект</th>
+<th style="text-align: center;"><em>program.c</em></th>
+<th style="text-align: center;"><em>result.o</em></th>
+<th style="text-align: center;"><em>stats.csv</em></th>
+<th style="text-align: center;"><em>billing.csv</em></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Обычная программа пользователя</td>
+<td style="text-align: center;"><code>r,w</code></td>
+<td style="text-align: center;"><code>r,w</code></td>
+<td style="text-align: center;"><code>—</code></td>
+<td style="text-align: center;"><code>—</code></td>
+</tr>
+<tr class="even">
+<td>Процесс компилятора</td>
+<td style="text-align: center;"><code>r</code></td>
+<td style="text-align: center;"><code>w</code></td>
+<td style="text-align: center;"><code>w</code></td>
+<td style="text-align: center;"><code>w</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>r</code> — чтение; <code>w</code> — изменение, включая перезапись и добавление.</p>
+<p>Покажите запуск вида <code>gcc -c … -o …</code>, который уничтожит прежние записи в <em>billing.csv</em>. Проверьте каждое обращение по матрице.</p>
+</div>
+<p><a data-qrc-custom="true" data-qrc-ref="tasks:exr-access-control-compiler-output" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-compiler-output">[*]</a></p>
+</section>
+<section id="sec-seminar-4-compiler-rights" class="slide level2">
+<h2>Ограничение прав компилятора</h2>
+<div id="exr-slide-access-compiler-rights" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="intermediate">
+<p><span class="theorem-title"><strong>Упражнение 7 (Защита записей об оплате)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Средний</span>
+</div>
+<p>GCC должен читать <em>program.c</em>, записывать результат в <em>result.o</em> и дополнять <em>stats.csv</em>. Записи в <em>billing.csv</em> должны сохраняться.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Субъект</th>
+<th style="text-align: center;"><em>program.c</em></th>
+<th style="text-align: center;"><em>result.o</em></th>
+<th style="text-align: center;"><em>stats.csv</em></th>
+<th style="text-align: center;"><em>billing.csv</em></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Обычная программа пользователя</td>
+<td style="text-align: center;"><code>r,w</code></td>
+<td style="text-align: center;"><code>r,w</code></td>
+<td style="text-align: center;"><code>—</code></td>
+<td style="text-align: center;"><code>—</code></td>
+</tr>
+<tr class="even">
+<td>Процесс компилятора</td>
+<td style="text-align: center;"><code>r</code></td>
+<td style="text-align: center;"><code>w</code></td>
+<td style="text-align: center;"><code>w</code></td>
+<td style="text-align: center;"><code>w</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>r</code> — чтение; <code>w</code> — изменение, включая перезапись и добавление. Проверяется строка действующего процесса.</p>
+<p>Измените матрицу, чтобы компилятор не мог повредить <em>billing.csv</em>, сохранив обычную компиляцию и сбор статистики.</p>
+</div>
+<p><a data-qrc-custom="true" data-qrc-ref="tasks:exr-access-control-compiler-output" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-compiler-output">[*]</a></p>
+</section></section>
+<section>
+<section id="sec-seminar-4-mac" class="title-slide slide level1 center">
+<h1>MAC: обязательные уровни</h1>
+<p>При <strong>мандатном управлении доступом</strong> система применяет обязательные правила по меткам субъектов и объектов. Владелец файла не может отменить эти правила.</p>
 <div class="columns">
 <div class="column" style="width:30%;">
-<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mn>1</mn></msub><mo>&lt;</mo><msub><mi>L</mi><mn>2</mn></msub><mo>&lt;</mo><msub><mi>L</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">L_1 &lt; L_2 &lt; L_3</annotation></semantics></math></p>
+<p>Модель конфиденциальности: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mn>1</mn></msub><mo>&lt;</mo><msub><mi>L</mi><mn>2</mn></msub><mo>&lt;</mo><msub><mi>L</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">L_1 &lt; L_2 &lt; L_3</annotation></semantics></math>.</p>
 <p><strong>Чтение:</strong> свой уровень и ниже.</p>
 <p><strong>Запись без чтения:</strong> свой уровень и выше.</p>
 <p><strong>Редактирование:</strong> обе проверки.</p>
 </div><div class="column" style="width:70%;">
-<div id="fig-slide-mac" class="quarto-float quarto-figure quarto-figure-center" alt="Процесс Лены L2 читает материалы L1 и может записывать данные в ответы L3 без чтения">
+<div id="fig-slide-mac" class="nostretch quarto-float quarto-figure quarto-figure-center" alt="Три области уровней: L3 сверху, L2 посередине, L1 снизу. Процесс Лены на L2 читает материалы L1 и может записывать в ответы L3 без чтения; обе стрелки переноса данных направлены вверх">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-slide-mac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="_prepared/visualizations/access-control/mac/static/overview.svg" style="width:100.0%" alt="Процесс Лены L2 читает материалы L1 и может записывать данные в ответы L3 без чтения">
+<img data-src="_prepared/visualizations/access-control/mac/static/overview.svg" class="" style="width:100.0%" alt="Три области уровней: L3 сверху, L2 посередине, L1 снизу. Процесс Лены на L2 читает материалы L1 и может записывать в ответы L3 без чтения; обе стрелки переноса данных направлены вверх">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-mac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;5: Три уровня мандатной модели
+Рисунок&nbsp;3: Уровни и потоки в мандатной модели
 </figcaption>
 </figure>
 </div>
 </div></div>
+<p>Стрелки показывают перенос данных: из файла в процесс при чтении и из процесса в файл при записи. Правила запрещают перенос на более низкий уровень.</p>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-access-mac" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authorization.html#sec-theory-access-mac">[*]</a>.</p>
 </section>
-<section id="mac-применение-политики" class="slide level2 smaller">
-<h2>MAC: применение политики</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a aria-label="1"></a>macLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/access-control/mac/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span>
-<span id="cb3-2"><a aria-label="2"></a>viewof macRequest <span class="op">=</span> macLesson<span class="op">.</span><span class="fu">macControls</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-1" data-nodetype="declaration">
-
+<section id="sec-seminar-4-mac-operations" class="slide level2">
+<h2>MAC: допустимость операций</h2>
+<div id="exr-slide-access-mac-operations" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 8 (Три файла с разными метками)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
 </div>
+<p>Процесс работает на <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>2</mn></msub><annotation encoding="application/x-tex">L_2</annotation></semantics></math>, где <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mn>1</mn></msub><mo>&lt;</mo><msub><mi>L</mi><mn>2</mn></msub><mo>&lt;</mo><msub><mi>L</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">L_1&lt;L_2&lt;L_3</annotation></semantics></math>. Обязательные правила: <strong>не читать выше; не писать ниже</strong>. Обычные разрешения уже выданы.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Файл</th>
+<th style="text-align: center;">Прочитать</th>
+<th style="text-align: center;">Записать без чтения</th>
+<th style="text-align: center;">Редактировать</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Материалы <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>1</mn></msub><annotation encoding="application/x-tex">L_1</annotation></semantics></math></td>
+<td style="text-align: center;">?</td>
+<td style="text-align: center;">?</td>
+<td style="text-align: center;">?</td>
+</tr>
+<tr class="even">
+<td>Черновик <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>2</mn></msub><annotation encoding="application/x-tex">L_2</annotation></semantics></math></td>
+<td style="text-align: center;">?</td>
+<td style="text-align: center;">?</td>
+<td style="text-align: center;">?</td>
+</tr>
+<tr class="odd">
+<td>Ответы <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>3</mn></msub><annotation encoding="application/x-tex">L_3</annotation></semantics></math></td>
+<td style="text-align: center;">?</td>
+<td style="text-align: center;">?</td>
+<td style="text-align: center;">?</td>
+</tr>
+</tbody>
+</table>
+<p>Редактирование требует чтения и записи. Отдельная запись не читает прежнее содержимое.</p>
+<p>Заполните таблицу. Какое правило не позволяет перенести сведения из черновика в материалы?</p>
 </div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="3" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 2;"><span id="cb4-3"><a aria-label="3"></a>macLesson<span class="op">.</span><span class="fu">macDiagram</span>(macRequest)</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-mac-decision" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
+<p><a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-access-mac" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authorization.html#sec-theory-access-mac">[*]</a>. <a data-qrc-custom="true" data-qrc-ref="tasks:exr-access-control-mac" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-mac">[*]</a>.</p>
+</section></section>
+<section>
+<section id="sec-seminar-4-rbac" class="title-slide slide level1 center">
+<h1>RBAC: разрешения через роли</h1>
+<p>При <strong>ролевом управлении доступом</strong> разрешения назначают ролям, а пользователям — роли по их обязанностям.</p>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p>Пользователь получает разрешения <strong>всех назначенных ему ролей</strong>.</p>
+<p>Отзыв одной роли не снимает право, если его даёт другая роль.</p>
+</div><div class="column" style="width:70%;">
+<div id="fig-slide-rbac" class="nostretch quarto-float quarto-figure quarto-figure-center" alt="Граф назначений в курсе А: Лена и Илья связаны с ролью Студент, Борис — с ролью Преподаватель. Студент может открыть задание и отправить работу; преподаватель — открыть задание и оценить работу">
 <figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-mac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-4" data-nodetype="expression">
-
+<div aria-describedby="fig-slide-rbac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="_prepared/visualizations/access-control/rbac/static/overview.svg" class="" style="width:100.0%" alt="Граф назначений в курсе А: Лена и Илья связаны с ролью Студент, Борис — с ролью Преподаватель. Студент может открыть задание и отправить работу; преподаватель — открыть задание и оценить работу">
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;6: Применение мандатной политики к одному запросу
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-rbac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;4: Пользователи, роли и разрешения
 </figcaption>
 </figure>
 </div>
-</div>
+</div></div>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-access-rbac" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authorization.html#sec-theory-access-rbac">[*]</a>.</p>
 </section>
-<section id="rbac-права-по-обязанностям" class="slide level2">
-<h2>RBAC: права по обязанностям</h2>
-<p>Пользователь → назначенная роль → разрешение. Все назначения действуют в курсе А.</p>
-
-<img data-src="_prepared/visualizations/access-control/rbac/static/overview.svg" style="width:95.0%" alt="Лена и Илья — студенты, Борис — преподаватель; у ролей разные разрешения в курсе А" class="r-stretch quarto-figure-center" id="fig-slide-rbac"><p class="caption">
-Рисунок&nbsp;7: Пользователи, роли и разрешения
-</p></section>
-<section id="rbac-постройте-роли" class="slide level2 smaller">
-<h2>RBAC: постройте роли</h2>
+<section id="rbac-распределение-ролей" class="slide level2">
+<h2>RBAC: распределение ролей</h2>
 <div id="exr-slide-access-role-matrix" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="intermediate">
-<p><span class="theorem-title"><strong>Упражнение 6</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Упражнение 9 (Права участников курса)</strong></span> &nbsp;</p>
 <div class="course-metadata">
 <span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Средний</span>
 </div>
@@ -537,51 +748,17 @@
 <li>Лена переходит к чтению материалов и журнала. Как изменить её назначения? Назовите разрешённый и запрещённый запрос для проверки результата.</li>
 </ol>
 </div>
-</section>
-<section id="rbac-применение-политики" class="slide level2 smaller">
-<h2>RBAC: применение политики</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a aria-label="1"></a>rbacLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/access-control/rbac/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span>
-<span id="cb5-2"><a aria-label="2"></a>viewof rbacRequest <span class="op">=</span> rbacLesson<span class="op">.</span><span class="fu">rbacControls</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-5-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-5-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="3" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 2;"><span id="cb6-3"><a aria-label="3"></a>rbacLesson<span class="op">.</span><span class="fu">rbacDiagram</span>(rbacRequest)</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-rbac-decision" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-rbac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-6" data-nodetype="expression">
-
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rbac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;8: Применение ролевой политики
-</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="совместное-применение-политик" class="slide level2 smaller">
-<h2>Совместное применение политик</h2>
+<p><a data-qrc-custom="true" data-qrc-ref="tasks:exr-access-control-rbac" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-rbac">[*]</a>.</p>
+</section></section>
+<section id="совместное-применение-политик" class="title-slide slide level1 center">
+<h1>Совместное применение политик</h1>
+<p>При сочетании политик запрос должен пройти каждое обязательное ограничение. Разрешение одной политики не отменяет запрет другой.</p>
 <div id="exr-slide-access-combined" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
-<p><span class="theorem-title"><strong>Упражнение 7</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Упражнение 10 (Три запроса)</strong></span> &nbsp;</p>
 <div class="course-metadata">
 <span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
 </div>
-<p>Чтение разрешено через роль или личное разрешение в ACL. Обязательная политика дополнительно запрещает читать материал выше текущего уровня процесса. Уровень 2 выше уровня 1.</p>
+<p>Чтение разрешено через роль <strong>или</strong> личное разрешение в ACL. Обязательная политика дополнительно запрещает читать материал выше уровня процесса. Уровень 2 выше уровня 1.</p>
 <table class="caption-top" style="width:100%;">
 <colgroup>
 <col style="width: 13%">
@@ -624,10 +801,96 @@
 </tbody>
 </table>
 <ol type="1">
-<li>Определите решение для каждого запроса и объясните порядок проверок словами.</li>
-<li>Для запроса В отозвали роль. Изменится ли решение? Какие права нужно отозвать, чтобы закрыть доступ?</li>
+<li>Определите решение для каждого запроса.</li>
+<li>Для запроса В отозвали роль. Изменится ли решение? Какие разрешения нужно отозвать, чтобы закрыть доступ?</li>
 </ol>
 </div>
+<p><a data-qrc-custom="true" data-qrc-ref="tasks:exr-access-control-combined" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-combined">[*]</a>.</p>
+</section>
+
+<section>
+<section id="дополнительные-задачи" class="title-slide slide level1 center">
+<h1>Дополнительные задачи</h1>
+
+</section>
+<section id="sec-seminar-4-totp-transfer" class="slide level2">
+<h2>Дополнительно: перенос приложения</h2>
+<p>Приложение TOTP хранит секрет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math>. Оно и сервер независимо вычисляют короткий код из <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> и текущего временного интервала. Одинаковые секрет и интервал дают одинаковый код.</p>
+<div id="exr-slide-access-totp-transfer" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 11 (Секрет на двух телефонах)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
+</div>
+<p>Для входа портал требует пароль, затем код TOTP. Приложение показывает код без проверки PIN или биометрии.</p>
+<p>При переносе на новый телефон секрет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> скопировали. Старое приложение осталось работоспособным, настройки портала не менялись.</p>
+<ol type="1">
+<li>Сможет ли старое приложение создавать подходящие коды?</li>
+<li>Достаточно ли сменить пароль портала, чтобы старое приложение перестало создавать подходящие коды?</li>
+</ol>
+</div>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-access-factors" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authentication.html#sec-theory-access-factors">[*]</a>. <a data-qrc-custom="true" data-qrc-ref="tasks:exr-access-short-totp-factor" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-short-totp-factor">[*]</a>.</p>
+</section>
+<section id="sec-seminar-4-printer" class="slide level2">
+<h2>Дополнительно: права на сервере печати</h2>
+<div id="exr-slide-access-printer-roles" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 12 (Отзыв роли)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
+</div>
+<p>На сервере печати разрешения <strong>объединяются из всех назначенных ролей</strong>.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Роль</th>
+<th style="text-align: center;">Печатать</th>
+<th style="text-align: center;">Поднять в очереди</th>
+<th style="text-align: center;">Перезапустить сервер</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Обычный пользователь</td>
+<td style="text-align: center;">Да</td>
+<td style="text-align: center;">Нет</td>
+<td style="text-align: center;">Нет</td>
+</tr>
+<tr class="even">
+<td>Опытный пользователь</td>
+<td style="text-align: center;">Да</td>
+<td style="text-align: center;">Да</td>
+<td style="text-align: center;">Да</td>
+</tr>
+<tr class="odd">
+<td>Техник</td>
+<td style="text-align: center;">Нет</td>
+<td style="text-align: center;">Нет</td>
+<td style="text-align: center;">Да</td>
+</tr>
+</tbody>
+</table>
+<p>Сотруднику назначены «Опытный пользователь» и «Техник». Теперь ему нужна <strong>только печать</strong>.</p>
+<ol type="1">
+<li>Администратор снял роль «Техник». Какие операции остались? Достигнута ли цель?</li>
+<li>Измените только назначения ролей, чтобы оставить печать. Разрешения самих ролей менять нельзя.</li>
+</ol>
+</div>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-access-rbac" data-qrc-style="default" class="qrc-link" href="../theory/access-control/authorization.html#sec-theory-access-rbac">[*]</a>. <a data-qrc-custom="true" data-qrc-ref="tasks:exr-access-control-printer-roles" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-printer-roles">[*]</a>.</p>
+</section>
+<section id="sec-seminar-4-additional" class="slide level2">
+<h2>Дополнительно: разделение служебных полномочий</h2>
+<p>Основной процесс компилятора читает <em>program.c</em> и перезаписывает выбранный пользователем файл результата. После успешной компиляции отдельный процесс статистики добавляет строку в фиксированный <em>stats.csv</em>. Файл <em>billing.csv</em> ни одному из процессов не нужен.</p>
+<div id="exr-slide-access-compiler-statistics" class="course-block course-role-discussion theorem exercise" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="intermediate">
+<p><span class="theorem-title"><strong>Упражнение 13 (Два служебных процесса)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Средний</span>
+</div>
+<p>Обычная программа пользователя имеет <code>r,w</code> на <em>program.c</em> и <em>result.o</em>, а на <em>stats.csv</em> и <em>billing.csv</em> прав не имеет. <code>r</code> — чтение, <code>w</code> — изменение, включая добавление и перезапись.</p>
+<ol type="1">
+<li>Составьте матрицу прав обычной программы, компилятора и процесса статистики. Первую строку сохраните, остальным выдайте необходимые права.</li>
+<li>Проверьте обычный запуск с результатом <em>result.o</em> и попытку выбрать <em>stats.csv</em> через <code>-o</code>. При обычном запуске прежние строки статистики должны сохраниться.</li>
+</ol>
+</div>
+<p><a data-qrc-custom="true" data-qrc-ref="tasks:exr-access-control-compiler-statistics" data-qrc-style="default" class="qrc-link" href="../task/bank/access-control.html#exr-access-control-compiler-statistics">[*]</a>.</p>
 
 
 
@@ -670,9 +933,9 @@
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":false},
 'scrollActivationWidth': 0,
-'courseNav': {"sidebar":true},
+'courseNav': {"sidebar":true,"language":"ru","title":"Основы кибербезопасности"},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -818,9 +1081,9 @@
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1050,
+        width: 1600,
 
-        height: 700,
+        height: 900,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
@@ -833,17 +1096,6 @@
           RevealZoom
         ]
       });
-    </script>
-    <script type="ojs-module-contents">
-    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImRhY0xlc3NvbiA9IGF3YWl0IGltcG9ydChhd2FpdCBGaWxlQXR0YWNobWVudChcIi9fcHJlcGFyZWQvdmlzdWFsaXphdGlvbnMvYWNjZXNzLWNvbnRyb2wvZGFjL2xlc3Nvbi5qc1wiKS51cmwoKSlcbnZpZXdvZiBkYWNSZXF1ZXN0ID0gZGFjTGVzc29uLmRhY0NvbnRyb2xzKClcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImRhY0xlc3Nvbi5kYWNEaWFncmFtKGRhY1JlcXVlc3QpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJtYWNMZXNzb24gPSBhd2FpdCBpbXBvcnQoYXdhaXQgRmlsZUF0dGFjaG1lbnQoXCIvX3ByZXBhcmVkL3Zpc3VhbGl6YXRpb25zL2FjY2Vzcy1jb250cm9sL21hYy9sZXNzb24uanNcIikudXJsKCkpXG52aWV3b2YgbWFjUmVxdWVzdCA9IG1hY0xlc3Nvbi5tYWNDb250cm9scygpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTQiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJtYWNMZXNzb24ubWFjRGlhZ3JhbShtYWNSZXF1ZXN0KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoicmJhY0xlc3NvbiA9IGF3YWl0IGltcG9ydChhd2FpdCBGaWxlQXR0YWNobWVudChcIi9fcHJlcGFyZWQvdmlzdWFsaXphdGlvbnMvYWNjZXNzLWNvbnRyb2wvcmJhYy9sZXNzb24uanNcIikudXJsKCkpXG52aWV3b2YgcmJhY1JlcXVlc3QgPSByYmFjTGVzc29uLnJiYWNDb250cm9scygpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTYiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJyYmFjTGVzc29uLnJiYWNEaWFncmFtKHJiYWNSZXF1ZXN0KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdkYWNSZXF1ZXN0JykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ21hY1JlcXVlc3QnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgncmJhY1JlcXVlc3QnKSJ9XX0=
-    </script>
-    <script type="module">
-    if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-    window._ojs.paths.runtimeToDoc = "../..";
-    window._ojs.paths.runtimeToRoot = "../..";
-    window._ojs.paths.docToRoot = "";
-    window._ojs.selfContained = false;
-    window._ojs.runtime.interpretFromScriptTags();
     </script>
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {

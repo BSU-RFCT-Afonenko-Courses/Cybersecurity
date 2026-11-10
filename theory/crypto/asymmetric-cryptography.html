@@ -9,7 +9,7 @@
 <meta name="author" content="Афоненко Анатолий">
 <meta name="author" content="Войтович Елизавета">
 
-<title>15&nbsp; Известные алгоритмы – Теория</title>
+<title>15&nbsp; Асимметричная криптография – Теория</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -38,8 +38,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../data-integrity/integrity.html" rel="next">
-<link href="../crypto/password-storage.html" rel="prev">
+<link href="../crypto/digital-signature.html" rel="next">
+<link href="../crypto/hash-functions.html" rel="prev">
 <link href="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -114,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/random.html">Криптография</a></li><li class="breadcrumb-item"><a href="../crypto/algorithms.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Известные алгоритмы</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/randomness.html">Криптография</a></li><li class="breadcrumb-item"><a href="../crypto/asymmetric-cryptography.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -176,6 +176,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Меры защиты информации</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../legal/standards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Нормативные требования</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -187,27 +193,39 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../security-center/organization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../security-center/workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Обобщенный процесс оказания услуги обеспечения кибербезопасности</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Обобщенный процесс оказания услуги обеспечения кибербезопасности</span></span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../risk-assessment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Оценка риска</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-4-label">Требования к защите</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../standards-risk/requirements-decisions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Применение нормативно-правовых актов</span></span></a>
+  <a href="../access-control/authentication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Аутентификация</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../access-control/authorization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Авторизация</span></span></a>
   </div>
 </li>
       </ul>
@@ -215,13 +233,49 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-5-label">Управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../access-control/access-control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Управление доступом</span></span></a>
+  <a href="../crypto/randomness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Криптографическая случайность</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/symmetric-encryption.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/hash-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хеш-функции</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/asymmetric-cryptography.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/digital-signature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Цифровая подпись</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/key-management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Управление ключами</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
   </div>
 </li>
       </ul>
@@ -229,43 +283,19 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-6-label">Криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Доверие к данным</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/random.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Генераторы случайных чисел</span></span></a>
+  <a href="../data-trust/integrity-verification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Проверка целостности</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/hash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Хеш-функции</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../crypto/cypher.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../crypto/key-gen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Генерация ключей</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../crypto/algorithms.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Известные алгоритмы</span></span></a>
+  <a href="../data-trust/certificates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Сертификаты открытого ключа</span></span></a>
   </div>
 </li>
       </ul>
@@ -278,8 +308,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../data-integrity/integrity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
+  <a href="../data-preservation/backups.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Резервное копирование</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data-preservation/raid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Дисковые массивы</span></span></a>
   </div>
 </li>
       </ul>
@@ -287,13 +323,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-controls="quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-8-label">Цифровая подпись</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-8-label">Приложения</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-8" aria-labelledby="quarto-sidebar-section-8-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/public-key-outline.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
+  <a href="../crypto/lamport-signature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Подпись Лэмпорта</span></span></a>
   </div>
 </li>
       </ul>
@@ -308,18 +344,23 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Содержание</h2>
    
   <ul>
-  <li><a href="#симметричные-шифры" id="toc-симметричные-шифры" class="nav-link active" data-scroll-target="#симметричные-шифры"><span class="header-section-number">15.1</span> Симметричные шифры</a></li>
-  <li><a href="#хеш-функции" id="toc-хеш-функции" class="nav-link" data-scroll-target="#хеш-функции"><span class="header-section-number">15.2</span> Хеш-функции</a></li>
-  <li><a href="#парольные-функции" id="toc-парольные-функции" class="nav-link" data-scroll-target="#парольные-функции"><span class="header-section-number">15.3</span> Парольные функции</a></li>
+  <li><a href="#sec-theory-public-key-pair" id="toc-sec-theory-public-key-pair" class="nav-link active" data-scroll-target="#sec-theory-public-key-pair"><span class="header-section-number">15.1</span> Пара ключей</a></li>
+  <li><a href="#sec-theory-asymmetric-encryption" id="toc-sec-theory-asymmetric-encryption" class="nav-link" data-scroll-target="#sec-theory-asymmetric-encryption"><span class="header-section-number">15.2</span> Шифрование получателю</a></li>
+  <li><a href="#sec-theory-rsa" id="toc-sec-theory-rsa" class="nav-link" data-scroll-target="#sec-theory-rsa"><span class="header-section-number">15.3</span> Ключевая пара RSA</a></li>
+  <li><a href="#sec-theory-key-length" id="toc-sec-theory-key-length" class="nav-link" data-scroll-target="#sec-theory-key-length"><span class="header-section-number">15.4</span> Длина ключа</a></li>
+  <li><a href="#sec-theory-hybrid-encryption" id="toc-sec-theory-hybrid-encryption" class="nav-link" data-scroll-target="#sec-theory-hybrid-encryption"><span class="header-section-number">15.5</span> Гибридное шифрование</a></li>
+  <li><a href="#sec-theory-public-key-signature" id="toc-sec-theory-public-key-signature" class="nav-link" data-scroll-target="#sec-theory-public-key-signature"><span class="header-section-number">15.6</span> Ключ проверки подписи</a></li>
+  <li><a href="#применение-асимметрических-схем" id="toc-применение-асимметрических-схем" class="nav-link" data-scroll-target="#применение-асимметрических-схем"><span class="header-section-number">15.7</span> Применение асимметрических схем</a></li>
+  <li><a href="#источники" id="toc-источники" class="nav-link" data-scroll-target="#источники"><span class="header-section-number">15.8</span> Источники</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/random.html">Криптография</a></li><li class="breadcrumb-item"><a href="../crypto/algorithms.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Известные алгоритмы</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/randomness.html">Криптография</a></li><li class="breadcrumb-item"><a href="../crypto/asymmetric-cryptography.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-theory-crypto-algorithms" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Известные алгоритмы</span></span></h1>
+<h1 class="title"><span id="sec-theory-asymmetric-cryptography" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></h1>
 </div>
 
 
@@ -343,21 +384,135 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Криптографические алгоритмы различаются назначением. Шифр задаёт обратимое преобразование сообщения с помощью ключа, хеш-функция даёт компактный дайджест данных, а парольная функция делает вычисление из пароля управляемо затратным. Название алгоритма позволяет связать эту операцию с точным описанием в спецификации.</p>
-<section id="симметричные-шифры" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="симметричные-шифры"><span class="header-section-number">15.1</span> Симметричные шифры</h2>
-<p><strong>AES</strong> — блочный симметричный шифр: он преобразует блок открытого текста в блок шифротекста той же длины с помощью секретного ключа. Размер блока всегда равен 128 битам, или 16 байтам; допустимые длины ключа — 128, 192 и 256 битов. Поэтому имя AES-256 обозначает длину ключа, а размер блока остаётся 128 битов. Алгоритм задан в <a href="https://csrc.nist.gov/pubs/fips/197/final">FIPS 197</a>. Понятия шифрования и общего секретного ключа определены в <a href="cypher.html#def-crypto-encryption" class="quarto-xref">Определение&nbsp;<span>12.1</span></a> и <a href="cypher.html#def-crypto-key" class="quarto-xref">Определение&nbsp;<span>12.2</span></a>.</p>
-<p><strong>ChaCha20</strong> — потоковый симметричный шифр. Он вырабатывает ключевой поток, который объединяется с сообщением операцией XOR; тот же поток позволяет восстановить сообщение. Вариант из <a href="https://www.rfc-editor.org/rfc/rfc8439#section-2.4">RFC 8439, раздел 2.4</a> использует 256-битный ключ. Действие XOR и последствия повтора ключевого потока разобраны в <a href="cypher.html" class="quarto-xref"><span>Глава 12</span></a>.</p>
+<p><a href="../crypto/symmetric-encryption.html#sec-theory-symmetric-encryption">Симметричное шифрование</a> позволяет сторонам защитить данные общим секретным ключом. Если общего секрета пока нет, нужно решить, как передать данные нужному получателю, не сообщив ключ посторонним. Асимметрические механизмы разделяют возможности владельца закрытого ключа и остальных участников.</p>
+<section id="sec-theory-public-key-pair" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="sec-theory-public-key-pair"><span class="header-section-number">15.1</span> Пара ключей</h2>
+<p>Нужно отправить конфиденциальный <em>report.pdf</em> получателю через сеть, которую могут прослушивать. При симметричном шифровании отправителю и получателю заранее нужен общий секрет. Если они ещё не обменялись таким секретом, простая отправка ключа рядом с файлом раскрыла бы его тому же наблюдателю.</p>
+<p>Асимметричное шифрование разделяет возможности отправки и чтения. Получатель создаёт пару ключей: открытый сообщает отправителям, закрытый сохраняет у себя.</p>
+<div id="def-trust-public-key-pair" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 15.1 (Пара асимметричных ключей)</strong></span> Пара асимметричных ключей — связанные открытый и закрытый ключи, созданные для определённой криптографической схемы. Открытый ключ можно передавать другим; закрытый ключ сохраняют в секрете. По открытому ключу практически невозможно получить закрытый или выполнить операцию, для которой нужен закрытый ключ.</p>
+</div>
 </section>
-<section id="хеш-функции" class="level2" data-number="15.2">
-<h2 data-number="15.2" class="anchored" data-anchor-id="хеш-функции"><span class="header-section-number">15.2</span> Хеш-функции</h2>
-<p><strong>SHA-256</strong> и <strong>SHA-512</strong> — криптографические хеш-функции семейства SHA-2. Они вычисляют дайджесты длиной 256 и 512 битов соответственно, то есть 32 и 64 байта. Описание обоих алгоритмов дано в <a href="https://csrc.nist.gov/pubs/fips/180-4/upd1/final">FIPS 180-4</a>. Хеширование детерминировано; для восстановления исходного сообщения по дайджесту ключа расшифрования нет. Свойства дайджеста и задачи поиска прообраза, второго прообраза и коллизии разобраны в <a href="hash.html" class="quarto-xref"><span>Глава 11</span></a>.</p>
+<section id="sec-theory-asymmetric-encryption" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="sec-theory-asymmetric-encryption"><span class="header-section-number">15.2</span> Шифрование получателю</h2>
+<p>Обозначим исходные данные через <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>, шифротекст — через <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>, открытый ключ получателя — через <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>K</mi></mrow><annotation encoding="application/x-tex">PK</annotation></semantics></math>, закрытый — через <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>K</mi></mrow><annotation encoding="application/x-tex">SK</annotation></semantics></math>. Отправитель вычисляет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>=</mo><mrow><mi mathvariant="normal">Encrypt</mi><mo>⁡</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>P</mi><mi>K</mi><mo>,</mo><mi>m</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">c=\operatorname{Encrypt}(PK,m)</annotation></semantics></math> и передаёт <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>. Получатель восстанавливает данные: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mrow><mi mathvariant="normal">Decrypt</mi><mo>⁡</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>S</mi><mi>K</mi><mo>,</mo><mi>c</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">m=\operatorname{Decrypt}(SK,c)</annotation></semantics></math>.</p>
+<div id="fig-trust-asymmetric-encryption" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Отправитель подаёт исходные данные m и открытый ключ PK получателя на шифрование. Шифротекст c передаётся по сети. Получатель расшифровывает c своим закрытым ключом SK и получает m. Открытый ключ доступен отправителям; закрытый остаётся у получателя.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trust-asymmetric-encryption-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../_prepared/visualizations/data-trust/static/asymmetric-encryption.svg" class="img-fluid figure-img" alt="Отправитель подаёт исходные данные m и открытый ключ PK получателя на шифрование. Шифротекст c передаётся по сети. Получатель расшифровывает c своим закрытым ключом SK и получает m. Открытый ключ доступен отправителям; закрытый остаётся у получателя.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trust-asymmetric-encryption-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;15.1: Шифрование для владельца пары ключей
+</figcaption>
+</figure>
+</div>
+<p>В <a href="#fig-trust-asymmetric-encryption" class="quarto-xref">Рисунок&nbsp;<span>15.1</span></a> оба ключа принадлежат <strong>получателю</strong>. Для <em>report.pdf</em> отправитель выбирает именно его открытый ключ. Отправителю не требуется получать закрытый ключ или заранее иметь общий секрет с получателем.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Участник</th>
+<th>Доступное действие</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Отправитель</strong> с <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>K</mi></mrow><annotation encoding="application/x-tex">PK</annotation></semantics></math></td>
+<td>Зашифровать свой файл для получателя</td>
+</tr>
+<tr class="even">
+<td><strong>Получатель</strong> с <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>K</mi></mrow><annotation encoding="application/x-tex">SK</annotation></semantics></math></td>
+<td>Расшифровать адресованный ему шифротекст</td>
+</tr>
+<tr class="odd">
+<td><strong>Посторонний</strong> с <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>K</mi></mrow><annotation encoding="application/x-tex">PK</annotation></semantics></math> и перехваченным <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math></td>
+<td>Зашифровать свой файл; открытого ключа недостаточно для чтения чужого <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math></td>
+</tr>
+</tbody>
+</table>
+<p>Если посторонний тоже может создать шифротекст для получателя, успешное расшифрование само по себе не устанавливает отправителя. Также нужно убедиться, что выбранный открытый ключ действительно принадлежит ожидаемому получателю.</p>
 </section>
-<section id="парольные-функции" class="level2" data-number="15.3">
-<h2 data-number="15.3" class="anchored" data-anchor-id="парольные-функции"><span class="header-section-number">15.3</span> Парольные функции</h2>
-<p><strong>PBKDF2</strong> вырабатывает результат из пароля и соли с настраиваемым числом итераций; её описание дано в <a href="https://www.rfc-editor.org/rfc/rfc8018#section-5.2">RFC 8018, раздел 5.2</a>. Она многократно применяет выбранную псевдослучайную функцию, например HMAC на основе SHA-256. Увеличение числа итераций увеличивает работу каждой проверки кандидата пароля.</p>
-<p><strong>Argon2id</strong> — парольная функция с настраиваемым расходом памяти, числом проходов и степенью параллелизма. Выделение памяти входит в стоимость вычисления и усложняет массовую проверку кандидатов при ограниченных ресурсах. Алгоритм описан в <a href="https://www.rfc-editor.org/rfc/rfc9106">RFC 9106</a>.</p>
-<p>Обе функции применяются для получения ключевого материала из пароля в <a href="key-gen.html" class="quarto-xref"><span>Глава 13</span></a> и для создания проверочной записи в <a href="password-storage.html" class="quarto-xref"><span>Глава 14</span></a>. Соль различает независимые вычисления, а стоимость функции повышает затраты на проверку догадок. Непредсказуемость результата ограничена исходным выбором пароля.</p>
+<section id="sec-theory-rsa" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="sec-theory-rsa"><span class="header-section-number">15.3</span> Ключевая пара RSA</h2>
+<p>RSA — пример семейства асимметричных схем. При создании пары выбирают большие простые числа <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> и <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math> и вычисляют их произведение <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mi>p</mi><mi>q</mi></mrow><annotation encoding="application/x-tex">n=pq</annotation></semantics></math>. Число <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> называют <strong>модулем RSA</strong>. Открытый ключ содержит модуль <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> и открытый показатель <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>e</mi><annotation encoding="application/x-tex">e</annotation></semantics></math>. Закрытый ключ включает секретный показатель; для вычислений в нём могут храниться и параметры, полученные из <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> и <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math>. Эти множители также нужно сохранять в секрете.</p>
+<p>Перемножить выбранные числа легко; обратная задача — разложение известного модуля на множители — при правильном выборе больших <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> и <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math> практически трудна. Найдя множители, нарушитель может восстановить секретные параметры. Из этого не следует, что всякая атака на RSA равносильна факторизации.</p>
+<p>Само математическое преобразование RSA не составляет безопасной схемы для произвольных данных. RFC 8017 задаёт отдельные способы подготовки данных: RSA-OAEP для шифрования и RSA-PSS для подписи. Последняя не является общим определением подписи как «шифрования закрытым ключом».</p>
+</section>
+<section id="sec-theory-key-length" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="sec-theory-key-length"><span class="header-section-number">15.4</span> Длина ключа</h2>
+<p>Размер ключа описывает его запись, а оценка стойкости — трудоёмкость атак. Для AES указывают число битов секретного ключа, для RSA — число битов модуля <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>. В <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf#page=67">таблице 2 NIST SP 800-57 Part 1 Rev.&nbsp;5</a> приведены следующие сопоставления для классических атак:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Оценка стойкости</th>
+<th style="text-align: right;">Ключ AES</th>
+<th style="text-align: right;">Модуль RSA</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">128 бит</td>
+<td style="text-align: right;">128 бит</td>
+<td style="text-align: right;">3072 бита</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">192 бита</td>
+<td style="text-align: right;">192 бита</td>
+<td style="text-align: right;">7680 битов</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">256 бит</td>
+<td style="text-align: right;">256 бит</td>
+<td style="text-align: right;">15360 битов</td>
+</tr>
+</tbody>
+</table>
+<p>Одинаковая оценка означает сопоставимую трудоёмкость известных атак при соответствующих предположениях. Она не задаёт способа преобразовать ключ AES в пару RSA: RSA требует собственных связанных параметров. Квантовые атаки в этом сопоставлении не учитываются.</p>
+</section>
+<section id="sec-theory-hybrid-encryption" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="sec-theory-hybrid-encryption"><span class="header-section-number">15.5</span> Гибридное шифрование</h2>
+<p>Для больших объёмов данных обычно сочетают асимметрические механизмы с симметричным шифрованием. Например, отправитель создаёт случайный симметричный ключ для файла, шифрует им данные, а сам ключ защищает открытым ключом получателя. Получатель своим закрытым ключом получает симметричный ключ, затем читает файл.</p>
+<p>В TLS 1.3 при обычном соединении браузера с сайтом роли также разделены: сертификат и цифровая подпись помогают подтвердить сервер, при обмене ключами участники вырабатывают сеансовые ключи, а прикладные данные защищаются симметричным шифрованием. Сертификат связывает имя сайта с открытым ключом; страницы шифруются ключами установленного соединения.</p>
+</section>
+<section id="sec-theory-public-key-signature" class="level2" data-number="15.6">
+<h2 data-number="15.6" class="anchored" data-anchor-id="sec-theory-public-key-signature"><span class="header-section-number">15.6</span> Ключ проверки подписи</h2>
+<p>Для подписи выбирают пару <strong>подписывающего</strong>. Издатель создаёт подпись обновления закрытым ключом; получатели проверяют её открытым ключом издателя. Подпись позволяет проверять происхождение данных, сохраняя их доступными для чтения. Пара ключей используется для операции, предусмотренной выбранной схемой.</p>
+<p>Как создают подпись и связывают открытый ключ с издателем, рассмотрено в <a href="../crypto/digital-signature.html#sec-theory-digital-signature">главе о подписи</a>.</p>
+</section>
+<section id="применение-асимметрических-схем" class="level2" data-number="15.7">
+<h2 data-number="15.7" class="anchored" data-anchor-id="применение-асимметрических-схем"><span class="header-section-number">15.7</span> Применение асимметрических схем</h2>
+<p>Разные схемы предусматривают разные операции:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Схема</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>RSA-OAEP</td>
+<td>Шифрование небольшого сообщения получателю</td>
+</tr>
+<tr class="even">
+<td>ECDH</td>
+<td>Согласование общего секрета; затем ключ выводят с помощью KDF</td>
+</tr>
+<tr class="odd">
+<td>ECDSA, Ed25519</td>
+<td>Создание и открытая проверка цифровой подписи</td>
+</tr>
+</tbody>
+</table>
+<p>ECDH само по себе не устанавливает личность сторон. Для любого применения нужно связать открытый ключ с ожидаемым владельцем. При подписи эту связь <a href="../data-trust/certificates.html#sec-theory-signature-key-owner">проверяют отдельно</a> от соответствия самой подписи данным и ключу.</p>
+</section>
+<section id="источники" class="level2" data-number="15.8">
+<h2 data-number="15.8" class="anchored" data-anchor-id="источники"><span class="header-section-number">15.8</span> Источники</h2>
+<p>Назначение пары при шифровании описано в <a href="https://securitybook.eecs.berkeley.edu/chapters/lec10.html#defining-public-key-encryption">The Structure of Secure Systems, § 10.5</a>, а при подписи — в <a href="https://securitybook.eecs.berkeley.edu/chapters/lec05.html#definitions">§ 5.1</a>. Принцип гибридного шифрования рассмотрен в <a href="https://www.rfc-editor.org/rfc/rfc9180.html#section-1">RFC 9180, § 1</a>. Роли согласования ключей, подписи и защиты записей в TLS 1.3 заданы в <a href="https://www.rfc-editor.org/rfc/rfc8446.html#section-1">RFC 8446, §§ 1–2 и 5</a>.</p>
+<p>Параметры RSA и схемы OAEP и PSS определены в <a href="https://www.rfc-editor.org/rfc/rfc8017.html">RFC 8017, §§ 3, 7.1, 8.1</a>. Стойкость обсуждается в <a href="https://people.csail.mit.edu/rivest/Rsapaper.pdf">статье RSA, § IX</a>. Сопоставление размеров приведено в <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf#page=66">NIST SP 800-57 Part 1 Rev.&nbsp;5, таблица 2</a>.</p>
 
 
 
@@ -769,13 +924,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation" aria-label="Страница">
   <div class="nav-page nav-page-previous">
-      <a href="../crypto/password-storage.html" class="pagination-link" aria-label="Хранение паролей">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span>
+      <a href="../crypto/hash-functions.html" class="pagination-link" aria-label="Хеш-функции">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хеш-функции</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../data-integrity/integrity.html" class="pagination-link" aria-label="Целостность данных">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Целостность данных</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../crypto/digital-signature.html" class="pagination-link" aria-label="Цифровая подпись">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Цифровая подпись</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

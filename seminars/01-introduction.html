@@ -19,7 +19,7 @@
 
   <meta name="author" content="Афоненко Анатолий">
   <meta name="author" content="Войтович Елизавета">
-  <title>Семинары — Основы кибербезопасности – introduction</title>
+  <title>Семинары — Основы кибербезопасности – Семинар 1 — Информационная безопасность</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -143,21 +143,32 @@
   <div class="reveal">
     <div class="slides">
 
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Семинар 1 — Информационная безопасность</h1>
 
-<section id="sec-seminar-1" class="title-slide slide level1 center">
-<h1>Занятие 1 – Информационная безопасность</h1>
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Афоненко Анатолий
+</div>
+</div>
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Войтович Елизавета
+</div>
+</div>
+</div>
 
 </section>
-
 <section>
-<section id="sec-seminar-1-assets" class="title-slide slide level1 center">
+<section id="sec-seminar-1" class="title-slide slide level1 center">
 <h1>Безопасность информационной системы</h1>
 
 </section>
 <section id="активы-информационной-системы" class="slide level2">
 <h2>Активы информационной системы</h2>
 <p>Границы системы определяют область рассмотрения. Активы включают данные, программы, оборудование, людей и процессы. Например, портал зависит и от базы оценок, и от сервера, и от порядка выдачи прав.</p>
-<p>Определения: <a data-qrc-custom="false" data-qrc-ref="theory:def-information-system" data-qrc-style="default" class="qrc-link" href="../theory/fundamentals/concepts.html#def-information-system">Определение&nbsp;<span>2.1</span></a>; <a data-qrc-custom="false" data-qrc-ref="theory:def-information-assets" data-qrc-style="default" class="qrc-link" href="../theory/fundamentals/concepts.html#def-information-assets">Определение&nbsp;<span>2.2</span></a>.</p>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:def-information-system" data-qrc-style="default" class="qrc-link" href="../theory/fundamentals/concepts.html#def-information-system">[*]</a>; <a data-qrc-custom="true" data-qrc-ref="theory:def-information-assets" data-qrc-style="default" class="qrc-link" href="../theory/fundamentals/concepts.html#def-information-assets">[*]</a>.</p>
 <aside class="notes">
 <p>Попросите назвать актив и объяснить, почему он важен для работы портала.</p>
 <style type="text/css">
@@ -179,15 +190,15 @@
 <li><strong>Целостность:</strong> данные защищены от неправомерного изменения и уничтожения.</li>
 <li><strong>Доступность:</strong> уполномоченный пользователь может своевременно выполнить разрешённое действие.</li>
 </ul>
-<p>Одно событие может затронуть несколько свойств; при анализе уточняем непосредственно нарушенное. Подробности и примеры: <a data-qrc-custom="false" data-qrc-ref="theory:sec-theory-fundamentals-cia" data-qrc-style="default" class="qrc-link" href="../theory/fundamentals/concepts.html#sec-theory-fundamentals-cia">Свойства информационной безопасности</a>.</p>
+<p>Одно событие может затронуть несколько свойств; при анализе уточняем непосредственно нарушенное. Подробности и примеры: <a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-fundamentals-cia" data-qrc-style="default" class="qrc-link" href="../theory/fundamentals/concepts.html#sec-theory-fundamentals-cia">[*]</a>.</p>
 </section>
 <section id="вопрос-для-аудитории" class="slide level2 smaller">
 <h2>Вопрос для аудитории</h2>
 <!-- Создано CI/prepare-bank-fragments.py из task/bank/fundamentals.qmd; не редактировать. -->
-<div id="exr-fundamentals-cia-cases" class="course-block course-role-demonstration theorem exercise" target="manual" data-statement-visibility="open" data-course-role="demonstration" data-course-difficulty="introductory">
+<div id="exr-fundamentals-cia-cases" class="course-block course-role-discussion theorem exercise" target="manual" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
 <p><span class="theorem-title"><strong>Упражнение 1 (Что именно нарушили?)</strong></span> &nbsp;</p>
 <div class="course-metadata">
-<span class="course-meta course-meta-role">Демонстрация</span> <span class="course-meta course-meta-difficulty">Начальный</span>
+<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
 </div>
 <p>Для каждой ситуации выберите <strong>одно основное свойство КЦД</strong>, которое нарушено непосредственно описанным действием.</p>
 <ol type="1">
@@ -197,20 +208,6 @@
 <li>В приложении для заказа такси злоумышленник заменил номера всех автомобилей на 6767. Данные о водителях не изменились.</li>
 <li>В общем канале компании была опубликована фотография с новогоднего корпоратива, где её увидели сотни клиентов.</li>
 </ol>
-</div>
-<div class="course-answer course-answer-solution">
-<details><summary>Показать решение</summary>
-<div id="sol-fundamentals-cia-cases" class="proof solution">
-<p><span class="proof-title"><em>Решение 1</em>. </span><strong>Ключ</strong></p>
-<ol type="1">
-<li><strong>Конфиденциальность</strong>.</li>
-<li><strong>Целостность</strong>.</li>
-<li><strong>Доступность</strong>.</li>
-<li><strong>Целостность</strong>.</li>
-<li><strong>Конфиденциальность</strong>.</li>
-</ol>
-</div>
-</details>
 </div>
 </section></section>
 <section>
@@ -224,7 +221,7 @@
 <li><strong>Угроза</strong> — возможное неблагоприятное воздействие; <strong>уязвимость</strong> — способствующее ему слабое место.</li>
 <li><strong>Событие</strong> — наблюдаемое действие или изменение; <strong>инцидент</strong> связан с нарушением безопасности или его возможностью и требует реагирования.</li>
 </ul>
-<p>Определения и разбор различий: <a data-qrc-custom="false" data-qrc-ref="theory:sec-theory-fundamentals-events-incidents" data-qrc-style="default" class="qrc-link" href="../theory/fundamentals/concepts.html#sec-theory-fundamentals-events-incidents">Инциденты информационной безопасности</a>.</p>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:sec-theory-fundamentals-events-incidents" data-qrc-style="default" class="qrc-link" href="../theory/fundamentals/concepts.html#sec-theory-fundamentals-events-incidents">[*]</a></p>
 <aside class="notes">
 <p>Само наблюдение ещё не доказывает нарушение: нужны контекст и установленные факты.</p>
 <style type="text/css">
@@ -243,10 +240,10 @@
 <h2>Вопрос для аудитории</h2>
 <div style="font-size:0.8em">
 <!-- Создано CI/prepare-bank-fragments.py из task/bank/fundamentals.qmd; не редактировать. -->
-<div id="exr-fundamentals-event-or-incident" class="course-block course-role-independent-study theorem exercise" target="manual" data-statement-visibility="open" data-course-role="independent-study" data-course-difficulty="introductory">
+<div id="exr-fundamentals-event-or-incident" class="course-block course-role-discussion theorem exercise" target="manual" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="introductory">
 <p><span class="theorem-title"><strong>Упражнение 2 (Событие ещё не инцидент)</strong></span> &nbsp;</p>
 <div class="course-metadata">
-<span class="course-meta course-meta-role">Самостоятельная работа</span> <span class="course-meta course-meta-difficulty">Начальный</span>
+<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Начальный</span>
 </div>
 <p>Для каждого пункта определите один наиболее подходящий термин:</p>
 <ul>
@@ -277,8 +274,8 @@
 </section>
 <section id="дополнительная-работа" class="slide level2">
 <h2>Дополнительная работа</h2>
-<p><a data-qrc-custom="false" data-qrc-ref="tasks:exr-fundamentals-educational-portal" data-qrc-style="default" class="qrc-link" href="../task/bank/fundamentals.html#exr-fundamentals-educational-portal">задача&nbsp;<span>2.1</span></a>; <a data-qrc-custom="false" data-qrc-ref="tasks:exr-fundamentals-pizza-incident" data-qrc-style="default" class="qrc-link" href="../task/bank/fundamentals.html#exr-fundamentals-pizza-incident">задача&nbsp;<span>2.4</span></a>; <a data-qrc-custom="false" data-qrc-ref="tasks:sec-work-fundamentals-concepts" data-qrc-style="default" class="qrc-link" href="../task/works/01-fundamentals.html#sec-work-fundamentals-concepts"><span>Глава 9</span></a>.</p>
-<p>Дополнительные задания: <a data-qrc-custom="false" data-qrc-ref="tasks:exr-fundamentals-exhibition" data-qrc-style="default" class="qrc-link" href="../task/bank/fundamentals.html#exr-fundamentals-exhibition">задача&nbsp;<span>2.5</span></a>; <a data-qrc-custom="false" data-qrc-ref="tasks:exr-fundamentals-carsharing" data-qrc-style="default" class="qrc-link" href="../task/bank/fundamentals.html#exr-fundamentals-carsharing">задача&nbsp;<span>2.6</span></a>.</p>
+<p><a data-qrc-custom="true" data-qrc-ref="tasks:exr-fundamentals-educational-portal" data-qrc-style="default" class="qrc-link" href="../task/bank/fundamentals.html#exr-fundamentals-educational-portal">[*]</a>; <a data-qrc-custom="true" data-qrc-ref="tasks:exr-fundamentals-pizza-incident" data-qrc-style="default" class="qrc-link" href="../task/bank/fundamentals.html#exr-fundamentals-pizza-incident">[*]</a>; <a data-qrc-custom="true" data-qrc-ref="tasks:sec-work-fundamentals-concepts" data-qrc-style="default" class="qrc-link" href="../task/works/01-fundamentals.html#sec-work-fundamentals-concepts">[*]</a>.</p>
+<p>Дополнительные задания: <a data-qrc-custom="true" data-qrc-ref="tasks:exr-fundamentals-exhibition" data-qrc-style="default" class="qrc-link" href="../task/bank/fundamentals.html#exr-fundamentals-exhibition">[*]</a>; <a data-qrc-custom="true" data-qrc-ref="tasks:exr-fundamentals-carsharing" data-qrc-style="default" class="qrc-link" href="../task/bank/fundamentals.html#exr-fundamentals-carsharing">[*]</a>.</p>
 
 
 
@@ -321,9 +318,9 @@
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":false},
 'scrollActivationWidth': 0,
-'courseNav': {"sidebar":true},
+'courseNav': {"sidebar":true,"language":"ru","title":"Основы кибербезопасности"},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -469,9 +466,9 @@
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1050,
+        width: 1600,
 
-        height: 700,
+        height: 900,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,

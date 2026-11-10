@@ -19,7 +19,7 @@
 
   <meta name="author" content="Афоненко Анатолий">
   <meta name="author" content="Войтович Елизавета">
-  <title>Семинары — Основы кибербезопасности – Семинар 7 — Цифровая подпись</title>
+  <title>Семинары — Основы кибербезопасности – Семинар 7 — Сохранность данных</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -143,116 +143,270 @@
   <div class="reveal">
     <div class="slides">
 
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Семинар 7 — Сохранность данных</h1>
 
-<section id="sec-seminar-7" class="title-slide slide level1 center">
-<h1>Семинар 7 — Цифровая подпись</h1>
-<p>Как проверить происхождение и неизменность сообщения, а затем определить, можно ли ему доверять в данном контексте.</p>
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Афоненко Анатолий
+</div>
+</div>
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Войтович Елизавета
+</div>
+</div>
+</div>
+
 </section>
-
 <section>
-<section id="sec-seminar-7-public-key" class="title-slide slide level1 center">
-<h1>Асимметричные схемы</h1>
-
+<section id="sec-seminar-7" class="title-slide slide level1 center">
+<h1>Резервное копирование</h1>
+<p>В рабочей папке могут удалить файл, ошибочно изменить документ или потерять данные при отказе диска. Для продолжения работы нужны конкретные версии файлов.</p>
 </section>
-<section id="гибридное-применение" class="slide level2">
-<h2>Гибридное применение</h2>
-<p><code>установление общего секрета → KDF → симметричный ключ → AEAD данных</code></p>
-<p>Асимметричные схемы используют пару открытого и закрытого ключей и помогают установить общий секрет; KDF выводит ключ, а AEAD защищает данные. Открытый ключ надо связать с нужным владельцем. Подробности: <a data-qrc-custom="false" data-qrc-ref="theory:sec-theory-public-key" data-qrc-style="default" class="qrc-link" href="../theory/crypto/public-key-outline.html#sec-theory-public-key"><span>Глава 17</span></a>.</p>
+<section id="резервная-копия" class="slide level2">
+<h2>Резервная копия</h2>
+<p>Резервная копия сохраняет данные для восстановления после потери или повреждения рабочего экземпляра. Она отражает состояние на момент создания.</p>
+<p>Независимое хранение помогает пережить событие, затронувшее рабочие данные. Из копии можно вернуть сохранённую версию; последующие изменения требуют другого источника.</p>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:def-backup" data-qrc-style="default" class="qrc-link" href="../theory/data-preservation/backups.html#def-backup">[*]</a>.</p>
 </section>
-<section id="назначения-асимметрических-схем" class="slide level2 smaller">
-<h2>Назначения асимметрических схем</h2>
+<section id="виды-резервных-копий" class="slide level2">
+<h2>Виды резервных копий</h2>
 <table class="caption-top">
 <thead>
 <tr class="header">
-<th>Схема</th>
-<th>Действие</th>
+<th>Вид</th>
+<th>Что сохраняется</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>RSA-OAEP</td>
-<td>Шифрование небольшого сообщения получателю</td>
+<td>Полная</td>
+<td>Весь выбранный набор данных</td>
 </tr>
 <tr class="even">
-<td>ECDH</td>
-<td>Согласование общего секрета; затем нужна KDF</td>
+<td>Инкрементная</td>
+<td>Изменения после предыдущей копии</td>
 </tr>
 <tr class="odd">
-<td>ECDSA, Ed25519</td>
-<td>Создание и проверка подписи</td>
+<td>Дифференциальная</td>
+<td>Изменения после последней полной копии</td>
 </tr>
 </tbody>
 </table>
-<p>Открытый ключ нужно связать с нужным владельцем. ECDH само по себе не устанавливает личность сторон.</p>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:def-full-backup" data-qrc-style="default" class="qrc-link" href="../theory/data-preservation/backups.html#def-full-backup">[*]</a>, <a data-qrc-custom="true" data-qrc-ref="theory:def-incremental-backup" data-qrc-style="default" class="qrc-link" href="../theory/data-preservation/backups.html#def-incremental-backup">[*]</a> и <a data-qrc-custom="true" data-qrc-ref="theory:def-differential-backup" data-qrc-style="default" class="qrc-link" href="../theory/data-preservation/backups.html#def-differential-backup">[*]</a>.</p>
+</section>
+<section id="содержимое-резервных-копий" class="slide level2">
+<h2>Содержимое резервных копий</h2>
+<p>В воскресенье сохранены A₀, B₀, C₀. В понедельник изменён только A, во вторник — только B. Копируются целые файлы.</p>
+<div id="fig-slide-preservation-backup-types" class="quarto-float quarto-figure quarto-figure-center" alt="Полная схема: в каждую копию входят A, B и C. Инкрементная: после полной копии в понедельник сохраняется A₁, во вторник B₁. Дифференциальная: в понедельник A₁, во вторник A₁ и B₁. Стрелки указывают, после какой копии отсчитываются изменения.">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-slide-preservation-backup-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="_prepared/visualizations/data-integrity/static/backup-types.svg" alt="Полная схема: в каждую копию входят A, B и C. Инкрементная: после полной копии в понедельник сохраняется A₁, во вторник B₁. Дифференциальная: в понедельник A₁, во вторник A₁ и B₁. Стрелки указывают, после какой копии отсчитываются изменения." height="440">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-preservation-backup-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;1: Копии после последовательных правок A и B
+</figcaption>
+</figure>
+</div>
+<p>Стрелки показывают, после какой копии отсчитываются изменения.</p>
+</section>
+<section id="состав-копии" class="slide level2">
+<h2>Состав копии</h2>
+<div id="exr-slide-preservation-backup-volume" class="theorem exercise" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 1 (Копия среды)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-difficulty">Начальный</span>
+</div>
+<p>Копируются целые файлы: A — 2 МБ, B — 3 МБ, C — 5 МБ. В воскресенье сохранена полная копия; далее копии создаются ежедневно после правки. Индекс обозначает версию; точка на полосе — замену версии.</p>
+<div id="fig-slide-preservation-backup-history" class="quarto-float quarto-figure quarto-figure-center" alt="Воскресенье: A₀, B₀, C₀. Понедельник: A₁, B₀, C₀. Вторник: A₁, B₁, C₀. Среда: A₂, B₁, C₀.">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-slide-preservation-backup-history-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="_prepared/visualizations/data-integrity/static/backup-history-exercise.svg" alt="Воскресенье: A₀, B₀, C₀. Понедельник: A₁, B₀, C₀. Вторник: A₁, B₁, C₀. Среда: A₂, B₁, C₀." height="300">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-preservation-backup-history-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;2: История версий в рабочей папке
+</figcaption>
+</figure>
+</div>
+<p>Какие версии войдут в полную, инкрементную и дифференциальную копии среды? Каков объём каждой?</p>
+</div>
 </section></section>
 <section>
-<section id="sec-seminar-7-signatures" class="title-slide slide level1 center">
-<h1>Проверка цифровой подписи</h1>
-
+<section id="восстановление-версий" class="title-slide slide level1 center">
+<h1>Восстановление версий</h1>
+<p>Цель восстановления задаёт нужное состояние данных (<a data-qrc-custom="true" data-qrc-ref="theory:def-recovery-target" data-qrc-style="default" class="qrc-link" href="../theory/data-preservation/backups.html#def-recovery-target">[*]</a>). Если копии содержат целые файлы и каждый можно извлечь отдельно, для каждой нужной версии выбирают доступный источник.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Источник</th>
+<th>Доступная версия файла</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Копия 1</td>
+<td>A₁</td>
+</tr>
+<tr class="even">
+<td>Копия 2</td>
+<td>A₂</td>
+</tr>
+</tbody>
+</table>
+<p>Для цели <strong>A₂</strong> выбирают копию 2.</p>
+<p>Более поздняя версия не заменяет другую версию, если требуется прежнее состояние. Правила конкретной программы восстановления могут отличаться.</p>
 </section>
-<section id="два-применения-пары-ключей" class="slide level2 smaller">
-<h2>Два применения пары ключей</h2>
-<p><strong>Секрет для получателя:</strong> отправитель шифрует сообщение открытым ключом получателя; получатель использует свой закрытый ключ для расшифрования.</p>
-<p><strong>Подпись автора:</strong> автор создаёт подпись закрытым ключом, получатель проверяет её открытым:</p>
-<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">подпись</mtext><mo>=</mo><mrow><mi mathvariant="normal">Sign</mi><mo>⁡</mo></mrow><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">закрытый ключ автора</mtext><mo>,</mo><mspace width="0.222em"></mspace><mtext mathvariant="normal">сообщение</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{подпись} = \operatorname{Sign}(\text{закрытый ключ автора},\ \text{сообщение})</annotation></semantics></math></p>
-<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">результат</mtext><mo>=</mo><mrow><mi mathvariant="normal">Verify</mi><mo>⁡</mo></mrow><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">открытый ключ автора</mtext><mo>,</mo><mspace width="0.222em"></mspace><mtext mathvariant="normal">сообщение</mtext><mo>,</mo><mspace width="0.222em"></mspace><mtext mathvariant="normal">подпись</mtext><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{результат} = \operatorname{Verify}(\text{открытый ключ автора},\ \text{сообщение},\ \text{подпись})</annotation></semantics></math></p>
-<p>Успешная проверка относится к конкретному сообщению и ключу. Она не скрывает сообщение и не устанавливает полномочия автора.</p>
-</section>
-<section id="пример-расписание" class="slide level2">
-<h2>Пример: расписание</h2>
-<p>Ира подписывает байты расписания своим закрытым ключом и передаёт файл с подписью. Получатель проверяет оба с открытым ключом Иры. Изменение файла или подписи обычно приводит к неуспешной проверке.</p>
-<p>Но сначала нужно установить, что открытый ключ действительно принадлежит Ире: иначе атакующий может подменить и файл, и ключ, и подпись.</p>
-</section>
-<section id="аутентификация-сообщения" class="slide level2">
-<h2>Аутентификация сообщения</h2>
-<p>Ира и Максим знают общий секрет HMAC и проверяют метку сообщения. Каждый из них может создать такую же допустимую метку: сторонний наблюдатель не отличит автора по одной метке.</p>
-<p>Цифровая подпись проверяется открытым ключом; при надёжной защите закрытого ключа она связывает сообщение с владельцем этого ключа.</p>
-</section>
-<section id="вопрос-для-аудитории" class="slide level2">
-<h2>Вопрос для аудитории</h2>
-<!-- Создано CI/prepare-bank-fragments.py из task/bank/crypto.qmd; не редактировать. -->
-<div id="exr-crypto-hmac-authors" class="course-block course-role-discussion theorem exercise" target="manual" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="intermediate">
-<p><span class="theorem-title"><strong>Упражнение 1 (Кто мог создать HMAC?)</strong></span> &nbsp;</p>
+<section id="восстановление-папки" class="slide level2">
+<h2>Восстановление папки</h2>
+<div id="exr-slide-preservation-restore" class="theorem exercise" data-course-difficulty="intermediate">
+<p><span class="theorem-title"><strong>Упражнение 2 (Вернуть состояние вторника)</strong></span> &nbsp;</p>
 <div class="course-metadata">
-<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Средний</span>
+<span class="course-meta course-meta-difficulty">Средний</span>
 </div>
-<p>Ира и Максим знают общий секрет HMAC. Максим получил сообщение с правильной меткой. Доказывает ли она третьему лицу, что сообщение создала именно Ира?</p>
+<p>Из любой копии можно извлечь отдельный целый файл. Индексы обозначают версии.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Копия</th>
+<th>Инкрементная схема</th>
+<th>Дифференциальная схема</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Воскресенье, полная</td>
+<td>A₀, B₀, C₀</td>
+<td>A₀, B₀, C₀</td>
+</tr>
+<tr class="even">
+<td>Понедельник</td>
+<td>A₁</td>
+<td>A₁</td>
+</tr>
+<tr class="odd">
+<td>Вторник</td>
+<td>B₁</td>
+<td>A₁, B₁</td>
+</tr>
+<tr class="even">
+<td>Среда</td>
+<td>C₁</td>
+<td>A₁, B₁, C₁</td>
+</tr>
+</tbody>
+</table>
+<p>Нужно собрать папку <strong>A₁, B₁, C₀</strong>. Для каждой схемы выберите минимальное число копий и источник каждой версии. Используйте только столбец выбранной схемы.</p>
 </div>
+</section>
+<section id="проверка-резервной-копии" class="slide level2">
+<h2>Проверка резервной копии</h2>
+<p>Пробное восстановление проверяет, доступны ли копия и нужные версии и можно ли получить пригодные данные.</p>
+<ul>
+<li>Выбрать копию и восстановить данные в отдельное место.</li>
+<li>Проверить наличие нужных файлов, их версии и возможность работы с ними.</li>
+<li>Устранить обнаруженные проблемы и повторить проверку.</li>
+</ul>
 </section></section>
 <section>
-<section id="sec-seminar-7-trust" class="title-slide slide level1 center">
-<h1>Доверие к ключу</h1>
+<section id="sec-seminar-7-raid" class="title-slide slide level1 center">
+<h1>Дисковый массив</h1>
+<p>RAID объединяет диски в массив и распределяет по ним блоки данных. Избыточность в некоторых уровнях позволяет сохранить доступ к данным при отказе диска. Чередование блоков может также распределять операции между дисками.</p>
+<p><a data-qrc-custom="true" data-qrc-ref="theory:def-raid" data-qrc-style="default" class="qrc-link" href="../theory/data-preservation/raid.html#def-raid">[*]</a>.</p>
+</section>
+<section id="размещение-данных-в-raid" class="slide level2">
+<h2>Размещение данных в RAID</h2>
 
+<img data-src="_prepared/visualizations/data-integrity/static/raid.svg" alt="Размещение блоков данных и чётности на дисках RAID 0, RAID 1 и RAID 5" class="r-stretch quarto-figure-center" id="fig-slide-integrity-raid"><p class="caption">
+Рисунок&nbsp;3: Размещение блоков в RAID
+</p></section>
+<section id="ёмкость-дискового-массива" class="slide level2">
+<h2>Ёмкость дискового массива</h2>
+<p>Один диск полностью отказал; отказ обнаружен, остальные диски исправны.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Массив</th>
+<th style="text-align: right;">Диски по 2 ТБ</th>
+<th style="text-align: right;">Полезно</th>
+<th>Один отказ диска</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>RAID 0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">6 ТБ</td>
+<td>Набор недоступен</td>
+</tr>
+<tr class="even">
+<td>RAID 1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2 ТБ</td>
+<td>Доступен</td>
+</tr>
+<tr class="odd">
+<td>RAID 5</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4 ТБ</td>
+<td>Доступен</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="проверка-сертификата" class="slide level2">
-<h2>Проверка сертификата</h2>
-<p>Сертификат связывает сведения о владельце с открытым ключом и подписывается удостоверяющей стороной. Получатель проверяет цепочку к доверенному основанию, имя и назначение, срок и сведения об отзыве по применимым правилам.</p>
-<p>При компрометации закрытого ключа владелец прекращает его использование и сообщает удостоверяющей стороне для отзыва; получателям нужен новый проверенный ключ. Значимы время и правила проверки: истечение срока сегодня само по себе не опровергает все прежние подписи.</p>
+<section id="дисковое-зеркало" class="slide level2">
+<h2>Дисковое зеркало</h2>
+<p>RAID 1 хранит одинаковое текущее состояние на двух дисках. Запись новой версии и удаление файла отражаются на обоих дисках. При отказе одного диска данные доступны с исправного.</p>
+<p>Зеркало само по себе не хранит прежние версии: для них нужна отдельно сохранённая копия.</p>
 </section>
-<section id="вопрос-для-аудитории-1" class="slide level2">
-<h2>Вопрос для аудитории</h2>
-<!-- Создано CI/prepare-bank-fragments.py из task/bank/crypto.qmd; не редактировать. -->
-<div id="exr-crypto-old-signature" class="course-block course-role-discussion theorem exercise" target="manual" data-statement-visibility="open" data-course-role="discussion" data-course-difficulty="intermediate">
-<p><span class="theorem-title"><strong>Упражнение 2 (Подлинное старое расписание)</strong></span> &nbsp;</p>
+<section id="восстановление-проекта" class="slide level2">
+<h2>Восстановление проекта</h2>
+<div id="exr-slide-preservation-project" class="theorem exercise" data-course-difficulty="intermediate">
+<p><span class="theorem-title"><strong>Упражнение 3 (Собрать папку проекта)</strong></span> &nbsp;</p>
 <div class="course-metadata">
-<span class="course-meta course-meta-role">Обсуждение</span> <span class="course-meta course-meta-difficulty">Средний</span>
+<span class="course-meta course-meta-difficulty">Средний</span>
 </div>
-<p>Подписанная версия 1 расписания успешно проверяется. Уже принята версия 2, а правило требует номер строго больше последнего принятого. Нужно ли принять повторно присланную версию 1?</p>
+<p>Папка хранится на зеркале RAID 1. Есть отдельная копия пятницы. Индексы обозначают версии файлов.</p>
+<div id="fig-slide-preservation-project" class="quarto-float quarto-figure quarto-figure-center" alt="На каждом диске зеркала: чертёж₂, смета₂, инструкция₁. В копии пятницы: чертёж₁, смета₁, инструкция₁.">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-slide-preservation-project-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="_prepared/visualizations/data-integrity/static/project-storage.svg" alt="На каждом диске зеркала: чертёж₂, смета₂, инструкция₁. В копии пятницы: чертёж₁, смета₁, инструкция₁.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slide-preservation-project-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;4: Содержимое до изменений
+</figcaption>
+</figure>
+</div>
+<p>Затем сохранили <strong>чертёж₃</strong>, удалили смету и потеряли диск 1. Для каждого файла выберите самую новую доступную версию и источник. Удастся ли вернуть последнюю сохранённую смету?</p>
 </div>
 </section>
-<section id="четыре-отдельных-вывода" class="slide level2 smaller">
-<h2>Четыре отдельных вывода</h2>
+<section id="выбор-средства-защиты" class="slide level2">
+<h2>Выбор средства защиты</h2>
+<div id="exr-slide-preservation-choice" class="theorem exercise" data-course-difficulty="introductory">
+<p><span class="theorem-title"><strong>Упражнение 4 (После события)</strong></span> &nbsp;</p>
+<div class="course-metadata">
+<span class="course-meta course-meta-difficulty">Начальный</span>
+</div>
+<p>Есть исправное зеркало RAID 1 и отдельная копия вчерашнего вечера. Других версий нет.</p>
 <ol type="1">
-<li><strong>Подпись:</strong> соответствует ли она точным данным и данному открытому ключу?</li>
-<li><strong>Принадлежность ключа:</strong> чей это ключ и на каком основании ему доверяют?</li>
-<li><strong>Полномочия:</strong> разрешено ли владельцу утверждать именно это расписание?</li>
-<li><strong>Актуальность:</strong> действуют ли эти данные сейчас, не появилась ли более новая версия?</li>
+<li>Один диск отказал. Как продолжить работу с текущими данными?</li>
+<li>Сегодня файл ошибочно удалили на зеркале. Откуда его вернуть?</li>
+<li>Какие изменения файла после вчерашней копии удастся вернуть из неё?</li>
 </ol>
-<p>Криптографическая проверка подписи непосредственно отвечает на первый вопрос.</p>
-
-
-
+</div>
 </section></section>
+<section id="sec-seminar-7-additional" class="title-slide slide level1 center">
+<h1>Дополнительные задачи</h1>
+<ul>
+<li><p><a data-qrc-custom="true" data-qrc-ref="tasks:exr-data-preservation-missing-copy" data-qrc-style="default" class="qrc-link" href="../task/bank/data-preservation.html#exr-data-preservation-missing-copy">[*]</a></p></li>
+<li><p><a data-qrc-custom="true" data-qrc-ref="tasks:exr-data-preservation-recovery-after-reedit" data-qrc-style="default" class="qrc-link" href="../task/bank/data-preservation.html#exr-data-preservation-recovery-after-reedit">[*]</a></p></li>
+<li><p><a data-qrc-custom="true" data-qrc-ref="tasks:exr-data-preservation-parity-recovery" data-qrc-style="default" class="qrc-link" href="../task/bank/data-preservation.html#exr-data-preservation-parity-recovery">[*]</a></p></li>
+</ul>
+
+
+
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost.svg" alt="Кибер котость — логотип курса «Основы кибербезопасности»" class="slide-logo"></p>
@@ -291,9 +445,9 @@
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":false},
 'scrollActivationWidth': 0,
-'courseNav': {"sidebar":true},
+'courseNav': {"sidebar":true,"language":"ru","title":"Основы кибербезопасности"},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -439,9 +593,9 @@
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1050,
+        width: 1600,
 
-        height: 700,
+        height: 900,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,

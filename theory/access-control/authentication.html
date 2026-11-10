@@ -9,7 +9,7 @@
 <meta name="author" content="Афоненко Анатолий">
 <meta name="author" content="Войтович Елизавета">
 
-<title>9&nbsp; Управление доступом – Теория</title>
+<title>10&nbsp; Аутентификация – Теория</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -28,41 +28,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -73,8 +38,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../crypto/random.html" rel="next">
-<link href="../standards-risk/requirements-decisions.html" rel="prev">
+<link href="../access-control/authorization.html" rel="next">
+<link href="../risk-assessment.html" rel="prev">
 <link href="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -126,8 +91,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Поиск"
   }
 }</script>
-<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
-<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../assets/access-control/page.css">
@@ -152,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../access-control/access-control.html">Управление доступом</a></li><li class="breadcrumb-item"><a href="../access-control/access-control.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Управление доступом</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../access-control/authentication.html">Управление доступом</a></li><li class="breadcrumb-item"><a href="../access-control/authentication.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Аутентификация</span></a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -214,6 +177,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Меры защиты информации</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../legal/standards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Нормативные требования</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -225,27 +194,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../security-center/organization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../security-center/workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Обобщенный процесс оказания услуги обеспечения кибербезопасности</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Обобщенный процесс оказания услуги обеспечения кибербезопасности</span></span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../risk-assessment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Оценка риска</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-4-label">Требования к защите</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../standards-risk/requirements-decisions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Применение нормативно-правовых актов</span></span></a>
+  <a href="../access-control/authentication.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Аутентификация</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../access-control/authorization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Авторизация</span></span></a>
   </div>
 </li>
       </ul>
@@ -253,13 +234,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-5-label">Управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../access-control/access-control.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Управление доступом</span></span></a>
+  <a href="../crypto/randomness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Криптографическая случайность</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/symmetric-encryption.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/hash-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хеш-функции</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/asymmetric-cryptography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/digital-signature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Цифровая подпись</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/key-management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Управление ключами</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
   </div>
 </li>
       </ul>
@@ -267,43 +284,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-6-label">Криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Доверие к данным</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/random.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Генераторы случайных чисел</span></span></a>
+  <a href="../data-trust/integrity-verification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Проверка целостности</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/hash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Хеш-функции</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../crypto/cypher.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../crypto/key-gen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Генерация ключей</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../crypto/algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Известные алгоритмы</span></span></a>
+  <a href="../data-trust/certificates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Сертификаты открытого ключа</span></span></a>
   </div>
 </li>
       </ul>
@@ -316,8 +309,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../data-integrity/integrity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
+  <a href="../data-preservation/backups.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Резервное копирование</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data-preservation/raid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Дисковые массивы</span></span></a>
   </div>
 </li>
       </ul>
@@ -325,13 +324,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-controls="quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-8-label">Цифровая подпись</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-8-label">Приложения</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-8" aria-labelledby="quarto-sidebar-section-8-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/public-key-outline.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
+  <a href="../crypto/lamport-signature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Подпись Лэмпорта</span></span></a>
   </div>
 </li>
       </ul>
@@ -346,20 +345,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Содержание</h2>
    
   <ul>
-  <li><a href="#sec-theory-access-policy" id="toc-sec-theory-access-policy" class="nav-link active" data-scroll-target="#sec-theory-access-policy"><span class="header-section-number">9.1</span> Процедура получения доступа к ресурсу</a></li>
-  <li><a href="#sec-theory-access-identification" id="toc-sec-theory-access-identification" class="nav-link" data-scroll-target="#sec-theory-access-identification"><span class="header-section-number">9.2</span> Идентификация</a></li>
-  <li><a href="#sec-theory-access-authentication" id="toc-sec-theory-access-authentication" class="nav-link" data-scroll-target="#sec-theory-access-authentication"><span class="header-section-number">9.3</span> Аутентификация</a>
+  <li><a href="#sec-theory-access-policy" id="toc-sec-theory-access-policy" class="nav-link active" data-scroll-target="#sec-theory-access-policy"><span class="header-section-number">10.1</span> Процедура получения доступа</a></li>
+  <li><a href="#sec-theory-access-identification" id="toc-sec-theory-access-identification" class="nav-link" data-scroll-target="#sec-theory-access-identification"><span class="header-section-number">10.2</span> Идентификация</a></li>
+  <li><a href="#sec-theory-access-authentication" id="toc-sec-theory-access-authentication" class="nav-link" data-scroll-target="#sec-theory-access-authentication"><span class="header-section-number">10.3</span> Аутентификация</a>
   <ul class="collapse">
-  <li><a href="#sec-theory-access-factors" id="toc-sec-theory-access-factors" class="nav-link" data-scroll-target="#sec-theory-access-factors"><span class="header-section-number">9.3.1</span> Факторы аутентификации</a></li>
-  <li><a href="#пароль" id="toc-пароль" class="nav-link" data-scroll-target="#пароль"><span class="header-section-number">9.3.2</span> Пароль</a></li>
-  <li><a href="#одноразовые-коды" id="toc-одноразовые-коды" class="nav-link" data-scroll-target="#одноразовые-коды"><span class="header-section-number">9.3.3</span> Одноразовые коды</a></li>
-  <li><a href="#использование-passkey" id="toc-использование-passkey" class="nav-link" data-scroll-target="#использование-passkey"><span class="header-section-number">9.3.4</span> Использование passkey</a></li>
-  </ul></li>
-  <li><a href="#sec-theory-access-authorization" id="toc-sec-theory-access-authorization" class="nav-link" data-scroll-target="#sec-theory-access-authorization"><span class="header-section-number">9.4</span> Авторизация конкретного запроса</a>
-  <ul class="collapse">
-  <li><a href="#sec-theory-access-dac" id="toc-sec-theory-access-dac" class="nav-link" data-scroll-target="#sec-theory-access-dac"><span class="header-section-number">9.4.1</span> Дискреционное управление доступом</a></li>
-  <li><a href="#sec-theory-access-mac" id="toc-sec-theory-access-mac" class="nav-link" data-scroll-target="#sec-theory-access-mac"><span class="header-section-number">9.4.2</span> Мандатное управление доступом</a></li>
-  <li><a href="#sec-theory-access-rbac" id="toc-sec-theory-access-rbac" class="nav-link" data-scroll-target="#sec-theory-access-rbac"><span class="header-section-number">9.4.3</span> Ролевое управление доступом</a></li>
+  <li><a href="#sec-theory-access-factors" id="toc-sec-theory-access-factors" class="nav-link" data-scroll-target="#sec-theory-access-factors"><span class="header-section-number">10.3.1</span> Факторы аутентификации</a></li>
+  <li><a href="#пароль" id="toc-пароль" class="nav-link" data-scroll-target="#пароль"><span class="header-section-number">10.3.2</span> Пароль</a></li>
+  <li><a href="#sec-theory-access-otp" id="toc-sec-theory-access-otp" class="nav-link" data-scroll-target="#sec-theory-access-otp"><span class="header-section-number">10.3.3</span> Одноразовые коды</a></li>
+  <li><a href="#sec-theory-access-passkey" id="toc-sec-theory-access-passkey" class="nav-link" data-scroll-target="#sec-theory-access-passkey"><span class="header-section-number">10.3.4</span> Использование passkey</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -367,9 +360,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../access-control/access-control.html">Управление доступом</a></li><li class="breadcrumb-item"><a href="../access-control/access-control.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Управление доступом</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../access-control/authentication.html">Управление доступом</a></li><li class="breadcrumb-item"><a href="../access-control/authentication.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Аутентификация</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-theory-access-control" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Управление доступом</span></span></h1>
+<h1 class="title"><span id="sec-theory-authentication" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Аутентификация</span></span></h1>
 </div>
 
 
@@ -393,281 +386,106 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="sec-theory-access-policy" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="sec-theory-access-policy"><span class="header-section-number">9.1</span> Процедура получения доступа к ресурсу</h2>
+<section id="sec-theory-access-policy" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="sec-theory-access-policy"><span class="header-section-number">10.1</span> Процедура получения доступа</h2>
 <p>Лена открывает задание на учебном портале и отправляет свою работу. Преподаватель Борис открывает ту же работу и выставляет оценку. Оба участника пользуются одним порталом, но выполняют разные действия. Система должна установить, от чьего имени поступает каждое обращение, и применить правила доступа к выбранному ресурсу.</p>
-<p><strong>Управление доступом</strong> — установление и обеспечение правил обращения к ресурсам информационной системы. Запрос описывают через <strong>субъект</strong>, <strong>объект</strong> и <strong>операцию</strong>. Субъект — активная сущность, выполняющая обращение; объект — ресурс, к которому обращаются; операция — запрошенное действие над ресурсом. Например, процесс текстового редактора записывает изменения в файл <code>report.txt</code>: процесс является субъектом, файл — объектом, запись — операцией. Разрешения читать файл и изменять его содержимое представляют собой разные права.</p>
-<p>В операционной системе субъектом обычно выступает процесс или поток с определёнными полномочиями. На портале запрос к хранилищу выполняет серверная программа. Прикладное правило связывает её действие с учётной записью пользователя: «Лена отправляет работу» или «Борис выставляет оценку». Поэтому программе необходимо учитывать и того, от чьего имени выполняется действие, и свойства выбранного объекта: например, принадлежность работы к курсу А.</p>
-<p><strong>Политика доступа</strong> задаёт допустимые действия и условия их выполнения, а также определяет, кто назначает и отзывает полномочия. Например, студенту разрешено отправлять собственную работу, а преподавателю курса — оценивать работы участников этого курса. <strong>Монитор обращений</strong> — абстрактный механизм, который контролирует обращение субъекта к объекту и применяет действующую политику. Он получает сведения о запросе, выносит решение и обеспечивает его исполнение. При разрешении действие достигает объекта; при отказе выполнение останавливается, как показано на <a href="#fig-access-architecture" class="quarto-xref">Рисунок&nbsp;<span>9.1</span></a>.</p>
-<div id="fig-access-architecture" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Запрос субъекта проходит через монитор, применяющий политику; разрешённое действие достигает объекта, запрещённое останавливается">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-access-architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../_prepared/visualizations/access-control/static/overview.svg" class="img-fluid figure-img" alt="Запрос субъекта проходит через монитор, применяющий политику; разрешённое действие достигает объекта, запрещённое останавливается">
+<div id="def-access-account" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 10.1 (Учётная запись)</strong></span> Учётная запись — хранимые системой сведения, с которыми связываются идентификатор, средства подтверждения входа и полномочия участника.</p>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-access-architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;9.1: Субъект, монитор, политика и объект
-</figcaption>
-</figure>
-</div>
-<p>Получение доступа включает три самостоятельные процедуры: <strong>идентификацию</strong>, <strong>аутентификацию</strong> и <strong>авторизацию</strong> (<a href="#fig-access-procedures" class="quarto-xref">Рисунок&nbsp;<span>9.2</span></a>). Их можно кратко описать так: идентификация — кем я представляюсь системе; аутентификация — являюсь ли я тем, за кого себя выдаю; авторизация — какие права у меня есть. При успешном входе система связывает сеанс с записью. При последующих обращениях она проверяет полномочия на конкретные ресурсы.</p>
-<div id="fig-access-procedures" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Логин выбирает запись Лены, подтверждение позволяет войти, полномочия определяют возможность отправить работу">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-access-procedures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../_prepared/visualizations/access-control/static/procedures.svg" class="img-fluid figure-img" alt="Логин выбирает запись Лены, подтверждение позволяет войти, полномочия определяют возможность отправить работу">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-access-procedures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;9.2: Идентификация, аутентификация и авторизация на учебном портале
-</figcaption>
-</figure>
-</div>
+<p>Получение доступа включает три самостоятельные процедуры. Идентификация выбирает запись, аутентификация проверяет предусмотренное для неё подтверждение, авторизация определяет допустимость конкретной операции (<a href="authorization.html" class="quarto-xref"><span>Глава 11</span></a>). При успешном входе система связывает сеанс с записью. При последующих обращениях она проверяет полномочия на выбранные ресурсы.</p>
 </section>
-<section id="sec-theory-access-identification" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="sec-theory-access-identification"><span class="header-section-number">9.2</span> Идентификация</h2>
-<p><strong>Идентификация</strong> устанавливает, с какой учётной записью связано обращение. При регистрации система создаёт запись и назначает ей идентификатор. При входе Лена вводит логин <code>lena</code>; портал находит соответствующую запись и далее использует её внутренний идентификатор. В Windows для субъектов безопасности применяются SID, в Linux учётная запись имеет числовой UID. Отображаемое имя человека позволяет узнавать его в интерфейсе, а системный идентификатор служит для однозначной связи записей и полномочий.</p>
+<section id="sec-theory-access-identification" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="sec-theory-access-identification"><span class="header-section-number">10.2</span> Идентификация</h2>
+<div id="def-access-identification" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 10.2 (Идентификация)</strong></span> Идентификация устанавливает, какая учётная запись указана при обращении.</p>
+</div>
+<p>При регистрации система создаёт запись и назначает ей идентификатор. При входе Лена вводит логин <code>lena</code>; портал находит соответствующую запись и далее использует её внутренний идентификатор. В Windows для субъектов безопасности применяются SID, в Linux учётная запись имеет числовой UID. Отображаемое имя человека позволяет узнавать его в интерфейсе, а системный идентификатор служит для однозначной связи записей и полномочий.</p>
 <p>Логин выбирает запись для дальнейшей проверки. Его знание ещё не подтверждает право действовать от её имени: логины могут быть общедоступны. Если Борис введёт <code>lena</code>, портал найдёт запись Лены, но потребует подтверждение, зарегистрированное именно для неё.</p>
 <p>Отдельного поля логина может не быть. Например, зарегистрированный ключ может сообщить сведения, по которым сервис найдёт запись. Функция идентификации при этом сохраняется: успешную проверку и последующие действия система связывает с определённой учётной записью.</p>
 </section>
-<section id="sec-theory-access-authentication" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="sec-theory-access-authentication"><span class="header-section-number">9.3</span> Аутентификация</h2>
-<p><strong>Аутентификация</strong> — проверка подтверждения, связанного с заявленной учётной записью. При настройке входа система устанавливает такую связь: сохраняет проверочное значение пароля, регистрирует средство получения одноразовых кодов или открытый ключ. Во время входа проверяется, может ли обращающийся предъявить соответствующее подтверждение.</p>
-<p>Пусть для входа на портал требуется только пароль. Лена выбирает запись <code>lena</code> и вводит правильный пароль. Портал устанавливает сеанс, связывает его с этой записью и распознаёт следующие запросы как её действия. Чтобы решить, может ли Лена оценить работу, потребуются сведения о её полномочиях: правильность пароля этого права не устанавливает.</p>
-<section id="sec-theory-access-factors" class="level3" data-number="9.3.1">
-<h3 data-number="9.3.1" class="anchored" data-anchor-id="sec-theory-access-factors"><span class="header-section-number">9.3.1</span> Факторы аутентификации</h3>
-<p><strong>Фактор аутентификации</strong> — вид основания, по которому подтверждается связь обращающегося с учётной записью. Обычно выделяют знание секрета, владение средством и свойство человека. <strong>Средство аутентификации</strong>, или <strong>аутентификатор</strong>, реализует конкретную проверку: например, приложение вычисляет одноразовые коды, а аппаратный ключ создаёт криптографический ответ. Различение фактора и средства позволяет установить, на каком основании система принимает подтверждение.</p>
-<section id="знание" class="level4" data-number="9.3.1.1">
-<h4 data-number="9.3.1.1" class="anchored" data-anchor-id="знание"><span class="header-section-number">9.3.1.1</span> Знание</h4>
+<section id="sec-theory-access-authentication" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="sec-theory-access-authentication"><span class="header-section-number">10.3</span> Аутентификация</h2>
+<div id="def-access-authentication" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 10.3 (Аутентификация)</strong></span> Аутентификация — проверка подтверждения, связанного с заявленной учётной записью.</p>
+</div>
+<p>При настройке входа система устанавливает такую связь: сохраняет проверочное значение пароля, регистрирует средство получения одноразовых кодов или открытый ключ. Во время входа проверяется, может ли обращающийся предъявить соответствующее подтверждение.</p>
+<p>Пусть для входа на портал требуется только пароль. Лена выбирает запись <code>lena</code> и вводит правильный пароль. Портал устанавливает сеанс, связывает его с этой записью и распознаёт следующие запросы как её действия. Чтобы решить, может ли Лена оценить работу, потребуются сведения о её полномочиях: правильность пароля этого права не устанавливает. Проверка полномочий рассматривается в разделе <a href="authorization.html" class="quarto-xref"><span>Глава 11</span></a>.</p>
+<section id="sec-theory-access-factors" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="sec-theory-access-factors"><span class="header-section-number">10.3.1</span> Факторы аутентификации</h3>
+<div id="def-access-factor" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 10.4 (Фактор аутентификации)</strong></span> Фактор аутентификации — вид основания, по которому подтверждается связь обращающегося с учётной записью. Выделяют знание секрета, владение средством и биометрический признак.</p>
+</div>
+<p><strong>Средство аутентификации</strong>, или <strong>аутентификатор</strong>, реализует конкретную проверку: например, приложение вычисляет одноразовые коды, а аппаратный ключ создаёт криптографический ответ. Различение фактора и средства позволяет установить, на каком основании система принимает подтверждение.</p>
+<section id="знание" class="level4" data-number="10.3.1.1">
+<h4 data-number="10.3.1.1" class="anchored" data-anchor-id="знание"><span class="header-section-number">10.3.1.1</span> Знание</h4>
 <p>Фактор знания основан на секрете, который человек знает и использует при проверке. Примеры — пароль и PIN. Для входа Лена предъявляет пароль, а портал проверяет полученное значение по заранее зарегистрированным сведениям. Успешная проверка показывает, что обращающийся смог предъявить правильный секрет. Узнавший пароль также получает возможность его предъявить. Второй пароль или секретный ответ использует тот же вид фактора.</p>
 </section>
-<section id="владение" class="level4" data-number="9.3.1.2">
-<h4 data-number="9.3.1.2" class="anchored" data-anchor-id="владение"><span class="header-section-number">9.3.1.2</span> Владение</h4>
+<section id="владение" class="level4" data-number="10.3.1.2">
+<h4 data-number="10.3.1.2" class="anchored" data-anchor-id="владение"><span class="header-section-number">10.3.1.2</span> Владение</h4>
 <p>Фактор владения основан на возможности использовать зарегистрированное средство: например, аппаратный ключ или приложение-аутентификатор. Средство хранит секретный материал и с его помощью создаёт подтверждение, которое принимает сервер. Пользователю достаточно иметь доступ к этой операции средства; запоминать его внутренний ключ не требуется.</p>
 <p>При такой проверке сервер получает доказательство использования средства. Он обычно не наблюдает сам телефон или ключ и не устанавливает, у кого физически находится устройство. Если секретный материал удалось скопировать, другое средство сможет создавать такие же подтверждения. Защита секрета от извлечения и правила переноса между устройствами определяют, насколько надёжно подтверждение связано с зарегистрированным средством.</p>
 </section>
-<section id="свойство-человека" class="level4" data-number="9.3.1.3">
-<h4 data-number="9.3.1.3" class="anchored" data-anchor-id="свойство-человека"><span class="header-section-number">9.3.1.3</span> Свойство человека</h4>
+<section id="свойство-человека" class="level4" data-number="10.3.1.3">
+<h4 data-number="10.3.1.3" class="anchored" data-anchor-id="свойство-человека"><span class="header-section-number">10.3.1.3</span> Свойство человека</h4>
 <p>Биометрический фактор основан на измеряемой характеристике человека: например, отпечатке пальца или изображении лица. При настройке создаётся эталон, а при проверке новое измерение сравнивается с ним по заданному правилу. Измерения одного человека отличаются друг от друга, поэтому биометрическая проверка допускает ошибки: своего пользователя можно отклонить, а постороннего — ошибочно принять.</p>
 <p>В распространённых средствах входа биометрия проверяется локально и разрешает использование криптографического ключа. Сервис получает созданное ключом подтверждение и сведения о выполненной проверке. При такой организации биометрический образец остаётся в локальной системе.</p>
 </section>
-<section id="этапы-аутентификации" class="level4" data-number="9.3.1.4">
-<h4 data-number="9.3.1.4" class="anchored" data-anchor-id="этапы-аутентификации"><span class="header-section-number">9.3.1.4</span> Этапы аутентификации</h4>
+<section id="этапы-аутентификации" class="level4" data-number="10.3.1.4">
+<h4 data-number="10.3.1.4" class="anchored" data-anchor-id="этапы-аутентификации"><span class="header-section-number">10.3.1.4</span> Этапы аутентификации</h4>
 <p><strong>Двухэтапная аутентификация</strong> в рассматриваемых примерах означает две последовательные обязательные проверки при входе. Например, портал сначала проверяет пароль, затем отдельное секретное слово. Обе проверки относятся к знанию.</p>
 <p><strong>Двухфакторная аутентификация (2FA)</strong> требует подтверждений двух разных видов. Пароль портала и код зарегистрированного приложения могут сочетать знание пароля и владение средством, создающим код. Два поля с паролями используют один вид фактора — знание. В процедуре с паролем и последующим кодом TOTP есть два этапа и два фактора. Число экранов входа может отличаться от числа проверок и факторов.</p>
 <p>Несколько факторов может объединять одно средство. Криптографическое средство подтверждает возможность его использования, а обязательный локальный PIN или биометрия разрешают применение ключа. Если проверка активации надёжно связана с использованием средства, процедура может сочетать владение со знанием или биометрическим фактором. Важно установить, какая проверка действительно требуется: простое касание ключа подтверждает присутствие человека, а проверка PIN — знание секрета активации. Для учёта второго фактора нужно проверить, требует ли приложение локальную активацию при использовании средства и как эта проверка связана с подтверждением входа. <a href="https://pages.nist.gov/800-63-4/sp800-63b/authenticators/">Виды аутентификаторов и факторы в NIST SP 800-63B-4</a>.</p>
 </section>
 </section>
-<section id="пароль" class="level3" data-number="9.3.2">
-<h3 data-number="9.3.2" class="anchored" data-anchor-id="пароль"><span class="header-section-number">9.3.2</span> Пароль</h3>
-<p><strong>Пароль</strong> — многократно используемый секрет для аутентификации. При настройке Лена выбирает пароль, а портал сохраняет сведения, позволяющие затем проверить предъявленное значение. При входе пароль передаётся сервису по защищённому соединению, и сервис выполняет проверку. Серверу следует хранить специальный проверочный результат, полученный из пароля, а порядок безопасного хранения разобран в разделе <a href="../crypto/password-storage.html" class="quarto-xref"><span>Глава 14</span></a>.</p>
+<section id="пароль" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="пароль"><span class="header-section-number">10.3.2</span> Пароль</h3>
+<div id="def-access-password" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 10.5 (Пароль)</strong></span> Пароль — многократно используемый секрет для аутентификации.</p>
+</div>
+<p>При настройке Лена выбирает пароль, а портал сохраняет сведения, позволяющие затем проверить предъявленное значение. При входе пароль передаётся сервису по защищённому соединению, и сервис выполняет проверку. Серверу следует хранить специальный проверочный результат, полученный из пароля, а порядок безопасного хранения разобран в разделе <a href="../crypto/password-storage.html" class="quarto-xref"><span>Глава 18</span></a>.</p>
 <p>Один и тот же пароль применяют при многих входах. Получивший его человек тоже может использовать его многократно. Если Лена введёт пароль на поддельном сайте, злоумышленник сможет предъявить полученное значение настоящему порталу. Защита соединения с поддельным сайтом не меняет этого результата: секрет уже оказался у другой стороны.</p>
 </section>
-<section id="одноразовые-коды" class="level3" data-number="9.3.3">
-<h3 data-number="9.3.3" class="anchored" data-anchor-id="одноразовые-коды"><span class="header-section-number">9.3.3</span> Одноразовые коды</h3>
-<p><strong>Одноразовый пароль (OTP, one-time password)</strong> — код, который предназначен для однократного успешного применения при аутентификации. Сервер проверяет код и отклоняет повторное применение уже принятого значения в пределах его допустимости. Для следующего подтверждения формируется новый код.</p>
+<section id="sec-theory-access-otp" class="level3" data-number="10.3.3">
+<h3 data-number="10.3.3" class="anchored" data-anchor-id="sec-theory-access-otp"><span class="header-section-number">10.3.3</span> Одноразовые коды</h3>
+<div id="def-access-otp" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 10.6 (Одноразовый пароль)</strong></span> Одноразовый пароль (OTP, one-time password) — код, предназначенный для однократного успешного применения при аутентификации.</p>
+</div>
+<p>Сервер проверяет код и отклоняет повторное применение уже принятого значения в пределах его допустимости. Для следующего подтверждения формируется новый код.</p>
 <p>Код можно вычислять из общего секрета и изменяющегося значения. В <strong>HOTP</strong> таким значением служит счётчик событий: приложение и сервер согласуют, какому шагу соответствует предъявленный код. В <strong>TOTP</strong> используется время. Приложение и сервер располагают одним секретом и независимо вычисляют код для текущего временного шага.</p>
 <p>При настройке TOTP портал создаёт секрет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> и передаёт его приложению, например в QR-коде. Приложение сохраняет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math>; сервер связывает свою копию с учётной записью Лены. Затем при входе приложение вычисляет и показывает короткий код. Лена вводит его на портале, а сервер сравнивает с ожидаемым значением. Секрет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math>, часто называемый <strong>seed</strong>, при каждом входе повторно не передаётся.</p>
-<section id="totp-как-фактор-владения" class="level4" data-number="9.3.3.1">
-<h4 data-number="9.3.3.1" class="anchored" data-anchor-id="totp-как-фактор-владения"><span class="header-section-number">9.3.3.1</span> TOTP как фактор владения</h4>
+<section id="totp-как-фактор-владения" class="level4" data-number="10.3.3.1">
+<h4 data-number="10.3.3.1" class="anchored" data-anchor-id="totp-как-фактор-владения"><span class="header-section-number">10.3.3.1</span> TOTP как фактор владения</h4>
 <p>Секрет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> хранится в приложении. Код получается из <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> и номера временного шага. Пользователь получает код, используя зарегистрированное приложение; он обычно не помнит <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> и не вводит его для входа. Именно возможность воспользоваться средством с сохранённым секретом служит основанием проверки владения.</p>
 <p>Секретный ключ хранится в средстве и используется алгоритмом для вычисления кода. Его наличие не делает процедуру проверкой знания пользователя. Аппаратный криптографический ключ также хранит секрет, однако пользователь подтверждает возможность применить ключ. При парольной проверке основанием служит предъявление самого многократно используемого секрета, известного человеку.</p>
 <p>Если скопировать <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> на другой телефон, обе копии будут вычислять одинаковые коды. Сервер по коду не различит исходное приложение и копию. Такое копирование создаёт второе средство, способное пройти ту же проверку, и нарушает исключительный контроль над секретом. Портал по коду подтверждает возможность использовать средство с зарегистрированным секретом; установить физическое наличие исходного телефона по одному коду он не может.</p>
 <p>Если портал сначала проверяет пароль Лены, затем TOTP, процедура сочетает знание пароля с владением средством. Если приложение обязательно требует собственный PIN или биометрию для использования секрета, следует отдельно учитывать эту проверку активации. Сам seed и вычисленный код не образуют два независимых фактора.</p>
 </section>
 </section>
-<section id="использование-passkey" class="level3" data-number="9.3.4">
-<h3 data-number="9.3.4" class="anchored" data-anchor-id="использование-passkey"><span class="header-section-number">9.3.4</span> Использование passkey</h3>
-<p><strong>Passkey</strong> — средство аутентификации на основе пары криптографических ключей. <strong>Закрытый ключ</strong> позволяет создать подтверждение; <strong>открытый ключ</strong> позволяет проверить его. Сервис сохраняет открытый ключ, а закрытым распоряжается средство пользователя. Для каждого сервиса создаются отдельные учётные данные.</p>
-<section id="регистрация-связать-ключ-с-учётной-записью" class="level4" data-number="9.3.4.1">
-<h4 data-number="9.3.4.1" class="anchored" data-anchor-id="регистрация-связать-ключ-с-учётной-записью"><span class="header-section-number">9.3.4.1</span> Регистрация: связать ключ с учётной записью</h4>
+<section id="sec-theory-access-passkey" class="level3" data-number="10.3.4">
+<h3 data-number="10.3.4" class="anchored" data-anchor-id="sec-theory-access-passkey"><span class="header-section-number">10.3.4</span> Использование passkey</h3>
+<div id="def-access-passkey" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 10.7 (Passkey)</strong></span> Passkey — средство аутентификации на основе пары криптографических ключей.</p>
+</div>
+<p><strong>Закрытый ключ</strong> позволяет создать подтверждение; <strong>открытый ключ</strong> позволяет проверить его. Сервис сохраняет открытый ключ, а закрытым распоряжается средство пользователя. Для каждого сервиса создаются отдельные учётные данные.</p>
+<section id="регистрация-связать-ключ-с-учётной-записью" class="level4" data-number="10.3.4.1">
+<h4 data-number="10.3.4.1" class="anchored" data-anchor-id="регистрация-связать-ключ-с-учётной-записью"><span class="header-section-number">10.3.4.1</span> Регистрация: связать ключ с учётной записью</h4>
 <p>Пусть Лена уже вошла в портал и добавляет новый passkey. Портал выдаёт запрос на регистрацию. Браузер передаёт его выбранному средству: например, системному хранилищу ключей или аппаратному ключу безопасности. Средство создаёт пару ключей для сервиса и возвращает регистрационные данные. Сервер сохраняет открытый ключ и идентификатор учётных данных в связи с записью <code>lena</code>.</p>
 <p>В результате у средства есть возможность подписывать подтверждения, а у портала — возможность проверять их для записи Лены. Регистрация нового ключа требует доверенного основания связать его с записью: например, уже выполненного входа и предусмотренной сервисом дополнительной проверки. Само создание пары ключей такой связи с человеком не устанавливает.</p>
 <p>Passkey может быть <strong>привязан к устройству</strong> или <strong>синхронизироваться</strong> между устройствами через поставщика хранилища. Поэтому после регистрации ключ не обязательно существует только на одном телефоне. В обоих случаях сервис получает открытый ключ; закрытый ключ ему для проверки не требуется.</p>
 </section>
-<section id="вход-подтвердить-свежий-запрос" class="level4" data-number="9.3.4.2">
-<h4 data-number="9.3.4.2" class="anchored" data-anchor-id="вход-подтвердить-свежий-запрос"><span class="header-section-number">9.3.4.2</span> Вход: подтвердить свежий запрос</h4>
+<section id="вход-подтвердить-свежий-запрос" class="level4" data-number="10.3.4.2">
+<h4 data-number="10.3.4.2" class="anchored" data-anchor-id="вход-подтвердить-свежий-запрос"><span class="header-section-number">10.3.4.2</span> Вход: подтвердить свежий запрос</h4>
 <p>При следующем входе портал выдаёт новое случайное проверочное значение — <strong>challenge</strong>. Средство после необходимой локальной проверки создаёт подписанный ответ, связанный с запросом и сервисом. Браузер отправляет ответ порталу, а портал проверяет подпись сохранённым открытым ключом, соответствие выданному запросу и предусмотренные протоколом сведения о сайте и проверке пользователя. Старый ответ не подходит к новому challenge.</p>
 <p>Браузер и протокол WebAuthn связывают применение ключа с сервисом и адресом сайта. Поддельный сайт с другим доменным именем не может запросить действительное подтверждение для настоящего портала так, как он может попросить человека ввести пароль или код. Закрытый ключ при входе сайту не передаётся. <a href="https://www.w3.org/TR/webauthn-2/">Регистрация и аутентификация WebAuthn</a>.</p>
 <p>Для разрешения использовать ключ устройство может потребовать PIN или биометрию. Эта проверка проходит локально: портал получает результат проверки в составе протокола, а PIN и изображение отпечатка остаются на устройстве. WebAuthn различает <strong>присутствие пользователя</strong> — например, касание аппаратного ключа — и <strong>проверку пользователя</strong> с PIN или биометрией. Сервер должен требовать и проверять нужный режим. Набор факторов конкретной процедуры зависит от обязательных проверок при использовании ключа. <a href="https://www.w3.org/TR/webauthn-2/#user-verification">Проверка пользователя в WebAuthn</a>.</p>
+
+
+
 </section>
-</section>
-</section>
-<section id="sec-theory-access-authorization" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="sec-theory-access-authorization"><span class="header-section-number">9.4</span> Авторизация конкретного запроса</h2>
-<p><strong>Авторизация</strong> определяет, разрешено ли установленному субъекту выполнить указанную операцию над выбранным объектом при действующих условиях. Полномочия назначаются заранее, а при обращении система применяет их к конкретному запросу.</p>
-<p>Лена успешно вошла в Moodle и открыла задание курса А. Ей назначена роль студента: она может отправить работу, но не выставить оценку. Если Лена отправит запрос на оценивание, сервер отклонит его. Борису как преподавателю этого курса та же операция разрешена. Решение меняется при изменении назначения роли или контекста, в котором она действует.</p>
-<p>Монитор должен контролировать защищённые пути обращения и быть защищён от обхода и изменения. На портале проверка выполняется на сервере, который сохраняет оценку. Скрытая кнопка в браузере лишь меняет интерфейс: пользователь может отправить запрос другим способом, и сервер всё равно обязан проверить полномочие. В операционной системе проверка часто происходит при открытии файла; полученный дескриптор затем позволяет выполнять операции в пределах предоставленных прав.</p>
-<p>Политика может учитывать дополнительные условия: например, ведомость уже закрыта для правки. Сведения о полномочиях и состоянии объекта берутся из доверенного состояния системы. Поле пользовательского запроса «моя роль — преподаватель» не заменяет назначение на сервере.</p>
-<p>Способ представления и изменения полномочий описывают <strong>модели управления доступом</strong>. В дискреционной модели существенны полномочия владельца распределять доступ, в мандатной — обязательные ограничения политики, в ролевой — связь разрешений с обязанностями пользователей.</p>
-<section id="sec-theory-access-dac" class="level3" data-number="9.4.1">
-<h3 data-number="9.4.1" class="anchored" data-anchor-id="sec-theory-access-dac"><span class="header-section-number">9.4.1</span> Дискреционное управление доступом</h3>
-<p>При <strong>дискреционном управлении доступом (DAC, discretionary access control)</strong> владелец объекта или другой уполномоченный субъект может предоставлять права на этот объект по своему усмотрению в установленных системой пределах. Для решения о конкретном обращении проверяются уже назначенные права; для изменения доступа проверяется отдельное полномочие управлять ими.</p>
-<p>На <a href="#fig-access-dac" class="quarto-xref">Рисунок&nbsp;<span>9.3</span></a> показаны два файла: «Черновик» и «Материалы». Анна владеет черновиком и может его читать и изменять. Борису она предоставила чтение; Вера доступа к черновику не получила. Когда Борис открывает файл для чтения, существующее назначение разрешает операцию. Запрос на запись отклоняется, пока Анна не предоставит ему соответствующее право.</p>
-<div id="fig-access-dac" class="quarto-float quarto-figure quarto-figure-center anchored" alt="В матрице строки соответствуют Анне, Борису и Вере, столбцы — черновику и материалам; выделенный столбец образует ACL черновика, которым управляет владелец Анна">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-access-dac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../_prepared/visualizations/access-control/dac/static/overview.svg" class="img-fluid figure-img" alt="В матрице строки соответствуют Анне, Борису и Вере, столбцы — черновику и материалам; выделенный столбец образует ACL черновика, которым управляет владелец Анна">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-access-dac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;9.3: Матрица доступа и ACL отдельного объекта
-</figcaption>
-</figure>
-</div>
-<p><strong>Матрица доступа</strong> располагает субъектов по строкам, объекты по столбцам, а разрешённые операции — в клетках. <strong>Список управления доступом (ACL)</strong> собирает записи для одного объекта: кому какие действия разрешены. На рисунке выделенный столбец «Черновик» преобразован в его ACL. Обозначение <code>r</code> соответствует чтению, <code>w</code> — записи.</p>
-<p>Матрица и ACL представляют назначения прав. Такие представления применяются и в других моделях; например, таблица может показывать права, полученные через роли. В DAC уполномоченный субъект может менять распределение доступа по своему усмотрению. На рисунке эту связь показывает владелец, который меняет ACL черновика.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dacLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/access-control/dac/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>viewof dacRequest <span class="op">=</span> dacLesson<span class="op">.</span><span class="fu">dacControls</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="3" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 2;"><span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dacLesson<span class="op">.</span><span class="fu">dacDiagram</span>(dacRequest)</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-dac-decision" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-dac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-2" data-nodetype="expression">
-
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;9.4: Применение дискреционной политики
-</figcaption>
-</figure>
-</div>
-</div>
-<p>Сначала сравните чтение и запись Бориса. Затем выберите вариант, в котором Анна выдала ему <code>w</code>: изменится запись в ACL, а проверка того же запроса на запись завершится разрешением. Изменение политики и применение политики здесь происходят на разных этапах.</p>
-</section>
-<section id="sec-theory-access-mac" class="level3" data-number="9.4.2">
-<h3 data-number="9.4.2" class="anchored" data-anchor-id="sec-theory-access-mac"><span class="header-section-number">9.4.2</span> Мандатное управление доступом</h3>
-<p>При <strong>мандатном управлении доступом (MAC, mandatory access control)</strong> обязательная политика ограничивает действия субъектов независимо от обычного усмотрения владельца объекта. Решение может учитывать метки субъектов и объектов и установленные отношения между ними.</p>
-<p>Учебный вариант <strong>модели Белла — Лападулы</strong> защищает конфиденциальность информации. В нём заданы три упорядоченных уровня: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mn>1</mn></msub><mo>&lt;</mo><msub><mi>L</mi><mn>2</mn></msub><mo>&lt;</mo><msub><mi>L</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">L_1 &lt; L_2 &lt; L_3</annotation></semantics></math>. Файл «Материалы» (<code>handout.txt</code>) имеет метку <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>1</mn></msub><annotation encoding="application/x-tex">L_1</annotation></semantics></math>, «Черновик» (<code>draft.txt</code>) — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>2</mn></msub><annotation encoding="application/x-tex">L_2</annotation></semantics></math>, «Ответы» (<code>answers.txt</code>) — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>3</mn></msub><annotation encoding="application/x-tex">L_3</annotation></semantics></math>. Процесс Лены работает на <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>2</mn></msub><annotation encoding="application/x-tex">L_2</annotation></semantics></math>. Широкие полосы на <a href="#fig-access-mac" class="quarto-xref">Рисунок&nbsp;<span>9.5</span></a> обозначают уровни; круг обозначает действующий процесс, значки документов — объекты.</p>
-<div id="fig-access-mac" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Три вертикально расположенные области L3, L2 и L1; процесс Лены на L2 и файлы с отдельными метками уровней">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-access-mac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../_prepared/visualizations/access-control/mac/static/overview.svg" class="img-fluid figure-img" alt="Три вертикально расположенные области L3, L2 и L1; процесс Лены на L2 и файлы с отдельными метками уровней">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-access-mac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;9.5: Уровни и потоки в мандатной модели
-</figcaption>
-</figure>
-</div>
-<p>При <strong>чтении</strong> информация переходит из файла в процесс. Правило «<strong>не читать выше</strong>» разрешает чтение, если уровень процесса не ниже уровня файла. Поэтому процесс <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>2</mn></msub><annotation encoding="application/x-tex">L_2</annotation></semantics></math> читает материалы <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>1</mn></msub><annotation encoding="application/x-tex">L_1</annotation></semantics></math> и черновик <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>2</mn></msub><annotation encoding="application/x-tex">L_2</annotation></semantics></math>, но не получает ответы <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>3</mn></msub><annotation encoding="application/x-tex">L_3</annotation></semantics></math>.</p>
-<p>При <strong>записи</strong> информация переходит из процесса в файл. Правило «<strong>не писать ниже</strong>» разрешает запись, если уровень файла не ниже уровня процесса. Процесс <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>2</mn></msub><annotation encoding="application/x-tex">L_2</annotation></semantics></math> может записать данные в черновик <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>2</mn></msub><annotation encoding="application/x-tex">L_2</annotation></semantics></math> или добавить данные в файл <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>3</mn></msub><annotation encoding="application/x-tex">L_3</annotation></semantics></math>, но запись в материалы <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>1</mn></msub><annotation encoding="application/x-tex">L_1</annotation></semantics></math> запрещена: результат мог бы перенести сведения <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>2</mn></msub><annotation encoding="application/x-tex">L_2</annotation></semantics></math> на более низкий уровень.</p>
-<p>В этом примере запись на <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>3</mn></msub><annotation encoding="application/x-tex">L_3</annotation></semantics></math> означает операцию без чтения существующего содержимого файла. <strong>Обычное редактирование</strong> требует обеих возможностей: прочитать файл и записать изменения. Для процесса <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>2</mn></msub><annotation encoding="application/x-tex">L_2</annotation></semantics></math> обе проверки разрешают работу с черновиком <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>2</mn></msub><annotation encoding="application/x-tex">L_2</annotation></semantics></math>. Ответы <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>3</mn></msub><annotation encoding="application/x-tex">L_3</annotation></semantics></math> доступны ему лишь для предусмотренной записи без чтения, материалы <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>1</mn></msub><annotation encoding="application/x-tex">L_1</annotation></semantics></math> — лишь для чтения.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>macLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/access-control/mac/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>viewof macRequest <span class="op">=</span> macLesson<span class="op">.</span><span class="fu">macControls</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="3" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 2;"><span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>macLesson<span class="op">.</span><span class="fu">macDiagram</span>(macRequest)</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-mac-decision" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-mac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-4" data-nodetype="expression">
-
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;9.6: Применение мандатной политики к одному запросу
-</figcaption>
-</figure>
-</div>
-</div>
-<p>В интерактивной схеме сначала выбирается запрос, затем определяются метки процесса и файла. После этого применяется правило для выбранной операции и выносится решение. Стрелка на модели показывает направление передачи данных, а подсветка блок-схемы — выполняемую проверку. Сравните чтение ответов <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>3</mn></msub><annotation encoding="application/x-tex">L_3</annotation></semantics></math> и запись в них: уровни те же, но направление потока меняет результат.</p>
-<p>Для проверки берётся <strong>текущий уровень процесса</strong>. Если допуск Лены позволяет ей работать до <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>3</mn></msub><annotation encoding="application/x-tex">L_3</annotation></semantics></math>, запущенный на <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>2</mn></msub><annotation encoding="application/x-tex">L_2</annotation></semantics></math> процесс всё равно проверяется по <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>2</mn></msub><annotation encoding="application/x-tex">L_2</annotation></semantics></math>. Показанный процесс Бориса на <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>3</mn></msub><annotation encoding="application/x-tex">L_3</annotation></semantics></math> может читать ответы, однако записать полученные сведения в материалы <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mn>1</mn></msub><annotation encoding="application/x-tex">L_1</annotation></semantics></math> ему запрещено. Так политика препятствует переносу закрытой информации вниз по шкале.</p>
-</section>
-<section id="sec-theory-access-rbac" class="level3" data-number="9.4.3">
-<h3 data-number="9.4.3" class="anchored" data-anchor-id="sec-theory-access-rbac"><span class="header-section-number">9.4.3</span> Ролевое управление доступом</h3>
-<p>При <strong>ролевом управлении доступом (RBAC, role-based access control)</strong> разрешения объединяются по обязанностям в <strong>роли</strong>, а пользователям назначаются роли. Роль связывает организационную функцию с набором действий: например, студент отправляет работу, преподаватель оценивает её. Изменение обязанностей выражается в изменении назначений.</p>
-<p>На <a href="#fig-access-rbac" class="quarto-xref">Рисунок&nbsp;<span>9.7</span></a> Лене и Илье назначена роль «Студент», Борису — «Преподаватель». Обе роли разрешают открыть задание. Студенту дополнительно разрешено отправить работу, преподавателю — оценить работу. Все эти назначения действуют в курсе А.</p>
-<div id="fig-access-rbac" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Лена и Илья связаны с ролью Студент, Борис — с ролью Преподаватель; роли соединены с разрешениями открыть задание, отправить и оценить работу">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-access-rbac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../_prepared/visualizations/access-control/rbac/static/overview.svg" class="img-fluid figure-img" alt="Лена и Илья связаны с ролью Студент, Борис — с ролью Преподаватель; роли соединены с разрешениями открыть задание, отправить и оценить работу">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-access-rbac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;9.7: Пользователи, роли и разрешения в курсе А
-</figcaption>
-</figure>
-</div>
-<p>Проверку можно проследить как путь <strong>пользователь → назначенная роль → требуемое разрешение</strong>. Для запроса Лены «отправить работу» существует путь через роль студента. Для запроса «оценить работу» у Лены такого пути нет. У Бориса оценивание разрешено через роль преподавателя. Если курс получит ещё одного студента, ему достаточно назначить существующую роль; связи роли с разрешениями сохраняются.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rbacLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/access-control/rbac/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>viewof rbacRequest <span class="op">=</span> rbacLesson<span class="op">.</span><span class="fu">rbacControls</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-5-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-5-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="3" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 2;"><span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>rbacLesson<span class="op">.</span><span class="fu">rbacDiagram</span>(rbacRequest)</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-rbac-decision" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-rbac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-6" data-nodetype="expression">
-
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rbac-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;9.8: Применение ролевой политики
-</figcaption>
-</figure>
-</div>
-</div>
-<p>Сначала сравните запросы Лены на открытие, отправку и оценивание. Затем выберите оценивание от имени Бориса.</p>
-
-
-
 </section>
 </section>
 
 </main> <!-- /main -->
-<script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImRhY0xlc3NvbiA9IGF3YWl0IGltcG9ydChhd2FpdCBGaWxlQXR0YWNobWVudChcIi9fcHJlcGFyZWQvdmlzdWFsaXphdGlvbnMvYWNjZXNzLWNvbnRyb2wvZGFjL2xlc3Nvbi5qc1wiKS51cmwoKSlcbnZpZXdvZiBkYWNSZXF1ZXN0ID0gZGFjTGVzc29uLmRhY0NvbnRyb2xzKClcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImRhY0xlc3Nvbi5kYWNEaWFncmFtKGRhY1JlcXVlc3QpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJtYWNMZXNzb24gPSBhd2FpdCBpbXBvcnQoYXdhaXQgRmlsZUF0dGFjaG1lbnQoXCIvX3ByZXBhcmVkL3Zpc3VhbGl6YXRpb25zL2FjY2Vzcy1jb250cm9sL21hYy9sZXNzb24uanNcIikudXJsKCkpXG52aWV3b2YgbWFjUmVxdWVzdCA9IG1hY0xlc3Nvbi5tYWNDb250cm9scygpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTQiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJtYWNMZXNzb24ubWFjRGlhZ3JhbShtYWNSZXF1ZXN0KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoicmJhY0xlc3NvbiA9IGF3YWl0IGltcG9ydChhd2FpdCBGaWxlQXR0YWNobWVudChcIi9fcHJlcGFyZWQvdmlzdWFsaXphdGlvbnMvYWNjZXNzLWNvbnRyb2wvcmJhYy9sZXNzb24uanNcIikudXJsKCkpXG52aWV3b2YgcmJhY1JlcXVlc3QgPSByYmFjTGVzc29uLnJiYWNDb250cm9scygpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTYiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJyYmFjTGVzc29uLnJiYWNEaWFncmFtKHJiYWNSZXF1ZXN0KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdkYWNSZXF1ZXN0JykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ21hY1JlcXVlc3QnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgncmJhY1JlcXVlc3QnKSJ9XX0=
-</script>
-<script type="module">
-if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../../access-control";
-window._ojs.paths.runtimeToRoot = "../..";
-window._ojs.paths.docToRoot = "..";
-window._ojs.selfContained = false;
-window._ojs.runtime.interpretFromScriptTags();
-</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1073,13 +891,13 @@ window._ojs.runtime.interpretFromScriptTags();
   </script>
 <nav class="page-navigation" aria-label="Страница">
   <div class="nav-page nav-page-previous">
-      <a href="../standards-risk/requirements-decisions.html" class="pagination-link" aria-label="Применение нормативно-правовых актов">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Применение нормативно-правовых актов</span></span>
+      <a href="../risk-assessment.html" class="pagination-link" aria-label="Оценка риска">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Оценка риска</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../crypto/random.html" class="pagination-link" aria-label="Генераторы случайных чисел">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Генераторы случайных чисел</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../access-control/authorization.html" class="pagination-link" aria-label="Авторизация">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Авторизация</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="535" viewBox="0 0 1440 535" role="img" aria-labelledby="description">
+<desc id="description">По горизонтали время: воскресенье, понедельник, вторник. В понедельник изменяется A, во вторник B. Полные копии каждый раз содержат все три файла; инкрементные после воскресенья содержат A₁, затем B₁; дифференциальные — A₁, затем A₁ и B₁. В каждом столбце файлы размещены внутри отдельной копии. Стрелки связывают копию с той, после которой отсчитываются изменения.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#5a7183"/></marker></defs>
+<style>text{font-family:"DejaVu Sans",sans-serif;fill:#20384b;font-size:27px}.kind{font-size:26px;font-weight:600}.copy{stroke:#a9b7c1;stroke-width:2;fill:none}.reference{fill:none;stroke:#5a7183;stroke-width:2.5;marker-end:url(#arrow)}.guide{stroke:#dce3e8;stroke-width:1.5;stroke-dasharray:5 6}</style>
+<rect width="1440" height="535" fill="#fff"/>
+<text x="450" y="30" text-anchor="middle">Воскресенье</text>
+<path class="guide" d="M450 44V525"/>
+<text x="850" y="30" text-anchor="middle">Понедельник</text>
+<path class="guide" d="M850 44V525"/>
+<text x="1250" y="30" text-anchor="middle">Вторник</text>
+<path class="guide" d="M1250 44V525"/>
+<text class="kind" x="14" y="134">Полная</text>
+<rect x="330" y="52" width="240" height="28" fill="#dceafb" stroke="#507ba4" stroke-width="1.5"/>
+<text x="450" y="66.0" text-anchor="middle" dominant-baseline="central">A₀</text>
+<rect x="330" y="80" width="240" height="40" fill="#dcefe8" stroke="#448b70" stroke-width="1.5"/>
+<text x="450" y="100.0" text-anchor="middle" dominant-baseline="central">B₀</text>
+<rect x="330" y="120" width="240" height="60" fill="#fff0d6" stroke="#b58b3d" stroke-width="1.5"/>
+<text x="450" y="150.0" text-anchor="middle" dominant-baseline="central">C₀</text>
+<path class="copy" d="M320 172V186H580V172"/>
+<rect x="730" y="52" width="240" height="28" fill="#dceafb" stroke="#507ba4" stroke-width="1.5"/>
+<text x="850" y="66.0" text-anchor="middle" dominant-baseline="central">A₁</text>
+<rect x="730" y="80" width="240" height="40" fill="#dcefe8" stroke="#448b70" stroke-width="1.5"/>
+<text x="850" y="100.0" text-anchor="middle" dominant-baseline="central">B₀</text>
+<rect x="730" y="120" width="240" height="60" fill="#fff0d6" stroke="#b58b3d" stroke-width="1.5"/>
+<text x="850" y="150.0" text-anchor="middle" dominant-baseline="central">C₀</text>
+<path class="copy" d="M720 172V186H980V172"/>
+<rect x="1130" y="52" width="240" height="28" fill="#dceafb" stroke="#507ba4" stroke-width="1.5"/>
+<text x="1250" y="66.0" text-anchor="middle" dominant-baseline="central">A₁</text>
+<rect x="1130" y="80" width="240" height="40" fill="#dcefe8" stroke="#448b70" stroke-width="1.5"/>
+<text x="1250" y="100.0" text-anchor="middle" dominant-baseline="central">B₁</text>
+<rect x="1130" y="120" width="240" height="60" fill="#fff0d6" stroke="#b58b3d" stroke-width="1.5"/>
+<text x="1250" y="150.0" text-anchor="middle" dominant-baseline="central">C₀</text>
+<path class="copy" d="M1120 172V186H1380V172"/>
+<text class="kind" x="14" y="304">Инкрементная</text>
+<rect x="330" y="222" width="240" height="28" fill="#dceafb" stroke="#507ba4" stroke-width="1.5"/>
+<text x="450" y="236.0" text-anchor="middle" dominant-baseline="central">A₀</text>
+<rect x="330" y="250" width="240" height="40" fill="#dcefe8" stroke="#448b70" stroke-width="1.5"/>
+<text x="450" y="270.0" text-anchor="middle" dominant-baseline="central">B₀</text>
+<rect x="330" y="290" width="240" height="60" fill="#fff0d6" stroke="#b58b3d" stroke-width="1.5"/>
+<text x="450" y="320.0" text-anchor="middle" dominant-baseline="central">C₀</text>
+<path class="copy" d="M320 342V356H580V342"/>
+<rect x="730" y="322" width="240" height="28" fill="#dceafb" stroke="#507ba4" stroke-width="1.5"/>
+<text x="850" y="336.0" text-anchor="middle" dominant-baseline="central">A₁</text>
+<path class="copy" d="M720 342V356H980V342"/>
+<rect x="1130" y="310" width="240" height="40" fill="#dcefe8" stroke="#448b70" stroke-width="1.5"/>
+<text x="1250" y="330.0" text-anchor="middle" dominant-baseline="central">B₁</text>
+<path class="copy" d="M1120 342V356H1380V342"/>
+<text class="kind" x="14" y="474">Дифференциальная</text>
+<rect x="330" y="392" width="240" height="28" fill="#dceafb" stroke="#507ba4" stroke-width="1.5"/>
+<text x="450" y="406.0" text-anchor="middle" dominant-baseline="central">A₀</text>
+<rect x="330" y="420" width="240" height="40" fill="#dcefe8" stroke="#448b70" stroke-width="1.5"/>
+<text x="450" y="440.0" text-anchor="middle" dominant-baseline="central">B₀</text>
+<rect x="330" y="460" width="240" height="60" fill="#fff0d6" stroke="#b58b3d" stroke-width="1.5"/>
+<text x="450" y="490.0" text-anchor="middle" dominant-baseline="central">C₀</text>
+<path class="copy" d="M320 512V526H580V512"/>
+<rect x="730" y="492" width="240" height="28" fill="#dceafb" stroke="#507ba4" stroke-width="1.5"/>
+<text x="850" y="506.0" text-anchor="middle" dominant-baseline="central">A₁</text>
+<path class="copy" d="M720 512V526H980V512"/>
+<rect x="1130" y="452" width="240" height="28" fill="#dceafb" stroke="#507ba4" stroke-width="1.5"/>
+<text x="1250" y="466.0" text-anchor="middle" dominant-baseline="central">A₁</text>
+<rect x="1130" y="480" width="240" height="40" fill="#dcefe8" stroke="#448b70" stroke-width="1.5"/>
+<text x="1250" y="500.0" text-anchor="middle" dominant-baseline="central">B₁</text>
+<path class="copy" d="M1120 512V526H1380V512"/>
+<path class="reference" d="M570 286H690V250H850V308"/>
+<path class="reference" d="M970 336H1065V270H1250V296"/>
+<circle cx="570" cy="286" r="5" fill="#5a7183"/><circle cx="970" cy="336" r="5" fill="#5a7183"/>
+<path class="reference" d="M570 456H650V378H1250V438"/>
+<path class="reference" d="M850 378V478"/>
+<circle cx="570" cy="456" r="5" fill="#5a7183"/>
+</svg>

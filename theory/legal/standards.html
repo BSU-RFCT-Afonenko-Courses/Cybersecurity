@@ -9,7 +9,7 @@
 <meta name="author" content="Афоненко Анатолий">
 <meta name="author" content="Войтович Елизавета">
 
-<title>12&nbsp; Симметричное шифрование – Теория</title>
+<title>6&nbsp; Нормативные требования – Теория</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -28,41 +28,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -73,8 +38,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../crypto/key-gen.html" rel="next">
-<link href="../crypto/hash.html" rel="prev">
+<link href="../security-center/organization.html" rel="next">
+<link href="../legal/protection-measures.html" rel="prev">
 <link href="../site_libs/quarto-contrib/quarto-project/course-brand/assets/cyber-kotost-small.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -126,8 +91,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Поиск"
   }
 }</script>
-<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
-<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
 </head>
@@ -151,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/random.html">Криптография</a></li><li class="breadcrumb-item"><a href="../crypto/cypher.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../legal/information-access.html">Правовые основы</a></li><li class="breadcrumb-item"><a href="../legal/standards.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Нормативные требования</span></a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -213,6 +176,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Меры защиты информации</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../legal/standards.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Нормативные требования</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -224,27 +193,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../security-center/organization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../security-center/workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Обобщенный процесс оказания услуги обеспечения кибербезопасности</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Обобщенный процесс оказания услуги обеспечения кибербезопасности</span></span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../risk-assessment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Оценка риска</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-4-label">Требования к защите</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../standards-risk/requirements-decisions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Применение нормативно-правовых актов</span></span></a>
+  <a href="../access-control/authentication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Аутентификация</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../access-control/authorization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Авторизация</span></span></a>
   </div>
 </li>
       </ul>
@@ -252,13 +233,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-5-label">Управление доступом</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../access-control/access-control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Управление доступом</span></span></a>
+  <a href="../crypto/randomness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Криптографическая случайность</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/symmetric-encryption.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/hash-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хеш-функции</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/asymmetric-cryptography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/digital-signature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Цифровая подпись</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/key-management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Управление ключами</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
   </div>
 </li>
       </ul>
@@ -266,43 +283,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-6-label">Криптография</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Доверие к данным</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/random.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Генераторы случайных чисел</span></span></a>
+  <a href="../data-trust/integrity-verification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Проверка целостности</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/hash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Хеш-функции</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../crypto/cypher.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../crypto/key-gen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Генерация ключей</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../crypto/password-storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Хранение паролей</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../crypto/algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Известные алгоритмы</span></span></a>
+  <a href="../data-trust/certificates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Сертификаты открытого ключа</span></span></a>
   </div>
 </li>
       </ul>
@@ -315,8 +308,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../data-integrity/integrity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Целостность данных</span></span></a>
+  <a href="../data-preservation/backups.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Резервное копирование</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data-preservation/raid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Дисковые массивы</span></span></a>
   </div>
 </li>
       </ul>
@@ -324,13 +323,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-controls="quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text" id="quarto-sidebar-section-8-label">Цифровая подпись</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+ <span class="menu-text" id="quarto-sidebar-section-8-label">Приложения</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
       <ul id="quarto-sidebar-section-8" aria-labelledby="quarto-sidebar-section-8-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../crypto/public-key-outline.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Асимметричная криптография</span></span></a>
+  <a href="../crypto/lamport-signature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Подпись Лэмпорта</span></span></a>
   </div>
 </li>
       </ul>
@@ -345,22 +344,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Содержание</h2>
    
   <ul>
-  <li><a href="#общий-секрет" id="toc-общий-секрет" class="nav-link active" data-scroll-target="#общий-секрет"><span class="header-section-number">12.1</span> Общий секрет</a></li>
-  <li><a href="#шифр-цезаря" id="toc-шифр-цезаря" class="nav-link" data-scroll-target="#шифр-цезаря"><span class="header-section-number">12.2</span> Шифр Цезаря</a></li>
-  <li><a href="#исключающее-или" id="toc-исключающее-или" class="nav-link" data-scroll-target="#исключающее-или"><span class="header-section-number">12.3</span> Исключающее ИЛИ</a>
-  <ul class="collapse">
-  <li><a href="#повтор-ключевого-потока" id="toc-повтор-ключевого-потока" class="nav-link" data-scroll-target="#повтор-ключевого-потока"><span class="header-section-number">12.3.1</span> Повтор ключевого потока</a></li>
-  </ul></li>
-  <li><a href="#стойкость-шифра" id="toc-стойкость-шифра" class="nav-link" data-scroll-target="#стойкость-шифра"><span class="header-section-number">12.4</span> Стойкость шифра</a></li>
+  <li><a href="#sec-theory-legal-standard-obligation" id="toc-sec-theory-legal-standard-obligation" class="nav-link active" data-scroll-target="#sec-theory-legal-standard-obligation"><span class="header-section-number">6.1</span> Обязательность стандартов</a></li>
+  <li><a href="#sec-theory-legal-regulatory-map" id="toc-sec-theory-legal-regulatory-map" class="nav-link" data-scroll-target="#sec-theory-legal-regulatory-map"><span class="header-section-number">6.2</span> Применение нормативных документов</a></li>
+  <li><a href="#sec-theory-legal-protection-system" id="toc-sec-theory-legal-protection-system" class="nav-link" data-scroll-target="#sec-theory-legal-protection-system"><span class="header-section-number">6.3</span> Создание системы защиты информации</a></li>
+  <li><a href="#sec-theory-legal-protection-tools" id="toc-sec-theory-legal-protection-tools" class="nav-link" data-scroll-target="#sec-theory-legal-protection-tools"><span class="header-section-number">6.4</span> Подтверждение соответствия средств защиты</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../crypto/random.html">Криптография</a></li><li class="breadcrumb-item"><a href="../crypto/cypher.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Путь"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../legal/information-access.html">Правовые основы</a></li><li class="breadcrumb-item"><a href="../legal/standards.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Нормативные требования</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-theory-crypto-cypher" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Симметричное шифрование</span></span></h1>
+<h1 class="title"><span id="sec-theory-legal-standards" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Нормативные требования</span></span></h1>
 </div>
 
 
@@ -384,176 +380,116 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="общий-секрет" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="общий-секрет"><span class="header-section-number">12.1</span> Общий секрет</h2>
-<p>Шифрование нужно, чтобы передавать или хранить данные в форме, доступной для чтения обладателю ключа. Например, сотрудники могут хранить зашифрованный список контактов: копия файла должна оставаться непонятной постороннему, а участники должны уметь восстановить исходный список.</p>
-<div id="def-crypto-encryption" class="theorem definition">
-<p><span class="theorem-title"><strong>Определение 12.1 (Шифрование)</strong></span> <strong>Шифрование</strong> преобразует открытое сообщение в шифротекст с помощью ключа. Расшифрование с подходящим ключом восстанавливает исходные данные.</p>
-</div>
-<div id="def-crypto-key" class="theorem definition">
-<p><span class="theorem-title"><strong>Определение 12.2 (Ключ шифрования)</strong></span> <strong>Ключ шифрования</strong> — значение, которое выбирает конкретное преобразование среди предусмотренных алгоритмом. При симметричном шифровании отправитель и получатель используют один общий секретный ключ.</p>
-</div>
-<p>Алгоритм задаёт правило преобразования, а ключ — его секретный параметр. Участники списка контактов могут пользоваться общедоступной программой шифрования и сохранять в секрете только ключ. На <a href="#fig-crypto-symmetric-key" class="quarto-xref">Рисунок&nbsp;<span>12.1</span></a> он поступает в оба преобразования: зашифрование и расшифрование.</p>
-<div id="fig-crypto-symmetric-key" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Сообщение проходит шифрование и расшифрование; прямоугольники показывают данные, овалы — операции с общим секретным ключом">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-crypto-symmetric-key-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../_prepared/visualizations/crypto/static/symmetric-key.svg" class="img-fluid figure-img" alt="Сообщение проходит шифрование и расшифрование; прямоугольники показывают данные, овалы — операции с общим секретным ключом" width="500">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-crypto-symmetric-key-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;12.1: Один ключ для зашифрования и расшифрования
-</figcaption>
-</figure>
-</div>
+<p>В сфере информационной безопасности одновременно действуют документы разного назначения.</p>
+<p><strong>Закон</strong> может закреплять общую обязанность защищать информацию: определять, какую информацию необходимо защищать и какие общие требования предъявляются к её защите.</p>
+<p><strong>Указ</strong> может устанавливать особый режим или распределять полномочия между организациями и регулирующими органами. Например, Указ № 40 описывает национальную систему обеспечения кибербезопасности: НЦКБ в составе ОАЦ, аттестованные ЦКБ, государственные органы и другие организации. Приказ уполномоченного органа конкретизирует порядок выполнения требований. Так, приказ ОАЦ № 130 устанавливает требования в рамках системы, предусмотренной Указом № 40. Указ № 196 определяет правовые и организационные основы технической и криптографической защиты информации, а приказ ОАЦ № 66 предъявляет конкретные требования к системам соответствующих классов.</p>
+<p>Технический регламент задаёт обязательные требования в пределах своей области применения (существуют технические регламенты на все что угодно, например Единицы величин, допущенные к применению на территории Республики Беларусь, Минеральные удобрения, О безопасности упакованной питьевой воды, включая природную минеральную воду) – этот документ на уровне закона. Он говорит о том, как и кто проверяет это на соответствие, а конкретизируют требования техрегламентов <strong>Стандарты и ГОСТы</strong>.</p>
+<p>Не стоит путать их с международными стандартами в области ИБ, в частности, <strong>СТБ ISO/IEC 27001</strong> (полное название в актуальной редакции – <em>«Информационные технологии. Методы обеспечения безопасности. Системы менеджмента информационной безопасности. Требования»</em>) – это <strong>стандарт по управлению информационной безопасностью организации</strong>. Он определяет требования к <strong>СМИБ — системе менеджмента информационной безопасности</strong>.</p>
+<section id="sec-theory-legal-standard-obligation" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="sec-theory-legal-standard-obligation"><span class="header-section-number">6.1</span> Обязательность стандартов</h2>
+<p>Международный стандарт не становится обязательным для всех белорусских организаций только потому, что он известен или широко применяется.</p>
+<p>В частности, обязательность может возникать для финтех-сектора и банков (Национальный банк Республики Беларусь и отраслевые регуляторы требуют обязательного внедрения и периодического аудита СМИБ), при работе с зарубежными организациями.</p>
+<p>Организация также может принять на себя обязательство соответствовать стандарту, например заявив об этом в документации, договоре или коммерческом предложении.</p>
 </section>
-<section id="шифр-цезаря" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="шифр-цезаря"><span class="header-section-number">12.2</span> Шифр Цезаря</h2>
-<p>В учебном шифре Цезаря каждая буква сдвигается на одинаковое число позиций по кругу выбранного алфавита. Алгоритм задаёт правило замены, а ключом служит число позиций. Возьмём русский алфавит из 33 букв, включая <code>Ё</code> между <code>Е</code> и <code>Ж</code>:</p>
-<p><code>А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я</code>.</p>
-<p>При ключе <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>15</mn><annotation encoding="application/x-tex">15</annotation></semantics></math> слово <code>БАГАЖ</code> превращается в другое осмысленное слово — <code>ПОСОХ</code>:</p>
+<section id="sec-theory-legal-regulatory-map" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="sec-theory-legal-regulatory-map"><span class="header-section-number">6.2</span> Применение нормативных документов</h2>
+<p>Ниже представлена краткая сводка документов РБ в сфере защиты информации с практическими вопросами, которые они регулируют.</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Сообщение</th>
-<th>Сдвиг на 15</th>
-<th>Обратный сдвиг на 15</th>
+<th>Документ</th>
+<th>Практический вопрос, с которым он связан</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>БАГАЖ</code></td>
-<td><code>ПОСОХ</code></td>
-<td><code>БАГАЖ</code></td>
+<td>Закон Республики Беларусь № 455-З «Об информации, информатизации и защите информации»</td>
+<td>Какие общие требования установлены к защите информации и когда требуется аттестованная СЗИ? Аттестация СЗИ: <a href="system-classes.html#sec-theory-legal-attestation" class="quarto-xref"><span>Глава 4.1</span></a>.</td>
+</tr>
+<tr class="even">
+<td>Закон Республики Беларусь № 99-З «О защите персональных данных»</td>
+<td>На каком основании обрабатываются персональные данные, какие права есть у субъекта и какие обязанности возникают у оператора? Место персональных данных среди категорий информации: <a href="information-access.html#sec-theory-legal-information-law" class="quarto-xref"><span>Глава 3.1</span></a>.</td>
+</tr>
+<tr class="odd">
+<td>Указ Президента № 40 «О кибербезопасности»</td>
+<td>Как организована национальная система обеспечения кибербезопасности и как распределены её основные функции? См. <a href="../security-center/organization.html#sec-theory-security-center-national-system" class="quarto-xref"><span>Глава 7.1</span></a>.</td>
+</tr>
+<tr class="even">
+<td>Указ Президента № 196 «О некоторых мерах по совершенствованию защиты информации»</td>
+<td>Какие специальные требования связаны с технической и криптографической защитой информации и КВОИ? КВОИ и порядок отнесения: <a href="system-classes.html#sec-theory-legal-critical-information" class="quarto-xref"><span>Глава 4.3</span></a>.</td>
+</tr>
+<tr class="odd">
+<td>Приказ ОАЦ № 66 от 20.02.2020 в действующей редакции</td>
+<td>Какие требования и процедуры применяются к технической и криптографической защите и аттестации СЗИ соответствующих информационных систем, создании СИБ для КВОИ? Создание СЗИ и отличие от СИБ: <a href="#sec-theory-legal-protection-system" class="quarto-xref"><span>Глава 6.3</span></a>.</td>
+</tr>
+<tr class="even">
+<td>Приказ ОАЦ № 130 от 25.07.2023 в редакции приказа № 98 от 27.05.2026</td>
+<td>Какие конкретные требования по кибербезопасности установлены для объектов информационной инфраструктуры, как организуется работа ЦКБ и взаимодействие при киберинцидентах? Назначение приказа и связь с Указом № 40: <a href="../security-center/organization.html#sec-theory-security-center-requirements" class="quarto-xref"><span>Глава 7.2</span></a>.</td>
+</tr>
+<tr class="odd">
+<td>ТР 2013/027/BY «Информационные технологии. Средства защиты информации. Информационная безопасность»</td>
+<td>Какие требования и процедуры подтверждения соответствия могут применяться к средствам защиты информации? См. <a href="#sec-theory-legal-protection-tools" class="quarto-xref"><span>Глава 6.4</span></a>.</td>
+</tr>
+<tr class="even">
+<td>СТБ ISO/IEC 27001</td>
+<td>Как строится система менеджмента информационной безопасности и как организация управляет рисками и улучшением системы? Оценка риска: <a href="../risk-assessment.html" class="quarto-xref"><span>Глава 9</span></a>. Основания обязательности: <a href="#sec-theory-legal-standard-obligation" class="quarto-xref"><span>Глава 6.1</span></a>.</td>
 </tr>
 </tbody>
 </table>
-<p>Преобразование действует побуквенно: <code>Б → П</code>, <code>А → О</code>, <code>Г → С</code>, <code>А → О</code>, <code>Ж → Х</code>. После конца алфавита отсчёт продолжается с начала. Получатель сдвигает буквы на 15 позиций в обратную сторону и восстанавливает <code>БАГАЖ</code>. Регистр сохраняется; пробелы и знаки препинания остаются на месте.</p>
-<p>Наблюдатель, знающий алгоритм, может перебрать все 33 значения ключа, включая нулевое. Одинаковые буквы всегда заменяются одинаково, поэтому сохраняется распределение частот. Малое пространство ключей и эта зависимость позволяют атаковать шифр Цезаря. Даже осмысленный шифротекст <code>ПОСОХ</code> не сообщает, что исходным словом был именно <code>БАГАЖ</code>: кандидата оценивают с учётом языка и контекста сообщения.</p>
-<div class="cell hidden">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="1" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>caesarTrainerLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/crypto/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display hidden">
-<div id="ojs-cell-1" data-nodetype="declaration">
-
+</section>
+<section id="sec-theory-legal-protection-system" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="sec-theory-legal-protection-system"><span class="header-section-number">6.3</span> Создание системы защиты информации</h2>
+<div id="def-protection-system" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 6.1 (Система защиты информации)</strong></span> Система защиты информации (СЗИ) – совокупность мер, реализованных в информационной системе для защиты обрабатываемой информации.</p>
 </div>
+<p>В частности, статья 28 Закона № 455-З устанавливает, что информация, распространение и (или) предоставление которой ограничено и которая не относится к государственным секретам, должна обрабатываться в информационных системах с применением СЗИ, аттестованной в установленном порядке, с учётом предусмотренных законодательством условий и исключений.</p>
+<p>Для критически важных объектов информатизации (КВОИ) действуют иные требования к обеспечению защиты, для них создается <strong>Система информационной безопасности,</strong> она включает организационные и технические меры, распределение ответственности, управление рисками, оценку защищённости, аудит, мониторинг и реагирование в пределах применимых требований.</p>
+<p><strong><em>Иными словами – СЗИ создается для ИС классов 3-4, а СИБ для КВОИ.</em></strong></p>
+<p>Классы информационных систем и КВОИ (<a href="system-classes.html#def-critical-information-object" class="quarto-xref">Определение&nbsp;<span>4.1</span></a>) разобраны в <a href="system-classes.html" class="quarto-xref"><span>Глава 4</span></a>; категории доступа к информации — в <a href="information-access.html" class="quarto-xref"><span>Глава 3</span></a>.</p>
+<p>Практическое правило: сначала определяют объект защиты и применимые требования, затем выбирают меры и средства, после чего устанавливают, каким способом требуется подтвердить соответствие.</p>
+<p>Виды мер защиты разобраны в <a href="protection-measures.html" class="quarto-xref"><span>Глава 5</span></a>. Для выполнения технических мер применяют средства защиты информации.</p>
+</section>
+<section id="sec-theory-legal-protection-tools" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="sec-theory-legal-protection-tools"><span class="header-section-number">6.4</span> Подтверждение соответствия средств защиты</h2>
+<div id="def-information-protection-tools" class="theorem definition">
+<p><span class="theorem-title"><strong>Определение 6.2 (Средства защиты информации)</strong></span> <em>Средства защиты информации – технические, программные, программно-аппаратные средства, предназначенные для защиты информации, а также средства контроля эффективности ее защищенности.</em></p>
 </div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="2" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1;"><span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>caesarTrainerLesson<span class="op">.</span><span class="fu">caesarTrainer</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-cypher-caesar" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<p>К ним относятся те устройства и программы, основная цель которых – защита информации, а также те, на которые есть стандарт в соответствии с Техническим регламентом ТР 2013/027/BY Информационные технологии. Средства защиты информации. Информационная безопасность – его основная задача заключается в <strong>обязательной проверке надежности всех средств защиты информации (СрЗИ)</strong> перед тем, как они попадут на рынок Республики Беларусь.</p>
+<p>Предположим, что завод Интеграл начал выпускать белорусские межсетевые экраны «Брама», но для приобретения и использования в информационной системе они должны быть сертифицированы в соответствии с этим Техрегламентом. Конкретные критерии и методики оценки СрЗИ представлены в <strong>стандартах (СТБ 34.101.ХХ)</strong>. Выполнение требований государственных стандартов, взаимосвязанных с техрегламентом, автоматически означает, средство защиты информации (СЗИ) соответствует и самому техрегламенту.</p>
+<p>Завод разрабатывает и собирает все необходимые документы по эксплуатации этого МЭ и вместе с самим продуктом передает в аккредитованную лабораторию для проведения испытаний.</p>
+<div id="fig-standards-risk-protection-product-requirements" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Таблица требований к средству защиты информации">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-cypher-caesar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-2" data-nodetype="expression">
-
+<div aria-describedby="fig-standards-risk-protection-product-requirements-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/standards-risk/protection-product-requirements.png" class="img-fluid figure-img" alt="Таблица требований к средству защиты информации">
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cypher-caesar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;12.2: Шифр Цезаря
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-standards-risk-protection-product-requirements-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;6.1: Требования к средству защиты информации
 </figcaption>
 </figure>
 </div>
-</div>
-</section>
-<section id="исключающее-или" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="исключающее-или"><span class="header-section-number">12.3</span> Исключающее ИЛИ</h2>
-<p>Шифр Цезаря заменяет буквы выбранного алфавита. Компьютерный шифр работает с битами, которыми представлены текст, изображения и другие данные. Один из способов зашифрования — изменить биты сообщения по ключевому потоку: последовательности битов, выработанной из секретного ключа. Получателю нужно уметь обратить эти изменения с помощью того же потока.</p>
-<p>Для такого преобразования подходит операция <strong>исключающее ИЛИ</strong>, или XOR. Она позволяет управлять изменением каждого бита: XOR с <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math> сохраняет бит, XOR с <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math> меняет его на противоположный. Поэтому одинаковые входные биты дают <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>, разные — <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math>. В формулах операция обозначается <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊕</mi><annotation encoding="application/x-tex">\oplus</annotation></semantics></math>.</p>
-<p>Возьмём сообщение из восьми битов и ключевой поток той же длины. Применим XOR в каждом столбце:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">Сообщение</mtext></mtd><mtd columnalign="center" style="text-align: center"></mtd><mtd columnalign="right" style="text-align: right"><mn mathvariant="monospace">𝟷𝟶𝟷𝟷𝟶𝟶𝟷𝟶</mn></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">Ключевой поток</mtext></mtd><mtd columnalign="center" style="text-align: center"><mi>⊕</mi></mtd><mtd columnalign="right" style="text-align: right"><mn mathvariant="monospace">𝟶𝟷𝟷𝟶𝟷𝟶𝟶𝟷</mn></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">Шифротекст</mtext></mtd><mtd columnalign="center" style="text-align: center"></mtd><mtd columnalign="right" style="text-align: right"><mn mathvariant="monospace">𝟷𝟷𝟶𝟷𝟷𝟶𝟷𝟷</mn></mtd></mtr></mtable><annotation encoding="application/x-tex">
-\begin{array}{rcr}
-\text{Сообщение}      &amp;        &amp; \mathtt{10110010} \\
-\text{Ключевой поток} &amp; \oplus &amp; \mathtt{01101001} \\
-\hline
-\text{Шифротекст}     &amp;        &amp; \mathtt{11011011}
-\end{array}
-</annotation></semantics></math></p>
-<p>В первом столбце <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math> сохраняет исходную единицу; во втором <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math> меняет ноль на единицу. Повторный XOR с тем же ключевым битом восстанавливает исходный: два изменения отменяют друг друга, а два сохранения оставляют бит прежним. Для сообщения <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>, ключевого потока <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> и шифротекста <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math> это записывается как <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mi>M</mi><mo>⊕</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">C=M\oplus K</annotation></semantics></math> и <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><mi>C</mi><mo>⊕</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">M=C\oplus K</annotation></semantics></math>. В нашем примере расшифрование даёт <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11011011</mn><mo>⊕</mo><mn>01101001</mn><mo>=</mo><mn>10110010</mn></mrow><annotation encoding="application/x-tex">11011011\oplus01101001=10110010</annotation></semantics></math>.</p>
-<p>Для текста сначала нужна кодировка: один символ может занимать несколько байтов. Например, <code>Я</code> в UTF-8 записывается байтами <code>d0 af</code>. Если учебный поток равен <code>10 20</code>, побайтовый XOR даёт шифротекст <code>c0 8f</code>; повторный XOR с <code>10 20</code> восстанавливает <code>d0 af</code>, а декодирование UTF-8 — <code>Я</code>. Здесь числа записаны шестнадцатерично, по две цифры на байт.</p>
-<section id="повтор-ключевого-потока" class="level3" data-number="12.3.1">
-<h3 data-number="12.3.1" class="anchored" data-anchor-id="повтор-ключевого-потока"><span class="header-section-number">12.3.1</span> Повтор ключевого потока</h3>
-<p>Рассмотрим два коротких сообщения с одним и тем же потоком. ASCII-байты этих латинских строк совпадают с их байтами UTF-8:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Величина</th>
-<th>Байты в шестнадцатеричной записи</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mn>1</mn></msub><mo>=</mo></mrow><annotation encoding="application/x-tex">M_1 =</annotation></semantics></math> <code>CAT</code></td>
-<td><code>43 41 54</code></td>
-</tr>
-<tr class="even">
-<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mn>2</mn></msub><mo>=</mo></mrow><annotation encoding="application/x-tex">M_2 =</annotation></semantics></math> <code>DOG</code></td>
-<td><code>44 4f 47</code></td>
-</tr>
-<tr class="odd">
-<td>Повторённый поток <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math></td>
-<td><code>10 20 30</code></td>
-</tr>
-<tr class="even">
-<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mn>1</mn></msub><annotation encoding="application/x-tex">C_1</annotation></semantics></math></td>
-<td><code>53 61 64</code></td>
-</tr>
-<tr class="odd">
-<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mn>2</mn></msub><annotation encoding="application/x-tex">C_2</annotation></semantics></math></td>
-<td><code>54 6f 77</code></td>
-</tr>
-</tbody>
-</table>
-<p>Наблюдатель видит <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mn>1</mn></msub><annotation encoding="application/x-tex">C_1</annotation></semantics></math> и <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mn>2</mn></msub><annotation encoding="application/x-tex">C_2</annotation></semantics></math>. Он может вычислить <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>1</mn></msub><mo>⊕</mo><msub><mi>C</mi><mn>2</mn></msub><mo>=</mo><msub><mi>M</mi><mn>1</mn></msub><mo>⊕</mo><msub><mi>M</mi><mn>2</mn></msub><mo>=</mo><mrow><mn mathvariant="monospace">𝟶𝟽</mn><mspace width="0.222em"></mspace><mn mathvariant="monospace">𝟶</mn><mi mathvariant="monospace">𝚎</mi><mspace width="0.222em"></mspace><mn mathvariant="monospace">𝟷𝟹</mn></mrow></mrow><annotation encoding="application/x-tex">C_1\oplus C_2=M_1\oplus M_2=\mathtt{07\ 0e\ 13}</annotation></semantics></math>: два одинаковых потока сокращаются. Если первое сообщение известно, то</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mn>2</mn></msub><mo>=</mo><msub><mi>C</mi><mn>1</mn></msub><mo>⊕</mo><msub><mi>C</mi><mn>2</mn></msub><mo>⊕</mo><msub><mi>M</mi><mn>1</mn></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">M_2=C_1\oplus C_2\oplus M_1.</annotation></semantics></math></p>
-<p>В таблице <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mn mathvariant="monospace">𝟶𝟽</mn><mspace width="0.222em"></mspace><mn mathvariant="monospace">𝟶</mn><mi mathvariant="monospace">𝚎</mi><mspace width="0.222em"></mspace><mn mathvariant="monospace">𝟷𝟹</mn></mrow><mo>⊕</mo><mrow><mn mathvariant="monospace">𝟺𝟹</mn><mspace width="0.222em"></mspace><mn mathvariant="monospace">𝟺𝟷</mn><mspace width="0.222em"></mspace><mn mathvariant="monospace">𝟻𝟺</mn></mrow><mo>=</mo><mrow><mn mathvariant="monospace">𝟺𝟺</mn><mspace width="0.222em"></mspace><mn mathvariant="monospace">𝟺</mn><mi mathvariant="monospace">𝚏</mi><mspace width="0.222em"></mspace><mn mathvariant="monospace">𝟺𝟽</mn></mrow></mrow><annotation encoding="application/x-tex">\mathtt{07\ 0e\ 13}\oplus\mathtt{43\ 41\ 54}=\mathtt{44\ 4f\ 47}</annotation></semantics></math>, то есть получается <code>DOG</code>. Для этой атаки знать сам поток не требуется. Его байты приведены в таблице для проверки вычислений.</p>
-<p>Одноразовый блокнот даёт теоретическую совершенную секретность, когда поток действительно случаен, равен сообщению по длине, хранится в секрете и никогда не используется повторно. Изменение бита шифротекста всё же меняет соответствующий бит восстановленного сообщения: XOR с секретным потоком не проверяет целостность.</p>
-<div class="cell hidden">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="1" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>xorTrainerLesson <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"/_prepared/visualizations/crypto/lesson.js"</span>)<span class="op">.</span><span class="fu">url</span>())</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display hidden">
-<div id="ojs-cell-3" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="2" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1;"><span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>xorTrainerLesson<span class="op">.</span><span class="fu">xorTrainer</span>()</span></code></pre></div><button title="Скопировать текст" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-cypher-xor" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<p>При испытаниях проверяют выполнение требований, приведённых на <a href="#fig-standards-risk-protection-product-requirements" class="quarto-xref">Рисунок&nbsp;<span>6.1</span></a>, а также иных требований стандарта. При подтверждении соответствия средству защиты выдают сертификат соответствия.</p>
+<p>Аналогичная ситуация происходит при ввозе в РБ средств защиты информации и необходимости их использования.</p>
+<p>Закупка, установка и настройка сертифицированных СрЗИ не является достаточным для создания системы защиты информации, не стоит забывать о внедрении иных организационных и технических мер в соответствии с требованиями приказа ОАЦ № 66. В основе всего лежит <em>комплексный</em> подход.</p>
+<div id="fig-standards-risk-protection-product-certificate" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Сертификат соответствия средства защиты информации">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-cypher-xor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="ojs-cell-4" data-nodetype="expression">
-
+<div aria-describedby="fig-standards-risk-protection-product-certificate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/standards-risk/protection-product-certificate.jpeg" class="img-fluid figure-img" alt="Сертификат соответствия средства защиты информации">
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cypher-xor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Рисунок&nbsp;12.3: Побитовое сложение XOR
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-standards-risk-protection-product-certificate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;6.2: Сертификат соответствия средства защиты информации
 </figcaption>
 </figure>
 </div>
-</div>
-<p>XOR входит в число базовых операций многих шифров. В потоковом шифре специальная конструкция вырабатывает ключевой поток из короткого секретного ключа. Стойкость такого шифра зависит от непредсказуемости потока и соблюдения правил его применения. Блочный AES и потоковый ChaCha20 описаны по назначению в <a href="algorithms.html" class="quarto-xref"><span>Глава 15</span></a>.</p>
-</section>
-</section>
-<section id="стойкость-шифра" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="стойкость-шифра"><span class="header-section-number">12.4</span> Стойкость шифра</h2>
-<p>При проектировании защиты предполагают, что противник знает алгоритм. Публичное описание позволяет исследовать конструкцию; секретность общего ключа должна сохраняться и при известном правиле преобразования. У Цезаря правило известно, но всего 33 ключа можно проверить полностью. У современного шифра пространство ключей должно делать такой перебор практически недоступным.</p>
-<p>Если ключ содержит <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math> битов, существует <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mi>b</mi></msup><annotation encoding="application/x-tex">2^b</annotation></semantics></math> битовых строк этой длины. При независимом равномерном выборе всех битов каждая строка имеет вероятность <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mi>−</mi><mi>b</mi></mrow></msup><annotation encoding="application/x-tex">2^{-b}</annotation></semantics></math>; полный перебор проверяет <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mi>b</mi></msup><annotation encoding="application/x-tex">2^b</annotation></semantics></math> кандидатов, а среднее число проверок в фиксированном порядке равно <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msup><mn>2</mn><mi>b</mi></msup><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">(2^b+1)/2</annotation></semantics></math>. Например, для 128 битов пространство содержит <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mn>128</mn></msup><annotation encoding="application/x-tex">2^{128}</annotation></semantics></math> вариантов.</p>
-<p>Предсказуемый выбор уменьшает неопределённость ключа. Если 256-битная строка детерминированно получается из одного 32-битного начального значения, возможны не более <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mn>32</mn></msup><annotation encoding="application/x-tex">2^{32}</annotation></semantics></math> таких строк. Противник может перебирать начальные значения, поэтому длина записи ключа и его <a href="../crypto/random.html#def-random-entropy">энтропия</a> различаются. Получение непредсказуемого ключа разобрано в <a href="key-gen.html" class="quarto-xref"><span>Глава 13</span></a>.</p>
-<p>Большое пространство ключей затрудняет полный перебор. Уязвимость конструкции может дать более короткий способ восстановления данных; повтор потока, как в разобранном примере, связывает два сообщения даже без перебора. Реализация также должна защищать ключ при хранении и вычислениях: его утечка предоставляет противнику тот же секрет, которым пользуется получатель. Стойкость зависит от конструкции, применения и реализации шифра.</p>
-<p>Общий секрет требуется безопасно доставить участникам. Асимметричные механизмы помогают согласовать или передать секрет; гибридное применение рассмотрено в <a href="public-key-outline.html" class="quarto-xref"><span>Глава 17</span></a>.</p>
 
 
 
 </section>
 
 </main> <!-- /main -->
-<script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImNhZXNhclRyYWluZXJMZXNzb24gPSBhd2FpdCBpbXBvcnQoYXdhaXQgRmlsZUF0dGFjaG1lbnQoXCIvX3ByZXBhcmVkL3Zpc3VhbGl6YXRpb25zL2NyeXB0by9sZXNzb24uanNcIikudXJsKCkpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJjYWVzYXJUcmFpbmVyTGVzc29uLmNhZXNhclRyYWluZXIoKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0zIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoieG9yVHJhaW5lckxlc3NvbiA9IGF3YWl0IGltcG9ydChhd2FpdCBGaWxlQXR0YWNobWVudChcIi9fcHJlcGFyZWQvdmlzdWFsaXphdGlvbnMvY3J5cHRvL2xlc3Nvbi5qc1wiKS51cmwoKSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InhvclRyYWluZXJMZXNzb24ueG9yVHJhaW5lcigpXG4ifV19
-</script>
-<script type="module">
-if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../../crypto";
-window._ojs.paths.runtimeToRoot = "../..";
-window._ojs.paths.docToRoot = "..";
-window._ojs.selfContained = false;
-window._ojs.runtime.interpretFromScriptTags();
-</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -959,13 +895,13 @@ window._ojs.runtime.interpretFromScriptTags();
   </script>
 <nav class="page-navigation" aria-label="Страница">
   <div class="nav-page nav-page-previous">
-      <a href="../crypto/hash.html" class="pagination-link" aria-label="Хеш-функции">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Хеш-функции</span></span>
+      <a href="../legal/protection-measures.html" class="pagination-link" aria-label="Меры защиты информации">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Меры защиты информации</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../crypto/key-gen.html" class="pagination-link" aria-label="Генерация ключей">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Генерация ключей</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../security-center/organization.html" class="pagination-link" aria-label="Информационная безопасность в цифровой среде">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Информационная безопасность в цифровой среде</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

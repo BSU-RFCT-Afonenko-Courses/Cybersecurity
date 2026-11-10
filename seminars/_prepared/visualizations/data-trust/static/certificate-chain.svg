@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="650" viewBox="0 0 1320 650" role="img" aria-labelledby="desc">
+  <desc id="desc">Ключ R из локального доверенного хранилища проверяет подпись сертификата центра C. Открытый ключ C проверяет сертификат сайта portal.example. Для сайта дополнительно сравнивают ожидаемое имя и назначение. Неизвестный самоподписанный сертификат N не связан с доверенным хранилищем.</desc>
+  <view id="path" viewBox="0 25 1320 375"/>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#285f7b"/></marker>
+    <marker id="muted-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#8a4851"/></marker>
+    <style>
+      text { font-family: "DejaVu Sans", sans-serif; font-size: 22px; fill: #19324b; }
+      .small { font-size: 19px; }
+      .bold { font-weight: 700; }
+      .key { font-family: "DejaVu Sans Mono", monospace; font-size: 27px; font-weight: 700; }
+      .link { fill: none; stroke: #285f7b; stroke-width: 3; marker-end: url(#arrow); }
+      .paper { fill: #f7faff; stroke: #496c91; stroke-width: 2; }
+      .signature { fill: #dcebf7; }
+    </style>
+  </defs>
+  <rect width="1320" height="650" fill="#fff"/>
+
+  <rect x="30" y="52" width="270" height="330" rx="20" fill="#eef8f2" stroke="#448268" stroke-width="2" stroke-dasharray="9 6"/>
+  <text x="50" y="82" class="bold">Доверенное</text>
+  <text x="50" y="111" class="bold">хранилище</text>
+  <text x="50" y="142" class="small">Настроено заранее</text>
+  <circle cx="86" cy="189" r="24" fill="none" stroke="#448268" stroke-width="5"/>
+  <path d="M109,189 H177 M150,189 V210 M170,189 V204" fill="none" stroke="#448268" stroke-width="5"/>
+  <text x="197" y="198" class="key">R</text>
+  <text x="50" y="259">Корневая сторона</text>
+  <text x="50" y="297" class="small">Имя и ключ приняты</text>
+  <text x="50" y="324" class="small">доверенным способом</text>
+
+  <path d="M440,52 H720 L760,92 V382 H440 Z" class="paper"/>
+  <path d="M720,52 V92 H760" fill="none" stroke="#496c91" stroke-width="2"/>
+  <text x="462" y="88" class="bold">Сертификат центра</text>
+  <text x="462" y="129" class="small">Субъект: центр C</text>
+  <text x="462" y="166" class="small">Открытый ключ:</text>
+  <circle cx="657" cy="160" r="26" fill="#d9f3e8" stroke="#448268" stroke-width="2"/>
+  <text x="648" y="170" class="key">C</text>
+  <text x="462" y="210" class="small">Разрешена выдача</text>
+  <text x="462" y="237" class="small">сертификатов</text>
+  <text x="462" y="272" class="small">Издатель: сторона R</text>
+  <rect x="441" y="295" width="318" height="85" class="signature"/>
+  <text x="462" y="327" class="small">Подпись закрытым</text>
+  <text x="462" y="356" class="small">ключом R</text>
+  <path d="M300,337 H430" class="link"/>
+  <text x="312" y="293" class="small">Проверка</text><text x="340" y="320" class="small">R</text>
+
+  <path d="M928,52 H1248 L1288,92 V382 H928 Z" class="paper"/>
+  <path d="M1248,52 V92 H1288" fill="none" stroke="#496c91" stroke-width="2"/>
+  <text x="950" y="88" class="bold">Сертификат сайта</text>
+  <text x="950" y="129" class="small">Имя: portal.example</text>
+  <text x="950" y="166" class="small">Открытый ключ:</text>
+  <circle cx="1147" cy="160" r="26" fill="#d9f3e8" stroke="#448268" stroke-width="2"/>
+  <text x="1138" y="170" class="key">P</text>
+  <text x="950" y="210" class="small">Назначение:</text>
+  <text x="950" y="237" class="small">аутентификация сервера</text>
+  <text x="950" y="272" class="small">Издатель: центр C</text>
+  <rect x="929" y="295" width="358" height="85" class="signature"/>
+  <text x="950" y="327" class="small">Подпись закрытым</text>
+  <text x="950" y="356" class="small">ключом C</text>
+  <path d="M684,160 H826 V337 H918" class="link"/>
+  <text x="774" y="410" class="small">Проверка</text><text x="774" y="438" class="small">ключом C</text>
+
+  <path d="M1106,384 V422" class="link"/>
+  <text x="935" y="458" class="small">Ожидаемое имя = portal.example?</text>
+  <text x="935" y="488" class="small">Разрешено нужное назначение?</text>
+  <text x="935" y="531" class="bold">Установлена связь имени с P</text>
+
+  <path d="M50,449 H388 L414,475 V601 H50 Z" fill="#fff6f5" stroke="#ad6a70" stroke-width="2"/>
+  <text x="70" y="481" class="small">Неизвестная сторона: ключ N</text>
+  <text x="70" y="518" class="small">Сертификат подписан самим N</text>
+  <text x="70" y="558" class="small">Подпись проверяется ключом N</text>
+  <path d="M419,552 C485,552 485,473 418,473" fill="none" stroke="#8a4851" stroke-width="2.5" marker-end="url(#muted-arrow)"/>
+  <path d="M205,439 V400" fill="none" stroke="#ad6a70" stroke-width="2" stroke-dasharray="6 5"/>
+  <path d="M193,412 L217,430 M217,412 L193,430" stroke="#ad6a70" stroke-width="3"/>
+  <text x="505" y="488" class="small">Пути к доверенному</text>
+  <text x="505" y="516" class="small">основанию нет</text>
+  <text x="505" y="561" class="small">Самоподпись не добавляет</text>
+  <text x="505" y="589" class="small">N в доверенное хранилище</text>
+  <text x="32" y="636" class="small">Стрелки показывают, каким открытым ключом проверяют подпись следующего сертификата.</text>
+</svg>
