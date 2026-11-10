@@ -7,6 +7,7 @@ for scope in . theory task seminars; do
   (cd "$scope"; quarto add Afonenko-Course-Tools/quarto-course@v9.3.4 --no-prompt)
   (cd "$scope"; quarto add Afonenko-Course-Tools/quarto-reference-catalog@v3.2.0 --no-prompt)
 done
+python3 CI/apply-navigation-local-links.py
 quarto add Afonenko-Course-Tools/quarto-project-publish@v6.0.1 --no-prompt
 (cd task; quarto add Afonenko-Course-Tools/quarto-project-download@v3.5.0 --no-prompt)
 bash CI/install-course-brand.sh

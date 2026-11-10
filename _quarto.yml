@@ -44,7 +44,9 @@ project:
     watch-inputs: false
 format:
   html:
-    theme: [cosmo, _extensions/Afonenko-Course-Tools/course-theme/theme.scss]
+    theme:
+    - cosmo
+    - _extensions/Afonenko-Course-Tools/course-theme/theme.scss
     html-math-method: mathml
     embed-resources: false
     toc: false

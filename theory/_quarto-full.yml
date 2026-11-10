@@ -13,27 +13,32 @@ book:
     - legal/information-access.qmd
     - legal/system-classes.qmd
     - legal/protection-measures.qmd
+    - legal/standards.qmd
   - part: Организация обеспечения кибербезопасности
     chapters:
     - security-center/organization.qmd
     - security-center/workflow.qmd
-  - part: Требования к защите
-    chapters:
-    - standards-risk/requirements-decisions.qmd
+  - risk-assessment.qmd
   - part: Управление доступом
     chapters:
-    - access-control/access-control.qmd
+    - access-control/authentication.qmd
+    - access-control/authorization.qmd
   - part: Криптография
     chapters:
-    - crypto/random.qmd
-    - crypto/hash.qmd
-    - crypto/cypher.qmd
-    - crypto/key-gen.qmd
+    - crypto/randomness.qmd
+    - crypto/symmetric-encryption.qmd
+    - crypto/hash-functions.qmd
+    - crypto/asymmetric-cryptography.qmd
+    - crypto/digital-signature.qmd
+    - crypto/key-management.qmd
     - crypto/password-storage.qmd
-    - crypto/algorithms.qmd
+  - part: Доверие к данным
+    chapters:
+    - data-trust/integrity-verification.qmd
+    - data-trust/certificates.qmd
   - part: Сохранность данных
     chapters:
-    - data-integrity/integrity.qmd
-  - part: Цифровая подпись
-    chapters:
-    - crypto/public-key-outline.qmd
+    - data-preservation/backups.qmd
+    - data-preservation/raid.qmd
+  appendices:
+  - crypto/lamport-signature.qmd

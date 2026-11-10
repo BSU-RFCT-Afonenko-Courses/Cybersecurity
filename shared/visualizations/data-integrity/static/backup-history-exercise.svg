@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="330" viewBox="0 0 1440 330" role="img" aria-labelledby="description">
+<desc id="description">Состояния папки на оси времени. Воскресенье: A₀, B₀, C₀. В понедельник A₀ заменена на A₁; во вторник B₀ на B₁; в среду A₁ на A₂. C₀ не меняется. Непрерывная полоса означает сохранение версии в рабочей папке между правками, а не наличие отдельной резервной копии.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#5a7183"/></marker></defs>
+<style>text{font-family:"DejaVu Sans",sans-serif;fill:#20384b;font-size:27px}.kind{font-size:26px;font-weight:600}.copy{stroke:#a9b7c1;stroke-width:2;fill:none}.reference{fill:none;stroke:#5a7183;stroke-width:2.5;marker-end:url(#arrow)}.guide{stroke:#dce3e8;stroke-width:1.5;stroke-dasharray:5 6}</style>
+<rect width="1440" height="330" fill="#fff"/>
+<text x="255" y="35" text-anchor="middle">Воскресенье</text>
+<path class="guide" d="M255 52V310"/>
+<text x="615" y="35" text-anchor="middle">Понедельник</text>
+<path class="guide" d="M615 52V310"/>
+<text x="975" y="35" text-anchor="middle">Вторник</text>
+<path class="guide" d="M975 52V310"/>
+<text x="1335" y="35" text-anchor="middle">Среда</text>
+<path class="guide" d="M1335 52V310"/>
+<text class="kind" x="24" y="120">A</text>
+<rect x="255" y="85" width="360" height="50" fill="#dceafb" stroke="#507ba4" stroke-width="2"/>
+<text x="317" y="110" text-anchor="middle" dominant-baseline="central">A₀</text>
+<rect x="615" y="85" width="720" height="50" fill="#dceafb" stroke="#507ba4" stroke-width="2"/>
+<text x="677" y="110" text-anchor="middle" dominant-baseline="central">A₁</text>
+<circle cx="615" cy="110" r="7" fill="#507ba4"/>
+<rect x="1335" y="85" width="97" height="50" fill="#dceafb" stroke="#507ba4" stroke-width="2"/>
+<text x="1383.5" y="110" text-anchor="middle" dominant-baseline="central">A₂</text>
+<circle cx="1335" cy="110" r="7" fill="#507ba4"/>
+<text class="kind" x="24" y="210">B</text>
+<rect x="255" y="175" width="720" height="50" fill="#dcefe8" stroke="#448b70" stroke-width="2"/>
+<text x="317" y="200" text-anchor="middle" dominant-baseline="central">B₀</text>
+<rect x="975" y="175" width="457" height="50" fill="#dcefe8" stroke="#448b70" stroke-width="2"/>
+<text x="1037" y="200" text-anchor="middle" dominant-baseline="central">B₁</text>
+<circle cx="975" cy="200" r="7" fill="#448b70"/>
+<text class="kind" x="24" y="300">C</text>
+<rect x="255" y="265" width="1177" height="50" fill="#fff0d6" stroke="#b58b3d" stroke-width="2"/>
+<text x="317" y="290" text-anchor="middle" dominant-baseline="central">C₀</text>
+</svg>

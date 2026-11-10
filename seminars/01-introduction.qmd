@@ -1,12 +1,15 @@
-## Занятие 1 – Информационная безопасность {#sec-seminar-1}
+---
+title: Семинар 1 — Информационная безопасность
+pagetitle: Семинар 1 — Информационная безопасность
+---
 
-## Безопасность информационной системы {#sec-seminar-1-assets}
+## Безопасность информационной системы {#sec-seminar-1}
 
 ### Активы информационной системы
 
 Границы системы определяют область рассмотрения. Активы включают данные, программы, оборудование, людей и процессы. Например, портал зависит и от базы оценок, и от сервера, и от порядка выдачи прав.
 
-Определения: @theory:def-information-system; @theory:def-information-assets.
+{{< xref theory def-information-system "[*]" >}}; {{< xref theory def-information-assets "[*]" >}}.
 
 ::: {.notes}
 Попросите назвать актив и объяснить, почему он важен для работы портала.
@@ -18,7 +21,7 @@
 - **Целостность:** данные защищены от неправомерного изменения и уничтожения.
 - **Доступность:** уполномоченный пользователь может своевременно выполнить разрешённое действие.
 
-Одно событие может затронуть несколько свойств; при анализе уточняем непосредственно нарушенное. Подробности и примеры: @theory:sec-theory-fundamentals-cia.
+Одно событие может затронуть несколько свойств; при анализе уточняем непосредственно нарушенное. Подробности и примеры: {{< xref theory sec-theory-fundamentals-cia "[*]" >}}.
 
 ### Вопрос для аудитории {.smaller}
 
@@ -31,7 +34,7 @@
 - **Угроза** — возможное неблагоприятное воздействие; **уязвимость** — способствующее ему слабое место.
 - **Событие** — наблюдаемое действие или изменение; **инцидент** связан с нарушением безопасности или его возможностью и требует реагирования.
 
-Определения и разбор различий: @theory:sec-theory-fundamentals-events-incidents.
+{{< xref theory sec-theory-fundamentals-events-incidents "[*]" >}}
 
 ::: {.notes}
 Само наблюдение ещё не доказывает нарушение: нужны контекст и установленные факты.
@@ -47,6 +50,6 @@
 
 ### Дополнительная работа
 
-@tasks:exr-fundamentals-educational-portal; @tasks:exr-fundamentals-pizza-incident; @tasks:sec-work-fundamentals-concepts.
+{{< xref tasks exr-fundamentals-educational-portal "[*]" >}}; {{< xref tasks exr-fundamentals-pizza-incident "[*]" >}}; {{< xref tasks sec-work-fundamentals-concepts "[*]" >}}.
 
-Дополнительные задания: @tasks:exr-fundamentals-exhibition; @tasks:exr-fundamentals-carsharing.
+Дополнительные задания: {{< xref tasks exr-fundamentals-exhibition "[*]" >}}; {{< xref tasks exr-fundamentals-carsharing "[*]" >}}.

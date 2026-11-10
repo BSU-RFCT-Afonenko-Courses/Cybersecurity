@@ -1,10 +1,10 @@
 ---
 css: assets/classroom.css
+title: Семинар 2 — Правовые основы защиты
+pagetitle: Семинар 2 — Правовые основы защиты
 ---
 
-## Семинар 2 – Правовые основы защиты {#sec-seminar-2}
-
-## Категории доступа к информации {#sec-seminar-2-information-access}
+## Категории доступа к информации {#sec-seminar-2}
 
 ### Категория доступа
 
@@ -12,7 +12,7 @@ css: assets/classroom.css
 
 **Предоставление** адресовано определённому кругу лиц; **распространение** — неопределённому.
 
-Закон № 455-З и определения категорий: @theory:sec-theory-legal-information-law.
+{{< xref theory sec-theory-legal-information-law "[*]" >}}
 
 ### Вопрос для аудитории {.smaller}
 
@@ -30,7 +30,7 @@ css: assets/classroom.css
 - Организационные определяют порядок действий и ответственных.
 - Технические реализуются программами и оборудованием.
 
-Классификация: @theory:sec-theory-legal-classification. Примеры мер: @theory:sec-theory-legal-protection-measures.
+{{< xref theory sec-theory-legal-classification "[*]" >}} {{< xref theory sec-theory-legal-protection-measures "[*]" >}}
 
 ::: {.notes}
 Пример: замок на шкафу дополняется порядком выдачи и учёта ключей. При практическом применении проверяют действующие документы.
@@ -46,12 +46,12 @@ css: assets/classroom.css
 
 Центр получает и анализирует события, выявляет возможные инциденты и организует реагирование. Роли и порядок взаимодействия определяются применимыми требованиями и процессами организации.
 
-Роли ЦКБ: @theory:sec-theory-security-center-roles. Процесс работы: @theory:sec-theory-security-center-workflow.
+Роли ЦКБ: {{< xref theory sec-theory-security-center-roles "[*]" >}}. Процесс работы: {{< xref theory sec-theory-security-center-workflow "[*]" >}}.
 
 ## Дополнительная работа {#sec-seminar-2-additional}
 
 ### Дополнительная работа
 
-@tasks:exr-legal-system-classes; @tasks:exr-legal-requirements-audit; @tasks:sec-work-legal-requirements.
+{{< xref tasks exr-legal-system-classes "[*]" >}}; {{< xref tasks exr-legal-requirements-audit "[*]" >}}; {{< xref tasks sec-work-legal-requirements "[*]" >}}.
 
-Дополнительное задание: @tasks:exr-security-center-roles.
+Дополнительное задание: {{< xref tasks exr-security-center-roles "[*]" >}}.

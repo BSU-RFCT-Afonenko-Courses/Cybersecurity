@@ -6,13 +6,13 @@ format:
 
 # Слайды занятий {#sec-practice}
 
-- @practice:sec-seminar-1 — Информационная безопасность.
-- @practice:sec-seminar-2 — Правовые основы защиты.
-- @practice:sec-seminar-3 — Требования к защите.
-- @practice:sec-seminar-4 — Управление доступом. Работа: @tasks:sec-work-access-control.
+- {{< xref practice sec-seminar-1 "Семинар 1" >}} — Информационная безопасность.
+- {{< xref practice sec-seminar-2 "Семинар 2" >}} — Правовые основы защиты.
+- {{< xref practice sec-seminar-3 "Семинар 3" >}} — Требования к защите.
+- {{< xref practice sec-seminar-4 "Семинар 4" >}} — Управление доступом. Работа: @tasks:sec-work-access-control.
 
-- @practice:sec-seminar-5 — Криптография.
-- @practice:sec-seminar-6 — Сохранность данных.
-- @practice:sec-seminar-7 — Цифровая подпись.
+- {{< xref practice sec-seminar-5 "Семинар 5" >}} — Криптография.
+- {{< xref practice sec-seminar-6 "Семинар 6" >}} — Доверие к данным.
+- {{< xref practice sec-seminar-7 "Семинар 7" >}} — Сохранность данных.
 
 Подготовка к контрольной находится в каталоге работ: @tasks:sec-control-demo.

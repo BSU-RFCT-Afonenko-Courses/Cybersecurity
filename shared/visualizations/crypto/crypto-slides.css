@@ -1,0 +1,26 @@
+.reveal .slides .course-viz-hash-bits-compact {
+  max-width: 1240px;
+  margin: 0 auto;
+  font-size: 0.72em;
+}
+
+.reveal .slides .course-viz-hash-bits-compact .course-viz-hash-bits-inputs {
+  margin: 0.3em 0;
+}
+
+.reveal .slides .course-viz-hash-bits-compact .course-viz-hash-bits-algorithm {
+  margin: 0.4em 0;
+}
+
+.reveal .slides .course-viz-hash-bits-compact .course-viz-hash-bits-heading {
+  margin-bottom: 0.3em;
+}
+
+.reveal .slides .course-viz-hash-bits-compact .course-viz-hash-bits-grid {
+  grid-template-columns: repeat(64, minmax(0, 1fr));
+  gap: 2px;
+}
+
+.reveal .slides .course-viz-hash-bits-compact .course-viz-hash-bits-row {
+  margin: 0.25em 0;
+}

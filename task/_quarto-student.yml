@@ -16,9 +16,10 @@ book:
     - bank/legal.qmd
     - bank/security-center.qmd
     - bank/standards-risk.qmd
-    - bank/crypto.qmd
     - bank/access-control.qmd
-    - bank/data-integrity.qmd
+    - bank/crypto.qmd
+    - bank/data-trust.qmd
+    - bank/data-preservation.qmd
   - part: Работы
     chapters:
     - works/01-fundamentals.qmd

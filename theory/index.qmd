@@ -1,21 +1,29 @@
 # Теория {#sec-theory}
 
-Материалы об основных понятиях, правовых основах, организации обеспечения
-кибербезопасности, стандартах, системах защиты, рисках и криптографии.
+Главы образуют самостоятельное изложение: от свойств защищаемой информации
+и требований к защите — к моделям доступа, криптографическим механизмам,
+проверке происхождения данных и восстановлению после потери.
 
-- @sec-theory-fundamentals-concepts — основные понятия и КЦД.
+- @sec-theory-fundamentals-concepts — основные понятия информационной безопасности.
 - @sec-theory-legal-information-access — категории доступа к информации.
 - @sec-theory-legal-system-classes — классы информационных систем.
 - @sec-theory-legal-protection-measures — меры защиты информации.
+- @sec-theory-legal-standards — нормативные требования.
 - @sec-theory-security-center-organization — организация обеспечения кибербезопасности.
 - @sec-theory-security-center-workflow — процесс оказания услуги обеспечения кибербезопасности.
-- @sec-theory-standards-risk-requirements-decisions — применение нормативно-правовых актов.
-- @sec-theory-access-control — идентификация, аутентификация и управление доступом.
-- @sec-theory-crypto-random — генераторы случайных чисел и энтропия.
-- @sec-theory-crypto-hash — хеширование и криптографические хеш-функции.
-- @sec-theory-crypto-cypher — симметричное шифрование.
-- @sec-theory-crypto-key-gen — получение криптографических ключей.
-- @sec-theory-password-storage — хранение паролей.
-- @sec-theory-crypto-algorithms — известные криптографические алгоритмы.
-- @sec-theory-data-integrity — контроль целостности, копии и RAID.
-- @sec-theory-public-key — создание и проверка подписи, принадлежность ключа и сертификаты.
+- @sec-theory-risk-assessment — оценка риска.
+- @sec-theory-authentication — подтверждение учётной записи.
+- @sec-theory-authorization — проверка полномочий и модели управления доступом.
+- @sec-theory-randomness — случайность и непредсказуемость.
+- @sec-theory-symmetric-encryption — шифрование общим секретным ключом.
+- @sec-theory-hash-functions — хеширование.
+- @sec-theory-asymmetric-cryptography — пара ключей и асимметричное шифрование.
+- @sec-theory-digital-signature — создание и проверка цифровой подписи.
+- @sec-theory-key-management — получение и распределение ключей.
+- @sec-theory-password-storage — проверка пароля по сохранённой записи.
+- @sec-theory-integrity-verification — проверка целостности относительно эталона.
+- @sec-theory-certificates — подтверждение принадлежности открытого ключа.
+- @sec-theory-backups — резервное копирование и восстановление.
+- @sec-theory-raid — дисковые массивы.
+
+Дополнительная конструкция подписи разобрана в @sec-theory-lamport.

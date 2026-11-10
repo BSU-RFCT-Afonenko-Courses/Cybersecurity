@@ -1,0 +1,12 @@
+```{ojs}
+//| echo: false
+//| output: false
+hashBitSeminarLesson = await import(await FileAttachment("/_prepared/visualizations/crypto/lesson.js").url())
+```
+
+```{ojs}
+//| echo: false
+//| label: fig-hash-bit-seminar
+//| fig-cap: "Изменение битов SHA-256"
+hashBitSeminarLesson.hashBitExperiment({compact: true})
+```

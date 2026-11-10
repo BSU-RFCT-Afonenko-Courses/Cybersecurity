@@ -1,12 +1,15 @@
-## Семинар 3 – Применение нормативных требований {#sec-seminar-3}
+---
+title: Семинар 3 — Применение нормативных требований
+pagetitle: Семинар 3 — Применение нормативных требований
+---
 
-## Требования к защите {#sec-seminar-3-requirements}
+## Требования к защите {#sec-seminar-3}
 
 ### От документа к решению
 
 Закон устанавливает общие обязанности; указ и приказ могут уточнять режим и порядок. Технический регламент действует в своей области применения. Стандарт может задавать методику или требования, но его обязательность зависит от основания применения.
 
-Документы и их назначение: @theory:sec-theory-standards-risk-regulatory-map.
+{{< xref theory sec-theory-legal-regulatory-map "[*]" >}}
 
 ::: {.notes}
 В каждом случае сначала определите объект и применимость документа; известность стандарта сама по себе не делает его обязательным для всех организаций.
@@ -16,7 +19,7 @@
 
 Сертификат относится к конкретному средству в пределах указанной области. Он не подтверждает автоматически правильную настройку всей системы и выполнение всех применимых требований. Система защиты включает также организационные меры и проверку их работы.
 
-Определения: @theory:def-protection-system; @theory:def-information-protection-tools.
+{{< xref theory def-protection-system "[*]" >}}; {{< xref theory def-information-protection-tools "[*]" >}}.
 
 ## Оценка ожидаемого ущерба {#sec-seminar-3-risk}
 
@@ -24,7 +27,7 @@
 
 В учебной модели $R = p \cdot L$, где $p$ — вероятность события за выбранный период, $L$ — ущерб при нём. После меры сравнивают остаточный ожидаемый ущерб **вместе со стоимостью меры**.
 
-Среднее значение не обещает фактическую потерю в конкретном году и не отменяет обязательные требования. Подробности модели: @theory:sec-theory-standards-risk-risk-model.
+Среднее значение не обещает фактическую потерю в конкретном году и не отменяет обязательные требования. Подробности модели: {{< xref theory sec-theory-risk-assessment "[*]" >}}.
 
 ### Вопрос для аудитории {.smaller}
 
@@ -36,6 +39,6 @@
 
 ### Дополнительная работа
 
-@tasks:exr-standards-risk-requirement-or-standard; @tasks:exr-standards-risk-certificate; @tasks:sec-work-standards-risk.
+{{< xref tasks exr-standards-risk-requirement-or-standard "[*]" >}}; {{< xref tasks exr-standards-risk-certificate "[*]" >}}; {{< xref tasks sec-work-standards-risk "[*]" >}}.
 
-Дополнительные задания: @tasks:exr-standards-risk-document-first; @tasks:exr-standards-risk-inspection.
+Дополнительные задания: {{< xref tasks exr-standards-risk-document-first "[*]" >}}; {{< xref tasks exr-standards-risk-inspection "[*]" >}}.

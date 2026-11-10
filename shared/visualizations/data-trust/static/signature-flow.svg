@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="650" viewBox="0 0 1440 650" role="img" aria-labelledby="desc">
+  <desc id="desc">Издатель передаёт сообщение m и отдельно созданную подпись s. Закрытый ключ SK поступает только в операцию подписания. Получатель проверяет три входа: полученные байты m, подпись s и открытый ключ PK издателя. Результат проверки — успех или отказ.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#304860"/></marker>
+    <style>
+      text { font-family: 'DejaVu Sans', sans-serif; font-size: 24px; fill: #172b46; }
+      .small { font-size: 21px; }
+      .bold { font-weight: 700; }
+      .mono { font-family: 'DejaVu Sans Mono', monospace; font-size: 24px; }
+      .edge { fill: none; stroke: #304860; stroke-width: 3; marker-end: url(#arrow); }
+      .paper { fill: #f0f6ff; stroke: #6585ad; stroke-width: 2; }
+      .operation { fill: #e6f4ef; stroke: #338568; stroke-width: 2.5; }
+      .signature { fill: #fff4dc; stroke: #a77820; stroke-width: 2; }
+    </style>
+  </defs>
+  <rect width="1440" height="650" fill="#fff"/>
+  <text x="50" y="48" class="bold">Издатель</text>
+  <text x="580" y="48" class="bold">Передаваемые данные</text>
+  <text x="1050" y="48" class="bold">Получатель</text>
+  <rect x="545" y="85" width="310" height="355" rx="20" fill="#fafbfc" stroke="#aab7c5" stroke-width="2" stroke-dasharray="8 6"/>
+
+  <rect x="50" y="120" width="235" height="125" rx="12" class="paper"/>
+  <text x="72" y="155" class="bold">Сообщение m</text>
+  <text x="72" y="191" class="mono" font-style="italic">notice.txt</text>
+  <text x="72" y="225" class="small">«Кабинет 214»</text>
+
+  <rect x="580" y="120" width="240" height="125" rx="12" class="paper"/>
+  <text x="602" y="155" class="bold">Байты m</text>
+  <text x="602" y="191" class="mono" font-style="italic">notice.txt</text>
+  <text x="602" y="225" class="small">«Кабинет 214»</text>
+  <path d="M285,181 H570" class="edge"/>
+  <text x="330" y="165" class="small">Копия сообщения</text>
+
+  <rect x="50" y="315" width="235" height="90" rx="12" class="operation"/>
+  <text x="72" y="352" class="small bold">Создать подпись</text>
+  <text x="98" y="384" class="mono">Sign(SK, m)</text>
+  <path d="M168,245 V305" class="edge"/>
+
+  <rect x="50" y="485" width="235" height="80" rx="12" fill="#fff0ed" stroke="#a45b54" stroke-width="2"/>
+  <text x="72" y="518" class="small bold">Закрытый ключ</text>
+  <text x="143" y="552" class="mono">SK</text>
+  <path d="M168,485 V415" class="edge"/>
+  <text x="50" y="607" class="small">Остаётся у издателя</text>
+
+  <rect x="580" y="315" width="240" height="90" rx="12" class="signature"/>
+  <text x="602" y="352" class="bold">Подпись s</text>
+  <text x="602" y="385" class="small">Отдельные байты</text>
+  <path d="M285,360 H570" class="edge"/>
+  <text x="344" y="343" class="small">Результат Sign</text>
+
+  <rect x="1050" y="85" width="340" height="95" rx="12" fill="#eaf2ff" stroke="#5277aa" stroke-width="2"/>
+  <text x="1074" y="121" class="bold">Открытый ключ PK</text>
+  <text x="1074" y="155" class="small">Ожидаемого издателя</text>
+  <path d="M1220,180 V255" class="edge"/>
+
+  <rect x="1050" y="265" width="340" height="140" rx="14" class="operation"/>
+  <text x="1080" y="310" class="bold">Проверить подпись</text>
+  <text x="1080" y="353" class="mono">Verify(PK, m, s)</text>
+  <text x="1080" y="385" class="small">Нужны все три входа</text>
+  <path d="M820,181 H945 V300 H1040" class="edge"/>
+  <path d="M820,360 H1040" class="edge"/>
+
+  <rect x="1050" y="485" width="340" height="80" rx="12" fill="#f0f6ff" stroke="#6585ad" stroke-width="2"/>
+  <text x="1080" y="535" class="bold">Успех или отказ</text>
+  <path d="M1220,405 V475" class="edge"/>
+  <text x="580" y="540" class="small">Сообщение можно читать:</text>
+  <text x="580" y="574" class="small">подпись его не шифрует</text>
+</svg>

@@ -8,9 +8,10 @@
 - @sec-bank-legal
 - @sec-bank-security-center
 - @sec-bank-standards-risk
-- @sec-bank-crypto
 - @sec-bank-access-control
-- @sec-bank-data-integrity
+- @sec-bank-crypto
+- @sec-bank-data-trust
+- @sec-bank-data-preservation
 
 ## Работы
 

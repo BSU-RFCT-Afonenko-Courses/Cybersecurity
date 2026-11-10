@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-labelledby="desc">
+<desc id="desc">После подписи d=10 раскрыты a1 и b0, а a0 и b1 пока скрыты штриховкой. Подпись d=01 тем же ключом раскрывает a0 и b1. После этого известны все четыре секрета. Показаны начала 32-байтовых значений.</desc>
+<defs>
+ <marker id="arrow" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L9,4 L0,8 Z" fill="#334155"/></marker>
+ <pattern id="hidden" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#f8fafc"/><path d="M-2,2 L2,-2 M0,10 L10,0 M8,12 L12,8" stroke="#cbd5e1" stroke-width="2"/></pattern>
+ <style>
+  text {font-family:"DejaVu Sans",sans-serif;font-size:26px;fill:#172b46}
+  .label {font-size:28px;font-weight:700}
+  .key {font-size:30px;font-weight:700}
+  .hex {font-family:"DejaVu Sans Mono",monospace;font-size:26px}
+  .cell {fill:#f1f5f9;stroke:#94a3b8;stroke-width:1.8}
+  .public {fill:#e9f1ff;stroke:#486caa;stroke-width:1.8}
+  .selected {fill:#dcf4e8;stroke:#13795b;stroke-width:2.5}
+  .unknown {fill:url(#hidden);stroke:#94a3b8;stroke-width:1.8}
+  .arrow {fill:none;stroke:#334155;stroke-width:3;marker-end:url(#arrow)}
+  .valid {fill:#13795b;font-size:32px;font-weight:700}
+ </style>
+</defs>
+<rect width="1200" height="400" fill="white"/>
+<text x="275" y="40" class="label" text-anchor="middle">После d = 10</text>
+<text x="940" y="40" class="label" text-anchor="middle">После d = 10 и d = 01</text>
+<text x="160" y="85" class="" text-anchor="middle">бит 0</text>
+<text x="400" y="85" class="" text-anchor="middle">бит 1</text>
+<rect x="50" y="110" width="220" height="100" rx="10" class="unknown"/>
+<text x="160" y="146" class="key" text-anchor="middle">a₀</text>
+<text x="160" y="189" class="hex" text-anchor="middle">?</text>
+<rect x="290" y="110" width="220" height="100" rx="10" class="selected"/>
+<text x="400" y="146" class="key" text-anchor="middle">a₁</text>
+<text x="400" y="189" class="hex" text-anchor="middle">4f78bf6b39…</text>
+<rect x="50" y="230" width="220" height="100" rx="10" class="selected"/>
+<text x="160" y="266" class="key" text-anchor="middle">b₀</text>
+<text x="160" y="309" class="hex" text-anchor="middle">1b1bc2d9bc…</text>
+<rect x="290" y="230" width="220" height="100" rx="10" class="unknown"/>
+<text x="400" y="266" class="key" text-anchor="middle">b₁</text>
+<text x="400" y="309" class="hex" text-anchor="middle">?</text>
+<text x="820" y="85" class="" text-anchor="middle">бит 0</text>
+<text x="1060" y="85" class="" text-anchor="middle">бит 1</text>
+<rect x="710" y="110" width="220" height="100" rx="10" class="selected"/>
+<text x="820" y="146" class="key" text-anchor="middle">a₀</text>
+<text x="820" y="189" class="hex" text-anchor="middle">4a37d2d871…</text>
+<rect x="950" y="110" width="220" height="100" rx="10" class="selected"/>
+<text x="1060" y="146" class="key" text-anchor="middle">a₁</text>
+<text x="1060" y="189" class="hex" text-anchor="middle">4f78bf6b39…</text>
+<rect x="710" y="230" width="220" height="100" rx="10" class="selected"/>
+<text x="820" y="266" class="key" text-anchor="middle">b₀</text>
+<text x="820" y="309" class="hex" text-anchor="middle">1b1bc2d9bc…</text>
+<rect x="950" y="230" width="220" height="100" rx="10" class="selected"/>
+<text x="1060" y="266" class="key" text-anchor="middle">b₁</text>
+<text x="1060" y="309" class="hex" text-anchor="middle">95a2092f6d…</text>
+<text x="610" y="160" class="key" text-anchor="middle">d = 01</text>
+<path d="M550,210 L680,210" class="arrow"/>
+<text x="610" y="265" class="" text-anchor="middle">раскрыты</text>
+<text x="610" y="304" class="key" text-anchor="middle">a₀ и b₁</text>
+<text x="25" y="380" class="" text-anchor="start">Штриховка: секрет не раскрыт</text>
+<text x="675" y="380" class="" text-anchor="start">Начала 32-байтовых значений</text>
+</svg>

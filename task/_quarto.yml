@@ -3,6 +3,7 @@ project:
   type: book
   output-dir: _output
   pre-render:
+  - python3 ../CI/prepare-course-visualizations.py
   - _extensions/Afonenko-Course-Tools/course-core/entrypoints/pre.ts
   - _extensions/Afonenko-Course-Tools/project-download/entrypoints/pre.ts
   post-render:
@@ -14,6 +15,7 @@ project:
   - '!**/*.scss'
   - '!**/*.qmd'
   - ./assets/**
+  - ./_prepared/visualizations/**/static/*.svg
   - '!materials/**'
   - '!_generated/**'
   - '!_freeze/**'

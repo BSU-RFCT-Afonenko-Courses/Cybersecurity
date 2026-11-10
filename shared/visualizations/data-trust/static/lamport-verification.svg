@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-labelledby="desc">
+<desc id="desc">Для d=10 получены части подписи a1 и b0. Проверяющий вычисляет их SHA-256 и сравнивает с B для первой позиции и бита 1 и C для второй позиции и бита 0. Обе проверки совпадают. Показаны первые 12 шестнадцатеричных знаков реальных значений.</desc>
+<defs>
+ <marker id="arrow" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L9,4 L0,8 Z" fill="#334155"/></marker>
+ <pattern id="hidden" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#f8fafc"/><path d="M-2,2 L2,-2 M0,10 L10,0 M8,12 L12,8" stroke="#cbd5e1" stroke-width="2"/></pattern>
+ <style>
+  text {font-family:"DejaVu Sans",sans-serif;font-size:26px;fill:#172b46}
+  .label {font-size:28px;font-weight:700}
+  .key {font-size:30px;font-weight:700}
+  .hex {font-family:"DejaVu Sans Mono",monospace;font-size:26px}
+  .cell {fill:#f1f5f9;stroke:#94a3b8;stroke-width:1.8}
+  .public {fill:#e9f1ff;stroke:#486caa;stroke-width:1.8}
+  .selected {fill:#dcf4e8;stroke:#13795b;stroke-width:2.5}
+  .unknown {fill:url(#hidden);stroke:#94a3b8;stroke-width:1.8}
+  .arrow {fill:none;stroke:#334155;stroke-width:3;marker-end:url(#arrow)}
+  .valid {fill:#13795b;font-size:32px;font-weight:700}
+ </style>
+</defs>
+<rect width="1200" height="400" fill="white"/>
+<text x="180" y="40" class="label" text-anchor="middle">Полученная s</text>
+<text x="645" y="40" class="label" text-anchor="middle">Вычислено</text>
+<text x="1020" y="40" class="label" text-anchor="middle">Ячейки PK</text>
+<rect x="25" y="110" width="310" height="100" rx="10" class="selected"/>
+<text x="180" y="146" class="key" text-anchor="middle">a₁</text>
+<text x="180" y="189" class="hex" text-anchor="middle">4f78bf6b3939…</text>
+<rect x="510" y="110" width="270" height="100" rx="10" class="public"/>
+<text x="645" y="146" class="label" text-anchor="middle">H(a₁)</text>
+<text x="645" y="189" class="hex" text-anchor="middle">b0c97fcb35dc…</text>
+<text x="825" y="175" class="key" text-anchor="middle">=</text>
+<rect x="870" y="110" width="305" height="100" rx="10" class="selected"/>
+<text x="1000" y="146" class="label" text-anchor="middle">B = H(a₁)</text>
+<text x="1000" y="189" class="hex" text-anchor="middle">b0c97fcb35dc…</text>
+<text x="1145" y="150" class="valid" text-anchor="middle">✓</text>
+<rect x="25" y="230" width="310" height="100" rx="10" class="selected"/>
+<text x="180" y="266" class="key" text-anchor="middle">b₀</text>
+<text x="180" y="309" class="hex" text-anchor="middle">1b1bc2d9bc95…</text>
+<rect x="510" y="230" width="270" height="100" rx="10" class="public"/>
+<text x="645" y="266" class="label" text-anchor="middle">H(b₀)</text>
+<text x="645" y="309" class="hex" text-anchor="middle">f66bc800899d…</text>
+<text x="825" y="295" class="key" text-anchor="middle">=</text>
+<rect x="870" y="230" width="305" height="100" rx="10" class="selected"/>
+<text x="1000" y="266" class="label" text-anchor="middle">C = H(b₀)</text>
+<text x="1000" y="309" class="hex" text-anchor="middle">f66bc800899d…</text>
+<text x="1145" y="270" class="valid" text-anchor="middle">✓</text>
+<text x="420" y="165" class="key" text-anchor="middle">H</text>
+<path d="M355,210 L485,210" class="arrow"/>
+<text x="25" y="380" class="" text-anchor="start">Начала 32-байтовых значений</text>
+</svg>

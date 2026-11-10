@@ -58,11 +58,25 @@ def exercise_defaults(source):
             for key, value in metadata.items() if key.startswith('default-exercise-')}
 
 
-def solution_fingerprints(body):
+def source_text_parts(body):
     body = re.sub(r'^`{3,}[^\n]*$', '', body, flags=re.M)
-    words = norm(body).split()
-    width = min(12, len(words))
-    return {' '.join(words[i:i + width]) for i in range(len(words) - width + 1)} if width else set()
+    body = re.sub(r'^\s*\d+[.)]\s+', '', body, flags=re.M)
+    body = re.sub(r'<br\s*/?>', ' ', body, flags=re.I)
+    # В HTML видна подпись ссылки, а её адрес находится в атрибуте href.
+    body = re.sub(r'\[([^\[\]]+)\]\([^\s)]+\)', r'\1', body)
+    # Номер и название перекрёстной ссылки назначает рендерер. Сравниваем
+    # авторский текст по обе стороны ссылки, не склеивая его через неё.
+    return re.split(r'@(?:(?:theory|tasks|practice):)?(?:sec|def|fig|tbl|exr|sol|eq)-[\w-]+', body)
+
+
+def solution_fingerprints(body):
+    result = set()
+    for part in source_text_parts(body):
+        words = norm(part).split()
+        width = min(12, len(words))
+        if width:
+            result.update(' '.join(words[i:i + width]) for i in range(len(words) - width + 1))
+    return result
 
 
 def mathml_tex(text):
@@ -177,6 +191,16 @@ def check_visualizations(site, project):
                 b'../../../extensions/course-visualizations/_extensions/course-visualizations/browser/runtime.js',
                 b'./course-runtime.js')
         expected[relative] = content
+    # Общие стили публикуются только в проектах, где на них ссылается QMD.
+    for document in (ROOT / project).rglob('*.qmd'):
+        if any(part.startswith(('_', '.')) for part in document.relative_to(ROOT / project).parts):
+            continue
+        styles = re.findall(r'_prepared/visualizations/([^\s\"\']+\.css)', document.read_text())
+        for style in styles:
+            relative = Path(style)
+            source = source_root / relative
+            require(source.is_file(), f'{project}: не найден общий стиль {relative}')
+            expected[relative] = source.read_bytes()
     runtime = ROOT / project / '_extensions/course-visualizations/browser/runtime.js'
     expected[Path('common/course-runtime.js')] = runtime.read_bytes()
     require(bool(expected), 'Не найдены исходные ресурсы визуализаций')
@@ -229,9 +253,9 @@ def check_site(student, full, targeted=False):
         relative = source.relative_to(ROOT)
         if any(part.startswith(('_', '.')) for part in relative.parts):
             continue
-        open_sources.append(norm(SOLUTION_BLOCKS.sub(
+        open_sources.append(norm(' '.join(source_text_parts(SOLUTION_BLOCKS.sub(
             lambda block: block.group('body') if block.group('identifier') in public_solutions else '',
-            source.read_text())))
+            source.read_text())))))
     open_text = '\n'.join(open_sources)
     search = list(student.rglob('search.json'))
     require(bool(search), 'Нет student search.json')

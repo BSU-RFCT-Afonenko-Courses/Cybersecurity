@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="330" viewBox="0 0 960 330" role="img" aria-labelledby="storage-desc">
+  <desc id="storage-desc">Диски 1 и 2 образуют зеркало RAID 1. На каждом находятся чертёж версии 2, смета версии 2 и инструкция версии 1. На отдельном носителе в копии пятницы находятся чертёж, смета и инструкция версии 1.</desc>
+  <style>
+    text { font-family: "DejaVu Sans", sans-serif; fill: #20313f; font-size: 23px; }
+    .label { font-size: 21px; font-weight: 600; }
+    .disk { fill: #fff; stroke: #aab8c3; stroke-width: 1.5; }
+    .rule { stroke: #d6dfe5; stroke-width: 1; }
+  </style>
+  <rect width="960" height="330" fill="#fff"/>
+  <rect x="8" y="8" width="610" height="310" rx="14" fill="#edf3f6"/>
+  <text class="label" x="30" y="47">Зеркало RAID 1</text>
+  <text class="label" x="666" y="47">Копия пятницы</text>
+  <rect class="disk" x="30" y="69" width="272" height="225" rx="9"/>
+  <rect class="disk" x="326" y="69" width="272" height="225" rx="9"/>
+  <rect class="disk" x="666" y="69" width="272" height="225" rx="9"/>
+  <text class="label" x="50" y="104">Диск 1</text>
+  <text class="label" x="346" y="104">Диск 2</text>
+  <text class="label" x="686" y="104">Диск 3</text>
+  <path class="rule" d="M30 121H302 M326 121H598 M666 121H938"/>
+  <text x="57" y="165">Чертёж₂</text>
+  <text x="353" y="165">Чертёж₂</text>
+  <text x="693" y="165">Чертёж₁</text>
+  <text x="57" y="216">Смета₂</text>
+  <text x="353" y="216">Смета₂</text>
+  <text x="693" y="216">Смета₁</text>
+  <text x="57" y="267">Инструкция₁</text>
+  <text x="353" y="267">Инструкция₁</text>
+  <text x="693" y="267">Инструкция₁</text>
+</svg>
