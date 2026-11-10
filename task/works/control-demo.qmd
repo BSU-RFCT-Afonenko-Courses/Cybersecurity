@@ -4,9 +4,6 @@ description: Задачи для подготовки к контрольной 
   для самостоятельного разбора.
 exercise-bank: true
 default-exercise-target: manual
-crossref:
-  exr-title: Задача
-  exr-prefix: задача
 assessment:
   id: sec-control-demo
   kind: seminar
