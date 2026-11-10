@@ -9,8 +9,8 @@ project:
   - 03-standards-risk.qmd
   - 04-access-control.qmd
   - 05-crypto.qmd
-  - 06-data-integrity.qmd
-  - 07-signature-trust.qmd
+  - 06-data-trust.qmd
+  - 07-data-preservation.qmd
   output-dir: _output
   resources:
   - ./assets/**
@@ -66,6 +66,15 @@ format:
     revealjs-plugins:
     - course-navigation
     pdf-separate-fragments: false
+    width: 1600
+    height: 900
+    center: false
+    hash: true
+    menu: false
+    course-nav:
+      language: ru
+      sidebar: true
+      title: Основы кибербезопасности
 website:
   navbar:
     title: false
@@ -80,3 +89,8 @@ author:
 - Войтович Елизавета
 reference-catalog:
   namespace: practice
+default-exercise-target: manual
+default-exercise-course-role: discussion
+default-exercise-statement-visibility: open
+course-presentation:
+  answers: auto

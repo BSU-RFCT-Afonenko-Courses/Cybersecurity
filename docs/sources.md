@@ -6,7 +6,7 @@
 и основание применения к рассматриваемой системе. Название стандарта или
 результат учебной модели не подтверждают соответствие всей системы.
 
-## Правовые основы и организация защиты
+## Правовые основы
 
 - [Закон Республики Беларусь № 455-З «Об информации, информатизации и защите информации»](https://pravo.by/document/?guid=3871&p0=H10800455).
 - [Закон Республики Беларусь № 99-З «О защите персональных данных»](https://pravo.by/document/?guid=3871&p0=H12100099).
@@ -14,7 +14,7 @@
 - [Правовая основа Национального центра защиты персональных данных](https://cpd.by/pravovaya-osnova/).
 - [Госстандарт: информация о ТНПА](https://www.gosstandart.gov.by/information-about-tnla).
 
-## Идентификация и управление доступом
+## Управление доступом
 
 - [NIST SP 800-63B: аутентификаторы и факторы](https://pages.nist.gov/800-63-4/sp800-63b/authenticators/).
 - [RFC 6238: TOTP](https://www.rfc-editor.org/rfc/rfc6238.html).
@@ -26,10 +26,12 @@
 - [Moodle: роли, разрешения и контексты](https://moodledev.io/docs/5.0/apis/subsystems/roles).
 - [Apache Casbin: RBAC](https://casbin.apache.org/docs/rbac/).
 
-## Случайность, хеширование, пароли и подпись
+## Криптография
 
+- [Henry Corrigan-Gibbs, Srini Devadas, Yael Kalai, Nickolai Zeldovich: The Structure of Secure Systems](https://securitybook.eecs.berkeley.edu/): главы 3, 5, 7 и 10 для хеширования, подписи, сертификатов и асимметричного шифрования.
 - [Boneh — Shoup: A Graduate Course in Applied Cryptography](https://crypto.stanford.edu/~dabo/cryptobook/BonehShoup_0_5.pdf).
 - [NIST SP 800-90A: детерминированные генераторы](https://csrc.nist.gov/pubs/sp/800/90/a/r1/final).
+- [NIST SP 800-90B: источники энтропии](https://csrc.nist.gov/pubs/sp/800/90/b/final).
 - [NIST: криптографические хеш-функции](https://csrc.nist.gov/projects/hash-functions).
 - [FIPS 180-4: SHA-256 и другие функции семейства SHA-2](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf).
 - [RFC 9106: Argon2](https://www.rfc-editor.org/rfc/rfc9106.html).
@@ -37,8 +39,18 @@
 - [NIST SP 800-38D: GCM](https://csrc.nist.gov/pubs/sp/800/38/d/final).
 - [RFC 8439: ChaCha20 и Poly1305](https://www.rfc-editor.org/rfc/rfc8439).
 - [RFC 8017: схемы шифрования и подписи RSA](https://www.rfc-editor.org/rfc/rfc8017.html).
+- [NIST SP 800-57 Part 1 Rev. 5: управление ключами](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf): таблица 2 для сопоставления длины ключей с оценкой стойкости.
 - [RFC 2104: HMAC](https://www.rfc-editor.org/rfc/rfc2104.html).
 - [W3C Web Cryptography API](https://www.w3.org/TR/webcrypto-1/).
 
 Численные примеры LCG, Цезаря, XOR и усечённого хеша объясняют механизм;
 их учебные параметры не служат настройками защиты реальных данных.
+
+## Сохранность данных
+
+- [Remzi H. Arpaci-Dusseau, Andrea C. Arpaci-Dusseau: Operating Systems: Three Easy Pieces, глава 38](https://pages.cs.wisc.edu/~remzi/OSTEP/file-raid.pdf): размещение блоков и отказ диска в RAID.
+- [Microsoft: резервное копирование и восстановление SQL Server](https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/back-up-and-restore-of-sql-server-databases?view=sql-server-ver17): виды копий и пробное восстановление.
+
+Определения механизма сверяйте с источником, а правила учебного примера
+задавайте явно. В частности, извлечение целых файлов из отдельных копий
+и восстановление средствами СУБД требуют разных условий.

@@ -128,7 +128,7 @@ assessment:
 
 **Материалы для решения**
 
-- Теория: @theory:sec-theory-standards-risk-requirements-decisions.
+- Теория: @theory:sec-theory-legal-standards.
 - Семинар: @practice:sec-seminar-3.
 - Задачи занятия: @tasks:exr-standards-risk-document-first;
   @tasks:exr-standards-risk-requirement-or-standard.
@@ -182,7 +182,7 @@ assessment:
 
 - Теория: @theory:sec-theory-legal-information-access;
   @theory:sec-theory-legal-system-classes;
-  @theory:sec-theory-standards-risk-protection-system.
+  @theory:sec-theory-legal-protection-system.
 - Семинары: @practice:sec-seminar-2; @practice:sec-seminar-3.
 - Задачи занятий: @tasks:exr-legal-system-classes;
   @tasks:exr-standards-risk-document-first;

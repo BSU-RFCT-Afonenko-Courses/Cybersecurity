@@ -23,7 +23,7 @@ show_url() {
   local port
   read -r port < "$state/port"
   echo "http://127.0.0.1:$port/"
-  echo "http://127.0.0.1:$port/theory/access-control/access-control.html"
+  echo "http://127.0.0.1:$port/theory/access-control/authorization.html"
   echo "Состояние и журналы: $state"
 }
 case "$action" in

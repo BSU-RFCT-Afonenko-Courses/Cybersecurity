@@ -54,6 +54,26 @@
     });
     return node;
   }
+  // Локальная поправка курса: CI/apply-navigation-local-links.py.
+  function permanentLinkHref(item, baseURI) {
+    try {
+      if (typeof item.href !== 'string' || !item.href.trim()) return null;
+      const url = new URL(item.href, baseURI);
+      if (url.protocol === 'https:' || url.protocol === 'http:') return item.href;
+      const base = new URL(baseURI);
+      const relative = item.href === item.href.trim() &&
+        !/^[a-z][a-z0-9+.-]*:/i.test(item.href) &&
+        !/^[\/]/.test(item.href) && !item.href.includes('\\');
+      const courseLink = (item.scope === 'course' || item.scope === 'project') &&
+        (item.id === 'root' || /^subproject-[a-z0-9][a-z0-9_-]*$/i.test(item.id || ''));
+      if (base.protocol !== 'file:' || url.protocol !== 'file:' ||
+          url.host !== base.host || !relative || !courseLink) return null;
+      if (url.pathname.endsWith('/')) url.pathname += 'index.html';
+      return url.href;
+    } catch (_) {
+      return null;
+    }
+  }
   function build(model, options, actions) {
     const labels = strings[options.language] || strings.ru;
     const shell = el('div', 'course-nav-shell');
@@ -65,9 +85,9 @@
       for (const item of options.links || []) {
         const link = el('a', 'course-nav-permanent-link', item.text);
         // Настоящие ссылки сохраняют клавиатурное управление и меню браузера.
-        const url = new URL(item.href, document.baseURI);
-        if (url.protocol !== 'https:' && url.protocol !== 'http:') continue;
-        link.setAttribute('href', item.href);
+        const href = permanentLinkHref(item, document.baseURI);
+        if (href === null) continue;
+        link.setAttribute('href', href);
         if (item.id) link.dataset.courseLink = item.id;
         if (item.current) link.setAttribute('aria-current', 'page');
         if (item.scope === 'repository') { link.target = '_blank'; link.rel = 'noopener noreferrer'; }

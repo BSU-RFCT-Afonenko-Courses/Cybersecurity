@@ -1,12 +1,32 @@
 digraph G {
- graph [rankdir=LR, bgcolor="transparent", pad="0.2", splines=polyline];
- node [shape=box, style="rounded,filled", fillcolor="#eef4fa", fontname="DejaVu Sans", fontsize=12];
- edge [fontname="DejaVu Sans", fontsize=10];
- "n0" [id="n0", label="RAID 0\nчередование: A₀ | A₁\nизбыточности нет"];
- "n1" [id="n1", label="RAID 1\nзеркало: A | A\nвыдерживает отказ одного диска"];
- "n2" [id="n2", label="RAID 5\nA | B | A XOR B\nодин отказ, чётность распределена"];
- "n3" [id="n3", label="RAID не хранит прошлые версии\nудаление может распространиться на массив"];
- "n0" -> "n3" [label=""];
- "n1" -> "n3" [label=""];
- "n2" -> "n3" [label=""];
+graph [bgcolor="transparent", pad="0.12"];
+node [shape=plain, fontname="DejaVu Sans", fontsize=22];
+raid [label=<
+<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="18"><TR>
+<TD VALIGN="TOP"><TABLE BORDER="0" CELLBORDER="1" CELLSPACING="5" CELLPADDING="12" COLOR="#a7b8cc">
+<TR><TD COLSPAN="3" BORDER="0"><B>RAID 0</B></TD></TR>
+<TR><TD BGCOLOR="#edf2f8">Диск 1</TD><TD BGCOLOR="#edf2f8">Диск 2</TD><TD BGCOLOR="#edf2f8">Диск 3</TD></TR>
+<TR><TD BGCOLOR="#dceef9">A</TD><TD BGCOLOR="#dceef9">B</TD><TD BGCOLOR="#dceef9">C</TD></TR>
+<TR><TD BGCOLOR="#dceef9">D</TD><TD BGCOLOR="#dceef9">E</TD><TD BGCOLOR="#dceef9">F</TD></TR>
+<TR><TD BGCOLOR="#dceef9">G</TD><TD BGCOLOR="#dceef9">H</TD><TD BGCOLOR="#dceef9">I</TD></TR>
+<TR><TD COLSPAN="3" BORDER="0">Соседние блоки<BR/>на разных дисках</TD></TR>
+</TABLE></TD>
+<TD VALIGN="TOP"><TABLE BORDER="0" CELLBORDER="1" CELLSPACING="5" CELLPADDING="12" COLOR="#a7b8cc">
+<TR><TD COLSPAN="2" BORDER="0"><B>RAID 1</B></TD></TR>
+<TR><TD BGCOLOR="#edf2f8">Диск 1</TD><TD BGCOLOR="#edf2f8">Диск 2</TD></TR>
+<TR><TD BGCOLOR="#dceef9">A</TD><TD BGCOLOR="#dceef9">A</TD></TR>
+<TR><TD BGCOLOR="#dceef9">B</TD><TD BGCOLOR="#dceef9">B</TD></TR>
+<TR><TD BGCOLOR="#dceef9">C</TD><TD BGCOLOR="#dceef9">C</TD></TR>
+<TR><TD COLSPAN="2" BORDER="0">Каждый блок<BR/>хранится на двух дисках</TD></TR>
+</TABLE></TD>
+<TD VALIGN="TOP"><TABLE BORDER="0" CELLBORDER="1" CELLSPACING="5" CELLPADDING="12" COLOR="#a7b8cc">
+<TR><TD COLSPAN="3" BORDER="0"><B>RAID 5</B></TD></TR>
+<TR><TD BGCOLOR="#edf2f8">Диск 1</TD><TD BGCOLOR="#edf2f8">Диск 2</TD><TD BGCOLOR="#edf2f8">Диск 3</TD></TR>
+<TR><TD BGCOLOR="#dceef9">A</TD><TD BGCOLOR="#dceef9">B</TD><TD BGCOLOR="#fff0ca">P₁</TD></TR>
+<TR><TD BGCOLOR="#dceef9">C</TD><TD BGCOLOR="#fff0ca">P₂</TD><TD BGCOLOR="#dceef9">D</TD></TR>
+<TR><TD BGCOLOR="#fff0ca">P₃</TD><TD BGCOLOR="#dceef9">E</TD><TD BGCOLOR="#dceef9">F</TD></TR>
+<TR><TD COLSPAN="3" BORDER="0">P₁ = A ⊕ B<BR/>P₂ = C ⊕ D<BR/>P₃ = E ⊕ F</TD></TR>
+</TABLE></TD>
+</TR></TABLE>
+>];
 }

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="450" viewBox="0 0 1300 450" role="img" aria-labelledby="desc">
+  <desc id="desc">Отправитель шифрует данные m открытым ключом PK получателя. Получатель расшифровывает переданный шифротекст c своим закрытым ключом SK. Оба ключа принадлежат получателю; закрытый ключ не передаётся отправителю.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#334155"/>
+    </marker>
+    <marker id="key-arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#2563a6"/>
+    </marker>
+  </defs>
+  <rect width="1300" height="450" fill="#ffffff"/>
+  <g font-family="DejaVu Sans, sans-serif" text-anchor="middle" fill="#172033">
+    <text x="345" y="35" font-size="27" font-weight="bold">Отправитель</text>
+    <text x="935" y="35" font-size="27" font-weight="bold">Получатель</text>
+
+    <rect x="195" y="65" width="300" height="120" rx="12" fill="#eaf4ff" stroke="#2563a6" stroke-width="2"/>
+    <text x="345" y="103" font-size="23" font-weight="bold">Открытый ключ PK</text>
+    <text x="345" y="135" font-size="21">получателя</text>
+    <text x="345" y="166" font-size="18">Доступен отправителям</text>
+
+    <rect x="785" y="65" width="300" height="120" rx="12" fill="#fff3de" stroke="#b7791f" stroke-width="2"/>
+    <text x="935" y="103" font-size="23" font-weight="bold">Закрытый ключ SK</text>
+    <text x="935" y="135" font-size="21">получателя</text>
+    <text x="935" y="166" font-size="18">Хранится в секрете</text>
+
+    <path d="M 345 185 V 248" fill="none" stroke="#2563a6" stroke-width="3" marker-end="url(#key-arrow)"/>
+    <path d="M 935 185 V 248" fill="none" stroke="#2563a6" stroke-width="3" marker-end="url(#key-arrow)"/>
+
+    <rect x="30" y="270" width="150" height="90" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>
+    <text x="105" y="307" font-size="22">Данные</text>
+    <text x="105" y="341" font-size="28" font-style="italic">m</text>
+
+    <rect x="220" y="250" width="250" height="130" rx="25" fill="#eef8f2" stroke="#327452" stroke-width="2.5"/>
+    <text x="345" y="307" font-size="23" font-weight="bold">Шифрование</text>
+    <text x="345" y="343" font-size="22">Encrypt(PK, m)</text>
+
+    <rect x="530" y="270" width="220" height="90" rx="8" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+    <text x="640" y="307" font-size="22">Шифротекст</text>
+    <text x="640" y="341" font-size="28" font-style="italic">c</text>
+    <text x="640" y="409" font-size="20" fill="#475569">Передаётся по сети</text>
+
+    <rect x="810" y="250" width="250" height="130" rx="25" fill="#eef8f2" stroke="#327452" stroke-width="2.5"/>
+    <text x="935" y="307" font-size="23" font-weight="bold">Расшифрование</text>
+    <text x="935" y="343" font-size="22">Decrypt(SK, c)</text>
+
+    <rect x="1120" y="270" width="150" height="90" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>
+    <text x="1195" y="307" font-size="22">Данные</text>
+    <text x="1195" y="341" font-size="28" font-style="italic">m</text>
+
+    <path d="M 180 315 H 218" fill="none" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M 470 315 H 528" fill="none" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M 750 315 H 808" fill="none" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M 1060 315 H 1118" fill="none" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+  </g>
+</svg>

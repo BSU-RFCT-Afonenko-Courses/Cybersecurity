@@ -71,6 +71,42 @@ class Inventory(unittest.TestCase):
         self.assertEqual(block.group('body').strip(), 'Закрытый разбор.')
         self.assertEqual(check.SOLUTION_BLOCKS.sub('', source).strip(), '')
 
+    def test_rendered_references_preserve_content_and_leak_checks(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            bank = root / 'task/bank'
+            bank.mkdir(parents=True)
+            (bank / '_metadata.yml').write_text('default-exercise-statement-visibility: open\n')
+            secret = 'Подпись подтверждает точные байты документа и соответствие известному открытому ключу подписывающего в принятой схеме проверки.'
+            (bank / 'example.qmd').write_text(
+                ':::: {#exr-private course-role="discussion"}\nУсловие\n::::\n'
+                '::: {#sol-private}\n1. ' + secret + '\n'
+                '2. Источник: [Учебное пособие](https://example.org/lesson).<br><br>\n'
+                'Определение: @theory:def-example.\n:::\n')
+            student, full = root / 'student', root / 'full'
+            for output in (student, full):
+                (output / 'bank').mkdir(parents=True)
+            (student / 'bank/example.html').write_text('<p>Условие</p>')
+            (student / 'search.json').write_text('[]')
+            page = full / 'bank/example.html'
+            rendered = ('<div id="sol-private">' + secret +
+                        '<p>Источник: <a href="https://example.org/lesson">Учебное пособие</a>.</p>'
+                        '<p>Определение: Определение 1.</p></div>')
+            page.write_text(rendered)
+            previous_root = check.ROOT
+            try:
+                check.ROOT = root
+                check.check_site(student, full, targeted=True)
+                page.write_text(rendered.replace(secret, ''))
+                with self.assertRaises(ValueError):
+                    check.check_site(student, full, targeted=True)
+                page.write_text(rendered)
+                (student / 'search.json').write_text(json.dumps([secret]))
+                with self.assertRaises(ValueError):
+                    check.check_site(student, full, targeted=True)
+            finally:
+                check.ROOT = previous_root
+
     def test_encoded_ojs_is_visible_to_the_public_solution_audit(self):
         source = 'Закрытый sol-example и текст решения'
         payload = {'contents': [{'source': source}]}

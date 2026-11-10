@@ -3,9 +3,9 @@ const hex=bytes=>Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
 const bits=bytes=>Array.from(bytes,b=>b.toString(2).padStart(8,'0')).join('');
 async function digest(text){if(!globalThis.crypto?.subtle)throw Error('В этой среде Web Crypto недоступен. Для вычисления SHA-256 откройте страницу по HTTPS или на localhost.');return new Uint8Array(await crypto.subtle.digest('SHA-256',encoder.encode(text)));}
 
-export function hashBitExperiment() {
+export function hashBitExperiment({compact=false}={}) {
  const view=document.createElement('div');
- view.className='course-viz course-viz-hash-bits';
+ view.className=`course-viz course-viz-hash-bits${compact?' course-viz-hash-bits-compact':''}`;
  const element=(tag,text,className)=>{
   const node=document.createElement(tag);
   if(text!==undefined)node.textContent=text;
@@ -72,10 +72,15 @@ export function hashBitExperiment() {
   try{
    const hashes=await Promise.all(text.map(digest));
    if(token!==revision)return;
-   const java=algorithm('Java String.hashCode · 32 бита',text.map(javaHash));
    const sha=algorithm('SHA-256 · 256 битов',hashes);
-   results.replaceChildren(java.group,sha.group);
-   status.textContent=`Изменившихся битов: Java — ${java.count} из ${java.total}; SHA-256 — ${sha.count} из ${sha.total}.`;
+   if(compact){
+    results.replaceChildren(sha.group);
+    status.textContent=`Изменившихся битов SHA-256: ${sha.count} из ${sha.total}.`;
+   }else{
+    const java=algorithm('Java String.hashCode · 32 бита',text.map(javaHash));
+    results.replaceChildren(java.group,sha.group);
+    status.textContent=`Изменившихся битов: Java — ${java.count} из ${java.total}; SHA-256 — ${sha.count} из ${sha.total}.`;
+   }
   }catch(error){
    if(token!==revision)return;
    results.textContent=error.message;status.textContent=error.message;
@@ -89,6 +94,7 @@ export function hashBitExperiment() {
   inputs.forEach((input,i)=>{input.value=values[i];});update();
  });
  for(const input of inputs)input.addEventListener('input',()=>{preset.value='custom';update();});
- view.append(controls,fields,legend,status,results);
+ if(!compact)view.append(controls);
+ view.append(fields,legend,status,results);
  update();return view;
 }

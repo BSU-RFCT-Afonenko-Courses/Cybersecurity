@@ -1,0 +1,298 @@
+---
+title: "Лабораторная по резервному копированию"
+lang: ru
+exercise-bank: true
+default-exercise-target: manual
+default-exercise-course-role: independent-study
+default-exercise-statement-visibility: open
+---
+
+Опыт выполняется после подготовки среды и занимает отдельное занятие.
+Он не входит в основную аудиторную практику семинара.
+
+::::: {#exr-data-preservation-backup-lab difficulty="intermediate" time="90"}
+### Вернуть файлы проекта
+
+В папке проекта меняются план и смета, появляется файл заметок.
+Нужно сохранить четыре состояния, затем вернуть прежний комплект
+и удалённую смету. Проделайте одну историю четырьмя способами:
+`full`, `incremental`, `differential`, `mirror` в Butterfly Backup.
+Для каждого способа используйте отдельный каталог копий.
+
+#### Среда
+
+Команды рассчитаны на Bash в GNU/Linux; под Windows используйте GNU/Linux
+в WSL 2. Нужны Git, Python 3 с `venv`, rsync и файловая система,
+поддерживающая жёсткие ссылки. В WSL выполняйте работу внутри файловой
+системы Linux. Установка среды проводится до отсчёта 90 минут.
+
+Используется Butterfly Backup 1.22.3, снимок исходников
+`af5f83264c70c5c6a0e23b9e5ea0e6fc508fb9a3`.
+В новом терминале выполните:
+
+```bash
+BB_SRC=$(mktemp -d /tmp/butterfly-source.XXXXXX)
+git clone https://github.com/MatteoGuadrini/Butterfly-Backup.git "$BB_SRC"
+git -C "$BB_SRC" checkout af5f83264c70c5c6a0e23b9e5ea0e6fc508fb9a3
+python3 -m venv "$BB_SRC/venv"
+"$BB_SRC/venv/bin/python" -m pip install "$BB_SRC"
+bb() { "$BB_SRC/venv/bin/python" "$BB_SRC/bb.py" "$@"; }
+bb --version
+rsync --version
+```
+
+Прямой запуск `bb.py` использует штатный выбор `fork` в исходнике.
+Это существенно для Python 3.14: установленная команда `bb` из этого
+выпуска вызывает `main` иначе и может завершиться с `NameError` в дочернем
+процессе. Функция выше запускает исходник без изменений.
+
+Дальнейшие блоки выполняйте по порядку в том же Bash. Сохраните команды
+и вывод в протокол. Каждый новый опыт начинается с нового каталога `LAB`.
+
+```{.bash .lab-run}
+set -euo pipefail
+LAB=$(mktemp -d /tmp/backup-lab.XXXXXX)
+export LAB
+mkdir -p "$LAB/project" "$LAB/ids" "$LAB/logs" "$LAB/restore"
+for mode in full incremental differential mirror; do
+    mkdir -p "$LAB/copies/$mode"
+done
+printf '%s\n' "$LAB"
+
+save_stage() {
+    local stage=$1 mode actual
+    # Имена каталогов BB имеют точность до минуты.
+    # Следующий этап должен начаться в другой календарной минуте.
+    if [[ -f "$LAB/last-minute" ]]; then
+        while [[ $(date +%Y%m%d%H%M) == $(cat "$LAB/last-minute") ]]; do
+            sleep 1
+        done
+    fi
+    for mode in full incremental differential mirror; do
+        actual=$mode
+        if [[ $stage == S0 && $mode != mirror ]]; then actual=full; fi
+        bb backup --computer localhost --type unix \
+            --custom-data "$LAB/project" --destination "$LAB/copies/$mode" \
+            --mode "$actual" --verbose --no-color \
+            > "$LAB/logs/$mode-$stage.log" 2>&1
+        bb list --catalog "$LAB/copies/$mode" --computer localhost \
+            --last --only-id > "$LAB/ids/$mode-$stage.txt"
+    done
+    date +%Y%m%d%H%M > "$LAB/last-minute"
+    printf 'Сохранено %s\n' "$stage"
+}
+```
+
+Ожидание в `save_stage` не даёт двум этапам попасть в одну папку копии.
+Каталоги разных способов раздельны, поэтому их базы не смешиваются.
+Все восстановления выполняются в новые пустые папки: BB использует
+`rsync -u` и при восстановлении поверх более нового файла может его пропустить.
+Каталоги копий не редактируйте вручную.
+
+#### История проекта
+
+Каждая ячейка задаёт **всё содержимое файла**: одну строку с завершающим
+переводом строки. Знак «—» означает отсутствие файла.
+
+| Состояние | `plan.txt` | `budget.csv` | `readme.txt` | `notes.txt` |
+|---|---|---|---|---|
+| S0 | `plan-v0` | `sum,100` | `readme-v0` | — |
+| S1 | `plan-v1` | `sum,100` | `readme-v0` | `notes-v0` |
+| S2 | `plan-v1` | `sum,120` | `readme-v0` | `notes-v0` |
+| S3 | `plan-v2` | — | `readme-v0` | `notes-v0` |
+
+Сначала **без запуска копирования** запишите прогноз: какие файлы
+удастся увидеть в каждой копии S2 и S3, а какие — вернуть из зеркала
+после S3. Затем выполните историю. Метки времени заданы явно, чтобы
+одинаковая длина двух редакций не скрыла изменение при быстрой записи.
+
+```{.bash .lab-run}
+printf 'plan-v0\n' > "$LAB/project/plan.txt"
+printf 'sum,100\n' > "$LAB/project/budget.csv"
+printf 'readme-v0\n' > "$LAB/project/readme.txt"
+touch -t 202601010900 "$LAB/project/"*
+save_stage S0
+
+printf 'plan-v1\n' > "$LAB/project/plan.txt"
+printf 'notes-v0\n' > "$LAB/project/notes.txt"
+touch -t 202601010901 "$LAB/project/plan.txt" "$LAB/project/notes.txt"
+save_stage S1
+
+printf 'sum,120\n' > "$LAB/project/budget.csv"
+touch -t 202601010902 "$LAB/project/budget.csv"
+save_stage S2
+
+printf 'plan-v2\n' > "$LAB/project/plan.txt"
+touch -t 202601010903 "$LAB/project/plan.txt"
+rm "$LAB/project/budget.csv"
+save_stage S3
+```
+
+#### Исследование копий
+
+1. Для каждого способа сопоставьте этап, ID, тип и путь копии из
+   `.catalog.cfg`. Убедитесь, что у каждой записи `status = 0`.
+   Сравните пути четырёх записей зеркала.
+2. Выпишите относительные имена и содержимое файлов в копиях S2 и S3.
+   Сравните наблюдение с прогнозом. Сохранён ли `budget.csv` в копии S2
+   после удаления из проекта на этапе S3?
+3. Сравните пары `(устройство, inode)` у `readme.txt` во всех состояниях
+   каждого способа, кроме зеркала. Для `plan.txt` сравните S1 и S2.
+   Где две записи обозначают один файл на диске? Используйте, например,
+   `stat -c '%d:%i %n' путь/к/файлу`.
+   Не делайте вывод о месте на диске по сумме размеров видимых файлов.
+
+Путь по сохранённому ID можно получить так:
+
+```{.bash .lab-run}
+copy_path() {
+    python3 - "$LAB" "$1" "$2" <<'PY'
+import configparser
+from pathlib import Path
+import sys
+root, mode, stage = Path(sys.argv[1]), sys.argv[2], sys.argv[3]
+catalog = configparser.ConfigParser()
+catalog.read(root / 'copies' / mode / '.catalog.cfg')
+bid = (root / 'ids' / f'{mode}-{stage}.txt').read_text().strip()
+assert catalog[bid]['status'] == '0', dict(catalog[bid])
+print(catalog[bid]['path'])
+PY
+}
+copy_path incremental S2
+```
+
+#### Восстановление
+
+Для `full`, `incremental`, `differential` восстановите средствами BB
+в две отдельные пустые папки **точно S1** и **точно S3**. Начальный
+образец команды — ниже. Выберите соответствующий ID; проверьте не
+только содержимое файлов, но и отсутствие лишних.
+
+```{.bash .lab-run}
+restore_stage() {
+    local mode=$1 stage=$2 target
+    target="$LAB/restore/$mode-$stage"
+    mkdir "$target"
+    bb restore --computer localhost --type unix \
+        --catalog "$LAB/copies/$mode" \
+        --backup-id "$(cat "$LAB/ids/$mode-$stage.txt")" \
+        --root-dir "$target" --verbose --force --no-color \
+        > "$LAB/logs/restore-$mode-$stage.log" 2>&1
+}
+for mode in full incremental differential; do
+    restore_stage "$mode" S1
+    restore_stage "$mode" S3
+done
+restore_stage mirror S3
+restore_stage mirror S1
+```
+
+1. Для каждого из семи восстановлений составьте список файлов
+   относительно вложенной папки `project`. Сверьте каждую строку с
+   историей. Успешная команда без проверки файлов не считается результатом.
+2. В последней команде используется сохранённый **старый ID зеркала S1**.
+   Какое состояние получено фактически?
+   Какие файлы мешают получить S1? Сравните пути старого и последнего ID.
+3. Нужна отдельно смета **`sum,120`**. Выберите копию после S3,
+   из которой её можно вернуть. Восстановите выбранное состояние
+   через BB в ещё одну пустую папку, возьмите оттуда `budget.csv`
+   и сохраните в `$LAB/recovered-budget.csv`. Рабочий проект оставьте в S3.
+   Укажите ID источника и подтвердите содержимое возвращённого файла.
+
+::: {course-role="deliverables"}
+Сдайте архив каталога `LAB`, включая скрытые `.catalog.cfg`, копии, ID,
+журналы, папки восстановления и `recovered-budget.csv`.
+Например, `tar -czf backup-lab.tar.gz -C "$(dirname "$LAB")" "$(basename "$LAB")"`.
+Архив переносит данные, но абсолютные пути в каталоге BB относятся
+к исходному месту опыта; для повторного запуска используйте новый `LAB`.
+
+Приложите краткий протокол: версии Python, rsync и BB, SHA исходника BB;
+прогноз и фактический состав S2/S3; таблицу ID, типов, путей и статусов;
+сравнения inode; списки восьми восстановленных папок с содержимым;
+выбранный источник сметы и её проверку. Если прогноз не подтвердился,
+покажите конкретное расхождение. Выводы обоснуйте файлами и журналами.
+:::
+
+::: {course-role="criteria"}
+Работа принята, если воспроизведены четыре состояния во всех четырёх
+режимах, записи завершились со статусом 0, шесть восстановлений S1/S3
+из версионных копий и восстановление S3 из зеркала точно совпали с
+таблицей, а опыт со старым ID зеркала показал фактический результат.
+Отдельно проверяются возвращённая смета `sum,120`, отсутствие её
+в рабочей S3 и вывод о совместном хранении по устройству и inode.
+Протокол должен позволять связать каждый результат с ID и командой.
+:::
+:::::
+
+:::: {#sol-data-preservation-backup-lab}
+### Проверочный разбор
+
+В `full`, `incremental`, `differential` видимое содержимое копии
+каждого этапа совпадает со всей соответствующей строкой истории.
+В S2 — четыре файла; в S3 — `plan.txt`, `readme.txt`, `notes.txt`,
+без `budget.csv`. Копия S2 продолжает содержать `sum,120` после удаления
+из проекта. В каждом из трёх каталогов четыре различных пути состояний.
+У каталогов `incremental` и `differential` начальная запись имеет тип
+`full`, последующие — выбранный режим.
+
+| Проверка совместного хранения | `full` | `incremental` | `differential` |
+|---|---|---|---|
+| `readme.txt` в S0–S3 | Четыре разных inode | Один inode | Один inode |
+| `plan.txt` в S1 и S2 | Разные inode | Один inode | Разные inode |
+
+Сравнение проводится внутри одной файловой системы, с учётом номера
+устройства. Инкрементный режим связывает неизменный `plan-v1` с предыдущей
+копией S1. Дифференциальный сравнивает с полной S0, где лежит `plan-v0`,
+поэтому в S1 и S2 создаются отдельные экземпляры `plan-v1`.
+Это проверяет выбор базы без ненадёжного измерения занятых блоков
+на маленьких файлах. Номера inode и UUID заранее не фиксируются.
+
+| Восстановление после S3 | Ожидаемое содержимое `project` |
+|---|---|
+| `full`, `incremental`, `differential`: ID S1 | `plan-v1`, `sum,100`, `readme-v0`, `notes-v0` в четырёх заданных файлах |
+| Те же три режима: ID S3 | `plan-v2`, `readme-v0`, `notes-v0`; смета отсутствует |
+| `mirror`: ID S3 | S3 |
+| `mirror`: старый ID S1 | Тоже S3; нет `plan-v1` и `sum,100` |
+
+Все записи зеркала ведут к одному `mirror_backup`, который обновлялся
+на месте с `--delete`. Старый ID остаётся записью каталога, но не хранит
+старое содержимое. Из зеркала после S3 нельзя получить точную S1.
+Для возврата сметы `sum,120` подходит S2 любого из трёх версионных
+режимов. Допустимый пример:
+
+```{.bash .lab-run}
+restore_stage incremental S2
+cp "$LAB/restore/incremental-S2/project/budget.csv" "$LAB/recovered-budget.csv"
+cat "$LAB/recovered-budget.csv"
+test ! -e "$LAB/project/budget.csv"
+```
+
+BB восстанавливает выбранное полное по составу дерево. Накладывать вручную
+все ранние копии не требуется. В этой реализации неизменные файлы доступны
+через жёсткие ссылки; удаление одного имени не удаляет другие ссылки.
+Упражнения по выбору версий задают иной формат — отдельные наборы целых
+изменённых файлов. Их таблицы объёмов нельзя приписывать каталогам BB.
+Рабочий проект и копии здесь размещены на одном носителе ради опыта;
+это не защита от потери всего носителя.
+::::
+
+## Основания проверочного разбора
+
+Поведение программы определяют официальное [руководство](https://butterfly-backup.readthedocs.io/en/latest/)
+и [исходники выбранного снимка](https://github.com/MatteoGuadrini/Butterfly-Backup/tree/af5f83264c70c5c6a0e23b9e5ea0e6fc508fb9a3).
+В `bb.py` функции `compose_command`, `compose_destination`,
+`compose_restore_src_dst`, `get_last_backup`, `get_last_full` задают
+`--link-dest`, путь зеркала и флаги восстановления; `utility.time_for_folder`
+задаёт точность имени до минуты. В конце `bb.py` выбор `fork` находится
+в точке прямого запуска, тогда как `setup.py` назначает команде `bb`
+вход `bb:main`. Семантика `--link-dest` и `--update` описана в
+[официальном руководстве rsync](https://download.samba.org/pub/rsync/rsync.1).
+
+Воспроизводимый опыт выполняется по блокам `.lab-run` этой страницы.
+Они включают пример из проверочного разбора; при выдаче студенту разбор
+скрывается штатным профилем. Отдельный авторский проверяющий сценарий
+[проверяет полученные файлы](../../CI/check-backup-lab.py), а не только
+код завершения BB. Он рассчитан на эталонный опыт с восстановлением сметы
+из `incremental-S2`; при сдаче принимаются и другие указанные в разборе
+источники S2. В ходе подготовки использованы GNU/Linux, Python 3.14.7,
+BB 1.22.3 и rsync 3.5.1-g04355d27. WSL отдельно не проверялся.
